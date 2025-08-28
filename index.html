@@ -2,53 +2,121 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Inicio | Mi Portfolio</title>
-	<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArceApps - Desarrollador Android</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body data-page="home">
-	<header class="site-header">
-		<div class="container">
-			<a class="brand" href="/">Mi Portfolio</a>
-			<nav class="site-nav">
-				<a href="/portfolio.html">Portfolio</a>
-				<a href="/blog.html">Blog</a>
-			</nav>
-		</div>
-	</header>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3>ArceApps</h3>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#home" class="nav-link active">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-	<section class="hero">
-		<div class="container">
-			<h1>Hola, soy <span class="highlight">ArceApps</span></h1>
-			<p>Desarrollo experiencias web modernas y elegantes. Aquí encontrarás mi trabajo y novedades.</p>
-			<div class="actions">
-				<a class="btn primary" href="/portfolio.html">Ver Portfolio</a>
-				<a class="btn" href="/blog.html">Leer Blog</a>
-			</div>
-		</div>
-	</section>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Hola, soy <span class="gradient-text">ArceApps</span>
+        </h1>
+        <p class="hero-subtitle">
+          Desarrollador Android especializado en crear aplicaciones móviles modernas y elegantes
+        </p>
+        <div class="hero-buttons">
+          <a href="portfolio.html" class="btn btn-primary">Ver Portfolio</a>
+          <a href="blog.html" class="btn btn-outline">Leer Blog</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="code-animation">
+          <div class="code-line"></div>
+          <div class="code-line"></div>
+          <div class="code-line"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-	<main class="container">
-		<section>
-			<h2>Proyectos destacados</h2>
-			<div id="featured-projects" class="portfolio"></div>
-			<div class="more-link"><a href="/portfolio.html">Ver todos los proyectos →</a></div>
-		</section>
+  <!-- Featured Projects -->
+  <section class="featured-section">
+    <div class="container">
+      <h2 class="section-title">Proyectos Destacados</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-icon">🧩</div>
+          <h3>Sudoku Android</h3>
+          <p>Juego clásico de Sudoku para Android con diferentes niveles de dificultad, validación automática y diseño Material Design.</p>
+          <a href="#" class="project-link">Ver proyecto →</a>
+        </div>
+        <div class="project-card">
+          <div class="project-icon">🎯</div>
+          <h3>2048 Game</h3>
+          <p>Implementación del popular juego 2048 para Android con animaciones fluidas, puntuación y sistema de guardado automático.</p>
+          <a href="#" class="project-link">Ver proyecto →</a>
+        </div>
+      </div>
+      <div class="text-center">
+        <a href="portfolio.html" class="btn btn-outline">Ver todos los proyectos</a>
+      </div>
+    </div>
+  </section>
 
-		<section>
-			<h2>Últimas noticias</h2>
-			<div id="latest-posts"></div>
-			<div class="more-link"><a href="/blog.html">Ir al blog →</a></div>
-		</section>
-	</main>
+  <!-- Latest Blog Posts -->
+  <section class="blog-section">
+    <div class="container">
+      <h2 class="section-title">Últimas Publicaciones</h2>
+      <div class="blog-grid">
+        <article class="blog-card">
+          <div class="blog-date">25 Ago 2025</div>
+          <h3>Versionado Semántico en Android</h3>
+          <p>Exploramos cómo implementar versionado semántico en aplicaciones Android, desde versionCode hasta build.gradle.</p>
+          <a href="#" class="blog-link">Leer más →</a>
+        </article>
+        <article class="blog-card">
+          <div class="blog-date">22 Ago 2025</div>
+          <h3>Conventional Commits</h3>
+          <p>Aprende a usar Conventional Commits para mantener un historial de git limpio y generar changelogs automáticamente.</p>
+          <a href="#" class="blog-link">Leer más →</a>
+        </article>
+      </div>
+      <div class="text-center">
+        <a href="blog.html" class="btn btn-outline">Ver todas las publicaciones</a>
+      </div>
+    </div>
+  </section>
 
-	<footer>
-		<div class="container">
-			&copy; 2025 ArceApps · Hecho con HTML, CSS y JS
-		</div>
-	</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-	<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

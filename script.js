@@ -1,58 +1,86 @@
-// Minimal data loader and renderer for Home, Portfolio, and Blog
-const base = '';
+// Simple and clean JavaScript for the portfolio site
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scrolling for navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Only prevent default for anchor links on same page
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                
+                if (target) {
+                    const navHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
 
-async function loadJSON(path) {
-  const res = await fetch(path);
-  if (!res.ok) throw new Error(`No se pudo cargar ${path}`);
-  return res.json();
-}
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    let lastScrollTop = 0;
 
-function renderProjects(container, projects) {
-  container.innerHTML = projects.map(p => `
-    <div class="card">
-      <h3>${p.title}</h3>
-      <p>${p.description ?? ''}</p>
-      ${p.url ? `<a href="${p.url}" target="_blank" rel="noopener">Ver más</a>` : ''}
-    </div>
-  `).join('');
-}
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 100) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = 'none';
+        }
+        
+        lastScrollTop = scrollTop;
+    });
 
-function renderPosts(container, posts) {
-  container.innerHTML = posts.map(post => `
-    <article class="blog-post">
-      <h3>${post.title}</h3>
-      <p>${post.summary ?? ''}</p>
-      <small>${new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</small>
-    </article>
-  `).join('');
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-  const page = document.body.getAttribute('data-page');
-  try {
-    if (page === 'home') {
-      const [projects, posts] = await Promise.all([
-        loadJSON(`${base}/projects.json`),
-        loadJSON(`${base}/posts.json`)
-      ]);
-      const featured = projects.slice(0, 3);
-      const latest = posts.slice(0, 3);
-      const fp = document.getElementById('featured-projects');
-      const lp = document.getElementById('latest-posts');
-      if (fp) renderProjects(fp, featured);
-      if (lp) renderPosts(lp, latest);
+    // Add active class to current page in navigation
+    const currentPage = window.location.pathname;
+    const currentNavLink = document.querySelector(`.nav-link[href="${currentPage}"]`) ||
+                          document.querySelector(`.nav-link[href="/${currentPage}"]`) ||
+                          document.querySelector('.nav-link[href="#home"]');
+    
+    if (currentNavLink) {
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        currentNavLink.classList.add('active');
     }
-    if (page === 'portfolio') {
-      const projects = await loadJSON(`${base}/projects.json`);
-      const container = document.getElementById('projects');
-      if (container) renderProjects(container, projects);
-    }
-    if (page === 'blog') {
-      const posts = await loadJSON(`${base}/posts.json`);
-      const container = document.getElementById('posts');
-      if (container) renderPosts(container, posts);
-    }
-  } catch (e) {
-    console.error(e);
-  }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements for animation
+    const animateElements = document.querySelectorAll('.project-card, .blog-card');
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+
+    // Add typing animation to code lines
+    const codeLines = document.querySelectorAll('.code-line');
+    codeLines.forEach((line, index) => {
+        line.style.animationDelay = `${index * 0.5}s`;
+    });
 });
