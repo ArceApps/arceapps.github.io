@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Versionado Semántico en Android - ArceApps Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3><a href="index.html">ArceApps</a></h3>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link active">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">25 de agosto de 2025</span>
+          <span class="article-category">Desarrollo Android</span>
+        </div>
+        <h1>Versionado Semántico en Android: Mejores Prácticas para Desarrolladores</h1>
+        <p class="article-subtitle">Una guía completa sobre cómo implementar versionado semántico en aplicaciones Android, desde versionCode hasta Google Play Store</p>
+        <div class="article-image">
+          <img src="https://via.placeholder.com/800x400/10b981/ffffff?text=Android+Versioning" alt="Versionado Android" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>Introducción al Versionado Semántico</h2>
+        <p>El versionado semántico (SemVer) es un sistema de versionado que utiliza un formato de tres números: MAJOR.MINOR.PATCH. En el contexto de Android, este sistema cobra especial importancia debido a las particularidades del ecosistema móvil y las políticas de Google Play Store.</p>
+
+        <h3>¿Por qué es importante en Android?</h3>
+        <p>Android maneja dos tipos de versiones diferentes:</p>
+        <ul>
+          <li><strong>versionName</strong>: Es la versión que ven los usuarios (ej: "1.2.3")</li>
+          <li><strong>versionCode</strong>: Es un número entero interno que Google Play usa para determinar actualizaciones</li>
+        </ul>
+
+        <h2>Configuración en build.gradle</h2>
+        <div class="code-block">
+          <pre><code>android {
+    compileSdk 34
+    
+    defaultConfig {
+        applicationId "com.arceapps.miapp"
+        minSdk 24
+        targetSdk 34
+        versionCode 10203  // Formato: MMmmpp
+        versionName "1.2.3"
+    }
+}</code></pre>
+        </div>
+
+        <h3>Estrategias de versionCode</h3>
+        <p>Una estrategia efectiva es usar el formato MMmmpp donde:</p>
+        <ul>
+          <li><strong>MM</strong>: Versión major (01-99)</li>
+          <li><strong>mm</strong>: Versión minor (00-99)</li>
+          <li><strong>pp</strong>: Versión patch (00-99)</li>
+        </ul>
+
+        <h2>Automatización con Gradle</h2>
+        <p>Podemos automatizar el versionado usando propiedades de Gradle:</p>
+        
+        <div class="code-block">
+          <pre><code>// version.properties
+VERSION_MAJOR=1
+VERSION_MINOR=2
+VERSION_PATCH=3
+
+// build.gradle
+def versionPropsFile = file('version.properties')
+def versionProps = new Properties()
+versionProps.load(new FileInputStream(versionPropsFile))
+
+def vMajor = versionProps['VERSION_MAJOR'].toInteger()
+def vMinor = versionProps['VERSION_MINOR'].toInteger()
+def vPatch = versionProps['VERSION_PATCH'].toInteger()
+
+android {
+    defaultConfig {
+        versionCode vMajor * 10000 + vMinor * 100 + vPatch
+        versionName "${vMajor}.${vMinor}.${vPatch}"
+    }
+}</code></pre>
+        </div>
+
+        <h2>Consideraciones para Google Play</h2>
+        <p>Google Play Store tiene requisitos específicos:</p>
+        
+        <h3>App Bundle vs APK</h3>
+        <p>Con Android App Bundle, Google genera múltiples APKs optimizados. Cada uno debe tener el mismo versionCode, pero Google maneja internamente los códigos específicos.</p>
+
+        <h3>Canales de distribución</h3>
+        <ul>
+          <li><strong>Interno</strong>: Para testing interno del equipo</li>
+          <li><strong>Alpha</strong>: Para testing cerrado</li>
+          <li><strong>Beta</strong>: Para testing abierto</li>
+          <li><strong>Producción</strong>: Para usuarios finales</li>
+        </ul>
+
+        <h2>Integración con CI/CD</h2>
+        <p>En un flujo de integración continua, podemos automatizar el versionado:</p>
+
+        <div class="code-block">
+          <pre><code># GitHub Actions example
+name: Build and Deploy
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+      
+      - name: Update version
+        run: |
+          ./gradlew updateVersion -PnewVersion=$VERSION</code></pre>
+        </div>
+
+        <h2>Mejores Prácticas</h2>
+        
+        <h3>1. Consistencia en el equipo</h3>
+        <p>Establecer reglas claras sobre cuándo incrementar cada número:</p>
+        <ul>
+          <li><strong>MAJOR</strong>: Cambios incompatibles o rediseños completos</li>
+          <li><strong>MINOR</strong>: Nuevas funcionalidades compatibles</li>
+          <li><strong>PATCH</strong>: Corrección de bugs</li>
+        </ul>
+
+        <h3>2. Documentación automática</h3>
+        <p>Generar changelogs automáticamente basados en commits y PRs:</p>
+        
+        <div class="code-block">
+          <pre><code>## [1.2.3] - 2025-08-25
+### Added
+- Nueva funcionalidad de notificaciones push
+- Soporte para modo oscuro
+
+### Fixed
+- Corrección de crash al rotar pantalla
+- Mejora en la sincronización de datos</code></pre>
+        </div>
+
+        <h3>3. Testing por versiones</h3>
+        <p>Implementar tests que verifiquen la compatibilidad entre versiones, especialmente para:</p>
+        <ul>
+          <li>Migración de bases de datos</li>
+          <li>Formato de preferencias guardadas</li>
+          <li>APIs internas cambiadas</li>
+        </ul>
+
+        <h2>Herramientas Recomendadas</h2>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <h4>Gradle Version Plugin</h4>
+            <p>Automatiza el incremento de versiones desde línea de comandos</p>
+          </div>
+          <div class="tool-card">
+            <h4>Fastlane</h4>
+            <p>Automatización completa del pipeline de despliegue</p>
+          </div>
+          <div class="tool-card">
+            <h4>Semantic Release</h4>
+            <p>Versionado automático basado en commits convencionales</p>
+          </div>
+        </div>
+
+        <h2>Conclusión</h2>
+        <p>El versionado semántico en Android requiere un enfoque híbrido que combine las mejores prácticas de SemVer con las particularidades de la plataforma. La clave está en la automatización y la consistencia en el equipo de desarrollo.</p>
+
+        <p>Implementar estas prácticas desde el inicio del proyecto ahorra tiempo y reduce errores en el futuro, especialmente cuando la aplicación crece en complejidad y número de usuarios.</p>
+
+        <div class="article-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Versionado</span>
+            <span class="tag">Gradle</span>
+            <span class="tag">CI/CD</span>
+          </div>
+          <div class="share-buttons">
+            <a href="#" class="share-btn">Compartir en Twitter</a>
+            <a href="#" class="share-btn">Compartir en LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

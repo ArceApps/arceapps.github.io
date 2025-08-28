@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conventional Commits - ArceApps Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3><a href="index.html">ArceApps</a></h3>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link active">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">22 de agosto de 2025</span>
+          <span class="article-category">Control de Versiones</span>
+        </div>
+        <h1>Conventional Commits: Transformando tu Historial Git en una Herramienta Poderosa</h1>
+        <p class="article-subtitle">Descubre cómo los commits convencionales pueden automatizar tu workflow, generar changelogs y mejorar la colaboración en equipo</p>
+        <div class="article-image">
+          <img src="https://via.placeholder.com/800x400/10b981/ffffff?text=Conventional+Commits" alt="Conventional Commits" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>¿Qué son los Conventional Commits?</h2>
+        <p>Los Conventional Commits son una especificación para dar estructura a los mensajes de commit. Proporcionan un conjunto sencillo de reglas para crear un historial de commits explícito, lo que facilita la escritura de herramientas automatizadas.</p>
+
+        <h3>Formato básico</h3>
+        <div class="code-block">
+          <pre><code>&lt;tipo&gt;[ámbito opcional]: &lt;descripción&gt;
+
+[cuerpo opcional]
+
+[nota(s) al pie opcionales]</code></pre>
+        </div>
+
+        <h2>Tipos de Commits Principales</h2>
+        
+        <div class="commit-types">
+          <div class="commit-type">
+            <h4><code>feat</code></h4>
+            <p>Una nueva funcionalidad para el usuario</p>
+            <div class="example">
+              <strong>Ejemplo:</strong> <code>feat(auth): add Google OAuth integration</code>
+            </div>
+          </div>
+
+          <div class="commit-type">
+            <h4><code>fix</code></h4>
+            <p>Corrección de un bug</p>
+            <div class="example">
+              <strong>Ejemplo:</strong> <code>fix(api): resolve null pointer exception in user service</code>
+            </div>
+          </div>
+
+          <div class="commit-type">
+            <h4><code>docs</code></h4>
+            <p>Solo cambios en documentación</p>
+            <div class="example">
+              <strong>Ejemplo:</strong> <code>docs(readme): update installation instructions</code>
+            </div>
+          </div>
+
+          <div class="commit-type">
+            <h4><code>style</code></h4>
+            <p>Cambios que no afectan el significado del código</p>
+            <div class="example">
+              <strong>Ejemplo:</strong> <code>style(components): fix indentation in header component</code>
+            </div>
+          </div>
+
+          <div class="commit-type">
+            <h4><code>refactor</code></h4>
+            <p>Cambio de código que no corrige un bug ni añade una funcionalidad</p>
+            <div class="example">
+              <strong>Ejemplo:</strong> <code>refactor(utils): extract common validation logic</code>
+            </div>
+          </div>
+
+          <div class="commit-type">
+            <h4><code>test</code></h4>
+            <p>Añadir tests faltantes o corregir tests existentes</p>
+            <div class="example">
+              <strong>Ejemplo:</strong> <code>test(user): add unit tests for user validation</code>
+            </div>
+          </div>
+
+          <div class="commit-type">
+            <h4><code>chore</code></h4>
+            <p>Cambios en el proceso de build o herramientas auxiliares</p>
+            <div class="example">
+              <strong>Ejemplo:</strong> <code>chore(deps): update gradle to version 8.0</code>
+            </div>
+          </div>
+        </div>
+
+        <h2>Ámbitos (Scopes) Comunes en Android</h2>
+        <p>Los ámbitos ayudan a identificar qué parte del código se ve afectada:</p>
+
+        <ul>
+          <li><strong>ui</strong>: Cambios en la interfaz de usuario</li>
+          <li><strong>api</strong>: Cambios en la capa de API o networking</li>
+          <li><strong>db</strong>: Cambios en la base de datos</li>
+          <li><strong>auth</strong>: Cambios en autenticación</li>
+          <li><strong>gradle</strong>: Cambios en configuración de build</li>
+          <li><strong>manifest</strong>: Cambios en AndroidManifest.xml</li>
+        </ul>
+
+        <h2>Implementación Práctica</h2>
+
+        <h3>1. Configuración de Git Hooks</h3>
+        <p>Podemos usar herramientas como <code>commitizen</code> para forzar el formato:</p>
+
+        <div class="code-block">
+          <pre><code># Instalar commitizen
+npm install -g commitizen
+npm install -g cz-conventional-changelog
+
+# Configurar en el proyecto
+echo '{ "path": "cz-conventional-changelog" }' > ~/.czrc
+
+# Usar git cz en lugar de git commit
+git cz</code></pre>
+        </div>
+
+        <h3>2. Automatización con GitHub Actions</h3>
+        <div class="code-block">
+          <pre><code>name: Validate Commits
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Validate commit messages
+        uses: wagoid/commitlint-github-action@v5
+        with:
+          configFile: .commitlintrc.json</code></pre>
+        </div>
+
+        <h3>3. Configuración de commitlint</h3>
+        <div class="code-block">
+          <pre><code>// .commitlintrc.json
+{
+  "extends": ["@commitlint/config-conventional"],
+  "rules": {
+    "type-enum": [2, "always", [
+      "feat", "fix", "docs", "style", 
+      "refactor", "test", "chore", "perf"
+    ]],
+    "scope-enum": [2, "always", [
+      "ui", "api", "db", "auth", "gradle", 
+      "manifest", "core", "utils"
+    ]]
+  }
+}</code></pre>
+        </div>
+
+        <h2>Generación Automática de Changelogs</h2>
+        <p>Una de las mayores ventajas es la generación automática de changelogs:</p>
+
+        <h3>Con standard-version</h3>
+        <div class="code-block">
+          <pre><code># Instalar standard-version
+npm install --save-dev standard-version
+
+# Añadir script en package.json
+{
+  "scripts": {
+    "release": "standard-version"
+  }
+}
+
+# Generar nueva versión y changelog
+npm run release</code></pre>
+        </div>
+
+        <h3>Resultado del changelog generado</h3>
+        <div class="code-block">
+          <pre><code># Changelog
+
+## [1.2.0] - 2025-08-22
+
+### Features
+* **auth**: add biometric authentication support
+* **ui**: implement dark mode theme
+* **api**: add offline data synchronization
+
+### Bug Fixes
+* **db**: fix memory leak in database connections
+* **ui**: resolve crash on device rotation
+
+### Performance Improvements
+* **api**: optimize network request caching</code></pre>
+        </div>
+
+        <h2>Integración con Semantic Release</h2>
+        <p>Semantic Release automatiza todo el proceso de versionado:</p>
+
+        <div class="code-block">
+          <pre><code>// .releaserc.json
+{
+  "branches": ["main"],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/npm",
+    "@semantic-release/github"
+  ]
+}</code></pre>
+        </div>
+
+        <h2>Commits con Breaking Changes</h2>
+        <p>Para cambios que rompen la compatibilidad:</p>
+
+        <div class="code-block">
+          <pre><code>feat(api)!: change user authentication method
+
+BREAKING CHANGE: The authentication API now requires 
+OAuth 2.0 instead of API keys. All existing integrations 
+must be updated to use the new authentication flow.</code></pre>
+        </div>
+
+        <h2>Beneficios en Proyectos Android</h2>
+
+        <h3>1. Claridad en el historial</h3>
+        <p>El historial de commits se convierte en una documentación viva del proyecto:</p>
+        <ul>
+          <li>Fácil identificación de nuevas features</li>
+          <li>Rápida localización de bug fixes</li>
+          <li>Seguimiento de cambios en dependencias</li>
+        </ul>
+
+        <h3>2. Automatización del release</h3>
+        <p>Integración perfecta con Google Play Console:</p>
+        <ul>
+          <li>Versionado automático de APK/AAB</li>
+          <li>Generación de release notes</li>
+          <li>Despliegue automatizado a diferentes tracks</li>
+        </ul>
+
+        <h3>3. Mejor colaboración en equipo</h3>
+        <p>Los desarrolladores pueden entender rápidamente:</p>
+        <ul>
+          <li>Qué cambió y por qué</li>
+          <li>Impacto de cada commit</li>
+          <li>Historial de decisiones técnicas</li>
+        </ul>
+
+        <h2>Herramientas y Extensiones</h2>
+        
+        <div class="tools-grid">
+          <div class="tool-card">
+            <h4>VS Code Extension</h4>
+            <p><strong>Conventional Commits</strong> - Autocompletado y validación en tiempo real</p>
+          </div>
+          <div class="tool-card">
+            <h4>Android Studio Plugin</h4>
+            <p><strong>Git Commit Template</strong> - Templates personalizados para commits</p>
+          </div>
+          <div class="tool-card">
+            <h4>Husky + Commitlint</h4>
+            <p>Validación automática antes de cada commit</p>
+          </div>
+        </div>
+
+        <h2>Casos de Uso Avanzados</h2>
+
+        <h3>Monorepos con Android</h3>
+        <div class="code-block">
+          <pre><code>feat(mobile/android): add new payment module
+fix(mobile/ios): resolve memory leak in camera
+docs(shared/api): update authentication docs</code></pre>
+        </div>
+
+        <h3>Versionado por módulos</h3>
+        <div class="code-block">
+          <pre><code>feat(core): add new data encryption utilities
+feat(ui-components): implement custom progress bar
+fix(networking): resolve timeout issues in HTTP client</code></pre>
+        </div>
+
+        <h2>Conclusión</h2>
+        <p>Los Conventional Commits transforman la forma en que trabajamos con Git, convirtiendo algo mundano como escribir mensajes de commit en una herramienta poderosa para la automatización y documentación.</p>
+
+        <p>En proyectos Android, donde el ciclo de releases es crítico y la colaboración en equipo es esencial, adoptar esta práctica puede marcar la diferencia entre un proyecto caótico y uno bien organizado.</p>
+
+        <div class="best-practices-box">
+          <h3>💡 Consejos para implementar</h3>
+          <ul>
+            <li>Comienza gradualmente con tu equipo</li>
+            <li>Usa herramientas de validación desde el inicio</li>
+            <li>Documenta las convenciones específicas de tu proyecto</li>
+            <li>Integra con tu pipeline de CI/CD</li>
+            <li>Celebra los pequeños wins cuando el equipo se adapte</li>
+          </ul>
+        </div>
+
+        <div class="article-footer">
+          <div class="tags">
+            <span class="tag">Git</span>
+            <span class="tag">Workflow</span>
+            <span class="tag">Automation</span>
+            <span class="tag">Team Collaboration</span>
+          </div>
+          <div class="share-buttons">
+            <a href="#" class="share-btn">Compartir en Twitter</a>
+            <a href="#" class="share-btn">Compartir en LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 Game Android - ArceApps Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3><a href="index.html">ArceApps</a></h3>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link active">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="project-detail">
+    <div class="container">
+      <header class="project-header">
+        <div class="project-meta">
+          <span class="project-category">Juego Android</span>
+          <span class="project-status">En Desarrollo</span>
+        </div>
+        <h1>2048 Game Android</h1>
+        <p class="project-subtitle">Implementación moderna del popular juego 2048 con animaciones fluidas, múltiples modos de juego y sistema de logros avanzado</p>
+        
+        <div class="project-hero-image">
+          <img src="https://via.placeholder.com/800x600/10b981/ffffff?text=2048+Game+Android" alt="2048 Game Android" />
+        </div>
+
+        <div class="project-links">
+          <a href="#" class="btn btn-primary" target="_blank">Descargar APK</a>
+          <a href="#" class="btn btn-outline" target="_blank">Código en GitHub</a>
+          <a href="#" class="btn btn-outline" target="_blank">Demo Online</a>
+        </div>
+      </header>
+
+      <div class="project-content">
+        <div class="project-overview">
+          <h2>Sobre el Proyecto</h2>
+          <p>2048 Game Android es una implementación completamente nueva del adictivo juego de puzzle matemático. Esta versión va más allá del juego original, incorporando características modernas como múltiples modos de juego, animaciones suaves, themes personalizables y un sistema de progresión que mantiene a los jugadores enganchados.</p>
+          
+          <p>El proyecto utiliza las últimas tecnologías de Android y está optimizado para ofrecer una experiencia de 60 FPS constante, incluso en dispositivos de gama baja. La arquitectura modular permite fácil extensión y mantenimiento del código.</p>
+        </div>
+
+        <div class="game-modes">
+          <h2>Modos de Juego</h2>
+          
+          <div class="mode-grid">
+            <div class="mode-card">
+              <div class="mode-icon">🎯</div>
+              <h3>Clásico 4x4</h3>
+              <p>El modo tradicional en una cuadrícula de 4x4. Combina fichas para alcanzar la ficha 2048 y más allá.</p>
+            </div>
+
+            <div class="mode-card">
+              <div class="mode-icon">🏃</div>
+              <h3>Modo Velocidad</h3>
+              <p>Desafío contra el tiempo donde nuevas fichas aparecen automáticamente cada pocos segundos.</p>
+            </div>
+
+            <div class="mode-card">
+              <div class="mode-icon">🔢</div>
+              <h3>Grids Extendidas</h3>
+              <p>Juega en grids de 5x5, 6x6 hasta 8x8 para mayor desafío y estrategia.</p>
+            </div>
+
+            <div class="mode-card">
+              <div class="mode-icon">⚡</div>
+              <h3>Modo Zen</h3>
+              <p>Modo relajado sin límites de tiempo, perfecto para practicar estrategias.</p>
+            </div>
+
+            <div class="mode-card">
+              <div class="mode-icon">🏆</div>
+              <h3>Desafíos Diarios</h3>
+              <p>Retos únicos que cambian cada día con objetivos específicos y recompensas.</p>
+            </div>
+
+            <div class="mode-card">
+              <div class="mode-icon">🎨</div>
+              <h3>Modo Colores</h3>
+              <p>Variante donde las fichas tienen colores únicos además de números.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-implementation">
+          <h2>Implementación Técnica</h2>
+          
+          <h3>Arquitectura del Juego</h3>
+          <p>El juego está construido usando una arquitectura limpia con separación clara de responsabilidades:</p>
+          
+          <div class="code-block">
+            <pre><code>// GameEngine.kt - Motor principal del juego
+class GameEngine {
+    private val grid = Array(4) { IntArray(4) }
+    private var score = 0
+    private var gameState = GameState.PLAYING
+    
+    fun move(direction: Direction): MoveResult {
+        val previousGrid = grid.copyOf()
+        val moved = when (direction) {
+            Direction.UP -&gt; moveUp()
+            Direction.DOWN -&gt; moveDown()
+            Direction.LEFT -&gt; moveLeft()
+            Direction.RIGHT -&gt; moveRight()
+        }
+        
+        if (moved) {
+            addRandomTile()
+            checkGameState()
+        }
+        
+        return MoveResult(
+            moved = moved,
+            score = score,
+            gameState = gameState,
+            animations = calculateAnimations(previousGrid, grid)
+        )
+    }
+}</code></pre>
+          </div>
+
+          <h3>Sistema de Animaciones</h3>
+          <p>Las animaciones fluidas son clave para la experiencia del usuario:</p>
+          
+          <div class="code-block">
+            <pre><code>// AnimationController.kt
+class AnimationController {
+    private val animators = mutableListOf&lt;ValueAnimator&gt;()
+    
+    fun animateMove(
+        from: Position, 
+        to: Position, 
+        duration: Long = 150L
+    ): Animator {
+        return ValueAnimator.ofFloat(0f, 1f).apply {
+            this.duration = duration
+            interpolator = DecelerateInterpolator()
+            addUpdateListener { animator -&gt;
+                val progress = animator.animatedValue as Float
+                updateTilePosition(from, to, progress)
+            }
+        }
+    }
+    
+    fun animateMerge(position: Position, newValue: Int) {
+        val scaleAnimator = ValueAnimator.ofFloat(1f, 1.2f, 1f)
+        scaleAnimator.duration = 200L
+        scaleAnimator.addUpdateListener { animator -&gt;
+            val scale = animator.animatedValue as Float
+            scaleTileAt(position, scale)
+        }
+        scaleAnimator.start()
+    }
+}</code></pre>
+          </div>
+
+          <h3>Detección de Gestos</h3>
+          <div class="code-block">
+            <pre><code>// GestureHandler.kt
+class GestureHandler : GestureDetector.SimpleOnGestureListener() {
+    
+    override fun onFling(
+        e1: MotionEvent?,
+        e2: MotionEvent,
+        velocityX: Float,
+        velocityY: Float
+    ): Boolean {
+        val deltaX = e2.x - (e1?.x ?: 0f)
+        val deltaY = e2.y - (e1?.y ?: 0f)
+        
+        return when {
+            abs(deltaX) &gt; abs(deltaY) -&gt; {
+                if (deltaX &gt; 0) onSwipeRight() else onSwipeLeft()
+            }
+            else -&gt; {
+                if (deltaY &gt; 0) onSwipeDown() else onSwipeUp()
+            }
+        }
+    }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="ui-features">
+          <h2>Características de UI/UX</h2>
+          
+          <h3>Design System Personalizado</h3>
+          <p>Creamos un design system completo específico para el juego:</p>
+          
+          <ul>
+            <li><strong>Paleta de Colores Dinámica:</strong> 16 colores únicos para diferentes valores de fichas</li>
+            <li><strong>Tipografía Escalable:</strong> Números que se adaptan automáticamente al tamaño de la ficha</li>
+            <li><strong>Animaciones Coherentes:</strong> Todas las transiciones siguen los mismos principios de timing</li>
+            <li><strong>Feedback Háptico:</strong> Vibraciones sutiles para confirmar movimientos</li>
+          </ul>
+
+          <h3>Temas Personalizables</h3>
+          <div class="theme-grid">
+            <div class="theme-card">
+              <div class="theme-preview theme-classic"></div>
+              <h4>Clásico</h4>
+              <p>El tema original inspirado en el juego web</p>
+            </div>
+            <div class="theme-card">
+              <div class="theme-preview theme-dark"></div>
+              <h4>Modo Oscuro</h4>
+              <p>Perfecto para jugar en condiciones de poca luz</p>
+            </div>
+            <div class="theme-card">
+              <div class="theme-preview theme-neon"></div>
+              <h4>Neón</h4>
+              <p>Colores vibrantes con efectos de glow</p>
+            </div>
+            <div class="theme-card">
+              <div class="theme-preview theme-minimal"></div>
+              <h4>Minimalista</h4>
+              <p>Diseño limpio y elegante</p>
+            </div>
+          </div>
+
+          <h3>Accesibilidad</h3>
+          <p>El juego está diseñado para ser accesible para todos:</p>
+          <ul>
+            <li><strong>Soporte para TalkBack:</strong> Descripciones de audio para usuarios con discapacidad visual</li>
+            <li><strong>Alto Contraste:</strong> Modos especiales para usuarios con dificultades visuales</li>
+            <li><strong>Controles Alternativos:</strong> Botones direccionales para usuarios que no pueden usar gestos</li>
+            <li><strong>Escalado de Texto:</strong> Respeta las configuraciones del sistema</li>
+          </ul>
+        </div>
+
+        <div class="advanced-features">
+          <h2>Características Avanzadas</h2>
+          
+          <h3>IA y Machine Learning</h3>
+          <p>Implementamos un sistema de IA para mejorar la experiencia:</p>
+          
+          <div class="code-block">
+            <pre><code>// AIHintSystem.kt
+class AIHintSystem {
+    private val model = MiniMaxModel(depth = 4)
+    
+    fun getSuggestion(grid: GameGrid): Move? {
+        val possibleMoves = grid.getValidMoves()
+        var bestMove: Move? = null
+        var bestScore = Int.MIN_VALUE
+        
+        possibleMoves.forEach { move -&gt;
+            val futureGrid = grid.simulateMove(move)
+            val score = model.evaluate(futureGrid)
+            
+            if (score &gt; bestScore) {
+                bestScore = score
+                bestMove = move
+            }
+        }
+        
+        return bestMove
+    }
+}</code></pre>
+          </div>
+
+          <h3>Sistema de Logros</h3>
+          <p>Sistema completo de gamificación con 50+ logros únicos:</p>
+          
+          <ul>
+            <li><strong>Logros de Progreso:</strong> Alcanzar fichas específicas (512, 1024, 2048, etc.)</li>
+            <li><strong>Logros de Estrategia:</strong> Completar objetivos específicos de juego</li>
+            <li><strong>Logros Temporales:</strong> Desafíos de velocidad y resistencia</li>
+            <li><strong>Logros Sociales:</strong> Comparar puntuaciones con amigos</li>
+          </ul>
+
+          <h3>Analytics y Telemetría</h3>
+          <div class="code-block">
+            <pre><code>// GameAnalytics.kt
+class GameAnalytics {
+    fun trackGameSession(session: GameSession) {
+        Firebase.analytics.logEvent("game_completed") {
+            param("score", session.finalScore)
+            param("moves", session.totalMoves)
+            param("duration", session.duration)
+            param("highest_tile", session.highestTile)
+            param("game_mode", session.mode.name)
+        }
+    }
+    
+    fun trackUserBehavior(event: UserEvent) {
+        // Análisis de patrones de juego para mejoras futuras
+    }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="performance-optimization">
+          <h2>Optimización de Rendimiento</h2>
+          
+          <h3>Rendering Optimizado</h3>
+          <p>Técnicas avanzadas para mantener 60 FPS:</p>
+          
+          <ul>
+            <li><strong>Double Buffering:</strong> Previene tearing visual durante animaciones</li>
+            <li><strong>Object Pooling:</strong> Reutilización de objetos para reducir garbage collection</li>
+            <li><strong>Dirty Rectangle:</strong> Solo redibuja áreas que han cambiado</li>
+            <li><strong>GPU Acceleration:</strong> Usa hardware acceleration para animaciones</li>
+          </ul>
+
+          <div class="code-block">
+            <pre><code>// OptimizedGameView.kt
+class OptimizedGameView : View {
+    private val tilePool = Pool&lt;TileView&gt;(16) { TileView() }
+    private val dirtyRegions = mutableListOf&lt;Rect&gt;()
+    
+    override fun onDraw(canvas: Canvas) {
+        // Solo redibuja regiones marcadas como dirty
+        dirtyRegions.forEach { region -&gt;
+            canvas.save()
+            canvas.clipRect(region)
+            drawGameRegion(canvas, region)
+            canvas.restore()
+        }
+        dirtyRegions.clear()
+    }
+}</code></pre>
+          </div>
+
+          <h3>Gestión de Memoria</h3>
+          <p>Estrategias para minimizar el uso de memoria:</p>
+          
+          <ul>
+            <li><strong>Bitmap Recycling:</strong> Reutilización inteligente de bitmaps</li>
+            <li><strong>Lazy Loading:</strong> Carga bajo demanda de recursos</li>
+            <li><strong>Memory Leaks Prevention:</strong> Uso de WeakReferences donde apropiado</li>
+            <li><strong>Cache Management:</strong> Cache inteligente con límites de memoria</li>
+          </ul>
+        </div>
+
+        <div class="testing-strategy">
+          <h2>Estrategia de Testing</h2>
+          
+          <h3>Tests Automatizados</h3>
+          <p>Suite completa de tests para garantizar calidad:</p>
+          
+          <div class="code-block">
+            <pre><code>// GameEngineTest.kt
+@Test
+fun `move right should combine tiles correctly`() {
+    // Given
+    val engine = GameEngine()
+    engine.setGrid(arrayOf(
+        intArrayOf(2, 2, 0, 0),
+        intArrayOf(4, 4, 0, 0),
+        intArrayOf(8, 8, 0, 0),
+        intArrayOf(0, 0, 0, 0)
+    ))
+    
+    // When
+    val result = engine.move(Direction.RIGHT)
+    
+    // Then
+    assertThat(result.moved).isTrue()
+    assertThat(engine.getGrid()[0][3]).isEqualTo(4)
+    assertThat(engine.getGrid()[1][3]).isEqualTo(8)
+    assertThat(engine.getGrid()[2][3]).isEqualTo(16)
+}</code></pre>
+          </div>
+
+          <h3>Tests de Performance</h3>
+          <ul>
+            <li><strong>Benchmark Tests:</strong> Medición de tiempo de ejecución de algoritmos críticos</li>
+            <li><strong>Memory Tests:</strong> Detección de memory leaks y uso excesivo</li>
+            <li><strong>Frame Rate Tests:</strong> Verificación de 60 FPS en diferentes dispositivos</li>
+            <li><strong>Battery Tests:</strong> Medición del impacto en la batería</li>
+          </ul>
+        </div>
+
+        <div class="data-structures">
+          <h2>Estructuras de Datos</h2>
+          
+          <h3>Representación del Grid</h3>
+          <p>Estructura optimizada para operaciones rápidas:</p>
+          
+          <div class="code-block">
+            <pre><code>// GameGrid.kt
+class GameGrid(val size: Int = 4) {
+    private val tiles = Array(size) { IntArray(size) }
+    private val previousState = Array(size) { IntArray(size) }
+    
+    fun move(direction: Direction): Boolean {
+        saveState()
+        
+        return when (direction) {
+            Direction.LEFT -&gt; {
+                var moved = false
+                for (row in 0 until size) {
+                    moved = moveRowLeft(row) || moved
+                }
+                moved
+            }
+            // Otras direcciones...
+        }
+    }
+    
+    private fun moveRowLeft(row: Int): Boolean {
+        val original = tiles[row].clone()
+        val compressed = tiles[row].filter { it != 0 }.toMutableList()
+        
+        // Combinar tiles adyacentes
+        var i = 0
+        while (i &lt; compressed.size - 1) {
+            if (compressed[i] == compressed[i + 1]) {
+                compressed[i] *= 2
+                compressed.removeAt(i + 1)
+                score += compressed[i]
+            }
+            i++
+        }
+        
+        // Rellenar con ceros
+        while (compressed.size &lt; size) {
+            compressed.add(0)
+        }
+        
+        tiles[row] = compressed.toIntArray()
+        return !tiles[row].contentEquals(original)
+    }
+}</code></pre>
+          </div>
+
+          <h3>Sistema de Undo/Redo</h3>
+          <div class="code-block">
+            <pre><code>// GameHistory.kt
+class GameHistory {
+    private val states = ArrayDeque&lt;GameState&gt;()
+    private val maxStates = 10
+    
+    fun saveState(state: GameState) {
+        if (states.size &gt;= maxStates) {
+            states.removeFirst()
+        }
+        states.addLast(state.copy())
+    }
+    
+    fun undo(): GameState? {
+        return if (states.size &gt; 1) {
+            states.removeLast()
+            states.last()
+        } else null
+    }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="monetization">
+          <h2>Modelo de Monetización</h2>
+          
+          <h3>Estrategia Freemium</h3>
+          <ul>
+            <li><strong>Juego Base Gratuito:</strong> Acceso completo al modo clásico</li>
+            <li><strong>Premium Unlock:</strong> Modos adicionales, temas premium y sin anuncios</li>
+            <li><strong>IAPs Opcionales:</strong> Cosméticos y potenciadores opcionales</li>
+            <li><strong>Anuncios Recompensados:</strong> Ver anuncio para continuar partida</li>
+          </ul>
+
+          <h3>Implementación Ética</h3>
+          <p>Monetización que respeta al usuario:</p>
+          <ul>
+            <li>No pay-to-win mechanics</li>
+            <li>Anuncios opcionales únicamente</li>
+            <li>Funcionalidad core siempre gratuita</li>
+            <li>Precios justos y transparentes</li>
+          </ul>
+        </div>
+
+        <div class="future-roadmap">
+          <h2>Roadmap Futuro</h2>
+          
+          <h3>Versión 2.0 - Multijugador</h3>
+          <ul>
+            <li>🌐 <strong>Battles Online:</strong> Competencias 1v1 en tiempo real</li>
+            <li>🏆 <strong>Torneos:</strong> Competencias programadas con premios</li>
+            <li>👥 <strong>Modo Cooperativo:</strong> Jugar en el mismo grid con amigos</li>
+            <li>📊 <strong>Leaderboards Globales:</strong> Rankings mundiales por modo</li>
+          </ul>
+
+          <h3>Versión 2.5 - IA Avanzada</h3>
+          <ul>
+            <li>🤖 <strong>Oponente IA:</strong> Jugar contra diferentes niveles de IA</li>
+            <li>📚 <strong>Tutor Inteligente:</strong> Análisis de movimientos y sugerencias</li>
+            <li>🔄 <strong>Auto-Play:</strong> Modo donde la IA demuestra estrategias</li>
+          </ul>
+
+          <h3>Versión 3.0 - Realidad Aumentada</h3>
+          <ul>
+            <li>📱 <strong>AR Mode:</strong> Jugar 2048 en superficies reales</li>
+            <li>🎮 <strong>Gestos 3D:</strong> Controles con movimientos de mano</li>
+            <li>🌟 <strong>Efectos Visuales:</strong> Partículas y efectos en 3D</li>
+          </ul>
+        </div>
+
+        <div class="project-stats">
+          <h2>Estadísticas del Proyecto</h2>
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Líneas de Código</h3>
+              <p class="stat-number">15,000+</p>
+              <p>Kotlin, XML, y scripts</p>
+            </div>
+            
+            <div class="stat-card">
+              <h3>Tiempo de Desarrollo</h3>
+              <p class="stat-number">6 meses</p>
+              <p>Desde concepto hasta release</p>
+            </div>
+            
+            <div class="stat-card">
+              <h3>Tests Automatizados</h3>
+              <p class="stat-number">200+</p>
+              <p>Unit, Integration y UI tests</p>
+            </div>
+            
+            <div class="stat-card">
+              <h3>Cobertura de Código</h3>
+              <p class="stat-number">92%</p>
+              <p>Cobertura de tests</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Game Development</span>
+            <span class="tag">Custom Views</span>
+            <span class="tag">Animations</span>
+            <span class="tag">Performance</span>
+          </div>
+          
+          <div class="project-navigation">
+            <a href="project-sudoku.html" class="nav-btn">← Proyecto Anterior</a>
+            <a href="portfolio.html" class="nav-btn">Volver al Portfolio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
