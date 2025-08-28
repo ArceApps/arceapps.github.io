@@ -2,50 +2,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Mi Portfolio & Blog</title>
-	<link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Inicio | Mi Portfolio</title>
+	<link rel="stylesheet" href="style.css" />
 </head>
-<body>
-	<header>
-		<h1>Mi Portfolio</h1>
-		<p>Desarrollador | Creativo | Innovador</p>
-		<nav>
-			<a href="#portfolio" data-section="portfolio" class="active">Portfolio</a>
-			<a href="#blog" data-section="blog">Blog</a>
-		</nav>
+<body data-page="home">
+	<header class="site-header">
+		<div class="container">
+			<a class="brand" href="/">Mi Portfolio</a>
+			<nav class="site-nav">
+				<a href="/portfolio.html">Portfolio</a>
+				<a href="/blog.html">Blog</a>
+			</nav>
+		</div>
 	</header>
-	<main>
-		<section id="portfolio" class="active">
-			<h2>Mis trabajos</h2>
-			<div class="portfolio">
-				<div class="card">
-					<h3>Proyecto 1</h3>
-					<p>Descripción breve de tu primer proyecto destacado.</p>
-					<a href="#" target="_blank">Ver más</a>
-				</div>
-				<div class="card">
-					<h3>Proyecto 2</h3>
-					<p>Descripción breve de tu segundo proyecto destacado.</p>
-					<a href="#" target="_blank">Ver más</a>
-				</div>
-				<!-- Añade más proyectos aquí -->
+
+	<section class="hero">
+		<div class="container">
+			<h1>Hola, soy <span class="highlight">ArceApps</span></h1>
+			<p>Desarrollo experiencias web modernas y elegantes. Aquí encontrarás mi trabajo y novedades.</p>
+			<div class="actions">
+				<a class="btn primary" href="/portfolio.html">Ver Portfolio</a>
+				<a class="btn" href="/blog.html">Leer Blog</a>
 			</div>
+		</div>
+	</section>
+
+	<main class="container">
+		<section>
+			<h2>Proyectos destacados</h2>
+			<div id="featured-projects" class="portfolio"></div>
+			<div class="more-link"><a href="/portfolio.html">Ver todos los proyectos →</a></div>
 		</section>
-		<section id="blog">
-			<h2>Blog</h2>
-			<article class="blog-post">
-				<h3>¡Bienvenido a mi blog!</h3>
-				<p>Este es el primer post de mi blog personal. Aquí compartiré noticias, proyectos y recursos interesantes.</p>
-				<small>29 de agosto de 2025</small>
-			</article>
-			<!-- Más posts aquí -->
+
+		<section>
+			<h2>Últimas noticias</h2>
+			<div id="latest-posts"></div>
+			<div class="more-link"><a href="/blog.html">Ir al blog →</a></div>
 		</section>
 	</main>
+
 	<footer>
-		&copy; 2025 Mi Portfolio. Todos los derechos reservados.
+		<div class="container">
+			&copy; 2025 ArceApps · Hecho con HTML, CSS y JS
+		</div>
 	</footer>
+
 	<script src="script.js"></script>
 </body>
 </html>
