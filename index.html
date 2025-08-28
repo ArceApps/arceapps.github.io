@@ -1,7 +1,51 @@
-<html>
-<head></head>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mi Portfolio & Blog</title>
+	<link rel="stylesheet" href="style.css">
+</head>
 <body>
-<h1>Página index.html</h1>
-<p>Ejemplo página web </p>
+	<header>
+		<h1>Mi Portfolio</h1>
+		<p>Desarrollador | Creativo | Innovador</p>
+		<nav>
+			<a href="#portfolio" data-section="portfolio" class="active">Portfolio</a>
+			<a href="#blog" data-section="blog">Blog</a>
+		</nav>
+	</header>
+	<main>
+		<section id="portfolio" class="active">
+			<h2>Mis trabajos</h2>
+			<div class="portfolio">
+				<div class="card">
+					<h3>Proyecto 1</h3>
+					<p>Descripción breve de tu primer proyecto destacado.</p>
+					<a href="#" target="_blank">Ver más</a>
+				</div>
+				<div class="card">
+					<h3>Proyecto 2</h3>
+					<p>Descripción breve de tu segundo proyecto destacado.</p>
+					<a href="#" target="_blank">Ver más</a>
+				</div>
+				<!-- Añade más proyectos aquí -->
+			</div>
+		</section>
+		<section id="blog">
+			<h2>Blog</h2>
+			<article class="blog-post">
+				<h3>¡Bienvenido a mi blog!</h3>
+				<p>Este es el primer post de mi blog personal. Aquí compartiré noticias, proyectos y recursos interesantes.</p>
+				<small>29 de agosto de 2025</small>
+			</article>
+			<!-- Más posts aquí -->
+		</section>
+	</main>
+	<footer>
+		&copy; 2025 Mi Portfolio. Todos los derechos reservados.
+	</footer>
+	<script src="script.js"></script>
 </body>
 </html>
