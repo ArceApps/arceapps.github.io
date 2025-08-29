@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Principios SOLID en Android con Kotlin - ArceApps Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3><a href="index.html">ArceApps</a></h3>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link active">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">28 de agosto de 2025</span>
+          <span class="article-category">Desarrollo Android</span>
+        </div>
+        <h1>Principios SOLID en Android: Guía Práctica con Kotlin</h1>
+        <p class="article-subtitle">Domina los 5 principios fundamentales de la programación orientada a objetos aplicados al desarrollo Android con ejemplos prácticos en Kotlin</p>
+        <div class="article-image">
+          <img src="https://via.placeholder.com/800x400/10b981/ffffff?text=SOLID+Principles+Android" alt="Principios SOLID Android" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>¿Qué son los Principios SOLID?</h2>
+        <p>Los principios SOLID son cinco reglas fundamentales de la programación orientada a objetos que nos ayudan a escribir código más mantenible, flexible y robusto. Fueron formulados por Robert C. Martin (Uncle Bob) y son especialmente valiosos en el desarrollo Android, donde la complejidad del código puede crecer rápidamente.</p>
+
+        <p>En Android, aplicar estos principios nos permite crear aplicaciones más escalables, facilita las pruebas unitarias y hace que nuestro código sea más fácil de entender y modificar. ¡Vamos a explorar cada uno con ejemplos prácticos en Kotlin! 🚀</p>
+
+        <div class="solid-overview">
+          <h3>Los 5 Principios SOLID</h3>
+          <div class="principles-grid">
+            <div class="principle-card">
+              <h4><strong>S</strong> - Single Responsibility</h4>
+              <p>Una clase debe tener una sola razón para cambiar</p>
+            </div>
+            <div class="principle-card">
+              <h4><strong>O</strong> - Open/Closed</h4>
+              <p>Abierto para extensión, cerrado para modificación</p>
+            </div>
+            <div class="principle-card">
+              <h4><strong>L</strong> - Liskov Substitution</h4>
+              <p>Los objetos deben ser reemplazables por instancias de sus subtipos</p>
+            </div>
+            <div class="principle-card">
+              <h4><strong>I</strong> - Interface Segregation</h4>
+              <p>Los clientes no deben depender de interfaces que no usan</p>
+            </div>
+            <div class="principle-card">
+              <h4><strong>D</strong> - Dependency Inversion</h4>
+              <p>Depende de abstracciones, no de concreciones</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>1. Single Responsibility Principle (SRP)</h2>
+        <p>El principio de responsabilidad única establece que <strong>una clase debe tener una sola razón para cambiar</strong>. En otras palabras, cada clase debe tener una única responsabilidad o propósito bien definido.</p>
+
+        <h3>❌ Ejemplo Incorrecto</h3>
+        <p>Imagina una Activity que maneja tanto la UI como la lógica de negocio:</p>
+
+        <div class="code-block">
+          <pre><code>// ❌ MALO: Múltiples responsabilidades
+class UserProfileActivity : AppCompatActivity() {
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_user_profile)
+        
+        // Responsabilidad 1: Configurar UI
+        setupViews()
+        
+        // Responsabilidad 2: Validar datos
+        validateUserInput()
+        
+        // Responsabilidad 3: Comunicación con API
+        fetchUserData()
+        
+        // Responsabilidad 4: Guardar en base de datos
+        saveToDatabase()
+    }
+    
+    private fun validateUserInput() {
+        // Lógica de validación compleja...
+    }
+    
+    private fun fetchUserData() {
+        // Llamadas a la API...
+    }
+    
+    private fun saveToDatabase() {
+        // Operaciones de base de datos...
+    }
+}</code></pre>
+        </div>
+
+        <h3>✅ Ejemplo Correcto</h3>
+        <p>Separemos las responsabilidades en clases especializadas:</p>
+
+        <div class="code-block">
+          <pre><code>// ✅ BUENO: Una sola responsabilidad por clase
+class UserProfileActivity : AppCompatActivity() {
+    
+    private lateinit var validator: UserInputValidator
+    private lateinit var apiService: UserApiService
+    private lateinit var repository: UserRepository
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_user_profile)
+        
+        // Solo se encarga de la UI
+        setupViews()
+        setupClickListeners()
+    }
+}
+
+// Responsabilidad única: Validación
+class UserInputValidator {
+    fun validateEmail(email: String): Boolean {
+        return email.contains("@") && email.length > 5
+    }
+    
+    fun validatePassword(password: String): Boolean {
+        return password.length >= 8
+    }
+}
+
+// Responsabilidad única: Comunicación con API
+class UserApiService {
+    suspend fun fetchUserProfile(userId: String): User {
+        // Lógica de API
+    }
+}
+
+// Responsabilidad única: Persistencia de datos
+class UserRepository {
+    suspend fun saveUser(user: User) {
+        // Operaciones de base de datos
+    }
+}</code></pre>
+        </div>
+
+        <div class="best-practices-box">
+          <h3>💡 Beneficios del SRP en Android</h3>
+          <ul>
+            <li><strong>Testing más fácil:</strong> Cada clase tiene un propósito específico para probar</li>
+            <li><strong>Reutilización:</strong> Las clases especializadas se pueden usar en otras partes</li>
+            <li><strong>Mantenimiento:</strong> Los cambios en validación no afectan la UI</li>
+            <li><strong>Legibilidad:</strong> El código es más fácil de entender</li>
+          </ul>
+        </div>
+
+        <h2>2. Open/Closed Principle (OCP)</h2>
+        <p>Este principio establece que las clases deben estar <strong>abiertas para extensión pero cerradas para modificación</strong>. Podemos añadir nueva funcionalidad sin modificar el código existente.</p>
+
+        <h3>❌ Ejemplo Incorrecto</h3>
+        <p>Un sistema de notificaciones que requiere modificar código para cada nuevo tipo:</p>
+
+        <div class="code-block">
+          <pre><code>// ❌ MALO: Necesita modificación para extensión
+class NotificationManager {
+    
+    fun sendNotification(type: String, message: String) {
+        when (type) {
+            "EMAIL" -> sendEmail(message)
+            "SMS" -> sendSMS(message)
+            "PUSH" -> sendPushNotification(message)
+            // ¿Qué pasa si quiero añadir WhatsApp? 
+            // Tengo que modificar esta función!
+        }
+    }
+    
+    private fun sendEmail(message: String) { /* ... */ }
+    private fun sendSMS(message: String) { /* ... */ }
+    private fun sendPushNotification(message: String) { /* ... */ }
+}</code></pre>
+        </div>
+
+        <h3>✅ Ejemplo Correcto</h3>
+        <p>Usando interfaces y polimorfismo para permitir extensión sin modificación:</p>
+
+        <div class="code-block">
+          <pre><code>// ✅ BUENO: Abierto para extensión, cerrado para modificación
+interface NotificationSender {
+    fun send(message: String)
+}
+
+class EmailNotificationSender : NotificationSender {
+    override fun send(message: String) {
+        // Enviar email
+        println("Enviando email: $message")
+    }
+}
+
+class SMSNotificationSender : NotificationSender {
+    override fun send(message: String) {
+        // Enviar SMS
+        println("Enviando SMS: $message")
+    }
+}
+
+class PushNotificationSender : NotificationSender {
+    override fun send(message: String) {
+        // Enviar push notification
+        NotificationManagerCompat.from(context)
+            .notify(1, buildNotification(message))
+    }
+}
+
+// Extensión sin modificación: Nuevo tipo de notificación
+class WhatsAppNotificationSender : NotificationSender {
+    override fun send(message: String) {
+        // Nueva funcionalidad sin tocar código existente!
+        println("Enviando por WhatsApp: $message")
+    }
+}
+
+class NotificationManager {
+    private val senders = mutableListOf&lt;NotificationSender&gt;()
+    
+    fun addSender(sender: NotificationSender) {
+        senders.add(sender)
+    }
+    
+    fun sendToAll(message: String) {
+        senders.forEach { it.send(message) }
+    }
+}</code></pre>
+        </div>
+
+        <h3>Uso práctico en Android con Extension Functions</h3>
+        <div class="code-block">
+          <pre><code>// Extensiones de Kotlin para el OCP
+fun ImageView.loadUrl(url: String) {
+    Glide.with(this)
+        .load(url)
+        .into(this)
+}
+
+// Extensión adicional sin modificar la anterior
+fun ImageView.loadUrlWithPlaceholder(url: String, placeholder: Int) {
+    Glide.with(this)
+        .load(url)
+        .placeholder(placeholder)
+        .into(this)
+}
+
+// Uso en Activities/Fragments
+imageView.loadUrl("https://example.com/image.jpg")
+avatarImage.loadUrlWithPlaceholder(user.avatarUrl, R.drawable.default_avatar)</code></pre>
+        </div>
+
+        <h2>3. Liskov Substitution Principle (LSP)</h2>
+        <p>El principio de sustitución de Liskov dice que <strong>los objetos de una clase derivada deben poder reemplazar los objetos de la clase base sin alterar la funcionalidad del programa</strong>.</p>
+
+        <h3>❌ Ejemplo Incorrecto</h3>
+        <p>Una jerarquía de vistas que viola LSP:</p>
+
+        <div class="code-block">
+          <pre><code>// ❌ MALO: Viola el LSP
+open class Button {
+    open fun onClick() {
+        // Comportamiento estándar del botón
+        performHapticFeedback()
+        executeAction()
+    }
+    
+    open fun executeAction() {
+        // Acción por defecto
+    }
+}
+
+class SubmitButton : Button() {
+    override fun onClick() {
+        // Comportamiento completamente diferente!
+        if (validateForm()) {
+            super.onClick()
+        } else {
+            // ¡No ejecuta la acción base! Viola LSP
+            showError()
+            return // No llama a executeAction()
+        }
+    }
+}
+
+// Problema: No podemos sustituir Button por SubmitButton
+// sin cambiar el comportamiento esperado</code></pre>
+        </div>
+
+        <h3>✅ Ejemplo Correcto</h3>
+        <p>Respetando el contrato de la clase base:</p>
+
+        <div class="code-block">
+          <pre><code>// ✅ BUENO: Respeta el LSP
+abstract class BaseButton {
+    fun onClick() {
+        performHapticFeedback()
+        if (canExecuteAction()) {
+            executeAction()
+        }
+    }
+    
+    protected abstract fun canExecuteAction(): Boolean
+    protected abstract fun executeAction()
+    
+    private fun performHapticFeedback() {
+        // Feedback háptico estándar
+    }
+}
+
+class StandardButton : BaseButton() {
+    override fun canExecuteAction(): Boolean = true
+    
+    override fun executeAction() {
+        // Acción estándar del botón
+        navigateToNextScreen()
+    }
+}
+
+class SubmitButton(
+    private val validator: FormValidator
+) : BaseButton() {
+    
+    override fun canExecuteAction(): Boolean {
+        return validator.isFormValid()
+    }
+    
+    override fun executeAction() {
+        // Mantiene el contrato: siempre ejecuta una acción
+        submitForm()
+    }
+}
+
+// Ahora podemos sustituir cualquier BaseButton
+// sin romper el comportamiento esperado
+fun setupButtons(buttons: List&lt;BaseButton&gt;) {
+    buttons.forEach { button ->
+        button.onClick() // Funciona correctamente para todos
+    }
+}</code></pre>
+        </div>
+
+        <h3>Aplicación en Architecture Components</h3>
+        <div class="code-block">
+          <pre><code>// LSP en ViewModels
+abstract class BaseViewModel : ViewModel() {
+    protected val _loading = MutableLiveData&lt;Boolean&gt;()
+    val loading: LiveData&lt;Boolean&gt; = _loading
+    
+    protected val _error = MutableLiveData&lt;String&gt;()
+    val error: LiveData&lt;String&gt; = _error
+    
+    abstract fun loadData()
+}
+
+class UserViewModel(
+    private val repository: UserRepository
+) : BaseViewModel() {
+    
+    private val _users = MutableLiveData&lt;List&lt;User&gt;&gt;()
+    val users: LiveData&lt;List&lt;User&gt;&gt; = _users
+    
+    override fun loadData() {
+        _loading.value = true
+        viewModelScope.launch {
+            try {
+                _users.value = repository.getUsers()
+            } catch (e: Exception) {
+                _error.value = e.message
+            } finally {
+                _loading.value = false
+            }
+        }
+    }
+}
+
+// Cualquier BaseViewModel puede ser sustituido
+class MainActivity : AppCompatActivity() {
+    fun setupViewModel(viewModel: BaseViewModel) {
+        viewModel.loading.observe(this) { isLoading ->
+            progressBar.isVisible = isLoading
+        }
+        
+        viewModel.loadData() // Funciona para cualquier implementación
+    }
+}</code></pre>
+        </div>
+
+        <h2>4. Interface Segregation Principle (ISP)</h2>
+        <p>El principio de segregación de interfaces establece que <strong>los clientes no deben ser forzados a depender de interfaces que no usan</strong>. Es mejor tener interfaces pequeñas y específicas que una grande y monolítica.</p>
+
+        <h3>❌ Ejemplo Incorrecto</h3>
+        <p>Una interfaz "todoterreno" que fuerza implementaciones innecesarias:</p>
+
+        <div class="code-block">
+          <pre><code>// ❌ MALO: Interfaz muy grande (Fat Interface)
+interface MediaPlayer {
+    fun play()
+    fun pause()
+    fun stop()
+    fun next()
+    fun previous()
+    fun shuffle()
+    fun repeat()
+    fun addToPlaylist()
+    fun createPlaylist()
+    fun shareTrack()
+    fun downloadTrack()
+    fun setEqualizer()
+    fun recordAudio()
+}
+
+// Problema: Un simple reproductor de sonidos de notificación
+// debe implementar métodos que no necesita
+class NotificationSoundPlayer : MediaPlayer {
+    override fun play() { /* OK, necesario */ }
+    override fun pause() { /* OK, necesario */ }
+    override fun stop() { /* OK, necesario */ }
+    
+    // ¡Métodos innecesarios que debe implementar!
+    override fun next() { throw UnsupportedOperationException() }
+    override fun previous() { throw UnsupportedOperationException() }
+    override fun shuffle() { throw UnsupportedOperationException() }
+    override fun repeat() { throw UnsupportedOperationException() }
+    override fun addToPlaylist() { throw UnsupportedOperationException() }
+    override fun createPlaylist() { throw UnsupportedOperationException() }
+    override fun shareTrack() { throw UnsupportedOperationException() }
+    override fun downloadTrack() { throw UnsupportedOperationException() }
+    override fun setEqualizer() { throw UnsupportedOperationException() }
+    override fun recordAudio() { throw UnsupportedOperationException() }
+}</code></pre>
+        </div>
+
+        <h3>✅ Ejemplo Correcto</h3>
+        <p>Separemos la interfaz en interfaces más pequeñas y específicas:</p>
+
+        <div class="code-block">
+          <pre><code>// ✅ BUENO: Interfaces segregadas y específicas
+interface BasicMediaPlayer {
+    fun play()
+    fun pause()
+    fun stop()
+}
+
+interface PlaylistController {
+    fun next()
+    fun previous()
+    fun shuffle()
+    fun repeat()
+}
+
+interface PlaylistManager {
+    fun addToPlaylist()
+    fun createPlaylist()
+}
+
+interface MediaSharing {
+    fun shareTrack()
+    fun downloadTrack()
+}
+
+interface AudioProcessor {
+    fun setEqualizer()
+    fun recordAudio()
+}
+
+// Ahora cada clase implementa solo lo que necesita
+class NotificationSoundPlayer : BasicMediaPlayer {
+    override fun play() { /* Reproducir sonido */ }
+    override fun pause() { /* Pausar sonido */ }
+    override fun stop() { /* Parar sonido */ }
+}
+
+class FullMusicPlayer : BasicMediaPlayer, PlaylistController, MediaSharing {
+    override fun play() { /* Implementación completa */ }
+    override fun pause() { /* Implementación completa */ }
+    override fun stop() { /* Implementación completa */ }
+    override fun next() { /* Siguiente canción */ }
+    override fun previous() { /* Canción anterior */ }
+    override fun shuffle() { /* Modo aleatorio */ }
+    override fun repeat() { /* Modo repetición */ }
+    override fun shareTrack() { /* Compartir */ }
+    override fun downloadTrack() { /* Descargar */ }
+}</code></pre>
+        </div>
+
+        <h3>Aplicación práctica en Android Listeners</h3>
+        <div class="code-block">
+          <pre><code>// En lugar de un listener gigante
+interface OnItemActionListener {
+    fun onItemClick(item: Item)
+    fun onItemLongClick(item: Item)
+    fun onItemSwipe(item: Item)
+    fun onItemDelete(item: Item)
+    fun onItemEdit(item: Item)
+    fun onItemShare(item: Item)
+}
+
+// Mejor: Listeners específicos
+interface OnItemClickListener {
+    fun onItemClick(item: Item)
+}
+
+interface OnItemLongClickListener {
+    fun onItemLongClick(item: Item)
+}
+
+interface OnItemSwipeListener {
+    fun onItemSwipe(item: Item, direction: SwipeDirection)
+}
+
+// Uso en RecyclerView Adapter
+class ItemAdapter(
+    private val clickListener: OnItemClickListener? = null,
+    private val longClickListener: OnItemLongClickListener? = null,
+    private val swipeListener: OnItemSwipeListener? = null
+) : RecyclerView.Adapter&lt;ItemViewHolder&gt;() {
+    
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        val item = items[position]
+        
+        holder.itemView.setOnClickListener {
+            clickListener?.onItemClick(item)
+        }
+        
+        holder.itemView.setOnLongClickListener {
+            longClickListener?.onItemLongClick(item)
+            true
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h2>5. Dependency Inversion Principle (DIP)</h2>
+        <p>El principio de inversión de dependencias establece que:</p>
+        <ul>
+          <li><strong>Los módulos de alto nivel no deben depender de módulos de bajo nivel. Ambos deben depender de abstracciones.</strong></li>
+          <li><strong>Las abstracciones no deben depender de detalles. Los detalles deben depender de abstracciones.</strong></li>
+        </ul>
+
+        <h3>❌ Ejemplo Incorrecto</h3>
+        <p>Una clase que depende directamente de implementaciones concretas:</p>
+
+        <div class="code-block">
+          <pre><code>// ❌ MALO: Dependencias directas de clases concretas
+class UserService {
+    
+    // Dependencia directa de clase concreta
+    private val database = SQLiteUserDatabase()
+    private val apiClient = RetrofitApiClient()
+    private val logger = AndroidLogger()
+    
+    suspend fun getUser(id: String): User? {
+        logger.log("Fetching user $id")
+        
+        // Primero intenta base de datos local
+        val localUser = database.findUser(id)
+        if (localUser != null) {
+            return localUser
+        }
+        
+        // Si no está, consulta API
+        val remoteUser = apiClient.fetchUser(id)
+        if (remoteUser != null) {
+            database.saveUser(remoteUser)
+        }
+        
+        return remoteUser
+    }
+}
+
+// Problemas:
+// - Difícil de testear (dependencias hardcodeadas)
+// - Imposible cambiar implementaciones
+// - Alto acoplamiento</code></pre>
+        </div>
+
+        <h3>✅ Ejemplo Correcto</h3>
+        <p>Inversión de dependencias usando interfaces y inyección:</p>
+
+        <div class="code-block">
+          <pre><code>// ✅ BUENO: Depende de abstracciones
+interface UserDatabase {
+    suspend fun findUser(id: String): User?
+    suspend fun saveUser(user: User)
+}
+
+interface ApiClient {
+    suspend fun fetchUser(id: String): User?
+}
+
+interface Logger {
+    fun log(message: String)
+}
+
+// Implementaciones concretas
+class SQLiteUserDatabase : UserDatabase {
+    override suspend fun findUser(id: String): User? {
+        // Implementación SQLite
+    }
+    
+    override suspend fun saveUser(user: User) {
+        // Guardar en SQLite
+    }
+}
+
+class RetrofitApiClient : ApiClient {
+    override suspend fun fetchUser(id: String): User? {
+        // Implementación con Retrofit
+    }
+}
+
+class AndroidLogger : Logger {
+    override fun log(message: String) {
+        Log.d("UserService", message)
+    }
+}
+
+// Clase de alto nivel que depende de abstracciones
+class UserService(
+    private val database: UserDatabase,
+    private val apiClient: ApiClient,
+    private val logger: Logger
+) {
+    
+    suspend fun getUser(id: String): User? {
+        logger.log("Fetching user $id")
+        
+        val localUser = database.findUser(id)
+        if (localUser != null) {
+            return localUser
+        }
+        
+        val remoteUser = apiClient.fetchUser(id)
+        if (remoteUser != null) {
+            database.saveUser(remoteUser)
+        }
+        
+        return remoteUser
+    }
+}</code></pre>
+        </div>
+
+        <h3>Aplicación con Hilt (Dependency Injection)</h3>
+        <div class="code-block">
+          <pre><code>// Configuración de DI con Hilt
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class DatabaseModule {
+    
+    @Binds
+    abstract fun bindUserDatabase(
+        sqliteDatabase: SQLiteUserDatabase
+    ): UserDatabase
+    
+    @Binds
+    abstract fun bindApiClient(
+        retrofitClient: RetrofitApiClient
+    ): ApiClient
+    
+    @Binds
+    abstract fun bindLogger(
+        androidLogger: AndroidLogger
+    ): Logger
+}
+
+// ViewModel con dependencias inyectadas
+@HiltViewModel
+class UserViewModel @Inject constructor(
+    private val userService: UserService // Se inyectan automáticamente sus dependencias
+) : ViewModel() {
+    
+    private val _user = MutableLiveData&lt;User?&gt;()
+    val user: LiveData&lt;User?&gt; = _user
+    
+    fun loadUser(id: String) {
+        viewModelScope.launch {
+            _user.value = userService.getUser(id)
+        }
+    }
+}
+
+// Testing con facilidad
+class UserServiceTest {
+    
+    @Test
+    fun `should return cached user when available`() = runTest {
+        // Mocks fáciles gracias a las interfaces
+        val mockDatabase = mockk&lt;UserDatabase&gt;()
+        val mockApiClient = mockk&lt;ApiClient&gt;()
+        val mockLogger = mockk&lt;Logger&gt;()
+        
+        val cachedUser = User("123", "John Doe")
+        coEvery { mockDatabase.findUser("123") } returns cachedUser
+        
+        val userService = UserService(mockDatabase, mockApiClient, mockLogger)
+        
+        val result = userService.getUser("123")
+        
+        assertEquals(cachedUser, result)
+        coVerify(exactly = 0) { mockApiClient.fetchUser(any()) }
+    }
+}</code></pre>
+        </div>
+
+        <div class="best-practices-box">
+          <h3>💡 Ventajas del DIP en Android</h3>
+          <ul>
+            <li><strong>Testabilidad:</strong> Fácil usar mocks y stubs en tests</li>
+            <li><strong>Flexibilidad:</strong> Cambiar implementaciones sin tocar código de alto nivel</li>
+            <li><strong>Reutilización:</strong> Misma lógica de negocio con diferentes implementaciones</li>
+            <li><strong>Mantenibilidad:</strong> Cambios en implementaciones no afectan la lógica de negocio</li>
+          </ul>
+        </div>
+
+        <h2>Implementando SOLID en tu Proyecto Android</h2>
+        
+        <h3>🏗️ Arquitectura Recomendada</h3>
+        <p>Para aplicar correctamente los principios SOLID en Android, te recomiendo seguir esta estructura:</p>
+
+        <div class="code-block">
+          <pre><code>// Estructura de paquetes siguiendo SOLID
+com.tuapp.
+├── di/                 // Dependency Injection (DIP)
+├── data/
+│   ├── local/         // Implementaciones de persistencia local
+│   ├── remote/        // Implementaciones de APIs
+│   └── repository/    // Repository pattern (SRP, DIP)
+├── domain/
+│   ├── model/         // Entidades de dominio
+│   ├── repository/    // Interfaces de repository (DIP)
+│   └── usecase/       // Casos de uso específicos (SRP)
+├── presentation/
+│   ├── ui/           // Activities, Fragments, Composables
+│   ├── viewmodel/    // ViewModels (SRP)
+│   └── adapter/      // RecyclerView Adapters (SRP, ISP)
+└── util/             // Utilidades reutilizables (SRP)</code></pre>
+        </div>
+
+        <h3>🔧 Herramientas y Bibliotecas</h3>
+        <div class="tools-grid">
+          <div class="tool-card">
+            <h4>Hilt / Dagger</h4>
+            <p>Para Dependency Injection (DIP)</p>
+          </div>
+          <div class="tool-card">
+            <h4>Room Database</h4>
+            <p>Abstracción sobre SQLite (SRP, ISP)</p>
+          </div>
+          <div class="tool-card">
+            <h4>Retrofit + OkHttp</h4>
+            <p>Cliente HTTP con interfaces (OCP, DIP)</p>
+          </div>
+          <div class="tool-card">
+            <h4>Repository Pattern</h4>
+            <p>Abstracción de fuentes de datos (SRP, DIP)</p>
+          </div>
+        </div>
+
+        <h3>⚠️ Errores Comunes a Evitar</h3>
+        <div class="warning-box">
+          <h4>Cuidado con estos anti-patrones:</h4>
+          <ul>
+            <li><strong>God Activities:</strong> Activities que hacen demasiado (viola SRP)</li>
+            <li><strong>Tight Coupling:</strong> Clases que dependen de implementaciones concretas (viola DIP)</li>
+            <li><strong>Fat Interfaces:</strong> Interfaces con demasiados métodos (viola ISP)</li>
+            <li><strong>Hardcoded Dependencies:</strong> new SomeClass() en lugar de inyección (viola DIP)</li>
+            <li><strong>Monolithic Classes:</strong> Clases que cambian por múltiples razones (viola SRP)</li>
+          </ul>
+        </div>
+
+        <h3>🧪 Testing con SOLID</h3>
+        <p>Los principios SOLID facilitan enormemente el testing. Aquí un ejemplo de cómo testear fácilmente cuando aplicamos estos principios:</p>
+
+        <div class="code-block">
+          <pre><code>@RunWith(MockitoJUnitRunner::class)
+class UserViewModelTest {
+    
+    @Mock
+    private lateinit var getUserUseCase: GetUserUseCase
+    
+    @Mock
+    private lateinit var updateUserUseCase: UpdateUserUseCase
+    
+    private lateinit var viewModel: UserViewModel
+    
+    @Before
+    fun setup() {
+        viewModel = UserViewModel(getUserUseCase, updateUserUseCase)
+    }
+    
+    @Test
+    fun `should show loading when fetching user`() {
+        // Given
+        val userId = "123"
+        whenever(getUserUseCase.execute(userId))
+            .thenReturn(flowOf(Resource.Loading()))
+        
+        // When
+        viewModel.loadUser(userId)
+        
+        // Then
+        assertTrue(viewModel.isLoading.value)
+    }
+    
+    @Test
+    fun `should display user when fetch succeeds`() {
+        // Given
+        val user = User("123", "John Doe")
+        whenever(getUserUseCase.execute("123"))
+            .thenReturn(flowOf(Resource.Success(user)))
+        
+        // When
+        viewModel.loadUser("123")
+        
+        // Then
+        assertEquals(user, viewModel.user.value)
+        assertFalse(viewModel.isLoading.value)
+    }
+}</code></pre>
+        </div>
+
+        <h2>Conclusión</h2>
+        <p>Los principios SOLID no son solo teoría académica, sino herramientas prácticas que transformarán la calidad de tu código Android. Al aplicarlos consistentemente, conseguirás:</p>
+
+        <ul>
+          <li><strong>Código más limpio y mantenible</strong> que evoluciona sin romperse</li>
+          <li><strong>Tests más fáciles de escribir</strong> gracias a las dependencias inyectadas</li>
+          <li><strong>Desarrollo más rápido</strong> porque puedes reutilizar componentes</li>
+          <li><strong>Menos bugs</strong> porque cada clase tiene una responsabilidad clara</li>
+          <li><strong>Equipos más productivos</strong> porque el código es predecible y comprensible</li>
+        </ul>
+
+        <p>Recuerda: <strong>no trates de aplicar todos los principios de una vez</strong>. Empieza por SRP (una responsabilidad por clase) y ve incorporando gradualmente los demás. Con práctica y paciencia, escribir código SOLID se volverá natural.</p>
+
+        <p>¡Tu yo del futuro (y tus compañeros de equipo) te lo agradecerán! 🙌</p>
+
+        <div class="call-to-action-box">
+          <h3>🚀 Próximos Pasos</h3>
+          <p>¿Te ha gustado este artículo? Te recomiendo estos próximos temas para profundizar:</p>
+          <ul>
+            <li>Clean Architecture en Android</li>
+            <li>Dependency Injection con Hilt</li>
+            <li>Testing Strategy para aplicaciones Android</li>
+            <li>Repository Pattern avanzado</li>
+          </ul>
+        </div>
+
+        <div class="article-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">SOLID</span>
+            <span class="tag">Clean Code</span>
+            <span class="tag">Architecture</span>
+            <span class="tag">Best Practices</span>
+          </div>
+          <div class="share-buttons">
+            <a href="#" class="share-btn">Compartir en Twitter</a>
+            <a href="#" class="share-btn">Compartir en LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

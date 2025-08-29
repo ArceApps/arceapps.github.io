@@ -1,5 +1,13 @@
 [
   {
+    "title": "Principios SOLID en Android: Guía Práctica con Kotlin",
+    "date": "2025-08-28",
+    "summary": "Domina los 5 principios fundamentales de la programación orientada a objetos aplicados al desarrollo Android con ejemplos prácticos en Kotlin.",
+    "url": "blog-solid-principles.html",
+    "category": "Desarrollo Android",
+    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=SOLID+Principles+Android"
+  },
+  {
     "title": "Versionado Semántico en Android: Mejores Prácticas",
     "date": "2025-08-25",
     "summary": "Exploramos cómo implementar versionado semántico en aplicaciones Android, desde versionCode hasta build.gradle y Google Play Store.",
