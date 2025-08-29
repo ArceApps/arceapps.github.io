@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Principios SOLID en Android - ArceApps Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3><a href="index.html">ArceApps</a></h3>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link active">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">30 de agosto de 2025</span>
+          <span class="article-category">Desarrollo Android</span>
+        </div>
+        <h1>Principios SOLID en Android: Guía Completa para Desarrolladores Kotlin</h1>
+        <p class="article-subtitle">Domina los 5 principios fundamentales del desarrollo de software aplicados específicamente al ecosistema Android con ejemplos prácticos en Kotlin</p>
+        <div class="article-image">
+          <img src="https://via.placeholder.com/800x400/10b981/ffffff?text=SOLID+Principles+Android" alt="Principios SOLID Android" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>🏗️ Introducción a los Principios SOLID</h2>
+        <p>Los principios SOLID son cinco reglas fundamentales del diseño de software que nos ayudan a crear código más <strong>mantenible</strong>, <strong>escalable</strong> y <strong>testeable</strong>. En el contexto de Android con Kotlin, estos principios cobran especial relevancia debido a la complejidad inherente del desarrollo móvil.</p>
+
+        <p>Estos principios, introducidos por Robert C. Martin (Uncle Bob), no son solo teoría académica, sino herramientas prácticas que pueden transformar la calidad de nuestras aplicaciones Android. 🚀</p>
+
+        <div class="solid-principles-overview">
+          <h3>¿Qué significan las siglas SOLID?</h3>
+          <div class="principles-grid">
+            <div class="principle-card">
+              <div class="principle-letter">S</div>
+              <h4>Single Responsibility</h4>
+              <p>Una clase debe tener una sola razón para cambiar</p>
+            </div>
+            <div class="principle-card">
+              <div class="principle-letter">O</div>
+              <h4>Open/Closed</h4>
+              <p>Abierto para extensión, cerrado para modificación</p>
+            </div>
+            <div class="principle-card">
+              <div class="principle-letter">L</div>
+              <h4>Liskov Substitution</h4>
+              <p>Los objetos derivados deben ser sustituibles por sus bases</p>
+            </div>
+            <div class="principle-card">
+              <div class="principle-letter">I</div>
+              <h4>Interface Segregation</h4>
+              <p>Múltiples interfaces específicas mejor que una general</p>
+            </div>
+            <div class="principle-card">
+              <div class="principle-letter">D</div>
+              <h4>Dependency Inversion</h4>
+              <p>Depender de abstracciones, no de concreciones</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>🎯 S - Single Responsibility Principle (SRP)</h2>
+        <p>El primer principio establece que <strong>una clase debe tener una sola razón para cambiar</strong>. En Android, esto significa que cada componente debe tener una responsabilidad bien definida.</p>
+
+        <h3>❌ Ejemplo problemático: Activity monolítica</h3>
+        <div class="code-block">
+          <pre><code>// ❌ MAL: Activity que hace demasiadas cosas
+class UserProfileActivity : AppCompatActivity() {
+    private lateinit var userRepository: UserRepository
+    private lateinit var networkManager: NetworkManager
+    private lateinit var cacheManager: CacheManager
+    private lateinit var notificationManager: NotificationManager
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_user_profile)
+        
+        // ❌ Maneja networking
+        fetchUserData()
+        
+        // ❌ Maneja cache
+        cacheUserData()
+        
+        // ❌ Maneja UI
+        updateUI()
+        
+        // ❌ Maneja notificaciones
+        sendWelcomeNotification()
+        
+        // ❌ Maneja analytics
+        trackUserProfileView()
+    }
+    
+    private fun fetchUserData() { /* networking logic */ }
+    private fun cacheUserData() { /* cache logic */ }
+    private fun updateUI() { /* UI logic */ }
+    private fun sendWelcomeNotification() { /* notification logic */ }
+    private fun trackUserProfileView() { /* analytics logic */ }
+}</code></pre>
+        </div>
+
+        <h3>✅ Solución: Separación de responsabilidades</h3>
+        <div class="code-block">
+          <pre><code>// ✅ BIEN: Activity con una sola responsabilidad
+class UserProfileActivity : AppCompatActivity() {
+    
+    @Inject lateinit var viewModel: UserProfileViewModel
+    @Inject lateinit var notificationHandler: NotificationHandler
+    @Inject lateinit var analyticsTracker: AnalyticsTracker
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_user_profile)
+        
+        // Solo maneja la coordinación entre componentes
+        setupObservers()
+        viewModel.loadUserProfile()
+        analyticsTracker.trackUserProfileView()
+    }
+    
+    private fun setupObservers() {
+        viewModel.userProfile.observe(this) { user ->
+            updateUI(user)
+            notificationHandler.sendWelcomeNotification(user)
+        }
+    }
+}
+
+// ✅ ViewModel con responsabilidad específica
+class UserProfileViewModel @Inject constructor(
+    private val userRepository: UserRepository
+) : ViewModel() {
+    
+    private val _userProfile = MutableLiveData<User>()
+    val userProfile: LiveData<User> = _userProfile
+    
+    fun loadUserProfile() {
+        viewModelScope.launch {
+            try {
+                val user = userRepository.getCurrentUser()
+                _userProfile.value = user
+            } catch (e: Exception) {
+                // Handle error
+            }
+        }
+    }
+}
+
+// ✅ Repository con responsabilidad específica
+class UserRepository @Inject constructor(
+    private val apiService: UserApiService,
+    private val cacheManager: CacheManager
+) {
+    suspend fun getCurrentUser(): User {
+        return try {
+            val user = apiService.getCurrentUser()
+            cacheManager.cacheUser(user)
+            user
+        } catch (e: Exception) {
+            cacheManager.getCachedUser() ?: throw e
+        }
+    }
+}</code></pre>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Errores comunes al aplicar SRP</h4>
+          <ul>
+            <li><strong>God Activities:</strong> Activities que manejan UI, datos, networking y lógica de negocio</li>
+            <li><strong>Fragmentos sobrecargados:</strong> Fragments que actúan como mini-applications</li>
+            <li><strong>Adapters complejos:</strong> RecyclerView.Adapter que maneja lógica de negocio</li>
+            <li><strong>ViewModels gigantes:</strong> ViewModels que combinan múltiples casos de uso</li>
+          </ul>
+        </div>
+
+        <h2>🔓 O - Open/Closed Principle (OCP)</h2>
+        <p>Las entidades de software deben estar <strong>abiertas para extensión, pero cerradas para modificación</strong>. En Android, esto nos permite agregar nuevas funcionalidades sin romper el código existente.</p>
+
+        <h3>✅ Ejemplo: Sistema de notificaciones extensible</h3>
+        <div class="code-block">
+          <pre><code>// ✅ Interface base para notificaciones
+interface NotificationSender {
+    fun sendNotification(message: String, recipient: String)
+}
+
+// ✅ Implementaciones específicas
+class PushNotificationSender @Inject constructor(
+    private val firebaseMessaging: FirebaseMessaging
+) : NotificationSender {
+    override fun sendNotification(message: String, recipient: String) {
+        firebaseMessaging.send(
+            RemoteMessage.Builder(recipient)
+                .setMessageId(UUID.randomUUID().toString())
+                .addData("message", message)
+                .build()
+        )
+    }
+}
+
+class EmailNotificationSender @Inject constructor(
+    private val emailService: EmailService
+) : NotificationSender {
+    override fun sendNotification(message: String, recipient: String) {
+        emailService.sendEmail(
+            to = recipient,
+            subject = "Notificación de la app",
+            body = message
+        )
+    }
+}
+
+class SmsNotificationSender @Inject constructor(
+    private val smsManager: SmsManager
+) : NotificationSender {
+    override fun sendNotification(message: String, recipient: String) {
+        smsManager.sendTextMessage(recipient, null, message, null, null)
+    }
+}
+
+// ✅ Manager que puede extenderse sin modificación
+class NotificationManager @Inject constructor(
+    private val notificationSenders: Set<@JvmSuppressWildcards NotificationSender>
+) {
+    fun sendToAllChannels(message: String, recipient: String) {
+        notificationSenders.forEach { sender ->
+            try {
+                sender.sendNotification(message, recipient)
+            } catch (e: Exception) {
+                Log.e("NotificationManager", "Failed to send via ${sender::class.simpleName}", e)
+            }
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h3>✅ Kotlin Extensions como aplicación de OCP</h3>
+        <div class="code-block">
+          <pre><code>// ✅ Extensiones que añaden funcionalidad sin modificar clases existentes
+fun View.showWithAnimation(duration: Long = 300) {
+    alpha = 0f
+    visibility = View.VISIBLE
+    animate()
+        .alpha(1f)
+        .setDuration(duration)
+        .start()
+}
+
+fun View.hideWithAnimation(duration: Long = 300) {
+    animate()
+        .alpha(0f)
+        .setDuration(duration)
+        .withEndAction { visibility = View.GONE }
+        .start()
+}
+
+fun Fragment.showSnackbar(message: String, duration: Int = Snackbar.LENGTH_SHORT) {
+    view?.let { rootView ->
+        Snackbar.make(rootView, message, duration).show()
+    }
+}
+
+fun Context.dpToPx(dp: Int): Int {
+    return (dp * resources.displayMetrics.density).toInt()
+}
+
+// Uso en Activities/Fragments
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        // ✅ Usar extensiones sin modificar las clases base
+        loadingIndicator.showWithAnimation()
+        
+        val marginInPx = this.dpToPx(16)
+        showSnackbar("¡Bienvenido!")
+    }
+}</code></pre>
+        </div>
+
+        <h2>🔄 L - Liskov Substitution Principle (LSP)</h2>
+        <p>Los objetos de una superclase deben ser <strong>sustituibles por objetos de sus subclases</strong> sin alterar el funcionamiento del programa. En Android, esto es crucial para mantener la consistencia en jerarquías de Views y ViewModels.</p>
+
+        <h3>✅ Ejemplo: Jerarquía de botones personalizados</h3>
+        <div class="code-block">
+          <pre><code>// ✅ Clase base que define el contrato
+abstract class CustomButton @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : MaterialButton(context, attrs, defStyleAttr) {
+    
+    abstract fun setButtonState(state: ButtonState)
+    abstract fun performButtonAction()
+    
+    protected fun animateClick() {
+        animate()
+            .scaleX(0.95f)
+            .scaleY(0.95f)
+            .setDuration(100)
+            .withEndAction {
+                animate()
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(100)
+                    .start()
+            }
+            .start()
+    }
+}
+
+// ✅ Implementaciones que respetan el contrato
+class PrimaryButton @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : CustomButton(context, attrs, defStyleAttr) {
+    
+    override fun setButtonState(state: ButtonState) {
+        when (state) {
+            ButtonState.ENABLED -> {
+                isEnabled = true
+                alpha = 1f
+                backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(context, R.color.primary)
+                )
+            }
+            ButtonState.DISABLED -> {
+                isEnabled = false
+                alpha = 0.6f
+                backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(context, R.color.gray)
+                )
+            }
+            ButtonState.LOADING -> {
+                isEnabled = false
+                text = ""
+                // Mostrar loading spinner
+            }
+        }
+    }
+    
+    override fun performButtonAction() {
+        animateClick()
+        // Acción específica del botón primario
+    }
+}
+
+class SecondaryButton @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : CustomButton(context, attrs, defStyleAttr) {
+    
+    override fun setButtonState(state: ButtonState) {
+        when (state) {
+            ButtonState.ENABLED -> {
+                isEnabled = true
+                alpha = 1f
+                strokeColor = ColorStateList.valueOf(
+                    ContextCompat.getColor(context, R.color.primary)
+                )
+                backgroundTintList = ColorStateList.valueOf(Color.TRANSPARENT)
+            }
+            ButtonState.DISABLED -> {
+                isEnabled = false
+                alpha = 0.6f
+                strokeColor = ColorStateList.valueOf(
+                    ContextCompat.getColor(context, R.color.gray)
+                )
+            }
+            ButtonState.LOADING -> {
+                isEnabled = false
+                strokeColor = ColorStateList.valueOf(
+                    ContextCompat.getColor(context, R.color.gray)
+                )
+            }
+        }
+    }
+    
+    override fun performButtonAction() {
+        animateClick()
+        // Acción específica del botón secundario
+    }
+}
+
+// ✅ Uso polimórfico - cualquier CustomButton puede usarse
+class ButtonManager {
+    fun handleButtons(buttons: List<CustomButton>) {
+        buttons.forEach { button ->
+            // ✅ LSP: Cualquier subclase puede usarse aquí
+            button.setButtonState(ButtonState.ENABLED)
+            button.setOnClickListener { button.performButtonAction() }
+        }
+    }
+}
+
+enum class ButtonState { ENABLED, DISABLED, LOADING }</code></pre>
+        </div>
+
+        <h3>✅ Ejemplo: Jerarquía de ViewModels</h3>
+        <div class="code-block">
+          <pre><code>// ✅ Base ViewModel que define comportamiento común
+abstract class BaseViewModel : ViewModel() {
+    
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+    
+    private val _error = MutableLiveData<String?>()
+    val error: LiveData<String?> = _error
+    
+    protected fun setLoading(loading: Boolean) {
+        _isLoading.value = loading
+    }
+    
+    protected fun setError(error: String?) {
+        _error.value = error
+    }
+    
+    abstract fun loadData()
+    abstract fun refresh()
+}
+
+// ✅ Implementaciones específicas que respetan el contrato
+class UserProfileViewModel @Inject constructor(
+    private val userRepository: UserRepository
+) : BaseViewModel() {
+    
+    private val _userProfile = MutableLiveData<User>()
+    val userProfile: LiveData<User> = _userProfile
+    
+    override fun loadData() {
+        setLoading(true)
+        viewModelScope.launch {
+            try {
+                val user = userRepository.getCurrentUser()
+                _userProfile.value = user
+                setError(null)
+            } catch (e: Exception) {
+                setError("Error al cargar perfil: ${e.message}")
+            } finally {
+                setLoading(false)
+            }
+        }
+    }
+    
+    override fun refresh() {
+        loadData() // Mismo comportamiento que load inicial
+    }
+}
+
+class ProductListViewModel @Inject constructor(
+    private val productRepository: ProductRepository
+) : BaseViewModel() {
+    
+    private val _products = MutableLiveData<List<Product>>()
+    val products: LiveData<List<Product>> = _products
+    
+    override fun loadData() {
+        setLoading(true)
+        viewModelScope.launch {
+            try {
+                val products = productRepository.getProducts()
+                _products.value = products
+                setError(null)
+            } catch (e: Exception) {
+                setError("Error al cargar productos: ${e.message}")
+            } finally {
+                setLoading(false)
+            }
+        }
+    }
+    
+    override fun refresh() {
+        productRepository.clearCache()
+        loadData() // Refresh incluye clear cache
+    }
+}
+
+// ✅ Fragment base que puede trabajar con cualquier BaseViewModel
+abstract class BaseFragment<T : BaseViewModel> : Fragment() {
+    
+    protected abstract val viewModel: T
+    
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+        // ✅ LSP: Cualquier BaseViewModel puede usarse aquí
+        observeCommonState()
+        viewModel.loadData()
+    }
+    
+    private fun observeCommonState() {
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            // Mostrar/ocultar loading spinner
+        }
+        
+        viewModel.error.observe(viewLifecycleOwner) { error ->
+            error?.let { showError(it) }
+        }
+    }
+    
+    protected abstract fun showError(message: String)
+}</code></pre>
+        </div>
+
+        <h2>🔌 I - Interface Segregation Principle (ISP)</h2>
+        <p>Es mejor tener <strong>múltiples interfaces específicas</strong> que una sola interfaz de propósito general. En Android, esto nos ayuda a crear componentes más modulares y testeables.</p>
+
+        <h3>❌ Ejemplo problemático: Interface demasiado amplia</h3>
+        <div class="code-block">
+          <pre><code>// ❌ MAL: Interface que hace demasiadas cosas
+interface MediaPlayer {
+    fun play()
+    fun pause()
+    fun stop()
+    fun seekTo(position: Long)
+    fun setVolume(volume: Float)
+    
+    // ❌ No todos los players necesitan estas funciones
+    fun record()
+    fun saveRecording(path: String)
+    fun applyFilter(filter: AudioFilter)
+    fun uploadToCloud(url: String)
+    fun generateWaveform(): ByteArray
+    fun extractThumbnail(): Bitmap
+}
+
+// ❌ Implementación forzada a implementar todo
+class SimpleAudioPlayer : MediaPlayer {
+    override fun play() { /* implementación */ }
+    override fun pause() { /* implementación */ }
+    override fun stop() { /* implementación */ }
+    override fun seekTo(position: Long) { /* implementación */ }
+    override fun setVolume(volume: Float) { /* implementación */ }
+    
+    // ❌ Forzado a implementar funciones que no necesita
+    override fun record() = throw UnsupportedOperationException()
+    override fun saveRecording(path: String) = throw UnsupportedOperationException()
+    override fun applyFilter(filter: AudioFilter) = throw UnsupportedOperationException()
+    override fun uploadToCloud(url: String) = throw UnsupportedOperationException()
+    override fun generateWaveform() = throw UnsupportedOperationException()
+    override fun extractThumbnail() = throw UnsupportedOperationException()
+}</code></pre>
+        </div>
+
+        <h3>✅ Solución: Interfaces segregadas</h3>
+        <div class="code-block">
+          <pre><code>// ✅ BIEN: Interfaces específicas y cohesivas
+interface Playable {
+    fun play()
+    fun pause()
+    fun stop()
+    fun seekTo(position: Long)
+}
+
+interface VolumeControllable {
+    fun setVolume(volume: Float)
+    fun getVolume(): Float
+}
+
+interface Recordable {
+    fun startRecording()
+    fun stopRecording()
+    fun saveRecording(path: String)
+}
+
+interface AudioProcessable {
+    fun applyFilter(filter: AudioFilter)
+    fun generateWaveform(): ByteArray
+}
+
+interface CloudUploadable {
+    suspend fun uploadToCloud(url: String): Result<String>
+}
+
+interface ThumbnailExtractable {
+    fun extractThumbnail(): Bitmap?
+}
+
+// ✅ Implementaciones específicas que solo implementan lo que necesitan
+class SimpleAudioPlayer @Inject constructor(
+    private val exoPlayer: ExoPlayer
+) : Playable, VolumeControllable {
+    
+    override fun play() {
+        exoPlayer.play()
+    }
+    
+    override fun pause() {
+        exoPlayer.pause()
+    }
+    
+    override fun stop() {
+        exoPlayer.stop()
+    }
+    
+    override fun seekTo(position: Long) {
+        exoPlayer.seekTo(position)
+    }
+    
+    override fun setVolume(volume: Float) {
+        exoPlayer.volume = volume
+    }
+    
+    override fun getVolume(): Float = exoPlayer.volume
+}
+
+class AdvancedAudioRecorder @Inject constructor(
+    private val mediaRecorder: MediaRecorder,
+    private val audioProcessor: AudioProcessor
+) : Recordable, AudioProcessable {
+    
+    override fun startRecording() {
+        mediaRecorder.start()
+    }
+    
+    override fun stopRecording() {
+        mediaRecorder.stop()
+    }
+    
+    override fun saveRecording(path: String) {
+        mediaRecorder.outputFile = path
+    }
+    
+    override fun applyFilter(filter: AudioFilter) {
+        audioProcessor.applyFilter(filter)
+    }
+    
+    override fun generateWaveform(): ByteArray {
+        return audioProcessor.generateWaveform()
+    }
+}
+
+class VideoPlayer @Inject constructor(
+    private val exoPlayer: ExoPlayer
+) : Playable, VolumeControllable, ThumbnailExtractable {
+    
+    override fun play() { /* implementación */ }
+    override fun pause() { /* implementación */ }
+    override fun stop() { /* implementación */ }
+    override fun seekTo(position: Long) { /* implementación */ }
+    override fun setVolume(volume: Float) { /* implementación */ }
+    override fun getVolume(): Float = 0f
+    
+    override fun extractThumbnail(): Bitmap? {
+        // Lógica específica para extraer thumbnail de video
+        return null
+    }
+}</code></pre>
+        </div>
+
+        <h3>✅ ISP en Android Listeners</h3>
+        <div class="code-block">
+          <pre><code>// ✅ Segregación de listeners específicos
+interface OnUserActionListener {
+    fun onUserProfileClicked(userId: String)
+    fun onUserFollowed(userId: String)
+    fun onUserBlocked(userId: String)
+}
+
+interface OnPostActionListener {
+    fun onPostLiked(postId: String)
+    fun onPostShared(postId: String)
+    fun onPostSaved(postId: String)
+}
+
+interface OnNavigationListener {
+    fun onNavigateToProfile(userId: String)
+    fun onNavigateToPost(postId: String)
+    fun onNavigateToComments(postId: String)
+}
+
+// ✅ Adapter que solo implementa lo que necesita
+class UserListAdapter(
+    private val userActionListener: OnUserActionListener,
+    private val navigationListener: OnNavigationListener
+) : RecyclerView.Adapter<UserViewHolder>() {
+    
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        val user = users[position]
+        
+        holder.bind(user) { action ->
+            when (action) {
+                is UserAction.ProfileClick -> {
+                    navigationListener.onNavigateToProfile(user.id)
+                }
+                is UserAction.Follow -> {
+                    userActionListener.onUserFollowed(user.id)
+                }
+                is UserAction.Block -> {
+                    userActionListener.onUserBlocked(user.id)
+                }
+            }
+        }
+    }
+}
+
+// ✅ Fragment que implementa solo los listeners que necesita
+class FeedFragment : Fragment(), OnPostActionListener, OnNavigationListener {
+    
+    override fun onPostLiked(postId: String) {
+        viewModel.likePost(postId)
+    }
+    
+    override fun onPostShared(postId: String) {
+        shareManager.sharePost(postId)
+    }
+    
+    override fun onPostSaved(postId: String) {
+        viewModel.savePost(postId)
+    }
+    
+    override fun onNavigateToProfile(userId: String) {
+        findNavController().navigate(
+            FeedFragmentDirections.actionToProfileFragment(userId)
+        )
+    }
+    
+    override fun onNavigateToPost(postId: String) {
+        findNavController().navigate(
+            FeedFragmentDirections.actionToPostDetailFragment(postId)
+        )
+    }
+    
+    override fun onNavigateToComments(postId: String) {
+        findNavController().navigate(
+            FeedFragmentDirections.actionToCommentsFragment(postId)
+        )
+    }
+}</code></pre>
+        </div>
+
+        <h2>🔄 D - Dependency Inversion Principle (DIP)</h2>
+        <p>Los módulos de alto nivel no deben depender de módulos de bajo nivel. <strong>Ambos deben depender de abstracciones</strong>. En Android, esto se logra principalmente con inyección de dependencias usando Hilt.</p>
+
+        <h3>❌ Ejemplo problemático: Dependencias directas</h3>
+        <div class="code-block">
+          <pre><code>// ❌ MAL: ViewModel depende directamente de implementaciones concretas
+class UserProfileViewModel : ViewModel() {
+    
+    // ❌ Dependencias hard-coded
+    private val apiService = RetrofitClient.create(UserApiService::class.java)
+    private val database = Room.databaseBuilder(
+        context, AppDatabase::class.java, "app-db"
+    ).build()
+    private val sharedPrefs = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+    
+    fun loadUserProfile(userId: String) {
+        viewModelScope.launch {
+            try {
+                // ❌ Acoplado a implementaciones específicas
+                val userFromApi = apiService.getUser(userId)
+                database.userDao().insertUser(userFromApi.toEntity())
+                sharedPrefs.edit().putString("last_user", userId).apply()
+            } catch (e: Exception) {
+                // Error handling
+            }
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h3>✅ Solución: Inyección de dependencias con Hilt</h3>
+        <div class="code-block">
+          <pre><code>// ✅ BIEN: Abstracciones y inyección de dependencias
+
+// ✅ Interfaces/abstracciones
+interface UserRepository {
+    suspend fun getUser(userId: String): User
+    suspend fun saveUser(user: User)
+    suspend fun getCachedUser(userId: String): User?
+}
+
+interface UserPreferences {
+    suspend fun setLastUserId(userId: String)
+    suspend fun getLastUserId(): String?
+}
+
+interface NetworkService {
+    suspend fun isConnected(): Boolean
+}
+
+// ✅ Implementaciones concretas
+@Singleton
+class UserRepositoryImpl @Inject constructor(
+    private val apiService: UserApiService,
+    private val userDao: UserDao,
+    private val networkService: NetworkService
+) : UserRepository {
+    
+    override suspend fun getUser(userId: String): User {
+        return if (networkService.isConnected()) {
+            try {
+                val user = apiService.getUser(userId)
+                userDao.insertUser(user.toEntity())
+                user
+            } catch (e: Exception) {
+                userDao.getUser(userId)?.toDomain() 
+                    ?: throw NoUserDataException("No user data available")
+            }
+        } else {
+            userDao.getUser(userId)?.toDomain() 
+                ?: throw NetworkException("No internet connection")
+        }
+    }
+    
+    override suspend fun saveUser(user: User) {
+        userDao.insertUser(user.toEntity())
+    }
+    
+    override suspend fun getCachedUser(userId: String): User? {
+        return userDao.getUser(userId)?.toDomain()
+    }
+}
+
+@Singleton
+class UserPreferencesImpl @Inject constructor(
+    @ApplicationContext private val context: Context
+) : UserPreferences {
+    
+    private val prefs = context.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+    
+    override suspend fun setLastUserId(userId: String) {
+        prefs.edit().putString("last_user_id", userId).apply()
+    }
+    
+    override suspend fun getLastUserId(): String? {
+        return prefs.getString("last_user_id", null)
+    }
+}
+
+// ✅ ViewModel que depende de abstracciones
+@HiltViewModel
+class UserProfileViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    private val userPreferences: UserPreferences,
+    private val analyticsTracker: AnalyticsTracker
+) : ViewModel() {
+    
+    private val _userProfile = MutableLiveData<User>()
+    val userProfile: LiveData<User> = _userProfile
+    
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+    
+    fun loadUserProfile(userId: String) {
+        _isLoading.value = true
+        
+        viewModelScope.launch {
+            try {
+                // ✅ Usando abstracciones - fácil de testear y cambiar
+                val user = userRepository.getUser(userId)
+                _userProfile.value = user
+                
+                userPreferences.setLastUserId(userId)
+                analyticsTracker.trackUserProfileView(userId)
+                
+            } catch (e: Exception) {
+                handleError(e)
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+    
+    private fun handleError(exception: Exception) {
+        when (exception) {
+            is NetworkException -> {
+                // Handle network error
+            }
+            is NoUserDataException -> {
+                // Handle no data error
+            }
+        }
+    }
+}
+
+// ✅ Módulos de Hilt para configurar dependencias
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
+    
+    @Binds
+    abstract fun bindUserRepository(
+        userRepositoryImpl: UserRepositoryImpl
+    ): UserRepository
+    
+    @Binds
+    abstract fun bindUserPreferences(
+        userPreferencesImpl: UserPreferencesImpl
+    ): UserPreferences
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
+    
+    @Provides
+    @Singleton
+    fun provideRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://api.example.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+    
+    @Provides
+    fun provideUserApiService(retrofit: Retrofit): UserApiService {
+        return retrofit.create(UserApiService::class.java)
+    }
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DatabaseModule {
+    
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "app_database"
+        ).build()
+    }
+    
+    @Provides
+    fun provideUserDao(database: AppDatabase): UserDao {
+        return database.userDao()
+    }
+}</code></pre>
+        </div>
+
+        <h2>🏗️ Implementación Práctica: Arquitectura Recomendada</h2>
+        <p>Combinando todos los principios SOLID, podemos crear una arquitectura Android robusta y mantenible:</p>
+
+        <h3>✅ Estructura de capas</h3>
+        <div class="code-block">
+          <pre><code>// ✅ Capa de Presentación (UI Layer)
+@HiltViewModel
+class ProductListViewModel @Inject constructor(
+    private val getProductsUseCase: GetProductsUseCase,
+    private val addToCartUseCase: AddToCartUseCase
+) : ViewModel() {
+    // Lógica de presentación
+}
+
+// ✅ Capa de Dominio (Domain Layer) - Casos de uso
+class GetProductsUseCase @Inject constructor(
+    private val productRepository: ProductRepository
+) {
+    suspend operator fun invoke(category: String? = null): Result<List<Product>> {
+        return try {
+            val products = if (category != null) {
+                productRepository.getProductsByCategory(category)
+            } else {
+                productRepository.getAllProducts()
+            }
+            Result.success(products)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+}
+
+class AddToCartUseCase @Inject constructor(
+    private val cartRepository: CartRepository,
+    private val productRepository: ProductRepository
+) {
+    suspend operator fun invoke(productId: String, quantity: Int): Result<Unit> {
+        return try {
+            val product = productRepository.getProduct(productId)
+            val cartItem = CartItem(
+                product = product,
+                quantity = quantity,
+                addedAt = System.currentTimeMillis()
+            )
+            cartRepository.addItem(cartItem)
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+}
+
+// ✅ Capa de Datos (Data Layer)
+@Singleton
+class ProductRepositoryImpl @Inject constructor(
+    private val productApiService: ProductApiService,
+    private val productDao: ProductDao,
+    private val networkMonitor: NetworkMonitor
+) : ProductRepository {
+    
+    override suspend fun getAllProducts(): List<Product> {
+        return if (networkMonitor.isConnected()) {
+            try {
+                val products = productApiService.getProducts()
+                productDao.insertAll(products.map { it.toEntity() })
+                products.map { it.toDomain() }
+            } catch (e: Exception) {
+                productDao.getAllProducts().map { it.toDomain() }
+            }
+        } else {
+            productDao.getAllProducts().map { it.toDomain() }
+        }
+    }
+    
+    override suspend fun getProductsByCategory(category: String): List<Product> {
+        return if (networkMonitor.isConnected()) {
+            try {
+                val products = productApiService.getProductsByCategory(category)
+                productDao.insertAll(products.map { it.toEntity() })
+                products.map { it.toDomain() }
+            } catch (e: Exception) {
+                productDao.getProductsByCategory(category).map { it.toDomain() }
+            }
+        } else {
+            productDao.getProductsByCategory(category).map { it.toDomain() }
+        }
+    }
+    
+    override suspend fun getProduct(productId: String): Product {
+        return productDao.getProduct(productId)?.toDomain()
+            ?: throw ProductNotFoundException("Product $productId not found")
+    }
+}</code></pre>
+        </div>
+
+        <h3>🧪 Testing con SOLID</h3>
+        <p>Los principios SOLID facilitan enormemente el testing al permitir la inyección de mocks:</p>
+
+        <div class="code-block">
+          <pre><code>// ✅ Test del ViewModel usando mocks
+@ExtendWith(MockitoExtension::class)
+class UserProfileViewModelTest {
+    
+    @Mock
+    private lateinit var userRepository: UserRepository
+    
+    @Mock
+    private lateinit var userPreferences: UserPreferences
+    
+    @Mock
+    private lateinit var analyticsTracker: AnalyticsTracker
+    
+    private lateinit var viewModel: UserProfileViewModel
+    
+    @BeforeEach
+    fun setup() {
+        viewModel = UserProfileViewModel(
+            userRepository,
+            userPreferences,
+            analyticsTracker
+        )
+    }
+    
+    @Test
+    fun `loadUserProfile should update userProfile when repository returns user`() = runTest {
+        // Given
+        val userId = "123"
+        val expectedUser = User(id = userId, name = "John Doe")
+        `when`(userRepository.getUser(userId)).thenReturn(expectedUser)
+        
+        // When
+        viewModel.loadUserProfile(userId)
+        
+        // Then
+        assertEquals(expectedUser, viewModel.userProfile.value)
+        verify(userPreferences).setLastUserId(userId)
+        verify(analyticsTracker).trackUserProfileView(userId)
+    }
+    
+    @Test
+    fun `loadUserProfile should handle network error gracefully`() = runTest {
+        // Given
+        val userId = "123"
+        `when`(userRepository.getUser(userId)).thenThrow(NetworkException("No internet"))
+        
+        // When
+        viewModel.loadUserProfile(userId)
+        
+        // Then
+        assertTrue(viewModel.error.value?.contains("internet") == true)
+        assertEquals(false, viewModel.isLoading.value)
+    }
+}
+
+// ✅ Test del UseCase
+@ExtendWith(MockitoExtension::class)
+class GetProductsUseCaseTest {
+    
+    @Mock
+    private lateinit var productRepository: ProductRepository
+    
+    private lateinit var useCase: GetProductsUseCase
+    
+    @BeforeEach
+    fun setup() {
+        useCase = GetProductsUseCase(productRepository)
+    }
+    
+    @Test
+    fun `invoke should return products when repository succeeds`() = runTest {
+        // Given
+        val expectedProducts = listOf(
+            Product(id = "1", name = "Product 1"),
+            Product(id = "2", name = "Product 2")
+        )
+        `when`(productRepository.getAllProducts()).thenReturn(expectedProducts)
+        
+        // When
+        val result = useCase()
+        
+        // Then
+        assertTrue(result.isSuccess)
+        assertEquals(expectedProducts, result.getOrNull())
+    }
+    
+    @Test
+    fun `invoke should return failure when repository throws exception`() = runTest {
+        // Given
+        `when`(productRepository.getAllProducts()).thenThrow(RuntimeException("Database error"))
+        
+        // When
+        val result = useCase()
+        
+        // Then
+        assertTrue(result.isFailure)
+        assertTrue(result.exceptionOrNull() is RuntimeException)
+    }
+}</code></pre>
+        </div>
+
+        <h2>🛠️ Herramientas y Frameworks</h2>
+        <p>Para implementar SOLID de manera efectiva en Android, recomendamos estas herramientas:</p>
+
+        <div class="tools-grid">
+          <div class="tool-card">
+            <h4>🗡️ Hilt (Dependency Injection)</h4>
+            <p>Framework oficial de Google para DI, perfecto para implementar DIP</p>
+            <div class="code-snippet">
+              <code>@HiltViewModel<br>@Inject constructor()</code>
+            </div>
+          </div>
+          
+          <div class="tool-card">
+            <h4>🏛️ Room (Database)</h4>
+            <p>ORM que facilita la separación de responsabilidades en la capa de datos</p>
+            <div class="code-snippet">
+              <code>@Dao<br>@Entity<br>@Database</code>
+            </div>
+          </div>
+          
+          <div class="tool-card">
+            <h4>🌐 Retrofit (Networking)</h4>
+            <p>Cliente HTTP que permite abstraer las llamadas de red mediante interfaces</p>
+            <div class="code-snippet">
+              <code>@GET<br>@POST<br>interface ApiService</code>
+            </div>
+          </div>
+          
+          <div class="tool-card">
+            <h4>🧪 MockK/Mockito (Testing)</h4>
+            <p>Frameworks para crear mocks y facilitar el testing unitario</p>
+            <div class="code-snippet">
+              <code>@Mock<br>mockk&lt;Repository&gt;()</code>
+            </div>
+          </div>
+          
+          <div class="tool-card">
+            <h4>🏗️ Architecture Components</h4>
+            <p>ViewModel, LiveData, Navigation Component para implementar MVVM</p>
+            <div class="code-snippet">
+              <code>ViewModel<br>LiveData<br>StateFlow</code>
+            </div>
+          </div>
+          
+          <div class="tool-card">
+            <h4>🎯 Kotlin Coroutines</h4>
+            <p>Para manejo asíncrono que respeta la separación de responsabilidades</p>
+            <div class="code-snippet">
+              <code>suspend fun<br>viewModelScope<br>async/await</code>
+            </div>
+          </div>
+        </div>
+
+        <h2>⚠️ Errores Comunes y Cómo Evitarlos</h2>
+
+        <div class="warning-box">
+          <h3>🚫 Antipatrones frecuentes en Android</h3>
+          <ul>
+            <li><strong>God Activities:</strong> Activities que manejan UI, networking, base de datos y lógica de negocio</li>
+            <li><strong>Static dependencies:</strong> Usar singletons estáticos en lugar de inyección de dependencias</li>
+            <li><strong>ViewModels con Context:</strong> Pasar Context a ViewModels rompiendo la separación de capas</li>
+            <li><strong>Adapters con lógica de negocio:</strong> RecyclerView.Adapter que modifica datos en lugar de solo mostrarlos</li>
+            <li><strong>Fragments con múltiples responsabilidades:</strong> Fragments que actúan como mini-applications</li>
+          </ul>
+        </div>
+
+        <h3>✅ Consejos para aplicar SOLID correctamente</h3>
+        <div class="best-practices-box">
+          <h3>💡 Mejores prácticas</h3>
+          <ul>
+            <li><strong>Comienza simple:</strong> No sobre-ingenierices desde el inicio, aplica SOLID gradualmente</li>
+            <li><strong>Usa interfaces:</strong> Define contratos claros entre capas usando interfaces</li>
+            <li><strong>Inyecta dependencias:</strong> Usa Hilt para gestionar dependencias automáticamente</li>
+            <li><strong>Testea cada capa:</strong> Unit tests para lógica, integration tests para flujos completos</li>
+            <li><strong>Separa UI de lógica:</strong> ViewModels para lógica de presentación, UseCases para lógica de negocio</li>
+            <li><strong>Manejo de errores consistente:</strong> Define estrategias claras para cada tipo de error</li>
+            <li><strong>Documenta decisiones:</strong> Explica por qué elegiste cierta arquitectura</li>
+          </ul>
+        </div>
+
+        <h2>🎯 Conclusión</h2>
+        <p>Los principios SOLID no son solo teoría académica, sino herramientas prácticas que pueden <strong>transformar radicalmente</strong> la calidad de nuestras aplicaciones Android. Al aplicarlos correctamente:</p>
+
+        <ul>
+          <li>🚀 <strong>Reducimos bugs:</strong> Código más predecible y fácil de razonar</li>
+          <li>⚡ <strong>Aceleramos desarrollo:</strong> Nuevas features sin romper código existente</li>
+          <li>🧪 <strong>Facilitamos testing:</strong> Componentes aislados y testeables</li>
+          <li>👥 <strong>Mejoramos colaboración:</strong> Código más legible y comprensible</li>
+          <li>🔧 <strong>Simplificamos mantenimiento:</strong> Cambios localizados sin efectos colaterales</li>
+        </ul>
+
+        <p>La clave está en la <strong>implementación gradual</strong>. No intentes aplicar todos los principios de una vez. Comienza con Single Responsibility en tus Activities y ViewModels, luego introduce Dependency Injection con Hilt, y gradualmente incorpora los demás principios.</p>
+
+        <p>Recuerda: <em>El objetivo no es tener el código más elegante, sino el más mantenible y confiable</em>. Los principios SOLID son el camino hacia ese objetivo. 🎯</p>
+
+        <div class="next-steps-box">
+          <h3>🚀 Próximos pasos recomendados</h3>
+          <ol>
+            <li>Analiza tu código actual e identifica violaciones a SOLID</li>
+            <li>Implementa Hilt en tu proyecto para gestionar dependencias</li>
+            <li>Refactoriza Activities/Fragments sobrecargados usando MVVM</li>
+            <li>Crea interfaces para tus repositories y casos de uso</li>
+            <li>Añade tests unitarios para validar tu refactoring</li>
+            <li>Documenta tu arquitectura para el equipo</li>
+          </ol>
+        </div>
+
+        <div class="article-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">SOLID</span>
+            <span class="tag">Architecture</span>
+            <span class="tag">Clean Code</span>
+            <span class="tag">MVVM</span>
+            <span class="tag">Hilt</span>
+            <span class="tag">Testing</span>
+          </div>
+          <div class="share-buttons">
+            <a href="#" class="share-btn">Compartir en Twitter</a>
+            <a href="#" class="share-btn">Compartir en LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

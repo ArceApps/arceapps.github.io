@@ -522,6 +522,123 @@ body {
   margin-bottom: 1rem;
 }
 
+/* SOLID Principles Specific Styles */
+.solid-principles-overview {
+  background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin: 2rem 0;
+  border: 2px solid var(--light-green);
+}
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.principle-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  border: 2px solid var(--gray-100);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.principle-card:hover {
+  border-color: var(--primary-green);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15);
+}
+
+.principle-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.principle-card h4 {
+  color: var(--gray-900);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.principle-card p {
+  color: var(--gray-600);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.warning-box {
+  background: linear-gradient(135deg, #fef2f2, #fef7f7);
+  border: 2px solid #fecaca;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.warning-box h3,
+.warning-box h4 {
+  color: #dc2626;
+  margin-bottom: 1rem;
+}
+
+.warning-box ul {
+  margin: 1rem 0;
+}
+
+.warning-box li {
+  color: #7f1d1d;
+  margin-bottom: 0.5rem;
+}
+
+.next-steps-box {
+  background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+  border: 2px solid #93c5fd;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.next-steps-box h3 {
+  color: #1d4ed8;
+  margin-bottom: 1rem;
+}
+
+.next-steps-box ol {
+  margin: 1rem 0;
+}
+
+.next-steps-box li {
+  color: #1e3a8a;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.code-snippet {
+  background: var(--gray-100);
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: 0.8rem;
+  color: var(--primary-green);
+  border-left: 3px solid var(--primary-green);
+}
+
 .article-footer {
   margin-top: 3rem;
   padding-top: 2rem;
