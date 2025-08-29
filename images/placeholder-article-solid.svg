@@ -1,0 +1,5 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#10b981"/>
+  <text x="400" y="175" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="30" font-weight="bold">SOLID Principles</text>
+  <text x="400" y="215" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="30" font-weight="bold">Android</text>
+</svg>
