@@ -5,7 +5,7 @@
     "summary": "Domina los 5 principios fundamentales del desarrollo de software aplicados específicamente al ecosistema Android con ejemplos prácticos en Kotlin.",
     "url": "blog-solid-principles.html",
     "category": "Desarrollo Android",
-    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=SOLID+Principles+Android"
+    "image": "images/placeholder-blog-solid.svg"
   },
   {
     "title": "Firebase Crashlytics para Android: Tu Mejor Aliado Contra los Crashes",
@@ -13,7 +13,7 @@
     "summary": "Descubre cómo implementar y dominar Firebase Crashlytics en tus apps Android para detectar, analizar y resolver crashes como un verdadero pro.",
     "url": "blog-firebase-crashlytics.html",
     "category": "Desarrollo Android", 
-    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=Firebase+Crashlytics+Android"
+    "image": "images/placeholder-blog-firebase.svg"
   },
   {
     "title": "Versionado Semántico en Android: Mejores Prácticas",
@@ -21,7 +21,7 @@
     "summary": "Exploramos cómo implementar versionado semántico en aplicaciones Android, desde versionCode hasta build.gradle y Google Play Store.",
     "url": "blog-semantic-versioning.html",
     "category": "Desarrollo Android",
-    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=Android+Versioning"
+    "image": "images/placeholder-blog-versioning.svg"
   },
   {
     "title": "Conventional Commits: Transformando tu Historial Git",
@@ -29,7 +29,7 @@
     "summary": "Aprende a usar Conventional Commits para mantener un historial de git limpio y generar changelogs automáticamente.",
     "url": "blog-conventional-commits.html",
     "category": "Control de Versiones",
-    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=Conventional+Commits"
+    "image": "images/placeholder-blog-commits.svg"
   },
   {
     "title": "Próximamente: Más contenido técnico",
@@ -37,6 +37,6 @@
     "summary": "Estamos trabajando en más artículos sobre desarrollo Android, mejores prácticas y herramientas modernas.",
     "url": "#",
     "category": "Anuncio",
-    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=Próximamente"
+    "image": "images/placeholder-blog-coming-soon.svg"
   }
 ]
