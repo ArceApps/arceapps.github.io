@@ -1,30 +1,205 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio | Mi Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | ArceApps - Desarrollador Android</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body data-page="portfolio">
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="/">Mi Portfolio</a>
-      <nav class="site-nav">
-        <a class="active" href="/portfolio.html">Portfolio</a>
-        <a href="/blog.html">Blog</a>
-      </nav>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3>ArceApps</h3>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link active">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link">Blog</a>
+        </li>
+      </ul>
     </div>
-  </header>
+  </nav>
 
-  <main class="container">
-    <h1>Portfolio</h1>
-    <p>Aquí podrás explorar mis proyectos y trabajos destacados.</p>
-    <div id="projects" class="portfolio"></div>
-  </main>
+  <!-- Portfolio Hero Section -->
+  <section class="portfolio-hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Mi <span class="gradient-text">Portfolio</span>
+        </h1>
+        <p class="hero-subtitle">
+          Explora mis proyectos de desarrollo Android, desde juegos clásicos hasta aplicaciones innovadoras
+        </p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">10+</span>
+            <span class="stat-label">Proyectos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">5K+</span>
+            <span class="stat-label">Líneas de código</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3+</span>
+            <span class="stat-label">Años experiencia</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="portfolio-animation">
+          <div class="project-preview">
+            <div class="preview-screen">📱</div>
+            <div class="preview-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <div class="container">&copy; 2025 ArceApps</div>
+  <!-- All Projects Section -->
+  <section class="all-projects-section">
+    <div class="container">
+      <h2 class="section-title">Todos los Proyectos</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-icon">🧩</div>
+          <h3>Sudoku Android</h3>
+          <p>Juego clásico de Sudoku para Android con diferentes niveles de dificultad, validación automática y diseño Material Design.</p>
+          <div class="project-tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Material Design</span>
+          </div>
+          <a href="project-sudoku.html" class="project-link">Ver proyecto →</a>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-icon">🎯</div>
+          <h3>2048 Game</h3>
+          <p>Implementación del popular juego 2048 para Android con animaciones fluidas, puntuación y sistema de guardado automático.</p>
+          <div class="project-tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Game Development</span>
+          </div>
+          <a href="project-2048.html" class="project-link">Ver proyecto →</a>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-icon">🛒</div>
+          <h3>E-commerce App</h3>
+          <p>Aplicación de comercio electrónico con carrito de compras, pasarela de pagos y sistema de reseñas integrado.</p>
+          <div class="project-tags">
+            <span class="tag">Android</span>
+            <span class="tag">Retrofit</span>
+            <span class="tag">Room</span>
+          </div>
+          <a href="#" class="project-link">Próximamente →</a>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-icon">🎵</div>
+          <h3>Music Player</h3>
+          <p>Reproductor de música moderno con ecualizador, listas de reproducción personalizadas y integración con servicios de streaming.</p>
+          <div class="project-tags">
+            <span class="tag">Android</span>
+            <span class="tag">MediaPlayer</span>
+            <span class="tag">UI/UX</span>
+          </div>
+          <a href="#" class="project-link">En desarrollo →</a>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-icon">📊</div>
+          <h3>Finance Tracker</h3>
+          <p>Aplicación de gestión financiera personal con gráficos interactivos, categorización automática y exportación de datos.</p>
+          <div class="project-tags">
+            <span class="tag">Android</span>
+            <span class="tag">Charts</span>
+            <span class="tag">SQLite</span>
+          </div>
+          <a href="#" class="project-link">Planificado →</a>
+        </div>
+        
+        <div class="project-card">
+          <div class="project-icon">🌤️</div>
+          <h3>Weather App</h3>
+          <p>Aplicación del clima con pronósticos detallados, mapas interactivos y notificaciones de alertas meteorológicas.</p>
+          <div class="project-tags">
+            <span class="tag">Android</span>
+            <span class="tag">API Integration</span>
+            <span class="tag">Maps</span>
+          </div>
+          <a href="#" class="project-link">Próximamente →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologies Section -->
+  <section class="technologies-section">
+    <div class="container">
+      <h2 class="section-title">Tecnologías que uso</h2>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon">⚡</div>
+          <h3>Kotlin</h3>
+          <p>Lenguaje principal para desarrollo Android moderno</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🎨</div>
+          <h3>Jetpack Compose</h3>
+          <p>UI toolkit declarativo para crear interfaces nativas</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🏗️</div>
+          <h3>Android Architecture Components</h3>
+          <p>MVVM, Room, LiveData, ViewModel</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🔗</div>
+          <h3>Retrofit & OkHttp</h3>
+          <p>Cliente HTTP para APIs REST</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🧪</div>
+          <h3>Testing</h3>
+          <p>JUnit, Espresso, Mockito</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🔧</div>
+          <h3>Git & CI/CD</h3>
+          <p>Control de versiones y integración continua</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
