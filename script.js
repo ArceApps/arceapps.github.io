@@ -83,4 +83,80 @@ document.addEventListener('DOMContentLoaded', function() {
     codeLines.forEach((line, index) => {
         line.style.animationDelay = `${index * 0.5}s`;
     });
+
+    // Load blog posts if on blog page
+    if (window.location.pathname.includes('blog.html') || window.location.pathname === '/blog.html') {
+        loadBlogPosts();
+    }
 });
+
+// Function to load blog posts from posts.json
+async function loadBlogPosts() {
+    try {
+        const response = await fetch('posts.json');
+        const posts = await response.json();
+        
+        const blogPostsContainer = document.getElementById('blog-posts');
+        const postCountElement = document.getElementById('post-count');
+        
+        if (blogPostsContainer) {
+            blogPostsContainer.innerHTML = '';
+            
+            posts.forEach(post => {
+                const postElement = createBlogPostElement(post);
+                blogPostsContainer.appendChild(postElement);
+            });
+            
+            // Update post count
+            if (postCountElement) {
+                postCountElement.textContent = posts.length;
+            }
+        }
+    } catch (error) {
+        console.error('Error loading blog posts:', error);
+        
+        // Fallback content if posts.json fails to load
+        const blogPostsContainer = document.getElementById('blog-posts');
+        if (blogPostsContainer) {
+            blogPostsContainer.innerHTML = `
+                <div class="blog-card">
+                    <div class="blog-card-content">
+                        <h3>Error cargando artículos</h3>
+                        <p>No se pudieron cargar los artículos del blog en este momento.</p>
+                    </div>
+                </div>
+            `;
+        }
+    }
+}
+
+// Function to create a blog post element
+function createBlogPostElement(post) {
+    const article = document.createElement('article');
+    article.className = 'blog-card';
+    
+    // Format date
+    const date = new Date(post.date);
+    const formattedDate = date.toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    });
+    
+    article.innerHTML = `
+        ${post.image ? `<img src="${post.image}" alt="${post.title}" class="blog-card-image">` : ''}
+        <div class="blog-card-content">
+            <div class="blog-card-meta">
+                <span class="blog-card-date">${formattedDate}</span>
+                ${post.category ? `<span class="blog-card-category">${post.category}</span>` : ''}
+            </div>
+            <h3>${post.title}</h3>
+            <p>${post.summary}</p>
+            <a href="${post.url}" class="blog-card-link">
+                ${post.url === '#' ? 'Próximamente' : 'Leer artículo'} →
+            </a>
+        </div>
+    `;
+    
+    return article;
+}
