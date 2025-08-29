@@ -1,5 +1,13 @@
 [
   {
+    "title": "Principios SOLID en Android: Guía Completa para Desarrolladores Kotlin",
+    "date": "2025-08-30",
+    "summary": "Domina los 5 principios fundamentales del desarrollo de software aplicados específicamente al ecosistema Android con ejemplos prácticos en Kotlin.",
+    "url": "blog-solid-principles.html",
+    "category": "Desarrollo Android",
+    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=SOLID+Principles+Android"
+  },
+  {
     "title": "Firebase Crashlytics para Android: Tu Mejor Aliado Contra los Crashes",
     "date": "2025-08-29",
     "summary": "Descubre cómo implementar y dominar Firebase Crashlytics en tus apps Android para detectar, analizar y resolver crashes como un verdadero pro.",
