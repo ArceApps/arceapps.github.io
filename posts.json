@@ -1,5 +1,13 @@
 [
   {
+    "title": "Firebase Crashlytics para Android: Tu Mejor Aliado Contra los Crashes",
+    "date": "2025-08-29",
+    "summary": "Descubre cómo implementar y dominar Firebase Crashlytics en tus apps Android para detectar, analizar y resolver crashes como un verdadero pro.",
+    "url": "blog-firebase-crashlytics.html",
+    "category": "Desarrollo Android", 
+    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=Firebase+Crashlytics+Android"
+  },
+  {
     "title": "Versionado Semántico en Android: Mejores Prácticas",
     "date": "2025-08-25",
     "summary": "Exploramos cómo implementar versionado semántico en aplicaciones Android, desde versionCode hasta build.gradle y Google Play Store.",
