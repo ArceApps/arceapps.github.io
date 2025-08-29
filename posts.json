@@ -1,26 +1,26 @@
 [
   {
-    "title": "¡Bienvenido a mi blog!",
-    "date": "2025-08-29",
-    "summary": "Este es el primer post de mi blog personal. Aquí compartiré noticias, proyectos y recursos interesantes.",
-    "url": "#"
-  },
-  {
     "title": "Versionado Semántico en Android: Mejores Prácticas",
     "date": "2025-08-25",
     "summary": "Exploramos cómo implementar versionado semántico en aplicaciones Android, desde versionCode hasta build.gradle y Google Play Store.",
-    "url": "#"
+    "url": "blog-semantic-versioning.html",
+    "category": "Desarrollo Android",
+    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=Android+Versioning"
   },
   {
-    "title": "Conventional Commits: Orden en tu Historial Git",
+    "title": "Conventional Commits: Transformando tu Historial Git",
     "date": "2025-08-22",
     "summary": "Aprende a usar Conventional Commits para mantener un historial de git limpio y generar changelogs automáticamente.",
-    "url": "#"
+    "url": "blog-conventional-commits.html",
+    "category": "Control de Versiones",
+    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=Conventional+Commits"
   },
   {
-    "title": "Nuevo proyecto publicado",
+    "title": "Próximamente: Más contenido técnico",
     "date": "2025-08-20",
-    "summary": "Lancé un nuevo proyecto que explora interfaces modernas en la web.",
-    "url": "#"
+    "summary": "Estamos trabajando en más artículos sobre desarrollo Android, mejores prácticas y herramientas modernas.",
+    "url": "#",
+    "category": "Anuncio",
+    "image": "https://via.placeholder.com/400x250/10b981/ffffff?text=Próximamente"
   }
 ]

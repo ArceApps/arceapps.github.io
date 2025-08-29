@@ -1,30 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog | Mi Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - ArceApps</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body data-page="blog">
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="/">Mi Portfolio</a>
-      <nav class="site-nav">
-        <a href="/portfolio.html">Portfolio</a>
-        <a class="active" href="/blog.html">Blog</a>
-      </nav>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3><a href="index.html">ArceApps</a></h3>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link active">Blog</a>
+        </li>
+      </ul>
     </div>
-  </header>
+  </nav>
 
-  <main class="container">
-    <h1>Blog</h1>
-    <p>Novedades, noticias y aprendizajes.</p>
-    <div id="posts"></div>
-  </main>
+  <!-- Blog Hero Section -->
+  <section class="blog-hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Blog de <span class="gradient-text">ArceApps</span>
+        </h1>
+        <p class="hero-subtitle">
+          Artículos sobre desarrollo Android, mejores prácticas y herramientas modernas para crear aplicaciones excepcionales
+        </p>
+        <div class="blog-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="post-count">0</span>
+            <span class="stat-label">Artículos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Categorías</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="blog-illustration">
+          📝
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <div class="container">&copy; 2025 ArceApps</div>
+  <!-- Blog Posts Section -->
+  <section class="blog-posts-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Últimas Publicaciones</h2>
+        <p class="section-subtitle">Explora mis artículos sobre desarrollo Android y mejores prácticas</p>
+      </div>
+      <div class="blog-grid" id="blog-posts">
+        <!-- Posts will be loaded here by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-card">
+        <div class="newsletter-content">
+          <h3>¿Te gustaría recibir más contenido?</h3>
+          <p>Mantente al día con los últimos artículos sobre desarrollo Android y mejores prácticas de programación.</p>
+        </div>
+        <div class="newsletter-action">
+          <a href="#" class="btn btn-primary">Próximamente</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
