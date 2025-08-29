@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Crashlytics para Android - ArceApps Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3><a href="index.html">ArceApps</a></h3>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link active">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">29 de agosto de 2025</span>
+          <span class="article-category">Desarrollo Android</span>
+        </div>
+        <h1>Firebase Crashlytics para Android: Tu Mejor Aliado Contra los Crashes 🚀</h1>
+        <p class="article-subtitle">Descubre cómo implementar y dominar Firebase Crashlytics en tus apps Android para detectar, analizar y resolver crashes como un verdadero pro</p>
+        <div class="article-image">
+          <img src="https://via.placeholder.com/800x400/10b981/ffffff?text=Firebase+Crashlytics+Android" alt="Firebase Crashlytics Android" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>¿Qué es Firebase Crashlytics y por qué lo necesitas? 🤔</h2>
+        <p>Imagínate esto: acabas de lanzar tu app Android y de repente empiezas a recibir reviews de 1 estrella porque "la app se cierra sola". ¿Te suena familiar? Tranquilo, a todos nos ha pasado. Aquí es donde Firebase Crashlytics se convierte en tu superhéroe personal.</p>
+        
+        <p>Firebase Crashlytics es una herramienta de crash reporting ligera y en tiempo real que te ayuda a rastrear, priorizar y solucionar problemas de estabilidad que erosionan la calidad de tu app. Lo mejor de todo: es <strong>completamente gratuito</strong> y se integra perfectamente con el ecosistema Android.</p>
+
+        <div class="highlight-box">
+          <h4>💡 ¿Sabías que...?</h4>
+          <p>El 70% de los usuarios desinstala una app después de experimentar un solo crash. ¡Por eso es crucial tener un sistema de monitoreo robusto!</p>
+        </div>
+
+        <h2>Configuración Inicial: Primeros Pasos 🛠️</h2>
+        
+        <h3>1. Añadir Firebase a tu proyecto</h3>
+        <p>Primero, necesitas configurar Firebase en tu proyecto Android. Si ya tienes Firebase configurado, puedes saltar este paso.</p>
+
+        <div class="code-block">
+          <pre><code>// En tu archivo build.gradle (Project level)
+buildscript {
+    dependencies {
+        classpath 'com.google.gms:google-services:4.4.0'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.9'
+    }
+}
+
+// En tu archivo build.gradle (App level)
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.3.1')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+}</code></pre>
+        </div>
+
+        <h3>2. Configuración en el Application class</h3>
+        <p>Para sacar el máximo provecho de Crashlytics, es recomendable configurarlo en tu clase Application:</p>
+
+        <div class="code-block">
+          <pre><code>class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        
+        // Configurar Crashlytics
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
+        
+        // Configurar información del usuario (opcional)
+        FirebaseCrashlytics.getInstance().setUserId("user_12345")
+        
+        // Añadir metadatos personalizados
+        FirebaseCrashlytics.getInstance().setCustomKey("build_type", BuildConfig.BUILD_TYPE)
+        FirebaseCrashlytics.getInstance().setCustomKey("version_code", BuildConfig.VERSION_CODE)
+    }
+}</code></pre>
+        </div>
+
+        <h2>Implementación Práctica: Casos de Uso Reales 💻</h2>
+
+        <h3>1. Logging de excepciones no fatales</h3>
+        <p>No solo los crashes son importantes. También puedes trackear excepciones que manejas pero que indican problemas potenciales:</p>
+
+        <div class="code-block">
+          <pre><code>class UserRepository {
+    private val crashlytics = FirebaseCrashlytics.getInstance()
+    
+    suspend fun fetchUserData(userId: String): Result&lt;User&gt; {
+        return try {
+            val response = apiService.getUser(userId)
+            Result.success(response.toUser())
+        } catch (e: HttpException) {
+            // Reportar error HTTP pero no crash
+            crashlytics.recordException(e)
+            crashlytics.setCustomKey("failed_user_id", userId)
+            crashlytics.setCustomKey("http_code", e.code())
+            
+            Result.failure(e)
+        } catch (e: IOException) {
+            crashlytics.recordException(e)
+            crashlytics.setCustomKey("network_error", "timeout_or_connection")
+            
+            Result.failure(e)
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h3>2. Breadcrumbs personalizados</h3>
+        <p>Los breadcrumbs te ayudan a entender qué estaba haciendo el usuario antes del crash:</p>
+
+        <div class="code-block">
+          <pre><code>class GameActivity : AppCompatActivity() {
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        FirebaseCrashlytics.getInstance().log("GameActivity: onCreate started")
+        
+        setupGame()
+    }
+    
+    private fun startNewGame() {
+        FirebaseCrashlytics.getInstance().log("User started new game")
+        FirebaseCrashlytics.getInstance().setCustomKey("game_level", currentLevel)
+        FirebaseCrashlytics.getInstance().setCustomKey("player_score", playerScore)
+        
+        // Lógica del juego...
+    }
+    
+    private fun onPlayerDied() {
+        FirebaseCrashlytics.getInstance().log("Player died - Game Over")
+        FirebaseCrashlytics.getInstance().setCustomKey("death_cause", "enemy_collision")
+        
+        // Si algo falla aquí, tendrás contexto completo
+        showGameOverScreen()
+    }
+}</code></pre>
+        </div>
+
+        <h3>3. Gestión avanzada de usuarios</h3>
+        <p>Puedes segmentar tus crashes por tipo de usuario para priorizar mejor las correcciones:</p>
+
+        <div class="code-block">
+          <pre><code>class AnalyticsManager {
+    private val crashlytics = FirebaseCrashlytics.getInstance()
+    
+    fun setUserContext(user: User) {
+        crashlytics.setUserId(user.id)
+        
+        // Información demográfica útil
+        crashlytics.setCustomKey("user_type", user.subscriptionType)
+        crashlytics.setCustomKey("app_version_install", user.firstAppVersion)
+        crashlytics.setCustomKey("device_language", Locale.getDefault().language)
+        crashlytics.setCustomKey("days_since_install", user.daysSinceInstall)
+        
+        // Contexto técnico
+        crashlytics.setCustomKey("device_ram_mb", getTotalRAM())
+        crashlytics.setCustomKey("device_storage_free_mb", getFreeStorage())
+        crashlytics.setCustomKey("network_type", getNetworkType())
+    }
+    
+    fun trackFeatureUsage(featureName: String) {
+        crashlytics.log("Feature used: $featureName")
+        crashlytics.setCustomKey("last_feature_used", featureName)
+    }
+}</code></pre>
+        </div>
+
+        <h2>Patrones Avanzados para Desarrolladores Pro 🎯</h2>
+
+        <h3>1. Wrapper personalizado para mejor control</h3>
+        <p>Crear un wrapper te permite tener más control sobre qué se reporta y cuándo:</p>
+
+        <div class="code-block">
+          <pre><code>object CrashReporter {
+    private val crashlytics = FirebaseCrashlytics.getInstance()
+    private val isDebug = BuildConfig.DEBUG
+    
+    fun logError(
+        throwable: Throwable,
+        tag: String = "UnknownError",
+        additionalData: Map&lt;String, Any&gt; = emptyMap()
+    ) {
+        if (isDebug) {
+            Log.e(tag, "Error occurred", throwable)
+        }
+        
+        // Añadir datos adicionales
+        additionalData.forEach { (key, value) -&gt;
+            crashlytics.setCustomKey(key, value.toString())
+        }
+        
+        crashlytics.setCustomKey("error_tag", tag)
+        crashlytics.setCustomKey("timestamp", System.currentTimeMillis())
+        
+        // Solo reportar en release builds
+        if (!isDebug) {
+            crashlytics.recordException(throwable)
+        }
+    }
+    
+    fun logEvent(event: String, data: Map&lt;String, Any&gt; = emptyMap()) {
+        val logMessage = if (data.isEmpty()) {
+            event
+        } else {
+            "$event - ${data.map { "${it.key}:${it.value}" }.joinToString(", ")}"
+        }
+        
+        crashlytics.log(logMessage)
+    }
+    
+    fun setUserProperties(properties: Map&lt;String, Any&gt;) {
+        properties.forEach { (key, value) -&gt;
+            crashlytics.setCustomKey(key, value.toString())
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h3>2. Integración con arquitectura MVVM</h3>
+        <p>Así puedes integrar Crashlytics de forma elegante en tu arquitectura:</p>
+
+        <div class="code-block">
+          <pre><code>class ProductRepository @Inject constructor(
+    private val apiService: ProductApiService,
+    private val localDataSource: ProductLocalDataSource,
+    private val crashReporter: CrashReporter
+) {
+    
+    suspend fun getProducts(): Flow&lt;Resource&lt;List&lt;Product&gt;&gt;&gt; = flow {
+        emit(Resource.Loading())
+        
+        try {
+            crashReporter.logEvent("product_fetch_started")
+            
+            val products = apiService.getProducts()
+            localDataSource.saveProducts(products)
+            
+            crashReporter.logEvent("product_fetch_success", mapOf(
+                "product_count" to products.size
+            ))
+            
+            emit(Resource.Success(products))
+            
+        } catch (e: Exception) {
+            crashReporter.logError(
+                throwable = e,
+                tag = "ProductRepository",
+                additionalData = mapOf(
+                    "operation" to "getProducts",
+                    "cache_size" to localDataSource.getCacheSize(),
+                    "network_available" to isNetworkAvailable()
+                )
+            )
+            
+            // Intentar cargar desde caché
+            val cachedProducts = localDataSource.getProducts()
+            if (cachedProducts.isNotEmpty()) {
+                emit(Resource.Success(cachedProducts, isFromCache = true))
+            } else {
+                emit(Resource.Error(e.message ?: "Unknown error"))
+            }
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h2>Configuraciones Avanzadas y Trucos 🔧</h2>
+
+        <h3>1. Configuración para diferentes builds</h3>
+        <p>Diferentes comportamientos para debug, staging y release:</p>
+
+        <div class="code-block">
+          <pre><code>// En build.gradle (app level)
+android {
+    buildTypes {
+        debug {
+            manifestPlaceholders = [crashlyticsEnabled: false]
+            ext.enableCrashlytics = false
+        }
+        staging {
+            manifestPlaceholders = [crashlyticsEnabled: true]
+            ext.enableCrashlytics = true
+        }
+        release {
+            manifestPlaceholders = [crashlyticsEnabled: true]
+            ext.enableCrashlytics = true
+        }
+    }
+}
+
+// En AndroidManifest.xml
+&lt;meta-data
+    android:name="firebase_crashlytics_collection_enabled"
+    android:value="${crashlyticsEnabled}" /&gt;</code></pre>
+        </div>
+
+        <h3>2. Filtros inteligentes para ruido</h3>
+        <p>No todos los errores son iguales. Aquí te muestro cómo filtrar el ruido:</p>
+
+        <div class="code-block">
+          <pre><code>class SmartCrashReporter {
+    private val ignoredExceptions = setOf(
+        "java.net.UnknownHostException",
+        "java.net.SocketTimeoutException",
+        "java.util.concurrent.CancellationException"
+    )
+    
+    private val rateLimiter = mutableMapOf&lt;String, Long&gt;()
+    private val rateLimitWindow = 60_000L // 1 minuto
+    
+    fun reportException(throwable: Throwable, context: String = "") {
+        val exceptionKey = "${throwable.javaClass.simpleName}:$context"
+        
+        // Rate limiting - no reportar la misma excepción muy seguido
+        val now = System.currentTimeMillis()
+        val lastReported = rateLimiter[exceptionKey] ?: 0
+        
+        if (now - lastReported &lt; rateLimitWindow) {
+            return // Skip this report
+        }
+        
+        // Filtrar excepciones conocidas de red
+        if (ignoredExceptions.contains(throwable.javaClass.name)) {
+            // Solo reportar si es frecuente
+            if (getExceptionFrequency(exceptionKey) &gt; 5) {
+                FirebaseCrashlytics.getInstance().apply {
+                    setCustomKey("exception_frequency", getExceptionFrequency(exceptionKey))
+                    setCustomKey("is_network_related", true)
+                    recordException(throwable)
+                }
+            }
+        } else {
+            // Reportar normalmente
+            FirebaseCrashlytics.getInstance().recordException(throwable)
+        }
+        
+        rateLimiter[exceptionKey] = now
+    }
+}</code></pre>
+        </div>
+
+        <h2>Testing y Verificación 🧪</h2>
+
+        <h3>1. Testear el crash reporting</h3>
+        <p>Nunca deploys sin verificar que Crashlytics funciona:</p>
+
+        <div class="code-block">
+          <pre><code>class CrashTestActivity : AppCompatActivity() {
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        // Solo en debug builds
+        if (BuildConfig.DEBUG) {
+            setupCrashTestButtons()
+        }
+    }
+    
+    private fun setupCrashTestButtons() {
+        binding.btnTestCrash.setOnClickListener {
+            FirebaseCrashlytics.getInstance().log("Test crash button pressed")
+            throw RuntimeException("Test crash - This is intentional!")
+        }
+        
+        binding.btnTestNonFatal.setOnClickListener {
+            FirebaseCrashlytics.getInstance().apply {
+                setCustomKey("test_type", "non_fatal_exception")
+                setCustomKey("user_action", "test_button_pressed")
+                recordException(Exception("Test non-fatal exception"))
+            }
+            
+            showToast("Non-fatal exception sent to Crashlytics")
+        }
+        
+        binding.btnTestCustomLog.setOnClickListener {
+            FirebaseCrashlytics.getInstance().apply {
+                log("Custom log test - User interaction")
+                setCustomKey("button_type", "custom_log_test")
+                setCustomKey("session_duration", getSessionDuration())
+            }
+            
+            showToast("Custom log sent to Crashlytics")
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h3>2. Automatización en CI/CD</h3>
+        <p>Integra Crashlytics en tu pipeline de CI/CD:</p>
+
+        <div class="code-block">
+          <pre><code># GitHub Actions workflow
+name: Deploy with Crashlytics
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Android
+      uses: android-actions/setup-android@v2
+    
+    - name: Build Release APK
+      run: ./gradlew assembleRelease
+    
+    - name: Upload dSYMs to Crashlytics
+      run: |
+        ./gradlew crashlyticsUploadDeobfuscationFilesRelease
+    
+    - name: Send deployment notification to Crashlytics
+      run: |
+        curl -X POST \
+          https://api.crashlytics.com/api/v1/apps/${{ secrets.CRASHLYTICS_APP_ID }}/deployments \
+          -H "X-API-KEY: ${{ secrets.CRASHLYTICS_API_KEY }}" \
+          -d version="${{ github.sha }}" \
+          -d notes="Deployed from GitHub Actions"</code></pre>
+        </div>
+
+        <h2>Análisis y Interpretación de Datos 📊</h2>
+
+        <h3>1. Métricas clave a monitorear</h3>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <h4>Crash-free Rate</h4>
+            <p class="metric-value">&gt; 99.5%</p>
+            <p>Porcentaje de sesiones sin crashes</p>
+          </div>
+          <div class="metric-card">
+            <h4>Time to Resolution</h4>
+            <p class="metric-value">&lt; 24h</p>
+            <p>Tiempo promedio para resolver crashes críticos</p>
+          </div>
+          <div class="metric-card">
+            <h4>Top Crashes</h4>
+            <p class="metric-value">5-10</p>
+            <p>Número de crashes únicos que causan el 80% de problemas</p>
+          </div>
+        </div>
+
+        <h3>2. Técnicas de debugging avanzadas</h3>
+        <p>Cuando recibes un crash report, estos son los pasos para un debugging efectivo:</p>
+
+        <div class="debugging-steps">
+          <div class="debug-step">
+            <h4>🔍 Paso 1: Análisis del Stack Trace</h4>
+            <p>Identifica la línea exacta donde ocurrió el crash y el flujo de llamadas que llevó a ese punto.</p>
+          </div>
+          
+          <div class="debug-step">
+            <h4>📊 Paso 2: Revisar Custom Keys</h4>
+            <p>Examina los metadatos que configuraste para entender el contexto del usuario y dispositivo.</p>
+          </div>
+          
+          <div class="debug-step">
+            <h4>🍞 Paso 3: Seguir Breadcrumbs</h4>
+            <p>Rastrea las acciones del usuario que precedieron al crash para reproducir el escenario.</p>
+          </div>
+          
+          <div class="debug-step">
+            <h4>🎯 Paso 4: Agrupar y Priorizar</h4>
+            <p>Agrupa crashes similares y prioriza basándote en impacto (usuarios afectados) y frecuencia.</p>
+          </div>
+        </div>
+
+        <h2>Mejores Prácticas y Consejos Pro 💎</h2>
+
+        <h3>1. Do's and Don'ts</h3>
+        
+        <div class="dos-donts">
+          <div class="dos">
+            <h4>✅ DO's</h4>
+            <ul>
+              <li>Configura custom keys significativos antes de operaciones críticas</li>
+              <li>Usa breadcrumbs para trackear el flujo del usuario</li>
+              <li>Implementa rate limiting para evitar spam de reportes</li>
+              <li>Filtra excepciones de red conocidas</li>
+              <li>Añade contexto específico del dominio de tu app</li>
+              <li>Testea el crash reporting antes de cada release</li>
+            </ul>
+          </div>
+          
+          <div class="donts">
+            <h4>❌ DON'Ts</h4>
+            <ul>
+              <li>No reportes información sensible (passwords, tokens)</li>
+              <li>No ignores crashes de baja frecuencia - pueden ser críticos</li>
+              <li>No uses Crashlytics como logging general</li>
+              <li>No configures custom keys con datos muy volátiles</li>
+              <li>No olvides deshabilitar en debug builds</li>
+              <li>No dependas solo de Crashlytics - ten logs locales también</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>2. Configuración para equipos grandes</h3>
+        <p>Si trabajas en un equipo grande, estas configuraciones te ayudarán:</p>
+
+        <div class="code-block">
+          <pre><code>// CrashlyticsConfig.kt
+object CrashlyticsConfig {
+    
+    fun initialize(context: Context) {
+        FirebaseCrashlytics.getInstance().apply {
+            // Información del build
+            setCustomKey("build_flavor", BuildConfig.FLAVOR)
+            setCustomKey("build_type", BuildConfig.BUILD_TYPE)
+            setCustomKey("version_name", BuildConfig.VERSION_NAME)
+            setCustomKey("target_sdk", Build.VERSION.SDK_INT)
+            
+            // Información del equipo
+            setCustomKey("feature_team", getFeatureTeam())
+            setCustomKey("code_owner", getCodeOwner())
+            setCustomKey("release_channel", getReleaseChannel())
+            
+            // Configuración de la app
+            setCustomKey("ab_test_variant", getABTestVariant())
+            setCustomKey("feature_flags", getEnabledFeatureFlags())
+        }
+    }
+    
+    private fun getFeatureTeam(): String {
+        // Determinar equipo basado en el último commit o configuración
+        return "android_core" // Ejemplo
+    }
+}</code></pre>
+        </div>
+
+        <h2>Integraciones Útiles 🔗</h2>
+
+        <h3>1. Slack Notifications</h3>
+        <p>Mantén a tu equipo informado sobre crashes críticos:</p>
+
+        <div class="code-block">
+          <pre><code>// Webhook para alertas de Slack
+class SlackCrashNotifier {
+    
+    suspend fun notifyCriticalCrash(crashReport: CrashReport) {
+        if (crashReport.isCritical()) {
+            val message = buildSlackMessage(crashReport)
+            sendToSlack(message)
+        }
+    }
+    
+    private fun buildSlackMessage(crash: CrashReport) = SlackMessage(
+        text = "🚨 Critical Crash Detected!",
+        blocks = listOf(
+            SlackBlock(
+                type = "section",
+                text = "Exception: ${crash.exception}\n" +
+                       "Affected Users: ${crash.affectedUsers}\n" +
+                       "First Seen: ${crash.firstSeen}\n" +
+                       "Crash Rate: ${crash.crashRate}%"
+            ),
+            SlackBlock(
+                type = "actions",
+                elements = listOf(
+                    SlackButton("View in Firebase", crash.firebaseUrl),
+                    SlackButton("Create JIRA Ticket", crash.jiraCreateUrl)
+                )
+            )
+        )
+    )
+}</code></pre>
+        </div>
+
+        <h3>2. Integración con JIRA</h3>
+        <p>Automatiza la creación de tickets para crashes importantes:</p>
+
+        <div class="code-block">
+          <pre><code>class JiraCrashIntegration {
+    
+    fun createTicketForCrash(crash: CrashReport): String {
+        val ticket = JiraTicket(
+            project = "ANDROID",
+            issueType = "Bug",
+            summary = "Crash: ${crash.exception.take(100)}",
+            description = buildDescription(crash),
+            priority = determinePriority(crash),
+            labels = listOf("crash", "android", "crashlytics"),
+            customFields = mapOf(
+                "crash_id" to crash.id,
+                "affected_users" to crash.affectedUsers.toString(),
+                "app_version" to crash.appVersion
+            )
+        )
+        
+        return jiraClient.createIssue(ticket)
+    }
+    
+    private fun determinePriority(crash: CrashReport): String {
+        return when {
+            crash.affectedUsers > 1000 -> "Critical"
+            crash.affectedUsers > 100 -> "High"
+            crash.crashRate > 1.0 -> "High"
+            else -> "Medium"
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h2>Casos de Uso Avanzados 🎓</h2>
+
+        <h3>1. Crash Reporting para Compose</h3>
+        <p>Consideraciones especiales para Jetpack Compose:</p>
+
+        <div class="code-block">
+          <pre><code>@Composable
+fun CrashSafeComposable(
+    content: @Composable () -&gt; Unit
+) {
+    val crashReporter = remember { CrashReporter() }
+    
+    CompositionLocalProvider(
+        LocalCrashReporter provides crashReporter
+    ) {
+        try {
+            content()
+        } catch (e: Exception) {
+            crashReporter.logError(
+                throwable = e,
+                tag = "ComposeError",
+                additionalData = mapOf(
+                    "composable" to "CrashSafeComposable",
+                    "composition_hash" to currentComposition.hashCode()
+                )
+            )
+            
+            // Fallback UI
+            ErrorFallbackUI(error = e)
+        }
+    }
+}
+
+// Extension para ViewModels
+fun ViewModel.crashSafeScope(
+    block: suspend CoroutineScope.() -&gt; Unit
+) {
+    viewModelScope.launch {
+        try {
+            block()
+        } catch (e: Exception) {
+            CrashReporter.logError(
+                throwable = e,
+                tag = "ViewModelError",
+                additionalData = mapOf(
+                    "viewmodel" to this@crashSafeScope.javaClass.simpleName
+                )
+            )
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h3>2. Performance Monitoring Integration</h3>
+        <p>Combina crash reporting con performance monitoring:</p>
+
+        <div class="code-block">
+          <pre><code>class PerformanceAwareCrashReporter {
+    
+    fun reportWithPerformanceContext(
+        throwable: Throwable,
+        operationName: String
+    ) {
+        val performance = FirebasePerformance.getInstance()
+        val trace = performance.newTrace("crash_context_$operationName")
+        
+        trace.start()
+        
+        FirebaseCrashlytics.getInstance().apply {
+            // Contexto de performance
+            setCustomKey("memory_usage_mb", getMemoryUsage())
+            setCustomKey("cpu_usage_percent", getCpuUsage())
+            setCustomKey("operation_duration_ms", trace.getDuration())
+            setCustomKey("performance_trace_id", trace.getTraceId())
+            
+            // Métricas de red si aplica
+            if (isNetworkOperation(operationName)) {
+                setCustomKey("network_latency_ms", getNetworkLatency())
+                setCustomKey("network_type", getNetworkType())
+                setCustomKey("network_speed_kbps", getNetworkSpeed())
+            }
+            
+            recordException(throwable)
+        }
+        
+        trace.stop()
+    }
+}</code></pre>
+        </div>
+
+        <h2>Troubleshooting Común 🔧</h2>
+
+        <h3>Problemas frecuentes y soluciones</h3>
+        
+        <div class="troubleshooting-item">
+          <h4>❌ No aparecen crashes en el dashboard</h4>
+          <p><strong>Solución:</strong> Verifica que el google-services.json esté en la carpeta correcta y que la configuración de build esté habilitada. Los crashes pueden tardar hasta 15 minutos en aparecer.</p>
+        </div>
+        
+        <div class="troubleshooting-item">
+          <h4>❌ Too many reports</h4>
+          <p><strong>Solución:</strong> Implementa rate limiting y filtros para excepciones de red. Usa el wrapper personalizado que mostramos anteriormente.</p>
+        </div>
+        
+        <div class="troubleshooting-item">
+          <h4>❌ Stack traces ofuscados</h4>
+          <p><strong>Solución:</strong> Asegúrate de subir los mapping files con <code>crashlyticsUploadDeobfuscationFilesRelease</code> en tu CI/CD.</p>
+        </div>
+
+        <h2>Roadmap y Futuro 🚀</h2>
+        
+        <p>Firebase Crashlytics sigue evolucionando. Mantente al día con estas funciones que vienen:</p>
+        
+        <ul>
+          <li><strong>Machine Learning Insights:</strong> Detección automática de patrones en crashes</li>
+          <li><strong>Enhanced Attribution:</strong> Mejor correlación entre crashes y acciones del usuario</li>
+          <li><strong>Real-time Alerts:</strong> Notificaciones instantáneas para crashes críticos</li>
+          <li><strong>Integration con Android Vitals:</strong> Métricas más profundas de rendimiento</li>
+        </ul>
+
+        <h2>Conclusión: Tu App Más Estable que Nunca 🎯</h2>
+        
+        <p>Firebase Crashlytics no es solo una herramienta de crash reporting; es tu partner en la creación de apps Android de calidad excepcional. Con la configuración y prácticas que hemos cubierto, tendrás:</p>
+        
+        <ul>
+          <li>🎯 <strong>Detección proactiva</strong> de problemas antes de que afecten a muchos usuarios</li>
+          <li>📊 <strong>Insights profundos</strong> sobre el comportamiento de tu app en el mundo real</li>
+          <li>⚡ <strong>Resolución rápida</strong> de problemas con contexto completo</li>
+          <li>🚀 <strong>Mejor experiencia de usuario</strong> con menos crashes y mejor estabilidad</li>
+        </ul>
+
+        <div class="conclusion-cta">
+          <h3>¿Listo para implementar Crashlytics?</h3>
+          <p>Empieza con la configuración básica y ve agregando las funciones avanzadas gradualmente. Tu futuro yo (y tus usuarios) te lo agradecerán. ¡Happy coding! 🚀</p>
+        </div>
+
+        <h2>Recursos Adicionales 📚</h2>
+        <div class="resources-grid">
+          <div class="resource-card">
+            <h4>Documentación Oficial</h4>
+            <p>Firebase Crashlytics para Android - Guías completas y referencia de API</p>
+          </div>
+          <div class="resource-card">
+            <h4>Mejores Prácticas</h4>
+            <p>Android Developers - Quality Guidelines y crash prevention</p>
+          </div>
+          <div class="resource-card">
+            <h4>Comunidad</h4>
+            <p>Stack Overflow y GitHub - Discusiones y soluciones de la comunidad</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="article-footer">
+        <div class="article-tags">
+          <span class="tag">Android</span>
+          <span class="tag">Firebase</span>
+          <span class="tag">Crashlytics</span>
+          <span class="tag">Crash Reporting</span>
+          <span class="tag">Quality Assurance</span>
+          <span class="tag">Debugging</span>
+        </div>
+        
+        <div class="article-navigation">
+          <a href="blog-semantic-versioning.html" class="nav-btn">← Artículo Anterior</a>
+          <a href="blog.html" class="nav-btn">Volver al Blog</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
