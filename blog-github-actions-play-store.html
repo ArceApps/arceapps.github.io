@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Actions + Google Play Store - ArceApps Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3><a href="index.html">ArceApps</a></h3>
+      </div>
+      <div class="nav-toggle" id="nav-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="about.html" class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link active">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">5 de septiembre de 2025</span>
+          <span class="article-category">DevOps Mobile</span>
+        </div>
+        <h1>GitHub Actions + Google Play Store: Automatización Completa de Deployments Android</h1>
+        <p class="article-subtitle">Guía paso a paso para configurar deployments automáticos a Google Play Store usando GitHub Actions, desde la configuración inicial hasta estrategias avanzadas de rollout</p>
+        <div class="article-image">
+          <img src="images/placeholder-article-github-actions-play-store.svg" alt="GitHub Actions Google Play Store" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>Imagínate esto: pusheas un tag, GitHub Actions toma el control, construye tu app, la firma, ejecuta tests, y la publica automáticamente en Google Play Store. Todo mientras tomas café. ☕</p>
+
+        <p>Si llegaste aquí desde nuestro <a href="blog-github-actions.html">artículo principal sobre GitHub Actions</a>, ya conoces el poder de la automatización. Ahora vamos a profundizar en el caso de uso más complejo y valioso: <strong>deployment automático a Google Play Store</strong>.</p>
+
+        <div class="best-practices-box">
+          <h3>⚠️ Antes de Empezar</h3>
+          <p>Este proceso involucra credenciales sensibles y puede afectar directamente a tus usuarios. Sigue cada paso cuidadosamente y prueba primero en un proyecto de testing.</p>
+        </div>
+
+        <h2>🎯 Lo Que Vas a Lograr</h2>
+        
+        <p>Al final de este artículo tendrás un workflow completo que:</p>
+
+        <ul>
+          <li>✅ Construye tu app automáticamente cuando creas un release tag</li>
+          <li>✅ Ejecuta tests de calidad antes del deployment</li>
+          <li>✅ Firma tu AAB con credenciales seguras</li>
+          <li>✅ Sube a Google Play Store al track que elijas</li>
+          <li>✅ Notifica al equipo del resultado</li>
+          <li>✅ Incluye rollback automático en caso de errores</li>
+        </ul>
+
+        <h2>🔐 Paso 1: Configuración de Google Play Console</h2>
+        
+        <p>Antes de tocar GitHub, necesitamos preparar Google Play Console para aceptar deployments automáticos.</p>
+
+        <h3>Crear Service Account</h3>
+        <p>Primero, necesitas crear un Service Account en Google Cloud Console:</p>
+
+        <ol>
+          <li>Ve a <strong>Google Cloud Console</strong> → IAM & Admin → Service Accounts</li>
+          <li>Crea un nuevo Service Account</li>
+          <li>Descarga el archivo JSON con las credenciales</li>
+          <li>En Google Play Console, ve a Setup → API access</li>
+          <li>Enlaza el Service Account creado</li>
+          <li>Otorga permisos: <code>Admin (all permissions)</code> o permisos específicos de releases</li>
+        </ol>
+
+        <div class="code-block">
+          <pre><code># Ejemplo de permisos mínimos requeridos:
+- View app information and download bulk reports
+- View financial data, orders, and cancellation survey responses  
+- Manage store presence
+- Manage production releases
+- Manage testing releases</code></pre>
+        </div>
+
+        <h3>⚠️ Seguridad del Service Account</h3>
+        <div class="best-practices-box">
+          <h3>🔒 Mejores Prácticas de Seguridad</h3>
+          <ul>
+            <li>Nunca commitees el archivo JSON al repositorio</li>
+            <li>Usa GitHub Secrets para almacenar credenciales</li>
+            <li>Considera crear Service Accounts específicos por app</li>
+            <li>Revisa y rota credenciales regularmente</li>
+            <li>Habilita logging para auditar accesos</li>
+          </ul>
+        </div>
+
+        <h2>🏗️ Paso 2: Configuración del Proyecto Android</h2>
+        
+        <p>Tu proyecto Android necesita algunas configuraciones específicas para funcionar con deployments automáticos.</p>
+
+        <h3>Configurar Gradle para Play Store</h3>
+        <p>Añade el plugin de Google Play a tu <code>build.gradle</code>:</p>
+
+        <div class="code-block">
+          <pre><code>// build.gradle (Project level)
+plugins {
+    id 'com.github.triplet.play' version '3.8.4' apply false
+}
+
+// build.gradle (App level)
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.github.triplet.play'
+}
+
+// Configuración del plugin Play
+play {
+    track.set('internal') // o 'alpha', 'beta', 'production'
+    defaultToAppBundles.set(true)
+    serviceAccountCredentials.set(file('service-account.json'))
+}</code></pre>
+        </div>
+
+        <h3>Configurar Signing</h3>
+        <p>Define la configuración de firma en tu <code>build.gradle</code>:</p>
+
+        <div class="code-block">
+          <pre><code>android {
+    signingConfigs {
+        release {
+            storeFile file(System.getenv("KEYSTORE_FILE") ?: "keystore.jks")
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD")
+        }
+    }
+    
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h2>🔑 Paso 3: Configurar GitHub Secrets</h2>
+        
+        <p>GitHub Secrets es donde almacenamos toda la información sensible de forma segura.</p>
+
+        <h3>Secrets Requeridos</h3>
+        <p>Ve a tu repositorio → Settings → Secrets and variables → Actions, y añade:</p>
+
+        <div class="code-block">
+          <pre><code># Credenciales de Google Play Store
+PLAY_STORE_JSON_KEY: [contenido completo del archivo JSON del Service Account]
+
+# Credenciales de firma de Android
+KEYSTORE_FILE: [archivo keystore codificado en base64]
+KEYSTORE_PASSWORD: [contraseña del keystore]
+KEY_ALIAS: [alias de la key]
+KEY_PASSWORD: [contraseña de la key]
+
+# Notificaciones (opcional)
+SLACK_WEBHOOK_URL: [webhook de Slack para notificaciones]</code></pre>
+        </div>
+
+        <h3>Preparar Keystore para GitHub Secrets</h3>
+        <div class="code-block">
+          <pre><code># Codificar keystore en base64
+base64 -i your-keystore.jks -o keystore-base64.txt
+
+# El contenido de keystore-base64.txt va en KEYSTORE_FILE secret</code></pre>
+        </div>
+
+        <h2>⚙️ Paso 4: Crear el Workflow de GitHub Actions</h2>
+        
+        <p>Ahora viene la magia. Creamos el workflow que automatizará todo el proceso.</p>
+
+        <h3>Workflow Completo</h3>
+        <p>Crea <code>.github/workflows/deploy-play-store.yml</code>:</p>
+
+        <div class="code-block">
+          <pre><code>name: Deploy to Google Play Store
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers on version tags like v1.0.0
+
+env:
+  JAVA_VERSION: 17
+
+jobs:
+  deploy:
+    name: Deploy to Play Store
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Full history for better context
+
+    - name: Set up JDK ${{ env.JAVA_VERSION }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: 'temurin'
+
+    - name: Cache Gradle Dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+          ~/.android/build-cache
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Decode Keystore
+      run: |
+        echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > app/keystore.jks
+        
+    - name: Create Service Account JSON
+      run: |
+        echo '${{ secrets.PLAY_STORE_JSON_KEY }}' > service-account.json
+
+    - name: Extract Version Info
+      id: version
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/v}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        
+    - name: Update Version in Build
+      run: |
+        # Update version in build.gradle or version.properties
+        ./gradlew updateVersionFromTag -PnewVersion=${{ steps.version.outputs.version }}
+
+    - name: Run Tests
+      run: |
+        ./gradlew test lint
+        
+    - name: Build Release AAB
+      env:
+        KEYSTORE_FILE: app/keystore.jks
+        KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+        KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      run: |
+        ./gradlew bundleRelease
+
+    - name: Upload to Google Play Store
+      env:
+        PLAY_STORE_JSON_KEY: service-account.json
+      run: |
+        ./gradlew publishBundle --track=internal
+        
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: build-artifacts
+        path: |
+          app/build/outputs/bundle/release/*.aab
+          app/build/reports/
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: app/build/outputs/bundle/release/*.aab
+        generate_release_notes: true
+        prerelease: false
+
+    - name: Cleanup Sensitive Files
+      if: always()
+      run: |
+        rm -f app/keystore.jks
+        rm -f service-account.json
+
+    - name: Notify Success
+      if: success()
+      uses: 8398a7/action-slack@v3
+      with:
+        status: success
+        text: |
+          🚀 Deployment exitoso a Google Play Store!
+          📱 App: ${{ github.repository }}
+          🏷️ Versión: ${{ steps.version.outputs.version }}
+          🔗 Release: ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ steps.version.outputs.tag }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+    - name: Notify Failure
+      if: failure()
+      uses: 8398a7/action-slack@v3
+      with:
+        status: failure
+        text: |
+          ❌ Deployment falló en Google Play Store
+          📱 App: ${{ github.repository }}
+          🏷️ Versión: ${{ steps.version.outputs.version }}
+          🔍 Logs: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}</code></pre>
+        </div>
+
+        <h2>🎛️ Paso 5: Estrategias de Deployment</h2>
+        
+        <p>No todos los deployments son iguales. Dependiendo de tu estrategia, puedes configurar diferentes tracks.</p>
+
+        <h3>Deployment Conditional por Branch</h3>
+        <div class="code-block">
+          <pre><code>- name: Deploy to Internal (develop branch)
+  if: startsWith(github.ref, 'refs/heads/develop')
+  run: ./gradlew publishBundle --track=internal
+
+- name: Deploy to Alpha (alpha tags)
+  if: contains(github.ref, 'alpha')
+  run: ./gradlew publishBundle --track=alpha
+
+- name: Deploy to Beta (beta tags)  
+  if: contains(github.ref, 'beta')
+  run: ./gradlew publishBundle --track=beta
+
+- name: Deploy to Production (release tags)
+  if: startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, 'alpha') && !contains(github.ref, 'beta')
+  run: ./gradlew publishBundle --track=production</code></pre>
+        </div>
+
+        <h3>Rollout Gradual</h3>
+        <p>Para releases importantes, configura rollout gradual:</p>
+
+        <div class="code-block">
+          <pre><code># En tu build.gradle
+play {
+    track.set('production')
+    userFraction.set(0.1) // Comienza con 10% de usuarios
+    defaultToAppBundles.set(true)
+    
+    releaseStatus.set(com.github.triplet.gradle.androidpublisher.ReleaseStatus.IN_PROGRESS)
+}</code></pre>
+        </div>
+
+        <h2>🔍 Paso 6: Monitoreo y Troubleshooting</h2>
+        
+        <h3>Logging Avanzado</h3>
+        <p>Añade logging detallado para facilitar debugging:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Debug Info
+  run: |
+    echo "Repository: ${{ github.repository }}"
+    echo "Ref: ${{ github.ref }}"
+    echo "SHA: ${{ github.sha }}"
+    echo "Actor: ${{ github.actor }}"
+    ./gradlew tasks --group publishing</code></pre>
+        </div>
+
+        <h3>Verificación Post-Deployment</h3>
+        <div class="code-block">
+          <pre><code>- name: Verify Upload
+  run: |
+    # Verificar que el AAB se subió correctamente
+    ./gradlew validateUpload</code></pre>
+        </div>
+
+        <h3>Problemas Comunes y Soluciones</h3>
+        
+        <div class="tools-grid">
+          <div class="tool-card">
+            <h4>❌ Error: "Invalid key file"</h4>
+            <p><strong>Solución:</strong> Verifica que el JSON del Service Account está correctamente formateado en GitHub Secrets</p>
+          </div>
+          <div class="tool-card">
+            <h4>❌ Error: "Version code already exists"</h4>
+            <p><strong>Solución:</strong> Implementa auto-incremento de versionCode basado en timestamp o build number</p>
+          </div>
+          <div class="tool-card">
+            <h4>❌ Error: "Keystore was tampered"</h4>
+            <p><strong>Solución:</strong> Re-codifica el keystore en base64 asegurándote de no añadir espacios o saltos de línea extra</p>
+          </div>
+        </div>
+
+        <h2>🚀 Paso 7: Funcionalidades Avanzadas</h2>
+        
+        <h3>Auto-incremento de Version Code</h3>
+        <p>Automatiza el incremento de versionCode para evitar conflictos:</p>
+
+        <div class="code-block">
+          <pre><code># En build.gradle
+android {
+    defaultConfig {
+        def buildNumber = System.getenv("GITHUB_RUN_NUMBER") ?: "1"
+        versionCode Integer.parseInt(buildNumber)
+        versionName version
+    }
+}</code></pre>
+        </div>
+
+        <h3>Release Notes Automáticas</h3>
+        <p>Genera release notes desde commits o PRs:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Generate Release Notes
+  id: release_notes
+  run: |
+    # Obtener cambios desde el último tag
+    PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo "")
+    if [ -n "$PREVIOUS_TAG" ]; then
+      CHANGES=$(git log --pretty=format:"• %s" $PREVIOUS_TAG..HEAD)
+    else
+      CHANGES=$(git log --pretty=format:"• %s" --max-count=10)
+    fi
+    
+    echo "changes<<EOF" >> $GITHUB_OUTPUT
+    echo "$CHANGES" >> $GITHUB_OUTPUT
+    echo "EOF" >> $GITHUB_OUTPUT
+
+- name: Update Play Store Listing
+  run: |
+    echo "${{ steps.release_notes.outputs.changes }}" > whatsnew-en-US.txt
+    ./gradlew publishListing</code></pre>
+        </div>
+
+        <h3>Rollback Automático</h3>
+        <p>Implementa rollback automático en caso de errores críticos:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Monitor for Critical Issues
+  if: success()
+  run: |
+    # Esperar 5 minutos y verificar crash rate
+    sleep 300
+    
+    # Aquí integrarías con Firebase Crashlytics o similar
+    # Si crash rate > threshold, ejecutar rollback
+    
+- name: Emergency Rollback
+  if: failure()
+  run: |
+    # Revertir a la versión anterior en producción
+    ./gradlew rollbackRelease</code></pre>
+        </div>
+
+        <h2>📊 Métricas y Monitoreo</h2>
+        
+        <h3>Integración con Firebase</h3>
+        <p>Monitorea el performance post-deployment:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Monitor Performance
+  run: |
+    # Script que verifica métricas de Firebase
+    python scripts/monitor_performance.py \
+      --version ${{ steps.version.outputs.version }} \
+      --threshold 5.0</code></pre>
+        </div>
+
+        <h3>Dashboard de Deployments</h3>
+        <p>Crea un dashboard simple para trackear deployments:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Update Deployment Dashboard
+  run: |
+    curl -X POST "${{ secrets.DASHBOARD_WEBHOOK }}" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "app": "${{ github.repository }}",
+        "version": "${{ steps.version.outputs.version }}",
+        "status": "deployed",
+        "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"
+      }'</code></pre>
+        </div>
+
+        <h2>🔒 Seguridad y Compliance</h2>
+        
+        <div class="best-practices-box">
+          <h3>🛡️ Checklist de Seguridad</h3>
+          <ul>
+            <li>✅ Service Account con permisos mínimos necesarios</li>
+            <li>✅ Credenciales en GitHub Secrets (nunca en código)</li>
+            <li>✅ Cleanup automático de archivos temporales</li>
+            <li>✅ Logging que no exponga información sensible</li>
+            <li>✅ Rotación regular de credenciales</li>
+            <li>✅ Auditoría de accesos al repositorio</li>
+          </ul>
+        </div>
+
+        <h3>Compliance para Empresas</h3>
+        <p>Para organizaciones con requerimientos de compliance:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Compliance Check
+  run: |
+    # Verificar que todos los commits están firmados
+    git log --show-signature -1
+    
+    # Verificar que la branch está protegida
+    # Verificar aprobaciones requeridas en PR
+    
+    # Log de auditoría
+    echo "Deployment approved by: ${{ github.actor }}" >> audit.log</code></pre>
+        </div>
+
+        <h2>📱 Casos de Uso Específicos</h2>
+        
+        <h3>App con Flavors</h3>
+        <p>Si tu app tiene múltiples flavors (free/premium):</p>
+
+        <div class="code-block">
+          <pre><code>strategy:
+  matrix:
+    flavor: [free, premium]
+    
+steps:
+- name: Build ${{ matrix.flavor }} Release
+  run: ./gradlew bundle${{ matrix.flavor }}Release
+  
+- name: Deploy ${{ matrix.flavor }} to Play Store
+  run: ./gradlew publish${{ matrix.flavor }}Bundle</code></pre>
+        </div>
+
+        <h3>Monorepo con Múltiples Apps</h3>
+        <div class="code-block">
+          <pre><code>- name: Detect Changed Apps
+  id: changes
+  run: |
+    if git diff --name-only HEAD~1 | grep -q "^app1/"; then
+      echo "app1_changed=true" >> $GITHUB_OUTPUT
+    fi
+    if git diff --name-only HEAD~1 | grep -q "^app2/"; then
+      echo "app2_changed=true" >> $GITHUB_OUTPUT
+    fi
+
+- name: Deploy App1
+  if: steps.changes.outputs.app1_changed == 'true'
+  run: cd app1 && ./gradlew publishBundle</code></pre>
+        </div>
+
+        <h2>🎯 Optimización de Performance</h2>
+        
+        <h3>Builds Paralelos</h3>
+        <div class="code-block">
+          <pre><code>jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - track: internal
+            branch: develop
+          - track: production
+            branch: main
+    
+    steps:
+    - name: Deploy to ${{ matrix.track }}
+      run: ./gradlew publishBundle --track=${{ matrix.track }}</code></pre>
+        </div>
+
+        <h3>Cache Optimizado</h3>
+        <div class="code-block">
+          <pre><code>- name: Cache Build Dependencies
+  uses: actions/cache@v3
+  with:
+    path: |
+      ~/.gradle/caches
+      ~/.gradle/wrapper
+      ~/.android/build-cache
+      app/build/intermediates
+    key: ${{ runner.os }}-build-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+    restore-keys: |
+      ${{ runner.os }}-build-</code></pre>
+        </div>
+
+        <h2>Conclusión</h2>
+        
+        <p>Implementar deployment automático a Google Play Store con GitHub Actions puede parecer complejo al principio, pero una vez configurado, transformará completamente tu workflow de desarrollo.</p>
+
+        <p>Ya no más deployments manuales propensos a errores, no más "se me olvidó actualizar la versión", no más quedarte despierto esperando que termine el build. GitHub Actions se encarga de todo mientras tú te enfocas en crear features increíbles.</p>
+
+        <div class="best-practices-box">
+          <h3>🎯 Próximos Pasos</h3>
+          <ol>
+            <li>Configura un proyecto de prueba antes de implementar en producción</li>
+            <li>Comienza con deployment a track 'internal' para validar el flujo</li>
+            <li>Gradualmente añade más funcionalidades como release notes automáticas</li>
+            <li>Documenta tu workflow para otros miembros del equipo</li>
+            <li>Considera implementar métricas de deployment y monitoreo</li>
+          </ol>
+        </div>
+
+        <p>Recuerda: la automatización no es solo sobre conveniencia, es sobre consistencia, confiabilidad y calidad. Tu futuro yo (y tu equipo) te lo agradecerán.</p>
+
+        <div class="article-footer">
+          <div class="tags">
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Google Play Store</span>
+            <span class="tag">Android</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">DevOps</span>
+            <span class="tag">Automatización</span>
+            <span class="tag">Deployment</span>
+          </div>
+          
+          <div class="article-meta">
+            <p><strong>Autor:</strong> ArceApps</p>
+            <p><strong>Fecha:</strong> 5 de septiembre de 2025</p>
+            <p><strong>Tiempo de lectura:</strong> ~18 minutos</p>
+            <p><strong>Artículo relacionado:</strong> <a href="blog-github-actions.html">GitHub Actions para Desarrolladores Mobile</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
