@@ -337,6 +337,31 @@ function loadPersonalInfo(personal) {
     if (quoteElement) quoteElement.textContent = `"${personal.quote}"`;
 }
 
+// Helper function to get icon for a technology
+function getTechIcon(techName) {
+    const iconMap = {
+        'Kotlin': '🟣',
+        'Java': '☕',
+        'JavaScript': '🟨',
+        'Jetpack Compose': '🎨',
+        'MVVM': '🔄',
+        'MVP': '📐',
+        'Hilt': '💉',
+        'Coroutines': '🔄',
+        'Firebase': '🔥',
+        'Retrofit': '🌐',
+        'Room': '🏠',
+        'RxJava': '⚡',
+        'Android SDK': '🤖',
+        'SQLite': '🗃️',
+        'Volley': '📡',
+        'Material Design': '🎨',
+        'AdMob': '💰',
+        'In-app Billing': '💳'
+    };
+    return iconMap[techName] || '';
+}
+
 // Function to load technical skills
 function loadTechnicalSkills(technicalSkills) {
     const skillsContainer = document.getElementById('technical-skills');
@@ -417,7 +442,10 @@ function loadExperience(experience) {
                     </ul>
                 </div>
                 <div class="timeline-technologies">
-                    ${job.technologies.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
+                    ${job.technologies.map(tech => {
+                        const icon = getTechIcon(tech);
+                        return `<span class="tech-badge">${icon ? `<span class="tech-icon">${icon}</span> ` : ''}${tech}</span>`;
+                    }).join('')}
                 </div>
             </div>
         `;
