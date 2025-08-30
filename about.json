@@ -13,32 +13,74 @@
       {
         "category": "Lenguajes de Programación",
         "icon": "⚡",
-        "items": ["Kotlin", "Java", "JavaScript", "SQL", "XML"]
+        "items": [
+          {"name": "Kotlin", "icon": "🟣"},
+          {"name": "Java", "icon": "☕"},
+          {"name": "JavaScript", "icon": "🟨"},
+          {"name": "SQL", "icon": "🗃️"},
+          {"name": "XML", "icon": "📄"}
+        ]
       },
       {
         "category": "Desarrollo Android",
         "icon": "📱",
-        "items": ["Jetpack Compose", "Android Architecture Components", "MVVM", "MVP", "Clean Architecture", "Material Design"]
+        "items": [
+          {"name": "Jetpack Compose", "icon": "🎨"},
+          {"name": "Android Architecture Components", "icon": "🏗️"},
+          {"name": "MVVM", "icon": "🔄"},
+          {"name": "MVP", "icon": "📐"},
+          {"name": "Clean Architecture", "icon": "🏛️"},
+          {"name": "Material Design", "icon": "🎨"}
+        ]
       },
       {
         "category": "Frameworks & Librerías",
         "icon": "🔗",
-        "items": ["Retrofit", "OkHttp", "Room", "Hilt/Dagger", "RxJava", "Coroutines", "Glide", "Picasso"]
+        "items": [
+          {"name": "Retrofit", "icon": "🌐"},
+          {"name": "OkHttp", "icon": "📡"},
+          {"name": "Room", "icon": "🏠"},
+          {"name": "Hilt/Dagger", "icon": "💉"},
+          {"name": "RxJava", "icon": "⚡"},
+          {"name": "Coroutines", "icon": "🔄"},
+          {"name": "Glide", "icon": "🖼️"},
+          {"name": "Picasso", "icon": "🖼️"}
+        ]
       },
       {
         "category": "Testing",
         "icon": "✅",
-        "items": ["JUnit", "Espresso", "Mockito", "UI Testing", "Unit Testing", "Integration Testing"]
+        "items": [
+          {"name": "JUnit", "icon": "✅"},
+          {"name": "Espresso", "icon": "☕"},
+          {"name": "Mockito", "icon": "🎭"},
+          {"name": "UI Testing", "icon": "📱"},
+          {"name": "Unit Testing", "icon": "🧪"},
+          {"name": "Integration Testing", "icon": "🔗"}
+        ]
       },
       {
         "category": "Herramientas",
         "icon": "🛠️",
-        "items": ["Android Studio", "Git", "Gradle", "Firebase", "Google Play Console", "Figma"]
+        "items": [
+          {"name": "Android Studio", "icon": "🤖"},
+          {"name": "Git", "icon": "🌳"},
+          {"name": "Gradle", "icon": "🐘"},
+          {"name": "Firebase", "icon": "🔥"},
+          {"name": "Google Play Console", "icon": "📱"},
+          {"name": "Figma", "icon": "🎨"}
+        ]
       },
       {
         "category": "CI/CD & DevOps",
         "icon": "🚀",
-        "items": ["GitHub Actions", "Fastlane", "App Distribution", "Crashlytics", "Performance Monitoring"]
+        "items": [
+          {"name": "GitHub Actions", "icon": "⚙️"},
+          {"name": "Fastlane", "icon": "🚀"},
+          {"name": "App Distribution", "icon": "📦"},
+          {"name": "Crashlytics", "icon": "🐛"},
+          {"name": "Performance Monitoring", "icon": "📊"}
+        ]
       }
     ],
     "soft": [
