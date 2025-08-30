@@ -1,5 +1,8 @@
 // Simple and clean JavaScript for the portfolio site
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme toggle functionality
+    initThemeToggle();
+    
     // Smooth scrolling for navigation links
     const navLinks = document.querySelectorAll('.nav-link');
     
@@ -58,12 +61,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', function() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
         
         if (scrollTop > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            if (currentTheme === 'dark') {
+                navbar.style.background = 'rgba(17, 24, 39, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            }
             navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            if (currentTheme === 'dark') {
+                navbar.style.background = 'rgba(17, 24, 39, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
             navbar.style.boxShadow = 'none';
         }
         
@@ -481,4 +493,43 @@ function loadInterests(interests) {
         
         interestsContainer.appendChild(interestElement);
     });
+}
+
+// Theme toggle functionality
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.querySelector('.theme-icon');
+    
+    // Check for saved theme preference or default to light mode
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply the saved theme
+    applyTheme(savedTheme);
+    
+    // Update toggle button state
+    updateToggleButton(savedTheme, themeIcon);
+    
+    // Add click event listener
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            applyTheme(newTheme);
+            updateToggleButton(newTheme, themeIcon);
+            
+            // Save preference
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+}
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+}
+
+function updateToggleButton(theme, themeIcon) {
+    if (themeIcon) {
+        themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
+    }
 }
