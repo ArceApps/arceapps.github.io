@@ -4,7 +4,7 @@
     "title": "Desarrollador Android Senior",
     "experience": "10 años",
     "location": "España",
-    "email": "contacto@arceapps.dev",
+    "github": "https://github.com/ArceApps",
     "description": "Desarrollador Android apasionado con casi una década de experiencia creando aplicaciones móviles innovadoras y escalables. Especializado en arquitecturas modernas, mejores prácticas y la implementación de soluciones técnicas robustas que impulsan el éxito del negocio.",
     "quote": "La tecnología es mejor cuando acerca a las personas"
   },
@@ -12,32 +12,32 @@
     "technical": [
       {
         "category": "Lenguajes de Programación",
-        "icon": "💻",
+        "icon": "⚡",
         "items": ["Kotlin", "Java", "JavaScript", "SQL", "XML"]
       },
       {
         "category": "Desarrollo Android",
-        "icon": "🤖",
+        "icon": "📱",
         "items": ["Jetpack Compose", "Android Architecture Components", "MVVM", "MVP", "Clean Architecture", "Material Design"]
       },
       {
         "category": "Frameworks & Librerías",
-        "icon": "📚",
+        "icon": "🔗",
         "items": ["Retrofit", "OkHttp", "Room", "Hilt/Dagger", "RxJava", "Coroutines", "Glide", "Picasso"]
       },
       {
         "category": "Testing",
-        "icon": "🧪",
+        "icon": "✅",
         "items": ["JUnit", "Espresso", "Mockito", "UI Testing", "Unit Testing", "Integration Testing"]
       },
       {
         "category": "Herramientas",
-        "icon": "🔧",
+        "icon": "🛠️",
         "items": ["Android Studio", "Git", "Gradle", "Firebase", "Google Play Console", "Figma"]
       },
       {
         "category": "CI/CD & DevOps",
-        "icon": "⚙️",
+        "icon": "🚀",
         "items": ["GitHub Actions", "Fastlane", "App Distribution", "Crashlytics", "Performance Monitoring"]
       }
     ],

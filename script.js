@@ -321,7 +321,7 @@ function loadPersonalInfo(personal) {
     const nameElement = document.getElementById('personal-name');
     const titleElement = document.getElementById('personal-title');
     const locationElement = document.getElementById('personal-location');
-    const emailElement = document.getElementById('personal-email');
+    const githubElement = document.getElementById('personal-github');
     const experienceElement = document.getElementById('personal-experience');
     const quoteElement = document.getElementById('personal-quote');
     
@@ -329,7 +329,10 @@ function loadPersonalInfo(personal) {
     if (nameElement) nameElement.textContent = personal.name;
     if (titleElement) titleElement.textContent = personal.title;
     if (locationElement) locationElement.textContent = personal.location;
-    if (emailElement) emailElement.textContent = personal.email;
+    if (githubElement) {
+        githubElement.href = personal.github;
+        githubElement.textContent = personal.github.replace('https://', '');
+    }
     if (experienceElement) experienceElement.textContent = `${personal.experience} de experiencia`;
     if (quoteElement) quoteElement.textContent = `"${personal.quote}"`;
 }
