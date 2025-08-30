@@ -166,6 +166,10 @@ async function loadBlogPosts() {
                 categoryCountElement.textContent = uniqueCategories.length;
             }
         }
+        
+        // Load tag filters
+        loadTagFilters(posts);
+        
     } catch (error) {
         console.error('Error loading blog posts:', error);
         
@@ -252,6 +256,7 @@ function createHomeBlogPostElement(post) {
 function createBlogPostElement(post) {
     const article = document.createElement('article');
     article.className = 'blog-card';
+    article.dataset.tags = post.tags ? post.tags.join(',') : '';
     
     // Format date
     const date = new Date(post.date);
@@ -260,6 +265,13 @@ function createBlogPostElement(post) {
         month: 'short',
         year: 'numeric'
     });
+    
+    // Create tags HTML
+    const tagsHtml = post.tags && post.tags.length > 0 
+        ? `<div class="blog-card-tags">
+             ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+           </div>` 
+        : '';
     
     article.innerHTML = `
         ${post.image ? `<img src="${post.image}" alt="${post.title}" class="blog-card-image">` : ''}
@@ -270,6 +282,7 @@ function createBlogPostElement(post) {
             </div>
             <h3>${post.title}</h3>
             <p>${post.summary}</p>
+            ${tagsHtml}
             <a href="${post.url}" class="blog-card-link">
                 ${post.url === '#' ? 'Próximamente' : 'Leer artículo'} →
             </a>
@@ -277,6 +290,60 @@ function createBlogPostElement(post) {
     `;
     
     return article;
+}
+
+// Function to load tag filters
+function loadTagFilters(posts) {
+    const tagFiltersContainer = document.getElementById('tag-filters');
+    if (!tagFiltersContainer) return;
+    
+    // Extract all unique tags from posts
+    const allTags = new Set();
+    posts.forEach(post => {
+        if (post.tags) {
+            post.tags.forEach(tag => allTags.add(tag));
+        }
+    });
+    
+    // Convert to sorted array
+    const sortedTags = Array.from(allTags).sort();
+    
+    // Create filter buttons
+    tagFiltersContainer.innerHTML = `
+        <button class="tag-filter active" data-tag="all">Todos</button>
+        ${sortedTags.map(tag => `<button class="tag-filter" data-tag="${tag}">${tag}</button>`).join('')}
+    `;
+    
+    // Add click event listeners to tag filters
+    const tagFilterButtons = tagFiltersContainer.querySelectorAll('.tag-filter');
+    tagFilterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const selectedTag = button.dataset.tag;
+            filterPostsByTag(selectedTag);
+            
+            // Update active button
+            tagFilterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        });
+    });
+}
+
+// Function to filter posts by tag
+function filterPostsByTag(selectedTag) {
+    const blogCards = document.querySelectorAll('.blog-card');
+    
+    blogCards.forEach(card => {
+        if (selectedTag === 'all') {
+            card.style.display = 'block';
+        } else {
+            const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+            if (cardTags.includes(selectedTag)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        }
+    });
 }
 
 // About page functionality

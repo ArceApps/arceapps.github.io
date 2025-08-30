@@ -1508,6 +1508,63 @@ body {
   color: var(--dark-green);
 }
 
+/* Tag Filter Styles */
+.tag-filter-section {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.filter-title {
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.tag-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.tag-filter {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tag-filter:hover {
+  background: var(--primary-green);
+  color: var(--bg-primary);
+  border-color: var(--primary-green);
+}
+
+.tag-filter.active {
+  background: var(--primary-green);
+  color: var(--bg-primary);
+  border-color: var(--primary-green);
+}
+
+/* Blog Card Tags */
+.blog-card-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.blog-card-tags .tag {
+  font-size: 0.75rem;
+}
+
 .newsletter-section {
   background: var(--bg-secondary);
   padding: 60px 0;
