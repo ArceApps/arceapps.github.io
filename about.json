@@ -1,0 +1,176 @@
+{
+  "personal": {
+    "name": "ArceApps",
+    "title": "Desarrollador Android Senior",
+    "experience": "10 años",
+    "location": "España",
+    "email": "contacto@arceapps.dev",
+    "description": "Desarrollador Android apasionado con casi una década de experiencia creando aplicaciones móviles innovadoras y escalables. Especializado en arquitecturas modernas, mejores prácticas y la implementación de soluciones técnicas robustas que impulsan el éxito del negocio.",
+    "quote": "La tecnología es mejor cuando acerca a las personas"
+  },
+  "skills": {
+    "technical": [
+      {
+        "category": "Lenguajes de Programación",
+        "items": ["Kotlin", "Java", "JavaScript", "SQL", "XML"]
+      },
+      {
+        "category": "Desarrollo Android",
+        "items": ["Jetpack Compose", "Android Architecture Components", "MVVM", "MVP", "Clean Architecture", "Material Design"]
+      },
+      {
+        "category": "Frameworks & Librerías",
+        "items": ["Retrofit", "OkHttp", "Room", "Hilt/Dagger", "RxJava", "Coroutines", "Glide", "Picasso"]
+      },
+      {
+        "category": "Testing",
+        "items": ["JUnit", "Espresso", "Mockito", "UI Testing", "Unit Testing", "Integration Testing"]
+      },
+      {
+        "category": "Herramientas",
+        "items": ["Android Studio", "Git", "Gradle", "Firebase", "Google Play Console", "Figma"]
+      },
+      {
+        "category": "CI/CD & DevOps",
+        "items": ["GitHub Actions", "Fastlane", "App Distribution", "Crashlytics", "Performance Monitoring"]
+      }
+    ],
+    "soft": [
+      {
+        "skill": "Liderazgo técnico",
+        "description": "Experiencia liderando equipos de desarrollo y mentoring a desarrolladores junior"
+      },
+      {
+        "skill": "Resolución de problemas",
+        "description": "Capacidad analítica para identificar y resolver problemas complejos de manera eficiente"
+      },
+      {
+        "skill": "Comunicación efectiva",
+        "description": "Habilidad para explicar conceptos técnicos complejos a audiencias no técnicas"
+      },
+      {
+        "skill": "Adaptabilidad",
+        "description": "Rápida adaptación a nuevas tecnologías y cambios en el ecosistema Android"
+      },
+      {
+        "skill": "Trabajo en equipo",
+        "description": "Colaboración efectiva en equipos multidisciplinarios y metodologías ágiles"
+      },
+      {
+        "skill": "Atención al detalle",
+        "description": "Enfoque meticuloso en la calidad del código y la experiencia del usuario"
+      }
+    ]
+  },
+  "experience": [
+    {
+      "position": "Senior Android Developer",
+      "company": "Tech Innovators S.L.",
+      "period": "2020 - Presente",
+      "duration": "4 años",
+      "description": "Lidero el desarrollo de aplicaciones Android para múltiples clientes, implementando arquitecturas escalables y mentoring al equipo de desarrollo.",
+      "achievements": [
+        "Migración exitosa de 5 aplicaciones a Jetpack Compose",
+        "Reducción del 40% en crashes mediante implementación de mejores prácticas",
+        "Implementación de CI/CD que redujo tiempo de deploy en 60%",
+        "Mentoring de 8 desarrolladores junior y mid-level"
+      ],
+      "technologies": ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Coroutines", "Firebase"]
+    },
+    {
+      "position": "Android Developer",
+      "company": "Digital Solutions Corp",
+      "period": "2018 - 2020",
+      "duration": "2 años",
+      "description": "Desarrollo de aplicaciones Android B2B y B2C, con enfoque en performance y escalabilidad.",
+      "achievements": [
+        "Desarrollo de 12 aplicaciones desde cero",
+        "Implementación de arquitectura Clean Architecture",
+        "Optimización que mejoró performance en 35%",
+        "Integración con APIs REST y GraphQL"
+      ],
+      "technologies": ["Java", "Kotlin", "MVP", "Retrofit", "Room", "RxJava"]
+    },
+    {
+      "position": "Junior Android Developer",
+      "company": "Mobile First Agency",
+      "period": "2016 - 2018",
+      "duration": "2 años",
+      "description": "Desarrollo de aplicaciones móviles para startups y PYMES, aprendizaje de best practices y metodologías ágiles.",
+      "achievements": [
+        "Participación en 15+ proyectos de desarrollo móvil",
+        "Implementación de Material Design en todas las apps",
+        "Integración con servicios de terceros (Google Maps, Payment gateways)",
+        "Colaboración en metodología Scrum"
+      ],
+      "technologies": ["Java", "Android SDK", "SQLite", "Volley", "Material Design"]
+    },
+    {
+      "position": "Desarrollador Mobile (Freelance)",
+      "company": "Trabajo Independiente",
+      "period": "2015 - 2016",
+      "duration": "1 año",
+      "description": "Desarrollo de aplicaciones Android personalizadas para clientes locales y proyectos propios.",
+      "achievements": [
+        "5 aplicaciones publicadas en Google Play Store",
+        "Gestión completa del ciclo de desarrollo",
+        "Implementación de soluciones de monetización",
+        "Soporte técnico y mantenimiento post-lanzamiento"
+      ],
+      "technologies": ["Java", "Android SDK", "SQLite", "AdMob", "In-app Billing"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Ingeniería en Informática",
+      "institution": "Universidad Técnica de Madrid",
+      "year": "2014",
+      "description": "Especialización en Desarrollo de Software y Sistemas Distribuidos"
+    },
+    {
+      "degree": "Certificación Android Developer",
+      "institution": "Google",
+      "year": "2016",
+      "description": "Certificación oficial de Google para desarrollo Android"
+    }
+  ],
+  "achievements": [
+    {
+      "title": "Google Play Featured App",
+      "description": "Una de mis aplicaciones fue destacada en Google Play Store",
+      "year": "2022"
+    },
+    {
+      "title": "Ponente en Android DevFest",
+      "description": "Conferencia sobre 'Jetpack Compose: El futuro del UI en Android'",
+      "year": "2023"
+    },
+    {
+      "title": "Contribuidor Open Source",
+      "description": "Más de 50 contribuciones en proyectos Android open source",
+      "year": "2020-2024"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Español",
+      "level": "Nativo"
+    },
+    {
+      "language": "Inglés",
+      "level": "Avanzado (C1)"
+    },
+    {
+      "language": "Francés",
+      "level": "Intermedio (B2)"
+    }
+  ],
+  "interests": [
+    "Nuevas tecnologías Android",
+    "Machine Learning en móvil",
+    "UI/UX Design",
+    "Open Source",
+    "Gaming",
+    "Fotografía"
+  ]
+}
