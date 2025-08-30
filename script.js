@@ -354,7 +354,14 @@ function loadTechnicalSkills(technicalSkills) {
                 <h3>${skillCategory.category}</h3>
             </div>
             <div class="skill-tags">
-                ${skillCategory.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
+                ${skillCategory.items.map(item => {
+                    // Handle both old format (string) and new format (object with name and icon)
+                    if (typeof item === 'string') {
+                        return `<span class="skill-tag">${item}</span>`;
+                    } else {
+                        return `<span class="skill-tag"><span class="skill-icon">${item.icon}</span> ${item.name}</span>`;
+                    }
+                }).join('')}
             </div>
         `;
         
