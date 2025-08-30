@@ -232,3 +232,223 @@ function createBlogPostElement(post) {
     
     return article;
 }
+
+// About page functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Load about data if on about page
+    if (window.location.pathname === '/about.html' || window.location.pathname.includes('about.html')) {
+        loadAboutData();
+    }
+});
+
+// Function to load about data from about.json
+async function loadAboutData() {
+    try {
+        const response = await fetch('about.json');
+        const aboutData = await response.json();
+        
+        // Load personal information
+        loadPersonalInfo(aboutData.personal);
+        
+        // Load technical skills
+        loadTechnicalSkills(aboutData.skills.technical);
+        
+        // Load soft skills
+        loadSoftSkills(aboutData.skills.soft);
+        
+        // Load experience
+        loadExperience(aboutData.experience);
+        
+        // Load education
+        loadEducation(aboutData.education);
+        
+        // Load achievements
+        loadAchievements(aboutData.achievements);
+        
+        // Load languages
+        loadLanguages(aboutData.languages);
+        
+        // Load interests
+        loadInterests(aboutData.interests);
+        
+    } catch (error) {
+        console.error('Error loading about data:', error);
+    }
+}
+
+// Function to load personal information
+function loadPersonalInfo(personal) {
+    const descriptionElement = document.getElementById('about-description');
+    const nameElement = document.getElementById('personal-name');
+    const titleElement = document.getElementById('personal-title');
+    const locationElement = document.getElementById('personal-location');
+    const emailElement = document.getElementById('personal-email');
+    const experienceElement = document.getElementById('personal-experience');
+    const quoteElement = document.getElementById('personal-quote');
+    
+    if (descriptionElement) descriptionElement.textContent = personal.description;
+    if (nameElement) nameElement.textContent = personal.name;
+    if (titleElement) titleElement.textContent = personal.title;
+    if (locationElement) locationElement.textContent = personal.location;
+    if (emailElement) emailElement.textContent = personal.email;
+    if (experienceElement) experienceElement.textContent = `${personal.experience} de experiencia`;
+    if (quoteElement) quoteElement.textContent = `"${personal.quote}"`;
+}
+
+// Function to load technical skills
+function loadTechnicalSkills(technicalSkills) {
+    const skillsContainer = document.getElementById('technical-skills');
+    if (!skillsContainer) return;
+    
+    skillsContainer.innerHTML = '';
+    
+    technicalSkills.forEach(skillCategory => {
+        const skillElement = document.createElement('div');
+        skillElement.className = 'skill-category';
+        
+        skillElement.innerHTML = `
+            <h3>${skillCategory.category}</h3>
+            <div class="skill-tags">
+                ${skillCategory.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
+            </div>
+        `;
+        
+        skillsContainer.appendChild(skillElement);
+    });
+}
+
+// Function to load soft skills
+function loadSoftSkills(softSkills) {
+    const softSkillsContainer = document.getElementById('soft-skills');
+    if (!softSkillsContainer) return;
+    
+    softSkillsContainer.innerHTML = '';
+    
+    softSkills.forEach(skill => {
+        const skillElement = document.createElement('div');
+        skillElement.className = 'soft-skill-card';
+        
+        skillElement.innerHTML = `
+            <h3>${skill.skill}</h3>
+            <p>${skill.description}</p>
+        `;
+        
+        softSkillsContainer.appendChild(skillElement);
+    });
+}
+
+// Function to load experience
+function loadExperience(experience) {
+    const experienceContainer = document.getElementById('experience-timeline');
+    if (!experienceContainer) return;
+    
+    experienceContainer.innerHTML = '';
+    
+    experience.forEach(job => {
+        const jobElement = document.createElement('div');
+        jobElement.className = 'timeline-item';
+        
+        jobElement.innerHTML = `
+            <div class="timeline-content">
+                <div class="timeline-header">
+                    <div>
+                        <h3 class="timeline-position">${job.position}</h3>
+                        <p class="timeline-company">${job.company}</p>
+                    </div>
+                    <span class="timeline-period">${job.period} (${job.duration})</span>
+                </div>
+                <p class="timeline-description">${job.description}</p>
+                <div class="timeline-achievements">
+                    <h4>Logros principales:</h4>
+                    <ul class="achievement-list">
+                        ${job.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="timeline-technologies">
+                    ${job.technologies.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
+                </div>
+            </div>
+        `;
+        
+        experienceContainer.appendChild(jobElement);
+    });
+}
+
+// Function to load education
+function loadEducation(education) {
+    const educationContainer = document.getElementById('education-list');
+    if (!educationContainer) return;
+    
+    educationContainer.innerHTML = '';
+    
+    education.forEach(edu => {
+        const eduElement = document.createElement('div');
+        eduElement.className = 'education-item';
+        
+        eduElement.innerHTML = `
+            <h4>${edu.degree}</h4>
+            <p class="education-institution">${edu.institution}</p>
+            <p class="education-year">${edu.year}</p>
+            <p class="education-description">${edu.description}</p>
+        `;
+        
+        educationContainer.appendChild(eduElement);
+    });
+}
+
+// Function to load achievements
+function loadAchievements(achievements) {
+    const achievementsContainer = document.getElementById('achievements-list');
+    if (!achievementsContainer) return;
+    
+    achievementsContainer.innerHTML = '';
+    
+    achievements.forEach(achievement => {
+        const achievementElement = document.createElement('div');
+        achievementElement.className = 'achievement-item';
+        
+        achievementElement.innerHTML = `
+            <h4>${achievement.title}</h4>
+            <p class="achievement-year">${achievement.year}</p>
+            <p class="achievement-description">${achievement.description}</p>
+        `;
+        
+        achievementsContainer.appendChild(achievementElement);
+    });
+}
+
+// Function to load languages
+function loadLanguages(languages) {
+    const languagesContainer = document.getElementById('languages-list');
+    if (!languagesContainer) return;
+    
+    languagesContainer.innerHTML = '';
+    
+    languages.forEach(lang => {
+        const langElement = document.createElement('div');
+        langElement.className = 'languages-item';
+        
+        langElement.innerHTML = `
+            <span class="language-name">${lang.language}</span>
+            <span class="language-level">${lang.level}</span>
+        `;
+        
+        languagesContainer.appendChild(langElement);
+    });
+}
+
+// Function to load interests
+function loadInterests(interests) {
+    const interestsContainer = document.getElementById('interests-list');
+    if (!interestsContainer) return;
+    
+    interestsContainer.innerHTML = '';
+    
+    interests.forEach(interest => {
+        const interestElement = document.createElement('span');
+        interestElement.className = 'interest-tag';
+        interestElement.textContent = interest;
+        
+        interestsContainer.appendChild(interestElement);
+    });
+}

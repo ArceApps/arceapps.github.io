@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre mí - ArceApps</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3><a href="index.html">ArceApps</a></h3>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="about.html" class="nav-link active">Sobre mí</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- About Hero Section -->
+  <section class="about-hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Sobre <span class="gradient-text">mí</span>
+        </h1>
+        <p class="hero-subtitle" id="about-description">
+          <!-- Will be loaded from JSON -->
+        </p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <span class="stat-number" id="experience-years">10</span>
+            <span class="stat-label">Años de experiencia</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Proyectos completados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">15+</span>
+            <span class="stat-label">Tecnologías dominadas</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="profile-illustration">
+          👨‍💻
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Personal Info Section -->
+  <section class="personal-info-section">
+    <div class="container">
+      <div class="personal-card">
+        <div class="personal-content">
+          <h2 class="section-title" id="personal-name">ArceApps</h2>
+          <p class="personal-title" id="personal-title">Desarrollador Android Senior</p>
+          <div class="personal-details">
+            <div class="detail-item">
+              <span class="detail-icon">📍</span>
+              <span id="personal-location">España</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon">✉️</span>
+              <span id="personal-email">contacto@arceapps.dev</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-icon">⏱️</span>
+              <span id="personal-experience">10 años de experiencia</span>
+            </div>
+          </div>
+          <blockquote class="personal-quote" id="personal-quote">
+            "La tecnología es mejor cuando acerca a las personas"
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills-section">
+    <div class="container">
+      <h2 class="section-title">Habilidades Técnicas</h2>
+      <div class="skills-grid" id="technical-skills">
+        <!-- Technical skills will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Soft Skills Section -->
+  <section class="soft-skills-section">
+    <div class="container">
+      <h2 class="section-title">Habilidades Interpersonales</h2>
+      <div class="soft-skills-grid" id="soft-skills">
+        <!-- Soft skills will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section class="experience-section">
+    <div class="container">
+      <h2 class="section-title">Experiencia Profesional</h2>
+      <div class="timeline" id="experience-timeline">
+        <!-- Experience items will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Achievements Section -->
+  <section class="education-achievements-section">
+    <div class="container">
+      <div class="section-grid">
+        <div class="education-column">
+          <h3 class="subsection-title">Educación</h3>
+          <div class="education-list" id="education-list">
+            <!-- Education items will be loaded here -->
+          </div>
+        </div>
+        <div class="achievements-column">
+          <h3 class="subsection-title">Logros destacados</h3>
+          <div class="achievements-list" id="achievements-list">
+            <!-- Achievements will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Languages & Interests Section -->
+  <section class="languages-interests-section">
+    <div class="container">
+      <div class="section-grid">
+        <div class="languages-column">
+          <h3 class="subsection-title">Idiomas</h3>
+          <div class="languages-list" id="languages-list">
+            <!-- Languages will be loaded here -->
+          </div>
+        </div>
+        <div class="interests-column">
+          <h3 class="subsection-title">Intereses</h3>
+          <div class="interests-list" id="interests-list">
+            <!-- Interests will be loaded here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-content">
+          <h3>¿Trabajamos juntos?</h3>
+          <p>Estoy siempre abierto a nuevos proyectos y colaboraciones interesantes. ¡Hablemos!</p>
+        </div>
+        <div class="cta-actions">
+          <a href="portfolio.html" class="btn btn-primary">Ver Portfolio</a>
+          <a href="#" class="btn btn-outline">Contactar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
