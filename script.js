@@ -88,6 +88,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.includes('blog.html') || window.location.pathname === '/blog.html') {
         loadBlogPosts();
     }
+    
+    // Load latest blog posts if on home page
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname.includes('index.html')) {
+        loadLatestBlogPosts();
+    }
 });
 
 // Function to load blog posts from posts.json
@@ -96,20 +101,23 @@ async function loadBlogPosts() {
         const response = await fetch('posts.json');
         const posts = await response.json();
         
+        // Sort posts by date (newest first)
+        const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
         const blogPostsContainer = document.getElementById('blog-posts');
         const postCountElement = document.getElementById('post-count');
         
         if (blogPostsContainer) {
             blogPostsContainer.innerHTML = '';
             
-            posts.forEach(post => {
+            sortedPosts.forEach(post => {
                 const postElement = createBlogPostElement(post);
                 blogPostsContainer.appendChild(postElement);
             });
             
             // Update post count
             if (postCountElement) {
-                postCountElement.textContent = posts.length;
+                postCountElement.textContent = sortedPosts.length;
             }
         }
     } catch (error) {
@@ -128,6 +136,70 @@ async function loadBlogPosts() {
             `;
         }
     }
+}
+
+// Function to load latest blog posts for home page (only 3 latest)
+async function loadLatestBlogPosts() {
+    try {
+        const response = await fetch('posts.json');
+        const posts = await response.json();
+        
+        // Sort posts by date (newest first) and take only the first 3
+        const latestPosts = posts
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 3);
+        
+        const blogGridContainer = document.querySelector('.blog-section .blog-grid');
+        
+        if (blogGridContainer) {
+            blogGridContainer.innerHTML = '';
+            
+            latestPosts.forEach(post => {
+                const postElement = createHomeBlogPostElement(post);
+                blogGridContainer.appendChild(postElement);
+            });
+        }
+    } catch (error) {
+        console.error('Error loading latest blog posts:', error);
+        
+        // Keep fallback content if posts.json fails to load
+        const blogGridContainer = document.querySelector('.blog-section .blog-grid');
+        if (blogGridContainer) {
+            blogGridContainer.innerHTML = `
+                <article class="blog-card">
+                    <div class="blog-date">Error</div>
+                    <h3>Error cargando artículos</h3>
+                    <p>No se pudieron cargar los artículos del blog en este momento.</p>
+                    <a href="blog.html" class="blog-link">Ver blog →</a>
+                </article>
+            `;
+        }
+    }
+}
+
+// Function to create a blog post element for home page
+function createHomeBlogPostElement(post) {
+    const article = document.createElement('article');
+    article.className = 'blog-card';
+    
+    // Format date
+    const date = new Date(post.date);
+    const formattedDate = date.toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    });
+    
+    article.innerHTML = `
+        <div class="blog-date">${formattedDate}</div>
+        <h3>${post.title}</h3>
+        <p>${post.summary}</p>
+        <a href="${post.url}" class="blog-link">
+            ${post.url === '#' ? 'Próximamente' : 'Leer más'} →
+        </a>
+    `;
+    
+    return article;
 }
 
 // Function to create a blog post element
