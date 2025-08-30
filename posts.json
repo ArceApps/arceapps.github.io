@@ -5,7 +5,8 @@
     "summary": "Guía paso a paso para configurar deployments automáticos a Google Play Store usando GitHub Actions, desde la configuración inicial hasta estrategias avanzadas de rollout.",
     "url": "blog-github-actions-play-store.html",
     "category": "DevOps Mobile",
-    "image": "images/placeholder-blog-github-actions-play-store.svg"
+    "image": "images/placeholder-blog-github-actions-play-store.svg",
+    "tags": ["GitHub Actions", "Google Play Store", "Android", "DevOps", "CI/CD", "Automation"]
   },
   {
     "title": "GitHub Actions para Desarrolladores Mobile: Automatiza Tu Workflow Completo",
@@ -13,7 +14,8 @@
     "summary": "Descubre cómo GitHub Actions puede transformar tu desarrollo móvil con automatización inteligente: desde testing hasta deployments automáticos en tiendas de aplicaciones.",
     "url": "blog-github-actions.html",
     "category": "DevOps Mobile",
-    "image": "images/placeholder-blog-github-actions.svg"
+    "image": "images/placeholder-blog-github-actions.svg",
+    "tags": ["GitHub Actions", "Mobile Development", "Android", "DevOps", "Testing", "Automation"]
   },
   {
     "title": "Principios SOLID en Android: Guía Completa para Desarrolladores Kotlin",
@@ -21,7 +23,8 @@
     "summary": "Domina los 5 principios fundamentales del desarrollo de software aplicados específicamente al ecosistema Android con ejemplos prácticos en Kotlin.",
     "url": "blog-solid-principles.html",
     "category": "Desarrollo Android",
-    "image": "images/placeholder-blog-solid.svg"
+    "image": "images/placeholder-blog-solid.svg",
+    "tags": ["Android", "Kotlin", "SOLID", "Architecture", "Clean Code", "MVVM", "Hilt", "Testing"]
   },
   {
     "title": "Firebase Crashlytics para Android: Tu Mejor Aliado Contra los Crashes",
@@ -29,7 +32,8 @@
     "summary": "Descubre cómo implementar y dominar Firebase Crashlytics en tus apps Android para detectar, analizar y resolver crashes como un verdadero pro.",
     "url": "blog-firebase-crashlytics.html",
     "category": "Desarrollo Android", 
-    "image": "images/placeholder-blog-firebase.svg"
+    "image": "images/placeholder-blog-firebase.svg",
+    "tags": ["Android", "Firebase", "Crashlytics", "Debugging", "Error Handling", "Analytics"]
   },
   {
     "title": "Versionado Semántico en Android: Mejores Prácticas",
@@ -37,7 +41,8 @@
     "summary": "Exploramos cómo implementar versionado semántico en aplicaciones Android, desde versionCode hasta build.gradle y Google Play Store.",
     "url": "blog-semantic-versioning.html",
     "category": "Desarrollo Android",
-    "image": "images/placeholder-blog-versioning.svg"
+    "image": "images/placeholder-blog-versioning.svg",
+    "tags": ["Android", "Versioning", "Gradle", "Google Play Store", "Release Management"]
   },
   {
     "title": "Conventional Commits: Transformando tu Historial Git",
@@ -45,7 +50,8 @@
     "summary": "Aprende a usar Conventional Commits para mantener un historial de git limpio y generar changelogs automáticamente.",
     "url": "blog-conventional-commits.html",
     "category": "Control de Versiones",
-    "image": "images/placeholder-blog-commits.svg"
+    "image": "images/placeholder-blog-commits.svg",
+    "tags": ["Git", "Conventional Commits", "Version Control", "Automation", "Changelog"]
   },
   {
     "title": "Próximamente: Más contenido técnico",
@@ -53,6 +59,7 @@
     "summary": "Estamos trabajando en más artículos sobre desarrollo Android, mejores prácticas y herramientas modernas.",
     "url": "#",
     "category": "Anuncio",
-    "image": "images/placeholder-blog-coming-soon.svg"
+    "image": "images/placeholder-blog-coming-soon.svg",
+    "tags": ["Coming Soon"]
   }
 ]
