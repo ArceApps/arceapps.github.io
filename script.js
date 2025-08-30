@@ -307,7 +307,10 @@ function loadTechnicalSkills(technicalSkills) {
         skillElement.className = 'skill-category';
         
         skillElement.innerHTML = `
-            <h3>${skillCategory.category}</h3>
+            <div class="skill-category-header">
+                <div class="skill-category-icon">${skillCategory.icon || ''}</div>
+                <h3>${skillCategory.category}</h3>
+            </div>
             <div class="skill-tags">
                 ${skillCategory.items.map(item => `<span class="skill-tag">${item}</span>`).join('')}
             </div>

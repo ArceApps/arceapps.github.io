@@ -12,26 +12,32 @@
     "technical": [
       {
         "category": "Lenguajes de Programación",
+        "icon": "💻",
         "items": ["Kotlin", "Java", "JavaScript", "SQL", "XML"]
       },
       {
         "category": "Desarrollo Android",
+        "icon": "🤖",
         "items": ["Jetpack Compose", "Android Architecture Components", "MVVM", "MVP", "Clean Architecture", "Material Design"]
       },
       {
         "category": "Frameworks & Librerías",
+        "icon": "📚",
         "items": ["Retrofit", "OkHttp", "Room", "Hilt/Dagger", "RxJava", "Coroutines", "Glide", "Picasso"]
       },
       {
         "category": "Testing",
+        "icon": "🧪",
         "items": ["JUnit", "Espresso", "Mockito", "UI Testing", "Unit Testing", "Integration Testing"]
       },
       {
         "category": "Herramientas",
+        "icon": "🔧",
         "items": ["Android Studio", "Git", "Gradle", "Firebase", "Google Play Console", "Figma"]
       },
       {
         "category": "CI/CD & DevOps",
+        "icon": "⚙️",
         "items": ["GitHub Actions", "Fastlane", "App Distribution", "Crashlytics", "Performance Monitoring"]
       }
     ],
