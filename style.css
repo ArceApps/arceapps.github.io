@@ -472,7 +472,7 @@ body {
 .article-header h1 {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 1rem;
   line-height: 1.2;
 }
@@ -508,21 +508,21 @@ body {
 .article-content h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin: 2.5rem 0 1rem 0;
 }
 
 .article-content h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin: 2rem 0 1rem 0;
 }
 
 .article-content h4 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin: 1.5rem 0 0.5rem 0;
 }
 
@@ -680,7 +680,7 @@ body {
 }
 
 .principle-card h4 {
-  color: var(--gray-900);
+  color: var(--text-primary);
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
   font-weight: 600;
@@ -831,7 +831,7 @@ body {
 .project-header h1 {
   font-size: 3.5rem;
   font-weight: 700;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 1rem;
   line-height: 1.2;
 }
@@ -894,7 +894,7 @@ body {
 
 .tech-item h4 {
   margin: 0 0 0.25rem 0;
-  color: var(--gray-900);
+  color: var(--text-primary);
 }
 
 .tech-item p {
@@ -929,7 +929,7 @@ body {
 }
 
 .feature-card h3 {
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
@@ -1307,7 +1307,7 @@ body {
 .tech-card h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 1rem;
 }
 
@@ -1529,7 +1529,7 @@ body {
 .newsletter-content h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
@@ -1626,7 +1626,7 @@ body {
 }
 
 .about-preview-skills h3 {
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
   font-size: 1.25rem;
   font-weight: 600;
@@ -1649,7 +1649,7 @@ body {
 }
 
 .experience-preview h4 {
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 1rem;
   font-size: 1.125rem;
   font-weight: 600;
@@ -1669,7 +1669,7 @@ body {
 }
 
 .experience-role {
-  color: var(--gray-900);
+  color: var(--text-primary);
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
@@ -1786,7 +1786,7 @@ body {
 }
 
 .skill-category h3 {
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 1.5rem;
   font-size: 1.25rem;
   font-weight: 600;
@@ -1851,7 +1851,7 @@ body {
 }
 
 .soft-skill-card h3 {
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 1rem;
   font-size: 1.25rem;
   font-weight: 600;
@@ -1934,7 +1934,7 @@ body {
 .timeline-position {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin: 0;
 }
 
@@ -1964,7 +1964,7 @@ body {
 }
 
 .timeline-achievements h4 {
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 1rem;
   font-size: 1rem;
   font-weight: 600;
@@ -2020,7 +2020,7 @@ body {
 }
 
 .subsection-title {
-  color: var(--gray-900);
+  color: var(--text-primary);
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 2rem;
@@ -2037,7 +2037,7 @@ body {
 
 .education-item h4,
 .achievement-item h4 {
-  color: var(--gray-900);
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
   font-size: 1.125rem;
   font-weight: 600;
@@ -2082,7 +2082,7 @@ body {
 }
 
 .language-name {
-  color: var(--gray-900);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
@@ -2131,7 +2131,7 @@ body {
 }
 
 .cta-content h3 {
-  color: var(--gray-900);
+  color: var(--text-primary);
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 1rem;
