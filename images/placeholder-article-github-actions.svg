@@ -1,0 +1,6 @@
+<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="250" fill="#10b981"/>
+  <text x="200" y="110" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="bold">GitHub</text>
+  <text x="200" y="135" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Actions</text>
+  <text x="200" y="160" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="14">Mobile DevOps</text>
+</svg>

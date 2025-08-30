@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Actions para Desarrolladores Mobile - ArceApps Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <h3><a href="index.html">ArceApps</a></h3>
+      </div>
+      <div class="nav-toggle" id="nav-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item">
+          <a href="index.html" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a href="about.html" class="nav-link">About</a>
+        </li>
+        <li class="nav-item">
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a href="blog.html" class="nav-link active">Blog</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">5 de septiembre de 2025</span>
+          <span class="article-category">DevOps Mobile</span>
+        </div>
+        <h1>GitHub Actions para Desarrolladores Mobile: Automatiza Tu Workflow Completo</h1>
+        <p class="article-subtitle">Descubre cómo GitHub Actions puede transformar tu desarrollo móvil con automatización inteligente: desde testing hasta deployments automáticos en tiendas de aplicaciones</p>
+        <div class="article-image">
+          <img src="images/placeholder-article-github-actions.svg" alt="GitHub Actions para Mobile" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <p>Como desarrolladores móviles, sabemos que el camino desde el código hasta la tienda de aplicaciones puede ser largo y tedioso. GitHub Actions llega para cambiar esa realidad, automatizando cada paso de nuestro workflow y liberándonos para hacer lo que mejor sabemos: <strong>crear apps increíbles</strong>.</p>
+
+        <p>Si eres de los que aún hace deploy manual o ejecuta tests a mano antes de cada PR, este artículo será tu guía definitiva para automatizar todo el proceso. Desde la validación de código hasta la publicación automática en Google Play Store.</p>
+
+        <h2>🎯 ¿Qué Puede Hacer GitHub Actions por Ti?</h2>
+        
+        <p>GitHub Actions no es solo otra herramienta de CI/CD. Para desarrolladores móviles, es como tener un asistente personal que trabaja 24/7 asegurándose de que tu app siempre esté en su mejor estado.</p>
+
+        <div class="best-practices-box">
+          <h3>🚀 Casos de Uso Esenciales</h3>
+          <ul>
+            <li><strong>Testing Automático</strong>: Ejecuta unit tests, UI tests e integration tests en cada PR</li>
+            <li><strong>Validación de Código</strong>: Lint, formato y análisis estático automático</li>
+            <li><strong>Build y Distribución</strong>: Genera APKs/AABs automáticamente para testing</li>
+            <li><strong>Deployment Automático</strong>: Publica en Google Play Store sin intervención manual</li>
+            <li><strong>Notificaciones Inteligentes</strong>: Mantén al equipo informado de cada cambio</li>
+            <li><strong>Gestión de Versiones</strong>: Versionado semántico automático</li>
+          </ul>
+        </div>
+
+        <h2>🔬 Testing Automático: Tu Red de Seguridad</h2>
+        
+        <p>El testing automático es el primer paso hacia un workflow robusto. Con GitHub Actions, puedes configurar una batería completa de tests que se ejecuten automáticamente en cada push y PR.</p>
+
+        <h3>Configuración Básica para Tests Android</h3>
+        <div class="code-block">
+          <pre><code>name: Android CI Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Cache Gradle dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        
+    - name: Run Unit Tests
+      run: ./gradlew test
+      
+    - name: Run Lint
+      run: ./gradlew lint
+      
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results
+        path: app/build/reports/</code></pre>
+        </div>
+
+        <p>Este workflow básico ya te da una base sólida: ejecuta tests unitarios, lint y conserva los reportes para análisis posterior.</p>
+
+        <h3>Tests de UI con Emulador</h3>
+        <p>Para tests de UI más complejos, puedes usar emuladores directamente en GitHub Actions:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Run Instrumented Tests
+  uses: reactivecircus/android-emulator-runner@v2
+  with:
+    api-level: 29
+    target: default
+    arch: x86_64
+    profile: Nexus 6
+    script: ./gradlew connectedAndroidTest</code></pre>
+        </div>
+
+        <h2>✨ Validación de Código: Calidad Automática</h2>
+        
+        <p>Un código limpio es un código mantenible. GitHub Actions puede ejecutar validaciones automáticas que mantengan tu código en los más altos estándares.</p>
+
+        <h3>Lint y Formato Automático</h3>
+        <div class="code-block">
+          <pre><code>name: Code Quality
+
+on: [push, pull_request]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    
+    - name: Run Detekt
+      run: ./gradlew detekt
+      
+    - name: Run ktlint
+      run: ./gradlew ktlintCheck
+      
+    - name: Upload Detekt Results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: detekt-results
+        path: app/build/reports/detekt/</code></pre>
+        </div>
+
+        <h3>Análisis de Dependencias</h3>
+        <p>Mantén tu app segura analizando vulnerabilidades en dependencias:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Run Dependency Check
+  run: ./gradlew dependencyCheckAnalyze
+  
+- name: Upload Security Report
+  uses: actions/upload-artifact@v3
+  with:
+    name: security-report
+    path: app/build/reports/dependency-check-report.html</code></pre>
+        </div>
+
+        <h2>📦 Build y Distribución Automática</h2>
+        
+        <p>Generar builds para testing interno o distribución beta puede ser completamente automatizado.</p>
+
+        <h3>Build Automático de APK/AAB</h3>
+        <div class="code-block">
+          <pre><code>name: Build and Distribute
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    
+    - name: Build Release APK
+      run: ./gradlew assembleRelease
+      
+    - name: Build Release AAB
+      run: ./gradlew bundleRelease
+      
+    - name: Sign APK
+      uses: r0adkll/sign-android-release@v1
+      with:
+        releaseDirectory: app/build/outputs/apk/release
+        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+        alias: ${{ secrets.ALIAS }}
+        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEY_PASSWORD }}
+        
+    - name: Upload to GitHub Releases
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          app/build/outputs/apk/release/*.apk
+          app/build/outputs/bundle/release/*.aab</code></pre>
+        </div>
+
+        <h2>🚀 Publicación Automática en Google Play Store</h2>
+        
+        <p>El santo grial de la automatización móvil: publicar directamente en Google Play Store sin intervención manual. Esto merece un tratamiento especial.</p>
+
+        <div class="tools-grid">
+          <div class="tool-card">
+            <h4>🎯 ¿Por qué automatizar?</h4>
+            <p>Reduce errores humanos, acelera releases y mantiene consistencia en el proceso de publicación</p>
+          </div>
+          <div class="tool-card">
+            <h4>🔐 Seguridad First</h4>
+            <p>Configuración segura de credenciales y permisos mínimos necesarios</p>
+          </div>
+          <div class="tool-card">
+            <h4>📊 Trazabilidad</h4>
+            <p>Logs completos y notificaciones de cada deployment para máximo control</p>
+          </div>
+        </div>
+
+        <p>La publicación automática en Google Play Store requiere configuración especial de permisos, manejo seguro de credenciales y una estrategia de rollout bien definida.</p>
+
+        <div class="best-practices-box">
+          <h3>📖 Artículo Detallado</h3>
+          <p>Debido a la complejidad y importancia de este tema, hemos creado una guía completa dedicada:</p>
+          <p><strong><a href="blog-github-actions-play-store.html">📱 GitHub Actions + Google Play Store: Automatización Completa de Deployments Android</a></strong></p>
+          <p>En este artículo encontrarás paso a paso cómo configurar el deployment automático, incluyendo configuración de service accounts, manejo de credenciales, estrategias de rollout y troubleshooting.</p>
+        </div>
+
+        <h2>🔔 Notificaciones y Monitoreo</h2>
+        
+        <p>Mantener al equipo informado es crucial. GitHub Actions puede integrarse con Slack, Discord, o email para notificaciones inteligentes.</p>
+
+        <h3>Notificaciones a Slack</h3>
+        <div class="code-block">
+          <pre><code>- name: Notify Slack on Success
+  if: success()
+  uses: 8398a7/action-slack@v3
+  with:
+    status: success
+    text: '✅ Build exitoso para ${{ github.ref }}'
+  env:
+    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+    
+- name: Notify Slack on Failure
+  if: failure()
+  uses: 8398a7/action-slack@v3
+  with:
+    status: failure
+    text: '❌ Build falló en ${{ github.ref }}'
+  env:
+    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}</code></pre>
+        </div>
+
+        <h2>📈 Workflows Avanzados</h2>
+        
+        <h3>Conditional Deployments</h3>
+        <p>Deployers inteligentes que reaccionan según el tipo de cambio:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Deploy to Internal Testing
+  if: startsWith(github.ref, 'refs/heads/develop')
+  run: ./gradlew publishBundle --track internal
+  
+- name: Deploy to Production
+  if: startsWith(github.ref, 'refs/tags/v')
+  run: ./gradlew publishBundle --track production</code></pre>
+        </div>
+
+        <h3>Matrix Builds</h3>
+        <p>Testea en múltiples versiones de Android simultáneamente:</p>
+
+        <div class="code-block">
+          <pre><code>strategy:
+  matrix:
+    api-level: [24, 28, 29, 30, 33]
+    
+steps:
+- uses: reactivecircus/android-emulator-runner@v2
+  with:
+    api-level: ${{ matrix.api-level }}
+    script: ./gradlew connectedAndroidTest</code></pre>
+        </div>
+
+        <h2>💡 Mejores Prácticas y Tips</h2>
+        
+        <h3>1. Manejo Seguro de Secretos</h3>
+        <p>Nunca hardcodees credenciales. Usa GitHub Secrets para información sensible:</p>
+        
+        <div class="code-block">
+          <pre><code># En tu workflow
+env:
+  KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+  PLAY_STORE_JSON_KEY: ${{ secrets.PLAY_STORE_JSON_KEY }}</code></pre>
+        </div>
+
+        <h3>2. Caching Inteligente</h3>
+        <p>Acelera tus builds cacheando dependencias de Gradle:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Cache Gradle
+  uses: actions/cache@v3
+  with:
+    path: |
+      ~/.gradle/caches
+      ~/.gradle/wrapper
+      ~/.android/build-cache
+    key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}</code></pre>
+        </div>
+
+        <h3>3. Conditional Execution</h3>
+        <p>No ejecutes jobs innecesarios usando conditional logic:</p>
+
+        <div class="code-block">
+          <pre><code>- name: Skip if only docs changed
+  if: contains(github.event.head_commit.message, '[skip ci]')
+  run: echo "Skipping CI for documentation changes"</code></pre>
+        </div>
+
+        <h2>🛠️ Herramientas y Actions Recomendadas</h2>
+        
+        <div class="tools-grid">
+          <div class="tool-card">
+            <h4>reactivecircus/android-emulator-runner</h4>
+            <p>Ejecuta emuladores Android para UI testing</p>
+          </div>
+          <div class="tool-card">
+            <h4>r0adkll/sign-android-release</h4>
+            <p>Firma automática de APKs y AABs</p>
+          </div>
+          <div class="tool-card">
+            <h4>r0adkll/upload-google-play</h4>
+            <p>Sube automáticamente a Google Play Store</p>
+          </div>
+          <div class="tool-card">
+            <h4>8398a7/action-slack</h4>
+            <p>Notificaciones integradas con Slack</p>
+          </div>
+        </div>
+
+        <h2>🎯 Casos de Uso Reales</h2>
+        
+        <h3>Startup con Equipo Pequeño</h3>
+        <p>"Implementamos GitHub Actions y redujimos el tiempo de release de 2 días a 2 horas. Ahora podemos hacer hotfixes sin pánico."</p>
+
+        <h3>App Enterprise</h3>
+        <p>"Con 15+ desarrolladores, GitHub Actions nos asegura que cada PR pase por las mismas validaciones. Cero bugs escapan a producción."</p>
+
+        <h3>Freelancer Mobile</h3>
+        <p>"Mis clientes aman recibir builds automáticos cada vez que apruebo un feature. GitHub Actions me hace ver más profesional."</p>
+
+        <h2>🚀 Implementación Gradual</h2>
+        
+        <p>No intentes automatizar todo de una vez. Te recomendamos este roadmap:</p>
+
+        <div class="best-practices-box">
+          <h3>📅 Plan de Implementación</h3>
+          <ol>
+            <li><strong>Semana 1</strong>: Configura testing automático en PRs</li>
+            <li><strong>Semana 2</strong>: Añade validación de código (lint, format)</li>
+            <li><strong>Semana 3</strong>: Automatiza builds para tags</li>
+            <li><strong>Semana 4</strong>: Implementa notificaciones</li>
+            <li><strong>Semana 5+</strong>: Deploy automático a Google Play Store</li>
+          </ol>
+        </div>
+
+        <h2>Conclusión</h2>
+        
+        <p>GitHub Actions no es solo una herramienta de CI/CD; es tu aliado para crear un workflow de desarrollo móvil robusto, confiable y escalable. Desde validaciones automáticas hasta deployments sin intervención humana.</p>
+
+        <p>Como desarrolladores móviles, tenemos la oportunidad única de aprovechar estas herramientas para crear apps de mejor calidad, con menos bugs y releases más frecuentes.</p>
+
+        <div class="best-practices-box">
+          <h3>🎯 Próximos Pasos</h3>
+          <ul>
+            <li>Comienza con el workflow básico de testing</li>
+            <li>Lee nuestro <a href="blog-github-actions-play-store.html">artículo específico sobre Google Play Store</a></li>
+            <li>Experimenta con diferentes actions en un proyecto de prueba</li>
+            <li>Involucra a tu equipo en el proceso de adopción</li>
+            <li>Documenta tus workflows para futuros desarrolladores</li>
+          </ul>
+        </div>
+
+        <div class="article-footer">
+          <div class="tags">
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Android</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">DevOps</span>
+            <span class="tag">Mobile</span>
+            <span class="tag">Automatización</span>
+          </div>
+          
+          <div class="article-meta">
+            <p><strong>Autor:</strong> ArceApps</p>
+            <p><strong>Fecha:</strong> 5 de septiembre de 2025</p>
+            <p><strong>Tiempo de lectura:</strong> ~12 minutos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

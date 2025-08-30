@@ -1,5 +1,21 @@
 [
   {
+    "title": "GitHub Actions + Google Play Store: Automatización Completa de Deployments Android",
+    "date": "2025-09-05",
+    "summary": "Guía paso a paso para configurar deployments automáticos a Google Play Store usando GitHub Actions, desde la configuración inicial hasta estrategias avanzadas de rollout.",
+    "url": "blog-github-actions-play-store.html",
+    "category": "DevOps Mobile",
+    "image": "images/placeholder-blog-github-actions-play-store.svg"
+  },
+  {
+    "title": "GitHub Actions para Desarrolladores Mobile: Automatiza Tu Workflow Completo",
+    "date": "2025-09-05",
+    "summary": "Descubre cómo GitHub Actions puede transformar tu desarrollo móvil con automatización inteligente: desde testing hasta deployments automáticos en tiendas de aplicaciones.",
+    "url": "blog-github-actions.html",
+    "category": "DevOps Mobile",
+    "image": "images/placeholder-blog-github-actions.svg"
+  },
+  {
     "title": "Principios SOLID en Android: Guía Completa para Desarrolladores Kotlin",
     "date": "2025-08-30",
     "summary": "Domina los 5 principios fundamentales del desarrollo de software aplicados específicamente al ecosistema Android con ejemplos prácticos en Kotlin.",
