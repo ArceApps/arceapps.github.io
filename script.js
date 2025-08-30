@@ -145,6 +145,7 @@ async function loadBlogPosts() {
         
         const blogPostsContainer = document.getElementById('blog-posts');
         const postCountElement = document.getElementById('post-count');
+        const categoryCountElement = document.getElementById('category-count');
         
         if (blogPostsContainer) {
             blogPostsContainer.innerHTML = '';
@@ -157,6 +158,12 @@ async function loadBlogPosts() {
             // Update post count
             if (postCountElement) {
                 postCountElement.textContent = sortedPosts.length;
+            }
+            
+            // Update category count
+            if (categoryCountElement) {
+                const uniqueCategories = [...new Set(sortedPosts.map(post => post.category))];
+                categoryCountElement.textContent = uniqueCategories.length;
             }
         }
     } catch (error) {
