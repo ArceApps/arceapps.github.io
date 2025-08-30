@@ -1162,7 +1162,7 @@ body {
   .theme-toggle {
     position: fixed;
     top: 15px;
-    right: 80px;
+    right: 120px;
     z-index: 1001;
   }
   
