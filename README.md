@@ -19,6 +19,130 @@ Portfolio personal y blog de desarrollo Android con diseño moderno y elegante, 
 - **`projects.json`**: Metadatos de proyectos (título, descripción, URL)
 - **`posts.json`**: Metadatos de posts del blog (título, fecha, resumen, URL)
 
+## 🎨 Identidad Visual y Marca
+
+### 🎯 Paleta de Colores Corporativa
+
+La identidad visual de ArceApps se basa en una paleta verde moderna y profesional que transmite crecimiento, innovación y confianza:
+
+#### Colores Primarios
+- **🟢 Verde Principal**: `#10b981` - Color distintivo de la marca, usado para CTAs y elementos destacados
+- **🌱 Verde Claro**: `#34d399` - Para gradientes y efectos hover
+- **🌿 Verde Oscuro**: `#059669` - Para estados activos y énfasis
+- **💎 Esmeralda**: `#047857` - Para elementos de alta prioridad
+
+#### Colores Neutros
+- **⚫ Gris Oscuro**: `#111827` - Fondos oscuros y contraste alto
+- **🔘 Gris 900**: `#1f2937` - Textos principales y títulos
+- **🔘 Gris 800**: `#374151` - Textos secundarios
+- **🔘 Gris 700**: `#4b5563` - Textos descriptivos
+- **🔘 Gris 600**: `#6b7280` - Textos terciarios y metadatos
+- **🔘 Gris 300**: `#d1d5db` - Bordes y separadores
+- **🔘 Gris 100**: `#f3f4f6` - Fondos sutiles
+
+#### Colores Base
+- **⚪ Blanco**: `#ffffff` - Fondo principal y textos sobre fondos oscuros
+- **🤍 Fondo Claro**: `#f8fafc` - Fondos alternativos y secciones
+
+### 📝 Sistema Tipográfico
+
+#### Familia Tipográfica
+```css
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+```
+
+#### Escala Tipográfica
+- **Hero (3.5rem)**: Títulos principales de landing page
+- **H1 (3rem)**: Títulos de página
+- **H2 (2.5rem)**: Secciones principales
+- **H3 (1.5rem)**: Subsecciones y títulos de cards
+- **Body Large (1.25rem)**: Textos destacados y subtítulos
+- **Body (1rem)**: Texto base (line-height: 1.6)
+- **Small (0.875rem)**: Metadatos y texto secundario
+
+#### Pesos Tipográficos
+- **700 (Bold)**: Títulos principales y logotipo
+- **600 (Semi-bold)**: Subtítulos y elementos destacados
+- **500 (Medium)**: Enlaces y navegación
+- **400 (Regular)**: Texto base
+
+### 🔲 Formas y Elementos Visuales
+
+#### Bordes Redondeados
+- **Mínimo**: `2px` - Elementos pequeños (toggles, badges)
+- **Estándar**: `8px` - Botones y campos de formulario
+- **Medio**: `12px` - Cards y componentes
+- **Grande**: `16px` - Secciones destacadas
+- **Máximo**: `24px` - Contenedores principales
+
+#### Sombras y Elevación
+```css
+/* Sombra Sutil */
+box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+
+/* Sombra Media */
+box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+
+/* Sombra Profunda */
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+```
+
+#### Gradientes Corporativos
+```css
+/* Gradiente Principal */
+background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+
+/* Gradiente de Fondo */
+background: linear-gradient(135deg, var(--light-bg) 0%, #ecfdf5 100%);
+
+/* Gradiente Sutil */
+background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+```
+
+### 🎭 Principios de Diseño
+
+#### Espaciado y Ritmo
+- **Sistema de Grid**: Máximo 1200px con padding lateral de 20px
+- **Espaciado Vertical**: 80px entre secciones principales
+- **Gaps**: 1rem (16px) estándar, 2rem (32px) para separaciones importantes
+
+#### Interactividad
+- **Transiciones**: `all 0.3s ease` para elementos interactivos
+- **Hover Effects**: Elevación sutil (-4px) y cambio de color
+- **Estados Activos**: Verde principal con indicadores visuales
+
+#### Accesibilidad
+- **Contraste**: Cumple WCAG 2.1 AA (mínimo 4.5:1)
+- **Focus States**: Bordes visibles con color primario
+- **Touch Targets**: Mínimo 44px para elementos interactivos
+
+### 🖼️ Recursos Visuales
+
+#### Placeholders e Iconografía
+- **Color Base**: Verde corporativo (`#10b981`)
+- **Dimensiones Estándar**: 800x400px (hero), 800x600px (detalle)
+- **Formato**: SVG para escalabilidad y rendimiento
+- **Alt Text**: Descriptivo y contextual para accesibilidad
+
+#### Efectos Especiales
+- **Backdrop Blur**: `blur(10px)` para navegación fija
+- **Lazy Loading**: Implementado en todas las imágenes
+- **Aspect Ratios**: Consistentes para layout estable
+
+### 📐 Guías de Uso
+
+#### ✅ Recomendaciones
+- Usar verde principal para acciones primarias
+- Mantener consistencia en bordes redondeados
+- Aplicar sombras según jerarquía de contenido
+- Respetar espaciado del sistema de grid
+
+#### ❌ Evitar
+- Colores fuera de la paleta establecida
+- Bordes redondeados inconsistentes
+- Sombras excesivas o poco naturales
+- Romper la jerarquía tipográfica
+
 ## 📝 Artículos del Blog Completos
 
 ### 1. Versionado Semántico en Android (`blog-semantic-versioning.html`)
