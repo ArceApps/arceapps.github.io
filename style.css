@@ -1445,7 +1445,8 @@ body {
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s ease;
-  height: fit-content;
+  height: 100%;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -1461,7 +1462,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  min-height: 250px;
+  min-height: 300px;
 }
 
 .blog-posts-section .blog-card:hover {
@@ -1487,6 +1488,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
+  height: 100%;
 }
 
 .blog-card-meta {
@@ -1520,15 +1522,21 @@ body {
   color: var(--text-primary);
   margin-bottom: 0.75rem;
   line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 3.15rem; /* Ensure consistent title height (3 lines * 1.4 line-height * 0.75rem) */
 }
 
-/* Homepage blog card text - limit to 6 lines */
+/* Homepage blog card text - limit to 4 lines */
 .blog-section .blog-card p {
   color: var(--text-muted);
   margin-bottom: 1.5rem;
   line-height: 1.6;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1541,10 +1549,11 @@ body {
   line-height: 1.6;
   margin-bottom: 1rem;
   display: -webkit-box;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex-grow: 1;
 }
 
 .blog-card-link {
