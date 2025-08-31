@@ -2,12 +2,12 @@
   {
     "title": "Sudoku Android",
     "description": "Juego clásico de Sudoku para Android con diferentes niveles de dificultad, validación automática y diseño Material Design.",
-    "url": "#"
+    "url": "projects/project-sudoku.html"
   },
   {
     "title": "2048 Game",
     "description": "Implementación del popular juego 2048 para Android con animaciones fluidas, puntuación y sistema de guardado automático.",
-    "url": "#"
+    "url": "projects/project-2048.html"
   },
   {
     "title": "Proyecto 3",

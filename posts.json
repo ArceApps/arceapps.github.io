@@ -3,7 +3,7 @@
     "title": "GitHub Actions + Google Play Store: Automatización Completa de Deployments Android",
     "date": "2025-09-05",
     "summary": "Guía paso a paso para configurar deployments automáticos a Google Play Store usando GitHub Actions, desde la configuración inicial hasta estrategias avanzadas de rollout.",
-    "url": "blog-github-actions-play-store.html",
+    "url": "blog/blog-github-actions-play-store.html",
     "category": "DevOps Mobile",
     "image": "images/placeholder-blog-github-actions-play-store.svg",
     "tags": ["GitHub Actions", "Google Play Store", "Android", "DevOps", "CI/CD", "Automation"]
@@ -12,7 +12,7 @@
     "title": "GitHub Actions para Desarrolladores Mobile: Automatiza Tu Workflow Completo",
     "date": "2025-09-05",
     "summary": "Descubre cómo GitHub Actions puede transformar tu desarrollo móvil con automatización inteligente: desde testing hasta deployments automáticos en tiendas de aplicaciones.",
-    "url": "blog-github-actions.html",
+    "url": "blog/blog-github-actions.html",
     "category": "DevOps Mobile",
     "image": "images/placeholder-blog-github-actions.svg",
     "tags": ["GitHub Actions", "Mobile Development", "Android", "DevOps", "Testing", "Automation"]
@@ -21,7 +21,7 @@
     "title": "Principios SOLID en Android: Guía Completa para Desarrolladores Kotlin",
     "date": "2025-08-30",
     "summary": "Domina los 5 principios fundamentales del desarrollo de software aplicados específicamente al ecosistema Android con ejemplos prácticos en Kotlin.",
-    "url": "blog-solid-principles.html",
+    "url": "blog/blog-solid-principles.html",
     "category": "Desarrollo Android",
     "image": "images/placeholder-blog-solid.svg",
     "tags": ["Android", "Kotlin", "SOLID", "Architecture", "Clean Code", "MVVM", "Hilt", "Testing"]
@@ -30,7 +30,7 @@
     "title": "Firebase Crashlytics para Android: Tu Mejor Aliado Contra los Crashes",
     "date": "2025-08-29",
     "summary": "Descubre cómo implementar y dominar Firebase Crashlytics en tus apps Android para detectar, analizar y resolver crashes como un verdadero pro.",
-    "url": "blog-firebase-crashlytics.html",
+    "url": "blog/blog-firebase-crashlytics.html",
     "category": "Desarrollo Android", 
     "image": "images/placeholder-blog-firebase.svg",
     "tags": ["Android", "Firebase", "Crashlytics", "Debugging", "Error Handling", "Analytics"]
@@ -39,7 +39,7 @@
     "title": "Versionado Semántico en Android: Mejores Prácticas",
     "date": "2025-08-25",
     "summary": "Exploramos cómo implementar versionado semántico en aplicaciones Android, desde versionCode hasta build.gradle y Google Play Store.",
-    "url": "blog-semantic-versioning.html",
+    "url": "blog/blog-semantic-versioning.html",
     "category": "Desarrollo Android",
     "image": "images/placeholder-blog-versioning.svg",
     "tags": ["Android", "Versioning", "Gradle", "Google Play Store", "Release Management"]
@@ -48,7 +48,7 @@
     "title": "Conventional Commits: Transformando tu Historial Git",
     "date": "2025-08-22",
     "summary": "Aprende a usar Conventional Commits para mantener un historial de git limpio y generar changelogs automáticamente.",
-    "url": "blog-conventional-commits.html",
+    "url": "blog/blog-conventional-commits.html",
     "category": "Control de Versiones",
     "image": "images/placeholder-blog-commits.svg",
     "tags": ["Git", "Conventional Commits", "Version Control", "Automation", "Changelog"]
@@ -57,7 +57,7 @@
     "title": "Room Database en Android: Persistencia de Datos Moderna",
     "date": "2025-09-15",
     "summary": "Domina la biblioteca de persistencia más poderosa de Android: desde configuración básica hasta técnicas avanzadas con corrutinas y migraciones.",
-    "url": "blog-room-database.html",
+    "url": "blog/blog-room-database.html",
     "category": "Desarrollo Android",
     "image": "images/placeholder-blog-room.svg",
     "tags": ["Android", "Kotlin", "Room Database", "SQLite", "Persistence", "Coroutines", "Architecture", "Testing"]
