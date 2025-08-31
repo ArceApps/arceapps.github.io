@@ -266,13 +266,6 @@ function createBlogPostElement(post) {
         year: 'numeric'
     });
     
-    // Create tags HTML
-    const tagsHtml = post.tags && post.tags.length > 0 
-        ? `<div class="blog-card-tags">
-             ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-           </div>` 
-        : '';
-    
     article.innerHTML = `
         ${post.image ? `<img src="${post.image}" alt="${post.title}" class="blog-card-image">` : ''}
         <div class="blog-card-content">
@@ -282,7 +275,6 @@ function createBlogPostElement(post) {
             </div>
             <h3>${post.title}</h3>
             <p>${post.summary}</p>
-            ${tagsHtml}
             <a href="${post.url}" class="blog-card-link">
                 ${post.url === '#' ? 'Próximamente' : 'Leer artículo'} →
             </a>
