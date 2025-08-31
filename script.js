@@ -143,6 +143,18 @@ async function loadBlogPosts() {
         // Sort posts by date (newest first)
         const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
         
+        // Get current page from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPage = parseInt(urlParams.get('page')) || 1;
+        const postsPerPage = 6;
+        
+        // Calculate pagination
+        const totalPosts = sortedPosts.length;
+        const totalPages = Math.ceil(totalPosts / postsPerPage);
+        const startIndex = (currentPage - 1) * postsPerPage;
+        const endIndex = startIndex + postsPerPage;
+        const postsToShow = sortedPosts.slice(startIndex, endIndex);
+        
         const blogPostsContainer = document.getElementById('blog-posts');
         const postCountElement = document.getElementById('post-count');
         const categoryCountElement = document.getElementById('category-count');
@@ -150,14 +162,14 @@ async function loadBlogPosts() {
         if (blogPostsContainer) {
             blogPostsContainer.innerHTML = '';
             
-            sortedPosts.forEach(post => {
+            postsToShow.forEach(post => {
                 const postElement = createBlogPostElement(post);
                 blogPostsContainer.appendChild(postElement);
             });
             
-            // Update post count
+            // Update post count (total posts, not just current page)
             if (postCountElement) {
-                postCountElement.textContent = sortedPosts.length;
+                postCountElement.textContent = totalPosts;
             }
             
             // Update category count
@@ -167,8 +179,11 @@ async function loadBlogPosts() {
             }
         }
         
-        // Load tag filters
-        loadTagFilters(posts);
+        // Load pagination controls
+        loadPaginationControls(currentPage, totalPages, totalPosts);
+        
+        // Load tag filters (with all posts for filtering)
+        loadTagFilters(sortedPosts, currentPage);
         
     } catch (error) {
         console.error('Error loading blog posts:', error);
@@ -285,7 +300,7 @@ function createBlogPostElement(post) {
 }
 
 // Function to load tag filters
-function loadTagFilters(posts) {
+function loadTagFilters(posts, currentPage = 1) {
     const tagFiltersContainer = document.getElementById('tag-filters');
     if (!tagFiltersContainer) return;
     
@@ -336,6 +351,75 @@ function filterPostsByTag(selectedTag) {
             }
         }
     });
+}
+
+// Function to load pagination controls
+function loadPaginationControls(currentPage, totalPages, totalPosts) {
+    const paginationSection = document.getElementById('pagination-section');
+    if (!paginationSection || totalPages <= 1) {
+        if (paginationSection) {
+            paginationSection.innerHTML = '';
+        }
+        return;
+    }
+    
+    const postsPerPage = 6;
+    const startPost = (currentPage - 1) * postsPerPage + 1;
+    const endPost = Math.min(currentPage * postsPerPage, totalPosts);
+    
+    let paginationHTML = '<div class="pagination">';
+    
+    // Previous button
+    if (currentPage > 1) {
+        paginationHTML += `<a href="blog.html?page=${currentPage - 1}" class="pagination-link">‹ Anterior</a>`;
+    } else {
+        paginationHTML += '<span class="pagination-link disabled">‹ Anterior</span>';
+    }
+    
+    // Page numbers
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    if (startPage > 1) {
+        paginationHTML += '<a href="blog.html?page=1" class="pagination-link">1</a>';
+        if (startPage > 2) {
+            paginationHTML += '<span class="pagination-link disabled">...</span>';
+        }
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+        if (i === currentPage) {
+            paginationHTML += `<span class="pagination-link active">${i}</span>`;
+        } else {
+            paginationHTML += `<a href="blog.html?page=${i}" class="pagination-link">${i}</a>`;
+        }
+    }
+    
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            paginationHTML += '<span class="pagination-link disabled">...</span>';
+        }
+        paginationHTML += `<a href="blog.html?page=${totalPages}" class="pagination-link">${totalPages}</a>`;
+    }
+    
+    // Next button
+    if (currentPage < totalPages) {
+        paginationHTML += `<a href="blog.html?page=${currentPage + 1}" class="pagination-link">Siguiente ›</a>`;
+    } else {
+        paginationHTML += '<span class="pagination-link disabled">Siguiente ›</span>';
+    }
+    
+    paginationHTML += '</div>';
+    
+    // Add pagination info
+    paginationHTML += `<div class="pagination-info">Mostrando ${startPost}-${endPost} de ${totalPosts} artículos</div>`;
+    
+    paginationSection.innerHTML = paginationHTML;
 }
 
 // About page functionality
