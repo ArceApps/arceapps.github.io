@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Database en Android - ArceApps Blog</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="portfolio.html" class="nav-link">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link active">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">15 de septiembre de 2025</span>
+          <span class="article-category">Desarrollo Android</span>
+        </div>
+        <h1>Room Database en Android: Persistencia de Datos Moderna</h1>
+        <p class="article-subtitle">Domina la biblioteca de persistencia más poderosa de Android: desde configuración básica hasta técnicas avanzadas con corrutinas y migraciones</p>
+        <div class="article-image">
+          <img src="images/placeholder-article-room.svg" alt="Room Database Android" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>🗄️ Introducción a Room Database</h2>
+        <p>Room es la <strong>biblioteca de persistencia oficial de Android</strong> que proporciona una capa de abstracción sobre SQLite, ofreciendo una forma más robusta y declarativa de trabajar con bases de datos locales. Forma parte de Android Jetpack y está diseñada para trabajar perfectamente con Kotlin y corrutinas.</p>
+
+        <p>A diferencia de SQLite directo, Room nos proporciona <strong>validación en tiempo de compilación</strong>, <strong>integración nativa con LiveData y Flow</strong>, y <strong>migración automática de esquemas</strong>. Es la solución recomendada por Google para cualquier aplicación que necesite persistencia local. 🚀</p>
+
+        <div class="room-benefits-overview">
+          <h3>¿Por qué elegir Room sobre SQLite directo?</h3>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <div class="benefit-icon">✅</div>
+              <h4>Type Safety</h4>
+              <p>Validación de queries en tiempo de compilación</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">🔄</div>
+              <h4>Observabilidad</h4>
+              <p>Integración nativa con LiveData y Flow</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">🛠️</div>
+              <h4>Migraciones</h4>
+              <p>Sistema robusto de versionado de esquemas</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">⚡</div>
+              <h4>Performance</h4>
+              <p>Optimizaciones automáticas y threading inteligente</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>🏗️ Configuración Básica de Room</h2>
+        <p>Configurar Room en tu proyecto Android es sencillo pero requiere entender tres componentes principales: <strong>Entity</strong>, <strong>DAO</strong> y <strong>Database</strong>.</p>
+
+        <h3>1. Dependencias en build.gradle</h3>
+        <div class="code-block">
+          <pre><code>// app/build.gradle (Module)
+dependencies {
+    def room_version = "2.5.0"
+    
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    
+    // Para testing
+    testImplementation "androidx.room:room-testing:$room_version"
+}
+
+// Habilitar kapt
+apply plugin: 'kotlin-kapt'</code></pre>
+        </div>
+
+        <h3>2. Definir una Entity</h3>
+        <div class="code-block">
+          <pre><code>// User.kt - Nuestra primera entity
+@Entity(tableName = "users")
+data class User(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    
+    @ColumnInfo(name = "user_name")
+    val userName: String,
+    
+    @ColumnInfo(name = "email")
+    val email: String,
+    
+    @ColumnInfo(name = "created_at")
+    val createdAt: Long = System.currentTimeMillis(),
+    
+    @ColumnInfo(name = "is_active")
+    val isActive: Boolean = true
+)</code></pre>
+        </div>
+
+        <h3>3. Crear el DAO (Data Access Object)</h3>
+        <div class="code-block">
+          <pre><code>// UserDao.kt - Define las operaciones de base de datos
+@Dao
+interface UserDao {
+    
+    @Query("SELECT * FROM users WHERE is_active = 1")
+    fun getAllActiveUsers(): Flow&lt;List&lt;User&gt;&gt;
+    
+    @Query("SELECT * FROM users WHERE id = :userId")
+    suspend fun getUserById(userId: Long): User?
+    
+    @Query("SELECT * FROM users WHERE user_name LIKE :search")
+    suspend fun searchUsers(search: String): List&lt;User&gt;
+    
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUser(user: User): Long
+    
+    @Insert
+    suspend fun insertUsers(users: List&lt;User&gt;)
+    
+    @Update
+    suspend fun updateUser(user: User)
+    
+    @Delete
+    suspend fun deleteUser(user: User)
+    
+    @Query("DELETE FROM users WHERE id = :userId")
+    suspend fun deleteUserById(userId: Long)
+}</code></pre>
+        </div>
+
+        <h3>4. Configurar la Database</h3>
+        <div class="code-block">
+          <pre><code>// AppDatabase.kt - La configuración principal
+@Database(
+    entities = [User::class],
+    version = 1,
+    exportSchema = false
+)
+@TypeConverters(Converters::class)
+abstract class AppDatabase : RoomDatabase() {
+    
+    abstract fun userDao(): UserDao
+    
+    companion object {
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
+        
+        fun getDatabase(context: Context): AppDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    "app_database"
+                ).build()
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h2>🔄 TypeConverters: Manejo de Tipos Complejos</h2>
+        <p>Room solo puede manejar tipos primitivos por defecto. Para tipos complejos como Date, List o objetos custom, necesitamos TypeConverters:</p>
+
+        <div class="code-block">
+          <pre><code>// Converters.kt - Manejo de tipos complejos
+class Converters {
+    
+    @TypeConverter
+    fun fromTimestamp(value: Long?): Date? {
+        return value?.let { Date(it) }
+    }
+    
+    @TypeConverter
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time
+    }
+    
+    @TypeConverter
+    fun fromStringList(value: String): List&lt;String&gt; {
+        return value.split(",").map { it.trim() }
+    }
+    
+    @TypeConverter
+    fun fromListString(list: List&lt;String&gt;): String {
+        return list.joinToString(",")
+    }
+    
+    @TypeConverter
+    fun fromJson(value: String): UserPreferences {
+        return Gson().fromJson(value, UserPreferences::class.java)
+    }
+    
+    @TypeConverter
+    fun fromUserPreferences(preferences: UserPreferences): String {
+        return Gson().toJson(preferences)
+    }
+}</code></pre>
+        </div>
+
+        <h2>🚀 Integración con Repository Pattern</h2>
+        <p>Room funciona perfectamente con el patrón Repository, proporcionando una capa de abstracción limpia entre la UI y los datos:</p>
+
+        <div class="code-block">
+          <pre><code>// UserRepository.kt - Patrón Repository con Room
+class UserRepository @Inject constructor(
+    private val userDao: UserDao,
+    private val apiService: ApiService
+) {
+    
+    fun getAllUsers(): Flow&lt;List&lt;User&gt;&gt; = userDao.getAllActiveUsers()
+    
+    suspend fun refreshUsers() {
+        try {
+            val remoteUsers = apiService.getUsers()
+            userDao.insertUsers(remoteUsers)
+        } catch (e: Exception) {
+            // Manejo de errores - los datos locales siguen disponibles
+            Timber.e(e, "Error refreshing users")
+        }
+    }
+    
+    suspend fun getUserById(id: Long): User? = userDao.getUserById(id)
+    
+    suspend fun createUser(user: User): Long {
+        return userDao.insertUser(user)
+    }
+    
+    suspend fun updateUser(user: User) {
+        userDao.updateUser(user)
+        // Opcional: sincronizar con servidor
+        try {
+            apiService.updateUser(user)
+        } catch (e: Exception) {
+            // Marcar para sincronización posterior
+        }
+    }
+    
+    suspend fun deleteUser(user: User) {
+        userDao.deleteUser(user)
+    }
+    
+    fun searchUsers(query: String): Flow&lt;List&lt;User&gt;&gt; = flow {
+        emit(userDao.searchUsers("%$query%"))
+    }
+}</code></pre>
+        </div>
+
+        <h2>⚡ Queries Avanzadas y Relaciones</h2>
+        <p>Room soporta queries complejas, joins, y relaciones entre entidades. Aquí algunos ejemplos avanzados:</p>
+
+        <h3>Relaciones One-to-Many</h3>
+        <div class="code-block">
+          <pre><code>// Post.kt - Entity con relación
+@Entity(
+    tableName = "posts",
+    foreignKeys = [ForeignKey(
+        entity = User::class,
+        parentColumns = ["id"],
+        childColumns = ["user_id"],
+        onDelete = ForeignKey.CASCADE
+    )]
+)
+data class Post(
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
+    val title: String,
+    val content: String,
+    @ColumnInfo(name = "user_id")
+    val userId: Long,
+    @ColumnInfo(name = "created_at")
+    val createdAt: Long = System.currentTimeMillis()
+)
+
+// UserWithPosts.kt - Relación completa
+data class UserWithPosts(
+    @Embedded val user: User,
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "user_id"
+    )
+    val posts: List&lt;Post&gt;
+)
+
+// En UserDao.kt
+@Transaction
+@Query("SELECT * FROM users WHERE id = :userId")
+suspend fun getUserWithPosts(userId: Long): UserWithPosts?
+
+@Query("""
+    SELECT * FROM posts 
+    INNER JOIN users ON posts.user_id = users.id 
+    WHERE users.is_active = 1 
+    ORDER BY posts.created_at DESC
+""")
+fun getPostsFromActiveUsers(): Flow&lt;List&lt;Post&gt;&gt;</code></pre>
+        </div>
+
+        <h2>🔄 Migraciones de Base de Datos</h2>
+        <p>Las migraciones son cruciales para mantener la integridad de los datos cuando evoluciona tu esquema:</p>
+
+        <div class="code-block">
+          <pre><code>// Migraciones.kt - Versionado de esquema
+val MIGRATION_1_2 = object : Migration(1, 2) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL("ALTER TABLE users ADD COLUMN profile_image_url TEXT")
+    }
+}
+
+val MIGRATION_2_3 = object : Migration(2, 3) {
+    override fun migrate(database: SupportSQLiteDatabase) {
+        // Crear nueva tabla
+        database.execSQL("""
+            CREATE TABLE user_settings (
+                id INTEGER PRIMARY KEY NOT NULL,
+                user_id INTEGER NOT NULL,
+                theme TEXT NOT NULL DEFAULT 'light',
+                notifications_enabled INTEGER NOT NULL DEFAULT 1,
+                FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+            )
+        """)
+        
+        // Crear índice
+        database.execSQL("CREATE INDEX index_user_settings_user_id ON user_settings(user_id)")
+    }
+}
+
+// En AppDatabase.kt
+Room.databaseBuilder(context, AppDatabase::class.java, "database")
+    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+    .build()</code></pre>
+        </div>
+
+        <h2>🧪 Testing con Room</h2>
+        <p>Room facilita enormemente el testing con una base de datos en memoria:</p>
+
+        <div class="code-block">
+          <pre><code>// UserDaoTest.kt - Testing del DAO
+@RunWith(AndroidJUnit4::class)
+class UserDaoTest {
+    
+    private lateinit var database: AppDatabase
+    private lateinit var userDao: UserDao
+    
+    @Before
+    fun createDb() {
+        val context = ApplicationProvider.getApplicationContext&lt;Context&gt;()
+        database = Room.inMemoryDatabaseBuilder(
+            context, AppDatabase::class.java
+        ).build()
+        userDao = database.userDao()
+    }
+    
+    @After
+    fun closeDb() {
+        database.close()
+    }
+    
+    @Test
+    fun insertAndGetUser() = runTest {
+        val user = User(userName = "testuser", email = "test@example.com")
+        val userId = userDao.insertUser(user)
+        
+        val retrievedUser = userDao.getUserById(userId)
+        
+        assertThat(retrievedUser?.userName).isEqualTo("testuser")
+        assertThat(retrievedUser?.email).isEqualTo("test@example.com")
+    }
+    
+    @Test
+    fun getAllActiveUsers() = runTest {
+        val users = listOf(
+            User(userName = "user1", email = "user1@test.com", isActive = true),
+            User(userName = "user2", email = "user2@test.com", isActive = false),
+            User(userName = "user3", email = "user3@test.com", isActive = true)
+        )
+        
+        userDao.insertUsers(users)
+        
+        userDao.getAllActiveUsers().test {
+            val activeUsers = awaitItem()
+            assertThat(activeUsers).hasSize(2)
+            assertThat(activeUsers.map { it.userName }).containsExactly("user1", "user3")
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h2>🔧 Mejores Prácticas y Optimizaciones</h2>
+        
+        <h3>1. Uso correcto de Threading</h3>
+        <div class="code-block">
+          <pre><code>// ❌ MAL: Bloquear el Main Thread
+class BadRepository {
+    fun getUser(id: Long): User {
+        return userDao.getUserById(id) // Esto crasheará!
+    }
+}
+
+// ✅ BIEN: Usar corrutinas correctamente
+class GoodRepository {
+    suspend fun getUser(id: Long): User? {
+        return withContext(Dispatchers.IO) {
+            userDao.getUserById(id)
+        }
+    }
+    
+    fun getAllUsers(): Flow&lt;List&lt;User&gt;&gt; {
+        return userDao.getAllActiveUsers() // Flow es thread-safe
+    }
+}</code></pre>
+        </div>
+
+        <h3>2. Optimización de Queries</h3>
+        <div class="code-block">
+          <pre><code>// Crear índices para queries frecuentes
+@Entity(
+    tableName = "users",
+    indices = [
+        Index(value = ["email"], unique = true),
+        Index(value = ["user_name"]),
+        Index(value = ["created_at"])
+    ]
+)
+data class User(...)
+
+// Usar paginación para datasets grandes
+@Query("SELECT * FROM posts ORDER BY created_at DESC LIMIT :limit OFFSET :offset")
+suspend fun getPostsPaginated(limit: Int, offset: Int): List&lt;Post&gt;</code></pre>
+        </div>
+
+        <h3>3. Inyección de Dependencias con Hilt</h3>
+        <div class="code-block">
+          <pre><code>// DatabaseModule.kt - Configuración con Hilt
+@Module
+@InstallIn(SingletonComponent::class)
+object DatabaseModule {
+    
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
+        return Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "app_database"
+        ).addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+         .build()
+    }
+    
+    @Provides
+    fun provideUserDao(database: AppDatabase): UserDao = database.userDao()
+}</code></pre>
+        </div>
+
+        <h2>🎯 Conclusión</h2>
+        <p>Room Database representa la evolución natural de la persistencia en Android, combinando la <strong>potencia de SQLite</strong> con la <strong>simplicidad de uso</strong> que los desarrolladores modernos necesitan. Al adoptar Room en tus proyectos:</p>
+
+        <ul>
+          <li>🛡️ <strong>Reduces errores:</strong> Validación en tiempo de compilación</li>
+          <li>⚡ <strong>Aumentas productividad:</strong> Menos boilerplate, más funcionalidad</li>
+          <li>🔄 <strong>Mejoras mantenibilidad:</strong> Migraciones automáticas y versionado</li>
+          <li>🧪 <strong>Facilitas testing:</strong> Base de datos en memoria y mocking sencillo</li>
+          <li>🚀 <strong>Escalas eficientemente:</strong> Optimizaciones automáticas y threading inteligente</li>
+        </ul>
+
+        <p>La clave está en empezar simple y ir incorporando características avanzadas gradualmente. Comienza con entidades básicas, luego añade relaciones, migraciones y optimizaciones según las necesidades de tu aplicación.</p>
+
+        <p>Recuerda: <em>Room no es solo una abstracción sobre SQLite, es una herramienta de arquitectura que mejora la calidad y mantenibilidad de tu código</em>. 🎯</p>
+
+        <div class="next-steps-box">
+          <h3>🚀 Próximos pasos recomendados</h3>
+          <ol>
+            <li>Migra tus proyectos existentes de SQLite a Room</li>
+            <li>Implementa el patrón Repository con Room y corrutinas</li>
+            <li>Añade TypeConverters para tus tipos de datos complejos</li>
+            <li>Configura migraciones para cambios de esquema futuros</li>
+            <li>Escribe tests unitarios para tus DAOs</li>
+            <li>Optimiza queries con índices y paginación</li>
+            <li>Integra con Hilt para inyección de dependencias</li>
+          </ol>
+        </div>
+
+        <div class="article-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Room Database</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">Persistence</span>
+            <span class="tag">Coroutines</span>
+            <span class="tag">Architecture</span>
+            <span class="tag">Testing</span>
+          </div>
+          <div class="share-buttons">
+            <a href="#" class="share-btn">Compartir en Twitter</a>
+            <a href="#" class="share-btn">Compartir en LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
