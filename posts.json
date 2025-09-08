@@ -1,5 +1,14 @@
 [
   {
+    "title": "Automatización de Versionado con GitHub Actions: La Revolución del Desarrollador Android",
+    "date": "2025-12-10",
+    "summary": "Descubre cómo automatizar completamente el versionado de tu app Android con GitHub Actions: desde commits hasta Google Play Store, sin intervención manual.",
+    "url": "blog/blog-automated-versioning.html",
+    "category": "DevOps Mobile",
+    "image": "images/placeholder-article-automated-versioning.svg",
+    "tags": ["Android", "GitHub Actions", "CI/CD", "Automatización", "Versionado", "DevOps", "Semantic Versioning", "Google Play Store"]
+  },
+  {
     "title": "Arquitectura MVVM en Android: Guía Completa desde Cero",
     "date": "2025-10-01",
     "summary": "Domina el patrón Model-View-ViewModel desde los conceptos básicos hasta implementaciones avanzadas con ejemplos prácticos de un juego de Buscaminas para Android.",
