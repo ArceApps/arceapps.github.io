@@ -9,6 +9,51 @@
     "tags": ["Android", "GitHub Actions", "CI/CD", "Automatización", "Versionado", "DevOps", "Semantic Versioning", "Google Play Store"]
   },
   {
+    "title": "Capa ViewModel en MVVM Android: El Puente Inteligente Entre UI y Lógica",
+    "date": "2025-07-25",
+    "summary": "Domina la capa ViewModel en PuzzleQuest: gestión de estado, comunicación reactiva, manejo del lifecycle y patterns avanzados para crear ViewModels robustos y escalables.",
+    "url": "blog/blog-mvvm-viewmodel.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-viewmodel.svg",
+    "tags": ["Android", "Kotlin", "MVVM", "ViewModel", "StateFlow", "Coroutines", "State Management", "Testing"]
+  },
+  {
+    "title": "Capa View en MVVM Android: UI Reactiva y Declarativa",
+    "date": "2025-07-20",
+    "summary": "Construye interfaces dinámicas para PuzzleQuest con Jetpack Compose y View Binding, implementando observación reactiva del ViewModel y UX fluida para el juego de puzzles.",
+    "url": "blog/blog-mvvm-view.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-view-layer.svg",
+    "tags": ["Android", "Kotlin", "MVVM", "View Layer", "Jetpack Compose", "UI", "Navigation", "Animations"]
+  },
+  {
+    "title": "Capa Model en MVVM Android: Fundamentos de una Arquitectura Sólida",
+    "date": "2025-07-15",
+    "summary": "Descubre cómo construir la capa Model perfecta para PuzzleQuest, integrando modelos de dominio, repositorios y use cases en una arquitectura limpia y escalable.",
+    "url": "blog/blog-mvvm-model.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-model-layer.svg",
+    "tags": ["Android", "Kotlin", "MVVM", "Model Layer", "Domain Models", "Clean Architecture", "Repository Pattern", "Domain Services"]
+  },
+  {
+    "title": "Use Cases en Android: Lógica de Negocio Limpia y Reutilizable",
+    "date": "2025-07-10",
+    "summary": "Aprende a implementar Use Cases (Interactors) en tu app de puzzles para encapsular la lógica de negocio, mantener ViewModels ligeros y crear código altamente testeable.",
+    "url": "blog/blog-use-cases.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-use-cases.svg",
+    "tags": ["Android", "Kotlin", "Use Cases", "Clean Architecture", "MVVM", "Business Logic", "Testing", "Domain Layer"]
+  },
+  {
+    "title": "Patrón Repository en Android: La Base de una Arquitectura Sólida",
+    "date": "2025-07-05",
+    "summary": "Descubre cómo el patrón Repository transforma el manejo de datos en tu app de puzzles, creando una capa de abstracción que hace tu código más limpio, testeable y mantenible.",
+    "url": "blog/blog-repository-pattern.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-repository.svg",
+    "tags": ["Android", "Kotlin", "Repository Pattern", "Clean Architecture", "MVVM", "Room", "Retrofit", "Caching"]
+  },
+  {
     "title": "Arquitectura MVVM en Android: Guía Completa desde Cero",
     "date": "2025-10-01",
     "summary": "Domina el patrón Model-View-ViewModel desde los conceptos básicos hasta implementaciones avanzadas con ejemplos prácticos de un juego de Buscaminas para Android.",
