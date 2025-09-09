@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecyclerView Advanced - ArceApps Portfolio</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="../index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="../portfolio.html" class="nav-link active">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../blog.html" class="nav-link">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="project-detail">
+    <div class="container">
+      <header class="project-header">
+        <div class="project-meta">
+          <span class="project-category">Android UI</span>
+          <span class="project-status">Completado</span>
+        </div>
+        <h1>RecyclerView Advanced</h1>
+        <p class="project-subtitle">Implementación avanzada de RecyclerView con múltiples ViewTypes, animaciones fluidas y optimizaciones de rendimiento</p>
+        
+        <div class="project-hero-image">
+          <img src="https://user-images.githubusercontent.com/61239577/194725823-1e5215c3-ab5f-4604-a46c-780ae211a798.png" alt="RecyclerView Advanced Demo" />
+        </div>
+
+        <div class="project-links">
+          <a href="https://github.com/ArceApps/RecyclerView" class="btn btn-primary" target="_blank">Ver en GitHub</a>
+          <a href="https://developer.android.com/guide/topics/ui/layout/recyclerview" class="btn btn-outline" target="_blank">Documentación Android</a>
+        </div>
+      </header>
+
+      <div class="project-content">
+        <div class="project-overview">
+          <h2>Descripción del Proyecto</h2>
+          <p>Este proyecto demuestra una implementación avanzada de RecyclerView con características modernas como múltiples tipos de vista, animaciones fluidas, ViewBinding, y optimizaciones de rendimiento. Es un ejemplo completo de las mejores prácticas para listas complejas en Android.</p>
+          
+          <p>La implementación incluye CardView personalizado, animaciones de elementos, gestión eficiente de memoria y patrones de diseño que facilitan el mantenimiento y la escalabilidad del código.</p>
+        </div>
+
+        <div class="screenshots-section">
+          <h2>Capturas de Pantalla</h2>
+          <div class="screenshots-grid">
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/194725823-1e5215c3-ab5f-4604-a46c-780ae211a798.png" alt="Lista principal" />
+              <p>Vista principal con CardView</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/194725825-88ffb4a1-dfe4-483c-ba3a-29fa51e72ac6.png" alt="Vista detalle" />
+              <p>Vista de detalle expandida</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/194726347-330ce0dc-cc42-40b3-a4da-d70b25067992.png" alt="Lista compacta" />
+              <p>Vista de lista compacta</p>
+            </div>
+          </div>
+          
+          <div class="animations-section">
+            <h3>Animaciones</h3>
+            <div class="animations-grid">
+              <div class="animation-item">
+                <img src="https://user-images.githubusercontent.com/61239577/194726483-3876bd85-23a5-4fe2-87d7-edefa19e4f28.gif" alt="Animación de entrada" />
+                <p>Animación de entrada de elementos</p>
+              </div>
+              <div class="animation-item">
+                <img src="https://user-images.githubusercontent.com/61239577/194726485-e4f3a1a7-8e04-440e-ba0f-3606e4bdd19f.gif" alt="Transición de vista" />
+                <p>Transición entre tipos de vista</p>
+              </div>
+              <div class="animation-item">
+                <img src="https://user-images.githubusercontent.com/61239577/194726486-4e02b4b1-8926-40bf-b3cc-87567d385c0f.gif" alt="Interacciones" />
+                <p>Animaciones de interacción</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <h3>Tecnologías Utilizadas</h3>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <div class="tech-icon">🔄</div>
+              <div>
+                <h4>RecyclerView</h4>
+                <p>Componente principal para listas</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🎴</div>
+              <div>
+                <h4>CardView</h4>
+                <p>Tarjetas con Material Design</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🔗</div>
+              <div>
+                <h4>ViewBinding</h4>
+                <p>Binding seguro de vistas</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🎨</div>
+              <div>
+                <h4>Item Animations</h4>
+                <p>Animaciones personalizadas</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">📊</div>
+              <div>
+                <h4>DataClass</h4>
+                <p>Modelos de datos Kotlin</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">⚡</div>
+              <div>
+                <h4>Kotlin</h4>
+                <p>Lenguaje moderno</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-section">
+          <h2>Características Principales</h2>
+          
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🔄</div>
+              <h3>Múltiples ViewTypes</h3>
+              <p>Soporte para diferentes tipos de elementos en la misma lista con layouts personalizados.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🎭</div>
+              <h3>Animaciones Fluidas</h3>
+              <p>Animaciones personalizadas para inserción, eliminación y cambios de elementos.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Alto Rendimiento</h3>
+              <p>Optimizaciones de memoria y rendering para listas con miles de elementos.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🎨</div>
+              <h3>CardView Personalizado</h3>
+              <p>Tarjetas con elevación, esquinas redondeadas y sombras Material Design.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔗</div>
+              <h3>ViewBinding Seguro</h3>
+              <p>Binding automático de vistas sin riesgo de NullPointerException.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📱</div>
+              <h3>Responsive Design</h3>
+              <p>Adaptación automática a diferentes tamaños de pantalla y orientaciones.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-section">
+          <h2>Implementación Técnica</h2>
+          
+          <h3>Adapter con ViewBinding</h3>
+          <div class="code-block">
+            <pre><code>class AdvancedRecyclerAdapter(
+    private var items: List&lt;ListItem&gt;
+) : RecyclerView.Adapter&lt;RecyclerView.ViewHolder&gt;() {
+
+    companion object {
+        private const val TYPE_HEADER = 0
+        private const val TYPE_CONTENT = 1
+        private const val TYPE_FOOTER = 2
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (items[position]) {
+            is HeaderItem -&gt; TYPE_HEADER
+            is ContentItem -&gt; TYPE_CONTENT
+            is FooterItem -&gt; TYPE_FOOTER
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        return when (viewType) {
+            TYPE_HEADER -&gt; HeaderViewHolder(
+                ItemHeaderBinding.inflate(inflater, parent, false)
+            )
+            TYPE_CONTENT -&gt; ContentViewHolder(
+                ItemContentBinding.inflate(inflater, parent, false)
+            )
+            TYPE_FOOTER -&gt; FooterViewHolder(
+                ItemFooterBinding.inflate(inflater, parent, false)
+            )
+            else -&gt; throw IllegalArgumentException("Invalid view type")
+        }
+    }
+}</code></pre>
+          </div>
+
+          <h3>ViewHolder con Animaciones</h3>
+          <div class="code-block">
+            <pre><code>class ContentViewHolder(
+    private val binding: ItemContentBinding
+) : RecyclerView.ViewHolder(binding.root) {
+
+    fun bind(item: ContentItem) {
+        binding.apply {
+            textTitle.text = item.title
+            textDescription.text = item.description
+            imageIcon.setImageResource(item.iconRes)
+            
+            // Configurar click listener
+            root.setOnClickListener {
+                animateClick {
+                    item.onClickListener?.invoke()
+                }
+            }
+            
+            // Configurar CardView
+            cardView.apply {
+                radius = 16f
+                cardElevation = 8f
+                setCardBackgroundColor(
+                    ContextCompat.getColor(context, item.backgroundColor)
+                )
+            }
+        }
+    }
+    
+    private fun animateClick(action: () -&gt; Unit) {
+        val scaleX = PropertyValuesHolder.ofFloat(View.SCALE_X, 1f, 0.95f, 1f)
+        val scaleY = PropertyValuesHolder.ofFloat(View.SCALE_Y, 1f, 0.95f, 1f)
+        
+        ValueAnimator.ofPropertyValuesHolder(scaleX, scaleY).apply {
+            duration = 150
+            interpolator = AccelerateDecelerateInterpolator()
+            addUpdateListener { animator -&gt;
+                binding.root.scaleX = animator.getAnimatedValue("scaleX") as Float
+                binding.root.scaleY = animator.getAnimatedValue("scaleY") as Float
+            }
+            addListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    action()
+                }
+            })
+            start()
+        }
+    }
+}</code></pre>
+          </div>
+
+          <h3>Data Classes</h3>
+          <div class="code-block">
+            <pre><code>sealed class ListItem
+
+data class HeaderItem(
+    val title: String,
+    val subtitle: String? = null
+) : ListItem()
+
+data class ContentItem(
+    val id: String,
+    val title: String,
+    val description: String,
+    val iconRes: Int,
+    val backgroundColor: Int = R.color.surface,
+    val onClickListener: (() -&gt; Unit)? = null
+) : ListItem()
+
+data class FooterItem(
+    val text: String,
+    val actionText: String? = null,
+    val onActionClick: (() -&gt; Unit)? = null
+) : ListItem()</code></pre>
+          </div>
+        </div>
+
+        <div class="optimizations-section">
+          <h2>Optimizaciones de Rendimiento</h2>
+          <ul>
+            <li><strong>ViewHolder Pattern:</strong> Reutilización eficiente de vistas</li>
+            <li><strong>DiffUtil:</strong> Actualizaciones inteligentes de la lista</li>
+            <li><strong>RecycledViewPool:</strong> Pool compartido para múltiples RecyclerViews</li>
+            <li><strong>Prefetch:</strong> Carga anticipada de elementos fuera de pantalla</li>
+            <li><strong>Image Loading:</strong> Carga lazy de imágenes con caché</li>
+            <li><strong>Memory Management:</strong> Gestión cuidadosa de referencias</li>
+          </ul>
+        </div>
+
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">RecyclerView</span>
+            <span class="tag">ViewBinding</span>
+            <span class="tag">CardView</span>
+            <span class="tag">Animation</span>
+            <span class="tag">Material Design</span>
+          </div>
+          
+          <div class="project-navigation">
+            <a href="../portfolio.html" class="nav-btn">← Volver al Portfolio</a>
+            <a href="project-newsapi.html" class="nav-btn">Siguiente Proyecto →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/ArceApps" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
