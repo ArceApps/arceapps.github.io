@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capa Model en MVVM Android: Fundamentos de una Arquitectura Sólida - ArceApps Blog</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="../index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="../portfolio.html" class="nav-link">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../blog.html" class="nav-link active">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">15 de julio de 2025</span>
+          <span class="article-category">Desarrollo Android</span>
+        </div>
+        <h1>Capa Model en MVVM Android: Fundamentos de una Arquitectura Sólida</h1>
+        <p class="article-subtitle">Descubre cómo construir la capa Model perfecta para PuzzleQuest, integrando modelos de dominio, repositorios y use cases en una arquitectura limpia y escalable</p>
+        <div class="article-image">
+          <img src="../images/placeholder-article-model-layer.svg" alt="Model Layer MVVM Android" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>🏗️ ¿Qué es la Capa Model en MVVM?</h2>
+        <p>La capa Model es el <strong>corazón de tu aplicación</strong>. En PuzzleQuest, esta capa no solo representa los datos (puzzles, piezas, puntuaciones), sino que también encapsula toda la lógica de negocio, las reglas del juego y la gestión del estado de la aplicación. Es la capa más importante porque define <em>qué hace tu app</em>, independientemente de cómo se muestra al usuario.</p>
+
+        <div class="model-definition">
+          <h3>🎯 Responsabilidades de la Capa Model</h3>
+          <div class="responsibilities-grid">
+            <div class="responsibility-card">
+              <div class="responsibility-icon">📊</div>
+              <h4>Modelos de Dominio</h4>
+              <p>Define las entidades core del negocio</p>
+            </div>
+            <div class="responsibility-card">
+              <div class="responsibility-icon">🏪</div>
+              <h4>Repositorios</h4>
+              <p>Abstrae el acceso a fuentes de datos</p>
+            </div>
+            <div class="responsibility-card">
+              <div class="responsibility-icon">⚙️</div>
+              <h4>Use Cases</h4>
+              <p>Encapsula lógica de negocio específica</p>
+            </div>
+            <div class="responsibility-card">
+              <div class="responsibility-icon">🔗</div>
+              <h4>Servicios</h4>
+              <p>Proporciona funcionalidades transversales</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>🧩 Arquitectura de la Capa Model en PuzzleQuest</h2>
+        
+        <div class="architecture-diagram">
+          <h3>📊 Estructura de la Capa Model</h3>
+          <div class="model-architecture">
+            <div class="arch-layer">
+              <h4>Domain Layer (Núcleo)</h4>
+              <div class="arch-components">
+                <div class="component">Entities</div>
+                <div class="component">Use Cases</div>
+                <div class="component">Repository Interfaces</div>
+              </div>
+            </div>
+            <div class="arch-separator">⬇️</div>
+            <div class="arch-layer">
+              <h4>Data Layer (Implementación)</h4>
+              <div class="arch-components">
+                <div class="component">Repository Impl</div>
+                <div class="component">Data Sources</div>
+                <div class="component">Mappers</div>
+              </div>
+            </div>
+            <div class="arch-separator">⬇️</div>
+            <div class="arch-layer">
+              <h4>Infrastructure Layer</h4>
+              <div class="arch-components">
+                <div class="component">Room DB</div>
+                <div class="component">Retrofit API</div>
+                <div class="component">SharedPrefs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2>🎲 Modelos de Dominio: Las Entidades de PuzzleQuest</h2>
+
+        <p>Los modelos de dominio representan los conceptos fundamentales de nuestro juego de puzzles:</p>
+
+        <h3>1. Modelo Principal: Puzzle</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/model/Puzzle.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">/**
+ * Entidad principal que representa un puzzle en el juego
+ * Esta es la representación "pura" del dominio, sin dependencias de framework
+ */
+data class Puzzle(
+    val id: PuzzleId,
+    val metadata: PuzzleMetadata,
+    val gameConfiguration: GameConfiguration,
+    val progress: PuzzleProgress,
+    val statistics: PuzzleStatistics
+) {
+    /**
+     * Valida si el puzzle está en un estado válido para ser jugado
+     */
+    fun canBeStarted(): Boolean {
+        return metadata.isActive && 
+               gameConfiguration.isValid() && 
+               !progress.isCompleted
+    }
+    
+    /**
+     * Calcula la dificultad efectiva basada en configuración y progreso del usuario
+     */
+    fun getEffectiveDifficulty(userSkillLevel: UserSkillLevel): DifficultyLevel {
+        val baseDifficulty = gameConfiguration.difficulty
+        val adjustment = userSkillLevel.calculateAdjustment(statistics.averageCompletionTime)
+        return baseDifficulty.adjustBy(adjustment)
+    }
+    
+    /**
+     * Verifica si el puzzle puede ser continuado desde donde se dejó
+     */
+    fun canBeContinued(): Boolean {
+        return progress.isInProgress && 
+               !progress.isAbandoned &&
+               progress.lastPlayedAt.isRecent()
+    }
+}
+
+// Value Objects para mayor expresividad del dominio
+
+@JvmInline
+value class PuzzleId(val value: String) {
+    init {
+        require(value.isNotBlank()) { "PuzzleId cannot be blank" }
+        require(value.matches(Regex("^[a-zA-Z0-9_-]+$"))) { 
+            "PuzzleId must contain only alphanumeric characters, hyphens and underscores" 
+        }
+    }
+}
+
+data class PuzzleMetadata(
+    val title: String,
+    val description: String,
+    val imageUrl: String,
+    val category: PuzzleCategory,
+    val isActive: Boolean = true,
+    val createdAt: Instant,
+    val updatedAt: Instant
+) {
+    fun withUpdatedTimestamp(): PuzzleMetadata {
+        return copy(updatedAt = Instant.now())
+    }
+}
+
+data class GameConfiguration(
+    val gridSize: GridSize,
+    val difficulty: DifficultyLevel,
+    val allowHints: Boolean = true,
+    val maxHints: Int = 3,
+    val timeLimit: Duration? = null,
+    val shuffleStrategy: ShuffleStrategy = ShuffleStrategy.RANDOM
+) {
+    fun isValid(): Boolean {
+        return gridSize.isSupported() && 
+               maxHints >= 0 && 
+               (timeLimit == null || timeLimit.isPositive)
+    }
+    
+    fun getTotalPieces(): Int = gridSize.totalPieces
+}
+
+data class PuzzleProgress(
+    val isStarted: Boolean = false,
+    val isCompleted: Boolean = false,
+    val isAbandoned: Boolean = false,
+    val currentMoves: Int = 0,
+    val hintsUsed: Int = 0,
+    val startedAt: Instant? = null,
+    val completedAt: Instant? = null,
+    val lastPlayedAt: Instant? = null,
+    val completionTimeMs: Long? = null
+) {
+    val isInProgress: Boolean
+        get() = isStarted && !isCompleted && !isAbandoned
+    
+    val progressPercentage: Float
+        get() = if (!isStarted) 0f else if (isCompleted) 100f else currentMoves / 100f * 60f // Estimación
+    
+    fun markAsStarted(): PuzzleProgress {
+        val now = Instant.now()
+        return copy(
+            isStarted = true,
+            startedAt = now,
+            lastPlayedAt = now
+        )
+    }
+    
+    fun markAsCompleted(completionTime: Long): PuzzleProgress {
+        val now = Instant.now()
+        return copy(
+            isCompleted = true,
+            completedAt = now,
+            lastPlayedAt = now,
+            completionTimeMs = completionTime
+        )
+    }
+}
+
+data class PuzzleStatistics(
+    val timesPlayed: Int = 0,
+    val timesCompleted: Int = 0,
+    val averageCompletionTime: Duration? = null,
+    val bestCompletionTime: Duration? = null,
+    val averageMoves: Float = 0f,
+    val rating: PuzzleRating = PuzzleRating.UNRATED
+) {
+    val completionRate: Float
+        get() = if (timesPlayed == 0) 0f else timesCompleted.toFloat() / timesPlayed
+    
+    fun addCompletionRecord(completionTime: Duration, moves: Int): PuzzleStatistics {
+        val newAverageTime = if (averageCompletionTime == null) {
+            completionTime
+        } else {
+            Duration.ofMillis(
+                (averageCompletionTime.toMillis() * timesCompleted + completionTime.toMillis()) / (timesCompleted + 1)
+            )
+        }
+        
+        val newBestTime = if (bestCompletionTime == null || completionTime < bestCompletionTime) {
+            completionTime
+        } else {
+            bestCompletionTime
+        }
+        
+        val newAverageMoves = (averageMoves * timesCompleted + moves) / (timesCompleted + 1)
+        
+        return copy(
+            timesPlayed = timesPlayed + 1,
+            timesCompleted = timesCompleted + 1,
+            averageCompletionTime = newAverageTime,
+            bestCompletionTime = newBestTime,
+            averageMoves = newAverageMoves
+        )
+    }
+}</code></pre>
+        </div>
+
+        <h3>2. Modelo de Piezas del Puzzle</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/model/PuzzlePiece.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">/**
+ * Representa una pieza individual del puzzle
+ */
+data class PuzzlePiece(
+    val id: PieceId,
+    val puzzleId: PuzzleId,
+    val position: Position,
+    val currentPosition: Position,
+    val visualData: PieceVisualData,
+    val state: PieceState = PieceState.NORMAL
+) {
+    /**
+     * Verifica si la pieza está en su posición correcta
+     */
+    fun isInCorrectPosition(): Boolean = position == currentPosition
+    
+    /**
+     * Calcula la distancia Manhattan desde la posición correcta
+     */
+    fun distanceFromCorrectPosition(): Int {
+        return position.manhattanDistanceTo(currentPosition)
+    }
+    
+    /**
+     * Verifica si esta pieza puede moverse a la posición dada
+     */
+    fun canMoveTo(targetPosition: Position, gridSize: GridSize): Boolean {
+        return targetPosition.isValid(gridSize) && 
+               currentPosition.isAdjacentTo(targetPosition)
+    }
+    
+    /**
+     * Crea una nueva instancia de la pieza en una nueva posición
+     */
+    fun movedTo(newPosition: Position): PuzzlePiece {
+        return copy(currentPosition = newPosition)
+    }
+}
+
+@JvmInline
+value class PieceId(val value: String)
+
+/**
+ * Representa una posición en el grid del puzzle
+ */
+data class Position(val row: Int, val column: Int) {
+    fun isValid(gridSize: GridSize): Boolean {
+        return row in 0 until gridSize.rows && 
+               column in 0 until gridSize.columns
+    }
+    
+    fun isAdjacentTo(other: Position): Boolean {
+        val rowDiff = kotlin.math.abs(row - other.row)
+        val colDiff = kotlin.math.abs(column - other.column)
+        return (rowDiff == 1 && colDiff == 0) || (rowDiff == 0 && colDiff == 1)
+    }
+    
+    fun manhattanDistanceTo(other: Position): Int {
+        return kotlin.math.abs(row - other.row) + kotlin.math.abs(column - other.column)
+    }
+    
+    companion object {
+        val EMPTY = Position(-1, -1)
+    }
+}
+
+data class PieceVisualData(
+    val imageUrl: String,
+    val imageSectionBounds: ImageBounds,
+    val thumbnailUrl: String? = null
+)
+
+data class ImageBounds(
+    val x: Int,
+    val y: Int,
+    val width: Int,
+    val height: Int
+)
+
+enum class PieceState {
+    NORMAL,
+    HIGHLIGHTED,
+    SELECTED,
+    LOCKED,
+    ANIMATED
+}</code></pre>
+        </div>
+
+        <h3>3. Enums y Value Objects del Dominio</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/model/GameTypes.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">/**
+ * Tamaño del grid del puzzle
+ */
+enum class GridSize(val rows: Int, val columns: Int) {
+    SMALL_3X3(3, 3),
+    MEDIUM_4X4(4, 4),
+    LARGE_5X5(5, 5),
+    EXPERT_6X6(6, 6);
+    
+    val totalPieces: Int get() = rows * columns
+    val emptySpaces: Int get() = 1 // Para sliding puzzles
+    val playablePieces: Int get() = totalPieces - emptySpaces
+    
+    fun isSupported(): Boolean = this in supportedSizes
+    
+    companion object {
+        val supportedSizes = listOf(SMALL_3X3, MEDIUM_4X4, LARGE_5X5)
+        
+        fun fromDimensions(rows: Int, columns: Int): GridSize? {
+            return values().find { it.rows == rows && it.columns == columns }
+        }
+    }
+}
+
+/**
+ * Nivel de dificultad del puzzle
+ */
+enum class DifficultyLevel(val value: Int, val displayName: String) {
+    BEGINNER(1, "Principiante"),
+    EASY(2, "Fácil"),
+    MEDIUM(3, "Medio"),
+    HARD(4, "Difícil"),
+    EXPERT(5, "Experto");
+    
+    fun adjustBy(adjustment: DifficultyAdjustment): DifficultyLevel {
+        val newValue = (value + adjustment.value).coerceIn(1, 5)
+        return values().find { it.value == newValue } ?: this
+    }
+    
+    fun getTimeMultiplier(): Float = when (this) {
+        BEGINNER -> 2.0f
+        EASY -> 1.5f
+        MEDIUM -> 1.0f
+        HARD -> 0.8f
+        EXPERT -> 0.6f
+    }
+    
+    companion object {
+        fun fromValue(value: Int): DifficultyLevel? {
+            return values().find { it.value == value }
+        }
+    }
+}
+
+data class DifficultyAdjustment(val value: Int) {
+    companion object {
+        val INCREASE_MINOR = DifficultyAdjustment(1)
+        val INCREASE_MAJOR = DifficultyAdjustment(2)
+        val DECREASE_MINOR = DifficultyAdjustment(-1)
+        val DECREASE_MAJOR = DifficultyAdjustment(-2)
+        val NO_CHANGE = DifficultyAdjustment(0)
+    }
+}
+
+/**
+ * Categorías de puzzles
+ */
+enum class PuzzleCategory(val displayName: String) {
+    NATURE("Naturaleza"),
+    ANIMALS("Animales"),
+    LANDSCAPES("Paisajes"),
+    ARCHITECTURE("Arquitectura"),
+    ABSTRACT("Abstracto"),
+    FOOD("Comida"),
+    SPORTS("Deportes"),
+    CUSTOM("Personalizado");
+    
+    companion object {
+        fun fromDisplayName(name: String): PuzzleCategory? {
+            return values().find { it.displayName.equals(name, ignoreCase = true) }
+        }
+    }
+}
+
+/**
+ * Estrategia de mezcla de piezas
+ */
+enum class ShuffleStrategy {
+    RANDOM,
+    GUIDED,
+    MINIMAL_MOVES,
+    DIFFICULTY_BASED
+}
+
+/**
+ * Puntuación/rating del puzzle
+ */
+enum class PuzzleRating(val stars: Int) {
+    UNRATED(0),
+    ONE_STAR(1),
+    TWO_STAR(2),
+    THREE_STAR(3),
+    FOUR_STAR(4),
+    FIVE_STAR(5);
+    
+    companion object {
+        fun fromStars(stars: Int): PuzzleRating {
+            return values().find { it.stars == stars } ?: UNRATED
+        }
+    }
+}
+
+/**
+ * Nivel de habilidad del usuario
+ */
+data class UserSkillLevel(val level: Int, val experience: Int) {
+    fun calculateAdjustment(averageCompletionTime: Duration?): DifficultyAdjustment {
+        return when {
+            level <= 2 -> DifficultyAdjustment.DECREASE_MINOR
+            level >= 8 -> DifficultyAdjustment.INCREASE_MINOR
+            averageCompletionTime != null && averageCompletionTime < Duration.ofMinutes(2) -> {
+                DifficultyAdjustment.INCREASE_MINOR
+            }
+            else -> DifficultyAdjustment.NO_CHANGE
+        }
+    }
+    
+    fun canAccessDifficulty(difficulty: DifficultyLevel): Boolean {
+        return when (difficulty) {
+            DifficultyLevel.BEGINNER, DifficultyLevel.EASY -> true
+            DifficultyLevel.MEDIUM -> level >= 3
+            DifficultyLevel.HARD -> level >= 5
+            DifficultyLevel.EXPERT -> level >= 8
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h2>🎯 Domain Services: Lógica de Negocio Compleja</h2>
+
+        <p>Los Domain Services encapsulan lógica de negocio que no pertenece naturalmente a una entidad específica:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/service/PuzzleGameEngine.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">/**
+ * Service del dominio que encapsula las reglas core del juego de puzzles
+ */
+interface PuzzleGameEngine {
+    /**
+     * Valida si un movimiento es legal según las reglas del juego
+     */
+    fun validateMove(
+        currentState: GameState,
+        move: PuzzleMove
+    ): MoveValidationResult
+    
+    /**
+     * Aplica un movimiento al estado actual del juego
+     */
+    fun applyMove(
+        currentState: GameState,
+        move: PuzzleMove
+    ): GameState
+    
+    /**
+     * Verifica si el puzzle está completo
+     */
+    fun isPuzzleCompleted(gameState: GameState): Boolean
+    
+    /**
+     * Calcula la puntuación basada en el rendimiento del jugador
+     */
+    fun calculateScore(gameState: GameState): GameScore
+    
+    /**
+     * Genera una pista para el jugador
+     */
+    fun generateHint(gameState: GameState): PuzzleHint?
+}
+
+@Singleton
+class SlidingPuzzleGameEngine @Inject constructor(
+    private val moveValidator: MoveValidator,
+    private val scoreCalculator: ScoreCalculator,
+    private val hintGenerator: HintGenerator
+) : PuzzleGameEngine {
+    
+    override fun validateMove(
+        currentState: GameState,
+        move: PuzzleMove
+    ): MoveValidationResult {
+        // 1. Validaciones básicas
+        if (!currentState.isActive) {
+            return MoveValidationResult.invalid("El juego no está activo")
+        }
+        
+        if (currentState.isCompleted) {
+            return MoveValidationResult.invalid("El puzzle ya está completado")
+        }
+        
+        // 2. Validar que la pieza existe
+        val piece = currentState.getPiece(move.pieceId)
+            ?: return MoveValidationResult.invalid("Pieza no encontrada")
+        
+        // 3. Validar que el movimiento es legal (pieza adyacente al espacio vacío)
+        val emptyPosition = currentState.getEmptyPosition()
+        if (!piece.currentPosition.isAdjacentTo(emptyPosition)) {
+            return MoveValidationResult.invalid("Solo puedes mover piezas adyacentes al espacio vacío")
+        }
+        
+        // 4. Validar límites del grid
+        if (!move.targetPosition.isValid(currentState.gridSize)) {
+            return MoveValidationResult.invalid("Posición fuera de los límites")
+        }
+        
+        return MoveValidationResult.valid()
+    }
+    
+    override fun applyMove(
+        currentState: GameState,
+        move: PuzzleMove
+    ): GameState {
+        val validation = validateMove(currentState, move)
+        if (!validation.isValid) {
+            throw IllegalArgumentException("Movimiento inválido: ${validation.reason}")
+        }
+        
+        // Intercambiar posiciones: pieza va al espacio vacío
+        val updatedPieces = currentState.pieces.map { piece ->
+            when {
+                piece.id == move.pieceId -> piece.movedTo(move.targetPosition)
+                piece.currentPosition == move.targetPosition -> piece.movedTo(piece.currentPosition)
+                else -> piece
+            }
+        }
+        
+        val newMoveCount = currentState.moveCount + 1
+        val newElapsedTime = System.currentTimeMillis() - currentState.startTime
+        
+        return currentState.copy(
+            pieces = updatedPieces,
+            moveCount = newMoveCount,
+            elapsedTimeMs = newElapsedTime,
+            lastMoveAt = Instant.now()
+        )
+    }
+    
+    override fun isPuzzleCompleted(gameState: GameState): Boolean {
+        return gameState.pieces.all { piece -> 
+            piece.isInCorrectPosition() 
+        }
+    }
+    
+    override fun calculateScore(gameState: GameState): GameScore {
+        if (!isPuzzleCompleted(gameState)) {
+            return GameScore.incomplete()
+        }
+        
+        return scoreCalculator.calculate(
+            moveCount = gameState.moveCount,
+            elapsedTime = Duration.ofMillis(gameState.elapsedTimeMs),
+            hintsUsed = gameState.hintsUsed,
+            difficulty = gameState.difficulty
+        )
+    }
+    
+    override fun generateHint(gameState: GameState): PuzzleHint? {
+        if (gameState.hintsUsed >= gameState.maxHints) {
+            return null
+        }
+        
+        return hintGenerator.generateOptimalMoveHint(gameState)
+    }
+}
+
+/**
+ * Estado completo del juego en un momento dado
+ */
+data class GameState(
+    val puzzleId: PuzzleId,
+    val pieces: List&lt;PuzzlePiece&gt;,
+    val gridSize: GridSize,
+    val difficulty: DifficultyLevel,
+    val startTime: Long,
+    val moveCount: Int = 0,
+    val hintsUsed: Int = 0,
+    val maxHints: Int = 3,
+    val elapsedTimeMs: Long = 0,
+    val lastMoveAt: Instant? = null,
+    val status: GameStatus = GameStatus.ACTIVE
+) {
+    val isActive: Boolean get() = status == GameStatus.ACTIVE
+    val isCompleted: Boolean get() = status == GameStatus.COMPLETED
+    val isPaused: Boolean get() = status == GameStatus.PAUSED
+    
+    fun getPiece(pieceId: PieceId): PuzzlePiece? {
+        return pieces.find { it.id == pieceId }
+    }
+    
+    fun getEmptyPosition(): Position {
+        val occupiedPositions = pieces.map { it.currentPosition }.toSet()
+        for (row in 0 until gridSize.rows) {
+            for (col in 0 until gridSize.columns) {
+                val position = Position(row, col)
+                if (position !in occupiedPositions) {
+                    return position
+                }
+            }
+        }
+        throw IllegalStateException("No empty position found in puzzle")
+    }
+    
+    fun markAsCompleted(): GameState {
+        return copy(
+            status = GameStatus.COMPLETED,
+            elapsedTimeMs = System.currentTimeMillis() - startTime
+        )
+    }
+}
+
+data class PuzzleMove(
+    val pieceId: PieceId,
+    val targetPosition: Position,
+    val timestamp: Instant = Instant.now()
+)
+
+enum class GameStatus {
+    ACTIVE, PAUSED, COMPLETED, ABANDONED
+}
+
+data class MoveValidationResult(
+    val isValid: Boolean,
+    val reason: String = ""
+) {
+    companion object {
+        fun valid() = MoveValidationResult(true)
+        fun invalid(reason: String) = MoveValidationResult(false, reason)
+    }
+}
+
+/**
+ * Resultado de puntuación del juego
+ */
+data class GameScore(
+    val totalPoints: Int,
+    val breakdown: ScoreBreakdown,
+    val achievedRating: PuzzleRating,
+    val bonuses: List&lt;ScoreBonus&gt; = emptyList()
+) {
+    companion object {
+        fun incomplete() = GameScore(
+            totalPoints = 0,
+            breakdown = ScoreBreakdown.empty(),
+            achievedRating = PuzzleRating.UNRATED
+        )
+    }
+}
+
+data class ScoreBreakdown(
+    val basePoints: Int,
+    val timeBonus: Int,
+    val moveBonus: Int,
+    val difficultyMultiplier: Float,
+    val hintPenalty: Int
+) {
+    companion object {
+        fun empty() = ScoreBreakdown(0, 0, 0, 1.0f, 0)
+    }
+}
+
+data class ScoreBonus(
+    val type: BonusType,
+    val points: Int,
+    val description: String
+)
+
+enum class BonusType {
+    PERFECT_COMPLETION,
+    SPEED_MASTER,
+    NO_HINTS_USED,
+    STREAK_BONUS
+}</code></pre>
+        </div>
+
+        <h2>🏪 Repository Pattern en la Capa Model</h2>
+
+        <p>Los repositories definen contratos que la capa de datos debe implementar:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/repository/PuzzleRepository.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">/**
+ * Repository del dominio - define el contrato para gestión de puzzles
+ * No tiene dependencias de implementación específica (Room, Retrofit, etc.)
+ */
+interface PuzzleRepository {
+    
+    // ========== Queries ==========
+    
+    /**
+     * Obtiene todos los puzzles disponibles
+     */
+    fun getAllPuzzles(): Flow&lt;List&lt;Puzzle&gt;&gt;
+    
+    /**
+     * Obtiene un puzzle específico por ID
+     */
+    suspend fun getPuzzleById(id: PuzzleId): Puzzle?
+    
+    /**
+     * Busca puzzles según criterios específicos
+     */
+    fun searchPuzzles(criteria: PuzzleSearchCriteria): Flow&lt;List&lt;Puzzle&gt;&gt;
+    
+    /**
+     * Obtiene puzzles por categoría
+     */
+    fun getPuzzlesByCategory(category: PuzzleCategory): Flow&lt;List&lt;Puzzle&gt;&gt;
+    
+    /**
+     * Obtiene puzzles completados por el usuario
+     */
+    fun getCompletedPuzzles(): Flow&lt;List&lt;Puzzle&gt;&gt;
+    
+    /**
+     * Obtiene puzzles en progreso
+     */
+    fun getPuzzlesInProgress(): Flow&lt;List&lt;Puzzle&gt;&gt;
+    
+    // ========== Commands ==========
+    
+    /**
+     * Guarda o actualiza un puzzle
+     */
+    suspend fun savePuzzle(puzzle: Puzzle): Result&lt;Unit&gt;
+    
+    /**
+     * Actualiza el progreso de un puzzle
+     */
+    suspend fun updatePuzzleProgress(
+        puzzleId: PuzzleId, 
+        progress: PuzzleProgress
+    ): Result&lt;Unit&gt;
+    
+    /**
+     * Marca un puzzle como completado
+     */
+    suspend fun markPuzzleCompleted(
+        puzzleId: PuzzleId,
+        completionData: PuzzleCompletionData
+    ): Result&lt;Unit&gt;
+    
+    /**
+     * Elimina un puzzle
+     */
+    suspend fun deletePuzzle(puzzleId: PuzzleId): Result&lt;Unit&gt;
+    
+    // ========== Synchronization ==========
+    
+    /**
+     * Sincroniza puzzles con el servidor
+     */
+    suspend fun syncPuzzles(): Result&lt;SyncResult&gt;
+    
+    /**
+     * Sincroniza progreso del usuario con el servidor
+     */
+    suspend fun syncUserProgress(): Result&lt;SyncResult&gt;
+    
+    // ========== Analytics ==========
+    
+    /**
+     * Obtiene estadísticas agregadas de puzzles
+     */
+    suspend fun getPuzzleAnalytics(): PuzzleAnalytics
+}
+
+/**
+ * Criterios de búsqueda para puzzles
+ */
+data class PuzzleSearchCriteria(
+    val query: String? = null,
+    val categories: List&lt;PuzzleCategory&gt; = emptyList(),
+    val difficulties: List&lt;DifficultyLevel&gt; = emptyList(),
+    val gridSizes: List&lt;GridSize&gt; = emptyList(),
+    val completionStatus: CompletionStatus? = null,
+    val sortBy: PuzzleSortBy = PuzzleSortBy.CREATED_DATE,
+    val sortOrder: SortOrder = SortOrder.DESCENDING,
+    val limit: Int? = null
+)
+
+enum class CompletionStatus {
+    COMPLETED, IN_PROGRESS, NOT_STARTED
+}
+
+enum class PuzzleSortBy {
+    CREATED_DATE, TITLE, DIFFICULTY, COMPLETION_TIME, RATING
+}
+
+enum class SortOrder {
+    ASCENDING, DESCENDING
+}
+
+/**
+ * Datos de finalización de un puzzle
+ */
+data class PuzzleCompletionData(
+    val completionTimeMs: Long,
+    val moveCount: Int,
+    val hintsUsed: Int,
+    val score: GameScore,
+    val timestamp: Instant = Instant.now()
+)
+
+/**
+ * Resultado de operaciones de sincronización
+ */
+data class SyncResult(
+    val isSuccess: Boolean,
+    val itemsSynced: Int,
+    val errors: List&lt;SyncError&gt; = emptyList(),
+    val timestamp: Instant = Instant.now()
+)
+
+data class SyncError(
+    val itemId: String,
+    val error: String,
+    val isRetryable: Boolean
+)
+
+/**
+ * Estadísticas agregadas de puzzles
+ */
+data class PuzzleAnalytics(
+    val totalPuzzles: Int,
+    val completedPuzzles: Int,
+    val averageCompletionTime: Duration,
+    val mostPlayedCategory: PuzzleCategory,
+    val preferredDifficulty: DifficultyLevel,
+    val completionRateByDifficulty: Map&lt;DifficultyLevel, Float&gt;,
+    val playTimeDistribution: Map&lt;Duration, Int&gt;
+)</code></pre>
+        </div>
+
+        <h2>🔄 Use Cases: Orquestando la Lógica de Negocio</h2>
+
+        <p>Los Use Cases coordinan between repositories y domain services:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/usecase/CompleteInteractivePuzzleUseCase.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">/**
+ * Use Case complejo que orquesta múltiples operaciones para completar un puzzle
+ */
+@Singleton
+class CompletePuzzleUseCase @Inject constructor(
+    private val puzzleRepository: PuzzleRepository,
+    private val gameSessionRepository: GameSessionRepository,
+    private val userStatsRepository: UserStatsRepository,
+    private val achievementService: AchievementService,
+    private val leaderboardService: LeaderboardService,
+    private val puzzleGameEngine: PuzzleGameEngine,
+    private val analyticsTracker: AnalyticsTracker,
+    private val notificationService: NotificationService
+) : UseCase&lt;CompletePuzzleUseCase.Params, PuzzleCompletionResult&gt;() {
+    
+    override suspend operator fun invoke(params: Params): Result&lt;PuzzleCompletionResult&gt; {
+        return try {
+            // 1. Validar que el puzzle existe y está en progreso
+            val puzzle = puzzleRepository.getPuzzleById(params.puzzleId)
+                ?: return Result.failure(PuzzleNotFoundException(params.puzzleId))
+                
+            if (!puzzle.progress.isInProgress) {
+                return Result.failure(InvalidPuzzleStateException("Puzzle no está en progreso"))
+            }
+            
+            // 2. Calcular puntuación usando el game engine
+            val gameScore = puzzleGameEngine.calculateScore(params.finalGameState)
+            
+            // 3. Crear datos de finalización
+            val completionData = PuzzleCompletionData(
+                completionTimeMs = params.finalGameState.elapsedTimeMs,
+                moveCount = params.finalGameState.moveCount,
+                hintsUsed = params.finalGameState.hintsUsed,
+                score = gameScore
+            )
+            
+            // 4. Actualizar puzzle en repository
+            val updatedProgress = puzzle.progress.markAsCompleted(completionData.completionTimeMs)
+            puzzleRepository.updatePuzzleProgress(params.puzzleId, updatedProgress)
+                .getOrThrow()
+            
+            // 5. Actualizar estadísticas del usuario
+            val userStats = userStatsRepository.getUserStats()
+            val updatedStats = userStats.addPuzzleCompletion(
+                puzzle = puzzle,
+                completionData = completionData
+            )
+            userStatsRepository.updateUserStats(updatedStats)
+            
+            // 6. Verificar y otorgar logros
+            val newAchievements = achievementService.checkAchievements(
+                puzzle = puzzle,
+                completionData = completionData,
+                userStats = updatedStats
+            )
+            
+            // 7. Actualizar leaderboard si corresponde
+            val leaderboardUpdate = if (gameScore.achievedRating >= PuzzleRating.FOUR_STAR) {
+                leaderboardService.submitScore(
+                    puzzleId = params.puzzleId,
+                    score = gameScore,
+                    completionData = completionData
+                )
+            } else null
+            
+            // 8. Tracking de analytics
+            analyticsTracker.track("puzzle_completed", mapOf(
+                "puzzle_id" to params.puzzleId.value,
+                "difficulty" to puzzle.gameConfiguration.difficulty.name,
+                "completion_time_ms" to completionData.completionTimeMs,
+                "move_count" to completionData.moveCount,
+                "score" to gameScore.totalPoints,
+                "rating" to gameScore.achievedRating.stars,
+                "hints_used" to completionData.hintsUsed
+            ))
+            
+            // 9. Mostrar notificaciones de logros
+            newAchievements.forEach { achievement ->
+                notificationService.showAchievementUnlocked(achievement)
+            }
+            
+            // 10. Crear resultado de finalización
+            val result = PuzzleCompletionResult(
+                puzzle = puzzle.copy(progress = updatedProgress),
+                score = gameScore,
+                newAchievements = newAchievements,
+                leaderboardPosition = leaderboardUpdate?.newPosition,
+                userStats = updatedStats
+            )
+            
+            Result.success(result)
+            
+        } catch (e: Exception) {
+            analyticsTracker.track("puzzle_completion_error", mapOf(
+                "puzzle_id" to params.puzzleId.value,
+                "error" to e.message
+            ))
+            Result.failure(PuzzleCompletionException("Error completing puzzle", e))
+        }
+    }
+    
+    data class Params(
+        val puzzleId: PuzzleId,
+        val finalGameState: GameState
+    )
+}
+
+/**
+ * Resultado comprehensive de completar un puzzle
+ */
+data class PuzzleCompletionResult(
+    val puzzle: Puzzle,
+    val score: GameScore,
+    val newAchievements: List&lt;Achievement&gt;,
+    val leaderboardPosition: Int?,
+    val userStats: UserStats
+) {
+    val hasNewAchievements: Boolean get() = newAchievements.isNotEmpty()
+    val madeLeaderboard: Boolean get() = leaderboardPosition != null
+}
+
+// Domain Exceptions
+class PuzzleNotFoundException(puzzleId: PuzzleId) : 
+    DomainException("Puzzle not found: ${puzzleId.value}")
+
+class InvalidPuzzleStateException(message: String) : 
+    DomainException(message)
+
+class PuzzleCompletionException(message: String, cause: Throwable) : 
+    DomainException(message, cause)
+
+abstract class DomainException(message: String, cause: Throwable? = null) : 
+    Exception(message, cause)</code></pre>
+        </div>
+
+        <h2>📊 User Stats y Analytics</h2>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/model/UserStats.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">/**
+ * Estadísticas completas del usuario en el juego
+ */
+data class UserStats(
+    val userId: UserId,
+    val gameStats: GameStats,
+    val skillLevel: UserSkillLevel,
+    val preferences: UserGamePreferences,
+    val streaks: UserStreaks,
+    val personalBests: PersonalBests,
+    val lastUpdated: Instant = Instant.now()
+) {
+    /**
+     * Agrega una nueva finalización de puzzle a las estadísticas
+     */
+    fun addPuzzleCompletion(
+        puzzle: Puzzle, 
+        completionData: PuzzleCompletionData
+    ): UserStats {
+        val updatedGameStats = gameStats.addCompletion(puzzle, completionData)
+        val updatedSkillLevel = skillLevel.calculateNewLevel(completionData, puzzle)
+        val updatedStreaks = streaks.updateWithCompletion(puzzle, completionData)
+        val updatedPersonalBests = personalBests.updateWithCompletion(puzzle, completionData)
+        
+        return copy(
+            gameStats = updatedGameStats,
+            skillLevel = updatedSkillLevel,
+            streaks = updatedStreaks,
+            personalBests = updatedPersonalBests,
+            lastUpdated = Instant.now()
+        )
+    }
+    
+    /**
+     * Calcula el nivel de habilidad en una categoría específica
+     */
+    fun getSkillLevelForCategory(category: PuzzleCategory): Int {
+        return gameStats.getCompletionsByCategory(category).size / 10 + 1
+    }
+}
+
+@JvmInline
+value class UserId(val value: String)
+
+data class GameStats(
+    val totalPuzzlesStarted: Int = 0,
+    val totalPuzzlesCompleted: Int = 0,
+    val totalPlayTimeMs: Long = 0,
+    val totalMoves: Int = 0,
+    val totalHintsUsed: Int = 0,
+    val completionsByDifficulty: Map&lt;DifficultyLevel, Int&gt; = emptyMap(),
+    val completionsByCategory: Map&lt;PuzzleCategory, Int&gt; = emptyMap(),
+    val averageCompletionTime: Duration = Duration.ZERO,
+    val totalScore: Long = 0
+) {
+    val completionRate: Float
+        get() = if (totalPuzzlesStarted == 0) 0f 
+                else totalPuzzlesCompleted.toFloat() / totalPuzzlesStarted
+    
+    val averageMovesPerPuzzle: Float
+        get() = if (totalPuzzlesCompleted == 0) 0f 
+                else totalMoves.toFloat() / totalPuzzlesCompleted
+    
+    fun addCompletion(puzzle: Puzzle, completionData: PuzzleCompletionData): GameStats {
+        val newCompletionsByDifficulty = completionsByDifficulty.toMutableMap()
+        newCompletionsByDifficulty[puzzle.gameConfiguration.difficulty] = 
+            newCompletionsByDifficulty.getOrDefault(puzzle.gameConfiguration.difficulty, 0) + 1
+        
+        val newCompletionsByCategory = completionsByCategory.toMutableMap()
+        newCompletionsByCategory[puzzle.metadata.category] = 
+            newCompletionsByCategory.getOrDefault(puzzle.metadata.category, 0) + 1
+        
+        val newAverageTime = if (totalPuzzlesCompleted == 0) {
+            Duration.ofMillis(completionData.completionTimeMs)
+        } else {
+            Duration.ofMillis(
+                (averageCompletionTime.toMillis() * totalPuzzlesCompleted + completionData.completionTimeMs) / 
+                (totalPuzzlesCompleted + 1)
+            )
+        }
+        
+        return copy(
+            totalPuzzlesCompleted = totalPuzzlesCompleted + 1,
+            totalPlayTimeMs = totalPlayTimeMs + completionData.completionTimeMs,
+            totalMoves = totalMoves + completionData.moveCount,
+            totalHintsUsed = totalHintsUsed + completionData.hintsUsed,
+            completionsByDifficulty = newCompletionsByDifficulty,
+            completionsByCategory = newCompletionsByCategory,
+            averageCompletionTime = newAverageTime,
+            totalScore = totalScore + completionData.score.totalPoints
+        )
+    }
+    
+    fun getCompletionsByCategory(category: PuzzleCategory): Int {
+        return completionsByCategory.getOrDefault(category, 0)
+    }
+}
+
+data class UserStreaks(
+    val currentStreak: Int = 0,
+    val longestStreak: Int = 0,
+    val lastCompletionDate: LocalDate? = null,
+    val streakType: StreakType = StreakType.DAILY
+) {
+    fun updateWithCompletion(
+        puzzle: Puzzle, 
+        completionData: PuzzleCompletionData
+    ): UserStreaks {
+        val completionDate = completionData.timestamp.atZone(ZoneOffset.UTC).toLocalDate()
+        
+        val newCurrentStreak = when {
+            lastCompletionDate == null -> 1
+            lastCompletionDate == completionDate -> currentStreak // Same day
+            lastCompletionDate.plusDays(1) == completionDate -> currentStreak + 1 // Consecutive day
+            else -> 1 // Streak broken
+        }
+        
+        val newLongestStreak = maxOf(longestStreak, newCurrentStreak)
+        
+        return copy(
+            currentStreak = newCurrentStreak,
+            longestStreak = newLongestStreak,
+            lastCompletionDate = completionDate
+        )
+    }
+}
+
+enum class StreakType {
+    DAILY, WEEKLY, PUZZLE_COUNT
+}
+
+data class PersonalBests(
+    val fastestCompletionByDifficulty: Map&lt;DifficultyLevel, Duration&gt; = emptyMap(),
+    val highestScoreByDifficulty: Map&lt;DifficultyLevel, Int&gt; = emptyMap(),
+    val fewestMovesByDifficulty: Map&lt;DifficultyLevel, Int&gt; = emptyMap(),
+    val perfectCompletions: Int = 0 // Sin hints
+) {
+    fun updateWithCompletion(
+        puzzle: Puzzle, 
+        completionData: PuzzleCompletionData
+    ): PersonalBests {
+        val difficulty = puzzle.gameConfiguration.difficulty
+        val completionTime = Duration.ofMillis(completionData.completionTimeMs)
+        
+        val newFastestTimes = fastestCompletionByDifficulty.toMutableMap()
+        val currentFastest = newFastestTimes[difficulty]
+        if (currentFastest == null || completionTime < currentFastest) {
+            newFastestTimes[difficulty] = completionTime
+        }
+        
+        val newHighestScores = highestScoreByDifficulty.toMutableMap()
+        val currentHighest = newHighestScores[difficulty] ?: 0
+        if (completionData.score.totalPoints > currentHighest) {
+            newHighestScores[difficulty] = completionData.score.totalPoints
+        }
+        
+        val newFewestMoves = fewestMovesByDifficulty.toMutableMap()
+        val currentFewest = newFewestMoves[difficulty] ?: Int.MAX_VALUE
+        if (completionData.moveCount < currentFewest) {
+            newFewestMoves[difficulty] = completionData.moveCount
+        }
+        
+        val newPerfectCompletions = if (completionData.hintsUsed == 0) {
+            perfectCompletions + 1
+        } else {
+            perfectCompletions
+        }
+        
+        return copy(
+            fastestCompletionByDifficulty = newFastestTimes,
+            highestScoreByDifficulty = newHighestScores,
+            fewestMovesByDifficulty = newFewestMoves,
+            perfectCompletions = newPerfectCompletions
+        )
+    }
+}
+
+data class UserGamePreferences(
+    val preferredDifficulty: DifficultyLevel = DifficultyLevel.MEDIUM,
+    val preferredCategories: List&lt;PuzzleCategory&gt; = emptyList(),
+    val soundEnabled: Boolean = true,
+    val vibrationsEnabled: Boolean = true,
+    val showHints: Boolean = true,
+    val autoSave: Boolean = true,
+    val theme: GameTheme = GameTheme.AUTO
+)
+
+enum class GameTheme {
+    LIGHT, DARK, AUTO
+}</code></pre>
+        </div>
+
+        <h2>🧪 Testing de la Capa Model</h2>
+
+        <p>La capa Model debe ser altamente testeable:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">test/domain/model/PuzzleTest.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">class PuzzleTest {
+    
+    @Test
+    fun `puzzle can be started when active and not completed`() {
+        // Given
+        val puzzle = createTestPuzzle(
+            isActive = true,
+            isCompleted = false
+        )
+        
+        // When
+        val canBeStarted = puzzle.canBeStarted()
+        
+        // Then
+        assertTrue(canBeStarted)
+    }
+    
+    @Test
+    fun `puzzle cannot be started when inactive`() {
+        // Given
+        val puzzle = createTestPuzzle(
+            isActive = false,
+            isCompleted = false
+        )
+        
+        // When
+        val canBeStarted = puzzle.canBeStarted()
+        
+        // Then
+        assertFalse(canBeStarted)
+    }
+    
+    @Test
+    fun `puzzle cannot be started when already completed`() {
+        // Given
+        val puzzle = createTestPuzzle(
+            isActive = true,
+            isCompleted = true
+        )
+        
+        // When
+        val canBeStarted = puzzle.canBeStarted()
+        
+        // Then
+        assertFalse(canBeStarted)
+    }
+    
+    @Test
+    fun `effective difficulty increases for skilled users with fast completion times`() {
+        // Given
+        val puzzle = createTestPuzzle(difficulty = DifficultyLevel.MEDIUM)
+        val skilledUser = UserSkillLevel(level = 8, experience = 1000)
+        
+        // When
+        val effectiveDifficulty = puzzle.getEffectiveDifficulty(skilledUser)
+        
+        // Then
+        assertEquals(DifficultyLevel.HARD, effectiveDifficulty)
+    }
+    
+    @Test
+    fun `puzzle can be continued when in progress and recently played`() {
+        // Given
+        val recentTime = Instant.now().minus(Duration.ofMinutes(30))
+        val puzzle = createTestPuzzle(
+            isStarted = true,
+            isCompleted = false,
+            lastPlayedAt = recentTime
+        )
+        
+        // When
+        val canBeContinued = puzzle.canBeContinued()
+        
+        // Then
+        assertTrue(canBeContinued)
+    }
+    
+    private fun createTestPuzzle(
+        isActive: Boolean = true,
+        isCompleted: Boolean = false,
+        isStarted: Boolean = false,
+        lastPlayedAt: Instant? = null,
+        difficulty: DifficultyLevel = DifficultyLevel.MEDIUM
+    ): Puzzle {
+        return Puzzle(
+            id = PuzzleId("test-puzzle"),
+            metadata = PuzzleMetadata(
+                title = "Test Puzzle",
+                description = "Test Description",
+                imageUrl = "https://example.com/image.jpg",
+                category = PuzzleCategory.NATURE,
+                isActive = isActive,
+                createdAt = Instant.now(),
+                updatedAt = Instant.now()
+            ),
+            gameConfiguration = GameConfiguration(
+                gridSize = GridSize.SMALL_3X3,
+                difficulty = difficulty,
+                allowHints = true,
+                maxHints = 3
+            ),
+            progress = PuzzleProgress(
+                isStarted = isStarted,
+                isCompleted = isCompleted,
+                lastPlayedAt = lastPlayedAt
+            ),
+            statistics = PuzzleStatistics()
+        )
+    }
+}
+
+// Extension para tests
+fun Instant.isRecent(thresholdMinutes: Long = 60): Boolean {
+    return Duration.between(this, Instant.now()).toMinutes() <= thresholdMinutes
+}</code></pre>
+        </div>
+
+        <h2>🎯 Mejores Prácticas para la Capa Model</h2>
+
+        <div class="best-practices">
+          <div class="practice-card">
+            <h4>🎯 Single Responsibility</h4>
+            <ul>
+              <li>Cada entidad tiene una responsabilidad clara</li>
+              <li>Use domain services para lógica compleja</li>
+              <li>Separate concerns between entities</li>
+            </ul>
+          </div>
+          
+          <div class="practice-card">
+            <h4>🔒 Encapsulación</h4>
+            <ul>
+              <li>Datos immutable cuando sea posible</li>
+              <li>Validación en constructors/factory methods</li>
+              <li>Business logic dentro de las entidades</li>
+            </ul>
+          </div>
+          
+          <div class="practice-card">
+            <h4>🧪 Testabilidad</h4>
+            <ul>
+              <li>Pure functions sin side effects</li>
+              <li>Dependency injection para repositories</li>
+              <li>Mock interfaces, not implementations</li>
+            </ul>
+          </div>
+          
+          <div class="practice-card">
+            <h4>📐 Domain-Driven Design</h4>
+            <ul>
+              <li>Value objects para conceptos importantes</li>
+              <li>Aggregate roots para consistency</li>
+              <li>Domain events para loose coupling</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>🔗 Próximos Pasos</h2>
+        
+        <p>Con la capa Model sólida, puedes continuar con:</p>
+        
+        <div class="next-steps">
+          <div class="step-card">
+            <h4>🎭 <a href="blog-mvvm-viewmodel.html">Capa ViewModel</a></h4>
+            <p>Conecta la capa Model con la UI de forma reactiva</p>
+          </div>
+          
+          <div class="step-card">
+            <h4>📱 <a href="blog-mvvm-view.html">Capa View</a></h4>
+            <p>Implementa la UI que consume los ViewModels</p>
+          </div>
+          
+          <div class="step-card">
+            <h4>🧪 <a href="blog-testing-mvvm.html">Testing MVVM</a></h4>
+            <p>Estrategias de testing para cada capa</p>
+          </div>
+        </div>
+
+        <div class="article-footer">
+          <div class="article-tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">MVVM</span>
+            <span class="tag">Model Layer</span>
+            <span class="tag">Domain Models</span>
+            <span class="tag">Clean Architecture</span>
+            <span class="tag">Repository Pattern</span>
+            <span class="tag">Domain Services</span>
+          </div>
+          
+          <div class="article-navigation">
+            <a href="blog-use-cases.html" class="nav-button">← Use Cases</a>
+            <a href="blog-mvvm-viewmodel.html" class="nav-button">Siguiente: ViewModel →</a>
+          </div>
+          
+          <div class="share-section">
+            <h4>¿Te gustó este artículo?</h4>
+            <p>Compártelo con otros desarrolladores Android</p>
+            <div class="share-buttons">
+              <button class="share-btn twitter">🐦 Twitter</button>
+              <button class="share-btn linkedin">💼 LinkedIn</button>
+              <button class="share-btn copy">📋 Copiar enlace</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

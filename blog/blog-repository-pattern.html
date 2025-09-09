@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patrón Repository en Android: La Base de una Arquitectura Sólida - ArceApps Blog</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="../index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="../portfolio.html" class="nav-link">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../blog.html" class="nav-link active">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">5 de julio de 2025</span>
+          <span class="article-category">Desarrollo Android</span>
+        </div>
+        <h1>Patrón Repository en Android: La Base de una Arquitectura Sólida</h1>
+        <p class="article-subtitle">Descubre cómo el patrón Repository transforma el manejo de datos en tu app de puzzles, creando una capa de abstracción que hace tu código más limpio, testeable y mantenible</p>
+        <div class="article-image">
+          <img src="../images/placeholder-article-repository.svg" alt="Patrón Repository Android" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>🏛️ ¿Qué es el Patrón Repository?</h2>
+        <p>Imagina que estás desarrollando <strong>PuzzleQuest</strong>, nuestra app de juegos de puzzles. Los datos de tus partidas pueden venir de múltiples fuentes: base de datos local, API remota, caché en memoria, o incluso archivos locales. El patrón Repository actúa como un <strong>bibliotecario especializado</strong> que sabe exactamente dónde encontrar cada dato que necesitas, sin que tu código de negocio tenga que preocuparse por los detalles.</p>
+
+        <div class="pattern-definition">
+          <h3>📚 Definición técnica</h3>
+          <p>El patrón Repository encapsula la lógica necesaria para acceder a fuentes de datos. Centraliza la funcionalidad común de acceso a datos, proporcionando mejor mantenibilidad y desacoplando la infraestructura o tecnología usada para acceder a bases de datos de la capa de modelo de dominio.</p>
+        </div>
+
+        <h2>🎯 ¿Por qué necesitas Repository en tu app de puzzles?</h2>
+        
+        <div class="benefits-showcase">
+          <div class="benefit-card">
+            <div class="benefit-icon">🎭</div>
+            <h4>Abstracción de Fuentes de Datos</h4>
+            <p>Tu ViewModel no necesita saber si los puzzles vienen de Room, Retrofit o SharedPreferences</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🧪</div>
+            <h4>Testabilidad Superior</h4>
+            <p>Puedes crear implementaciones fake del repository para tests unitarios</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🔄</div>
+            <h4>Cacheo Inteligente</h4>
+            <p>Implementa estrategias de caché transparentes para el resto de la aplicación</p>
+          </div>
+          <div class="benefit-card">
+            <div class="benefit-icon">🌐</div>
+            <h4>Sincronización Offline/Online</h4>
+            <p>Maneja automáticamente cuándo usar datos locales vs remotos</p>
+          </div>
+        </div>
+
+        <h2>🏗️ Arquitectura del Repository en PuzzleQuest</h2>
+        
+        <p>Vamos a construir el sistema de datos para nuestra app de puzzles paso a paso:</p>
+
+        <div class="architecture-diagram">
+          <h3>📊 Flujo de Datos</h3>
+          <div class="data-flow">
+            <div class="flow-level">
+              <div class="flow-item ui">UI (Fragment/Activity)</div>
+            </div>
+            <div class="flow-arrow">⬇️</div>
+            <div class="flow-level">
+              <div class="flow-item viewmodel">ViewModel</div>
+            </div>
+            <div class="flow-arrow">⬇️</div>
+            <div class="flow-level">
+              <div class="flow-item repository">Repository</div>
+            </div>
+            <div class="flow-arrow">⬇️ ⬇️ ⬇️</div>
+            <div class="flow-level">
+              <div class="flow-item local">Room DB</div>
+              <div class="flow-item remote">Retrofit API</div>
+              <div class="flow-item cache">Memory Cache</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>🔧 Implementación Práctica: PuzzleRepository</h2>
+
+        <h3>1. Definiendo el Modelo de Datos</h3>
+        <p>Primero, definamos nuestro modelo para los puzzles:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">data/model/Puzzle.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Entity(tableName = "puzzles")
+data class Puzzle(
+    @PrimaryKey
+    val id: String,
+    val title: String,
+    val description: String,
+    val difficulty: Int, // 1 = Fácil, 5 = Experto
+    val imageUrl: String,
+    val gridSize: Int, // 3x3, 4x4, 5x5
+    val pieces: List&lt;PuzzlePiece&gt;,
+    val isCompleted: Boolean = false,
+    val completionTime: Long? = null,
+    val createdAt: Long = System.currentTimeMillis(),
+    val lastPlayedAt: Long? = null
+)
+
+@Entity(tableName = "puzzle_pieces")
+data class PuzzlePiece(
+    @PrimaryKey
+    val id: String,
+    val puzzleId: String,
+    val position: Int, // Posición correcta (0-8 para 3x3)
+    val currentPosition: Int, // Posición actual
+    val imageSection: String // URL de la sección de imagen
+)</code></pre>
+        </div>
+
+        <h3>2. Interface del Repository</h3>
+        <p>Define el contrato de lo que puede hacer tu repository:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">data/repository/PuzzleRepository.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">interface PuzzleRepository {
+    // Obtener puzzles
+    suspend fun getAllPuzzles(): Flow&lt;List&lt;Puzzle&gt;&gt;
+    suspend fun getPuzzleById(id: String): Puzzle?
+    suspend fun getPuzzlesByDifficulty(difficulty: Int): Flow&lt;List&lt;Puzzle&gt;&gt;
+    suspend fun getCompletedPuzzles(): Flow&lt;List&lt;Puzzle&gt;&gt;
+    
+    // Gestión de puzzles
+    suspend fun insertPuzzle(puzzle: Puzzle)
+    suspend fun updatePuzzle(puzzle: Puzzle)
+    suspend fun deletePuzzle(id: String)
+    
+    // Progreso del juego
+    suspend fun updatePuzzleProgress(puzzleId: String, pieces: List&lt;PuzzlePiece&gt;)
+    suspend fun markPuzzleCompleted(puzzleId: String, completionTime: Long)
+    
+    // Sincronización
+    suspend fun syncPuzzlesFromRemote(): Result&lt;Unit&gt;
+    suspend fun syncProgressToRemote(): Result&lt;Unit&gt;
+    
+    // Estadísticas
+    suspend fun getUserStats(): Flow&lt;UserPuzzleStats&gt;
+}
+
+data class UserPuzzleStats(
+    val totalPuzzlesCompleted: Int,
+    val averageCompletionTime: Long,
+    val favoriateDifficulty: Int,
+    val currentStreak: Int
+)</code></pre>
+        </div>
+
+        <h3>3. Implementación del Repository</h3>
+        <p>Ahora implementamos la lógica real del repository:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">data/repository/PuzzleRepositoryImpl.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Singleton
+class PuzzleRepositoryImpl @Inject constructor(
+    private val localDataSource: PuzzleLocalDataSource,
+    private val remoteDataSource: PuzzleRemoteDataSource,
+    private val cacheDataSource: PuzzleCacheDataSource,
+    private val networkMonitor: NetworkMonitor
+) : PuzzleRepository {
+
+    override suspend fun getAllPuzzles(): Flow&lt;List&lt;Puzzle&gt;&gt; {
+        return flow {
+            // 1. Emitir datos del caché si están disponibles
+            val cachedPuzzles = cacheDataSource.getAllPuzzles()
+            if (cachedPuzzles.isNotEmpty()) {
+                emit(cachedPuzzles)
+            }
+
+            // 2. Obtener datos locales
+            val localPuzzles = localDataSource.getAllPuzzles().first()
+            emit(localPuzzles)
+
+            // 3. Si hay conexión, sincronizar con remoto
+            if (networkMonitor.isConnected()) {
+                try {
+                    val remotePuzzles = remoteDataSource.getAllPuzzles()
+                    
+                    // Combinar y resolver conflictos
+                    val mergedPuzzles = mergePuzzles(localPuzzles, remotePuzzles)
+                    
+                    // Actualizar cache y BD local
+                    cacheDataSource.savePuzzles(mergedPuzzles)
+                    localDataSource.insertPuzzles(mergedPuzzles)
+                    
+                    emit(mergedPuzzles)
+                } catch (e: Exception) {
+                    // En caso de error, mantener datos locales
+                    Timber.w(e, "Error al sincronizar puzzles remotos")
+                }
+            }
+        }.distinctUntilChanged()
+    }
+
+    override suspend fun getPuzzleById(id: String): Puzzle? {
+        // 1. Buscar en caché primero (más rápido)
+        cacheDataSource.getPuzzleById(id)?.let { return it }
+        
+        // 2. Buscar en BD local
+        localDataSource.getPuzzleById(id)?.let { puzzle ->
+            cacheDataSource.savePuzzle(puzzle) // Guardar en caché
+            return puzzle
+        }
+        
+        // 3. Si hay red, buscar remotamente
+        if (networkMonitor.isConnected()) {
+            try {
+                val remotePuzzle = remoteDataSource.getPuzzleById(id)
+                remotePuzzle?.let { puzzle ->
+                    localDataSource.insertPuzzle(puzzle)
+                    cacheDataSource.savePuzzle(puzzle)
+                    return puzzle
+                }
+            } catch (e: Exception) {
+                Timber.w(e, "Error al obtener puzzle remoto: $id")
+            }
+        }
+        
+        return null
+    }
+
+    override suspend fun updatePuzzleProgress(
+        puzzleId: String, 
+        pieces: List&lt;PuzzlePiece&gt;
+    ) {
+        val puzzle = getPuzzleById(puzzleId) ?: return
+        
+        val updatedPuzzle = puzzle.copy(
+            pieces = pieces,
+            lastPlayedAt = System.currentTimeMillis()
+        )
+        
+        // Actualizar en todas las fuentes
+        localDataSource.updatePuzzle(updatedPuzzle)
+        cacheDataSource.savePuzzle(updatedPuzzle)
+        
+        // Intentar sincronizar progreso en background
+        if (networkMonitor.isConnected()) {
+            try {
+                remoteDataSource.updatePuzzleProgress(puzzleId, pieces)
+            } catch (e: Exception) {
+                // Marcar para sincronización posterior
+                localDataSource.markForSync(puzzleId)
+            }
+        }
+    }
+
+    override suspend fun markPuzzleCompleted(puzzleId: String, completionTime: Long) {
+        val puzzle = getPuzzleById(puzzleId) ?: return
+        
+        val completedPuzzle = puzzle.copy(
+            isCompleted = true,
+            completionTime = completionTime,
+            lastPlayedAt = System.currentTimeMillis()
+        )
+        
+        localDataSource.updatePuzzle(completedPuzzle)
+        cacheDataSource.savePuzzle(completedPuzzle)
+        
+        // Sincronizar logro
+        if (networkMonitor.isConnected()) {
+            try {
+                remoteDataSource.syncPuzzleCompletion(puzzleId, completionTime)
+            } catch (e: Exception) {
+                localDataSource.markForSync(puzzleId)
+            }
+        }
+    }
+
+    private fun mergePuzzles(
+        local: List&lt;Puzzle&gt;, 
+        remote: List&lt;Puzzle&gt;
+    ): List&lt;Puzzle&gt; {
+        val localMap = local.associateBy { it.id }
+        val mergedPuzzles = mutableListOf&lt;Puzzle&gt;()
+        
+        // Agregar puzzles remotos, resolviendo conflictos
+        remote.forEach { remotePuzzle ->
+            val localPuzzle = localMap[remotePuzzle.id]
+            
+            val finalPuzzle = when {
+                localPuzzle == null -> remotePuzzle
+                localPuzzle.lastPlayedAt == null -> remotePuzzle
+                remotePuzzle.lastPlayedAt == null -> localPuzzle
+                localPuzzle.lastPlayedAt!! > remotePuzzle.lastPlayedAt!! -> localPuzzle
+                else -> remotePuzzle
+            }
+            
+            mergedPuzzles.add(finalPuzzle)
+        }
+        
+        // Agregar puzzles que solo existen localmente
+        local.filter { local -> 
+            remote.none { remote -> remote.id == local.id } 
+        }.forEach { mergedPuzzles.add(it) }
+        
+        return mergedPuzzles
+    }
+}</code></pre>
+        </div>
+
+        <h2>💾 Data Sources: Separando las Responsabilidades</h2>
+        
+        <p>El Repository delega las operaciones específicas a diferentes data sources:</p>
+
+        <h3>Local Data Source (Room)</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">data/local/PuzzleLocalDataSource.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Singleton
+class PuzzleLocalDataSource @Inject constructor(
+    private val puzzleDao: PuzzleDao
+) {
+    fun getAllPuzzles(): Flow&lt;List&lt;Puzzle&gt;&gt; = puzzleDao.getAllPuzzles()
+    
+    suspend fun getPuzzleById(id: String): Puzzle? = puzzleDao.getPuzzleById(id)
+    
+    suspend fun insertPuzzle(puzzle: Puzzle) = puzzleDao.insert(puzzle)
+    
+    suspend fun insertPuzzles(puzzles: List&lt;Puzzle&gt;) = puzzleDao.insertAll(puzzles)
+    
+    suspend fun updatePuzzle(puzzle: Puzzle) = puzzleDao.update(puzzle)
+    
+    suspend fun deletePuzzle(id: String) = puzzleDao.deleteById(id)
+    
+    suspend fun markForSync(puzzleId: String) {
+        // Implementar lógica para marcar puzzles que necesitan sincronización
+        puzzleDao.markForSync(puzzleId, System.currentTimeMillis())
+    }
+    
+    fun getPuzzlesForSync(): Flow&lt;List&lt;Puzzle&gt;&gt; = puzzleDao.getPuzzlesForSync()
+}</code></pre>
+        </div>
+
+        <h3>Remote Data Source (Retrofit)</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">data/remote/PuzzleRemoteDataSource.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Singleton
+class PuzzleRemoteDataSource @Inject constructor(
+    private val puzzleApiService: PuzzleApiService
+) {
+    suspend fun getAllPuzzles(): List&lt;Puzzle&gt; {
+        return puzzleApiService.getAllPuzzles().map { it.toDomain() }
+    }
+    
+    suspend fun getPuzzleById(id: String): Puzzle? {
+        return try {
+            puzzleApiService.getPuzzleById(id).toDomain()
+        } catch (e: HttpException) {
+            if (e.code() == 404) null else throw e
+        }
+    }
+    
+    suspend fun updatePuzzleProgress(puzzleId: String, pieces: List&lt;PuzzlePiece&gt;) {
+        val request = UpdateProgressRequest(
+            puzzleId = puzzleId,
+            pieces = pieces.map { it.toDto() },
+            timestamp = System.currentTimeMillis()
+        )
+        puzzleApiService.updateProgress(request)
+    }
+    
+    suspend fun syncPuzzleCompletion(puzzleId: String, completionTime: Long) {
+        val request = CompletionRequest(
+            puzzleId = puzzleId,
+            completionTime = completionTime,
+            timestamp = System.currentTimeMillis()
+        )
+        puzzleApiService.markCompleted(request)
+    }
+}</code></pre>
+        </div>
+
+        <h3>Cache Data Source (Memoria)</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">data/cache/PuzzleCacheDataSource.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Singleton
+class PuzzleCacheDataSource @Inject constructor() {
+    private val cache = LruCache&lt;String, Puzzle&gt;(50) // Máximo 50 puzzles en memoria
+    private val allPuzzlesCache = AtomicReference&lt;List&lt;Puzzle&gt;&gt;(emptyList())
+    private val cacheTimestamp = AtomicLong(0L)
+    
+    companion object {
+        private const val CACHE_EXPIRY_MS = 5 * 60 * 1000L // 5 minutos
+    }
+    
+    fun getAllPuzzles(): List&lt;Puzzle&gt; {
+        return if (isCacheValid()) {
+            allPuzzlesCache.get()
+        } else {
+            emptyList()
+        }
+    }
+    
+    fun getPuzzleById(id: String): Puzzle? = cache.get(id)
+    
+    fun savePuzzle(puzzle: Puzzle) {
+        cache.put(puzzle.id, puzzle)
+    }
+    
+    fun savePuzzles(puzzles: List&lt;Puzzle&gt;) {
+        puzzles.forEach { cache.put(it.id, it) }
+        allPuzzlesCache.set(puzzles)
+        cacheTimestamp.set(System.currentTimeMillis())
+    }
+    
+    fun clearCache() {
+        cache.evictAll()
+        allPuzzlesCache.set(emptyList())
+        cacheTimestamp.set(0L)
+    }
+    
+    private fun isCacheValid(): Boolean {
+        return System.currentTimeMillis() - cacheTimestamp.get() < CACHE_EXPIRY_MS
+    }
+}</code></pre>
+        </div>
+
+        <h2>🧪 Testing del Repository</h2>
+        
+        <p>Una de las grandes ventajas del patrón Repository es la facilidad para testing:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">test/repository/PuzzleRepositoryTest.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@ExperimentalCoroutinesApi
+class PuzzleRepositoryTest {
+    
+    @get:Rule
+    val coroutineRule = MainCoroutineRule()
+    
+    private val mockLocalDataSource = mockk&lt;PuzzleLocalDataSource&gt;()
+    private val mockRemoteDataSource = mockk&lt;PuzzleRemoteDataSource&gt;()
+    private val mockCacheDataSource = mockk&lt;PuzzleCacheDataSource&gt;()
+    private val mockNetworkMonitor = mockk&lt;NetworkMonitor&gt;()
+    
+    private lateinit var repository: PuzzleRepository
+    
+    @Before
+    fun setup() {
+        repository = PuzzleRepositoryImpl(
+            mockLocalDataSource,
+            mockRemoteDataSource,
+            mockCacheDataSource,
+            mockNetworkMonitor
+        )
+    }
+    
+    @Test
+    fun `when getAllPuzzles called with cache available, should emit cached data first`() = runTest {
+        // Given
+        val cachedPuzzles = listOf(createTestPuzzle("1"), createTestPuzzle("2"))
+        val localPuzzles = listOf(createTestPuzzle("3"))
+        
+        every { mockCacheDataSource.getAllPuzzles() } returns cachedPuzzles
+        every { mockLocalDataSource.getAllPuzzles() } returns flowOf(localPuzzles)
+        every { mockNetworkMonitor.isConnected() } returns false
+        
+        // When
+        val result = repository.getAllPuzzles().take(2).toList()
+        
+        // Then
+        assertEquals(2, result.size)
+        assertEquals(cachedPuzzles, result.first())
+        assertEquals(localPuzzles, result[1])
+    }
+    
+    @Test
+    fun `when puzzle completed, should update all data sources`() = runTest {
+        // Given
+        val puzzleId = "test-puzzle"
+        val completionTime = 120000L
+        val testPuzzle = createTestPuzzle(puzzleId)
+        
+        coEvery { mockLocalDataSource.getPuzzleById(puzzleId) } returns testPuzzle
+        coEvery { mockCacheDataSource.getPuzzleById(puzzleId) } returns testPuzzle
+        coEvery { mockLocalDataSource.updatePuzzle(any()) } just Runs
+        coEvery { mockCacheDataSource.savePuzzle(any()) } just Runs
+        every { mockNetworkMonitor.isConnected() } returns true
+        coEvery { mockRemoteDataSource.syncPuzzleCompletion(any(), any()) } just Runs
+        
+        // When
+        repository.markPuzzleCompleted(puzzleId, completionTime)
+        
+        // Then
+        coVerify { mockLocalDataSource.updatePuzzle(match { it.isCompleted }) }
+        coVerify { mockCacheDataSource.savePuzzle(match { it.isCompleted }) }
+        coVerify { mockRemoteDataSource.syncPuzzleCompletion(puzzleId, completionTime) }
+    }
+    
+    private fun createTestPuzzle(id: String) = Puzzle(
+        id = id,
+        title = "Test Puzzle $id",
+        description = "Test Description",
+        difficulty = 3,
+        imageUrl = "https://example.com/image.jpg",
+        gridSize = 3,
+        pieces = emptyList()
+    )
+}</code></pre>
+        </div>
+
+        <h2>🔗 Integración con ViewModel</h2>
+        
+        <p>Así es como el ViewModel usa el Repository:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">presentation/puzzlelist/PuzzleListViewModel.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@HiltViewModel
+class PuzzleListViewModel @Inject constructor(
+    private val puzzleRepository: PuzzleRepository
+) : ViewModel() {
+    
+    private val _uiState = MutableStateFlow(PuzzleListUiState())
+    val uiState: StateFlow&lt;PuzzleListUiState&gt; = _uiState.asStateFlow()
+    
+    init {
+        loadPuzzles()
+    }
+    
+    private fun loadPuzzles() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+            
+            try {
+                puzzleRepository.getAllPuzzles()
+                    .catch { exception ->
+                        _uiState.update { 
+                            it.copy(
+                                isLoading = false,
+                                errorMessage = exception.message
+                            )
+                        }
+                    }
+                    .collect { puzzles ->
+                        _uiState.update { 
+                            it.copy(
+                                isLoading = false,
+                                puzzles = puzzles,
+                                errorMessage = null
+                            )
+                        }
+                    }
+            } catch (e: Exception) {
+                _uiState.update { 
+                    it.copy(
+                        isLoading = false,
+                        errorMessage = "Error al cargar puzzles: ${e.message}"
+                    )
+                }
+            }
+        }
+    }
+    
+    fun filterByDifficulty(difficulty: Int) {
+        viewModelScope.launch {
+            puzzleRepository.getPuzzlesByDifficulty(difficulty)
+                .collect { filteredPuzzles ->
+                    _uiState.update { it.copy(puzzles = filteredPuzzles) }
+                }
+        }
+    }
+    
+    fun refreshPuzzles() {
+        loadPuzzles()
+    }
+}
+
+data class PuzzleListUiState(
+    val isLoading: Boolean = false,
+    val puzzles: List&lt;Puzzle&gt; = emptyList(),
+    val errorMessage: String? = null
+)</code></pre>
+        </div>
+
+        <h2>⚡ Mejores Prácticas y Optimizaciones</h2>
+
+        <div class="best-practices">
+          <div class="practice-card">
+            <h4>🚀 Cache Strategy</h4>
+            <ul>
+              <li>Implementa múltiples niveles de caché (memoria, disco, red)</li>
+              <li>Define políticas de expiración apropiadas</li>
+              <li>Invalida caché cuando sea necesario</li>
+            </ul>
+          </div>
+          
+          <div class="practice-card">
+            <h4>🔄 Sync Strategy</h4>
+            <ul>
+              <li>Sync en background usando WorkManager</li>
+              <li>Maneja conflictos con timestamps o versioning</li>
+              <li>Implementa retry con exponential backoff</li>
+            </ul>
+          </div>
+          
+          <div class="practice-card">
+            <h4>📡 Offline-First</h4>
+            <ul>
+              <li>Prioriza datos locales para mejor UX</li>
+              <li>Sync when connected, work always</li>
+              <li>Comunica estado de conectividad al usuario</li>
+            </ul>
+          </div>
+          
+          <div class="practice-card">
+            <h4>🧪 Testing Strategy</h4>
+            <ul>
+              <li>Mock data sources individualmente</li>
+              <li>Test diferentes escenarios de red</li>
+              <li>Verifica comportamiento de caché</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>🔧 Configuración con Dependency Injection</h2>
+        
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">di/RepositoryModule.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Module
+@InstallIn(SingletonComponent::class)
+object RepositoryModule {
+    
+    @Provides
+    @Singleton
+    fun providePuzzleRepository(
+        localDataSource: PuzzleLocalDataSource,
+        remoteDataSource: PuzzleRemoteDataSource,
+        cacheDataSource: PuzzleCacheDataSource,
+        networkMonitor: NetworkMonitor
+    ): PuzzleRepository = PuzzleRepositoryImpl(
+        localDataSource,
+        remoteDataSource,
+        cacheDataSource,
+        networkMonitor
+    )
+}</code></pre>
+        </div>
+
+        <h2>📈 Monitoreo y Analytics</h2>
+        
+        <p>Agrega observabilidad a tu repository:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">data/repository/PuzzleRepositoryImpl.kt (Extended)</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">// Dentro de PuzzleRepositoryImpl, agregar métricas
+
+override suspend fun getAllPuzzles(): Flow&lt;List&lt;Puzzle&gt;&gt; {
+    return flow {
+        val startTime = System.currentTimeMillis()
+        
+        try {
+            // Lógica existente...
+            
+            // Log métricas de performance
+            val loadTime = System.currentTimeMillis() - startTime
+            analytics.track("puzzles_loaded", mapOf(
+                "load_time_ms" to loadTime,
+                "source" to if (networkMonitor.isConnected()) "network" else "local",
+                "puzzle_count" to result.size
+            ))
+            
+        } catch (e: Exception) {
+            analytics.track("puzzles_load_error", mapOf(
+                "error_type" to e::class.simpleName,
+                "error_message" to e.message
+            ))
+            throw e
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h2>🎯 Próximos Pasos</h2>
+        
+        <p>Ahora que dominas el patrón Repository, estás listo para:</p>
+        
+        <div class="next-steps">
+          <div class="step-card">
+            <h4>📖 <a href="blog-use-cases.html">Implementar Use Cases</a></h4>
+            <p>Añade lógica de negocio con el patrón Use Case/Interactor</p>
+          </div>
+          
+          <div class="step-card">
+            <h4>🏗️ <a href="blog-mvvm-model.html">Capa Model en MVVM</a></h4>
+            <p>Profundiza en la capa Model y su integración con Repository</p>
+          </div>
+          
+          <div class="step-card">
+            <h4>🎭 <a href="blog-mvvm-viewmodel.html">ViewModel Layer</a></h4>
+            <p>Conecta tu Repository con ViewModels eficientemente</p>
+          </div>
+        </div>
+
+        <div class="article-footer">
+          <div class="article-tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Repository Pattern</span>
+            <span class="tag">Clean Architecture</span>
+            <span class="tag">MVVM</span>
+            <span class="tag">Room</span>
+            <span class="tag">Retrofit</span>
+            <span class="tag">Caching</span>
+          </div>
+          
+          <div class="article-navigation">
+            <a href="../blog.html" class="nav-button">← Volver al Blog</a>
+            <a href="blog-use-cases.html" class="nav-button">Siguiente: Use Cases →</a>
+          </div>
+          
+          <div class="share-section">
+            <h4>¿Te gustó este artículo?</h4>
+            <p>Compártelo con otros desarrolladores Android</p>
+            <div class="share-buttons">
+              <button class="share-btn twitter">🐦 Twitter</button>
+              <button class="share-btn linkedin">💼 LinkedIn</button>
+              <button class="share-btn copy">📋 Copiar enlace</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
