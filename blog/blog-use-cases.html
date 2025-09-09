@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Use Cases en Android: Lógica de Negocio Limpia y Reutilizable - ArceApps Blog</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="../index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="../portfolio.html" class="nav-link">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../blog.html" class="nav-link active">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">10 de julio de 2025</span>
+          <span class="article-category">Desarrollo Android</span>
+        </div>
+        <h1>Use Cases en Android: Lógica de Negocio Limpia y Reutilizable</h1>
+        <p class="article-subtitle">Aprende a implementar Use Cases (Interactors) en tu app de puzzles para encapsular la lógica de negocio, mantener ViewModels ligeros y crear código altamente testeable</p>
+        <div class="article-image">
+          <img src="../images/placeholder-article-use-cases.svg" alt="Use Cases Android" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>🎯 ¿Qué son los Use Cases?</h2>
+        <p>Los Use Cases, también conocidos como <strong>Interactors</strong>, son clases que encapsulan una única funcionalidad de negocio. En nuestra app <strong>PuzzleQuest</strong>, cada acción importante del usuario se convierte en un Use Case específico: "Iniciar Puzzle", "Guardar Progreso", "Calcular Puntuación", etc.</p>
+
+        <div class="pattern-definition">
+          <h3>🧠 Filosofía del patrón</h3>
+          <p>Un Use Case representa una <strong>intención del usuario</strong> en el sistema. Es la traducción de "¿qué quiere hacer el usuario?" a código ejecutable, manteniendo toda la lógica de negocio separada de la UI y las fuentes de datos.</p>
+        </div>
+
+        <h2>🏗️ Arquitectura con Use Cases en PuzzleQuest</h2>
+        
+        <div class="architecture-diagram">
+          <h3>📊 Flujo de Datos con Use Cases</h3>
+          <div class="data-flow">
+            <div class="flow-level">
+              <div class="flow-item ui">UI Layer</div>
+            </div>
+            <div class="flow-arrow">⬇️ User Action</div>
+            <div class="flow-level">
+              <div class="flow-item viewmodel">ViewModel</div>
+            </div>
+            <div class="flow-arrow">⬇️ Calls</div>
+            <div class="flow-level">
+              <div class="flow-item usecase">Use Cases</div>
+            </div>
+            <div class="flow-arrow">⬇️ Data Operations</div>
+            <div class="flow-level">
+              <div class="flow-item repository">Repository</div>
+            </div>
+            <div class="flow-arrow">⬇️ ⬇️</div>
+            <div class="flow-level">
+              <div class="flow-item local">Local DB</div>
+              <div class="flow-item remote">Remote API</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>🎮 Use Cases en PuzzleQuest: Casos Reales</h2>
+
+        <p>Identifiquemos las principales acciones de usuario en nuestra app:</p>
+
+        <div class="use-cases-overview">
+          <div class="use-case-category">
+            <h3>🧩 Gestión de Puzzles</h3>
+            <ul>
+              <li><strong>GetPuzzleListUseCase</strong> - Obtener lista de puzzles disponibles</li>
+              <li><strong>GetPuzzleByIdUseCase</strong> - Cargar un puzzle específico</li>
+              <li><strong>SearchPuzzlesUseCase</strong> - Buscar puzzles por criterios</li>
+              <li><strong>FilterPuzzlesByDifficultyUseCase</strong> - Filtrar por dificultad</li>
+            </ul>
+          </div>
+          
+          <div class="use-case-category">
+            <h3>🎯 Gameplay</h3>
+            <ul>
+              <li><strong>StartPuzzleGameUseCase</strong> - Inicializar una partida</li>
+              <li><strong>MovePuzzlePieceUseCase</strong> - Mover pieza del puzzle</li>
+              <li><strong>SaveGameProgressUseCase</strong> - Guardar progreso de partida</li>
+              <li><strong>CheckPuzzleCompletionUseCase</strong> - Verificar si está completo</li>
+              <li><strong>CalculateScoreUseCase</strong> - Calcular puntuación final</li>
+            </ul>
+          </div>
+          
+          <div class="use-case-category">
+            <h3>📊 Estadísticas</h3>
+            <ul>
+              <li><strong>GetUserStatsUseCase</strong> - Obtener estadísticas del jugador</li>
+              <li><strong>UpdateUserStatsUseCase</strong> - Actualizar estadísticas</li>
+              <li><strong>GetLeaderboardUseCase</strong> - Obtener ranking global</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>🔧 Implementación: Base Use Case</h2>
+
+        <p>Primero, creemos una base común para todos nuestros Use Cases:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/usecase/base/UseCase.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">/**
+ * Clase base para Use Cases que ejecutan de forma síncrona
+ */
+abstract class UseCase&lt;in P, R&gt; {
+    
+    /**
+     * Ejecuta el use case con los parámetros dados
+     */
+    abstract suspend operator fun invoke(params: P): Result&lt;R&gt;
+    
+    /**
+     * Ejecuta el use case como Flow para casos que necesitan observar cambios
+     */
+    open fun asFlow(params: P): Flow&lt;Result&lt;R&gt;&gt; = flow {
+        emit(invoke(params))
+    }
+}
+
+/**
+ * Use Case para casos que no requieren parámetros
+ */
+abstract class NoParamsUseCase&lt;R&gt; {
+    abstract suspend operator fun invoke(): Result&lt;R&gt;
+    
+    open fun asFlow(): Flow&lt;Result&lt;R&gt;&gt; = flow {
+        emit(invoke())
+    }
+}
+
+/**
+ * Use Case para casos que devuelven Flow continuamente
+ */
+abstract class FlowUseCase&lt;in P, R&gt; {
+    abstract operator fun invoke(params: P): Flow&lt;Result&lt;R&gt;&gt;
+}
+
+/**
+ * Use Case para casos sin parámetros que devuelven Flow
+ */
+abstract class NoParamsFlowUseCase&lt;R&gt; {
+    abstract operator fun invoke(): Flow&lt;Result&lt;R&gt;&gt;
+}</code></pre>
+        </div>
+
+        <h2>🎯 Use Case Específico: StartPuzzleGameUseCase</h2>
+
+        <p>Implementemos el Use Case más complejo - iniciar una partida de puzzle:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/usecase/StartPuzzleGameUseCase.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Singleton
+class StartPuzzleGameUseCase @Inject constructor(
+    private val puzzleRepository: PuzzleRepository,
+    private val gameSessionRepository: GameSessionRepository,
+    private val analyticsTracker: AnalyticsTracker,
+    private val difficultyCalculator: PuzzleDifficultyCalculator
+) : UseCase&lt;StartPuzzleGameUseCase.Params, GameSession&gt;() {
+    
+    override suspend operator fun invoke(params: Params): Result&lt;GameSession&gt; {
+        return try {
+            // 1. Validar puzzle existe
+            val puzzle = puzzleRepository.getPuzzleById(params.puzzleId)
+                ?: return Result.failure(PuzzleNotFoundException(params.puzzleId))
+            
+            // 2. Verificar si ya hay una sesión activa
+            val existingSession = gameSessionRepository.getActiveSession(params.puzzleId)
+            if (existingSession != null && !params.forceRestart) {
+                analyticsTracker.track("puzzle_game_resumed", mapOf(
+                    "puzzle_id" to params.puzzleId,
+                    "progress_percentage" to existingSession.progressPercentage
+                ))
+                return Result.success(existingSession)
+            }
+            
+            // 3. Crear nueva sesión de juego
+            val gameSession = createNewGameSession(puzzle, params)
+            
+            // 4. Guardar sesión en repositorio
+            gameSessionRepository.saveGameSession(gameSession)
+            
+            // 5. Actualizar estadísticas de inicio
+            updateUserStats(params.puzzleId, puzzle.difficulty)
+            
+            // 6. Track analytics
+            analyticsTracker.track("puzzle_game_started", mapOf(
+                "puzzle_id" to params.puzzleId,
+                "difficulty" to puzzle.difficulty,
+                "grid_size" to puzzle.gridSize,
+                "user_level" to params.userLevel
+            ))
+            
+            Result.success(gameSession)
+            
+        } catch (e: Exception) {
+            analyticsTracker.track("puzzle_game_start_error", mapOf(
+                "puzzle_id" to params.puzzleId,
+                "error" to e.message
+            ))
+            Result.failure(GameStartException("Error al iniciar puzzle: ${e.message}", e))
+        }
+    }
+    
+    private suspend fun createNewGameSession(
+        puzzle: Puzzle, 
+        params: Params
+    ): GameSession {
+        // Calcular tiempo estimado basado en dificultad y nivel del usuario
+        val estimatedTime = difficultyCalculator.calculateEstimatedTime(
+            puzzle.difficulty, 
+            puzzle.gridSize, 
+            params.userLevel
+        )
+        
+        // Mezclar piezas aleatoriamente pero asegurar que es solucionable
+        val shuffledPieces = shufflePuzzlePieces(puzzle.pieces)
+        
+        return GameSession(
+            id = UUID.randomUUID().toString(),
+            puzzleId = puzzle.id,
+            startTime = System.currentTimeMillis(),
+            currentPieces = shuffledPieces,
+            movesCount = 0,
+            hintsUsed = 0,
+            estimatedCompletionTime = estimatedTime,
+            difficulty = puzzle.difficulty,
+            status = GameSessionStatus.ACTIVE
+        )
+    }
+    
+    private fun shufflePuzzlePieces(originalPieces: List&lt;PuzzlePiece&gt;): List&lt;PuzzlePiece&gt; {
+        val pieces = originalPieces.toMutableList()
+        
+        // Algoritmo de Fisher-Yates shuffle con validación de solucionabilidad
+        do {
+            for (i in pieces.size - 1 downTo 1) {
+                val j = Random.nextInt(i + 1)
+                val temp = pieces[i].copy(currentPosition = pieces[j].currentPosition)
+                pieces[i] = pieces[j].copy(currentPosition = pieces[i].currentPosition)
+                pieces[j] = temp
+            }
+        } while (!isPuzzleSolvable(pieces))
+        
+        return pieces
+    }
+    
+    private fun isPuzzleSolvable(pieces: List&lt;PuzzlePiece&gt;): Boolean {
+        // Implementar algoritmo para verificar si el puzzle es solucionable
+        // Para puzzles deslizantes (sliding puzzle), usar inversión count
+        val inversions = countInversions(pieces)
+        val gridSize = sqrt(pieces.size.toDouble()).toInt()
+        
+        return when {
+            gridSize % 2 == 1 -> inversions % 2 == 0 // Grid impar
+            else -> {
+                val emptyRowFromBottom = gridSize - (pieces.indexOfFirst { it.position == -1 } / gridSize)
+                if (emptyRowFromBottom % 2 == 1) inversions % 2 == 0
+                else inversions % 2 == 1
+            }
+        }
+    }
+    
+    private fun countInversions(pieces: List&lt;PuzzlePiece&gt;): Int {
+        var inversions = 0
+        val positions = pieces.map { it.currentPosition }.filter { it != -1 }
+        
+        for (i in positions.indices) {
+            for (j in i + 1 until positions.size) {
+                if (positions[i] > positions[j]) {
+                    inversions++
+                }
+            }
+        }
+        return inversions
+    }
+    
+    private suspend fun updateUserStats(puzzleId: String, difficulty: Int) {
+        try {
+            val currentStats = gameSessionRepository.getUserStats()
+            val updatedStats = currentStats.copy(
+                totalGamesStarted = currentStats.totalGamesStarted + 1,
+                lastPlayedPuzzleId = puzzleId,
+                preferredDifficulty = calculatePreferredDifficulty(currentStats, difficulty)
+            )
+            gameSessionRepository.updateUserStats(updatedStats)
+        } catch (e: Exception) {
+            // Log error but don't fail the main operation
+            Timber.w(e, "Error updating user stats for puzzle start")
+        }
+    }
+    
+    private fun calculatePreferredDifficulty(
+        currentStats: UserGameStats, 
+        newDifficulty: Int
+    ): Int {
+        // Calcular dificultad preferida basada en historial
+        val difficultyHistory = currentStats.difficultyHistory + newDifficulty
+        return difficultyHistory.groupBy { it }
+            .maxByOrNull { it.value.size }?.key ?: newDifficulty
+    }
+    
+    data class Params(
+        val puzzleId: String,
+        val userLevel: Int = 1,
+        val forceRestart: Boolean = false
+    )
+}
+
+data class GameSession(
+    val id: String,
+    val puzzleId: String,
+    val startTime: Long,
+    val currentPieces: List&lt;PuzzlePiece&gt;,
+    val movesCount: Int,
+    val hintsUsed: Int,
+    val estimatedCompletionTime: Long,
+    val difficulty: Int,
+    val status: GameSessionStatus,
+    val completionTime: Long? = null,
+    val score: Int? = null
+)
+
+enum class GameSessionStatus {
+    ACTIVE, PAUSED, COMPLETED, ABANDONED
+}
+
+// Exceptions
+class PuzzleNotFoundException(puzzleId: String) : Exception("Puzzle not found: $puzzleId")
+class GameStartException(message: String, cause: Throwable? = null) : Exception(message, cause)</code></pre>
+        </div>
+
+        <h2>🎯 Use Case Simple: MovePuzzlePieceUseCase</h2>
+
+        <p>Un ejemplo más sencillo para mover piezas del puzzle:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/usecase/MovePuzzlePieceUseCase.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Singleton
+class MovePuzzlePieceUseCase @Inject constructor(
+    private val gameSessionRepository: GameSessionRepository,
+    private val gameRulesValidator: GameRulesValidator,
+    private val soundEffectsManager: SoundEffectsManager
+) : UseCase&lt;MovePuzzlePieceUseCase.Params, MoveResult&gt;() {
+    
+    override suspend operator fun invoke(params: Params): Result&lt;MoveResult&gt; {
+        return try {
+            // 1. Obtener sesión activa
+            val currentSession = gameSessionRepository.getActiveSession(params.puzzleId)
+                ?: return Result.failure(NoActiveSessionException())
+            
+            // 2. Validar que el movimiento es legal
+            val validationResult = gameRulesValidator.validateMove(
+                currentPieces = currentSession.currentPieces,
+                fromPosition = params.fromPosition,
+                toPosition = params.toPosition
+            )
+            
+            if (!validationResult.isValid) {
+                soundEffectsManager.playInvalidMoveSound()
+                return Result.success(MoveResult.Invalid(validationResult.reason))
+            }
+            
+            // 3. Aplicar movimiento
+            val newPieces = applyMove(
+                currentSession.currentPieces,
+                params.fromPosition,
+                params.toPosition
+            )
+            
+            // 4. Actualizar sesión
+            val updatedSession = currentSession.copy(
+                currentPieces = newPieces,
+                movesCount = currentSession.movesCount + 1
+            )
+            
+            gameSessionRepository.updateGameSession(updatedSession)
+            
+            // 5. Verificar si el puzzle está completo
+            val isCompleted = gameRulesValidator.isPuzzleCompleted(newPieces)
+            
+            // 6. Reproducir sonido apropiado
+            if (isCompleted) {
+                soundEffectsManager.playCompletionSound()
+            } else {
+                soundEffectsManager.playValidMoveSound()
+            }
+            
+            val moveResult = if (isCompleted) {
+                MoveResult.PuzzleCompleted(updatedSession)
+            } else {
+                MoveResult.ValidMove(updatedSession)
+            }
+            
+            Result.success(moveResult)
+            
+        } catch (e: Exception) {
+            Result.failure(MoveException("Error al mover pieza: ${e.message}", e))
+        }
+    }
+    
+    private fun applyMove(
+        pieces: List&lt;PuzzlePiece&gt;,
+        fromPosition: Int,
+        toPosition: Int
+    ): List&lt;PuzzlePiece&gt; {
+        return pieces.map { piece ->
+            when (piece.currentPosition) {
+                fromPosition -> piece.copy(currentPosition = toPosition)
+                toPosition -> piece.copy(currentPosition = fromPosition)
+                else -> piece
+            }
+        }
+    }
+    
+    data class Params(
+        val puzzleId: String,
+        val fromPosition: Int,
+        val toPosition: Int
+    )
+}
+
+sealed class MoveResult {
+    data class ValidMove(val gameSession: GameSession) : MoveResult()
+    data class Invalid(val reason: String) : MoveResult()
+    data class PuzzleCompleted(val gameSession: GameSession) : MoveResult()
+}
+
+data class MoveValidationResult(
+    val isValid: Boolean,
+    val reason: String = ""
+)
+
+class NoActiveSessionException : Exception("No hay sesión de juego activa")
+class MoveException(message: String, cause: Throwable? = null) : Exception(message, cause)</code></pre>
+        </div>
+
+        <h2>📊 Use Case con Flow: GetPuzzleListUseCase</h2>
+
+        <p>Para casos que necesitan observar cambios de datos:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/usecase/GetPuzzleListUseCase.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Singleton
+class GetPuzzleListUseCase @Inject constructor(
+    private val puzzleRepository: PuzzleRepository,
+    private val userPreferencesRepository: UserPreferencesRepository
+) : FlowUseCase&lt;GetPuzzleListUseCase.Params, List&lt;Puzzle&gt;&gt;() {
+    
+    override operator fun invoke(params: Params): Flow&lt;Result&lt;List&lt;Puzzle&gt;&gt;&gt; {
+        return flow {
+            try {
+                // Combinar datos de puzzles con preferencias del usuario
+                combine(
+                    puzzleRepository.getAllPuzzles(),
+                    userPreferencesRepository.getUserPreferences()
+                ) { puzzles, preferences ->
+                    filterAndSortPuzzles(puzzles, params, preferences)
+                }.collect { processedPuzzles ->
+                    emit(Result.success(processedPuzzles))
+                }
+            } catch (e: Exception) {
+                emit(Result.failure(PuzzleLoadException("Error cargando puzzles", e)))
+            }
+        }
+    }
+    
+    private fun filterAndSortPuzzles(
+        puzzles: List&lt;Puzzle&gt;,
+        params: Params,
+        preferences: UserPreferences
+    ): List&lt;Puzzle&gt; {
+        var filteredPuzzles = puzzles
+        
+        // Aplicar filtros
+        params.difficultyFilter?.let { difficulty ->
+            filteredPuzzles = filteredPuzzles.filter { it.difficulty == difficulty }
+        }
+        
+        params.completionFilter?.let { isCompleted ->
+            filteredPuzzles = filteredPuzzles.filter { it.isCompleted == isCompleted }
+        }
+        
+        params.searchQuery?.let { query ->
+            filteredPuzzles = filteredPuzzles.filter { puzzle ->
+                puzzle.title.contains(query, ignoreCase = true) ||
+                puzzle.description.contains(query, ignoreCase = true)
+            }
+        }
+        
+        // Aplicar ordenamiento según preferencias
+        return when (params.sortOrder ?: preferences.defaultSortOrder) {
+            SortOrder.DIFFICULTY_ASC -> filteredPuzzles.sortedBy { it.difficulty }
+            SortOrder.DIFFICULTY_DESC -> filteredPuzzles.sortedByDescending { it.difficulty }
+            SortOrder.TITLE -> filteredPuzzles.sortedBy { it.title }
+            SortOrder.CREATED_DATE -> filteredPuzzles.sortedByDescending { it.createdAt }
+            SortOrder.LAST_PLAYED -> filteredPuzzles.sortedByDescending { 
+                it.lastPlayedAt ?: 0L 
+            }
+            SortOrder.COMPLETION_TIME -> filteredPuzzles
+                .filter { it.isCompleted }
+                .sortedBy { it.completionTime ?: Long.MAX_VALUE }
+        }
+    }
+    
+    data class Params(
+        val difficultyFilter: Int? = null,
+        val completionFilter: Boolean? = null,
+        val searchQuery: String? = null,
+        val sortOrder: SortOrder? = null
+    )
+}
+
+enum class SortOrder {
+    DIFFICULTY_ASC,
+    DIFFICULTY_DESC,
+    TITLE,
+    CREATED_DATE,
+    LAST_PLAYED,
+    COMPLETION_TIME
+}
+
+class PuzzleLoadException(message: String, cause: Throwable? = null) : Exception(message, cause)</code></pre>
+        </div>
+
+        <h2>🧪 Testing de Use Cases</h2>
+
+        <p>Los Use Cases son extremadamente fáciles de testear:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">test/domain/usecase/StartPuzzleGameUseCaseTest.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@ExperimentalCoroutinesApi
+class StartPuzzleGameUseCaseTest {
+    
+    @get:Rule
+    val coroutineRule = MainCoroutineRule()
+    
+    private val mockPuzzleRepository = mockk&lt;PuzzleRepository&gt;()
+    private val mockGameSessionRepository = mockk&lt;GameSessionRepository&gt;()
+    private val mockAnalyticsTracker = mockk&lt;AnalyticsTracker&gt;()
+    private val mockDifficultyCalculator = mockk&lt;PuzzleDifficultyCalculator&gt;()
+    
+    private lateinit var useCase: StartPuzzleGameUseCase
+    
+    @Before
+    fun setup() {
+        clearAllMocks()
+        
+        useCase = StartPuzzleGameUseCase(
+            mockPuzzleRepository,
+            mockGameSessionRepository,
+            mockAnalyticsTracker,
+            mockDifficultyCalculator
+        )
+    }
+    
+    @Test
+    fun `when puzzle exists and no active session, should create new game session`() = runTest {
+        // Given
+        val puzzleId = "test-puzzle-1"
+        val testPuzzle = createTestPuzzle(puzzleId)
+        val params = StartPuzzleGameUseCase.Params(puzzleId, userLevel = 2)
+        
+        coEvery { mockPuzzleRepository.getPuzzleById(puzzleId) } returns testPuzzle
+        coEvery { mockGameSessionRepository.getActiveSession(puzzleId) } returns null
+        coEvery { mockDifficultyCalculator.calculateEstimatedTime(any(), any(), any()) } returns 300000L
+        coEvery { mockGameSessionRepository.saveGameSession(any()) } just Runs
+        coEvery { mockGameSessionRepository.getUserStats() } returns createTestUserStats()
+        coEvery { mockGameSessionRepository.updateUserStats(any()) } just Runs
+        coEvery { mockAnalyticsTracker.track(any(), any()) } just Runs
+        
+        // When
+        val result = useCase(params)
+        
+        // Then
+        assertTrue(result.isSuccess)
+        val gameSession = result.getOrNull()!!
+        assertEquals(puzzleId, gameSession.puzzleId)
+        assertEquals(testPuzzle.difficulty, gameSession.difficulty)
+        assertEquals(GameSessionStatus.ACTIVE, gameSession.status)
+        
+        coVerify { mockGameSessionRepository.saveGameSession(any()) }
+        coVerify { mockAnalyticsTracker.track("puzzle_game_started", any()) }
+    }
+    
+    @Test
+    fun `when active session exists and forceRestart is false, should return existing session`() = runTest {
+        // Given
+        val puzzleId = "test-puzzle-1"
+        val existingSession = createTestGameSession(puzzleId)
+        val params = StartPuzzleGameUseCase.Params(puzzleId, forceRestart = false)
+        
+        coEvery { mockPuzzleRepository.getPuzzleById(puzzleId) } returns createTestPuzzle(puzzleId)
+        coEvery { mockGameSessionRepository.getActiveSession(puzzleId) } returns existingSession
+        coEvery { mockAnalyticsTracker.track(any(), any()) } just Runs
+        
+        // When
+        val result = useCase(params)
+        
+        // Then
+        assertTrue(result.isSuccess)
+        assertEquals(existingSession, result.getOrNull())
+        
+        coVerify { mockAnalyticsTracker.track("puzzle_game_resumed", any()) }
+        coVerify(exactly = 0) { mockGameSessionRepository.saveGameSession(any()) }
+    }
+    
+    @Test
+    fun `when puzzle does not exist, should return failure with PuzzleNotFoundException`() = runTest {
+        // Given
+        val puzzleId = "non-existent-puzzle"
+        val params = StartPuzzleGameUseCase.Params(puzzleId)
+        
+        coEvery { mockPuzzleRepository.getPuzzleById(puzzleId) } returns null
+        
+        // When
+        val result = useCase(params)
+        
+        // Then
+        assertTrue(result.isFailure)
+        assertTrue(result.exceptionOrNull() is PuzzleNotFoundException)
+    }
+    
+    @Test
+    fun `when repository throws exception, should track error and return failure`() = runTest {
+        // Given
+        val puzzleId = "test-puzzle-1"
+        val params = StartPuzzleGameUseCase.Params(puzzleId)
+        val exception = RuntimeException("Database error")
+        
+        coEvery { mockPuzzleRepository.getPuzzleById(puzzleId) } throws exception
+        coEvery { mockAnalyticsTracker.track(any(), any()) } just Runs
+        
+        // When
+        val result = useCase(params)
+        
+        // Then
+        assertTrue(result.isFailure)
+        assertTrue(result.exceptionOrNull() is GameStartException)
+        
+        coVerify { 
+            mockAnalyticsTracker.track("puzzle_game_start_error", match { 
+                it["puzzle_id"] == puzzleId && it["error"] == "Database error"
+            })
+        }
+    }
+    
+    private fun createTestPuzzle(id: String) = Puzzle(
+        id = id,
+        title = "Test Puzzle",
+        description = "Test Description",
+        difficulty = 3,
+        imageUrl = "https://example.com/image.jpg",
+        gridSize = 3,
+        pieces = createTestPuzzlePieces()
+    )
+    
+    private fun createTestPuzzlePieces(): List&lt;PuzzlePiece&gt; {
+        return (0..8).map { position ->
+            PuzzlePiece(
+                id = "piece-$position",
+                puzzleId = "test-puzzle-1",
+                position = position,
+                currentPosition = position,
+                imageSection = "section-$position.jpg"
+            )
+        }
+    }
+    
+    private fun createTestGameSession(puzzleId: String) = GameSession(
+        id = "session-1",
+        puzzleId = puzzleId,
+        startTime = System.currentTimeMillis() - 60000L,
+        currentPieces = createTestPuzzlePieces(),
+        movesCount = 5,
+        hintsUsed = 1,
+        estimatedCompletionTime = 300000L,
+        difficulty = 3,
+        status = GameSessionStatus.ACTIVE
+    )
+    
+    private fun createTestUserStats() = UserGameStats(
+        totalGamesStarted = 10,
+        totalGamesCompleted = 7,
+        averageCompletionTime = 250000L,
+        preferredDifficulty = 3,
+        lastPlayedPuzzleId = null,
+        difficultyHistory = listOf(2, 3, 3, 4, 3)
+    )
+}</code></pre>
+        </div>
+
+        <h2>🎭 Integración con ViewModel</h2>
+
+        <p>Así es como los ViewModels consumen Use Cases:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">presentation/game/GameViewModel.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@HiltViewModel
+class GameViewModel @Inject constructor(
+    private val startPuzzleGameUseCase: StartPuzzleGameUseCase,
+    private val movePuzzlePieceUseCase: MovePuzzlePieceUseCase,
+    private val saveGameProgressUseCase: SaveGameProgressUseCase,
+    private val checkPuzzleCompletionUseCase: CheckPuzzleCompletionUseCase
+) : ViewModel() {
+    
+    private val _uiState = MutableStateFlow(GameUiState())
+    val uiState: StateFlow&lt;GameUiState&gt; = _uiState.asStateFlow()
+    
+    fun startGame(puzzleId: String, forceRestart: Boolean = false) {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+            
+            val params = StartPuzzleGameUseCase.Params(
+                puzzleId = puzzleId,
+                userLevel = getCurrentUserLevel(),
+                forceRestart = forceRestart
+            )
+            
+            startPuzzleGameUseCase(params)
+                .onSuccess { gameSession ->
+                    _uiState.update { 
+                        it.copy(
+                            isLoading = false,
+                            gameSession = gameSession,
+                            errorMessage = null
+                        )
+                    }
+                }
+                .onFailure { exception ->
+                    _uiState.update { 
+                        it.copy(
+                            isLoading = false,
+                            errorMessage = exception.message
+                        )
+                    }
+                }
+        }
+    }
+    
+    fun movePiece(fromPosition: Int, toPosition: Int) {
+        val currentSession = _uiState.value.gameSession ?: return
+        
+        viewModelScope.launch {
+            val params = MovePuzzlePieceUseCase.Params(
+                puzzleId = currentSession.puzzleId,
+                fromPosition = fromPosition,
+                toPosition = toPosition
+            )
+            
+            movePuzzlePieceUseCase(params)
+                .onSuccess { moveResult ->
+                    when (moveResult) {
+                        is MoveResult.ValidMove -> {
+                            _uiState.update { 
+                                it.copy(gameSession = moveResult.gameSession)
+                            }
+                        }
+                        is MoveResult.Invalid -> {
+                            _uiState.update { 
+                                it.copy(
+                                    errorMessage = "Movimiento inválido: ${moveResult.reason}",
+                                    showInvalidMoveAnimation = true
+                                )
+                            }
+                        }
+                        is MoveResult.PuzzleCompleted -> {
+                            _uiState.update { 
+                                it.copy(
+                                    gameSession = moveResult.gameSession,
+                                    showCompletionAnimation = true
+                                )
+                            }
+                            handlePuzzleCompletion(moveResult.gameSession)
+                        }
+                    }
+                }
+                .onFailure { exception ->
+                    _uiState.update { 
+                        it.copy(errorMessage = exception.message)
+                    }
+                }
+        }
+    }
+    
+    private suspend fun handlePuzzleCompletion(gameSession: GameSession) {
+        // Use case para calcular puntuación y guardar logros
+        // Este es un ejemplo de composición de Use Cases
+        try {
+            val score = calculateScoreUseCase(CalculateScoreUseCase.Params(gameSession))
+            val updatedSession = gameSession.copy(score = score.getOrNull())
+            
+            saveGameProgressUseCase(SaveGameProgressUseCase.Params(updatedSession))
+            
+            _uiState.update { 
+                it.copy(
+                    gameSession = updatedSession,
+                    showScoreDialog = true
+                )
+            }
+        } catch (e: Exception) {
+            Timber.e(e, "Error handling puzzle completion")
+        }
+    }
+    
+    fun dismissError() {
+        _uiState.update { 
+            it.copy(
+                errorMessage = null,
+                showInvalidMoveAnimation = false
+            )
+        }
+    }
+    
+    private fun getCurrentUserLevel(): Int {
+        // Lógica para obtener nivel actual del usuario
+        return 1 // Simplificado para el ejemplo
+    }
+}
+
+data class GameUiState(
+    val isLoading: Boolean = false,
+    val gameSession: GameSession? = null,
+    val errorMessage: String? = null,
+    val showInvalidMoveAnimation: Boolean = false,
+    val showCompletionAnimation: Boolean = false,
+    val showScoreDialog: Boolean = false
+)</code></pre>
+        </div>
+
+        <h2>🎯 Mejores Prácticas para Use Cases</h2>
+
+        <div class="best-practices">
+          <div class="practice-card">
+            <h4>🎯 Single Responsibility</h4>
+            <ul>
+              <li>Un Use Case = Una funcionalidad específica</li>
+              <li>Nombre descriptivo que indique la acción</li>
+              <li>Parámetros claros y específicos</li>
+            </ul>
+          </div>
+          
+          <div class="practice-card">
+            <h4>🧪 Fácil Testing</h4>
+            <ul>
+              <li>Mock dependencies, test lógica de negocio</li>
+              <li>Test casos happy path y edge cases</li>
+              <li>Verificar side effects (analytics, logging)</li>
+            </ul>
+          </div>
+          
+          <div class="practice-card">
+            <h4>💡 Composición</h4>
+            <ul>
+              <li>Use Cases pueden usar otros Use Cases</li>
+              <li>Evita duplicación de lógica</li>
+              <li>Mantén la cohesión alta</li>
+            </ul>
+          </div>
+          
+          <div class="practice-card">
+            <h4>🔄 Result Handling</h4>
+            <ul>
+              <li>Usa Result&lt;T&gt; para manejo de errores</li>
+              <li>Proporciona errores específicos y útiles</li>
+              <li>Considera logging y analytics</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2>🔧 Configuración con Dependency Injection</h2>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">di/UseCaseModule.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Module
+@InstallIn(ViewModelComponent::class)
+object UseCaseModule {
+    
+    // Los Use Cases generalmente tienen scope de ViewModel
+    // porque son stateless y pueden ser reutilizados
+    
+    @Provides
+    fun provideStartPuzzleGameUseCase(
+        puzzleRepository: PuzzleRepository,
+        gameSessionRepository: GameSessionRepository,
+        analyticsTracker: AnalyticsTracker,
+        difficultyCalculator: PuzzleDifficultyCalculator
+    ): StartPuzzleGameUseCase = StartPuzzleGameUseCase(
+        puzzleRepository,
+        gameSessionRepository,
+        analyticsTracker,
+        difficultyCalculator
+    )
+    
+    @Provides
+    fun provideMovePuzzlePieceUseCase(
+        gameSessionRepository: GameSessionRepository,
+        gameRulesValidator: GameRulesValidator,
+        soundEffectsManager: SoundEffectsManager
+    ): MovePuzzlePieceUseCase = MovePuzzlePieceUseCase(
+        gameSessionRepository,
+        gameRulesValidator,
+        soundEffectsManager
+    )
+    
+    // Continuar con otros Use Cases...
+}</code></pre>
+        </div>
+
+        <h2>🎯 Próximos Pasos</h2>
+        
+        <p>Con Use Cases dominados, estás listo para explorar:</p>
+        
+        <div class="next-steps">
+          <div class="step-card">
+            <h4>🏗️ <a href="blog-mvvm-model.html">Capa Model en MVVM</a></h4>
+            <p>Integra Use Cases y Repository en la capa Model</p>
+          </div>
+          
+          <div class="step-card">
+            <h4>🎭 <a href="blog-mvvm-viewmodel.html">ViewModel en MVVM</a></h4>
+            <p>Conecta Use Cases con ViewModels eficientemente</p>
+          </div>
+          
+          <div class="step-card">
+            <h4>🔧 <a href="blog-dependency-injection-mvvm.html">Dependency Injection</a></h4>
+            <p>Configura DI para Use Cases y Repository</p>
+          </div>
+        </div>
+
+        <div class="article-footer">
+          <div class="article-tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Use Cases</span>
+            <span class="tag">Clean Architecture</span>
+            <span class="tag">MVVM</span>
+            <span class="tag">Business Logic</span>
+            <span class="tag">Testing</span>
+            <span class="tag">Domain Layer</span>
+          </div>
+          
+          <div class="article-navigation">
+            <a href="blog-repository-pattern.html" class="nav-button">← Repository Pattern</a>
+            <a href="blog-mvvm-model.html" class="nav-button">Siguiente: Model Layer →</a>
+          </div>
+          
+          <div class="share-section">
+            <h4>¿Te gustó este artículo?</h4>
+            <p>Compártelo con otros desarrolladores Android</p>
+            <div class="share-buttons">
+              <button class="share-btn twitter">🐦 Twitter</button>
+              <button class="share-btn linkedin">💼 LinkedIn</button>
+              <button class="share-btn copy">📋 Copiar enlace</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
