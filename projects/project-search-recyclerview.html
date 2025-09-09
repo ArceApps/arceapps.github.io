@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search RecyclerView - ArceApps Portfolio</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="../index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="../portfolio.html" class="nav-link active">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../blog.html" class="nav-link">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="project-detail">
+    <div class="container">
+      <header class="project-header">
+        <div class="project-meta">
+          <span class="project-category">Android UI</span>
+          <span class="project-status">Completado</span>
+        </div>
+        <h1>Search RecyclerView</h1>
+        <p class="project-subtitle">Implementación de funcionalidad de búsqueda en RecyclerView con filtros en tiempo real y animaciones suaves</p>
+        
+        <div class="project-hero-image">
+          <img src="https://user-images.githubusercontent.com/61239577/201500699-3a50f1b1-a136-4208-b455-f79cc216a0ab.png" alt="Search RecyclerView Demo" />
+        </div>
+
+        <div class="project-links">
+          <a href="https://github.com/ArceApps/SearchRecyclerView" class="btn btn-primary" target="_blank">Ver en GitHub</a>
+          <a href="https://developer.android.com/guide/topics/ui/layout/recyclerview" class="btn btn-outline" target="_blank">Documentación RecyclerView</a>
+        </div>
+      </header>
+
+      <div class="project-content">
+        <div class="project-overview">
+          <h2>Descripción del Proyecto</h2>
+          <p>Este proyecto demuestra la implementación de funcionalidad de búsqueda avanzada en RecyclerView con filtros en tiempo real. Incluye características como búsqueda por múltiples campos, filtros dinámicos, animaciones suaves y optimizaciones de rendimiento para listas grandes.</p>
+          
+          <p>La implementación utiliza CardView para un diseño moderno, DataClass para modelos de datos eficientes, y algoritmos de filtrado optimizados que mantienen la fluidez de la interfaz incluso con datasets grandes.</p>
+        </div>
+
+        <div class="screenshots-section">
+          <h2>Capturas de Pantalla</h2>
+          <div class="screenshots-grid">
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/201500699-3a50f1b1-a136-4208-b455-f79cc216a0ab.png" alt="Lista inicial" />
+              <p>Vista inicial con todos los elementos</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/201500701-fb5a4b2b-260e-4160-ace2-b9fab1072015.png" alt="Búsqueda activa" />
+              <p>Búsqueda en tiempo real</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/201500702-74489c92-5d0e-4461-ae46-4cef433fa172.png" alt="Resultados filtrados" />
+              <p>Resultados filtrados</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <h3>Tecnologías Utilizadas</h3>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <div class="tech-icon">🔍</div>
+              <div>
+                <h4>Search Algorithm</h4>
+                <p>Búsqueda eficiente en tiempo real</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🔄</div>
+              <div>
+                <h4>RecyclerView</h4>
+                <p>Lista optimizada y flexible</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🎴</div>
+              <div>
+                <h4>CardView</h4>
+                <p>Diseño Material Design</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">📊</div>
+              <div>
+                <h4>DataClass</h4>
+                <p>Modelos de datos Kotlin</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🎨</div>
+              <div>
+                <h4>Filter Animations</h4>
+                <p>Animaciones de filtrado</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">⚡</div>
+              <div>
+                <h4>Kotlin</h4>
+                <p>Lenguaje moderno y conciso</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-section">
+          <h2>Características Principales</h2>
+          
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Búsqueda en Tiempo Real</h3>
+              <p>Los resultados se actualizan instantáneamente mientras el usuario escribe, sin lag perceptible.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3>Búsqueda Multi-campo</h3>
+              <p>Busca en múltiples campos simultáneamente: título, descripción, categoría, etc.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔤</div>
+              <h3>Búsqueda Inteligente</h3>
+              <p>Búsqueda insensible a mayúsculas, acentos y con soporte para búsqueda parcial.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🎭</div>
+              <h3>Animaciones Suaves</h3>
+              <p>Transiciones fluidas cuando los elementos aparecen o desaparecen del filtro.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🚀</div>
+              <h3>Alto Rendimiento</h3>
+              <p>Optimizado para manejar listas con miles de elementos sin impacto en performance.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🎨</div>
+              <h3>Highlighting</h3>
+              <p>Resaltado automático de términos de búsqueda en los resultados mostrados.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="implementation-section">
+          <h2>Implementación Técnica</h2>
+          
+          <h3>Adapter con Filtrado</h3>
+          <div class="code-block">
+            <pre><code>class SearchableRecyclerAdapter(
+    private val originalList: List&lt;SearchableItem&gt;
+) : RecyclerView.Adapter&lt;SearchableRecyclerAdapter.ViewHolder&gt;(), Filterable {
+
+    private var filteredList = originalList.toMutableList()
+    private var currentQuery = ""
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val query = constraint?.toString()?.lowercase()?.trim() ?: ""
+                currentQuery = query
+                
+                val filtered = if (query.isEmpty()) {
+                    originalList
+                } else {
+                    originalList.filter { item ->
+                        item.isMatchingQuery(query)
+                    }
+                }
+                
+                return FilterResults().apply {
+                    values = filtered
+                    count = filtered.size
+                }
+            }
+            
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                val newList = results?.values as? List&lt;SearchableItem&gt; ?: emptyList()
+                updateList(newList)
+            }
+        }
+    }
+    
+    private fun updateList(newList: List&lt;SearchableItem&gt;) {
+        val diffCallback = SearchItemDiffCallback(filteredList, newList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        
+        filteredList.clear()
+        filteredList.addAll(newList)
+        diffResult.dispatchUpdatesTo(this)
+    }
+}</code></pre>
+          </div>
+
+          <h3>Modelo de Datos Searchable</h3>
+          <div class="code-block">
+            <pre><code>data class SearchableItem(
+    val id: String,
+    val title: String,
+    val description: String,
+    val category: String,
+    val tags: List&lt;String&gt; = emptyList(),
+    val imageUrl: String? = null
+) {
+    fun isMatchingQuery(query: String): Boolean {
+        val normalizedQuery = query.lowercase().trim()
+        
+        return title.lowercase().contains(normalizedQuery) ||
+               description.lowercase().contains(normalizedQuery) ||
+               category.lowercase().contains(normalizedQuery) ||
+               tags.any { tag -> tag.lowercase().contains(normalizedQuery) }
+    }
+    
+    fun getHighlightedTitle(query: String): SpannableString {
+        return highlightText(title, query)
+    }
+    
+    fun getHighlightedDescription(query: String): SpannableString {
+        return highlightText(description, query)
+    }
+    
+    private fun highlightText(text: String, query: String): SpannableString {
+        val spannable = SpannableString(text)
+        
+        if (query.isNotEmpty()) {
+            val startIndex = text.lowercase().indexOf(query.lowercase())
+            if (startIndex >= 0) {
+                spannable.setSpan(
+                    BackgroundColorSpan(Color.YELLOW),
+                    startIndex,
+                    startIndex + query.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        }
+        
+        return spannable
+    }
+}</code></pre>
+          </div>
+
+          <h3>ViewHolder con Highlighting</h3>
+          <div class="code-block">
+            <pre><code>class ViewHolder(private val binding: ItemSearchableBinding) : 
+    RecyclerView.ViewHolder(binding.root) {
+    
+    fun bind(item: SearchableItem, query: String) {
+        binding.apply {
+            // Configurar CardView
+            cardView.apply {
+                radius = 12f
+                cardElevation = 4f
+                setCardBackgroundColor(
+                    ContextCompat.getColor(context, R.color.surface)
+                )
+            }
+            
+            // Texto con highlighting
+            if (query.isNotEmpty()) {
+                textTitle.text = item.getHighlightedTitle(query)
+                textDescription.text = item.getHighlightedDescription(query)
+            } else {
+                textTitle.text = item.title
+                textDescription.text = item.description
+            }
+            
+            textCategory.text = item.category
+            
+            // Cargar imagen si existe
+            item.imageUrl?.let { url ->
+                Glide.with(imageView.context)
+                    .load(url)
+                    .placeholder(R.drawable.placeholder)
+                    .into(imageView)
+            }
+            
+            // Tags
+            chipGroup.removeAllViews()
+            item.tags.forEach { tag ->
+                val chip = Chip(chipGroup.context).apply {
+                    text = tag
+                    isClickable = false
+                    chipBackgroundColor = ColorStateList.valueOf(
+                        ContextCompat.getColor(context, R.color.primary_light)
+                    )
+                }
+                chipGroup.addView(chip)
+            }
+            
+            // Click listener
+            root.setOnClickListener {
+                // Manejar click en item
+            }
+        }
+    }
+}</code></pre>
+          </div>
+
+          <h3>Activity con SearchView</h3>
+          <div class="code-block">
+            <pre><code>class SearchActivity : AppCompatActivity() {
+    
+    private lateinit var binding: ActivitySearchBinding
+    private lateinit var adapter: SearchableRecyclerAdapter
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        
+        setupRecyclerView()
+        setupSearchView()
+    }
+    
+    private fun setupRecyclerView() {
+        adapter = SearchableRecyclerAdapter(generateSampleData())
+        
+        binding.recyclerView.apply {
+            adapter = this@SearchActivity.adapter
+            layoutManager = LinearLayoutManager(this@SearchActivity)
+            
+            // Añadir animaciones personalizadas
+            itemAnimator = DefaultItemAnimator().apply {
+                addDuration = 300
+                removeDuration = 300
+                changeDuration = 300
+            }
+            
+            // Decoración entre items
+            addItemDecoration(
+                DividerItemDecoration(this@SearchActivity, DividerItemDecoration.VERTICAL)
+            )
+        }
+    }
+    
+    private fun setupSearchView() {
+        binding.searchView.apply {
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+                
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    adapter.filter.filter(newText)
+                    return true
+                }
+            })
+            
+            // Configurar placeholder
+            queryHint = "Buscar elementos..."
+            
+            // Focus automático
+            requestFocus()
+        }
+    }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="optimizations-section">
+          <h2>Optimizaciones de Rendimiento</h2>
+          <ul>
+            <li><strong>DiffUtil:</strong> Cálculo eficiente de diferencias para animaciones suaves</li>
+            <li><strong>Debouncing:</strong> Evita filtros excesivos durante escritura rápida</li>
+            <li><strong>Background Threading:</strong> Filtrado en hilo de fondo para UI fluida</li>
+            <li><strong>View Recycling:</strong> Reutilización optimizada de ViewHolders</li>
+            <li><strong>Memory Management:</strong> Gestión cuidadosa de listas grandes</li>
+            <li><strong>Lazy Loading:</strong> Carga diferida de contenido no visible</li>
+          </ul>
+        </div>
+
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">RecyclerView</span>
+            <span class="tag">Search</span>
+            <span class="tag">Filter</span>
+            <span class="tag">CardView</span>
+            <span class="tag">Material Design</span>
+          </div>
+          
+          <div class="project-navigation">
+            <a href="../portfolio.html" class="nav-btn">← Volver al Portfolio</a>
+            <a href="project-mvvm.html" class="nav-btn">Siguiente Proyecto →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/ArceApps" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

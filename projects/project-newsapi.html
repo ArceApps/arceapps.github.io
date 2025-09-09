@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsAPI Android - ArceApps Portfolio</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="../index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="../portfolio.html" class="nav-link active">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../blog.html" class="nav-link">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="project-detail">
+    <div class="container">
+      <header class="project-header">
+        <div class="project-meta">
+          <span class="project-category">Aplicación Android</span>
+          <span class="project-status">Completado</span>
+        </div>
+        <h1>NewsAPI Android</h1>
+        <p class="project-subtitle">Aplicación de noticias con arquitectura MVVM, Retrofit para APIs, coroutines y diseño Material Design</p>
+        
+        <div class="project-hero-image">
+          <img src="https://user-images.githubusercontent.com/61239577/218185556-e04e6e03-5505-40c6-91b2-bbbcff94f242.png" alt="NewsAPI Android App" />
+        </div>
+
+        <div class="project-links">
+          <a href="https://github.com/ArceApps/NewsAPI" class="btn btn-primary" target="_blank">Ver en GitHub</a>
+          <a href="https://newsapi.org/" class="btn btn-outline" target="_blank">NewsAPI</a>
+        </div>
+      </header>
+
+      <div class="project-content">
+        <div class="project-overview">
+          <h2>Descripción del Proyecto</h2>
+          <p>NewsAPI Android es una aplicación moderna de noticias que demuestra las mejores prácticas de desarrollo Android. Utiliza la arquitectura MVVM, Kotlin Coroutines para operaciones asíncronas, Retrofit para consumir APIs REST, y ViewBinding para una interfaz de usuario segura y eficiente.</p>
+          
+          <p>La aplicación consume la API pública de NewsAPI.org para mostrar noticias actualizadas de diferentes fuentes y categorías, implementando funcionalidades como búsqueda, filtros y gestión de favoritos.</p>
+        </div>
+
+        <div class="screenshots-section">
+          <h2>Capturas de Pantalla</h2>
+          <div class="screenshots-grid">
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/218185556-e04e6e03-5505-40c6-91b2-bbbcff94f242.png" alt="Pantalla principal" />
+              <p>Lista principal de noticias</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/218185567-8cc4b064-a776-4dbd-b841-2bee688b6e5a.png" alt="Vista de detalle" />
+              <p>Detalle de artículo completo</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/218185569-dab2e7dd-dd95-4c92-b897-7532de908192.png" alt="Categorías" />
+              <p>Navegación por categorías</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <h3>Tecnologías Utilizadas</h3>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <div class="tech-icon">🏗️</div>
+              <div>
+                <h4>MVVM Architecture</h4>
+                <p>Patrón arquitectónico limpio</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🌐</div>
+              <div>
+                <h4>Retrofit</h4>
+                <p>Cliente HTTP para APIs</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">⚡</div>
+              <div>
+                <h4>Kotlin Coroutines</h4>
+                <p>Programación asíncrona</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🔗</div>
+              <div>
+                <h4>ViewBinding</h4>
+                <p>Binding seguro de vistas</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">📱</div>
+              <div>
+                <h4>Fragment Lifecycle</h4>
+                <p>Gestión de ciclo de vida</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🎯</div>
+              <div>
+                <h4>ViewModel</h4>
+                <p>Gestión de datos UI</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-section">
+          <h2>Características Principales</h2>
+          
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">📰</div>
+              <h3>Noticias en Tiempo Real</h3>
+              <p>Acceso a las últimas noticias de múltiples fuentes internacionales y locales.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔍</div>
+              <h3>Búsqueda Avanzada</h3>
+              <p>Búsqueda de artículos por palabras clave con filtros de fecha y fuente.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📂</div>
+              <h3>Categorías</h3>
+              <p>Organización por categorías: tecnología, deportes, entretenimiento, salud, etc.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">❤️</div>
+              <h3>Favoritos</h3>
+              <p>Guarda artículos favoritos para lectura offline con persistencia local.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔄</div>
+              <h3>Actualización Automática</h3>
+              <p>Refresh automático y manual de contenido con indicadores visuales.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🌙</div>
+              <h3>Modo Oscuro</h3>
+              <p>Soporte completo para tema claro y oscuro con transiciones suaves.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="architecture-section">
+          <h2>Arquitectura MVVM</h2>
+          
+          <h3>Repository Pattern</h3>
+          <div class="code-block">
+            <pre><code>class NewsRepository(
+    private val newsApiService: NewsApiService,
+    private val localDatabase: NewsDatabase
+) {
+    suspend fun getTopHeadlines(
+        country: String = "us",
+        category: String? = null
+    ): Result&lt;List&lt;Article&gt;&gt; {
+        return try {
+            val response = newsApiService.getTopHeadlines(
+                country = country,
+                category = category,
+                apiKey = BuildConfig.NEWS_API_KEY
+            )
+            
+            if (response.isSuccessful) {
+                response.body()?.articles?.let { articles -&gt;
+                    // Cache en base de datos local
+                    localDatabase.articleDao().insertAll(articles)
+                    Result.success(articles)
+                } ?: Result.failure(Exception("Empty response"))
+            } else {
+                Result.failure(Exception("API Error: ${response.code()}"))
+            }
+        } catch (e: Exception) {
+            // Fallback a datos locales
+            val cachedArticles = localDatabase.articleDao().getAllArticles()
+            if (cachedArticles.isNotEmpty()) {
+                Result.success(cachedArticles)
+            } else {
+                Result.failure(e)
+            }
+        }
+    }
+}</code></pre>
+          </div>
+
+          <h3>ViewModel con Coroutines</h3>
+          <div class="code-block">
+            <pre><code>class NewsViewModel(
+    private val repository: NewsRepository
+) : ViewModel() {
+    
+    private val _newsState = MutableLiveData&lt;UiState&lt;List&lt;Article&gt;&gt;&gt;()
+    val newsState: LiveData&lt;UiState&lt;List&lt;Article&gt;&gt;&gt; = _newsState
+    
+    private val _isRefreshing = MutableLiveData&lt;Boolean&gt;()
+    val isRefreshing: LiveData&lt;Boolean&gt; = _isRefreshing
+    
+    fun loadNews(category: String? = null, forceRefresh: Boolean = false) {
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            _newsState.value = UiState.Loading
+            
+            repository.getTopHeadlines(category = category)
+                .onSuccess { articles -&gt;
+                    _newsState.value = UiState.Success(articles)
+                }
+                .onFailure { error -&gt;
+                    _newsState.value = UiState.Error(error.message ?: "Unknown error")
+                }
+            
+            _isRefreshing.value = false
+        }
+    }
+    
+    fun searchNews(query: String) {
+        viewModelScope.launch {
+            _newsState.value = UiState.Loading
+            
+            repository.searchNews(query)
+                .onSuccess { articles -&gt;
+                    _newsState.value = UiState.Success(articles)
+                }
+                .onFailure { error -&gt;
+                    _newsState.value = UiState.Error(error.message ?: "Search failed")
+                }
+        }
+    }
+}</code></pre>
+          </div>
+
+          <h3>Fragment con ViewBinding</h3>
+          <div class="code-block">
+            <pre><code>class NewsFragment : Fragment() {
+    
+    private var _binding: FragmentNewsBinding? = null
+    private val binding get() = _binding!!
+    
+    private val viewModel: NewsViewModel by viewModels()
+    private lateinit var newsAdapter: NewsAdapter
+    
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentNewsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
+        setupRecyclerView()
+        setupSwipeRefresh()
+        observeViewModel()
+        
+        viewModel.loadNews()
+    }
+    
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter { article -&gt;
+            findNavController().navigate(
+                NewsFragmentDirections.actionNewsToDetail(article)
+            )
+        }
+        
+        binding.recyclerViewNews.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(context)
+            addItemDecoration(
+                DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+            )
+        }
+    }
+    
+    private fun observeViewModel() {
+        viewModel.newsState.observe(viewLifecycleOwner) { state -&gt;
+            when (state) {
+                is UiState.Loading -&gt; {
+                    binding.progressBar.isVisible = true
+                    binding.recyclerViewNews.isVisible = false
+                }
+                is UiState.Success -&gt; {
+                    binding.progressBar.isVisible = false
+                    binding.recyclerViewNews.isVisible = true
+                    newsAdapter.submitList(state.data)
+                }
+                is UiState.Error -&gt; {
+                    binding.progressBar.isVisible = false
+                    showError(state.message)
+                }
+            }
+        }
+    }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="api-integration-section">
+          <h2>Integración con NewsAPI</h2>
+          
+          <h3>Retrofit Service</h3>
+          <div class="code-block">
+            <pre><code>interface NewsApiService {
+    
+    @GET("top-headlines")
+    suspend fun getTopHeadlines(
+        @Query("country") country: String = "us",
+        @Query("category") category: String? = null,
+        @Query("apiKey") apiKey: String
+    ): Response&lt;NewsResponse&gt;
+    
+    @GET("everything")
+    suspend fun searchNews(
+        @Query("q") query: String,
+        @Query("sortBy") sortBy: String = "publishedAt",
+        @Query("apiKey") apiKey: String
+    ): Response&lt;NewsResponse&gt;
+    
+    @GET("sources")
+    suspend fun getSources(
+        @Query("apiKey") apiKey: String
+    ): Response&lt;SourcesResponse&gt;
+}</code></pre>
+          </div>
+
+          <h3>Data Models</h3>
+          <div class="code-block">
+            <pre><code>@Parcelize
+data class Article(
+    val source: Source,
+    val author: String?,
+    val title: String,
+    val description: String?,
+    val url: String,
+    val urlToImage: String?,
+    val publishedAt: String,
+    val content: String?
+) : Parcelable
+
+@Parcelize
+data class Source(
+    val id: String?,
+    val name: String
+) : Parcelable
+
+data class NewsResponse(
+    val status: String,
+    val totalResults: Int,
+    val articles: List&lt;Article&gt;
+)</code></pre>
+          </div>
+        </div>
+
+        <div class="performance-section">
+          <h2>Optimizaciones de Rendimiento</h2>
+          <ul>
+            <li><strong>Caché Local:</strong> Almacenamiento local con Room para acceso offline</li>
+            <li><strong>Image Loading:</strong> Carga eficiente de imágenes con Glide y caché</li>
+            <li><strong>Pagination:</strong> Carga incremental de artículos</li>
+            <li><strong>Coroutines:</strong> Operaciones no bloqueantes en hilo principal</li>
+            <li><strong>ViewBinding:</strong> Eliminación de findViewById costosos</li>
+            <li><strong>LiveData:</strong> Actualizaciones automáticas solo cuando el Fragment está activo</li>
+          </ul>
+        </div>
+
+        <div name="challenges-section">
+          <h2>Desafíos y Soluciones</h2>
+          
+          <h3>1. Gestión de Estados de Red</h3>
+          <p><strong>Desafío:</strong> Manejar diferentes estados (carga, éxito, error, sin conexión).</p>
+          <p><strong>Solución:</strong> Implementación de sealed class UiState para estados claros y tipo-seguros.</p>
+
+          <h3>2. Caché y Sincronización</h3>
+          <p><strong>Desafío:</strong> Mantener datos actualizados mientras se proporciona acceso offline.</p>
+          <p><strong>Solución:</strong> Strategy pattern con fallback automático a datos locales cuando falla la red.</p>
+
+          <h3>3. Performance en Listas Largas</h3>
+          <p><strong>Desafío:</strong> Mantener fluidez con cientos de artículos de noticias.</p>
+          <p><strong>Solución:</strong> RecyclerView con ViewHolder optimizado y carga lazy de imágenes.</p>
+        </div>
+
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">MVVM</span>
+            <span class="tag">Retrofit</span>
+            <span class="tag">Coroutines</span>
+            <span class="tag">ViewBinding</span>
+            <span class="tag">API Integration</span>
+          </div>
+          
+          <div class="project-navigation">
+            <a href="../portfolio.html" class="nav-btn">← Volver al Portfolio</a>
+            <a href="project-buscaminas.html" class="nav-btn">Siguiente Proyecto →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/ArceApps" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

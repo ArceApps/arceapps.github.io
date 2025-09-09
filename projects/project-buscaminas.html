@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscaminas (Minesweeper) - ArceApps Portfolio</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="../index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="../portfolio.html" class="nav-link active">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../blog.html" class="nav-link">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="project-detail">
+    <div class="container">
+      <header class="project-header">
+        <div class="project-meta">
+          <span class="project-category">Juego Java</span>
+          <span class="project-status">Completado</span>
+        </div>
+        <h1>Buscaminas (Minesweeper)</h1>
+        <p class="project-subtitle">Implementación clásica del juego Buscaminas en Java con interfaz gráfica y patrón MVC</p>
+        
+        <div class="project-hero-image">
+          <img src="https://github.com/ArceApps/Buscaminas/blob/a1645af74da276a0e7fe057dc79d019433ded572/img/Screenshot_1buscaminas.png?raw=true" alt="Buscaminas Game" />
+        </div>
+
+        <div class="project-links">
+          <a href="https://github.com/ArceApps/Buscaminas" class="btn btn-primary" target="_blank">Ver en GitHub</a>
+          <a href="https://github.com/ArceApps/Buscaminas/releases" class="btn btn-outline" target="_blank">Descargar JAR</a>
+        </div>
+      </header>
+
+      <div class="project-content">
+        <div class="project-overview">
+          <h2>Descripción del Proyecto</h2>
+          <p>Buscaminas es una implementación completa del clásico juego de lógica desarrollado en Java con interfaz gráfica Swing. El proyecto demuestra la aplicación del patrón arquitectónico MVC (Modelo-Vista-Controlador) y principios de programación orientada a objetos.</p>
+          
+          <p>El juego incluye múltiples niveles de dificultad, interfaz intuitiva, sistema de puntuación y todas las funcionalidades esperadas del Buscaminas tradicional, incluyendo marcado de banderas y revelado automático de áreas seguras.</p>
+        </div>
+
+        <div class="screenshots-section">
+          <h2>Capturas de Pantalla</h2>
+          <div class="screenshots-grid">
+            <div class="screenshot-item">
+              <img src="https://github.com/ArceApps/Buscaminas/blob/a1645af74da276a0e7fe057dc79d019433ded572/img/Screenshot_1buscaminas.png?raw=true" alt="Juego en progreso" />
+              <p>Tablero de juego principal</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://github.com/ArceApps/Buscaminas/blob/c06e598add09cfb10818e40be774a1e429a012ad/img/Screenshot_2buscaminas.png?raw=true" alt="Configuración" />
+              <p>Selección de dificultad</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://github.com/ArceApps/Buscaminas/blob/a1645af74da276a0e7fe057dc79d019433ded572/img/Screenshot_3buscaminas.png?raw=true" alt="Victoria" />
+              <p>Pantalla de victoria</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://github.com/ArceApps/Buscaminas/blob/a1645af74da276a0e7fe057dc79d019433ded572/img/Screenshot_4buscaminas.png?raw=true" alt="Game Over" />
+              <p>Estado de game over</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-stack">
+          <h3>Tecnologías Utilizadas</h3>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <div class="tech-icon">☕</div>
+              <div>
+                <h4>Java</h4>
+                <p>Lenguaje principal</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🖼️</div>
+              <div>
+                <h4>Swing GUI</h4>
+                <p>Interfaz gráfica nativa</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🏗️</div>
+              <div>
+                <h4>MVC Pattern</h4>
+                <p>Arquitectura limpia</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🎯</div>
+              <div>
+                <h4>Event Handling</h4>
+                <p>Gestión de eventos</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🎨</div>
+              <div>
+                <h4>Custom Graphics</h4>
+                <p>Gráficos personalizados</p>
+              </div>
+            </div>
+            <div class="tech-item">
+              <div class="tech-icon">🧩</div>
+              <div>
+                <h4>Game Logic</h4>
+                <p>Algoritmos de juego</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="features-section">
+          <h2>Características Principales</h2>
+          
+          <div class="feature-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3>Múltiples Dificultades</h3>
+              <p>Tres niveles de dificultad: Principiante (9x9), Intermedio (16x16) y Experto (30x16).</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🚩</div>
+              <h3>Sistema de Banderas</h3>
+              <p>Marcado de celdas sospechosas con banderas usando clic derecho.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">⚡</div>
+              <h3>Revelado Automático</h3>
+              <p>Apertura automática de áreas seguras adyacentes para mayor fluidez.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">⏱️</div>
+              <h3>Cronómetro</h3>
+              <p>Seguimiento de tiempo de juego con registro de mejores marcas.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🏆</div>
+              <h3>Sistema de Puntuación</h3>
+              <p>Cálculo de puntuación basado en tiempo y dificultad completada.</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔄</div>
+              <h3>Reinicio Rápido</h3>
+              <p>Función de reinicio inmediato para comenzar una nueva partida.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="architecture-section">
+          <h2>Arquitectura MVC</h2>
+          
+          <h3>Modelo (Model)</h3>
+          <div class="code-block">
+            <pre><code>public class MinesweeperModel {
+    private Cell[][] board;
+    private int rows, cols, mineCount;
+    private int revealedCells;
+    private GameState gameState;
+    
+    public class Cell {
+        private boolean isMine;
+        private boolean isRevealed;
+        private boolean isFlagged;
+        private int adjacentMines;
+        
+        // Constructor y métodos getter/setter
+    }
+    
+    public void initializeBoard(int rows, int cols, int mines) {
+        this.rows = rows;
+        this.cols = cols;
+        this.mineCount = mines;
+        this.board = new Cell[rows][cols];
+        
+        // Inicializar celdas
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                board[i][j] = new Cell();
+            }
+        }
+        
+        placeMines();
+        calculateAdjacentMines();
+    }
+    
+    private void placeMines() {
+        Random random = new Random();
+        int minesPlaced = 0;
+        
+        while (minesPlaced < mineCount) {
+            int row = random.nextInt(rows);
+            int col = random.nextInt(cols);
+            
+            if (!board[row][col].isMine()) {
+                board[row][col].setMine(true);
+                minesPlaced++;
+            }
+        }
+    }
+}</code></pre>
+          </div>
+
+          <h3>Vista (View)</h3>
+          <div class="code-block">
+            <pre><code>public class MinesweeperView extends JFrame {
+    private JButton[][] buttons;
+    private JLabel timeLabel, mineCountLabel;
+    private JPanel gamePanel;
+    private MinesweeperController controller;
+    
+    public MinesweeperView() {
+        initializeUI();
+    }
+    
+    private void initializeUI() {
+        setTitle("Buscaminas - ArceApps");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        
+        // Panel superior con información
+        JPanel infoPanel = new JPanel(new FlowLayout());
+        mineCountLabel = new JLabel("Minas: 0");
+        timeLabel = new JLabel("Tiempo: 0");
+        infoPanel.add(mineCountLabel);
+        infoPanel.add(timeLabel);
+        
+        // Panel de juego
+        gamePanel = new JPanel();
+        
+        add(infoPanel, BorderLayout.NORTH);
+        add(gamePanel, BorderLayout.CENTER);
+        
+        // Menú
+        createMenuBar();
+    }
+    
+    public void createBoard(int rows, int cols) {
+        gamePanel.removeAll();
+        gamePanel.setLayout(new GridLayout(rows, cols));
+        buttons = new JButton[rows][cols];
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                buttons[i][j] = new JButton();
+                buttons[i][j].setPreferredSize(new Dimension(30, 30));
+                buttons[i][j].setFont(new Font("Arial", Font.BOLD, 12));
+                
+                final int row = i, col = j;
+                
+                // Click izquierdo - revelar celda
+                buttons[i][j].addActionListener(e -> 
+                    controller.handleCellClick(row, col));
+                
+                // Click derecho - colocar bandera
+                buttons[i][j].addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        if (SwingUtilities.isRightMouseButton(e)) {
+                            controller.handleFlagToggle(row, col);
+                        }
+                    }
+                });
+                
+                gamePanel.add(buttons[i][j]);
+            }
+        }
+        
+        pack();
+        setLocationRelativeTo(null);
+    }
+}</code></pre>
+          </div>
+
+          <h3>Controlador (Controller)</h3>
+          <div class="code-block">
+            <pre><code>public class MinesweeperController {
+    private MinesweeperModel model;
+    private MinesweeperView view;
+    private Timer gameTimer;
+    private int elapsedTime;
+    
+    public MinesweeperController(MinesweeperModel model, MinesweeperView view) {
+        this.model = model;
+        this.view = view;
+        this.view.setController(this);
+    }
+    
+    public void handleCellClick(int row, int col) {
+        if (model.getGameState() != GameState.PLAYING) {
+            return;
+        }
+        
+        if (model.isCellFlagged(row, col)) {
+            return; // No se puede revelar una celda marcada
+        }
+        
+        if (model.isCellRevealed(row, col)) {
+            // Doble click en celda revelada con número
+            handleNumberClick(row, col);
+            return;
+        }
+        
+        boolean firstClick = model.getRevealedCells() == 0;
+        if (firstClick) {
+            startTimer();
+        }
+        
+        if (model.isCellMine(row, col)) {
+            // Game Over
+            revealAllMines();
+            model.setGameState(GameState.LOST);
+            stopTimer();
+            view.showGameOverDialog();
+        } else {
+            revealCell(row, col);
+            if (model.isGameWon()) {
+                model.setGameState(GameState.WON);
+                stopTimer();
+                view.showVictoryDialog(elapsedTime);
+            }
+        }
+        
+        view.updateDisplay();
+    }
+    
+    private void revealCell(int row, int col) {
+        if (row < 0 || row >= model.getRows() || 
+            col < 0 || col >= model.getCols() ||
+            model.isCellRevealed(row, col) || 
+            model.isCellFlagged(row, col)) {
+            return;
+        }
+        
+        model.revealCell(row, col);
+        view.updateCellDisplay(row, col);
+        
+        // Si la celda no tiene minas adyacentes, revelar celdas vecinas
+        if (model.getAdjacentMines(row, col) == 0) {
+            for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 1; j++) {
+                    revealCell(row + i, col + j);
+                }
+            }
+        }
+    }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="game-logic-section">
+          <h2>Lógica del Juego</h2>
+          
+          <h3>Algoritmo de Generación de Minas</h3>
+          <p>Las minas se colocan aleatoriamente en el tablero evitando la primera celda clicada para garantizar una experiencia de juego justa.</p>
+
+          <h3>Cálculo de Números</h3>
+          <p>Cada celda calcula automáticamente el número de minas en sus 8 celdas adyacentes usando un algoritmo eficiente de búsqueda.</p>
+
+          <h3>Revelado en Cascada</h3>
+          <p>Cuando se revela una celda sin minas adyacentes, el algoritmo automáticamente revela todas las celdas conectadas hasta encontrar números o bordes.</p>
+        </div>
+
+        <div class="challenges-section">
+          <h2>Desafíos y Soluciones</h2>
+          
+          <h3>1. Arquitectura Escalable</h3>
+          <p><strong>Desafío:</strong> Separar claramente la lógica del juego de la interfaz.</p>
+          <p><strong>Solución:</strong> Implementación estricta del patrón MVC con interfaces bien definidas.</p>
+
+          <h3>2. Performance en Revelado Masivo</h3>
+          <p><strong>Desafío:</strong> Mantener fluidez cuando se revelan muchas celdas a la vez.</p>
+          <p><strong>Solución:</strong> Algoritmo optimizado de flood-fill con prevención de stack overflow.</p>
+
+          <h3>3. Interfaz Responsiva</h3>
+          <p><strong>Desafío:</strong> Crear una interfaz que se sienta nativa y responsiva.</p>
+          <p><strong>Solución:</strong> Uso cuidadoso de Swing con eventos optimizados y feedback visual inmediato.</p>
+        </div>
+
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Java</span>
+            <span class="tag">Swing</span>
+            <span class="tag">MVC</span>
+            <span class="tag">Game Development</span>
+            <span class="tag">GUI</span>
+            <span class="tag">Algorithms</span>
+          </div>
+          
+          <div class="project-navigation">
+            <a href="../portfolio.html" class="nav-btn">← Volver al Portfolio</a>
+            <a href="project-search-recyclerview.html" class="nav-btn">Siguiente Proyecto →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/ArceApps" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

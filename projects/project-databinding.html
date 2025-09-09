@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataBinding Example - ArceApps Portfolio</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="../index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="../portfolio.html" class="nav-link active">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../blog.html" class="nav-link">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="project-detail">
+    <div class="container">
+      <header class="project-header">
+        <div class="project-meta">
+          <span class="project-category">Android UI</span>
+          <span class="project-status">Completado</span>
+        </div>
+        <h1>DataBinding Example</h1>
+        <p class="project-subtitle">Ejemplo completo de DataBinding en Android con observer pattern y binding bidireccional para UI reactiva</p>
+        
+        <div class="project-hero-image">
+          <img src="https://user-images.githubusercontent.com/61239577/202871028-5cba8d34-dee9-4ef8-9341-8d62a75c99dd.png" alt="DataBinding Example" />
+        </div>
+
+        <div class="project-links">
+          <a href="https://github.com/ArceApps/DataBinding" class="btn btn-primary" target="_blank">Ver en GitHub</a>
+          <a href="https://developer.android.com/topic/libraries/data-binding" class="btn btn-outline" target="_blank">DataBinding Docs</a>
+        </div>
+      </header>
+
+      <div class="project-content">
+        <div class="project-overview">
+          <h2>Descripción del Proyecto</h2>
+          <p>Este proyecto demuestra el uso de DataBinding en Android para crear interfaces de usuario reactivas y eliminar el código boilerplate. Incluye binding bidireccional, observadores automáticos y expresiones de binding avanzadas.</p>
+        </div>
+
+        <div class="screenshots-section">
+          <h2>Capturas de Pantalla</h2>
+          <div class="screenshots-grid">
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/202871028-5cba8d34-dee9-4ef8-9341-8d62a75c99dd.png" alt="Formulario" />
+              <p>Formulario con DataBinding</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/202871031-2d1f1ec1-6a2c-4167-af99-ef20e2b35b10.gif" alt="Interacción" />
+              <p>Interacción en tiempo real</p>
+            </div>
+            <div class="screenshot-item">
+              <img src="https://user-images.githubusercontent.com/61239577/202871030-29e3df96-981e-4b7e-a9c6-0293e88f0fd5.png" alt="Validación" />
+              <p>Validación automática</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">DataBinding</span>
+            <span class="tag">Observer Pattern</span>
+            <span class="tag">UI</span>
+          </div>
+          
+          <div class="project-navigation">
+            <a href="../portfolio.html" class="nav-btn">← Volver al Portfolio</a>
+            <a href="project-sudoku.html" class="nav-btn">Siguiente Proyecto →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-text">
+          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/ArceApps" class="footer-link">GitHub</a>
+          <a href="#" class="footer-link">LinkedIn</a>
+          <a href="#" class="footer-link">Contacto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
