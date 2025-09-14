@@ -1,5 +1,14 @@
 [
   {
+    "title": "Clean Architecture en Android: La Arquitectura que Revolucionará tu Desarrollo",
+    "date": "2026-01-15",
+    "summary": "Descubre cómo Clean Architecture transforma apps Android complejas en código mantenible, testeable y escalable. Aprende a implementar las capas correctamente con ejemplos prácticos de una app de e-commerce llamada ShopFlow.",
+    "url": "blog/blog-clean-architecture.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-clean-architecture.svg",
+    "tags": ["Android", "Kotlin", "Clean Architecture", "MVVM", "Use Cases", "Repository Pattern", "Domain Layer", "Testing", "Hilt", "Architecture"]
+  },
+  {
     "title": "GitHub Pages: Tu Hosting Gratuito Premium",
     "date": "2025-12-15",
     "summary": "Descubre cómo GitHub Pages puede convertirse en tu arma secreta para hosting web: desde sitios estáticos hasta documentación profesional, con dominio personalizado incluido.",
