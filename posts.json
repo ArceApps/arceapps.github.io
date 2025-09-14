@@ -1,5 +1,14 @@
 [
   {
+    "title": "GitHub Pages: Tu Hosting Gratuito Premium",
+    "date": "2025-12-15",
+    "summary": "Descubre cómo GitHub Pages puede convertirse en tu arma secreta para hosting web: desde sitios estáticos hasta documentación profesional, con dominio personalizado incluido.",
+    "url": "blog/blog-github-pages.html",
+    "category": "DevOps Web",
+    "image": "images/placeholder-article-github-pages.svg",
+    "tags": ["GitHub Pages", "Static Sites", "Jekyll", "Hosting", "DevOps", "Web Development", "GitHub Actions", "SSL", "CDN"]
+  },
+  {
     "title": "Automatización de Versionado con GitHub Actions: La Revolución del Desarrollador Android",
     "date": "2025-12-10",
     "summary": "Descubre cómo automatizar completamente el versionado de tu app Android con GitHub Actions: desde commits hasta Google Play Store, sin intervención manual.",
