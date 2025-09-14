@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean Architecture en Android: La Arquitectura que Revolucionará tu Desarrollo - ArceApps Blog</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="../index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="../portfolio.html" class="nav-link">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../blog.html" class="nav-link active">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">15 de enero de 2026</span>
+          <span class="article-category">Desarrollo Android</span>
+        </div>
+        <h1>Clean Architecture en Android: La Arquitectura que Revolucionará tu Desarrollo</h1>
+        <p class="article-subtitle">Descubre cómo Clean Architecture transforma apps Android complejas en código mantenible, testeable y escalable. Aprende a implementar las capas correctamente con ejemplos prácticos de una app de e-commerce llamada ShopFlow.</p>
+        <div class="article-image">
+          <img src="../images/placeholder-article-clean-architecture.svg" alt="Clean Architecture Android" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>🏛️ ¿Qué es Clean Architecture y por qué debería importarte?</h2>
+        <p>Imagina que tienes una app de e-commerce con miles de líneas de código. Un día necesitas cambiar la base de datos de Room a Realm, otro día quieres migrar de Retrofit a OkHttp, y la semana siguiente tu jefe quiere añadir pagos con criptomonedas. Si tu código está <strong>acoplado como espaguetis</strong> 🍝, cada cambio será una pesadilla que puede romper toda la aplicación.</p>
+
+        <p><strong>Clean Architecture</strong> es la solución que Robert C. Martin (Uncle Bob) propuso para este problema. No es solo otro patrón de moda: es una <strong>filosofía de diseño</strong> que separa tu aplicación en capas concéntricas, donde las dependencias siempre apuntan hacia el centro (la lógica de negocio).</p>
+
+        <div class="architecture-benefits-overview">
+          <h3>🎯 ¿Por qué Clean Architecture es el game-changer que necesitas?</h3>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <div class="benefit-icon">🔧</div>
+              <h4>Mantenibilidad Extrema</h4>
+              <p>Cambios en UI no afectan la lógica de negocio, y viceversa</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">🧪</div>
+              <h4>Testing sin Dolor</h4>
+              <p>Cada capa se testea independientemente sin dependencias externas</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">🚀</div>
+              <h4>Escalabilidad Real</h4>
+              <p>Equipos grandes pueden trabajar en paralelo sin conflictos</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">🔄</div>
+              <h4>Flexibilidad Total</h4>
+              <p>Cambiar frameworks o bibliotecas sin reescribir la aplicación</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">📱</div>
+              <h4>Independencia de Framework</h4>
+              <p>Lógica de negocio pura, sin dependencias de Android</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">🎯</div>
+              <h4>Reglas de Negocio Claras</h4>
+              <p>Lógica de dominio protegida en el centro de la arquitectura</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>🎪 Las Capas de Clean Architecture: El Circo Perfecto</h2>
+        <p>Clean Architecture organiza tu app como un <strong>circo de tres pistas</strong>, donde cada capa tiene su función específica y las dependencias fluyen hacia el centro como en un embudo mágico:</p>
+
+        <div class="article-image">
+          <img src="../images/clean-architecture-android-layers.svg" alt="Capas de Clean Architecture en Android" />
+        </div>
+
+        <div class="clean-architecture-layers">
+          <div class="layer-card presentation">
+            <div class="layer-header">
+              <h3>📱 Capa de Presentación (UI Layer)</h3>
+              <span class="layer-subtitle">La cara bonita de tu app</span>
+            </div>
+            <div class="layer-content">
+              <h4>Responsabilidades:</h4>
+              <ul>
+                <li><strong>Activities y Fragments:</strong> Gestión del ciclo de vida de Android</li>
+                <li><strong>Jetpack Compose:</strong> UI declarativa y reactiva</li>
+                <li><strong>ViewModels:</strong> Estado de UI y comunicación con Use Cases</li>
+                <li><strong>UI Models:</strong> Datos preparados específicamente para la UI</li>
+              </ul>
+              <h4>🚫 Lo que NO debe hacer:</h4>
+              <ul>
+                <li>Contener lógica de negocio compleja</li>
+                <li>Acceder directamente a fuentes de datos</li>
+                <li>Formatear datos más allá de la presentación</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="layer-card domain">
+            <div class="layer-header">
+              <h3>🧠 Capa de Dominio (Business Logic)</h3>
+              <span class="layer-subtitle">El corazón inteligente</span>
+            </div>
+            <div class="layer-content">
+              <h4>Responsabilidades:</h4>
+              <ul>
+                <li><strong>Entities:</strong> Objetos de negocio puros con reglas</li>
+                <li><strong>Use Cases:</strong> Casos de uso específicos de la aplicación</li>
+                <li><strong>Repository Interfaces:</strong> Contratos para acceso a datos</li>
+                <li><strong>Domain Services:</strong> Lógica de dominio compleja</li>
+              </ul>
+              <h4>✅ Características clave:</h4>
+              <ul>
+                <li>Sin dependencias de Android Framework</li>
+                <li>100% Kotlin puro o Java</li>
+                <li>Fácilmente testeable</li>
+                <li>Reutilizable en otros proyectos</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="layer-card data">
+            <div class="layer-header">
+              <h3>💾 Capa de Datos (Infrastructure)</h3>
+              <span class="layer-subtitle">Los trabajadores incansables</span>
+            </div>
+            <div class="layer-content">
+              <h4>Responsabilidades:</h4>
+              <ul>
+                <li><strong>Repository Implementations:</strong> Lógica real de acceso a datos</li>
+                <li><strong>Data Sources:</strong> Local (Room) y Remote (Retrofit)</li>
+                <li><strong>Data Models:</strong> DTOs y entidades de base de datos</li>
+                <li><strong>Mappers:</strong> Conversión entre capas de datos</li>
+              </ul>
+              <h4>🎯 Funciones especiales:</h4>
+              <ul>
+                <li>Gestión de caché inteligente</li>
+                <li>Sincronización offline/online</li>
+                <li>Manejo de errores de red</li>
+                <li>Transformación de datos</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2>🛠️ ShopFlow: Implementando Clean Architecture en una App Real</h2>
+        <p>Vamos a construir <strong>ShopFlow</strong>, una app de e-commerce que permita a los usuarios navegar productos, añadirlos al carrito y realizar compras. Te mostraré cómo implementar cada capa siguiendo Clean Architecture:</p>
+
+        <h3>🎯 Capa de Dominio: El Núcleo del Negocio</h3>
+        <p>Comenzamos por el centro: las <strong>Entities</strong> que representan nuestros conceptos de negocio puros:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/model/Product.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">// ✅ Entity pura sin dependencias de Android
+data class Product(
+    val id: ProductId,
+    val name: String,
+    val description: String,
+    val price: Money,
+    val category: ProductCategory,
+    val imageUrls: List<String>,
+    val isAvailable: Boolean,
+    val stockQuantity: Int,
+    val rating: ProductRating
+) {
+    // 🧠 Lógica de dominio encapsulada
+    fun canBePurchased(requestedQuantity: Int): Boolean {
+        return isAvailable && stockQuantity >= requestedQuantity
+    }
+    
+    fun calculateDiscountedPrice(discount: Discount): Money {
+        return when (discount.type) {
+            DiscountType.PERCENTAGE -> price * (1 - discount.value)
+            DiscountType.FIXED_AMOUNT -> (price - discount.value).coerceAtLeast(Money.ZERO)
+        }
+    }
+    
+    fun isLowStock(): Boolean = stockQuantity < 10
+}
+
+// Value Objects para mayor expresividad
+@JvmInline
+value class ProductId(val value: String)
+
+@JvmInline 
+value class Money(val amount: Double) {
+    companion object {
+        val ZERO = Money(0.0)
+    }
+    
+    operator fun times(factor: Double) = Money(amount * factor)
+    operator fun minus(other: Money) = Money(amount - other.amount)
+}
+
+data class ProductRating(
+    val average: Double,
+    val totalReviews: Int
+) {
+    fun isHighlyRated() = average >= 4.0 && totalReviews >= 10
+}</code></pre>
+        </div>
+
+        <p>Ahora definamos los <strong>Use Cases</strong> que encapsulan las reglas de negocio de nuestra app:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/usecase/GetProductsUseCase.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">// ✅ Use Case con lógica de negocio específica
+class GetProductsUseCase @Inject constructor(
+    private val productRepository: ProductRepository,
+    private val userPreferencesRepository: UserPreferencesRepository
+) {
+    suspend operator fun invoke(
+        category: ProductCategory? = null,
+        sortBy: ProductSortOption = ProductSortOption.RELEVANCE
+    ): Result<List<Product>> {
+        return try {
+            val userPreferences = userPreferencesRepository.getUserPreferences()
+            
+            // 🧠 Lógica de negocio: filtrar por preferencias del usuario
+            val products = when (category) {
+                null -> productRepository.getAllProducts()
+                else -> productRepository.getProductsByCategory(category)
+            }
+            
+            // 🎯 Aplicar filtros de negocio
+            val filteredProducts = products
+                .filter { it.isAvailable }
+                .filter { product -> 
+                    !userPreferences.hideOutOfStock || product.stockQuantity > 0 
+                }
+                .let { productList ->
+                    if (userPreferences.onlyHighRated) {
+                        productList.filter { it.rating.isHighlyRated() }
+                    } else productList
+                }
+            
+            // 🔄 Aplicar ordenamiento
+            val sortedProducts = when (sortBy) {
+                ProductSortOption.PRICE_LOW_TO_HIGH -> filteredProducts.sortedBy { it.price.amount }
+                ProductSortOption.PRICE_HIGH_TO_LOW -> filteredProducts.sortedByDescending { it.price.amount }
+                ProductSortOption.RATING -> filteredProducts.sortedByDescending { it.rating.average }
+                ProductSortOption.NAME -> filteredProducts.sortedBy { it.name }
+                ProductSortOption.RELEVANCE -> filteredProducts // Ya ordenados por relevancia
+            }
+            
+            Result.success(sortedProducts)
+            
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+}</code></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">domain/usecase/AddToCartUseCase.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">// ✅ Use Case con validaciones de negocio complejas
+class AddToCartUseCase @Inject constructor(
+    private val cartRepository: CartRepository,
+    private val productRepository: ProductRepository,
+    private val inventoryService: InventoryService
+) {
+    suspend operator fun invoke(
+        productId: ProductId,
+        quantity: Int
+    ): Result<CartItem> {
+        return try {
+            // 🔍 Validaciones de negocio
+            if (quantity <= 0) {
+                return Result.failure(InvalidQuantityException())
+            }
+            
+            val product = productRepository.getProductById(productId)
+                ?: return Result.failure(ProductNotFoundException(productId))
+            
+            // 🧠 Verificar disponibilidad según reglas de negocio
+            if (!product.canBePurchased(quantity)) {
+                return Result.failure(InsufficientStockException(product.stockQuantity))
+            }
+            
+            // 📊 Verificar límites de carrito (regla de negocio)
+            val currentCart = cartRepository.getCurrentCart()
+            val totalItemsAfterAdd = currentCart.totalQuantity + quantity
+            
+            if (totalItemsAfterAdd > MAX_CART_ITEMS) {
+                return Result.failure(CartCapacityExceededException())
+            }
+            
+            // 💰 Calcular precio con descuentos aplicables
+            val applicableDiscount = inventoryService.getApplicableDiscount(product)
+            val finalPrice = applicableDiscount?.let { 
+                product.calculateDiscountedPrice(it) 
+            } ?: product.price
+            
+            // ✅ Crear item de carrito
+            val cartItem = CartItem(
+                product = product,
+                quantity = quantity,
+                unitPrice = finalPrice,
+                discount = applicableDiscount
+            )
+            
+            val updatedCart = cartRepository.addItem(cartItem)
+            
+            Result.success(cartItem)
+            
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+    
+    companion object {
+        private const val MAX_CART_ITEMS = 99
+    }
+}</code></pre>
+        </div>
+
+        <h3>💾 Capa de Datos: Implementando los Repositorios</h3>
+        <p>La capa de datos implementa las interfaces definidas en el dominio y gestiona todas las fuentes de datos:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">data/repository/ProductRepositoryImpl.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">// ✅ Implementación del repositorio con múltiples fuentes de datos
+@Singleton
+class ProductRepositoryImpl @Inject constructor(
+    private val remoteDataSource: ProductRemoteDataSource,
+    private val localDataSource: ProductLocalDataSource,
+    private val networkMonitor: NetworkMonitor,
+    private val productMapper: ProductMapper
+) : ProductRepository {
+
+    override suspend fun getAllProducts(): List<Product> {
+        return withContext(Dispatchers.IO) {
+            try {
+                // 🌐 Estrategia: Intentar remoto primero, fallback a local
+                if (networkMonitor.isConnected()) {
+                    val remoteProducts = remoteDataSource.getProducts()
+                    
+                    // 💾 Cachear datos localmente
+                    localDataSource.saveProducts(remoteProducts)
+                    
+                    // 🔄 Mapear de DTOs a entidades de dominio
+                    remoteProducts.map { productMapper.mapToDomain(it) }
+                } else {
+                    // 📱 Modo offline: usar datos locales
+                    val cachedProducts = localDataSource.getCachedProducts()
+                    cachedProducts.map { productMapper.mapToDomain(it) }
+                }
+            } catch (e: Exception) {
+                // 🔄 Fallback a caché en caso de error
+                val cachedProducts = localDataSource.getCachedProducts()
+                cachedProducts.map { productMapper.mapToDomain(it) }
+            }
+        }
+    }
+
+    override suspend fun getProductsByCategory(category: ProductCategory): List<Product> {
+        return withContext(Dispatchers.IO) {
+            try {
+                if (networkMonitor.isConnected()) {
+                    val remoteProducts = remoteDataSource.getProductsByCategory(category.name)
+                    localDataSource.saveProducts(remoteProducts)
+                    remoteProducts.map { productMapper.mapToDomain(it) }
+                } else {
+                    val cachedProducts = localDataSource.getProductsByCategory(category.name)
+                    cachedProducts.map { productMapper.mapToDomain(it) }
+                }
+            } catch (e: Exception) {
+                val cachedProducts = localDataSource.getProductsByCategory(category.name)
+                cachedProducts.map { productMapper.mapToDomain(it) }
+            }
+        }
+    }
+
+    override suspend fun getProductById(productId: ProductId): Product? {
+        return withContext(Dispatchers.IO) {
+            try {
+                // 🔍 Buscar primero en caché local para respuesta rápida
+                val cachedProduct = localDataSource.getProductById(productId.value)
+                if (cachedProduct != null && !cachedProduct.isStale()) {
+                    return@withContext productMapper.mapToDomain(cachedProduct)
+                }
+                
+                // 🌐 Si no hay caché o está obsoleto, buscar remotamente
+                if (networkMonitor.isConnected()) {
+                    val remoteProduct = remoteDataSource.getProductById(productId.value)
+                    remoteProduct?.let {
+                        localDataSource.saveProduct(it)
+                        productMapper.mapToDomain(it)
+                    }
+                } else {
+                    // 📱 Modo offline: devolver caché aunque esté obsoleto
+                    cachedProduct?.let { productMapper.mapToDomain(it) }
+                }
+            } catch (e: Exception) {
+                // 🔄 Siempre intentar caché como último recurso
+                localDataSource.getProductById(productId.value)?.let {
+                    productMapper.mapToDomain(it)
+                }
+            }
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h3>📱 Capa de Presentación: ViewModels Clean</h3>
+        <p>Los ViewModels actúan como el puente entre la UI y los Use Cases, manteniendo el estado y orquestando las operaciones:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">presentation/products/ProductListViewModel.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">// ✅ ViewModel clean que solo orquesta Use Cases
+@HiltViewModel
+class ProductListViewModel @Inject constructor(
+    private val getProductsUseCase: GetProductsUseCase,
+    private val addToCartUseCase: AddToCartUseCase,
+    private val searchProductsUseCase: SearchProductsUseCase
+) : ViewModel() {
+
+    private val _uiState = MutableStateFlow(ProductListUiState())
+    val uiState: StateFlow<ProductListUiState> = _uiState.asStateFlow()
+
+    private val _uiEvents = Channel<ProductListUiEvent>()
+    val uiEvents: Flow<ProductListUiEvent> = _uiEvents.receiveAsFlow()
+
+    fun loadProducts(category: ProductCategory? = null) {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true, error = null) }
+            
+            getProductsUseCase(
+                category = category,
+                sortBy = _uiState.value.sortOption
+            ).fold(
+                onSuccess = { products ->
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            products = products.map { it.toUiModel() },
+                            isLoading = false,
+                            error = null
+                        )
+                    }
+                },
+                onFailure = { error ->
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            isLoading = false,
+                            error = error.toUiError()
+                        )
+                    }
+                }
+            )
+        }
+    }
+
+    fun addToCart(productId: String, quantity: Int = 1) {
+        viewModelScope.launch {
+            addToCartUseCase(
+                productId = ProductId(productId),
+                quantity = quantity
+            ).fold(
+                onSuccess = { cartItem ->
+                    _uiEvents.send(
+                        ProductListUiEvent.ProductAddedToCart(
+                            productName = cartItem.product.name,
+                            quantity = cartItem.quantity
+                        )
+                    )
+                },
+                onFailure = { error ->
+                    _uiEvents.send(
+                        ProductListUiEvent.ShowError(error.toUiError())
+                    )
+                }
+            )
+        }
+    }
+
+    fun searchProducts(query: String) {
+        if (query.isBlank()) {
+            loadProducts(_uiState.value.selectedCategory)
+            return
+        }
+
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+            
+            searchProductsUseCase(query).fold(
+                onSuccess = { products ->
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            products = products.map { it.toUiModel() },
+                            isLoading = false,
+                            searchQuery = query
+                        )
+                    }
+                },
+                onFailure = { error ->
+                    _uiState.update { currentState ->
+                        currentState.copy(
+                            isLoading = false,
+                            error = error.toUiError()
+                        )
+                    }
+                }
+            )
+        }
+    }
+
+    fun changeSortOption(sortOption: ProductSortOption) {
+        viewModelScope.launch {
+            _uiState.update { it.copy(sortOption = sortOption) }
+            loadProducts(_uiState.value.selectedCategory)
+        }
+    }
+}</code></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">presentation/products/ProductListUiState.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">// ✅ Estado de UI inmutable y expresivo
+data class ProductListUiState(
+    val products: List<ProductUiModel> = emptyList(),
+    val isLoading: Boolean = false,
+    val error: UiError? = null,
+    val selectedCategory: ProductCategory? = null,
+    val sortOption: ProductSortOption = ProductSortOption.RELEVANCE,
+    val searchQuery: String = ""
+) {
+    val hasProducts: Boolean get() = products.isNotEmpty()
+    val showEmptyState: Boolean get() = !isLoading && products.isEmpty() && error == null
+    val showErrorState: Boolean get() = error != null
+}
+
+// ✅ Modelo de UI específico para la presentación
+data class ProductUiModel(
+    val id: String,
+    val name: String,
+    val description: String,
+    val formattedPrice: String,
+    val originalPrice: String?,
+    val discountPercentage: String?,
+    val category: String,
+    val imageUrl: String,
+    val isAvailable: Boolean,
+    val stockStatus: StockStatus,
+    val ratingText: String,
+    val isHighlyRated: Boolean
+) {
+    enum class StockStatus {
+        IN_STOCK,
+        LOW_STOCK,
+        OUT_OF_STOCK
+    }
+}
+
+// ✅ Eventos de UI para comunicación unidireccional
+sealed class ProductListUiEvent {
+    data class ProductAddedToCart(
+        val productName: String,
+        val quantity: Int
+    ) : ProductListUiEvent()
+    
+    data class ShowError(val error: UiError) : ProductListUiEvent()
+    
+    object NavigateToCart : ProductListUiEvent()
+}</code></pre>
+        </div>
+
+        <h2>🔧 Inyección de Dependencias con Hilt</h2>
+        <p>Para conectar todas las capas, configuramos Hilt para gestionar las dependencias automáticamente:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">di/RepositoryModule.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">// ✅ Configuración de dependencias para Clean Architecture
+@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
+
+    @Binds
+    abstract fun bindProductRepository(
+        productRepositoryImpl: ProductRepositoryImpl
+    ): ProductRepository
+
+    @Binds
+    abstract fun bindCartRepository(
+        cartRepositoryImpl: CartRepositoryImpl
+    ): CartRepository
+
+    @Binds
+    abstract fun bindUserPreferencesRepository(
+        userPreferencesRepositoryImpl: UserPreferencesRepositoryImpl
+    ): UserPreferencesRepository
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DataModule {
+
+    @Provides
+    @Singleton
+    fun provideProductDatabase(@ApplicationContext context: Context): ProductDatabase {
+        return Room.databaseBuilder(
+            context,
+            ProductDatabase::class.java,
+            "shopflow_database"
+        )
+        .addMigrations(*ProductDatabase.MIGRATIONS)
+        .build()
+    }
+
+    @Provides
+    fun provideProductDao(database: ProductDatabase): ProductDao = database.productDao()
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.API_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(ResultCallAdapterFactory())
+            .client(
+                OkHttpClient.Builder()
+                    .addInterceptor(AuthInterceptor())
+                    .addInterceptor(HttpLoggingInterceptor().apply {
+                        level = if (BuildConfig.DEBUG) {
+                            HttpLoggingInterceptor.Level.BODY
+                        } else {
+                            HttpLoggingInterceptor.Level.NONE
+                        }
+                    })
+                    .build()
+            )
+            .build()
+    }
+
+    @Provides
+    fun provideProductApiService(retrofit: Retrofit): ProductApiService {
+        return retrofit.create(ProductApiService::class.java)
+    }
+}</code></pre>
+        </div>
+
+        <h2>🧪 Testing: La Ventaja Definitiva de Clean Architecture</h2>
+        <p>Una de las mayores ventajas de Clean Architecture es lo <strong>increíblemente fácil</strong> que es testear cada capa independientemente:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">test/domain/usecase/GetProductsUseCaseTest.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">// ✅ Test unitario puro sin dependencias de Android
+@ExtendWith(MockitoExtension::class)
+class GetProductsUseCaseTest {
+
+    @Mock
+    private lateinit var productRepository: ProductRepository
+    
+    @Mock
+    private lateinit var userPreferencesRepository: UserPreferencesRepository
+
+    private lateinit var getProductsUseCase: GetProductsUseCase
+
+    @BeforeEach
+    fun setup() {
+        getProductsUseCase = GetProductsUseCase(productRepository, userPreferencesRepository)
+    }
+
+    @Test
+    fun `when user prefers high rated products, should filter accordingly`() = runTest {
+        // Given
+        val userPreferences = UserPreferences(onlyHighRated = true, hideOutOfStock = false)
+        val products = listOf(
+            createProduct(rating = ProductRating(4.5, 100)), // Alta calificación
+            createProduct(rating = ProductRating(3.0, 50)),  // Baja calificación
+            createProduct(rating = ProductRating(4.2, 15))   // Alta calificación
+        )
+        
+        whenever(userPreferencesRepository.getUserPreferences())
+            .thenReturn(userPreferences)
+        whenever(productRepository.getAllProducts())
+            .thenReturn(products)
+
+        // When
+        val result = getProductsUseCase()
+
+        // Then
+        result.onSuccess { filteredProducts ->
+            assertThat(filteredProducts).hasSize(2)
+            assertThat(filteredProducts.all { it.rating.isHighlyRated() }).isTrue()
+        }
+    }
+
+    @Test
+    fun `when repository throws exception, should return failure`() = runTest {
+        // Given
+        whenever(userPreferencesRepository.getUserPreferences())
+            .thenReturn(UserPreferences())
+        whenever(productRepository.getAllProducts())
+            .thenThrow(NetworkException("Connection failed"))
+
+        // When
+        val result = getProductsUseCase()
+
+        // Then
+        assertThat(result.isFailure).isTrue()
+        assertThat(result.exceptionOrNull()).isInstanceOf(NetworkException::class.java)
+    }
+
+    private fun createProduct(
+        id: String = "test-id",
+        rating: ProductRating = ProductRating(4.0, 10),
+        isAvailable: Boolean = true,
+        stockQuantity: Int = 50
+    ): Product {
+        return Product(
+            id = ProductId(id),
+            name = "Test Product",
+            description = "Test Description", 
+            price = Money(99.99),
+            category = ProductCategory.ELECTRONICS,
+            imageUrls = listOf("https://example.com/image.jpg"),
+            isAvailable = isAvailable,
+            stockQuantity = stockQuantity,
+            rating = rating
+        )
+    }
+}</code></pre>
+        </div>
+
+        <h2>⚡ Clean Architecture vs MVVM: ¿Enemigos o Mejores Amigos?</h2>
+        <p>Muchos desarrolladores piensan que Clean Architecture y MVVM son <strong>competencia</strong>, pero la realidad es que son <strong>complementarios perfectos</strong>:</p>
+
+        <div class="comparison-table">
+          <div class="comparison-header">
+            <h3>🤝 MVVM + Clean Architecture = Power Couple</h3>
+          </div>
+          <div class="comparison-grid">
+            <div class="comparison-item">
+              <h4>🎯 MVVM maneja...</h4>
+              <ul>
+                <li>Presentación y estado de UI</li>
+                <li>Binding entre View y ViewModel</li>
+                <li>Lifecycle awareness</li>
+                <li>Navegación</li>
+              </ul>
+            </div>
+            <div class="comparison-item">
+              <h4>🏛️ Clean Architecture organiza...</h4>
+              <ul>
+                <li>Separación en capas</li>
+                <li>Flujo de dependencias</li>
+                <li>Abstracción de datos</li>
+                <li>Lógica de negocio pura</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2>🚨 Errores Comunes y Cómo Evitarlos</h2>
+        
+        <div class="common-mistakes">
+          <div class="mistake-card">
+            <h3>❌ Error #1: Violating the Dependency Rule</h3>
+            <div class="code-block">
+              <pre><code>// ❌ MAL: Use Case dependiendo de implementación específica
+class GetProductsUseCase(
+    private val retrofitApi: ProductApiService // ¡Framework dependency!
+) {
+    // Esto rompe Clean Architecture
+}</code></pre>
+            </div>
+            <div class="code-block">
+              <pre><code>// ✅ BIEN: Use Case dependiendo de abstracción
+class GetProductsUseCase(
+    private val productRepository: ProductRepository // Abstracción del dominio
+) {
+    // Esto respeta Clean Architecture
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <h3>❌ Error #2: Entities con Lógica de UI</h3>
+            <div class="code-block">
+              <pre><code>// ❌ MAL: Entity con dependencias de Android
+data class Product(
+    val name: String,
+    val price: Double
+) {
+    fun getFormattedPrice(context: Context): String { // ¡Android dependency!
+        return context.getString(R.string.price_format, price)
+    }
+}</code></pre>
+            </div>
+            <div class="code-block">
+              <pre><code>// ✅ BIEN: Entity pura, formateo en capa de presentación
+data class Product(
+    val name: String,
+    val price: Money
+) {
+    // Sin dependencias de framework
+}
+
+// Formateo en capa de presentación
+fun Product.toUiModel(): ProductUiModel {
+    return ProductUiModel(
+        formattedPrice = "${price.amount}€"
+    )
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <h3>❌ Error #3: Over-Engineering Inicial</h3>
+            <p><strong>🎯 Consejo:</strong> No implementes Clean Architecture completa desde el día 1 en un proyecto pequeño. Empieza con MVVM simple y refactoriza hacia Clean Architecture cuando el proyecto crezca en complejidad.</p>
+          </div>
+        </div>
+
+        <h2>🎯 Mejores Prácticas para el Éxito</h2>
+
+        <div class="best-practices-section">
+          <div class="practice-card">
+            <h3>🏗️ Arquitectura Gradual</h3>
+            <ul>
+              <li><strong>Empieza simple:</strong> MVVM básico para MVPs</li>
+              <li><strong>Añade capas:</strong> Repository pattern cuando necesites múltiples fuentes de datos</li>
+              <li><strong>Escala a Clean:</strong> Use Cases cuando la lógica de negocio se complique</li>
+              <li><strong>Refactoriza constantemente:</strong> Mejora la arquitectura según crece el proyecto</li>
+            </ul>
+          </div>
+
+          <div class="practice-card">
+            <h3>🧪 Testing Strategy</h3>
+            <ul>
+              <li><strong>Unit tests:</strong> Dominio y Use Cases (95% coverage)</li>
+              <li><strong>Integration tests:</strong> Repository implementations</li>
+              <li><strong>UI tests:</strong> Flujos críticos de usuario</li>
+              <li><strong>Contract tests:</strong> APIs y interfaces</li>
+            </ul>
+          </div>
+
+          <div class="practice-card">
+            <h3>📦 Organización de Packages</h3>
+            <div class="code-block">
+              <pre><code>com.shopflow
+├── 📁 domain/
+│   ├── model/          # Entities
+│   ├── repository/     # Repository interfaces  
+│   └── usecase/        # Use Cases
+├── 📁 data/
+│   ├── local/          # Room, SharedPrefs
+│   ├── remote/         # Retrofit, APIs
+│   ├── repository/     # Repository implementations
+│   └── mapper/         # Data mappers
+└── 📁 presentation/
+    ├── ui/             # Compose screens
+    ├── viewmodel/      # ViewModels
+    └── model/          # UI models</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <h2>🚀 Próximos Pasos: Tu Hoja de Ruta</h2>
+        
+        <div class="roadmap-section">
+          <h3>📚 Para seguir dominando Clean Architecture</h3>
+          <ol class="roadmap-list">
+            <li><strong>Practica con un proyecto real:</strong> Refactoriza una app existente aplicando Clean Architecture gradualmente</li>
+            <li><strong>Domina la inyección de dependencias:</strong> Aprende Hilt a fondo para gestionar las dependencias entre capas</li>
+            <li><strong>Implementa testing completo:</strong> Crea una suite de tests que cubra todas las capas</li>
+            <li><strong>Explora arquitecturas avanzadas:</strong> Investiga MVI (Model-View-Intent) como evolución natural</li>
+            <li><strong>Estudia casos reales:</strong> Analiza apps open source que implementen Clean Architecture correctamente</li>
+            <li><strong>Integra CI/CD:</strong> Automatiza tests y builds para mantener la calidad arquitectural</li>
+          </ol>
+        </div>
+
+        <div class="conclusion-box">
+          <h3>🎯 Conclusión: El Futuro de tu Desarrollo Android</h3>
+          <p>Clean Architecture no es solo un patrón de diseño, es una <strong>filosofía de desarrollo</strong> que transformará tu manera de construir aplicaciones Android. Puede parecer complejo al principio, pero una vez que internalizas los principios, desarrollarás apps más <strong>robustas, escalables y mantenibles</strong>.</p>
+          
+          <p>Recuerda: <strong>no hay soluciones mágicas</strong>, pero Clean Architecture te da las herramientas para construir software que perdure en el tiempo y sea un placer mantener. ¡Empieza pequeño, aprende constantemente, y construye hacia arriba! 🚀</p>
+        </div>
+
+        <div class="article-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Clean Architecture</span>
+            <span class="tag">MVVM</span>
+            <span class="tag">Use Cases</span>
+            <span class="tag">Repository Pattern</span>
+            <span class="tag">Domain Layer</span>
+            <span class="tag">Testing</span>
+            <span class="tag">Hilt</span>
+            <span class="tag">Architecture</span>
+          </div>
+          
+          <div class="article-navigation">
+            <a href="blog-solid-principles.html" class="nav-button">← SOLID Principles</a>
+            <a href="blog-mvvm-architecture.html" class="nav-button">Siguiente: MVVM Architecture →</a>
+          </div>
+          
+          <div class="share-section">
+            <h4>¿Te gustó este artículo?</h4>
+            <p>Compártelo con otros desarrolladores Android</p>
+            <div class="share-buttons">
+              <button class="share-btn twitter">🐦 Twitter</button>
+              <button class="share-btn linkedin">💼 LinkedIn</button>
+              <button class="share-btn whatsapp">💬 WhatsApp</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>ArceApps</h3>
+          <p>Desarrollando el futuro de las aplicaciones móviles con código limpio y arquitecturas sólidas.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Enlaces Rápidos</h4>
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../portfolio.html">Portfolio</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Categorías</h4>
+          <ul>
+            <li><a href="../blog.html#android">Desarrollo Android</a></li>
+            <li><a href="../blog.html#devops">DevOps Mobile</a></li>
+            <li><a href="../blog.html#architecture">Arquitectura</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 ArceApps. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
