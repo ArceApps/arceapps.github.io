@@ -1616,6 +1616,68 @@ body {
   border-color: var(--primary-green);
 }
 
+/* Tag Groups Styles */
+.tag-groups-section {
+  margin: 3rem 0 2rem 0;
+  text-align: left;
+}
+
+.tag-groups-title {
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.tag-groups {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.tag-group {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.tag-group:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.tag-group-title {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-green);
+}
+
+.tag-group-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag-group .tag-filter {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.show-all-btn {
+  font-size: 1rem !important;
+  padding: 0.6rem 2rem !important;
+  font-weight: 600 !important;
+  background: var(--primary-green) !important;
+  color: var(--bg-primary) !important;
+  border-color: var(--primary-green) !important;
+}
+
 /* Blog Card Tags */
 .blog-card-tags {
   display: flex;

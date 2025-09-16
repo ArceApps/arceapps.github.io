@@ -182,8 +182,8 @@ async function loadBlogPosts() {
         // Load pagination controls
         loadPaginationControls(currentPage, totalPages, totalPosts);
         
-        // Load tag filters (with all posts for filtering)
-        loadTagFilters(sortedPosts, currentPage);
+        // Load tag groups (with all posts for filtering)
+        loadTagGroups(sortedPosts);
         
     } catch (error) {
         console.error('Error loading blog posts:', error);
@@ -299,10 +299,10 @@ function createBlogPostElement(post) {
     return article;
 }
 
-// Function to load tag filters
-function loadTagFilters(posts, currentPage = 1) {
-    const tagFiltersContainer = document.getElementById('tag-filters');
-    if (!tagFiltersContainer) return;
+// Function to load tag groups
+function loadTagGroups(posts) {
+    const tagGroupsContainer = document.getElementById('tag-groups');
+    if (!tagGroupsContainer) return;
     
     // Extract all unique tags from posts
     const allTags = new Set();
@@ -312,17 +312,73 @@ function loadTagFilters(posts, currentPage = 1) {
         }
     });
     
-    // Convert to sorted array
-    const sortedTags = Array.from(allTags).sort();
+    // Define tag groups with their categories
+    const tagGroups = {
+        'Desarrollo Android': [
+            'Android', 'Kotlin', 'MVVM', 'ViewModel', 'LiveData', 'StateFlow', 'SharedFlow',
+            'Jetpack Compose', 'Navigation', 'Animations', 'UI', 'View Layer', 'Model Layer',
+            'Coroutines', 'Flow', 'Memory Leaks', 'Mobile Development', 'Modules'
+        ],
+        'Arquitectura y Patrones': [
+            'Architecture', 'Clean Architecture', 'Clean Code', 'SOLID', 'Repository Pattern',
+            'Use Cases', 'Domain Layer', 'Domain Models', 'Domain Services', 'Business Logic',
+            'State Management', 'Dependency Injection', 'Dagger', 'Hilt', 'Scopes'
+        ],
+        'DevOps y Herramientas': [
+            'DevOps', 'GitHub Actions', 'CI/CD', 'Automation', 'Automatización', 'Google Play Store',
+            'Gradle', 'Release Management', 'Semantic Versioning', 'Versioning', 'Versionado',
+            'Version Control', 'Git', 'Conventional Commits', 'Changelog'
+        ],
+        'Desarrollo Web': [
+            'Web Development', 'GitHub Pages', 'Static Sites', 'Jekyll', 'Hosting', 'SSL',
+            'CDN', 'Analytics'
+        ],
+        'Base de Datos y Persistencia': [
+            'Room Database', 'Room', 'SQLite', 'Persistence', 'Caching', 'Retrofit'
+        ],
+        'Testing y Calidad': [
+            'Testing', 'Debugging', 'Error Handling', 'Firebase', 'Crashlytics'
+        ],
+        'Programación Reactiva': [
+            'Reactive Programming', 'Async Programming'
+        ]
+    };
     
-    // Create filter buttons
-    tagFiltersContainer.innerHTML = `
-        <button class="tag-filter active" data-tag="all">Todos</button>
-        ${sortedTags.map(tag => `<button class="tag-filter" data-tag="${tag}">${tag}</button>`).join('')}
+    // Filter tags that actually exist in posts
+    const filteredGroups = {};
+    Object.keys(tagGroups).forEach(groupName => {
+        const existingTags = tagGroups[groupName].filter(tag => allTags.has(tag));
+        if (existingTags.length > 0) {
+            filteredGroups[groupName] = existingTags.sort();
+        }
+    });
+    
+    // Create HTML for tag groups
+    let groupsHTML = '';
+    Object.keys(filteredGroups).forEach(groupName => {
+        const groupTags = filteredGroups[groupName];
+        groupsHTML += `
+            <div class="tag-group">
+                <h4 class="tag-group-title">${groupName}</h4>
+                <div class="tag-group-tags">
+                    ${groupTags.map(tag => `<button class="tag-filter" data-tag="${tag}">${tag}</button>`).join('')}
+                </div>
+            </div>
+        `;
+    });
+    
+    // Add "Show All" button at the top
+    tagGroupsContainer.innerHTML = `
+        <div class="tag-group">
+            <div class="tag-group-tags">
+                <button class="tag-filter active show-all-btn" data-tag="all">Mostrar Todos</button>
+            </div>
+        </div>
+        ${groupsHTML}
     `;
     
     // Add click event listeners to tag filters
-    const tagFilterButtons = tagFiltersContainer.querySelectorAll('.tag-filter');
+    const tagFilterButtons = tagGroupsContainer.querySelectorAll('.tag-filter');
     tagFilterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const selectedTag = button.dataset.tag;
