@@ -1,5 +1,14 @@
 [
   {
+    "title": "Inyección de Dependencias en Android: Dagger y Hilt para Expertos",
+    "date": "2026-01-20",
+    "summary": "Domina la inyección de dependencias desde los fundamentos hasta implementaciones avanzadas con Dagger y Hilt. Descubre módulos, componentes, subcomponentes y scopes para crear grafos de dependencias robustos y escalables.",
+    "url": "blog/blog-dependency-injection.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-dependency-injection.svg",
+    "tags": ["Android", "Kotlin", "Dagger", "Hilt", "Dependency Injection", "Architecture", "Testing", "Modules", "Scopes", "Clean Code"]
+  },
+  {
     "title": "Clean Architecture en Android: La Arquitectura que Revolucionará tu Desarrollo",
     "date": "2026-01-15",
     "summary": "Descubre cómo Clean Architecture transforma apps Android complejas en código mantenible, testeable y escalable. Aprende a implementar las capas correctamente con ejemplos prácticos de una app de e-commerce llamada ShopFlow.",
