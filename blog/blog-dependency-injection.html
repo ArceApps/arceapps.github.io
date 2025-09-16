@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inyección de Dependencias en Android: Dagger y Hilt para Expertos - ArceApps Blog</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-left">
+        <div class="nav-logo">
+          <h3><a href="../index.html">ArceApps</a></h3>
+        </div>
+      </div>
+      <div class="nav-right">
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item">
+            <a href="../index.html" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../about.html" class="nav-link">About</a>
+          </li>
+          <li class="nav-item">
+            <a href="../portfolio.html" class="nav-link">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a href="../blog.html" class="nav-link active">Blog</a>
+          </li>
+        </ul>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <div class="theme-toggle-circle">
+            <span class="theme-icon">🌙</span>
+          </div>
+        </button>
+        <div class="nav-toggle" id="nav-toggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="blog-article">
+    <div class="container">
+      <header class="article-header">
+        <div class="article-meta">
+          <span class="article-date">20 de enero de 2026</span>
+          <span class="article-category">Desarrollo Android</span>
+        </div>
+        <h1>Inyección de Dependencias en Android: Dagger y Hilt para Expertos</h1>
+        <p class="article-subtitle">Domina la inyección de dependencias desde los fundamentos hasta implementaciones avanzadas con Dagger y Hilt. Descubre módulos, componentes, subcomponentes y scopes para crear grafos de dependencias robustos y escalables.</p>
+        <div class="article-image">
+          <img src="../images/placeholder-article-dependency-injection.svg" alt="Inyección de Dependencias Android" />
+        </div>
+      </header>
+
+      <div class="article-content">
+        <h2>🎯 ¿Qué es la Inyección de Dependencias y por qué necesitas dominarla?</h2>
+        <p>Imagina que estás construyendo una aplicación de chat como WhatsApp. Tu <code>ChatViewModel</code> necesita un repositorio de mensajes, un servicio de autenticación, un cliente de red, y un manejador de notificaciones. Si creas estas dependencias manualmente, tu código se convierte en una <strong>pesadilla de acoplamiento</strong> 🔗 que es imposible de testear y mantener.</p>
+
+        <p><strong>La Inyección de Dependencias (DI)</strong> es el patrón que resuelve este problema: en lugar de que tus clases creen sus propias dependencias, se las <strong>"inyectas" desde el exterior</strong>. Es como tener un mayordomo personal que te trae exactamente lo que necesitas, cuando lo necesitas, sin que tengas que preocuparte de dónde vienen las cosas.</p>
+
+        <div class="dependency-injection-benefits">
+          <h3>🚀 ¿Por qué la DI es tu superpoder secreto?</h3>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <div class="benefit-icon">🧪</div>
+              <h4>Testing Sin Dolor</h4>
+              <p>Mockea cualquier dependencia fácilmente para tests unitarios</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">🔄</div>
+              <h4>Flexibilidad Total</h4>
+              <p>Cambia implementaciones sin modificar el código cliente</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">🏗️</div>
+              <h4>Construcción Automática</h4>
+              <p>El framework resuelve automáticamente las dependencias</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">♻️</div>
+              <h4>Reutilización Inteligente</h4>
+              <p>Comparte instancias según el scope configurado</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">🔍</div>
+              <h4>Depuración Simple</h4>
+              <p>Visualiza y debuggea el grafo de dependencias fácilmente</p>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">📦</div>
+              <h4>Modularización Perfecta</h4>
+              <p>Organiza dependencias por módulos y características</p>
+            </div>
+          </div>
+        </div>
+
+        <h2>🗡️ Dagger vs Hilt: La Batalla de los Titanes</h2>
+        <p>Antes de sumergirnos en el código, entendamos la diferencia entre estas dos herramientas y cuándo usar cada una:</p>
+
+        <div class="comparison-section">
+          <div class="comparison-card dagger">
+            <div class="comparison-header">
+              <h3>⚔️ Dagger</h3>
+              <span class="comparison-subtitle">El veterano poderoso</span>
+            </div>
+            <div class="comparison-content">
+              <h4>✅ Ventajas:</h4>
+              <ul>
+                <li><strong>Control total:</strong> Configuración completa del grafo</li>
+                <li><strong>Sin magic:</strong> Todo explícito y transparente</li>
+                <li><strong>Rendimiento:</strong> Generación de código en compile-time</li>
+                <li><strong>Flexibilidad:</strong> Para casos de uso muy específicos</li>
+              </ul>
+              <h4>❌ Desventajas:</h4>
+              <ul>
+                <li>Curva de aprendizaje empinada</li>
+                <li>Mucho boilerplate code</li>
+                <li>Configuración compleja para Android</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="comparison-card hilt">
+            <div class="comparison-header">
+              <h3>🗡️ Hilt</h3>
+              <span class="comparison-subtitle">El elegido moderno</span>
+            </div>
+            <div class="comparison-content">
+              <h4>✅ Ventajas:</h4>
+              <ul>
+                <li><strong>Simplicidad:</strong> Configuración mínima para Android</li>
+                <li><strong>Best practices:</strong> Scopes predefinidos optimizados</li>
+                <li><strong>Integration:</strong> Perfecto para Architecture Components</li>
+                <li><strong>Less boilerplate:</strong> Menos código, más productividad</li>
+              </ul>
+              <h4>❌ Desventajas:</h4>
+              <ul>
+                <li>Menos control granular que Dagger puro</li>
+                <li>Específico para Android (no Java puro)</li>
+                <li>Dependiente del ecosystem de Jetpack</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision-guide">
+          <h3>🎯 ¿Cuál elegir para tu proyecto?</h3>
+          <div class="decision-options">
+            <div class="decision-option">
+              <h4>🗡️ Elige Hilt si:</h4>
+              <ul>
+                <li>Estás creando una app Android moderna</li>
+                <li>Usas Architecture Components (ViewModel, Room, etc.)</li>
+                <li>Quieres productive development con menos código</li>
+                <li>Tu equipo es nuevo en DI</li>
+              </ul>
+            </div>
+            <div class="decision-option">
+              <h4>⚔️ Elige Dagger si:</h4>
+              <ul>
+                <li>Necesitas control total del grafo de dependencias</li>
+                <li>Trabajas con módulos Java puros</li>
+                <li>Tienes configuraciones muy específicas</li>
+                <li>Migras desde un sistema Dagger existente</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2>🏗️ Hilt en Acción: Construyendo ChatFlow</h2>
+        <p>Vamos a implementar <strong>ChatFlow</strong>, una aplicación de mensajería que demuestra todos los conceptos avanzados de inyección de dependencias. Desde configuración básica hasta scopes customizados.</p>
+
+        <h3>📱 Configuración Inicial: El Foundation</h3>
+        <p>Comenzamos configurando Hilt en nuestro proyecto. Esta es la base sobre la que construiremos todo:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">build.gradle (app)</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">plugins {
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+dependencies {
+    // Hilt dependencies
+    implementation "com.google.dagger:hilt-android:2.48"
+    kapt "com.google.dagger:hilt-compiler:2.48"
+    
+    // Hilt ViewModel integration
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
+    
+    // Hilt Testing
+    testImplementation "com.google.dagger:hilt-android-testing:2.48"
+    kaptTest "com.google.dagger:hilt-compiler:2.48"
+}</code></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">ChatFlowApplication.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@HiltAndroidApp
+class ChatFlowApplication : Application() {
+    
+    override fun onCreate() {
+        super.onCreate()
+        // Hilt maneja automáticamente la inicialización del grafo
+        setupTimber() // Logging
+        setupNotificationChannels()
+    }
+    
+    private fun setupTimber() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h3>🔧 Módulos: Los Bloques de Construcción</h3>
+        <p>Los módulos son donde definimos <strong>cómo crear las dependencias</strong>. Cada módulo tiene una responsabilidad específica:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">NetworkModule.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Module
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
+    
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor())
+            .addInterceptor(LoggingInterceptor())
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .build()
+    }
+    
+    @Provides
+    @Singleton
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.API_BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .build()
+    }
+    
+    @Provides
+    @Singleton
+    fun provideChatApiService(retrofit: Retrofit): ChatApiService {
+        return retrofit.create(ChatApiService::class.java)
+    }
+}</code></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">DatabaseModule.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Module
+@InstallIn(SingletonComponent::class)
+object DatabaseModule {
+    
+    @Provides
+    @Singleton
+    fun provideChatDatabase(@ApplicationContext context: Context): ChatDatabase {
+        return Room.databaseBuilder(
+            context,
+            ChatDatabase::class.java,
+            "chat_database"
+        )
+        .addMigrations(*getAllMigrations())
+        .fallbackToDestructiveMigration()
+        .build()
+    }
+    
+    @Provides
+    fun provideMessageDao(database: ChatDatabase): MessageDao = database.messageDao()
+    
+    @Provides
+    fun provideChatDao(database: ChatDatabase): ChatDao = database.chatDao()
+    
+    @Provides
+    fun provideUserDao(database: ChatDatabase): UserDao = database.userDao()
+}</code></pre>
+        </div>
+
+        <h3>🏛️ Repository Pattern con DI</h3>
+        <p>Los repositorios se vuelven súper limpios con inyección de dependencias:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">RepositoryModule.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Module
+@InstallIn(SingletonComponent::class)
+abstract class RepositoryModule {
+    
+    @Binds
+    abstract fun bindChatRepository(
+        chatRepositoryImpl: ChatRepositoryImpl
+    ): ChatRepository
+    
+    @Binds
+    abstract fun bindMessageRepository(
+        messageRepositoryImpl: MessageRepositoryImpl
+    ): MessageRepository
+    
+    @Binds
+    abstract fun bindUserRepository(
+        userRepositoryImpl: UserRepositoryImpl
+    ): UserRepository
+    
+    @Binds
+    abstract fun bindAuthRepository(
+        authRepositoryImpl: AuthRepositoryImpl
+    ): AuthRepository
+}</code></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">ChatRepositoryImpl.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Singleton
+class ChatRepositoryImpl @Inject constructor(
+    private val chatApiService: ChatApiService,
+    private val chatDao: ChatDao,
+    private val messageDao: MessageDao,
+    private val userPreferences: UserPreferences,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
+) : ChatRepository {
+    
+    override suspend fun getChats(): Flow<List<Chat>> = withContext(ioDispatcher) {
+        // Implementación que combina datos locales y remotos
+        combine(
+            chatDao.getAllChats(),
+            getChatsFromNetwork()
+        ) { localChats, networkChats ->
+            mergeChats(localChats, networkChats)
+        }
+    }
+    
+    override suspend fun sendMessage(chatId: String, message: String): Result<Message> {
+        return withContext(ioDispatcher) {
+            try {
+                val result = chatApiService.sendMessage(
+                    SendMessageRequest(chatId, message, userPreferences.userId)
+                )
+                messageDao.insertMessage(result.toLocalMessage())
+                Result.success(result.toDomainMessage())
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h2>🎯 Scopes: Controlando el Ciclo de Vida</h2>
+        <p>Los scopes determinan <strong>cuánto tiempo vive una instancia</strong>. Hilt proporciona scopes optimizados para Android:</p>
+
+        <div class="scopes-section">
+          <div class="scope-card singleton">
+            <div class="scope-header">
+              <h3>🏰 @Singleton</h3>
+              <span class="scope-subtitle">Una instancia para toda la app</span>
+            </div>
+            <div class="scope-content">
+              <h4>Cuándo usar:</h4>
+              <ul>
+                <li>Repositories que manejan estado global</li>
+                <li>Clientes de red (Retrofit, OkHttp)</li>
+                <li>Bases de datos</li>
+                <li>Preferencias de usuario</li>
+              </ul>
+              <h4>⚠️ Cuidado con:</h4>
+              <ul>
+                <li>Memory leaks si referencian Context</li>
+                <li>Estado mutable compartido</li>
+                <li>Dependencias pesadas innecesarias</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="scope-card activity">
+            <div class="scope-header">
+              <h3>📱 @ActivityScoped</h3>
+              <span class="scope-subtitle">Vive durante toda la Activity</span>
+            </div>
+            <div class="scope-content">
+              <h4>Cuándo usar:</h4>
+              <ul>
+                <li>Estado específico de la Activity</li>
+                <li>Coordinadores de navegación</li>
+                <li>Manejadores de permisos</li>
+                <li>Analytics trackers por pantalla</li>
+              </ul>
+              <h4>Perfecto para:</h4>
+              <ul>
+                <li>Chat screen con estado de typing</li>
+                <li>Camera controllers</li>
+                <li>Audio players por activity</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="scope-card viewmodel">
+            <div class="scope-header">
+              <h3>🧠 @ViewModelScoped</h3>
+              <span class="scope-subtitle">Ligado al ciclo de vida del ViewModel</span>
+            </div>
+            <div class="scope-content">
+              <h4>Cuándo usar:</h4>
+              <ul>
+                <li>Use cases específicos del ViewModel</li>
+                <li>Estado temporal de pantalla</li>
+                <li>Validadores de formularios</li>
+                <li>Transformadores de datos de UI</li>
+              </ul>
+              <h4>Ventajas:</h4>
+              <ul>
+                <li>Sobrevive a configuration changes</li>
+                <li>Se limpia automáticamente</li>
+                <li>Perfecto para state management</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h3>🔧 Scopes Customizados: Tu Propia Lógica</h3>
+        <p>Puedes crear tus propios scopes para casos específicos:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">CustomScopes.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">// Scope personalizado para features
+@Scope
+@MustBeDocumented
+@Retention(AnnotationRetention.RUNTIME)
+annotation class FeatureScoped
+
+// Componente personalizado para chat feature
+@FeatureScoped
+@DefineComponent(parent = SingletonComponent::class)
+interface ChatFeatureComponent {
+    
+    @DefineComponent.Builder
+    interface Builder {
+        fun setChatId(@BindsInstance chatId: String): Builder
+        fun build(): ChatFeatureComponent
+    }
+}
+
+// Módulo que usa el scope personalizado
+@Module
+@InstallIn(ChatFeatureComponent::class)
+object ChatFeatureModule {
+    
+    @Provides
+    @FeatureScoped
+    fun provideChatStateMachine(chatId: String): ChatStateMachine {
+        return ChatStateMachine(chatId)
+    }
+}</code></pre>
+        </div>
+
+        <h2>🧪 Testing con Dependencias Inyectadas</h2>
+        <p>La verdadera magia de DI se ve en testing. Puedes mockear cualquier dependencia fácilmente:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">ChatViewModelTest.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@HiltAndroidTest
+class ChatViewModelTest {
+    
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
+    
+    @BindValue
+    @JvmField
+    val mockChatRepository: ChatRepository = mockk()
+    
+    @BindValue
+    @JvmField  
+    val mockMessageRepository: MessageRepository = mockk()
+    
+    private lateinit var viewModel: ChatViewModel
+    
+    @Before
+    fun setup() {
+        hiltRule.inject()
+        
+        // Configurar mocks
+        every { mockChatRepository.getChatById(any()) } returns flowOf(sampleChat)
+        every { mockMessageRepository.getMessages(any()) } returns flowOf(sampleMessages)
+        
+        viewModel = ChatViewModel(mockChatRepository, mockMessageRepository)
+    }
+    
+    @Test
+    fun `when sending message then repository is called with correct params`() = runTest {
+        // Given
+        val message = "Hello World!"
+        val chatId = "chat_123"
+        
+        // When
+        viewModel.sendMessage(chatId, message)
+        advanceUntilIdle()
+        
+        // Then
+        verify { mockMessageRepository.sendMessage(chatId, message) }
+        assertThat(viewModel.uiState.value.isSending).isFalse()
+    }
+}</code></pre>
+        </div>
+
+        <h2>🔍 Alternativas: Koin y Manual DI</h2>
+        <p>Aunque Hilt es increíble, vale la pena conocer las alternativas:</p>
+
+        <div class="alternatives-section">
+          <div class="alternative-card koin">
+            <div class="alternative-header">
+              <h3>🥝 Koin</h3>
+              <span class="alternative-subtitle">DI ligero y pragmático</span>
+            </div>
+            <div class="alternative-content">
+              <h4>✅ Pros:</h4>
+              <ul>
+                <li><strong>Simplicidad extrema:</strong> DSL muy intuitivo</li>
+                <li><strong>Kotlin-first:</strong> Diseñado específicamente para Kotlin</li>
+                <li><strong>Runtime resolution:</strong> Flexibilidad máxima</li>
+                <li><strong>Curva de aprendizaje suave:</strong> Fácil de entender</li>
+              </ul>
+              <h4>❌ Contras:</h4>
+              <ul>
+                <li>Runtime errors vs compile-time en Dagger</li>
+                <li>Performance ligeramente inferior</li>
+                <li>Menos tooling y debugging</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="alternative-card manual">
+            <div class="alternative-header">
+              <h3>🛠️ Manual DI</h3>
+              <span class="alternative-subtitle">Control total, responsabilidad total</span>
+            </div>
+            <div class="alternative-content">
+              <h4>✅ Cuándo considerar:</h4>
+              <ul>
+                <li>Apps muy pequeñas con pocas dependencias</li>
+                <li>Proyectos educativos para entender DI</li>
+                <li>Control total sobre la construcción</li>
+                <li>Sin dependencies adicionales</li>
+              </ul>
+              <h4>❌ Problemático para:</h4>
+              <ul>
+                <li>Apps complejas con muchas dependencias</li>
+                <li>Equipos grandes</li>
+                <li>Testing extensivo</li>
+                <li>Mantenimiento a largo plazo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h3>🥝 Ejemplo Rápido con Koin</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">KoinModule.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">val networkModule = module {
+    single { 
+        OkHttpClient.Builder()
+            .addInterceptor(get<AuthInterceptor>())
+            .build() 
+    }
+    
+    single { 
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.API_URL)
+            .client(get())
+            .build() 
+    }
+    
+    single { get<Retrofit>().create<ChatApiService>() }
+}
+
+val repositoryModule = module {
+    single<ChatRepository> { ChatRepositoryImpl(get(), get()) }
+}
+
+val viewModelModule = module {
+    viewModel { ChatViewModel(get()) }
+}
+
+// En Application
+class ChatApp : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidContext(this@ChatApp)
+            modules(networkModule, repositoryModule, viewModelModule)
+        }
+    }
+}</code></pre>
+        </div>
+
+        <h2>🚀 Arquitectura Avanzada: Dagger Puro para Casos Complejos</h2>
+        <p>Para proyectos enterprise que necesitan control granular, Dagger puro sigue siendo el rey:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">AppComponent.kt - Dagger Puro</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code class="language-kotlin">@Singleton
+@Component(modules = [
+    AppModule::class,
+    NetworkModule::class,
+    DatabaseModule::class,
+    RepositoryModule::class
+])
+interface AppComponent {
+    
+    fun inject(application: ChatApplication)
+    
+    // Factory para subcomponentes
+    fun chatComponentBuilder(): ChatComponent.Builder
+    
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance context: Context): AppComponent
+    }
+}
+
+// Subcomponente para feature específico
+@ChatFeatureScope
+@Subcomponent(modules = [ChatModule::class])
+interface ChatComponent {
+    
+    fun inject(chatActivity: ChatActivity)
+    fun inject(chatFragment: ChatFragment)
+    
+    @Subcomponent.Builder
+    interface Builder {
+        @BindsInstance
+        fun chatId(chatId: String): Builder
+        
+        fun build(): ChatComponent
+    }
+}</code></pre>
+        </div>
+
+        <h2>🎯 Best Practices: Conviértete en un DI Ninja</h2>
+        
+        <div class="best-practices-section">
+          <div class="practice-card">
+            <h3>🎪 1. Organización de Módulos</h3>
+            <div class="practice-content">
+              <h4>Por Responsabilidad:</h4>
+              <pre><code>📁 di/
+├── 📄 NetworkModule.kt       # Retrofit, OkHttp
+├── 📄 DatabaseModule.kt      # Room, DAOs  
+├── 📄 RepositoryModule.kt    # Repository bindings
+├── 📄 UseCaseModule.kt       # Business logic
+└── 📄 ViewModelModule.kt     # ViewModel factories</code></pre>
+            </div>
+          </div>
+
+          <div class="practice-card">
+            <h3>🏷️ 2. Qualifiers Inteligentes</h3>
+            <div class="practice-content">
+              <div class="code-block">
+                <pre><code class="language-kotlin">@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class AuthRetrofit
+
+@Qualifier  
+@Retention(AnnotationRetention.BINARY)
+annotation class ChatRetrofit
+
+// Uso
+@Provides
+@AuthRetrofit
+fun provideAuthRetrofit(): Retrofit = ...
+
+@Provides
+@ChatRetrofit  
+fun provideChatRetrofit(): Retrofit = ...</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-card">
+            <h3>⚡ 3. Lazy Injection</h3>
+            <div class="practice-content">
+              <div class="code-block">
+                <pre><code class="language-kotlin">class ChatRepository @Inject constructor(
+    private val apiService: ChatApiService,
+    private val database: Lazy<ChatDatabase>, // ⚡ Lazy loading
+    @IoDispatcher private val dispatcher: CoroutineDispatcher
+) {
+    
+    private val chatDao by lazy { database.get().chatDao() }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="practice-card">
+            <h3>🔍 4. Provider Pattern</h3>
+            <div class="practice-content">
+              <div class="code-block">
+                <pre><code class="language-kotlin">class ChatViewModel @Inject constructor(
+    private val chatRepositoryProvider: Provider<ChatRepository>
+) {
+    
+    fun switchToPrivateMode() {
+        // Obtener nueva instancia cuando sea necesario
+        val privateRepo = chatRepositoryProvider.get()
+        // ...
+    }
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2>🏃‍♀️ Migración: De Manual a Hilt paso a paso</h2>
+        <p>Si tienes un proyecto existente, aquí tienes una estrategia de migración gradual:</p>
+
+        <div class="migration-steps">
+          <div class="migration-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4>Prepara la Base</h4>
+              <ul>
+                <li>Añade dependencias de Hilt</li>
+                <li>Anota tu Application con @HiltAndroidApp</li>
+                <li>Identifica dependencies actuales</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="migration-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4>Migra Capa por Capa</h4>
+              <ul>
+                <li>Comienza con Repositories (menos dependencias)</li>
+                <li>Luego Use Cases</li>
+                <li>Finalmente ViewModels</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="migration-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4>Reemplaza Factory Manual</h4>
+              <ul>
+                <li>Elimina factory classes custom</li>
+                <li>Usa @Inject constructors</li>
+                <li>Convierte singletons manuales</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="migration-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4>Optimiza y Limpia</h4>
+              <ul>
+                <li>Revisa scopes para optimizar memoria</li>
+                <li>Elimina código deprecated</li>
+                <li>Añade testing con @HiltAndroidTest</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <h2>🚀 Próximos Pasos: Tu Roadmap hacia la Maestría en DI</h2>
+        
+        <div class="roadmap-section">
+          <h3>📚 Para dominar completamente la Inyección de Dependencias</h3>
+          <ol class="roadmap-list">
+            <li><strong>Practica con proyectos reales:</strong> Refactoriza una app existente migrando a Hilt gradualmente</li>
+            <li><strong>Explora Dagger avanzado:</strong> Aprende subcomponentes, multibinding y custom scopes</li>
+            <li><strong>Domina el testing:</strong> Crea tests exhaustivos usando @HiltAndroidTest y mocking</li>
+            <li><strong>Optimización de performance:</strong> Analiza el grafo de dependencias para optimizar memoria</li>
+            <li><strong>Arquitecturas multi-módulo:</strong> Implementa DI en proyectos con múltiples módulos Gradle</li>
+            <li><strong>Casos edge:</strong> Maneja dependencias circulares, lazy loading y provider patterns</li>
+          </ol>
+        </div>
+
+        <div class="conclusion-box">
+          <h3>🎯 Conclusión: Tu Superpoder de Desarrollo</h3>
+          <p>La inyección de dependencias no es solo un patrón técnico, es tu <strong>superpoder secreto</strong> para escribir código Android de nivel enterprise. Con Hilt tienes la productividad, con Dagger tienes el control total, y con el conocimiento de ambos, tienes <strong>flexibilidad infinita</strong>.</p>
+          
+          <p>Recuerda: empieza simple con Hilt para la mayoría de casos, pero ten Dagger en tu toolkit para cuando necesites el poder absoluto. <strong>Tu futuro yo te agradecerá</strong> cuando tengas que mantener código en producción con millones de usuarios. 🚀</p>
+        </div>
+
+        <div class="article-footer">
+          <div class="tags">
+            <span class="tag">Android</span>
+            <span class="tag">Kotlin</span>
+            <span class="tag">Dagger</span>
+            <span class="tag">Hilt</span>
+            <span class="tag">Dependency Injection</span>
+            <span class="tag">Architecture</span>
+            <span class="tag">Testing</span>
+            <span class="tag">Modules</span>
+            <span class="tag">Scopes</span>
+            <span class="tag">Clean Code</span>
+          </div>
+          
+          <div class="article-navigation">
+            <a href="blog-clean-architecture.html" class="nav-button">← Clean Architecture</a>
+            <a href="blog-mvvm-architecture.html" class="nav-button">Siguiente: MVVM Architecture →</a>
+          </div>
+          
+          <div class="share-section">
+            <h4>¿Te gustó este artículo?</h4>
+            <p>Compártelo con otros desarrolladores Android</p>
+            <div class="share-buttons">
+              <button class="share-btn twitter">🐦 Twitter</button>
+              <button class="share-btn linkedin">💼 LinkedIn</button>
+              <button class="share-btn whatsapp">💬 WhatsApp</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>ArceApps</h3>
+          <p>Desarrollando el futuro de las aplicaciones móviles con código limpio y arquitecturas sólidas.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Enlaces Rápidos</h4>
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../portfolio.html">Portfolio</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Categorías</h4>
+          <ul>
+            <li><a href="../blog.html#android">Desarrollo Android</a></li>
+            <li><a href="../blog.html#devops">DevOps Mobile</a></li>
+            <li><a href="../blog.html#architecture">Arquitectura</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 ArceApps. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
