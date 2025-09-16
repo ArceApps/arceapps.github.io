@@ -1,5 +1,14 @@
 [
   {
+    "title": "StateFlow y SharedFlow: Gestión Avanzada de Estado y Eventos",
+    "date": "2026-01-20",
+    "summary": "Domina las diferencias críticas, casos de uso, configuración de búfer y políticas de repetición entre StateFlow y SharedFlow para construir aplicaciones reactivas robustas y libres de memory leaks.",
+    "url": "blog/blog-stateflow-sharedflow.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-stateflow-sharedflow.svg",
+    "tags": ["Android", "Kotlin", "StateFlow", "SharedFlow", "Coroutines", "Flow", "Reactive Programming", "State Management", "Memory Leaks", "MVVM", "Testing"]
+  },
+  {
     "title": "Clean Architecture en Android: La Arquitectura que Revolucionará tu Desarrollo",
     "date": "2026-01-15",
     "summary": "Descubre cómo Clean Architecture transforma apps Android complejas en código mantenible, testeable y escalable. Aprende a implementar las capas correctamente con ejemplos prácticos de una app de e-commerce llamada ShopFlow.",
