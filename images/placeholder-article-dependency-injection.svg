@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#f8f9fa"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="200" fill="url(#bg)"/>
+  
+  <!-- Main Card -->
+  <rect x="50" y="30" width="300" height="140" rx="15" fill="url(#cardGrad)" stroke="#e0e0e0" stroke-width="2"/>
+  
+  <!-- Dependency Injection Icon -->
+  <g transform="translate(80, 50)">
+    <!-- Dagger Icon -->
+    <path d="M20 10 L40 10 L30 0 Z" fill="#2196F3"/>
+    <rect x="28" y="10" width="4" height="30" fill="#2196F3"/>
+    <circle cx="30" cy="45" r="3" fill="#2196F3"/>
+    
+    <!-- Injection Arrow -->
+    <path d="M50 25 L80 25 M75 20 L80 25 L75 30" stroke="#4CAF50" stroke-width="3" fill="none"/>
+    
+    <!-- Component Box -->
+    <rect x="90" y="15" width="30" height="20" rx="5" fill="#FF9800" stroke="#E65100" stroke-width="2"/>
+    <text x="105" y="27" text-anchor="middle" font-size="8" fill="white" font-family="Arial">DI</text>
+  </g>
+  
+  <!-- Connected Modules -->
+  <g transform="translate(220, 45)">
+    <circle cx="15" cy="15" r="12" fill="#9C27B0" stroke="#6A1B9A" stroke-width="2"/>
+    <text x="15" y="19" text-anchor="middle" font-size="8" fill="white" font-family="Arial">M1</text>
+    
+    <circle cx="35" cy="35" r="12" fill="#00BCD4" stroke="#006064" stroke-width="2"/>
+    <text x="35" y="39" text-anchor="middle" font-size="8" fill="white" font-family="Arial">M2</text>
+    
+    <circle cx="15" cy="55" r="12" fill="#4CAF50" stroke="#2E7D32" stroke-width="2"/>
+    <text x="15" y="59" text-anchor="middle" font-size="8" fill="white" font-family="Arial">M3</text>
+    
+    <!-- Connection lines -->
+    <line x1="27" y1="15" x2="23" y2="35" stroke="#666" stroke-width="1.5"/>
+    <line x1="23" y1="35" x2="27" y2="55" stroke="#666" stroke-width="1.5"/>
+    <line x1="15" y1="27" x2="15" y2="43" stroke="#666" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Hilt Logo simplified -->
+  <g transform="translate(320, 60)">
+    <path d="M0 0 L10 0 L15 10 L10 20 L0 20 L5 10 Z" fill="#FFC107" stroke="#FF8F00" stroke-width="1"/>
+    <circle cx="7.5" cy="10" r="2" fill="#FF8F00"/>
+  </g>
+  
+  <!-- Title Text -->
+  <text x="200" y="190" text-anchor="middle" font-size="14" font-weight="bold" fill="white" font-family="Arial">
+    Inyección de Dependencias
+  </text>
+</svg>
