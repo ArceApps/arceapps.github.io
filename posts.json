@@ -1,5 +1,14 @@
 [
   {
+    "title": "StateFlow y SharedFlow: Gestión Avanzada de Estado y Eventos",
+    "date": "2026-01-20",
+    "summary": "Domina las diferencias críticas, casos de uso, configuración de búfer y políticas de repetición entre StateFlow y SharedFlow para construir aplicaciones reactivas robustas y libres de memory leaks.",
+    "url": "blog/blog-stateflow-sharedflow.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-stateflow-sharedflow.svg",
+    "tags": ["Android", "Kotlin", "StateFlow", "SharedFlow", "Coroutines", "Flow", "Reactive Programming", "State Management", "Memory Leaks", "MVVM", "Testing"]
+  },
+  {
     "title": "Inyección de Dependencias en Android: Dagger y Hilt para Expertos",
     "date": "2026-01-20",
     "summary": "Domina la inyección de dependencias desde los fundamentos hasta implementaciones avanzadas con Dagger y Hilt. Descubre módulos, componentes, subcomponentes y scopes para crear grafos de dependencias robustos y escalables.",
