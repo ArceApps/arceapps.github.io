@@ -2502,3 +2502,138 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Language Toggle Styles */
+.language-toggle {
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 0;
+}
+
+.language-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.language-option {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.language-option:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.language-option.active {
+  background: var(--primary-green);
+  color: white;
+  border-color: var(--primary-green);
+}
+
+/* Privacy Policy Styles */
+.privacy-policy {
+  padding: 4rem 0;
+  background: var(--bg-primary);
+}
+
+.privacy-content {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.privacy-content h1 {
+  color: var(--text-primary);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.privacy-content h2 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2.5rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-green);
+}
+
+.privacy-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+.privacy-content ul {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.privacy-content li {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.privacy-content a {
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.privacy-content a:hover {
+  color: var(--dark-green);
+  text-decoration: underline;
+}
+
+.contact-info {
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 2rem;
+  border-left: 4px solid var(--primary-green);
+}
+
+.contact-info p {
+  margin-bottom: 0;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Mobile Responsive for Privacy Policy */
+@media (max-width: 768px) {
+  .privacy-policy {
+    padding: 2rem 0;
+  }
+  
+  .privacy-content {
+    padding: 0 1rem;
+  }
+  
+  .privacy-content h1 {
+    font-size: 2rem;
+  }
+  
+  .privacy-content h2 {
+    font-size: 1.25rem;
+  }
+  
+  .language-options {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-info {
+    padding: 1.5rem;
+  }
+}
