@@ -1,5 +1,14 @@
 [
   {
+    "title": "CDE + Versionado Semántico: El Workflow Definitivo para Proyectos Modernos",
+    "date": "2026-01-27",
+    "summary": "Descubre cómo combinar Commit-Driven Development con semantic versioning para crear un flujo de trabajo automatizado, trazable y escalable que transforma cada commit en documentación viva.",
+    "url": "blog/blog-cde-semantic-versioning.html",
+    "category": "Desarrollo Software",
+    "image": "images/placeholder-article-cde-semver.svg",
+    "tags": ["CDE", "Semantic Versioning", "Conventional Commits", "CI/CD", "Git Workflow", "Automation", "DevOps", "Release Management"]
+  },
+  {
     "title": "StateFlow y SharedFlow: Gestión Avanzada de Estado y Eventos",
     "date": "2026-01-20",
     "summary": "Domina las diferencias críticas, casos de uso, configuración de búfer y políticas de repetición entre StateFlow y SharedFlow para construir aplicaciones reactivas robustas y libres de memory leaks.",
