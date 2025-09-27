@@ -1,5 +1,14 @@
 [
   {
+    "title": "Documentación Automática para Proyectos Android: CHANGELOG.md y Más Allá",
+    "date": "2026-02-02",
+    "summary": "Descubre cómo automatizar completamente la documentación de tu proyecto Android con GitHub Actions: desde CHANGELOG.md hasta documentación de API en vivo con Kotlin/KDoc",
+    "url": "blog/blog-automated-documentation.html",
+    "category": "DevOps Android",
+    "image": "images/placeholder-article-automated-docs.svg",
+    "tags": ["Android", "Kotlin", "Documentation", "Automation", "Dokka", "GitHub Actions", "Semantic Release", "Changelog", "DevOps", "KDoc"]
+  },
+  {
     "title": "CDE + Versionado Semántico: El Workflow Definitivo para Proyectos Modernos",
     "date": "2026-01-27",
     "summary": "Descubre cómo combinar Commit-Driven Development con semantic versioning para crear un flujo de trabajo automatizado, trazable y escalable que transforma cada commit en documentación viva.",
