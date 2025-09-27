@@ -1,5 +1,14 @@
 [
   {
+    "title": "Documentación en Android: KDoc, Dokka y Flujo de Trabajo Profesional",
+    "date": "2025-03-10",
+    "summary": "Domina las herramientas esenciales para documentar tu código Kotlin y Android como un profesional: desde KDoc hasta Dokka, con integración completa en tu workflow de desarrollo",
+    "url": "blog/blog-android-documentation.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-android-documentation.svg",
+    "tags": ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Flujo de Trabajo", "GitHub Actions", "Mejores Prácticas", "Productividad"]
+  },
+  {
     "title": "Documentación Automática para Proyectos Android: CHANGELOG.md y Más Allá",
     "date": "2026-02-02",
     "summary": "Descubre cómo automatizar completamente la documentación de tu proyecto Android con GitHub Actions: desde CHANGELOG.md hasta documentación de API en vivo con Kotlin/KDoc",
