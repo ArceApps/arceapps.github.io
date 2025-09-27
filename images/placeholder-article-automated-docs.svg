@@ -1,0 +1,81 @@
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="cardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.05" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGradient)"/>
+  
+  <!-- Main Documentation Card -->
+  <rect x="50" y="50" width="300" height="200" rx="15" fill="url(#cardGradient)" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+  
+  <!-- Dokka/API Documentation Symbol -->
+  <text x="70" y="90" font-family="Arial, sans-serif" font-size="24" fill="#ffd700">📚</text>
+  <text x="110" y="95" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" font-weight="bold">API Documentation</text>
+  <text x="70" y="120" font-family="Arial, sans-serif" font-size="12" fill="#e0e0e0">Auto-generated with Dokka</text>
+  <text x="70" y="140" font-family="Arial, sans-serif" font-size="12" fill="#e0e0e0">• Kotlin/KDoc support</text>
+  <text x="70" y="155" font-family="Arial, sans-serif" font-size="12" fill="#e0e0e0">• Android-specific types</text>
+  <text x="70" y="170" font-family="Arial, sans-serif" font-size="12" fill="#e0e0e0">• Cross-references</text>
+  
+  <!-- CHANGELOG Card -->
+  <rect x="380" y="50" width="300" height="200" rx="15" fill="url(#cardGradient)" stroke="#ffffff" stroke-width="2" opacity="0.8"/>
+  
+  <text x="400" y="90" font-family="Arial, sans-serif" font-size="24" fill="#ffd700">📝</text>
+  <text x="440" y="95" font-family="Arial, sans-serif" font-size="16" fill="#ffffff" font-weight="bold">CHANGELOG.md</text>
+  <text x="400" y="120" font-family="Arial, sans-serif" font-size="12" fill="#e0e0e0">Semantic Release powered</text>
+  <text x="400" y="140" font-family="Arial, sans-serif" font-size="12" fill="#e0e0e0">🚀 feat: New features</text>
+  <text x="400" y="155" font-family="Arial, sans-serif" font-size="12" fill="#e0e0e0">🐛 fix: Bug fixes</text>
+  <text x="400" y="170" font-family="Arial, sans-serif" font-size="12" fill="#e0e0e0">⚡ perf: Performance</text>
+  
+  <!-- GitHub Actions Pipeline -->
+  <rect x="50" y="280" width="700" height="80" rx="15" fill="url(#cardGradient)" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  
+  <text x="70" y="305" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" font-weight="bold">🔄 GitHub Actions Pipeline</text>
+  
+  <!-- Pipeline Steps -->
+  <circle cx="100" cy="330" r="12" fill="#4ade80" opacity="0.8"/>
+  <text x="95" y="335" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" font-weight="bold">1</text>
+  <text x="120" y="335" font-family="Arial, sans-serif" font-size="11" fill="#e0e0e0">Analyze</text>
+  
+  <path d="M 125 330 L 155 330" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  
+  <circle cx="170" cy="330" r="12" fill="#f59e0b" opacity="0.8"/>
+  <text x="165" y="335" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" font-weight="bold">2</text>
+  <text x="190" y="335" font-family="Arial, sans-serif" font-size="11" fill="#e0e0e0">Build</text>
+  
+  <path d="M 195 330 L 225 330" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  
+  <circle cx="240" cy="330" r="12" fill="#8b5cf6" opacity="0.8"/>
+  <text x="235" y="335" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" font-weight="bold">3</text>
+  <text x="260" y="335" font-family="Arial, sans-serif" font-size="11" fill="#e0e0e0">Generate</text>
+  
+  <path d="M 285 330 L 315 330" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  
+  <circle cx="330" cy="330" r="12" fill="#ef4444" opacity="0.8"/>
+  <text x="325" y="335" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" font-weight="bold">4</text>
+  <text x="350" y="335" font-family="Arial, sans-serif" font-size="11" fill="#e0e0e0">Deploy</text>
+  
+  <!-- Android Logo representation -->
+  <circle cx="680" cy="140" r="40" fill="#3ddc84" opacity="0.8"/>
+  <text x="665" y="150" font-family="Arial, sans-serif" font-size="30" fill="#ffffff">🤖</text>
+  
+  <!-- Kotlin Logo representation -->
+  <rect x="640" y="200" width="80" height="40" rx="8" fill="#7f52ff" opacity="0.8"/>
+  <text x="650" y="225" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" font-weight="bold">Kotlin/JVM</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="150" cy="20" r="3" fill="#ffd700" opacity="0.6"/>
+  <circle cx="600" cy="30" r="2" fill="#ffd700" opacity="0.8"/>
+  <circle cx="750" cy="80" r="4" fill="#ffd700" opacity="0.4"/>
+  <circle cx="50" cy="360" r="3" fill="#ffd700" opacity="0.7"/>
+  
+  <!-- Title -->
+  <text x="400" y="385" font-family="Arial, sans-serif" font-size="18" fill="#ffffff" font-weight="bold" text-anchor="middle">Automated Documentation for Android Projects</text>
+</svg>
