@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Documentación Automática para Proyectos Android - ArceApps Blog</title>
+  <title>KDoc y Dokka: Documentación Profesional para Android - ArceApps Blog</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -42,165 +42,169 @@
     <div class="container">
       <header class="article-header">
         <div class="article-meta">
-          <span class="article-date">2 de febrero de 2026</span>
-          <span class="article-category">DevOps Android</span>
+          <span class="article-date">15 de marzo de 2025</span>
+          <span class="article-category">Desarrollo Android</span>
         </div>
-        <h1>Documentación Automática para Proyectos Android: CHANGELOG.md y Más Allá 🚀</h1>
-        <p class="article-subtitle">Descubre cómo automatizar completamente la documentación de tu proyecto Android con GitHub Actions: desde CHANGELOG.md hasta documentación de API en vivo con Kotlin/KDoc</p>
+        <h1>KDoc y Dokka: Documentación Profesional para Android 📚</h1>
+        <p class="article-subtitle">Domina las herramientas esenciales para documentar tu código Kotlin y Android: desde la sintaxis KDoc hasta la generación automática con Dokka</p>
         <div class="article-image">
-          <img src="../images/placeholder-article-automated-docs.svg" alt="Documentación Automática Android" />
+          <img src="../images/placeholder-article-kdoc-dokka.svg" alt="KDoc y Dokka para Android" />
         </div>
       </header>
 
       <div class="article-content">
-        <p>La documentación manual es el enemigo silencioso de todo desarrollador. Siempre prometemos que "la actualizaremos después", pero esa promesa rara vez se cumple. ¿Y si te dijera que puedes tener <strong>documentación siempre actualizada</strong>, <strong>changelogs automáticos</strong> y <strong>API docs en vivo</strong> sin esfuerzo manual?</p>
+        <p>La documentación no es opcional en el desarrollo Android profesional: es una <strong>herramienta fundamental</strong> que mejora la productividad, facilita el mantenimiento y hace que tu código sea comprensible para otros desarrolladores (y para ti mismo en el futuro).</p>
 
-        <p>En este artículo vamos más allá de los <a href="blog-conventional-commits.html">conventional commits</a> y el <a href="blog-semantic-versioning.html">versionado semántico</a> que ya conoces, para crear un ecosistema completo de documentación automática orientado específicamente a proyectos <strong>Android con Kotlin</strong>.</p>
+        <p>En el ecosistema Kotlin/Android, tenemos dos herramientas que se han convertido en el estándar de facto para documentación profesional: <strong>KDoc</strong> para escribir documentación directamente en el código y <strong>Dokka</strong> para generar documentación web navegable automáticamente.</p>
 
         <div class="best-practices-box">
           <h3>🎯 Lo que aprenderás en este artículo:</h3>
           <ul>
-            <li><strong>CHANGELOG.md automático</strong> con semantic-release avanzado</li>
-            <li><strong>Documentación de API</strong> con Dokka para Kotlin</li>
-            <li><strong>GitHub Pages deployment</strong> automático</li>
-            <li><strong>Pipeline completo</strong> que combina todo en GitHub Actions</li>
-            <li><strong>Ejemplos específicos</strong> para proyectos Android</li>
+            <li><strong>KDoc</strong>: Qué es, sintaxis y mejores prácticas</li>
+            <li><strong>Dokka</strong>: Configuración y generación de documentación</li>
+            <li><strong>Beneficios</strong>: Por qué usar estas herramientas</li>
+            <li><strong>Casos de uso</strong>: Cuándo y cómo aplicar cada una</li>
+            <li><strong>Integración IDE</strong>: Aprovecha al máximo Android Studio</li>
           </ul>
         </div>
 
-        <h2>🏗️ Anatomía del Pipeline de Documentación Perfecta</h2>
+        <h2>📝 KDoc: El Estándar de Documentación Kotlin</h2>
 
-        <p>Nuestro objetivo es crear un flujo que, con cada commit a <code>main</code>, automáticamente:</p>
+        <h3>¿Qué es KDoc?</h3>
+        <p><strong>KDoc</strong> es el formato oficial de documentación para código Kotlin, desarrollado por JetBrains. Similar a Javadoc, pero optimizado específicamente para las características únicas de Kotlin como propiedades, data classes, extension functions y más.</p>
+
+        <p>A diferencia de simples comentarios, KDoc es procesado por herramientas, integrado en el IDE y puede generar documentación navegable automáticamente.</p>
+
+        <h3>Sintaxis Fundamental de KDoc</h3>
+        
+        <p>La sintaxis básica de KDoc sigue convenciones familiares pero con mejoras específicas para Kotlin:</p>
 
         <div class="code-block">
-          <pre><code>📝 Analiza commits → 🔍 Extrae cambios → 📚 Genera docs → 🚀 Publica en GitHub Pages</code></pre>
+          <div class="code-header">
+            <span class="code-title">Estructura básica de KDoc</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code>/**
+ * Clase que representa un usuario en el sistema de autenticación.
+ *
+ * Esta clase encapsula toda la información necesaria para la gestión
+ * de usuarios, incluyendo datos personales y configuración de seguridad.
+ *
+ * @property id Identificador único del usuario en el sistema
+ * @property name Nombre completo del usuario
+ * @property email Dirección de correo electrónico para autenticación
+ * @property isActive Indica si la cuenta del usuario está activa
+ * @constructor Crea un usuario con la información básica proporcionada
+ * 
+ * @sample com.example.samples.UserSamples.createUser
+ * @see UserRepository
+ * @since 1.0.0
+ */
+data class User(
+    val id: String,
+    val name: String,
+    val email: String,
+    val isActive: Boolean = true
+)</code></pre>
         </div>
 
-        <h3>Estructura del Proyecto Android</h3>
-        <p>Partimos de un proyecto Android típico con algunas adiciones para automatización:</p>
+        <h3>Tags Específicos de KDoc</h3>
+        
+        <p>KDoc incluye tags especiales que van más allá de Javadoc tradicional:</p>
 
         <div class="code-block">
-          <pre><code>my-android-app/
-├── app/                     # Código Android
-│   ├── src/main/kotlin/
-│   └── build.gradle.kts     # Configuración Dokka
-├── docs/                    # Documentación generada (auto-creada)
-├── .github/
-│   └── workflows/
-│       └── docs.yml         # Pipeline automatización
-├── release.config.js        # Semantic-release config
-├── package.json             # Dependencias Node para tooling
-└── CHANGELOG.md             # Auto-generado</code></pre>
+          <div class="code-header">
+            <span class="code-title">Tags de KDoc más utilizados</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code>/**
+ * Función que valida y procesa un login de usuario.
+ *
+ * @param email Dirección de correo electrónico del usuario
+ * @param password Contraseña en texto plano (será hasheada internamente)
+ * @return [LoginResult] con el resultado de la operación
+ * @throws InvalidEmailException si el email no es válido
+ * @throws AuthenticationException si las credenciales son incorrectas
+ * 
+ * @sample com.example.samples.AuthSamples.loginSuccess
+ * @sample com.example.samples.AuthSamples.loginFailure
+ * 
+ * @see User
+ * @see LoginResult
+ * @since 1.2.0
+ * @author Equipo de Autenticación
+ */
+suspend fun authenticateUser(
+    email: String, 
+    password: String
+): LoginResult</code></pre>
         </div>
 
-        <h2>⚙️ Configuración Base: Semantic Release para Android</h2>
-
-        <p>Empezamos configurando semantic-release adaptado específicamente para proyectos Android. Este va más allá del setup básico:</p>
-
-        <h3>package.json para Tooling</h3>
-        <div class="code-block">
-          <pre><code>{
-  "name": "my-android-app-docs",
-  "version": "1.0.0",
-  "private": true,
-  "devDependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^9.2.6",
-    "@semantic-release/commit-analyzer": "^11.1.0",
-    "@semantic-release/release-notes-generator": "^12.1.0",
-    "semantic-release": "^22.0.12"
-  },
-  "scripts": {
-    "semantic-release": "semantic-release"
-  }
-}</code></pre>
+        <div class="best-practices-box">
+          <h3>📋 Tags principales de KDoc:</h3>
+          <ul>
+            <li><strong>@param</strong>: Describe parámetros de funciones</li>
+            <li><strong>@return</strong>: Documenta el valor de retorno</li>
+            <li><strong>@property</strong>: Explica propiedades de clases</li>
+            <li><strong>@constructor</strong>: Describe constructores</li>
+            <li><strong>@throws</strong>: Lista excepciones que puede lanzar</li>
+            <li><strong>@sample</strong>: Referencia código de ejemplo</li>
+            <li><strong>@see</strong>: Enlaces a clases/funciones relacionadas</li>
+            <li><strong>@since</strong>: Versión donde se introdujo</li>
+            <li><strong>@author</strong>: Autor del código</li>
+          </ul>
         </div>
 
-        <h3>release.config.js Avanzado para Android</h3>
-        <div class="code-block">
-          <pre><code>module.exports = {
-  branches: ["main", "develop"],
-  plugins: [
-    // 1. Analizar commits convencionales
-    ["@semantic-release/commit-analyzer", {
-      preset: "angular",
-      releaseRules: [
-        { type: "feat", section: "🚀 Nuevas Funcionalidades", release: "minor" },
-        { type: "fix", section: "🐛 Correcciones", release: "patch" },
-        { type: "perf", section: "⚡ Optimizaciones", release: "patch" },
-        { type: "refactor", section: "♻️ Refactoring", release: "patch" },
-        { type: "docs", section: "📚 Documentación", release: false },
-        { type: "style", section: "💄 Estilos", release: false },
-        { type: "test", section: "🧪 Testing", release: false },
-        // Reglas específicas para Android
-        { type: "ui", section: "🎨 Interfaz de Usuario", release: "minor" },
-        { type: "gradle", section: "🔧 Configuración", release: "patch" },
-        { scope: "deps", section: "📦 Dependencias", release: "patch" }
-      ]
-    }],
-    
-    // 2. Generar release notes personalizadas
-    ["@semantic-release/release-notes-generator", {
-      preset: "angular",
-      presetConfig: {
-        types: [
-          { type: "feat", section: "🚀 Nuevas Funcionalidades" },
-          { type: "fix", section: "🐛 Correcciones" },
-          { type: "perf", section: "⚡ Optimizaciones de Rendimiento" },
-          { type: "refactor", section: "♻️ Refactoring" },
-          { type: "ui", section: "🎨 Mejoras de UI/UX" },
-          { type: "gradle", section: "🔧 Configuración y Build" },
-          { type: "security", section: "🔒 Seguridad" },
-          { type: "deps", section: "📦 Actualización de Dependencias" }
-        ]
-      }
-    }],
+        <h3>Beneficios de KDoc en el Desarrollo</h3>
+        
+        <p>KDoc no es solo documentación: es una herramienta que mejora tu experiencia de desarrollo:</p>
 
-    // 3. Generar CHANGELOG.md
-    ["@semantic-release/changelog", {
-      changelogFile: "CHANGELOG.md",
-      changelogTitle: "# Changelog\n\nTodos los cambios notables de este proyecto se documentarán automáticamente en este archivo.\n\nEl formato está basado en [Keep a Changelog](https://keepachangelog.com/es/1.0.0/),\ny este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/)."
-    }],
-
-    // 4. Commit de archivos actualizados
-    ["@semantic-release/git", {
-      assets: [
-        "CHANGELOG.md", 
-        "app/build.gradle.kts",  // Si actualizas versionName
-        "gradle.properties"      // Si usas properties para versión
-      ],
-      message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-    }],
-
-    // 5. Crear GitHub Release
-    "@semantic-release/github"
-  ]
-};</code></pre>
+        <div class="best-practices-box">
+          <h3>✨ Ventajas de usar KDoc:</h3>
+          <ul>
+            <li><strong>IntelliSense mejorado</strong>: Android Studio muestra tu documentación en tooltips</li>
+            <li><strong>Autocompletado contextual</strong>: Sugerencias basadas en tu documentación</li>
+            <li><strong>Navegación inteligente</strong>: Jump to definition con contexto completo</li>
+            <li><strong>Validación automática</strong>: Warnings para referencias incorrectas</li>
+            <li><strong>Refactoring seguro</strong>: Actualización automática de referencias en docs</li>
+            <li><strong>API consistency</strong>: Documentación uniforme en todo el proyecto</li>
+          </ul>
         </div>
 
-        <h2>📚 Documentación de API con Dokka para Kotlin</h2>
+        <h2>🔧 Dokka: Generador de Documentación Oficial</h2>
 
-        <p>Dokka es la herramienta oficial de JetBrains para generar documentación de Kotlin. Es como Javadoc, pero mucho más poderosa:</p>
+        <h3>¿Qué es Dokka?</h3>
+        
+        <p><strong>Dokka</strong> es el generador de documentación oficial de Kotlin, desarrollado por JetBrains. Toma tu código Kotlin con comentarios KDoc y genera documentación navegable en múltiples formatos profesionales: HTML, Markdown, JSON y más.</p>
 
-        <h3>Configuración en build.gradle.kts</h3>
+        <p>Piensa en Dokka como "Javadoc para Kotlin", pero mucho más potente y diseñado específicamente para las características modernas del lenguaje.</p>
+
+        <h3>Configuración Básica en Android</h3>
+
+        <p>La configuración de Dokka en proyectos Android es sencilla pero potente:</p>
+
         <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">app/build.gradle.kts - Configuración básica</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
           <pre><code>plugins {
-    id("org.jetbrains.dokka") version "1.9.10"
-    // ... otros plugins
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.dokka") version "1.9.20"
 }
 
-// Configuración de Dokka
+// Configuración básica de Dokka
 dokka {
     outputDirectory.set(file("../docs/api"))
     
     dokkaSourceSets {
         named("main") {
-            // Configuración del módulo principal
-            moduleName.set("MyAndroidApp API")
+            // Información del módulo
+            moduleName.set("MyAndroidApp")
             moduleVersion.set(findProperty("VERSION_NAME").toString())
             
-            // Incluir solo archivos públicos
+            // Incluir solo APIs públicas y protegidas
             documentedVisibilities.set(
                 setOf(
                     org.jetbrains.dokka.DokkaConfiguration.Visibility.PUBLIC,
@@ -211,527 +215,281 @@ dokka {
             // Enlaces a documentación externa
             externalDocumentationLink {
                 url.set(URL("https://developer.android.com/reference/"))
-                packageListUrl.set(URL("https://developer.android.com/reference/androidx/package-list"))
+                packageListUrl.set(URL("https://developer.android.com/reference/kotlin/package-list"))
             }
             
             // Configurar samples
             samples.from("src/main/kotlin/samples/")
             
-            // Suprimir archivos generados
-            suppressedFiles.from(
-                "src/main/kotlin/**/BuildConfig.kt",
-                "src/main/kotlin/**/*_*.kt"  // Archivos generados por Room, etc.
-            )
+            // Incluir archivos Markdown adicionales
+            includes.from("Module.md", "README.md")
         }
     }
 }</code></pre>
         </div>
 
-        <h3>Documentando Código Kotlin como un Pro</h3>
-        <p>Dokka soporta KDoc, que es mucho más expresivo que Javadoc tradicional:</p>
+        <h3>Configuración Avanzada para Proyectos Grandes</h3>
+        
+        <p>Para proyectos multi-módulo, Dokka ofrece configuración granular:</p>
 
         <div class="code-block">
-          <pre><code>/**
- * Repositorio principal para gestionar datos de usuarios.
- * 
- * Esta clase implementa el patrón Repository para abstraer 
- * las fuentes de datos y proporcionar una API limpia para 
- * el acceso a datos de usuario.
- *
- * @property localDataSource Fuente de datos local (Room Database)
- * @property remoteDataSource API remota para sincronización
- * 
- * @sample samples.UserRepositorySamples.basicUsage
- * @sample samples.UserRepositorySamples.withCaching
- *
- * @see [UserDao] para operaciones de base de datos
- * @see [UserApiService] para llamadas de red
- *
- * @since 1.0.0
- */
-class UserRepository @Inject constructor(
-    private val localDataSource: UserDao,
-    private val remoteDataSource: UserApiService
-) {
-    
-    /**
-     * Obtiene un usuario por su ID.
-     *
-     * Esta función implementa una estrategia cache-first:
-     * 1. Busca en cache local
-     * 2. Si no existe, consulta API remota
-     * 3. Cachea el resultado
-     *
-     * @param userId ID único del usuario a buscar
-     * @return [Flow]<[Resource]<[User]>> Estado de la operación
-     * 
-     * @throws UserNotFoundException si el usuario no existe
-     * @throws NetworkException si hay problemas de conectividad
-     *
-     * @sample samples.UserRepositorySamples.getUser
-     */
-    suspend fun getUser(userId: String): Flow<Resource<User>> {
-        // Implementación...
-    }
-}</code></pre>
-        </div>
-
-        <h2>🚀 Pipeline Completo de GitHub Actions</h2>
-
-        <p>Ahora creamos el workflow que orquesta todo el proceso. Este pipeline es específicamente diseñado para proyectos Android:</p>
-
-        <h3>.github/workflows/docs.yml</h3>
-        <div class="code-block">
-          <pre><code>name: 📚 Documentation & Release Pipeline
-
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
-
-env:
-  JAVA_VERSION: 17
-  GRADLE_VERSION: wrapper
-
-jobs:
-  # Job 1: Análisis y Release Semántico
-  semantic-release:
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    outputs:
-      new-release-published: ${{ steps.semantic.outputs.new-release-published }}
-      new-release-version: ${{ steps.semantic.outputs.new-release-version }}
-    
-    steps:
-      - name: 🔄 Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Necesario para semantic-release
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: 📱 Setup Android Environment  
-        uses: actions/setup-java@v4
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'temurin'
-
-      - name: 🟢 Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: 📦 Install Dependencies
-        run: npm ci
-
-      - name: 🏷️ Run Semantic Release
-        id: semantic
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
-
-  # Job 2: Generar Documentación de API
-  generate-docs:
-    runs-on: ubuntu-latest
-    needs: semantic-release
-    if: always() # Ejecutar incluso si no hay release
-    
-    steps:
-      - name: 🔄 Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          ref: main  # Asegurar que tenemos la última versión
-
-      - name: 📱 Setup Android Environment
-        uses: actions/setup-java@v4
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'temurin'
-
-      - name: 🗃️ Cache Gradle Dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-            ~/.android/build-cache
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: 🔧 Grant Execute Permission for Gradlew
-        run: chmod +x gradlew
-
-      - name: 📚 Generate Dokka Documentation
-        run: ./gradlew dokkaHtml --no-daemon
-
-      - name: 📝 Create Documentation Index
-        run: |
-          mkdir -p docs
-          
-          # Crear index.html principal
-          cat > docs/index.html << 'EOF'
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <title>MyAndroidApp - Documentación</title>
-            <meta charset="utf-8">
-            <style>
-              body { 
-                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-                max-width: 800px; margin: 0 auto; padding: 2rem;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                color: white; min-height: 100vh;
-              }
-              .card { 
-                background: rgba(255,255,255,0.1); 
-                padding: 2rem; border-radius: 1rem;
-                backdrop-filter: blur(10px); margin: 1rem 0;
-              }
-              a { color: #ffd700; text-decoration: none; }
-              a:hover { text-decoration: underline; }
-              .version { 
-                background: rgba(255,215,0,0.2); 
-                padding: 0.5rem 1rem; border-radius: 0.5rem;
-                display: inline-block; margin: 1rem 0;
-              }
-            </style>
-          </head>
-          <body>
-            <h1>🚀 MyAndroidApp - Documentación</h1>
-            
-            <div class="card">
-              <h2>📚 Documentación de API</h2>
-              <p>Explora la documentación completa generada automáticamente desde el código Kotlin.</p>
-              <a href="api/" style="font-size: 1.1em;">Ver Documentación de API →</a>
-            </div>
-
-            <div class="card">
-              <h2>📋 Changelog</h2>
-              <p>Historial completo de cambios, generado automáticamente desde commits convencionales.</p>
-              <a href="https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md">Ver Changelog →</a>
-            </div>
-
-            <div class="card">
-              <h2>🏷️ Releases</h2>
-              <p>Todas las versiones publicadas con notas de lanzamiento detalladas.</p>
-              <a href="https://github.com/${{ github.repository }}/releases">Ver Releases →</a>
-            </div>
-
-            <div class="version">
-              Última actualización: $(date -u '+%Y-%m-%d %H:%M UTC')
-            </div>
-          </body>
-          </html>
-          EOF
-
-      - name: 🎨 Enhance API Documentation  
-        run: |
-          # Verificar si la documentación se generó
-          if [ -d "app/build/dokka/html" ]; then
-            # Copiar documentación generada
-            cp -r app/build/dokka/html/* docs/api/ || echo "Error copying docs"
-            
-            # Personalizar CSS (si existe)
-            if [ -f "docs/api/styles/style.css" ]; then
-              echo "
-              :root { --color-primary: #6366f1; }
-              .library-name a { color: var(--color-primary) !important; }
-              " >> docs/api/styles/style.css
-            fi
-          else
-            echo "❌ No se generó documentación Dokka"
-            ls -la app/build/dokka/ || echo "Directorio no existe"
-          fi
-
-      - name: 📤 Upload Documentation Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: documentation
-          path: docs/
-          retention-days: 30
-
-  # Job 3: Deploy a GitHub Pages
-  deploy-docs:
-    runs-on: ubuntu-latest
-    needs: [semantic-release, generate-docs]
-    if: github.ref == 'refs/heads/main'
-    
-    # Permisos necesarios para GitHub Pages
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: 📥 Download Documentation
-        uses: actions/download-artifact@v4
-        with:
-          name: documentation
-          path: docs/
-
-      - name: 🔧 Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: 📤 Upload to Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs/
-
-      - name: 🚀 Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-      - name: 📨 Notification
-        if: needs.semantic-release.outputs.new-release-published == 'true'
-        run: |
-          echo "🎉 Nueva versión ${{ needs.semantic-release.outputs.new-release-version }} publicada!"
-          echo "📚 Documentación actualizada en: ${{ steps.deployment.outputs.page_url }}"</code></pre>
-        </div>
-
-        <h2>🎯 Ejemplos Específicos para Android</h2>
-
-        <p>Vamos a ver cómo aplicar esto a casos de uso reales en desarrollo Android:</p>
-
-        <h3>1. Commits Convencionales para Android</h3>
-        <div class="code-block">
-          <pre><code># Nuevas funcionalidades
-feat(auth): implementar login con biometría usando AndroidX
-feat(ui): añadir componente DatePicker con Material Design 3
-feat(offline): sincronización automática con WorkManager
-
-# Correcciones específicas Android
-fix(memory): resolver memory leak en RecyclerView adapter
-fix(gradle): corregir conflicto de dependencias en build.gradle.kts
-fix(ui): ajustar responsive layout en tablets
-
-# Optimizaciones de rendimiento
-perf(database): optimizar queries Room con índices compuestos
-perf(images): implementar lazy loading con Coil en ImageView
-
-# UI/UX específico
-ui(theme): actualizar colores a Material You color scheme
-ui(navigation): mejorar transiciones con Navigation Component</code></pre>
-        </div>
-
-        <h3>2. Configuración Gradle Avanzada</h3>
-        <p>Para proyectos grandes, puedes configurar Dokka por módulos:</p>
-
-        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">Configuración multi-módulo</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
           <pre><code>// En el build.gradle.kts del proyecto raíz
 plugins {
-    id("org.jetbrains.dokka") version "1.9.10" apply false
+    id("org.jetbrains.dokka") version "1.9.20" apply false
 }
 
 subprojects {
     apply(plugin = "org.jetbrains.dokka")
     
-    tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
+    tasks.withType&lt;org.jetbrains.dokka.gradle.DokkaTask&gt;().configureEach {
         dokkaSourceSets {
             named("main") {
                 // Configuración específica por módulo
                 when (project.name) {
                     "app" -> {
-                        moduleName.set("App Principal")
+                        moduleName.set("Aplicación Principal")
                         includes.from("Module.md")
                     }
                     "core" -> {
                         moduleName.set("Core - Utilidades")
-                        includes.from("Core.md")
+                        includes.from("README.md")
                     }
-                    "data" -> {
-                        moduleName.set("Data Layer")
-                        includes.from("Data.md")
+                    "network" -> {
+                        moduleName.set("Network - API Client")
+                    }
+                    "database" -> {
+                        moduleName.set("Database - Persistencia")
                     }
                 }
+                
+                // Configuración común
+                jdkVersion.set(17)
+                languageVersion.set("1.8")
+                apiVersion.set("1.8")
             }
         }
+    }
+}
+
+// Tarea para generar documentación unificada
+tasks.register("dokkaHtmlMultiModule", org.jetbrains.dokka.gradle.DokkaMultiModuleTask::class) {
+    outputDirectory.set(file("../docs/api"))
+    moduleName.set("Android App - Documentación Completa")
+}</code></pre>
+        </div>
+
+        <h3>Formatos de Salida de Dokka</h3>
+        
+        <p>Dokka puede generar documentación en múltiples formatos según tus necesidades:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">Tareas de Dokka disponibles</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code># Generar documentación HTML (default)
+./gradlew dokkaHtml
+
+# Generar documentación en Markdown  
+./gradlew dokkaGfm
+
+# Generar documentación en formato Javadoc
+./gradlew dokkaJavadoc
+
+# Generar JSON para integraciones custom
+./gradlew dokkaJson
+
+# Para proyectos multi-módulo
+./gradlew dokkaHtmlMultiModule</code></pre>
+        </div>
+
+        <div class="best-practices-box">
+          <h3>📄 Formatos de salida principales:</h3>
+          <ul>
+            <li><strong>HTML</strong>: Sitio web navegable (ideal para GitHub Pages)</li>
+            <li><strong>Markdown</strong>: Compatible con GitHub, GitLab, etc.</li>
+            <li><strong>Javadoc</strong>: Formato tradicional de Java</li>
+            <li><strong>JSON</strong>: Para integraciones personalizadas</li>
+          </ul>
+        </div>
+
+        <h2>🏗️ Casos de Uso Prácticos</h2>
+
+        <h3>Documentando una Clase Repository</h3>
+        
+        <p>Ejemplo completo de cómo documentar una clase típica en Android:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">UserRepository.kt - Ejemplo completo</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code>/**
+ * Repositorio principal para gestionar datos de usuarios.
+ * 
+ * Esta clase implementa el patrón Repository para abstraer las fuentes 
+ * de datos y proporcionar una API limpia para el acceso a datos de usuario.
+ * Combina datos locales (Room) y remotos (API REST).
+ *
+ * @property localDataSource Fuente de datos local (Room Database)
+ * @property remoteDataSource Fuente de datos remota (API)
+ * @property networkChecker Utilidad para verificar conectividad
+ * 
+ * @constructor Crea una instancia del repositorio con las dependencias necesarias
+ * 
+ * @sample com.example.samples.RepositorySamples.getUserFlow
+ * @see User
+ * @see UserDao
+ * @see UserApiService
+ * @since 1.0.0
+ * @author Equipo Android
+ */
+class UserRepository @Inject constructor(
+    private val localDataSource: UserDao,
+    private val remoteDataSource: UserApiService,
+    private val networkChecker: NetworkChecker
+) {
+    
+    /**
+     * Obtiene un usuario por su ID, implementando cache-first strategy.
+     * 
+     * Esta función primero busca en la base de datos local. Si no encuentra
+     * el usuario o los datos están desactualizados, hace una llamada a la API.
+     *
+     * @param userId Identificador único del usuario
+     * @param forceRefresh Si true, omite la caché y fuerza actualización remota
+     * @return Flow que emite el usuario cuando está disponible
+     * @throws UserNotFoundException si el usuario no existe
+     * @throws NetworkException si hay problemas de conectividad
+     * 
+     * @sample com.example.samples.RepositorySamples.getUserById
+     * @since 1.0.0
+     */
+    suspend fun getUserById(userId: String, forceRefresh: Boolean = false): Flow&lt;User&gt; {
+        // Implementación...
     }
 }</code></pre>
         </div>
 
-        <h3>3. Documentación de Arquitectura</h3>
-        <p>Incluye diagramas y ejemplos de arquitectura directamente en el código:</p>
+        <h3>Documentando Extension Functions</h3>
+        
+        <p>Las extension functions de Kotlin requieren documentación especial:</p>
 
         <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">StringExtensions.kt</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
           <pre><code>/**
- * # Arquitectura de la App
+ * Valida si un String contiene un email válido.
  * 
- * Esta aplicación sigue Clean Architecture con MVVM:
+ * Utiliza regex para verificar formato básico de email.
+ * No valida si el dominio existe realmente.
+ *
+ * @receiver String a validar como email
+ * @return true si el formato es válido, false en caso contrario
  * 
- * ```
- * ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
- * │   Presentation  │───▶│     Domain       │◀───│      Data       │
- * │                 │    │                  │    │                 │
- * │ • Activities    │    │ • Use Cases      │    │ • Repositories  │
- * │ • Fragments     │    │ • Entities       │    │ • Data Sources  │
- * │ • ViewModels    │    │ • Repository     │    │ • Room/Retrofit │
- * └─────────────────┘    │   Interfaces     │    └─────────────────┘
- *                        └──────────────────┘
- * ```
- * 
- * ## Flujo de Datos
- * 1. **UI** → dispara acciones en **ViewModel**
- * 2. **ViewModel** → ejecuta **Use Cases**
- * 3. **Use Cases** → consultan **Repository**
- * 4. **Repository** → maneja **Data Sources**
- * 
- * @see [BaseViewModel] clase base para ViewModels
- * @see [BaseRepository] implementación base de repositorios
- * @see [Resource] wrapper para estados de datos
+ * @sample com.example.samples.StringSamples.isValidEmail
+ * @see isValidPhoneNumber
+ * @since 1.1.0
  */
-package com.myapp.architecture</code></pre>
+fun String.isValidEmail(): Boolean {
+    val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()
+    return emailRegex.matches(this)
+}
+
+/**
+ * Convierte un String a formato de título (primera letra mayúscula).
+ * 
+ * @receiver String a convertir
+ * @param locale Locale para la conversión (por defecto Locale.getDefault())
+ * @return String con formato de título
+ * 
+ * @sample com.example.samples.StringSamples.toTitleCase
+ * @since 1.2.0
+ */
+fun String.toTitleCase(locale: Locale = Locale.getDefault()): String {
+    return replaceFirstChar { 
+        if (it.isLowerCase()) it.titlecase(locale) else it.toString() 
+    }
+}</code></pre>
         </div>
 
-        <h2>🎨 Personalización Avanzada</h2>
-
-        <h3>Templates Personalizados para CHANGELOG</h3>
-        <p>Puedes personalizar completamente cómo se ven tus changelogs:</p>
-
-        <div class="code-block">
-          <pre><code>// En release.config.js
-const template = `{{#each sections}}
-{{#if title}}
-### {{title}}
-
-{{/if}}
-{{#each commits}}
-{{#if scope}}
-- **{{scope}}**: {{subject}} ([{{shortHash}}]({{repository}}/commit/{{hash}}))
-{{else}}
-- {{subject}} ([{{shortHash}}]({{repository}}/commit/{{hash}}))
-{{/if}}
-{{/each}}
-{{/each}}
-
----
-🏗️ **Build Info**: {{version}} | 📅 {{date}} | 🚀 [Ver release completo]({{repository}}/releases/tag/v{{version}})
-`;</code></pre>
-        </div>
-
-        <h3>GitHub Pages con Dominio Personalizado</h3>
-        <p>Si tienes un dominio personalizado, añade el archivo CNAME automáticamente:</p>
-
-        <div class="code-block">
-          <pre><code>- name: 🌐 Setup Custom Domain
-  run: |
-    echo "docs.myandroidapp.com" > docs/CNAME</code></pre>
-        </div>
-
-        <h2>🔗 Integraciones Adicionales</h2>
-
-        <h3>Conectar con Issues y PRs</h3>
-        <p>Puedes hacer que tu documentación se vincule automáticamente con issues de GitHub:</p>
-
-        <div class="code-block">
-          <pre><code># Ejemplo de commit que se vincula
-feat(auth): implementar OAuth con Google
-
-Resuelve problema de autenticación lenta reportado en #123
-Relacionado con épica de mejoras de UX #45
-
-Closes #123</code></pre>
-        </div>
-
-        <h3>Notificaciones en Slack/Discord</h3>
-        <p>Añade notificaciones cuando se publique nueva documentación:</p>
-
-        <div class="code-block">
-          <pre><code>- name: 📢 Slack Notification
-  if: needs.semantic-release.outputs.new-release-published == 'true'
-  uses: 8398a7/action-slack@v3
-  with:
-    status: success
-    text: |
-      🎉 Nueva versión ${{ needs.semantic-release.outputs.new-release-version }}
-      📚 Docs actualizadas: ${{ steps.deployment.outputs.page_url }}
-  env:
-    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}</code></pre>
-        </div>
-
-        <h2>📊 Monitoreo y Métricas</h2>
-
-        <p>Para proyectos enterprise, puedes añadir métricas sobre tu documentación:</p>
-
-        <div class="code-block">
-          <pre><code>- name: 📈 Documentation Metrics
-  run: |
-    # Contar líneas de documentación
-    KDOC_LINES=$(find app/src -name "*.kt" -exec grep -c "^\s*/\*\*" {} \; | awk '{s+=$1} END {print s}')
-    
-    # Contar clases documentadas
-    DOCUMENTED_CLASSES=$(find app/src -name "*.kt" -exec grep -l "/\*\*.*class" {} \; | wc -l)
-    
-    # Crear badge dinámico
-    echo "📚 Líneas de documentación: $KDOC_LINES" >> $GITHUB_STEP_SUMMARY
-    echo "🏛️ Clases documentadas: $DOCUMENTED_CLASSES" >> $GITHUB_STEP_SUMMARY</code></pre>
-        </div>
-
-        <h2>🚀 Resultado Final</h2>
-
-        <p>Con esta configuración completa, cada vez que hagas push a <code>main</code>:</p>
+        <h2>💡 Mejores Prácticas</h2>
 
         <div class="best-practices-box">
-          <h3>✨ Lo que sucede automáticamente:</h3>
+          <h3>🎯 Consejos para KDoc efectivo:</h3>
           <ul>
-            <li><strong>CHANGELOG.md</strong> se actualiza con cambios categorizados</li>
-            <li><strong>Nueva versión</strong> se publica en GitHub Releases</li>
-            <li><strong>Documentación de API</strong> se regenera con Dokka</li>
-            <li><strong>GitHub Pages</strong> se actualiza con docs frescas</li>
-            <li><strong>Enlaces cruzados</strong> funcionan perfectamente</li>
-            <li><strong>Notificaciones</strong> se envían al equipo</li>
+            <li><strong>Sé conciso pero completo</strong>: Explica el "qué" y el "por qué"</li>
+            <li><strong>Usa ejemplos (@sample)</strong>: El código habla más que las palabras</li>
+            <li><strong>Documenta el comportamiento</strong>: No solo la sintaxis</li>
+            <li><strong>Mantén consistencia</strong>: Usa el mismo estilo en todo el proyecto</li>
+            <li><strong>Actualiza con el código</strong>: La documentación obsoleta es peor que ninguna</li>
+            <li><strong>Documenta APIs públicas</strong>: Enfócate en lo que otros desarrolladores usarán</li>
           </ul>
         </div>
 
-        <h3>Ejemplo de URL Final</h3>
-        <div class="code-block">
-          <pre><code>https://yourusername.github.io/my-android-app/
-├── index.html           # Landing page de documentación
-├── api/                 # Documentación Dokka completa
-└── CHANGELOG.md         # Disponible via GitHub link</code></pre>
+        <div class="best-practices-box">
+          <h3>⚙️ Consejos para Dokka efectivo:</h3>
+          <ul>
+            <li><strong>Configura external links</strong>: Enlaces a Android SDK y librerías</li>
+            <li><strong>Usa includes</strong>: Archivos Markdown para contexto adicional</li>
+            <li><strong>Organiza por módulos</strong>: Documentación clara en proyectos grandes</li>
+            <li><strong>Filtra visibilidades</strong>: Solo documenta APIs públicas/protected</li>
+            <li><strong>Incluye samples</strong>: Ejemplos de código en archivos separados</li>
+            <li><strong>Genera regularmente</strong>: Mantén la documentación actualizada</li>
+          </ul>
         </div>
 
-        <h2>💡 Consejos Pro y Troubleshooting</h2>
+        <h2>🔗 Integración con Workflow de Desarrollo</h2>
+        
+        <p>KDoc y Dokka se integran perfectamente en tu flujo de desarrollo Android:</p>
 
-        <h3>Optimizaciones de Performance</h3>
-        <ul>
-          <li><strong>Cache inteligente</strong>: El pipeline usa cache de Gradle para builds más rápidos</li>
-          <li><strong>Builds condicionales</strong>: Solo regenera docs si hay cambios en código</li>
-          <li><strong>Paralelización</strong>: Jobs independientes ejecutan en paralelo</li>
-        </ul>
-
-        <h3>Debugging Común</h3>
         <div class="code-block">
-          <pre><code># Si Dokka falla, verificar:
-1. ./gradlew dokkaHtml --stacktrace --info
-2. Revisar configuración de visibilidad en dokka
-3. Verificar que no hay KDoc malformado</code></pre>
+          <div class="code-header">
+            <span class="code-title">Flujo típico de documentación</span>
+            <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+          </div>
+          <pre><code>1. 📝 Escribir código con KDoc mientras desarrollas
+2. 🔍 Android Studio te ayuda con autocompletado y validación  
+3. 🏗️ Dokka genera documentación HTML automáticamente
+4. 🚀 Publicar en GitHub Pages o servidor interno
+5. 🔄 Repetir con cada actualización</code></pre>
         </div>
 
-        <h2>🎯 Conclusión: Tu Documentación Nunca Más Será el Cuello de Botella</h2>
+        <p>Para automatizar completamente este proceso (generar y publicar documentación automáticamente con cada commit), puedes consultar nuestro artículo sobre <a href="blog-android-documentation.html">automatización de documentación con GitHub Actions</a>.</p>
 
-        <p>Esta configuración transforma tu flujo de desarrollo Android en una máquina de documentación automática. Cada commit se convierte en parte de una narrativa coherente, cada release viene con documentación actualizada, y tu equipo nunca más tendrá que preguntarse "¿dónde está documentado esto?"</p>
+        <h2>🎯 Conclusión</h2>
+
+        <p>KDoc y Dokka son herramientas fundamentales en el desarrollo Android moderno. <strong>KDoc</strong> te permite documentar tu código de manera estándar y profesional, mientras que <strong>Dokka</strong> convierte esa documentación en sitios web navegables y útiles.</p>
+
+        <p>La inversión de tiempo en aprender y usar estas herramientas se paga rápidamente: código más mantenible, onboarding más fácil para nuevos desarrolladores, y una experiencia de desarrollo más productiva para todo el equipo.</p>
 
         <div class="best-practices-box">
-          <h3>🚀 Próximos pasos recomendados:</h3>
-          <ol>
-            <li><strong>Semana 1</strong>: Implementa semantic-release básico</li>
-            <li><strong>Semana 2</strong>: Configura Dokka en tu proyecto Android</li>
-            <li><strong>Semana 3</strong>: Deploy el pipeline completo</li>
-            <li><strong>Semana 4</strong>: Personaliza y optimiza según necesidades</li>
-          </ol>
+          <h3>🚀 Próximos pasos:</h3>
+          <ul>
+            <li>Configura Dokka en tu proyecto Android</li>
+            <li>Comienza documentando tus APIs públicas con KDoc</li>
+            <li>Genera tu primera documentación HTML</li>
+            <li>Integra la generación en tu proceso de build</li>
+            <li>Considera automatizar la publicación (ver artículo relacionado)</li>
+          </ul>
         </div>
-
-        <p>La inversión inicial en configuración se paga en las primeras semanas, y después tienes documentación que evoluciona orgánicamente con tu proyecto. Tu yo del futuro te lo agradecerá.</p>
 
         <div class="related-articles">
           <h3>📖 Artículos Relacionados</h3>
           <div class="article-links">
+            <a href="blog-android-documentation.html" class="article-link">
+              <span class="article-emoji">🔗</span>
+              <div>
+                <strong>Automatización de Documentación</strong>
+                <p>GitHub Actions y CI/CD para documentación</p>
+              </div>
+            </a>
             <a href="blog-conventional-commits.html" class="article-link">
               <span class="article-emoji">📝</span>
               <div>
@@ -739,25 +497,11 @@ Closes #123</code></pre>
                 <p>Fundamentos de commits estructurados</p>
               </div>
             </a>
-            <a href="blog-semantic-versioning.html" class="article-link">
-              <span class="article-emoji">🏷️</span>
+            <a href="blog-kotlin-coroutines.html" class="article-link">
+              <span class="article-emoji">⚡</span>
               <div>
-                <strong>Versionado Semántico</strong>
-                <p>Estrategias de versionado para Android</p>
-              </div>
-            </a>
-            <a href="blog-github-actions.html" class="article-link">
-              <span class="article-emoji">⚙️</span>
-              <div>
-                <strong>GitHub Actions para Mobile</strong>
-                <p>Automatización completa de workflows</p>
-              </div>
-            </a>
-            <a href="blog-github-pages.html" class="article-link">
-              <span class="article-emoji">🚀</span>
-              <div>
-                <strong>GitHub Pages</strong>
-                <p>Hosting gratuito premium para docs</p>
+                <strong>Kotlin Coroutines</strong>
+                <p>Programación asíncrona en Android</p>
               </div>
             </a>
           </div>
@@ -768,19 +512,16 @@ Closes #123</code></pre>
         <div class="article-tags">
           <span class="tag">Android</span>
           <span class="tag">Kotlin</span>
-          <span class="tag">Documentation</span>
-          <span class="tag">Automation</span>
-          <span class="tag">Dokka</span>
-          <span class="tag">GitHub Actions</span>
-          <span class="tag">Semantic Release</span>
-          <span class="tag">Changelog</span>
-          <span class="tag">DevOps</span>
           <span class="tag">KDoc</span>
+          <span class="tag">Dokka</span>
+          <span class="tag">Documentación</span>
+          <span class="tag">Desarrollo</span>
         </div>
-        
-        <div class="article-navigation">
-          <a href="../blog.html" class="nav-button">← Volver al Blog</a>
-          <a href="#" class="nav-button">Compartir →</a>
+        <div class="article-share">
+          <span>Compartir artículo:</span>
+          <a href="#" class="share-btn twitter">Twitter</a>
+          <a href="#" class="share-btn linkedin">LinkedIn</a>
+          <a href="#" class="share-btn github">GitHub</a>
         </div>
       </div>
     </div>
@@ -789,13 +530,26 @@ Closes #123</code></pre>
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <div class="footer-text">
-          <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
+        <div class="footer-section">
+          <h3>ArceApps</h3>
+          <p>Desarrollador Android especializado en arquitectura limpia y mejores prácticas.</p>
         </div>
-        <div class="footer-links">
-          <a href="#" class="footer-link">GitHub</a>
-          <a href="#" class="footer-link">LinkedIn</a>
-          <a href="#" class="footer-link">Contacto</a>
+        <div class="footer-section">
+          <h4>Enlaces</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../about.html">Sobre mí</a></li>
+            <li><a href="../portfolio.html">Portfolio</a></li>
+            <li><a href="../blog.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <div class="footer-links">
+            <a href="#" class="footer-link">GitHub</a>
+            <a href="#" class="footer-link">LinkedIn</a>
+            <a href="#" class="footer-link">Contacto</a>
+          </div>
         </div>
       </div>
     </div>
