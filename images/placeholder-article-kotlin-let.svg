@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="kotlinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7F52FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#E44857;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F17D2E;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F8F9FA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E9ECEF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGradient)"/>
+  
+  <!-- Kotlin Logo Style Shape -->
+  <polygon points="50,50 350,50 200,200 350,350 50,350" fill="url(#kotlinGradient)" opacity="0.9"/>
+  
+  <!-- Code blocks representing .let usage -->
+  <rect x="400" y="80" width="320" height="60" rx="8" fill="#2D3748" opacity="0.1"/>
+  <rect x="420" y="95" width="280" height="12" rx="6" fill="#4A5568"/>
+  <rect x="420" y="115" width="200" height="12" rx="6" fill="#718096"/>
+  
+  <rect x="400" y="160" width="320" height="60" rx="8" fill="#2D3748" opacity="0.1"/>
+  <rect x="420" y="175" width="240" height="12" rx="6" fill="#4A5568"/>
+  <rect x="420" y="195" width="180" height="12" rx="6" fill="#718096"/>
+  
+  <rect x="400" y="240" width="320" height="60" rx="8" fill="#2D3748" opacity="0.1"/>
+  <rect x="420" y="255" width="260" height="12" rx="6" fill="#4A5568"/>
+  <rect x="420" y="275" width="160" height="12" rx="6" fill="#718096"/>
+  
+  <!-- .let text -->
+  <text x="450" y="340" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="36" font-weight="bold" fill="#7F52FF">.let</text>
+  
+  <!-- Decorative elements -->
+  <circle cx="680" cy="120" r="8" fill="#E44857" opacity="0.6"/>
+  <circle cx="720" cy="140" r="6" fill="#F17D2E" opacity="0.6"/>
+  <circle cx="660" cy="160" r="5" fill="#7F52FF" opacity="0.6"/>
+  
+  <!-- Arrow suggesting flow -->
+  <path d="M 380 200 L 400 200" stroke="#7F52FF" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#7F52FF" />
+    </marker>
+  </defs>
+  
+  <!-- Android robot subtle outline -->
+  <path d="M 100 300 Q 120 280 140 300 L 140 320 Q 120 340 100 320 Z" fill="none" stroke="#A0C37E" stroke-width="2" opacity="0.3"/>
+  <circle cx="110" cy="305" r="2" fill="#A0C37E" opacity="0.3"/>
+  <circle cx="130" cy="305" r="2" fill="#A0C37E" opacity="0.3"/>
+</svg>

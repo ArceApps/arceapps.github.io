@@ -1,5 +1,23 @@
 [
   {
+    "title": "Null Safety en Android con Kotlin: Adiós NullPointerException",
+    "date": "2026-09-30",
+    "summary": "Domina la seguridad nula de Kotlin en Android: desde conceptos básicos hasta patrones avanzados, y descubre cómo eliminar los temidos NPE de tus apps",
+    "url": "blog/blog-null-safety.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-null-safety.svg",
+    "tags": ["Android", "Kotlin", "Null Safety", "NullPointerException", "Safe Calls", "Elvis Operator", "Best Practices", "Java Migration"]
+  },
+  {
+    "title": "Uso de .let en Kotlin para Android: Cuándo Usarlo y Cuándo Evitarlo",
+    "date": "2026-09-29",
+    "summary": "Domina la función de alcance .let en Kotlin: aprende cuándo es útil, cuándo es contraproducente y cómo evitar el abuso que complica tu código Android",
+    "url": "blog/blog-kotlin-let.html",
+    "category": "Desarrollo Android",
+    "image": "images/placeholder-article-kotlin-let.svg",
+    "tags": ["Android", "Kotlin", ".let", "Scope Functions", "Null Safety", "Best Practices", "Clean Code", "MVVM"]
+  },
+  {
     "title": "Documentación en Android: KDoc, Dokka y Flujo de Trabajo Profesional",
     "date": "2025-03-10",
     "summary": "Domina las herramientas esenciales para documentar tu código Kotlin y Android como un profesional: desde KDoc hasta Dokka, con integración completa en tu workflow de desarrollo",
