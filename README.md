@@ -11,6 +11,7 @@ Portfolio personal y blog de desarrollo Android con diseño moderno y elegante, 
 - **`index.html`**: Home con hero section, proyectos destacados y últimas publicaciones del blog
 - **`portfolio.html`**: Listado completo de proyectos con navegación a páginas detalladas
 - **`blog.html`**: Listado de posts del blog con enlaces a artículos completos
+- **`contact.html`**: Formulario de contacto funcional con Formspree
 - **`style.css`**: Sistema de diseño moderno con paleta verde y componentes reutilizables
 - **`script.js`**: JavaScript para interactividad, animaciones y navegación
 
@@ -328,15 +329,40 @@ El sitio está configurado para **GitHub Pages** y se actualiza automáticamente
 
 - [ ] Sistema de comentarios con Disqus o similar
 - [ ] Newsletter subscription
-- [ ] Dark mode toggle
+- [x] Dark mode toggle
+- [x] Formulario de contacto funcional
 - [ ] Búsqueda avanzada en contenido
 - [ ] PWA capabilities
 - [ ] Integración con Google Analytics
 - [ ] Sitemap XML automatizado
 - [ ] Schema.org markup para SEO
 
+## 📧 Configuración del Formulario de Contacto
+
+El sitio incluye un formulario de contacto funcional utilizando [Formspree](https://formspree.io/):
+
+### Configuración actual:
+- **Endpoint**: `https://formspree.io/f/xwpkdzya`
+- **Email destino**: `arceapps.dev@gmail.com`
+- **Prefijo del asunto**: `[formulario web]`
+
+### Para actualizar el email de destino:
+1. Crea una cuenta en [Formspree](https://formspree.io/)
+2. Crea un nuevo formulario y obtén tu Form ID
+3. Actualiza el atributo `action` en `contact.html`:
+   ```html
+   <form action="https://formspree.io/f/TU_FORM_ID" method="POST">
+   ```
+
+### Características del formulario:
+- ✅ Validación HTML5 de campos requeridos
+- ✅ Diseño responsive adaptado a móviles
+- ✅ Soporte para modo claro/oscuro
+- ✅ Asunto personalizado con prefijo `[formulario web]`
+- ✅ Sin exposición del email en el código HTML
+
 ---
 
-**Stack Tecnológico:** HTML5, CSS3, JavaScript ES6+, GitHub Pages  
+**Stack Tecnológico:** HTML5, CSS3, JavaScript ES6+, GitHub Pages, Formspree  
 **Desarrollado por:** ArceApps  
 **Licencia:** MIT
