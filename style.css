@@ -2758,6 +2758,35 @@ body {
   border: 1px solid #ef4444;
 }
 
+.form-status .status-content {
+  padding: 1rem;
+}
+
+.form-status .status-content h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.form-status .status-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.form-status .status-content .small-text {
+  font-size: 0.875rem;
+  margin-top: 1rem;
+  opacity: 0.8;
+}
+
+.form-status .btn {
+  margin: 0.5rem;
+}
+
+.form-status .btn-secondary {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
+
 /* Mobile Responsive for Privacy Policy */
 @media (max-width: 768px) {
   .privacy-policy {

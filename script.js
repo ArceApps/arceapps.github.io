@@ -777,3 +777,94 @@ function updateToggleButton(theme, themeIcon) {
         themeIcon.textContent = theme === 'light' ? '🌙' : '☀️';
     }
 }
+
+// Contact form functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Create email body
+            const emailSubject = encodeURIComponent('[formulario web] ' + subject);
+            const emailBody = encodeURIComponent(
+                `Nombre: ${name}\n` +
+                `Email: ${email}\n` +
+                `Asunto: ${subject}\n\n` +
+                `Mensaje:\n${message}`
+            );
+            
+            // Create mailto link
+            const mailtoLink = `mailto:arceapps.dev@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+            
+            // Show success message
+            formStatus.style.display = 'block';
+            formStatus.className = 'form-status success';
+            formStatus.innerHTML = `
+                <div class="status-content">
+                    <h3>✅ Formulario completado</h3>
+                    <p>Tu mensaje ha sido preparado. Haz clic en el botón de abajo para abrir tu cliente de correo electrónico y enviarlo.</p>
+                    <button class="btn btn-primary" onclick="window.location.href='${mailtoLink}'">
+                        📧 Abrir cliente de correo
+                    </button>
+                    <button class="btn btn-secondary" onclick="copyMessageToClipboard()">
+                        📋 Copiar al portapapeles
+                    </button>
+                    <p class="small-text">Si no funciona automáticamente, envía un correo a: <strong>arceapps.dev@gmail.com</strong></p>
+                </div>
+            `;
+            
+            // Store form data for clipboard copy
+            window.contactFormData = {
+                name: name,
+                email: email,
+                subject: subject,
+                message: message
+            };
+            
+            // Scroll to status message
+            formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+    }
+});
+
+// Function to copy message to clipboard
+function copyMessageToClipboard() {
+    const data = window.contactFormData;
+    if (!data) return;
+    
+    const textToCopy = 
+        `Para: arceapps.dev@gmail.com\n` +
+        `Asunto: [formulario web] ${data.subject}\n\n` +
+        `Nombre: ${data.name}\n` +
+        `Email: ${data.email}\n` +
+        `Asunto: ${data.subject}\n\n` +
+        `Mensaje:\n${data.message}`;
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(textToCopy).then(function() {
+        // Show success feedback
+        const formStatus = document.getElementById('form-status');
+        const originalContent = formStatus.innerHTML;
+        
+        formStatus.innerHTML = `
+            <div class="status-content">
+                <h3>✅ Copiado al portapapeles</h3>
+                <p>El mensaje ha sido copiado. Pégalo en tu cliente de correo electrónico preferido.</p>
+                <button class="btn btn-secondary" onclick="location.reload()">
+                    🔄 Enviar otro mensaje
+                </button>
+            </div>
+        `;
+    }).catch(function(err) {
+        alert('No se pudo copiar al portapapeles. Por favor, copia manualmente la información del formulario.');
+    });
+}
