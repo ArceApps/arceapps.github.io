@@ -327,6 +327,16 @@ El sitio está configurado para **GitHub Pages** y se actualiza automáticamente
 
 ## 🔄 Futuras Mejoras
 
+> 📋 **¡NUEVO!** Se ha creado un plan completo de mejoras. Ver documentación detallada:
+> - 🚀 **[QUICK_START.md](QUICK_START.md)** - Guía rápida para crear issues
+> - 📊 **[GITHUB_ISSUES_README.md](GITHUB_ISSUES_README.md)** - Resumen completo de la solución
+> - 📝 **[ISSUES_LIST.md](ISSUES_LIST.md)** - Lista de 20 issues con 30 características
+> - 🛠️ **[ISSUES_CREATION_GUIDE.md](ISSUES_CREATION_GUIDE.md)** - Guía detallada paso a paso
+> 
+> **Ejecutar**: `./create-issues.sh` para crear automáticamente 20 issues organizados por prioridad.
+
+### Mejoras Planificadas (ver documentación completa arriba)
+
 - [ ] Sistema de comentarios con Disqus o similar
 - [ ] Newsletter subscription
 - [x] Dark mode toggle
