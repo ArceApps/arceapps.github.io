@@ -349,27 +349,31 @@ El sitio está configurado para **GitHub Pages** y se actualiza automáticamente
 
 ## 📧 Configuración del Formulario de Contacto
 
-El sitio incluye un formulario de contacto funcional utilizando [Formspree](https://formspree.io/):
+El sitio incluye un formulario de contacto funcional utilizando [FormSubmit](https://formsubmit.co/):
 
 ### Configuración actual:
-- **Endpoint**: `https://formspree.io/f/xwpkdzya`
+- **Servicio**: FormSubmit.co (sin necesidad de registro)
 - **Email destino**: `arceapps.dev@gmail.com`
 - **Prefijo del asunto**: `[formulario web]`
+- **Página de confirmación**: `gracias.html`
 
 ### Para actualizar el email de destino:
-1. Crea una cuenta en [Formspree](https://formspree.io/)
-2. Crea un nuevo formulario y obtén tu Form ID
-3. Actualiza el atributo `action` en `contact.html`:
+1. Edita el atributo `action` en `contact.html`:
    ```html
-   <form action="https://formspree.io/f/TU_FORM_ID" method="POST">
+   <form action="https://formsubmit.co/TU_EMAIL@ejemplo.com" method="POST">
    ```
+2. Actualiza la URL de redirección en el campo `_next` si usas un dominio diferente
+3. La primera vez que uses un email nuevo, FormSubmit enviará un correo de confirmación
 
 ### Características del formulario:
 - ✅ Validación HTML5 de campos requeridos
 - ✅ Diseño responsive adaptado a móviles
 - ✅ Soporte para modo claro/oscuro
 - ✅ Asunto personalizado con prefijo `[formulario web]`
-- ✅ Sin exposición del email en el código HTML
+- ✅ **Protección reCAPTCHA** integrada para prevenir spam
+- ✅ **Campo honeypot** oculto para detectar bots
+- ✅ **Página de agradecimiento** personalizada tras el envío
+- ✅ Sin necesidad de registro o API key
 
 ---
 
