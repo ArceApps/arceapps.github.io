@@ -563,7 +563,10 @@ function getTechIcon(techName) {
         'Volley': '📡',
         'Material Design': '🎨',
         'AdMob': '💰',
-        'In-app Billing': '💳'
+        'In-app Billing': '💳',
+        'XML': '📄',
+        'Cordova': '📱',
+        'REST APIs': '🌐'
     };
     return iconMap[techName] || '';
 }

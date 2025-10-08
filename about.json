@@ -43,6 +43,7 @@
           {"name": "Hilt/Dagger", "icon": "💉"},
           {"name": "RxJava", "icon": "⚡"},
           {"name": "Coroutines", "icon": "🔄"},
+          {"name": "Cordova", "icon": "📱"},
           {"name": "Glide", "icon": "🖼️"},
           {"name": "Picasso", "icon": "🖼️"}
         ]
@@ -76,10 +77,31 @@
         "icon": "🚀",
         "items": [
           {"name": "GitHub Actions", "icon": "⚙️"},
+          {"name": "Jenkins", "icon": "🔧"},
           {"name": "Fastlane", "icon": "🚀"},
           {"name": "App Distribution", "icon": "📦"},
           {"name": "Crashlytics", "icon": "🐛"},
           {"name": "Performance Monitoring", "icon": "📊"}
+        ]
+      },
+      {
+        "category": "IA & Productividad",
+        "icon": "🤖",
+        "items": [
+          {"name": "GitHub Copilot", "icon": "🤖"},
+          {"name": "Gemini CLI", "icon": "✨"},
+          {"name": "ChatGPT", "icon": "💬"},
+          {"name": "AI Code Review", "icon": "🔍"}
+        ]
+      },
+      {
+        "category": "Gestión de Proyectos",
+        "icon": "📋",
+        "items": [
+          {"name": "Jira", "icon": "📊"},
+          {"name": "Confluence", "icon": "📝"},
+          {"name": "Notion", "icon": "📓"},
+          {"name": "Trello", "icon": "📌"}
         ]
       }
     ],
@@ -107,6 +129,10 @@
       {
         "skill": "Atención al detalle",
         "description": "Enfoque meticuloso en la calidad del código y la experiencia del usuario"
+      },
+      {
+        "skill": "Integración de IA en el flujo de trabajo",
+        "description": "Uso de herramientas de IA como GitHub Copilot y Gemini CLI para aumentar la productividad, generar código de calidad y realizar revisiones automatizadas"
       }
     ]
   },
@@ -127,45 +153,31 @@
     },
     {
       "position": "Android Developer",
-      "company": "Digital Solutions Corp",
+      "company": "Festival Internacional de Cine de San Sebastián",
       "period": "2018 - 2020",
       "duration": "2 años",
-      "description": "Desarrollo de aplicaciones Android B2B y B2C, con enfoque en performance y escalabilidad.",
+      "description": "Desarrollo y mantenimiento de aplicaciones móviles oficiales del festival, incluyendo aplicaciones internas para el equipo y aplicaciones públicas para asistentes.",
       "achievements": [
-        "Desarrollo de 12 aplicaciones desde cero",
-        "Implementación de arquitectura Clean Architecture",
-        "Optimización que mejoró performance en 35%",
-        "Integración con APIs REST y GraphQL"
+        "Desarrollo de la aplicación oficial del festival con más de 50.000 descargas",
+        "Creación de aplicación interna para fotógrafos del evento",
+        "Implementación de sistema de gestión de entradas y acreditaciones",
+        "Desarrollo de múltiples aplicaciones internas para la organización del festival"
       ],
-      "technologies": ["Java", "Kotlin", "MVP", "Retrofit", "Room", "RxJava"]
+      "technologies": ["Java", "XML", "Cordova", "Android SDK", "SQLite", "REST APIs"]
     },
     {
       "position": "Junior Android Developer",
-      "company": "Mobile First Agency",
+      "company": "Empresa Tecnológica de Bilbao",
       "period": "2016 - 2018",
       "duration": "2 años",
-      "description": "Desarrollo de aplicaciones móviles para startups y PYMES, aprendizaje de best practices y metodologías ágiles.",
+      "description": "Desarrollo de aplicaciones móviles Android para clientes corporativos, aprendizaje de metodologías ágiles y mejores prácticas en desarrollo móvil.",
       "achievements": [
-        "Participación en 15+ proyectos de desarrollo móvil",
-        "Implementación de Material Design en todas las apps",
-        "Integración con servicios de terceros (Google Maps, Payment gateways)",
-        "Colaboración en metodología Scrum"
+        "Participación en más de 10 proyectos Android",
+        "Implementación de Material Design y mejores prácticas de UI/UX",
+        "Integración con APIs REST y servicios backend",
+        "Colaboración en equipo usando metodologías Scrum"
       ],
-      "technologies": ["Java", "Android SDK", "SQLite", "Volley", "Material Design"]
-    },
-    {
-      "position": "Desarrollador Mobile (Freelance)",
-      "company": "Trabajo Independiente",
-      "period": "2015 - 2016",
-      "duration": "1 año",
-      "description": "Desarrollo de aplicaciones Android personalizadas para clientes locales y proyectos propios.",
-      "achievements": [
-        "5 aplicaciones publicadas en Google Play Store",
-        "Gestión completa del ciclo de desarrollo",
-        "Implementación de soluciones de monetización",
-        "Soporte técnico y mantenimiento post-lanzamiento"
-      ],
-      "technologies": ["Java", "Android SDK", "SQLite", "AdMob", "In-app Billing"]
+      "technologies": ["Java", "Android SDK", "XML", "SQLite", "Retrofit", "Material Design"]
     }
   ],
   "education": [
