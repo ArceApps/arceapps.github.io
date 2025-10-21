@@ -4,7 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio | ArceApps - Desarrollador Android</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Explora el portfolio de ArceApps, un desarrollador Android. Descubre proyectos innovadores, desde juegos hasta aplicaciones con arquitecturas modernas.">
+  <meta name="keywords" content="portfolio, desarrollador android, arceapps, proyectos, kotlin, jetpack compose, mvvm, retrofit, android studio">
+  <meta name="author" content="ArceApps">
+  <link rel="canonical" href="https://arceapps.com/portfolio.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arceapps.com/portfolio.html">
+  <meta property="og:title" content="Portfolio | ArceApps - Desarrollador Android">
+  <meta property="og:description" content="Explora el portfolio de ArceApps, un desarrollador Android.">
+  <meta property="og:image" content="https://arceapps.com/images/placeholder-project-2048.svg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://arceapps.com/portfolio.html">
+  <meta property="twitter:title" content="Portfolio | ArceApps - Desarrollador Android">
+  <meta property="twitter:description" content="Explora el portfolio de ArceApps, un desarrollador Android.">
+  <meta property="twitter:image" content="https://arceapps.com/images/placeholder-project-2048.svg">
+
+  <link rel="stylesheet" href="dist/style.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZLNYSWY76"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CZLNYSWY76');
+  </script>
 </head>
 <body>
   <!-- Navigation -->
@@ -50,245 +79,262 @@
     </div>
   </nav>
 
-  <!-- Portfolio Hero Section -->
-  <section class="portfolio-hero">
-    <div class="hero-container">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          Mi <span class="gradient-text">Portfolio</span>
-        </h1>
-        <p class="hero-subtitle">
-          Explora mis proyectos de desarrollo Android, desde juegos clásicos hasta aplicaciones innovadoras
-        </p>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-number">10+</span>
-            <span class="stat-label">Proyectos</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">5K+</span>
-            <span class="stat-label">Líneas de código</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">3+</span>
-            <span class="stat-label">Años experiencia</span>
+  <main>
+    <!-- Portfolio Hero Section -->
+    <section class="portfolio-hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Mi <span class="gradient-text">Portfolio</span>
+          </h1>
+          <p class="hero-subtitle">
+            Explora mis proyectos de desarrollo Android, desde juegos clásicos hasta aplicaciones innovadoras
+          </p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Proyectos</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">5K+</span>
+              <span class="stat-label">Líneas de código</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">3+</span>
+              <span class="stat-label">Años experiencia</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="hero-image">
-        <div class="portfolio-animation">
-          <div class="project-preview">
-            <div class="preview-screen">📱</div>
-            <div class="preview-dots">
-              <span></span>
-              <span></span>
-              <span></span>
+        <div class="hero-image">
+          <div class="portfolio-animation">
+            <div class="project-preview">
+              <div class="preview-screen">📱</div>
+              <div class="preview-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- All Projects Section -->
-  <section class="all-projects-section">
-    <div class="container">
-      <h2 class="section-title">Todos los Proyectos</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <div class="project-icon">🧩</div>
-          <h3>Sudoku Android</h3>
-          <p>Juego clásico de Sudoku para Android con diferentes niveles de dificultad, validación automática y diseño Material Design.</p>
-          <div class="project-tags">
-            <span class="tag">Android</span>
-            <span class="tag">Kotlin</span>
-            <span class="tag">Material Design</span>
+    <!-- All Projects Section -->
+    <section class="all-projects-section">
+      <div class="container">
+        <h2 class="section-title">Todos los Proyectos</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="project-icon">🧩</div>
+            <h3>Sudoku Android</h3>
+            <p>Juego clásico de Sudoku para Android con diferentes niveles de dificultad, validación automática y diseño Material Design.</p>
+            <div class="project-tags">
+              <span class="tag">Kotlin</span>
+              <span class="tag">Material Design</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/Sudoku-Android" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-sudoku.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-sudoku.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">🎯</div>
-          <h3>2048 Game</h3>
-          <p>Implementación del popular juego 2048 para Android con animaciones fluidas, puntuación y sistema de guardado automático.</p>
-          <div class="project-tags">
-            <span class="tag">Android</span>
-            <span class="tag">Kotlin</span>
-            <span class="tag">Game Development</span>
+
+          <div class="project-card">
+            <div class="project-icon">🎯</div>
+            <h3>2048 Game</h3>
+            <p>Implementación del popular juego 2048 para Android con animaciones fluidas, puntuación y sistema de guardado automático.</p>
+            <div class="project-tags">
+              <span class="tag">Kotlin</span>
+              <span class="tag">Game Development</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/2048-android" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-2048.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-2048.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">🎨</div>
-          <h3>4Line for Color line</h3>
-          <p>Juego totalmente gratuito de lógica y rompecabezas diseñado para Android. Sencillo, intuitivo y adictivo.</p>
-          <div class="project-tags">
-            <span class="tag">Android</span>
-            <span class="tag">Puzzle Game</span>
-            <span class="tag">Logic Game</span>
+
+          <div class="project-card">
+            <div class="project-icon">🎨</div>
+            <h3>4Line for Color line</h3>
+            <p>Juego totalmente gratuito de lógica y rompecabezas diseñado para Android. Sencillo, intuitivo y adictivo.</p>
+            <div class="project-tags">
+              <span class="tag">Puzzle Game</span>
+              <span class="tag">Logic Game</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/4Line" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-4line.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-4line.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">⚡</div>
-          <h3>SplashScreen Android 12</h3>
-          <p>Implementación de la nueva SplashScreen API de Android 12 con animaciones personalizadas y transiciones fluidas.</p>
-          <div class="project-tags">
-            <span class="tag">Android</span>
-            <span class="tag">Kotlin</span>
-            <span class="tag">SplashScreen API</span>
-            <span class="tag">Animation</span>
+
+          <div class="project-card">
+            <div class="project-icon">⚡</div>
+            <h3>SplashScreen Android 12</h3>
+            <p>Implementación de la nueva SplashScreen API de Android 12 con animaciones personalizadas y transiciones fluidas.</p>
+            <div class="project-tags">
+              <span class="tag">Kotlin</span>
+              <span class="tag">SplashScreen API</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/SplashScreenAndroid12" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-splashscreen.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-splashscreen.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">🔄</div>
-          <h3>RecyclerView Advanced</h3>
-          <p>Implementación avanzada de RecyclerView con múltiples ViewTypes, animaciones y optimizaciones de rendimiento.</p>
-          <div class="project-tags">
-            <span class="tag">Android</span>
-            <span class="tag">RecyclerView</span>
-            <span class="tag">ViewBinding</span>
-            <span class="tag">CardView</span>
+
+          <div class="project-card">
+            <div class="project-icon">🔄</div>
+            <h3>RecyclerView Advanced</h3>
+            <p>Implementación avanzada de RecyclerView con múltiples ViewTypes, animaciones y optimizaciones de rendimiento.</p>
+            <div class="project-tags">
+              <span class="tag">RecyclerView</span>
+              <span class="tag">ViewBinding</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/RecyclerView" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-recyclerview.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-recyclerview.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">📰</div>
-          <h3>NewsAPI Android</h3>
-          <p>Aplicación de noticias con arquitectura MVVM, Retrofit para APIs, coroutines y diseño Material Design.</p>
-          <div class="project-tags">
-            <span class="tag">Android</span>
-            <span class="tag">MVVM</span>
-            <span class="tag">Retrofit</span>
-            <span class="tag">Coroutines</span>
+
+          <div class="project-card">
+            <div class="project-icon">📰</div>
+            <h3>NewsAPI Android</h3>
+            <p>Aplicación de noticias con arquitectura MVVM, Retrofit para APIs, coroutines y diseño Material Design.</p>
+            <div class="project-tags">
+              <span class="tag">MVVM</span>
+              <span class="tag">Retrofit</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/NewsAPI-Android" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-newsapi.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-newsapi.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">💣</div>
-          <h3>Buscaminas (Minesweeper)</h3>
-          <p>Juego clásico del Buscaminas desarrollado en Java con interfaz gráfica y patrón MVC para una experiencia de juego fluida.</p>
-          <div class="project-tags">
-            <span class="tag">Java</span>
-            <span class="tag">GUI</span>
-            <span class="tag">Game</span>
-            <span class="tag">MVC</span>
+
+          <div class="project-card">
+            <div class="project-icon">💣</div>
+            <h3>Buscaminas (Minesweeper)</h3>
+            <p>Juego clásico del Buscaminas desarrollado en Java con interfaz gráfica y patrón MVC para una experiencia de juego fluida.</p>
+            <div class="project-tags">
+              <span class="tag">Java</span>
+              <span class="tag">MVC</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/Buscaminas" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-buscaminas.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-buscaminas.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">🔍</div>
-          <h3>Search RecyclerView</h3>
-          <p>Implementación de funcionalidad de búsqueda en RecyclerView con filtros en tiempo real y animaciones suaves.</p>
-          <div class="project-tags">
-            <span class="tag">Android</span>
-            <span class="tag">RecyclerView</span>
-            <span class="tag">Search</span>
-            <span class="tag">Filter</span>
+
+          <div class="project-card">
+            <div class="project-icon">🔍</div>
+            <h3>Search RecyclerView</h3>
+            <p>Implementación de funcionalidad de búsqueda en RecyclerView con filtros en tiempo real y animaciones suaves.</p>
+            <div class="project-tags">
+              <span class="tag">RecyclerView</span>
+              <span class="tag">Search</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/SearchRecyclerView" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-search-recyclerview.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-search-recyclerview.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">🏗️</div>
-          <h3>MVVM Architecture</h3>
-          <p>Ejemplo completo de arquitectura MVVM con Clean Architecture, demostrando las mejores prácticas de desarrollo Android.</p>
-          <div class="project-tags">
-            <span class="tag">Android</span>
-            <span class="tag">MVVM</span>
-            <span class="tag">Clean Architecture</span>
-            <span class="tag">Kotlin</span>
+
+          <div class="project-card">
+            <div class="project-icon">🏗️</div>
+            <h3>MVVM Architecture</h3>
+            <p>Ejemplo completo de arquitectura MVVM con Clean Architecture, demostrando las mejores prácticas de desarrollo Android.</p>
+            <div class="project-tags">
+              <span class="tag">MVVM</span>
+              <span class="tag">Clean Architecture</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/MVVM" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-mvvm.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-mvvm.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">🐕</div>
-          <h3>Dog API</h3>
-          <p>Aplicación que consume Dog API usando Retrofit, mostrando imágenes de perros con arquitectura limpia y coroutines.</p>
-          <div class="project-tags">
-            <span class="tag">Android</span>
-            <span class="tag">Retrofit</span>
-            <span class="tag">API</span>
-            <span class="tag">Coroutines</span>
+
+          <div class="project-card">
+            <div class="project-icon">🐕</div>
+            <h3>Dog API</h3>
+            <p>Aplicación que consume Dog API usando Retrofit, mostrando imágenes de perros con arquitectura limpia y coroutines.</p>
+            <div class="project-tags">
+              <span class="tag">Retrofit</span>
+              <span class="tag">Coroutines</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/DogAPI" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-dogapi.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-dogapi.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">🎯</div>
-          <h3>4LineGame</h3>
-          <p>Juego de conectar 4 en línea desarrollado en Java con interfaz gráfica, lógica de juego inteligente y patrón MVC.</p>
-          <div class="project-tags">
-            <span class="tag">Java</span>
-            <span class="tag">GUI</span>
-            <span class="tag">Game</span>
-            <span class="tag">Algorithm</span>
+
+          <div class="project-card">
+            <div class="project-icon">🎯</div>
+            <h3>4LineGame</h3>
+            <p>Juego de conectar 4 en línea desarrollado en Java con interfaz gráfica, lógica de juego inteligente y patrón MVC.</p>
+            <div class="project-tags">
+              <span class="tag">Java</span>
+              <span class="tag">Game</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/4LineGame" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-4linegame.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-4linegame.html" class="project-link">Ver proyecto →</a>
-        </div>
-        
-        <div class="project-card">
-          <div class="project-icon">🔗</div>
-          <h3>DataBinding Example</h3>
-          <p>Ejemplo completo de DataBinding en Android con observador de patrones y binding bidireccional para UI reactiva.</p>
-          <div class="project-tags">
-            <span class="tag">Android</span>
-            <span class="tag">DataBinding</span>
-            <span class="tag">Observer Pattern</span>
-            <span class="tag">Kotlin</span>
+
+          <div class="project-card">
+            <div class="project-icon">🔗</div>
+            <h3>DataBinding Example</h3>
+            <p>Ejemplo completo de DataBinding en Android con observador de patrones y binding bidireccional para UI reactiva.</p>
+            <div class="project-tags">
+              <span class="tag">DataBinding</span>
+              <span class="tag">Kotlin</span>
+            </div>
+            <div class="project-links">
+                <a href="https://github.com/arceapps/DataBinding" class="project-link" target="_blank">Código Fuente</a>
+                <a href="projects/project-databinding.html" class="project-link">Ver detalles →</a>
+            </div>
           </div>
-          <a href="projects/project-databinding.html" class="project-link">Ver proyecto →</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Technologies Section -->
-  <section class="technologies-section">
-    <div class="container">
-      <h2 class="section-title">Tecnologías que uso</h2>
-      <div class="tech-grid">
-        <div class="tech-card">
-          <div class="tech-icon">⚡</div>
-          <h3>Kotlin</h3>
-          <p>Lenguaje principal para desarrollo Android moderno</p>
-        </div>
-        <div class="tech-card">
-          <div class="tech-icon">🎨</div>
-          <h3>Jetpack Compose</h3>
-          <p>UI toolkit declarativo para crear interfaces nativas</p>
-        </div>
-        <div class="tech-card">
-          <div class="tech-icon">🏗️</div>
-          <h3>Android Architecture Components</h3>
-          <p>MVVM, Room, LiveData, ViewModel</p>
-        </div>
-        <div class="tech-card">
-          <div class="tech-icon">🔗</div>
-          <h3>Retrofit & OkHttp</h3>
-          <p>Cliente HTTP para APIs REST</p>
-        </div>
-        <div class="tech-card">
-          <div class="tech-icon">🧪</div>
-          <h3>Testing</h3>
-          <p>JUnit, Espresso, Mockito</p>
-        </div>
-        <div class="tech-card">
-          <div class="tech-icon">🔧</div>
-          <h3>Git & CI/CD</h3>
-          <p>Control de versiones y integración continua</p>
+    <!-- Technologies Section -->
+    <section class="technologies-section">
+      <div class="container">
+        <h2 class="section-title">Tecnologías que uso</h2>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <div class="tech-icon">⚡</div>
+            <h3>Kotlin</h3>
+            <p>Lenguaje principal para desarrollo Android moderno</p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon">🎨</div>
+            <h3>Jetpack Compose</h3>
+            <p>UI toolkit declarativo para crear interfaces nativas</p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon">🏗️</div>
+            <h3>Android Architecture Components</h3>
+            <p>MVVM, Room, LiveData, ViewModel</p>
+          </div>
+          <div class_ ="tech-card">
+            <div class="tech-icon">🔗</div>
+            <h3>Retrofit & OkHttp</h3>
+            <p>Cliente HTTP para APIs REST</p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon">🧪</div>
+            <h3>Testing</h3>
+            <p>JUnit, Espresso, Mockito</p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-icon">🔧</div>
+            <h3>Git & CI/CD</h3>
+            <p>Control de versiones y integración continua</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
@@ -298,14 +344,15 @@
           <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
         </div>
         <div class="footer-links">
-          <a href="#" class="footer-link">GitHub</a>
-          <a href="#" class="footer-link">LinkedIn</a>
-          <a href="contact.html" class="footer-link">Contacto</a>
+          <a href="https://github.com/arceapps" class="footer-link" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/arceapps" class="footer-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com/arceapps" class="footer-link" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="dist/script.min.js"></script>
+  <a href="#" id="back-to-top" class="back-to-top-btn">↑</a>
 </body>
 </html>

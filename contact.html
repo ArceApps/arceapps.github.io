@@ -4,7 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contacto - ArceApps</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Contacta con ArceApps para proyectos de desarrollo Android, colaboraciones o consultoría. Rellena el formulario y hablemos de tu idea.">
+  <meta name="keywords" content="contacto, desarrollador android, arceapps, formulario de contacto, colaboración, consultoría, android">
+  <meta name="author" content="ArceApps">
+  <link rel="canonical" href="https://arceapps.com/contact.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arceapps.com/contact.html">
+  <meta property="og:title" content="Contacto - ArceApps">
+  <meta property="og:description" content="Contacta con ArceApps para proyectos de desarrollo Android, colaboraciones o consultoría.">
+  <meta property="og:image" content="https://arceapps.com/images/placeholder-project-2048.svg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://arceapps.com/contact.html">
+  <meta property="twitter:title" content="Contacto - ArceApps">
+  <meta property="twitter:description" content="Contacta con ArceApps para proyectos de desarrollo Android, colaboraciones o consultoría.">
+  <meta property="twitter:image" content="https://arceapps.com/images/placeholder-project-2048.svg">
+
+  <link rel="stylesheet" href="dist/style.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZLNYSWY76"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CZLNYSWY76');
+  </script>
 </head>
 <body>
   <!-- Navigation -->
@@ -50,95 +79,97 @@
     </div>
   </nav>
 
-  <!-- Contact Hero Section -->
-  <section class="contact-hero">
-    <div class="hero-container">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          <span class="gradient-text">Contacto</span>
-        </h1>
-        <p class="hero-subtitle">
-          ¿Tienes un proyecto en mente o quieres colaborar? Me encantaría escucharte.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Form Section -->
-  <section class="contact-form-section">
-    <div class="container">
-      <div class="contact-grid">
-        <div class="contact-info">
-          <h2 class="section-title">Envíame un mensaje</h2>
-          <p class="contact-description">
-            Completa el formulario y me pondré en contacto contigo lo antes posible.
+  <main>
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="gradient-text">Contacto</span>
+          </h1>
+          <p class="hero-subtitle">
+            ¿Tienes un proyecto en mente o quieres colaborar? Me encantaría escucharte.
           </p>
-          <div class="contact-details">
-            <div class="contact-item">
-              <span class="contact-icon">📧</span>
-              <div class="contact-text">
-                <h3>Email</h3>
-                <p>Respondo en 24-48 horas</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h2 class="section-title">Envíame un mensaje</h2>
+            <p class="contact-description">
+              Completa el formulario y me pondré en contacto contigo lo antes posible.
+            </p>
+            <div class="contact-details">
+              <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <div class="contact-text">
+                  <h3>Email</h3>
+                  <p>Respondo en 24-48 horas</p>
+                </div>
               </div>
-            </div>
-            <div class="contact-item">
-              <span class="contact-icon">🌍</span>
-              <div class="contact-text">
-                <h3>Traducciones</h3>
-                <p>Ayúdanos con las traducciones y localizaciones de las apps</p>
+              <div class="contact-item">
+                <span class="contact-icon">🌍</span>
+                <div class="contact-text">
+                  <h3>Traducciones</h3>
+                  <p>Ayúdanos con las traducciones y localizaciones de las apps</p>
+                </div>
               </div>
-            </div>
-            <div class="contact-item">
-              <span class="contact-icon">🚀</span>
-              <div class="contact-text">
-                <h3>Desarrollo Android</h3>
-                <p>Consultoría y desarrollo</p>
+              <div class="contact-item">
+                <span class="contact-icon">🚀</span>
+                <div class="contact-text">
+                  <h3>Desarrollo Android</h3>
+                  <p>Consultoría y desarrollo</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="contact-form-container">
-          <form action="https://formsubmit.co/a38020ed984b9ea6f9c3210f2421fdf7" method="POST" class="contact-form" id="contact-form">
-            <!-- FormSubmit Configuration -->
-            <input type="hidden" name="_subject" value="[formulario web] Nuevo mensaje de contacto">
-            <input type="hidden" name="_next" value="https://arceapps.github.io/gracias.html">
-            <input type="hidden" name="_captcha" value="true">
-            <input type="hidden" name="_template" value="box">
-            
-            <!-- Honeypot field for spam prevention (hidden from users) -->
-            <input type="text" name="_honey" style="display:none">
-            
-            <div class="form-group">
-              <label for="name">Nombre</label>
-              <input type="text" id="name" name="name" required placeholder="Tu nombre">
-            </div>
+          <div class="contact-form-container">
+            <form action="https://formsubmit.co/a38020ed984b9ea6f9c3210f2421fdf7" method="POST" class="contact-form" id="contact-form">
+              <!-- FormSubmit Configuration -->
+              <input type="hidden" name="_subject" value="[formulario web] Nuevo mensaje de contacto">
+              <input type="hidden" name="_next" value="https://arceapps.github.io/gracias.html">
+              <input type="hidden" name="_captcha" value="true">
+              <input type="hidden" name="_template" value="box">
 
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" required placeholder="tu@email.com">
-            </div>
+              <!-- Honeypot field for spam prevention (hidden from users) -->
+              <input type="text" name="_honey" style="display:none">
 
-            <div class="form-group">
-              <label for="subject">Asunto</label>
-              <input type="text" id="subject" name="asunto" required placeholder="¿De qué quieres hablar?">
-            </div>
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" required placeholder="Tu nombre">
+              </div>
 
-            <div class="form-group">
-              <label for="message">Mensaje</label>
-              <textarea id="message" name="message" rows="6" required placeholder="Cuéntame sobre tu proyecto o idea..."></textarea>
-            </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="tu@email.com">
+              </div>
 
-            <button type="submit" class="btn btn-primary btn-submit">
-              Enviar mensaje
-            </button>
-          </form>
+              <div class="form-group">
+                <label for="subject">Asunto</label>
+                <input type="text" id="subject" name="asunto" required placeholder="¿De qué quieres hablar?">
+              </div>
 
-          <div id="form-status" class="form-status" style="display: none;"></div>
+              <div class="form-group">
+                <label for="message">Mensaje</label>
+                <textarea id="message" name="message" rows="6" required placeholder="Cuéntame sobre tu proyecto o idea..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-submit">
+                Enviar mensaje
+              </button>
+            </form>
+
+            <div id="form-status" class="form-status" style="display: none;"></div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
@@ -148,14 +179,15 @@
           <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
         </div>
         <div class="footer-links">
-          <a href="#" class="footer-link">GitHub</a>
-          <a href="#" class="footer-link">LinkedIn</a>
-          <a href="contact.html" class="footer-link">Contacto</a>
+          <a href="https://github.com/arceapps" class="footer-link" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/arceapps" class="footer-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com/arceapps" class="footer-link" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="dist/script.min.js"></script>
+  <a href="#" id="back-to-top" class="back-to-top-btn">↑</a>
 </body>
 </html>

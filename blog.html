@@ -4,7 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog - ArceApps</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="description" content="Blog de ArceApps sobre desarrollo Android, Kotlin, Jetpack Compose y buenas prácticas. Encuentra tutoriales, guías y artículos para mejorar tus habilidades.">
+  <meta name="keywords" content="blog, desarrollador android, arceapps, kotlin, jetpack compose, tutoriales, guías, buenas prácticas">
+  <meta name="author" content="ArceApps">
+  <link rel="canonical" href="https://arceapps.com/blog.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arceapps.com/blog.html">
+  <meta property="og:title" content="Blog - ArceApps">
+  <meta property="og:description" content="Blog de ArceApps sobre desarrollo Android, Kotlin, Jetpack Compose y buenas prácticas.">
+  <meta property="og:image" content="https://arceapps.com/images/placeholder-project-2048.svg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://arceapps.com/blog.html">
+  <meta property="twitter:title" content="Blog - ArceApps">
+  <meta property="twitter:description" content="Blog de ArceApps sobre desarrollo Android, Kotlin, Jetpack Compose y buenas prácticas.">
+  <meta property="twitter:image" content="https://arceapps.com/images/placeholder-project-2048.svg">
+
+  <link rel="stylesheet" href="dist/style.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CZLNYSWY76"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-CZLNYSWY76');
+  </script>
 </head>
 <body>
   <!-- Navigation -->
@@ -50,76 +79,89 @@
     </div>
   </nav>
 
-  <!-- Blog Hero Section -->
-  <section class="blog-hero">
-    <div class="hero-container">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          Blog de <span class="gradient-text">ArceApps</span>
-        </h1>
-        <p class="hero-subtitle">
-          Artículos sobre desarrollo Android, mejores prácticas y herramientas modernas para crear aplicaciones excepcionales
-        </p>
-        <div class="blog-stats">
-          <div class="stat-item">
-            <span class="stat-number" id="post-count">0</span>
-            <span class="stat-label">Artículos</span>
+  <main>
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Blog de <span class="gradient-text">ArceApps</span>
+          </h1>
+          <p class="hero-subtitle">
+            Artículos sobre desarrollo Android, mejores prácticas y herramientas modernas para crear aplicaciones excepcionales
+          </p>
+          <div class="blog-stats">
+            <div class="stat-item">
+              <span class="stat-number" id="post-count">0</span>
+              <span class="stat-label">Artículos</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" id="category-count">0</span>
+              <span class="stat-label">Categorías</span>
+            </div>
           </div>
-          <div class="stat-item">
-            <span class="stat-number" id="category-count">0</span>
-            <span class="stat-label">Categorías</span>
+        </div>
+        <div class="hero-image">
+          <div class="blog-illustration">
+            📝
           </div>
         </div>
       </div>
-      <div class="hero-image">
-        <div class="blog-illustration">
-          📝
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Blog Posts Section -->
-  <section class="blog-posts-section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Últimas Publicaciones</h2>
-        <p class="section-subtitle">Explora mis artículos sobre desarrollo Android y mejores prácticas</p>
-      </div>
-      
-      <div class="blog-grid" id="blog-posts">
-        <!-- Posts will be loaded here by JavaScript -->
-      </div>
-      
-      <!-- Pagination Controls -->
-      <div class="pagination-section" id="pagination-section">
-        <!-- Pagination will be loaded here by JavaScript -->
-      </div>
-      
-      <!-- Tag Groups Section -->
-      <div class="tag-groups-section">
-        <h3 class="tag-groups-title">Explorar por categorías:</h3>
-        <div class="tag-groups" id="tag-groups">
-          <!-- Tag groups will be loaded here by JavaScript -->
+    <!-- Blog Posts Section -->
+    <section class="blog-posts-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Últimas Publicaciones</h2>
+          <p class="section-subtitle">Explora mis artículos sobre desarrollo Android y mejores prácticas</p>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Newsletter Section -->
-  <section class="newsletter-section">
-    <div class="container">
-      <div class="newsletter-card">
-        <div class="newsletter-content">
-          <h3>¿Te gustaría recibir más contenido?</h3>
-          <p>Mantente al día con los últimos artículos sobre desarrollo Android y mejores prácticas de programación.</p>
+        <!-- Search and Filter Section -->
+        <div class="filter-container">
+            <input type="text" id="search-input" placeholder="Buscar artículos..." class="search-input">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="Android">Android</button>
+                <button class="filter-btn" data-filter="Arquitectura">Arquitectura</button>
+                <button class="filter-btn" data-filter="DevOps">DevOps</button>
+            </div>
         </div>
-        <div class="newsletter-action">
-          <a href="#" class="btn btn-primary">Próximamente</a>
+
+        <div class="blog-grid" id="blog-posts">
+          <!-- Posts will be loaded here by JavaScript -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-section" id="pagination-section">
+          <!-- Pagination will be loaded here by JavaScript -->
+        </div>
+
+        <!-- Tag Groups Section -->
+        <div class="tag-groups-section">
+          <h3 class="tag-groups-title">Explorar por categorías:</h3>
+          <div class="tag-groups" id="tag-groups">
+            <!-- Tag groups will be loaded here by JavaScript -->
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-card">
+          <div class="newsletter-content">
+            <h3>¿Te gustaría recibir más contenido?</h3>
+            <p>Mantente al día con los últimos artículos sobre desarrollo Android y mejores prácticas de programación.</p>
+          </div>
+          <div class="newsletter-action">
+            <a href="#" class="btn btn-primary">Próximamente</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
@@ -129,14 +171,15 @@
           <p>&copy; 2025 ArceApps. Desarrollado con HTML, CSS y JavaScript.</p>
         </div>
         <div class="footer-links">
-          <a href="#" class="footer-link">GitHub</a>
-          <a href="#" class="footer-link">LinkedIn</a>
-          <a href="contact.html" class="footer-link">Contacto</a>
+          <a href="https://github.com/arceapps" class="footer-link" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://linkedin.com/in/arceapps" class="footer-link" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://twitter.com/arceapps" class="footer-link" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="dist/script.min.js"></script>
+  <a href="#" id="back-to-top" class="back-to-top-btn">↑</a>
 </body>
 </html>

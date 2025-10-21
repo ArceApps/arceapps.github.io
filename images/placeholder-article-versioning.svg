@@ -1,5 +1,1 @@
-<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
-  <rect width="800" height="400" fill="#10b981"/>
-  <text x="400" y="190" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="32" font-weight="bold">Android</text>
-  <text x="400" y="230" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="32" font-weight="bold">Versioning</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400"><path fill="#10b981" d="M0 0h800v400H0z"/><text x="400" y="190" fill="#fff" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle">Android</text><text x="400" y="230" fill="#fff" font-family="Arial, sans-serif" font-size="32" font-weight="bold" text-anchor="middle">Versioning</text></svg>
