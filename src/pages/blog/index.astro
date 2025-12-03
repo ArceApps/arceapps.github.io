@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BlogPost from '../../components/BlogPost.astro';
+const posts = await getCollection('blog');
+---
+<Layout title="ArceApps Blog">
+	<main>
+		<h1>ArceApps Blog</h1>
+		<ul>
+			{posts.map(post => <BlogPost url={`/blog/${post.slug}/`} title={post.data.title} />)}
+		</ul>
+	</main>
+</Layout>
