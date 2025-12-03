@@ -1,40 +1,146 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { getCollection } from "astro:content";
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
-).slice(0, 3);
+const posts = (await getCollection("blog"))
+  .sort(
+    (a, b) =>
+      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+  )
+  .slice(0, 3);
+
+const featuredProjects = [
+  {
+    title: "PuzzleSuite",
+    description:
+      "Colección definitiva de juegos de lógica y puzzles. Sudoku, Kakuro, y más en una sola app.",
+    image: "", // Placeholder or add real image if available
+    tags: ["Android", "Kotlin", "Jetpack Compose"],
+    link: "/projects/puzzlesuite",
+  },
+  {
+    title: "BrainTraining",
+    description:
+      "Ejercita tu mente con juegos diseñados para mejorar tu memoria y reflejos.",
+    image: "",
+    tags: ["Android", "Game Dev", "Education"],
+    link: "/projects/braintraining",
+  },
+  {
+    title: "TaskMaster",
+    description:
+      "Organiza tu vida con esta potente herramienta de gestión de tareas y productividad.",
+    image: "",
+    tags: ["Productivity", "Kotlin", "Room DB"],
+    link: "/projects/taskmaster",
+  },
+];
 ---
 
-<Layout title="ArceApps - Bienvenido">
-  <div class="hero min-h-screen" style="background-image: url(https://placeimg.com/1000/800/tech);">
-    <div class="hero-overlay bg-opacity-60"></div>
-    <div class="hero-content text-center text-neutral-content">
-      <div class="max-w-md">
-        <h1 class="mb-5 text-5xl font-bold">Bienvenido a ArceApps</h1>
-        <p class="mb-5">Creamos aplicaciones Android innovadoras y atractivas. Descubre nuestros proyectos y lee nuestro blog para aprender más sobre el desarrollo en Android.</p>
-        <a href="/portfolio" class="btn btn-primary">Ver Portfolio</a>
+<Layout title="ArceApps - Innovación en Desarrollo Android">
+  <Hero />
+
+  <!-- Featured Projects Section -->
+  <section class="py-24 relative">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+        <div>
+          <h2
+            class="text-4xl font-bold text-gray-900 dark:text-white mb-4 font-heading"
+          >
+            Proyectos Destacados
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400 max-w-xl">
+            Descubre algunas de nuestras aplicaciones más populares y recientes.
+          </p>
+        </div>
+        <a
+          href="/portfolio"
+          class="hidden md:flex items-center text-primary hover:text-primary/80 transition-colors font-medium"
+        >
+          Ver todos los proyectos
+          <svg
+            class="w-5 h-5 ml-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+          >
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredProjects.map((project) => <ProjectCard {...project} />)}
+      </div>
+
+      <div class="mt-12 text-center md:hidden">
+        <a href="/portfolio" class="btn btn-primary btn-outline"
+          >Ver todos los proyectos</a
+        >
       </div>
     </div>
-  </div>
+  </section>
 
-  <section class="py-20 bg-base-200">
+  <!-- Blog Section -->
+  <section
+    class="py-24 bg-gray-100 dark:bg-dark-800/30 border-y border-gray-200 dark:border-white/5 transition-colors duration-300"
+  >
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-12">Últimas Entradas del Blog</h2>
+      <h2
+        class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-16 font-heading"
+      >
+        Últimas Novedades
+      </h2>
+
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {posts.map(post => (
-          <div class="card bg-base-100 shadow-xl">
-            {post.data.heroImage && <figure><img src={post.data.heroImage} alt={post.data.title} /></figure>}
-            <div class="card-body">
-              <h2 class="card-title">{post.data.title}</h2>
-              <p>{post.data.description}</p>
-              <div class="card-actions justify-end">
-                <a href={`/blog/${post.slug}/`} class="btn btn-secondary">Leer Más</a>
+        {
+          posts.map((post) => (
+            <a
+              href={`/blog/${post.slug}/`}
+              class="group block bg-white dark:bg-dark-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-primary/30 transition-all hover:-translate-y-1 shadow-sm dark:shadow-none"
+            >
+              <div class="aspect-[16/9] overflow-hidden relative">
+                {post.data.heroImage ? (
+                  <img
+                    src={post.data.heroImage}
+                    alt={post.data.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-dark-800 dark:to-dark-700 flex items-center justify-center">
+                    <span class="text-4xl opacity-50">📝</span>
+                  </div>
+                )}
               </div>
-            </div>
-          </div>
-        ))}
+              <div class="p-6">
+                <div class="flex items-center text-sm text-gray-500 mb-3">
+                  <span>
+                    {new Date(post.data.pubDate).toLocaleDateString("es-ES", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                  {post.data.title}
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4">
+                  {post.data.description}
+                </p>
+                <span class="text-primary text-sm font-medium group-hover:underline">
+                  Leer artículo &rarr;
+                </span>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>

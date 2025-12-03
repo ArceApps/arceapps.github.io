@@ -1,22 +1,208 @@
 ---
+
 ---
-<header class="fixed top-0 left-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-md z-50">
+
+<header
+  class="fixed top-0 left-0 w-full z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors duration-300"
+  id="main-header"
+>
   <div class="container mx-auto px-4">
     <nav class="flex items-center justify-between py-4">
-      <a href="/" class="flex items-center space-x-2">
-        <img src="/logo.png" alt="ArceApps Logo" class="h-10 w-10">
-        <span class="text-2xl font-bold text-white">ArceApps</span>
+      <a href="/" class="flex items-center space-x-2 group">
+        <div
+          class="w-10 h-10 flex items-center justify-center bg-primary rounded-xl shadow-md"
+        >
+          <span class="text-white font-bold text-xl">A</span>
+        </div>
+        <span
+          class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight font-heading"
+          >ArceApps</span
+        >
       </a>
+
+      <!-- Desktop Menu -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="/" class="text-gray-300 hover:text-white transition-colors">Inicio</a>
-        <a href="/portfolio" class="text-gray-300 hover:text-white transition-colors">Portfolio</a>
-        <a href="/blog" class="text-gray-300 hover:text-white transition-colors">Blog</a>
-        <a href="/about" class="text-gray-300 hover:text-white transition-colors">About</a>
-        <a href="/politica-privacidad" class="text-gray-300 hover:text-white transition-colors">Política de Privacidad</a>
+        <a
+          href="/"
+          class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white font-medium transition-colors"
+          >Inicio</a
+        >
+        <a
+          href="/portfolio"
+          class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white font-medium transition-colors"
+          >Portfolio</a
+        >
+        <a
+          href="/blog"
+          class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white font-medium transition-colors"
+          >Blog</a
+        >
+        <a
+          href="/about"
+          class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white font-medium transition-colors"
+          >Sobre Mí</a
+        >
+        <a
+          href="/contact"
+          class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-white font-medium transition-colors"
+          >Contacto</a
+        >
+
+        <!-- Theme Toggle -->
+        <button
+          id="theme-toggle"
+          class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+          aria-label="Toggle Theme"
+        >
+          <!-- Sun Icon -->
+          <svg
+            id="theme-toggle-light-icon"
+            class="hidden w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+            ><path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"></path></svg
+          >
+          <!-- Moon Icon -->
+          <svg
+            id="theme-toggle-dark-icon"
+            class="hidden w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+            ><path
+              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            ></path></svg
+          >
+        </button>
       </div>
-      <button class="md:hidden flex items-center px-3 py-2 border rounded text-gray-300 border-gray-400 hover:text-white hover:border-white">
-        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden flex items-center p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
       </button>
     </nav>
   </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-white dark:bg-slate-900 z-40 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col items-center justify-center space-y-8"
+  >
+    <button
+      id="close-menu-btn"
+      class="absolute top-6 right-6 text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-white"
+    >
+      <svg
+        class="w-8 h-8"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    <a
+      href="/"
+      class="text-2xl font-bold text-slate-900 dark:text-white hover:text-primary transition-colors"
+      >Inicio</a
+    >
+    <a
+      href="/portfolio"
+      class="text-2xl font-bold text-slate-900 dark:text-white hover:text-primary transition-colors"
+      >Portfolio</a
+    >
+    <a
+      href="/blog"
+      class="text-2xl font-bold text-slate-900 dark:text-white hover:text-primary transition-colors"
+      >Blog</a
+    >
+    <a
+      href="/about"
+      class="text-2xl font-bold text-slate-900 dark:text-white hover:text-primary transition-colors"
+      >Sobre Mí</a
+    >
+    <a
+      href="/contact"
+      class="text-2xl font-bold text-slate-900 dark:text-white hover:text-primary transition-colors"
+      >Contacto</a
+    >
+  </div>
 </header>
+
+<script>
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const closeMenuBtn = document.getElementById("close-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const themeToggleBtn = document.getElementById("theme-toggle");
+  const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+  const themeToggleLightIcon = document.getElementById(
+    "theme-toggle-light-icon",
+  );
+
+  // Mobile Menu Logic
+  function toggleMenu() {
+    mobileMenu?.classList.toggle("translate-x-full");
+    document.body.classList.toggle("overflow-hidden");
+  }
+
+  mobileMenuBtn?.addEventListener("click", toggleMenu);
+  closeMenuBtn?.addEventListener("click", toggleMenu);
+
+  // Theme Toggle Logic
+  if (
+    localStorage.getItem("theme") === "dark" ||
+    (!("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    themeToggleLightIcon?.classList.remove("hidden");
+  } else {
+    themeToggleDarkIcon?.classList.remove("hidden");
+  }
+
+  themeToggleBtn?.addEventListener("click", function () {
+    // toggle icons inside button
+    themeToggleDarkIcon?.classList.toggle("hidden");
+    themeToggleLightIcon?.classList.toggle("hidden");
+
+    // if set via local storage previously
+    if (localStorage.getItem("theme")) {
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+    } else {
+      if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      } else {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      }
+    }
+  });
+</script>

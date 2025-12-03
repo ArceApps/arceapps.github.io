@@ -1,20 +1,142 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="About - ArceApps">
-  <div class="container mx-auto px-4 py-20">
-    <div class="text-center">
-      <h1 class="text-4xl font-bold mb-4">Sobre ArceApps</h1>
-      <p class="text-lg max-w-2xl mx-auto">
-        Somos un estudio de desarrollo de aplicaciones móviles apasionado por crear experiencias de usuario excepcionales en la plataforma Android. Nuestro objetivo es combinar un diseño atractivo con una funcionalidad sólida para ofrecer aplicaciones que a la gente le encante usar.
-      </p>
+<Layout title="Sobre Mí - ArceApps">
+  <div class="pt-24 pb-20 relative overflow-hidden">
+    <!-- Background decoration -->
+    <div
+      class="absolute top-1/4 right-0 w-96 h-96 bg-secondary/10 blur-[100px] rounded-full pointer-events-none"
+    >
     </div>
-    <div class="mt-12 text-center">
-      <h2 class="text-3xl font-bold mb-4">Nuestro Equipo</h2>
-      <p class="text-lg max-w-2xl mx-auto">
-        Actualmente, ArceApps es un proyecto individual liderado por un desarrollador con años de experiencia en el ecosistema Android.
-      </p>
+    <div
+      class="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 blur-[100px] rounded-full pointer-events-none"
+    >
+    </div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h1
+            class="text-5xl font-bold text-gray-900 dark:text-white mb-6 font-heading"
+          >
+            Sobre ArceApps
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+            Más que código, creamos soluciones. ArceApps es un estudio de
+            desarrollo enfocado en la excelencia técnica y el diseño centrado en
+            el usuario.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+          <div
+            class="bg-white/50 dark:bg-dark-800/50 p-8 rounded-2xl border border-gray-200 dark:border-white/5 backdrop-blur-sm shadow-sm dark:shadow-none"
+          >
+            <h2
+              class="text-2xl font-bold text-gray-900 dark:text-white mb-4 font-heading"
+            >
+              Nuestra Misión
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
+              Transformar ideas complejas en aplicaciones Android intuitivas y
+              potentes. Nos esforzamos por empujar los límites de lo que es
+              posible en dispositivos móviles.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Creemos en el software limpio, eficiente y respetuoso con la
+              privacidad del usuario.
+            </p>
+          </div>
+          <div class="relative">
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-2xl blur-2xl opacity-20"
+            >
+            </div>
+            <div
+              class="relative bg-white dark:bg-dark-900 p-8 rounded-2xl border border-gray-200 dark:border-white/10 shadow-lg dark:shadow-none"
+            >
+              <h3
+                class="text-xl font-bold text-gray-900 dark:text-white mb-6 font-heading"
+              >
+                Tecnologías que Dominamos
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="px-3 py-1 bg-primary/5 dark:bg-white/5 rounded-full text-sm text-primary border border-primary/20"
+                  >Kotlin</span
+                >
+                <span
+                  class="px-3 py-1 bg-primary/5 dark:bg-white/5 rounded-full text-sm text-primary border border-primary/20"
+                  >Jetpack Compose</span
+                >
+                <span
+                  class="px-3 py-1 bg-primary/5 dark:bg-white/5 rounded-full text-sm text-primary border border-primary/20"
+                  >Android SDK</span
+                >
+                <span
+                  class="px-3 py-1 bg-primary/5 dark:bg-white/5 rounded-full text-sm text-primary border border-primary/20"
+                  >Firebase</span
+                >
+                <span
+                  class="px-3 py-1 bg-primary/5 dark:bg-white/5 rounded-full text-sm text-primary border border-primary/20"
+                  >Room DB</span
+                >
+                <span
+                  class="px-3 py-1 bg-primary/5 dark:bg-white/5 rounded-full text-sm text-primary border border-primary/20"
+                  >Coroutines</span
+                >
+                <span
+                  class="px-3 py-1 bg-primary/5 dark:bg-white/5 rounded-full text-sm text-primary border border-primary/20"
+                  >Material Design 3</span
+                >
+                <span
+                  class="px-3 py-1 bg-primary/5 dark:bg-white/5 rounded-full text-sm text-primary border border-primary/20"
+                  >Git</span
+                >
+                <span
+                  class="px-3 py-1 bg-primary/5 dark:bg-white/5 rounded-full text-sm text-primary border border-primary/20"
+                  >CI/CD</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="text-center bg-gradient-to-br from-gray-100 to-white dark:from-dark-800 dark:to-dark-900 p-12 rounded-3xl border border-gray-200 dark:border-white/5 shadow-sm dark:shadow-none"
+        >
+          <h2
+            class="text-3xl font-bold text-gray-900 dark:text-white mb-4 font-heading"
+          >
+            El Equipo
+          </h2>
+          <p
+            class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8"
+          >
+            ArceApps es un proyecto liderado por un desarrollador apasionado con
+            años de experiencia en el ecosistema Android, comprometido con la
+            calidad y la innovación continua.
+          </p>
+          <a
+            href="mailto:contacto@arceapps.com"
+            class="inline-flex items-center text-primary font-bold hover:text-primary/80 transition-colors"
+          >
+            Hablemos de tu próximo proyecto
+            <svg
+              class="w-5 h-5 ml-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
+            >
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </Layout>

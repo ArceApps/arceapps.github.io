@@ -1,14 +1,82 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import BlogPost from '../../components/BlogPost.astro';
-const posts = await getCollection('blog');
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = (await getCollection("blog")).sort(
+	(a, b) =>
+		new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
+);
 ---
-<Layout title="ArceApps Blog">
-	<main>
-		<h1>ArceApps Blog</h1>
-		<ul>
-			{posts.map(post => <BlogPost url={`/blog/${post.slug}/`} title={post.data.title} />)}
-		</ul>
-	</main>
+
+<Layout title="Blog - ArceApps">
+	<div class="pt-24 pb-20 relative overflow-hidden">
+		<!-- Background decoration -->
+		<div
+			class="absolute top-0 left-1/4 w-full h-96 bg-primary/10 blur-[100px] rounded-full pointer-events-none"
+		>
+		</div>
+
+		<div class="container mx-auto px-4 relative z-10">
+			<div class="text-center max-w-3xl mx-auto mb-16">
+				<h1
+					class="text-5xl font-bold text-gray-900 dark:text-white mb-6 font-heading"
+				>
+					Blog de Desarrollo
+				</h1>
+				<p class="text-xl text-gray-600 dark:text-gray-400">
+					Artículos, tutoriales y noticias sobre el mundo del
+					desarrollo Android, Kotlin y tecnología móvil.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				{
+					posts.map((post) => (
+						<a
+							href={`/blog/${post.slug}/`}
+							class="group block bg-white dark:bg-dark-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-primary/30 transition-all hover:-translate-y-1 shadow-sm dark:shadow-none"
+						>
+							<div class="aspect-[16/9] overflow-hidden relative">
+								{post.data.heroImage ? (
+									<img
+										src={post.data.heroImage}
+										alt={post.data.title}
+										class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+									/>
+								) : (
+									<div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-dark-800 dark:to-dark-700 flex items-center justify-center">
+										<span class="text-4xl opacity-50">
+											📝
+										</span>
+									</div>
+								)}
+							</div>
+							<div class="p-6">
+								<div class="flex items-center text-sm text-gray-500 mb-3">
+									<span>
+										{new Date(
+											post.data.pubDate,
+										).toLocaleDateString("es-ES", {
+											year: "numeric",
+											month: "long",
+											day: "numeric",
+										})}
+									</span>
+								</div>
+								<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
+									{post.data.title}
+								</h3>
+								<p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4">
+									{post.data.description}
+								</p>
+								<span class="text-primary text-sm font-medium group-hover:underline">
+									Leer artículo &rarr;
+								</span>
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</div>
 </Layout>
