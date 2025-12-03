@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+).slice(0, 3);
+---
+
+<Layout title="ArceApps - Bienvenido">
+  <div class="hero min-h-screen" style="background-image: url(https://placeimg.com/1000/800/tech);">
+    <div class="hero-overlay bg-opacity-60"></div>
+    <div class="hero-content text-center text-neutral-content">
+      <div class="max-w-md">
+        <h1 class="mb-5 text-5xl font-bold">Bienvenido a ArceApps</h1>
+        <p class="mb-5">Creamos aplicaciones Android innovadoras y atractivas. Descubre nuestros proyectos y lee nuestro blog para aprender más sobre el desarrollo en Android.</p>
+        <a href="/portfolio" class="btn btn-primary">Ver Portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="py-20 bg-base-200">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Últimas Entradas del Blog</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {posts.map(post => (
+          <div class="card bg-base-100 shadow-xl">
+            {post.data.heroImage && <figure><img src={post.data.heroImage} alt={post.data.title} /></figure>}
+            <div class="card-body">
+              <h2 class="card-title">{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <div class="card-actions justify-end">
+                <a href={`/blog/${post.slug}/`} class="btn btn-secondary">Leer Más</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
