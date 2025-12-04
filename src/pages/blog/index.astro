@@ -6,6 +6,13 @@ const posts = (await getCollection("blog")).sort(
 	(a, b) =>
 		new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
 );
+
+// Get all unique tags
+const allTags = [...new Set(posts.flatMap((post) => post.data.tags))];
+
+// Get featured post (most recent)
+const featuredPost = posts[0];
+const otherPosts = posts.slice(1);
 ---
 
 <Layout title="Blog - ArceApps">
@@ -17,66 +24,289 @@ const posts = (await getCollection("blog")).sort(
 		</div>
 
 		<div class="container mx-auto px-4 relative z-10">
+			<!-- Header -->
 			<div class="text-center max-w-3xl mx-auto mb-16">
 				<h1
-					class="text-5xl font-bold text-gray-900 dark:text-white mb-6 font-heading"
+					class="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 font-heading"
 				>
 					Blog de Desarrollo
 				</h1>
-				<p class="text-xl text-gray-600 dark:text-gray-400">
-					Artículos, tutoriales y noticias sobre el mundo del
-					desarrollo Android, Kotlin y tecnología móvil.
+				<p
+					class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed"
+				>
+					Artículos, tutoriales y mejores prácticas sobre desarrollo
+					Android, Kotlin y tecnología móvil. Aprende de nuestra
+					experiencia creando aplicaciones móviles excepcionales.
 				</p>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-				{
-					posts.map((post) => (
-						<a
-							href={`/blog/${post.slug}/`}
-							class="group block bg-white dark:bg-dark-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-primary/30 transition-all hover:-translate-y-1 shadow-sm dark:shadow-none"
+			<!-- Search and Filter Bar -->
+			<div class="max-w-4xl mx-auto mb-12">
+				<div class="flex flex-col md:flex-row gap-4">
+					<!-- Search Box -->
+					<div class="flex-1 relative">
+						<svg
+							class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
 						>
-							<div class="aspect-[16/9] overflow-hidden relative">
-								{post.data.heroImage ? (
-									<img
-										src={post.data.heroImage}
-										alt={post.data.title}
-										class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-									/>
-								) : (
-									<div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-dark-800 dark:to-dark-700 flex items-center justify-center">
-										<span class="text-4xl opacity-50">
-											📝
-										</span>
-									</div>
-								)}
-							</div>
-							<div class="p-6">
-								<div class="flex items-center text-sm text-gray-500 mb-3">
-									<span>
-										{new Date(
-											post.data.pubDate,
-										).toLocaleDateString("es-ES", {
-											year: "numeric",
-											month: "long",
-											day: "numeric",
-										})}
-									</span>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+							></path>
+						</svg>
+						<input
+							type="text"
+							id="search-input"
+							placeholder="Buscar artículos..."
+							class="w-full pl-12 pr-4 py-3 bg-white dark:bg-dark-800 border border-gray-200 dark:border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-900 dark:text-white"
+						/>
+					</div>
+					<!-- Filter Dropdown -->
+					<div class="relative">
+						<select
+							id="tag-filter"
+							class="appearance-none px-6 py-3 pr-10 bg-white dark:bg-dark-800 border border-gray-200 dark:border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 text-gray-900 dark:text-white cursor-pointer"
+						>
+							<option value="">Todas las categorías</option>
+							{
+								allTags
+									.sort()
+									.map((tag) => (
+										<option value={tag}>{tag}</option>
+									))
+							}
+						</select>
+						<svg
+							class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M19 9l-7 7-7-7"></path>
+						</svg>
+					</div>
+				</div>
+			</div>
+
+			<!-- Featured Post -->
+			{
+				featuredPost && (
+					<div class="max-w-6xl mx-auto mb-16">
+						<div class="flex items-center gap-2 mb-4">
+							<span class="px-3 py-1 bg-accent text-white rounded-full text-sm font-medium">
+								✨ Destacado
+							</span>
+						</div>
+						<a
+							href={`/blog/${featuredPost.slug}/`}
+							class="group block bg-white dark:bg-dark-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-primary/30 transition-all shadow-lg dark:shadow-none"
+						>
+							<div class="grid md:grid-cols-2 gap-0">
+								<div class="aspect-[4/3] md:aspect-auto overflow-hidden relative">
+									{featuredPost.data.heroImage ? (
+										<img
+											src={featuredPost.data.heroImage}
+											alt={featuredPost.data.title}
+											class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+										/>
+									) : (
+										<div class="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+											<span class="text-6xl opacity-50">
+												📝
+											</span>
+										</div>
+									)}
 								</div>
-								<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
-									{post.data.title}
-								</h3>
-								<p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4">
-									{post.data.description}
-								</p>
-								<span class="text-primary text-sm font-medium group-hover:underline">
-									Leer artículo &rarr;
-								</span>
+								<div class="p-8 md:p-12 flex flex-col justify-center">
+									<div class="flex flex-wrap gap-2 mb-4">
+										{featuredPost.data.tags.map(
+											(tag: string) => (
+												<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
+													{tag}
+												</span>
+											),
+										)}
+									</div>
+									<h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-primary transition-colors font-heading">
+										{featuredPost.data.title}
+									</h2>
+									<p class="text-gray-600 dark:text-gray-400 text-lg mb-6 line-clamp-3">
+										{featuredPost.data.description}
+									</p>
+									<div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+										<time
+											datetime={featuredPost.data.pubDate}
+										>
+											{new Date(
+												featuredPost.data.pubDate,
+											).toLocaleDateString("es-ES", {
+												year: "numeric",
+												month: "long",
+												day: "numeric",
+											})}
+										</time>
+									</div>
+								</div>
 							</div>
 						</a>
-					))
-				}
+					</div>
+				)
+			}
+
+			<!-- Posts Grid -->
+			<div class="max-w-7xl mx-auto">
+				<h2
+					class="text-2xl font-bold text-gray-900 dark:text-white mb-8 font-heading"
+				>
+					Todos los artículos
+				</h2>
+				<div
+					id="posts-grid"
+					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+				>
+					{
+						otherPosts.map((post) => (
+							<a
+								href={`/blog/${post.slug}/`}
+								class="post-card group block bg-white dark:bg-dark-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-primary/30 transition-all hover:-translate-y-1 shadow-sm dark:shadow-none"
+								data-title={post.data.title.toLowerCase()}
+								data-description={post.data.description.toLowerCase()}
+								data-tags={post.data.tags.join(",")}
+							>
+								<div class="aspect-[16/9] overflow-hidden relative">
+									{post.data.heroImage ? (
+										<img
+											src={post.data.heroImage}
+											alt={post.data.title}
+											class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+										/>
+									) : (
+										<div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-dark-800 dark:to-dark-700 flex items-center justify-center">
+											<span class="text-4xl opacity-50">
+												📝
+											</span>
+										</div>
+									)}
+								</div>
+								<div class="p-6">
+									<div class="flex flex-wrap gap-2 mb-3">
+										{post.data.tags
+											.slice(0, 2)
+											.map((tag: string) => (
+												<span class="px-2 py-1 bg-primary/10 text-primary rounded-md text-xs font-medium">
+													{tag}
+												</span>
+											))}
+									</div>
+									<div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
+										<time datetime={post.data.pubDate}>
+											{new Date(
+												post.data.pubDate,
+											).toLocaleDateString("es-ES", {
+												year: "numeric",
+												month: "long",
+												day: "numeric",
+											})}
+										</time>
+									</div>
+									<h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
+										{post.data.title}
+									</h3>
+									<p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4">
+										{post.data.description}
+									</p>
+									<span class="text-primary text-sm font-medium group-hover:underline inline-flex items-center gap-1">
+										Leer artículo
+										<svg
+											class="w-4 h-4 transition-transform group-hover:translate-x-1"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M9 5l7 7-7 7"
+											/>
+										</svg>
+									</span>
+								</div>
+							</a>
+						))
+					}
+				</div>
+
+				<!-- No results message -->
+				<div id="no-results" class="hidden text-center py-16">
+					<div class="text-6xl mb-4">🔍</div>
+					<h3
+						class="text-2xl font-bold text-gray-900 dark:text-white mb-2"
+					>
+						No se encontraron artículos
+					</h3>
+					<p class="text-gray-600 dark:text-gray-400">
+						Intenta con otros términos de búsqueda o filtros
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>
 </Layout>
+
+<script>
+	// Search and filter functionality
+	const searchInput = document.getElementById(
+		"search-input",
+	) as HTMLInputElement;
+	const tagFilter = document.getElementById(
+		"tag-filter",
+	) as HTMLSelectElement;
+	const postsGrid = document.getElementById("posts-grid") as HTMLElement;
+	const noResults = document.getElementById("no-results") as HTMLElement;
+	const postCards = document.querySelectorAll(".post-card");
+
+	function filterPosts() {
+		const searchTerm = searchInput.value.toLowerCase();
+		const selectedTag = tagFilter.value;
+		let visibleCount = 0;
+
+		postCards.forEach((card) => {
+			const element = card as HTMLElement;
+			const title = element.dataset.title || "";
+			const description = element.dataset.description || "";
+			const tags = element.dataset.tags || "";
+
+			const matchesSearch =
+				title.includes(searchTerm) || description.includes(searchTerm);
+			const matchesTag = !selectedTag || tags.includes(selectedTag);
+
+			if (matchesSearch && matchesTag) {
+				element.style.display = "block";
+				visibleCount++;
+			} else {
+				element.style.display = "none";
+			}
+		});
+
+		// Show/hide no results message
+		if (visibleCount === 0) {
+			postsGrid.style.display = "none";
+			noResults.style.display = "block";
+		} else {
+			postsGrid.style.display = "grid";
+			noResults.style.display = "none";
+		}
+	}
+
+	searchInput.addEventListener("input", filterPosts);
+	tagFilter.addEventListener("change", filterPosts);
+</script>

@@ -1,147 +1,376 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import ProjectCard from "../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
 
-const posts = (await getCollection("blog"))
-  .sort(
-    (a, b) =>
-      new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf(),
-  )
-  .slice(0, 3);
-
-const featuredProjects = [
-  {
-    title: "PuzzleSuite",
-    description:
-      "Colección definitiva de juegos de lógica y puzzles. Sudoku, Kakuro, y más en una sola app.",
-    image: "", // Placeholder or add real image if available
-    tags: ["Android", "Kotlin", "Jetpack Compose"],
-    link: "/projects/puzzlesuite",
-  },
-  {
-    title: "BrainTraining",
-    description:
-      "Ejercita tu mente con juegos diseñados para mejorar tu memoria y reflejos.",
-    image: "",
-    tags: ["Android", "Game Dev", "Education"],
-    link: "/projects/braintraining",
-  },
-  {
-    title: "TaskMaster",
-    description:
-      "Organiza tu vida con esta potente herramienta de gestión de tareas y productividad.",
-    image: "",
-    tags: ["Productivity", "Kotlin", "Room DB"],
-    link: "/projects/taskmaster",
-  },
-];
+// Get latest blog posts
+const allPosts = (await getCollection("blog"))
+    .sort(
+        (a, b) =>
+            new Date(b.data.pubDate).valueOf() -
+            new Date(a.data.pubDate).valueOf(),
+    )
+    .slice(0, 3);
 ---
 
-<Layout title="ArceApps - Innovación en Desarrollo Android">
-  <Hero />
-
-  <!-- Featured Projects Section -->
-  <section class="py-24 relative">
-    <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-        <div>
-          <h2
-            class="text-4xl font-bold text-gray-900 dark:text-white mb-4 font-heading"
-          >
-            Proyectos Destacados
-          </h2>
-          <p class="text-gray-600 dark:text-gray-400 max-w-xl">
-            Descubre algunas de nuestras aplicaciones más populares y recientes.
-          </p>
+<Layout title="ArceApps - Apps Android de Calidad Premium">
+    <!-- Hero Section -->
+    <section
+        class="relative overflow-hidden bg-gradient-to-b from-slate-50 to-white dark:from-slate-950 dark:to-slate-900 py-20 md:py-32"
+    >
+        <!-- Background decoration -->
+        <div
+            class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-900 bg-[size:32px_32px] opacity-60"
+        >
         </div>
-        <a
-          href="/portfolio"
-          class="hidden md:flex items-center text-primary hover:text-primary/80 transition-colors font-medium"
+        <div
+            class="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
         >
-          Ver todos los proyectos
-          <svg
-            class="w-5 h-5 ml-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            ><path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg
-          >
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {featuredProjects.map((project) => <ProjectCard {...project} />)}
-      </div>
-
-      <div class="mt-12 text-center md:hidden">
-        <a href="/portfolio" class="btn btn-primary btn-outline"
-          >Ver todos los proyectos</a
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
         >
-      </div>
-    </div>
-  </section>
+        </div>
 
-  <!-- Blog Section -->
-  <section
-    class="py-24 bg-gray-100 dark:bg-dark-800/30 border-y border-gray-200 dark:border-white/5 transition-colors duration-300"
-  >
-    <div class="container mx-auto px-4">
-      <h2
-        class="text-4xl font-bold text-center text-gray-900 dark:text-white mb-16 font-heading"
-      >
-        Últimas Novedades
-      </h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {
-          posts.map((post) => (
-            <a
-              href={`/blog/${post.slug}/`}
-              class="group block bg-white dark:bg-dark-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-primary/30 transition-all hover:-translate-y-1 shadow-sm dark:shadow-none"
-            >
-              <div class="aspect-[16/9] overflow-hidden relative">
-                {post.data.heroImage ? (
-                  <img
-                    src={post.data.heroImage}
-                    alt={post.data.title}
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                ) : (
-                  <div class="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-dark-800 dark:to-dark-700 flex items-center justify-center">
-                    <span class="text-4xl opacity-50">📝</span>
-                  </div>
-                )}
-              </div>
-              <div class="p-6">
-                <div class="flex items-center text-sm text-gray-500 mb-3">
-                  <span>
-                    {new Date(post.data.pubDate).toLocaleDateString("es-ES", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto text-center">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full mb-6"
+                >
+                    <span class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"
+                    ></span>
+                    <span
+                        class="text-sm font-medium text-blue-900 dark:text-blue-100"
+                        >Desarrollador Android Apasionado</span
+                    >
                 </div>
-                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                  {post.data.title}
-                </h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4">
-                  {post.data.description}
+
+                <h1
+                    class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+                >
+                    Apps Android que <span class="gradient-text"
+                        >Desafían tu Mente</span
+                    >
+                </h1>
+
+                <p
+                    class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-10 leading-relaxed max-w-3xl mx-auto"
+                >
+                    Desarrollo aplicaciones Android innovadoras con diseño
+                    premium, rendimiento nativo y privacidad total.
                 </p>
-                <span class="text-primary text-sm font-medium group-hover:underline">
-                  Leer artículo &rarr;
-                </span>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a
+                        href="/blog"
+                        class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl"
+                    >
+                        <svg
+                            class="w-5 h-5 mr-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                            ></path>
+                        </svg>
+                        Ver Blog
+                    </a>
+                    <a
+                        href="/about"
+                        class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700"
+                    >
+                        Sobre Mí
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    ¿Por qué ArceApps?
+                </h2>
+                <p
+                    class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto"
+                >
+                    Compromiso con la excelencia técnica y la experiencia de
+                    usuario
+                </p>
+            </div>
+
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+            >
+                <!-- Feature 1 -->
+                <div
+                    class="group card hover:shadow-xl hover:-translate-y-1 transition-all"
+                >
+                    <div
+                        class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                    >
+                        <svg
+                            class="w-6 h-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Rendimiento Nativo</h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Aplicaciones desarrolladas en Kotlin puro para máximo
+                        rendimiento y fluidez.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div
+                    class="group card hover:shadow-xl hover:-translate-y-1 transition-all"
+                >
+                    <div
+                        class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                    >
+                        <svg
+                            class="w-6 h-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Diseño Premium</h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Interfaces modernas siguiendo Material Design 3 con
+                        atención al detalle.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div
+                    class="group card hover:shadow-xl hover:-translate-y-1 transition-all"
+                >
+                    <div
+                        class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                    >
+                        <svg
+                            class="w-6 h-6 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Privacidad Total</h3>
+                    <p class="text-slate-600 dark:text-slate-400">
+                        Sin seguimiento, sin anuncios invasivos. Tu privacidad
+                        es prioridad.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Blog Posts -->
+    <section class="py-20 bg-slate-50 dark:bg-slate-950">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-12">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2">
+                        Últimos Artículos
+                    </h2>
+                    <p class="text-lg text-slate-600 dark:text-slate-300">
+                        Aprende sobre Android, Kotlin y desarrollo móvil
+                    </p>
+                </div>
+                <a
+                    href="/blog"
+                    class="hidden md:inline-flex items-center text-blue-600 dark:text-blue-400 font-medium hover:gap-2 transition-all group"
+                >
+                    Ver todos
+                    <svg
+                        class="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {
+                    allPosts.map((post) => (
+                        <a
+                            href={`/blog/${post.slug}/`}
+                            class="group card hover:shadow-xl hover:-translate-y-1 transition-all"
+                        >
+                            <div class="aspect-video bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 rounded-lg mb-4 overflow-hidden">
+                                {post.data.heroImage ? (
+                                    <img
+                                        src={post.data.heroImage}
+                                        alt={post.data.title}
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    />
+                                ) : (
+                                    <div class="w-full h-full flex items-center justify-center">
+                                        <svg
+                                            class="w-16 h-16 text-slate-400"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                            />
+                                        </svg>
+                                    </div>
+                                )}
+                            </div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                {post.data.tags
+                                    .slice(0, 2)
+                                    .map((tag: string) => (
+                                        <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-900 dark:text-blue-100 rounded-full">
+                                            {tag}
+                                        </span>
+                                    ))}
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+                                {post.data.title}
+                            </h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 mb-4">
+                                {post.data.description}
+                            </p>
+                            <div class="flex items-center text-sm text-slate-500 dark:text-slate-500">
+                                <svg
+                                    class="w-4 h-4 mr-1"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                    />
+                                </svg>
+                                {new Date(post.data.pubDate).toLocaleDateString(
+                                    "es-ES",
+                                    {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "numeric",
+                                    },
+                                )}
+                            </div>
+                        </a>
+                    ))
+                }
+            </div>
+
+            <div class="text-center mt-12 md:hidden">
+                <a
+                    href="/blog"
+                    class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl"
+                >
+                    Ver Todos los Artículos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+        class="py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 relative overflow-hidden"
+    >
+        <div class="absolute inset-0 bg-grid-white/10 bg-[size:32px_32px]">
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl mx-auto text-center text-white">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    ¿Interesado en Colaborar?
+                </h2>
+                <p class="text-xl mb-8 text-white/90">
+                    Siempre abierto a nuevos proyectos y oportunidades de
+                    desarrollo Android
+                </p>
+                <a
+                    href="/about"
+                    class="inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all duration-200 bg-white text-blue-600 hover:bg-slate-100"
+                >
+                    Más Sobre Mí
+                </a>
+            </div>
+        </div>
+    </section>
 </Layout>
+
+<style>
+    .bg-grid-slate-100 {
+        background-image: linear-gradient(
+                to right,
+                rgb(241 245 249 / 0.3) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                to bottom,
+                rgb(241 245 249 / 0.3) 1px,
+                transparent 1px
+            );
+    }
+
+    .bg-grid-slate-900 {
+        background-image: linear-gradient(
+                to right,
+                rgb(15 23 42 / 0.3) 1px,
+                transparent 1px
+            ),
+            linear-gradient(to bottom, rgb(15 23 42 / 0.3) 1px, transparent 1px);
+    }
+
+    .bg-grid-white\/10 {
+        background-image: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.1) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.1) 1px,
+                transparent 1px
+            );
+    }
+</style>

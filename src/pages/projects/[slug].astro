@@ -1,0 +1,96 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const projects = [
+    {
+      slug: 'puzzlehub',
+      title: "PuzzleHub",
+      description: "La colección definitiva de juegos de lógica.",
+      image: "/images/project-placeholder.svg",
+      tags: ["Lógica", "Puzzle", "Brain Training"],
+      content: "PuzzleHub reúne los mejores juegos de lógica en una sola aplicación. Disfruta de Sudoku, Kakuro, Hitori, Slitherlink y muchos más, todo con una interfaz unificada, moderna y limpia. Perfecto para ejercitar tu mente diariamente.",
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.puzzlesuite"
+    },
+    {
+      slug: 'sudoku-plus',
+      title: "Sudoku+",
+      description: "Sudoku clásico reinventado.",
+      image: "/images/project-placeholder.svg",
+      tags: ["Clásico", "Estrategia", "Offline"],
+      content: "Redescubre el Sudoku con Sudoku+. Múltiples niveles de dificultad, temas oscuros y claros, y herramientas de ayuda inteligentes que te permitirán disfrutar del juego clásico como nunca antes.",
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.sudoku"
+    },
+    {
+      slug: '2048-puzzle',
+      title: "2048 Puzzle Challenge",
+      description: "El desafío numérico más adictivo.",
+      image: "/images/project-placeholder.svg",
+      tags: ["Casual", "Matemáticas", "Arcade"],
+      content: "Únete a los números y llega al 2048. Una versión pulida y fluida del clásico juego de deslizamiento, con animaciones suaves y un diseño que no cansa la vista.",
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.a2048"
+    },
+    {
+        slug: '4line',
+        title: "4Line",
+        description: "Conecta 4 y gana.",
+        image: "/images/project-placeholder.svg",
+        tags: ["Estrategia", "Multijugador", "Clásico"],
+        content: "El clásico juego de estrategia para dos jugadores. Juega contra la IA o desafía a un amigo en el mismo dispositivo. Simple, rápido y divertido.",
+        googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.a4line"
+    }
+  ];
+
+  return projects.map(project => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.title} - ArceApps`}>
+  <div class="pt-32 pb-20">
+    <div class="container mx-auto px-4">
+      <div class="max-w-5xl mx-auto">
+        <a href="/" class="inline-flex items-center text-slate-500 hover:text-primary mb-8 transition-colors font-medium">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Volver al Inicio
+        </a>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- App Image/Screenshot -->
+            <div class="bg-gradient-to-br from-slate-100 to-slate-200 dark:from-dark-800 dark:to-dark-700 rounded-3xl p-8 shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                <img src={project.image} alt={project.title} class="w-full h-auto rounded-xl shadow-lg" />
+            </div>
+
+            <!-- App Info -->
+            <div>
+                <div class="flex flex-wrap gap-2 mb-6">
+                    {project.tags.map(tag => (
+                    <span class="text-sm font-bold px-3 py-1.5 rounded-lg bg-primary/10 text-primary dark:text-accent">
+                        {tag}
+                    </span>
+                    ))}
+                </div>
+
+                <h1 class="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6 font-heading">{project.title}</h1>
+                <p class="text-2xl text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">{project.description}</p>
+                
+                <div class="prose prose-lg dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 mb-10">
+                    <p>{project.content}</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href={project.googlePlayUrl} target="_blank" class="px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-1 flex items-center justify-center gap-3">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm13.63 10.186L5.472 23.766C6.118 24.128 6.92 24.064 7.5 23.6l11.475-6.623-1.736-4.977zm-1.735-4.977l1.736-4.977L5.764.4a1.496 1.496 0 0 0-2.028.166l13.508 11.434zM20.57 15.363L22.4 14.307c1.067-.616 1.067-2.002 0-2.619l-1.83-1.056-2.13 6.107 2.13-1.376z"></path></svg>
+                        Descargar en Google Play
+                    </a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
