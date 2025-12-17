@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  link: string;
+  color?: string; // Optional custom color class for icon background
+}
+
+const { title, description, icon = "android", link, color = "bg-primary" } = Astro.props;
+---
+
+<a href={link} target="_blank" rel="noopener noreferrer" class="group block h-full">
+  <article class="h-full material-card p-6 flex flex-col hover:elevation-3 hover:-translate-y-1 relative overflow-hidden">
+    <!-- Icon -->
+    <div class={`w-14 h-14 rounded-2xl ${color} flex items-center justify-center text-white shadow-md mb-6 group-hover:scale-110 transition-transform duration-300`}>
+      <span class="material-icons text-3xl">{icon}</span>
+    </div>
+
+    <!-- Content -->
+    <h3 class="text-xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">
+      {title}
+    </h3>
+    <p class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed flex-grow">
+      {description}
+    </p>
+
+    <!-- Action -->
+    <div class="mt-6 flex items-center text-primary font-medium">
+      <span>Descargar en Google Play</span>
+      <span class="material-icons ml-1 text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+    </div>
+
+    <!-- Background Gradient Effect -->
+    <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
+  </article>
+</a>

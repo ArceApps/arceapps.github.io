@@ -1,150 +1,103 @@
 @import "tailwindcss";
 
 @theme {
-  /* Modern Blue-Purple Gradient Palette (Fortify style) */
-  --color-primary: #3b82f6;
-  /* Blue */
-  --color-secondary: #8b5cf6;
-  /* Purple */
-  --color-accent: #06b6d4;
-  /* Cyan */
+  /* Brand Colors */
+  --color-primary: #018786; /* Teal */
+  --color-secondary: #FF9800; /* Orange */
 
-  /* Dark mode background colors */
-  --color-dark-950: #0f172a;
-  --color-dark-900: #1e293b;
-  --color-dark-800: #334155;
+  /* Material Design Colors */
+  --color-surface: #FFFFFF;
+  --color-surface-variant: #F4F5F7;
+  --color-on-surface: #1C1B1F;
+  --color-on-surface-variant: #49454F;
+
+  /* Dark Mode Colors */
+  --color-dark-surface: #121212;
+  --color-dark-surface-variant: #1C1C1E;
+  --color-dark-on-surface: #E6E1E5;
+  --color-dark-on-surface-variant: #CAC4D0;
 
   /* Fonts */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-sans: 'Roboto', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Roboto', system-ui, sans-serif;
+}
+
+/* Material Design 3 Utilities */
+@layer utilities {
+  .elevation-1 {
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  }
+  .elevation-2 {
+    box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  }
+  .elevation-3 {
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+  }
+
+  .material-card {
+    @apply rounded-xl bg-surface dark:bg-dark-surface-variant border border-gray-200 dark:border-gray-800 transition-all duration-300;
+  }
 }
 
 /* Base Styles */
-* {
-  @apply antialiased;
-}
-
 html {
   @apply scroll-smooth;
 }
 
 body {
-  @apply text-slate-700 dark:text-slate-300;
+  @apply bg-surface dark:bg-dark-surface text-on-surface dark:text-dark-on-surface antialiased transition-colors duration-300;
 }
 
 /* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-heading font-bold text-slate-900 dark:text-white;
+h1, h2, h3, h4, h5, h6 {
+  @apply font-heading font-medium tracking-tight;
 }
 
-/* Prose styles for blog content */
+/* Prose for Blog Content */
 .prose {
-  @apply max-w-none;
+  @apply max-w-none text-on-surface-variant dark:text-dark-on-surface-variant;
 }
-
-.prose h1 {
-  @apply text-4xl font-bold mb-4 mt-8 text-slate-900 dark:text-white;
+.prose h1, .prose h2, .prose h3 {
+  @apply text-on-surface dark:text-dark-on-surface font-medium mt-8 mb-4;
 }
-
-.prose h2 {
-  @apply text-3xl font-bold mb-3 mt-8 text-slate-900 dark:text-white;
-}
-
-.prose h3 {
-  @apply text-2xl font-bold mb-2 mt-6 text-slate-900 dark:text-white;
-}
-
 .prose p {
-  @apply mb-4 leading-7 text-slate-700 dark:text-slate-300;
+  @apply mb-4 leading-relaxed;
 }
-
 .prose a {
-  @apply text-blue-600 dark:text-blue-400 hover:underline;
+  @apply text-primary hover:text-secondary underline decoration-2 underline-offset-2 transition-colors;
 }
-
-.prose code {
-  @apply bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded text-sm;
+.prose strong {
+  @apply text-on-surface dark:text-dark-on-surface font-bold;
 }
-
-.prose pre {
-  @apply bg-slate-900 dark:bg-slate-950 p-4 rounded-lg overflow-x-auto my-4;
+.prose ul {
+  @apply list-disc list-inside mb-4 pl-4;
 }
-
-.prose pre code {
-  @apply bg-transparent text-slate-100 p-0;
-}
-
-.prose ul,
 .prose ol {
-  @apply mb-4 pl-6;
+  @apply list-decimal list-inside mb-4 pl-4;
 }
-
-.prose li {
-  @apply mb-2;
+.prose code {
+  @apply bg-surface-variant dark:bg-dark-surface px-1.5 py-0.5 rounded text-sm font-mono text-primary;
 }
-
+.prose pre {
+  @apply bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto my-6;
+}
+.prose pre code {
+  @apply bg-transparent text-inherit p-0;
+}
 .prose blockquote {
-  @apply border-l-4 border-blue-500 pl-4 italic my-4 text-slate-600 dark:text-slate-400;
+  @apply border-l-4 border-primary pl-4 italic my-6 text-on-surface-variant/80 dark:text-dark-on-surface-variant/80;
 }
-
 .prose img {
-  @apply rounded-lg my-6;
+  /* removed elevation-1 from here as apply can't use it directly if defined in same layer */
+  @apply rounded-xl w-full h-auto my-8 shadow-md;
 }
 
-.prose table {
-  @apply w-full my-4;
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
-.prose th {
-  @apply bg-slate-100 dark:bg-slate-800 p-2 text-left font-semibold;
-}
-
-.prose td {
-  @apply border-t border-slate-200 dark:border-slate-700 p-2;
-}
-
-/* Custom Utilities */
-@layer utilities {
-  .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent;
-  }
-
-  .gradient-bg {
-    @apply bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500;
-  }
-
-  .glass {
-    @apply backdrop-blur-md bg-white/80 dark:bg-slate-950/80;
-  }
-
-  .card {
-    @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg p-6;
-  }
-}
-
-/* Smooth theme transition */
-* {
-  @apply transition-colors duration-200;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-slate-100 dark:bg-slate-900;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-slate-400 dark:bg-slate-600;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

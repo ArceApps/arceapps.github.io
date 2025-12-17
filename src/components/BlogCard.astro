@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+
+// Format date
+const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<a href={`/blog/${post.slug}/`} class="group block h-full">
+  <article class="h-full material-card overflow-hidden flex flex-col hover:elevation-2 transition-all">
+    {post.data.heroImage && (
+      <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+        <img
+          src={post.data.heroImage}
+          alt={post.data.title}
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+      </div>
+    )}
+
+    <div class="p-6 flex flex-col flex-grow">
+      <div class="flex items-center gap-2 mb-3">
+         {post.data.tags && post.data.tags.slice(0, 1).map((tag: string) => (
+            <span class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
+              {tag}
+            </span>
+         ))}
+         <span class="text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70 ml-auto">
+            {formattedDate}
+         </span>
+      </div>
+
+      <h3 class="text-xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors line-clamp-2">
+        {post.data.title}
+      </h3>
+
+      <p class="text-on-surface-variant dark:text-dark-on-surface-variant text-sm line-clamp-3 mb-4 flex-grow leading-relaxed">
+        {post.data.description}
+      </p>
+
+      <div class="flex items-center text-primary font-medium text-sm mt-auto">
+        Leer artículo
+        <span class="material-icons text-base ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+      </div>
+    </div>
+  </article>
+</a>
