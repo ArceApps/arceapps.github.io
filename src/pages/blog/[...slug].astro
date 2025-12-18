@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/BlogCard.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -11,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 const post = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
 
 const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
   weekday: 'long',
@@ -19,6 +20,24 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
   month: 'long',
   day: 'numeric',
 });
+
+// Filter headings for TOC (H2 and H3 only)
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+
+// Related posts logic
+const allPosts = await getCollection('blog');
+const currentTags = post.data.tags || [];
+const relatedPosts = allPosts
+  .filter(p => p.slug !== post.slug)
+  .map(p => {
+    const commonTags = (p.data.tags || []).filter(t => currentTags.includes(t)).length;
+    return { ...p, commonTags };
+  })
+  .sort((a, b) => {
+    if (b.commonTags !== a.commonTags) return b.commonTags - a.commonTags;
+    return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+  })
+  .slice(0, 3);
 ---
 
 <Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description}>
@@ -61,24 +80,114 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
       </div>
     )}
 
-    <!-- Content -->
-    <div class="container mx-auto px-4 max-w-3xl">
-      <div class="prose prose-slate dark:prose-invert md:prose-lg mx-auto">
-        <Content />
-      </div>
+    <!-- Main Grid Layout -->
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
-      <!-- Share / Back -->
-      <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-between items-center">
-        <a href="/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors">
-          <span class="material-icons mr-2">arrow_back</span>
-          Volver al Blog
-        </a>
+        <!-- Sidebar (Desktop TOC) -->
+        <aside class="hidden lg:block lg:col-span-1">
+          <div class="sticky top-24">
+            {tocHeadings.length > 0 && (
+              <nav class="p-4 bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800">
+                <h2 class="text-lg font-bold mb-4 text-on-surface dark:text-dark-on-surface flex items-center">
+                  <span class="material-icons mr-2 text-primary">list</span>
+                  Índice
+                </h2>
+                <ul class="space-y-2 text-sm">
+                  {tocHeadings.map(heading => (
+                    <li>
+                      <a
+                        href={`#${heading.slug}`}
+                        class:list={[
+                          "text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors block py-1",
+                          { "pl-0": heading.depth === 2, "pl-3": heading.depth === 3 }
+                        ]}
+                      >
+                        {heading.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
 
-        <div class="flex gap-2">
-             <!-- Social Share placeholders could go here -->
+            <div class="mt-8">
+               <a href="/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors">
+                  <span class="material-icons mr-2">arrow_back</span>
+                  Volver al Blog
+               </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Content Column -->
+        <div class="lg:col-span-3">
+
+          <!-- Mobile TOC -->
+          <div class="lg:hidden mb-8">
+             {tocHeadings.length > 0 && (
+                <details class="bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden group">
+                   <summary class="p-4 flex items-center justify-between cursor-pointer font-bold text-on-surface dark:text-dark-on-surface list-none">
+                      <div class="flex items-center">
+                         <span class="material-icons mr-2 text-primary">list</span>
+                         Índice de contenidos
+                      </div>
+                      <span class="material-icons group-open:rotate-180 transition-transform">expand_more</span>
+                   </summary>
+                   <nav class="px-4 pb-4">
+                      <ul class="space-y-2 text-sm pt-2 border-t border-gray-100 dark:border-gray-700">
+                         {tocHeadings.map(heading => (
+                            <li>
+                               <a
+                                  href={`#${heading.slug}`}
+                                  class:list={[
+                                    "text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors block py-1",
+                                    { "pl-0": heading.depth === 2, "pl-4": heading.depth === 3 }
+                                  ]}
+                               >
+                                  {heading.text}
+                               </a>
+                            </li>
+                         ))}
+                      </ul>
+                   </nav>
+                </details>
+             )}
+          </div>
+
+          <!-- Article Content -->
+          <div class="prose prose-slate dark:prose-invert md:prose-lg max-w-none">
+            <Content />
+          </div>
+
+          <!-- Share / Back (Mobile only since desktop has it in sidebar, or keep bottom one as well?)
+               User asked for responsive. Keeping a bottom nav is good UX.
+          -->
+          <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 lg:hidden">
+             <a href="/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors">
+                <span class="material-icons mr-2">arrow_back</span>
+                Volver al Blog
+             </a>
+          </div>
+
         </div>
       </div>
     </div>
+
+    <!-- Related Articles -->
+    {relatedPosts.length > 0 && (
+       <div class="container mx-auto px-4 mt-20 max-w-6xl border-t border-gray-200 dark:border-gray-800 pt-16">
+          <h2 class="text-3xl font-bold mb-8 text-on-surface dark:text-dark-on-surface text-center md:text-left">
+             Artículos relacionados
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+             {relatedPosts.map((post) => (
+                <BlogCard post={post} />
+             ))}
+          </div>
+       </div>
+    )}
+
   </article>
 </Layout>
 
