@@ -1,0 +1,84 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const apps = (await getCollection("apps")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Portfolio - ArceApps">
+  <div class="relative bg-surface dark:bg-dark-surface py-20 md:py-32 overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
+
+    <div class="container mx-auto px-4 relative z-10 text-center">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+        Mis Proyectos
+      </h1>
+      <p class="text-xl md:text-2xl text-on-surface-variant dark:text-dark-on-surface-variant max-w-3xl mx-auto leading-relaxed">
+        Una colección de aplicaciones diseñadas con pasión, enfoque en la experiencia de usuario y código limpio.
+      </p>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24 bg-surface-variant/30 dark:bg-dark-surface-variant/30">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {apps.map((app) => (
+          <a href={`/apps/${app.slug}`} class="group relative flex flex-col h-full bg-surface dark:bg-dark-surface rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-800">
+            <!-- Image Area -->
+            <div class="relative h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
+              {app.data.heroImage ? (
+                <img
+                  src={app.data.heroImage}
+                  alt={app.data.title}
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center text-gray-300 dark:text-gray-700">
+                  <span class="material-icons text-6xl">smartphone</span>
+                </div>
+              )}
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+
+              <!-- Tags Overlay -->
+              <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+                {app.data.tags?.slice(0, 2).map(tag => (
+                  <span class="px-3 py-1 text-xs font-bold bg-white/20 backdrop-blur-md text-white rounded-full border border-white/30">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="p-8 flex flex-col flex-grow relative">
+               <!-- Decorative glow -->
+               <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full -mr-4 -mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+              <h2 class="text-2xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">
+                {app.data.title}
+              </h2>
+              <p class="text-on-surface-variant dark:text-dark-on-surface-variant mb-6 line-clamp-3 leading-relaxed flex-grow">
+                {app.data.description}
+              </p>
+
+              <div class="flex items-center justify-between mt-auto pt-6 border-t border-gray-100 dark:border-gray-800">
+                <span class="text-sm font-medium text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
+                  {app.data.pubDate.toLocaleDateString()}
+                </span>
+                <span class="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 transition-transform">
+                  Ver Detalles
+                  <span class="material-icons ml-1 text-base">arrow_forward</span>
+                </span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

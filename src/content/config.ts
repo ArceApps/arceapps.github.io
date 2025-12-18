@@ -11,6 +11,21 @@ const blogCollection = defineCollection({
   }),
 });
 
+const appsCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.string().transform((str) => new Date(str)),
+    heroImage: z.string().optional(),
+    icon: z.string().optional().default('android'),
+    tags: z.array(z.string()).optional(),
+    repoUrl: z.string().optional(),
+    demoUrl: z.string().optional(),
+    googlePlayUrl: z.string().optional(),
+  }),
+});
+
 export const collections = {
   'blog': blogCollection,
+  'apps': appsCollection,
 };

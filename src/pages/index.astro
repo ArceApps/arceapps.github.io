@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
-import AppCard from "../components/AppCard.astro";
 import BlogCard from "../components/BlogCard.astro";
 import { getCollection } from "astro:content";
 
@@ -10,36 +9,10 @@ const allPosts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const apps = [
-  {
-    title: "2048 Puzzle Challenge",
-    description: "El clásico juego de rompecabezas numérico reinventado. Desliza, combina y alcanza la meta 2048 en esta experiencia adictiva y desafiante.",
-    icon: "grid_view",
-    link: "https://play.google.com/store/apps/details?id=com.arceapps.a2048",
-    color: "bg-amber-500" // Custom color for visual variety
-  },
-  {
-    title: "PuzzleHub",
-    description: "Tu colección definitiva de rompecabezas lógicos. Múltiples juegos en una sola app para mantener tu mente activa y entretenida.",
-    icon: "extension",
-    link: "https://play.google.com/store/apps/details?id=com.arceapps.puzzlesuite",
-    color: "bg-indigo-500"
-  },
-  {
-    title: "Sudoku+",
-    description: "Sudoku clásico con una interfaz moderna y limpia. Varios niveles de dificultad, notas inteligentes y todo lo que necesitas para disfrutar del Sudoku.",
-    icon: "apps",
-    link: "https://play.google.com/store/apps/details?id=com.arceapps.sudoku",
-    color: "bg-emerald-500"
-  },
-  {
-    title: "4Line for Color lines",
-    description: "Estrategia y diversión en este juego de conectar líneas. Planifica tus movimientos y consigue la puntuación más alta.",
-    icon: "linear_scale",
-    link: "https://play.google.com/store/apps/details?id=com.arceapps.a4line",
-    color: "bg-rose-500"
-  }
-];
+// Get featured apps (latest 4)
+const apps = (await getCollection("apps"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
 ---
 
 <Layout title="ArceApps - Apps Android Premium">
@@ -58,8 +31,37 @@ const apps = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {apps.map(app => (
-          <AppCard {...app} />
+           <a href={`/apps/${app.slug}`} class="group block h-full">
+            <article class="h-full bg-surface dark:bg-dark-surface p-6 flex flex-col hover:shadow-xl hover:-translate-y-1 relative overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 transition-all duration-300">
+              <div class="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center text-white shadow-md mb-6 group-hover:scale-110 transition-transform duration-300">
+                <span class="material-icons text-3xl">{app.data.icon}</span>
+              </div>
+
+              <!-- Content -->
+              <h3 class="text-xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">
+                {app.data.title}
+              </h3>
+              <p class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed flex-grow line-clamp-3">
+                {app.data.description}
+              </p>
+
+              <!-- Action -->
+              <div class="mt-6 flex items-center text-primary font-medium">
+                <span>Ver Detalles</span>
+                <span class="material-icons ml-1 text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+
+              <!-- Background Gradient Effect -->
+              <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
+            </article>
+          </a>
         ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/apps" class="inline-flex items-center justify-center px-8 py-3 rounded-full border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all duration-300">
+          Ver todas las aplicaciones
+        </a>
       </div>
     </div>
   </section>
