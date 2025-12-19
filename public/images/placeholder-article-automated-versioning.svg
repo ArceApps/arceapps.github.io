@@ -1,5 +1,24 @@
 <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="600" fill="#f1f5f9" />
-  <rect width="800" height="600" fill="#1e293b" fill-opacity="0.1" />
-  <text x="50%" y="50%" font-family="sans-serif" font-size="48" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8">Blog Post</text>
+  <line x1="216" y1="351" x2="46" y2="394" stroke="#FF9800" stroke-width="8" stroke-opacity="0.48" />
+  <rect x="586" y="309" width="250" height="243" fill="#005b5b" fill-opacity="0.38" />
+  <line x1="739" y1="513" x2="131" y2="127" stroke="#FF9800" stroke-width="11" stroke-opacity="0.44" />
+  <circle cx="584" cy="9" r="91" fill="#fff3e0" fill-opacity="0.42" />
+  <circle cx="41" cy="149" r="150" fill="#FF9800" fill-opacity="0.41" />
+  <circle cx="666" cy="118" r="37" fill="#005b5b" fill-opacity="0.26" />
+  <rect x="619" y="476" width="144" height="386" fill="#005b5b" fill-opacity="0.36" />
+  <rect x="456" y="133" width="65" height="106" fill="#FF9800" fill-opacity="0.15" />
+  <circle cx="594" cy="311" r="178" fill="#ffb74d" fill-opacity="0.34" />
+  <circle cx="692" cy="375" r="188" fill="#018786" fill-opacity="0.46" />
+  <rect x="345" y="42" width="238" height="367" fill="#018786" fill-opacity="0.13" />
+  <rect x="197" y="319" width="306" height="259" fill="#005b5b" fill-opacity="0.35" />
+  <line x1="418" y1="524" x2="190" y2="163" stroke="#005b5b" stroke-width="7" stroke-opacity="0.17" />
+  <line x1="22" y1="321" x2="707" y2="67" stroke="#018786" stroke-width="10" stroke-opacity="0.37" />
+  <line x1="767" y1="384" x2="343" y2="593" stroke="#005b5b" stroke-width="9" stroke-opacity="0.37" />
+  <rect x="185" y="61" width="241" height="328" fill="#FF9800" fill-opacity="0.33" />
+  <line x1="648" y1="464" x2="380" y2="380" stroke="#ffb74d" stroke-width="5" stroke-opacity="0.34" />
+  <rect x="560" y="353" width="191" height="94" fill="#005b5b" fill-opacity="0.29" />
+  <rect x="140" y="399" width="99" height="373" fill="#e0f2f1" fill-opacity="0.25" />
+  <rect x="117" y="423" width="400" height="305" fill="#e0f2f1" fill-opacity="0.20" />
+  <rect x="507" y="141" width="183" height="360" fill="#e0f2f1" fill-opacity="0.28" />
 </svg>

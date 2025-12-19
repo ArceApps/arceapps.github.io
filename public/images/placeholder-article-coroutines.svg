@@ -1,5 +1,24 @@
 <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="600" fill="#f1f5f9" />
-  <rect width="800" height="600" fill="#1e293b" fill-opacity="0.1" />
-  <text x="50%" y="50%" font-family="sans-serif" font-size="48" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8">Blog Post</text>
+  <line x1="26" y1="328" x2="517" y2="488" stroke="#ffb74d" stroke-width="11" stroke-opacity="0.60" />
+  <circle cx="785" cy="503" r="32" fill="#018786" fill-opacity="0.52" />
+  <rect x="588" y="347" width="316" height="124" fill="#fff3e0" fill-opacity="0.25" />
+  <line x1="268" y1="456" x2="154" y2="555" stroke="#e0f2f1" stroke-width="3" stroke-opacity="0.47" />
+  <rect x="573" y="53" width="219" height="130" fill="#FF9800" fill-opacity="0.18" />
+  <line x1="29" y1="558" x2="227" y2="135" stroke="#005b5b" stroke-width="8" stroke-opacity="0.42" />
+  <line x1="499" y1="515" x2="595" y2="273" stroke="#fff3e0" stroke-width="4" stroke-opacity="0.18" />
+  <rect x="354" y="54" width="263" height="127" fill="#FF9800" fill-opacity="0.48" />
+  <rect x="372" y="583" width="71" height="314" fill="#fff3e0" fill-opacity="0.17" />
+  <line x1="484" y1="385" x2="327" y2="20" stroke="#e0f2f1" stroke-width="8" stroke-opacity="0.34" />
+  <line x1="417" y1="122" x2="540" y2="83" stroke="#FF9800" stroke-width="15" stroke-opacity="0.59" />
+  <rect x="159" y="131" width="224" height="102" fill="#e0f2f1" fill-opacity="0.39" />
+  <line x1="781" y1="265" x2="707" y2="301" stroke="#018786" stroke-width="3" stroke-opacity="0.44" />
+  <circle cx="154" cy="241" r="137" fill="#e0f2f1" fill-opacity="0.18" />
+  <line x1="5" y1="454" x2="54" y2="521" stroke="#005b5b" stroke-width="7" stroke-opacity="0.52" />
+  <line x1="742" y1="426" x2="486" y2="583" stroke="#005b5b" stroke-width="10" stroke-opacity="0.34" />
+  <circle cx="272" cy="561" r="83" fill="#005b5b" fill-opacity="0.12" />
+  <rect x="248" y="196" width="94" height="324" fill="#fff3e0" fill-opacity="0.26" />
+  <line x1="739" y1="218" x2="280" y2="273" stroke="#FF9800" stroke-width="8" stroke-opacity="0.55" />
+  <circle cx="218" cy="197" r="38" fill="#018786" fill-opacity="0.32" />
+  <line x1="264" y1="6" x2="45" y2="535" stroke="#018786" stroke-width="2" stroke-opacity="0.34" />
 </svg>

@@ -1,5 +1,30 @@
 <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="600" fill="#f1f5f9" />
-  <rect width="800" height="600" fill="#1e293b" fill-opacity="0.1" />
-  <text x="50%" y="50%" font-family="sans-serif" font-size="48" text-anchor="middle" dominant-baseline="middle" fill="#94a3b8">Blog Post</text>
+  <line x1="572" y1="239" x2="6" y2="360" stroke="#fff3e0" stroke-width="11" stroke-opacity="0.17" />
+  <rect x="782" y="291" width="126" height="384" fill="#005b5b" fill-opacity="0.28" />
+  <rect x="37" y="64" width="209" height="281" fill="#ffb74d" fill-opacity="0.44" />
+  <circle cx="446" cy="181" r="118" fill="#e0f2f1" fill-opacity="0.30" />
+  <line x1="625" y1="162" x2="482" y2="519" stroke="#fff3e0" stroke-width="10" stroke-opacity="0.50" />
+  <rect x="155" y="127" width="397" height="59" fill="#018786" fill-opacity="0.25" />
+  <circle cx="79" cy="257" r="31" fill="#005b5b" fill-opacity="0.20" />
+  <rect x="310" y="240" width="207" height="56" fill="#fff3e0" fill-opacity="0.57" />
+  <line x1="41" y1="83" x2="18" y2="518" stroke="#018786" stroke-width="8" stroke-opacity="0.46" />
+  <circle cx="474" cy="178" r="36" fill="#FF9800" fill-opacity="0.21" />
+  <rect x="395" y="474" width="81" height="143" fill="#005b5b" fill-opacity="0.46" />
+  <rect x="332" y="340" width="81" height="50" fill="#fff3e0" fill-opacity="0.29" />
+  <circle cx="103" cy="464" r="96" fill="#005b5b" fill-opacity="0.21" />
+  <rect x="788" y="121" width="126" height="255" fill="#fff3e0" fill-opacity="0.57" />
+  <circle cx="256" cy="149" r="161" fill="#FF9800" fill-opacity="0.20" />
+  <circle cx="23" cy="65" r="176" fill="#ffb74d" fill-opacity="0.16" />
+  <line x1="184" y1="203" x2="423" y2="260" stroke="#fff3e0" stroke-width="8" stroke-opacity="0.56" />
+  <rect x="301" y="340" width="259" height="384" fill="#FF9800" fill-opacity="0.55" />
+  <rect x="685" y="480" width="149" height="349" fill="#fff3e0" fill-opacity="0.15" />
+  <rect x="565" y="156" width="166" height="93" fill="#ffb74d" fill-opacity="0.37" />
+  <rect x="65" y="481" width="210" height="123" fill="#018786" fill-opacity="0.40" />
+  <rect x="73" y="93" width="108" height="59" fill="#fff3e0" fill-opacity="0.43" />
+  <line x1="428" y1="268" x2="240" y2="421" stroke="#ffb74d" stroke-width="14" stroke-opacity="0.55" />
+  <line x1="463" y1="518" x2="576" y2="102" stroke="#fff3e0" stroke-width="15" stroke-opacity="0.32" />
+  <rect x="512" y="236" width="164" height="129" fill="#FF9800" fill-opacity="0.41" />
+  <rect x="799" y="371" width="285" height="318" fill="#ffb74d" fill-opacity="0.50" />
+  <circle cx="494" cy="597" r="64" fill="#ffb74d" fill-opacity="0.22" />
 </svg>
