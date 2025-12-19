@@ -1,10 +1,16 @@
 ---
 ---
 <form
-  action="https://formspree.io/f/YOUR_FORM_ID"
+  action="https://formsubmit.co/your@email.com"
   method="POST"
   class="bg-surface dark:bg-dark-surface p-6 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm"
 >
+  <!-- FormSubmit Configuration -->
+  <input type="hidden" name="_subject" value="Nuevo mensaje de contacto - ArceApps">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://arceapps.github.io/about">
+
   <div class="mb-4">
     <label for="name" class="block text-sm font-medium text-on-surface dark:text-dark-on-surface mb-1">
       Nombre
@@ -55,7 +61,12 @@
     Enviar Mensaje
   </button>
 
-  <p class="mt-4 text-xs text-center text-on-surface-variant dark:text-dark-on-surface-variant">
-    * Nota para el propietario del sitio: Recuerda reemplazar <code>YOUR_FORM_ID</code> en <code>src/components/ContactForm.astro</code> con tu ID de Formspree.
-  </p>
+  <div class="mt-4 p-3 bg-primary/10 rounded-lg text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+    <p class="font-bold mb-1">⚠️ Configuración requerida:</p>
+    <ol class="list-decimal list-inside space-y-1">
+      <li>Edita este archivo (<code>src/components/ContactForm.astro</code>) y cambia <code>your@email.com</code> por tu correo real.</li>
+      <li>Envía un mensaje de prueba desde la web. Recibirás un correo de activación de FormSubmit.</li>
+      <li><strong>Opcional (para ocultar tu correo):</strong> Después de activar, FormSubmit te dará un "Random String" (token). Reemplaza tu correo aquí con ese token.</li>
+    </ol>
+  </div>
 </form>
