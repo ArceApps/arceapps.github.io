@@ -45,7 +45,7 @@ const apps = (await getCollection("apps")).sort(
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
 
               {app.data.realIconUrl && (
-                 <div class="absolute top-4 right-4 w-12 h-12 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 backdrop-blur-sm">
+                 <div class="absolute top-4 right-4 w-16 h-16 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 backdrop-blur-sm z-10">
                     <img src={app.data.realIconUrl} alt="App Icon" class="w-full h-full object-cover" />
                  </div>
               )}
