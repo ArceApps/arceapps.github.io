@@ -44,6 +44,12 @@ const apps = (await getCollection("apps")).sort(
               )}
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
 
+              {app.data.realIconUrl && (
+                 <div class="absolute top-4 right-4 w-12 h-12 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 backdrop-blur-sm">
+                    <img src={app.data.realIconUrl} alt="App Icon" class="w-full h-full object-cover" />
+                 </div>
+              )}
+
               <!-- Tags Overlay -->
               <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
                 {app.data.tags?.slice(0, 2).map(tag => (

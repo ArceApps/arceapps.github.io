@@ -1,26 +1,41 @@
 ---
 title: "4Line for Color lines"
-description: "Estrategia y diversión en este juego de conectar líneas. Planifica tus movimientos y consigue la puntuación más alta."
-pubDate: "2023-12-05"
+description: "Un juego de lógica y rompecabezas colorido. Forma líneas de 4 o más fichas del mismo color para limpiar el tablero y obtener puntos."
+pubDate: "2023-11-15"
 heroImage: "/images/4line-hero.svg"
 icon: "linear_scale"
-tags: ["Strategy", "Board", "Casual"]
+tags: ["Puzzle", "Strategy", "Brain Training"]
 googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.a4line"
+realIconUrl: "https://play-lh.googleusercontent.com/6rGaNE9lQxno4idyUqPCu5XkCDxz3mkS6HxUX-E9U4oXxGzzB2YooGgeJe96m7g8mQ=w240-h480"
+screenshots:
+  - "https://play-lh.googleusercontent.com/ScAmhEgQkkBvx9FiLQrj_f4B_l6wUiBE8XhKoHS9aR7uvXB2siHbznTRDqRYNKP61t4=w526-h296"
+  - "https://play-lh.googleusercontent.com/RBiMrDK9QMLJADQ2Ob7X3mZYPC1-eZzhDMMTKos7Nc_fVfpMM4-yENJOqknZOZDk9Tg=w526-h296"
+  - "https://play-lh.googleusercontent.com/nvGPbjyDDl0hCvofM4e5vLQbYbmhn3pdDX_a55udHI63c6Wx1gqAU5OxSP2b7Wr1XlU=w526-h296"
+  - "https://play-lh.googleusercontent.com/X848myaxFxKQmQ6Ui8xT-KsH1HYa9DIi6gPqPgNf5u8zG8kaJBU8KtlH0w1yg-zLcLg=w526-h296"
+  - "https://play-lh.googleusercontent.com/eRUYQfIyPW3NgGU-X0km10LpSuaCJ4bU4kjdLCn4IIapMQ1JP1tbKTV6a1Z3GA66TIO9=w526-h296"
+  - "https://play-lh.googleusercontent.com/snB8ZKP54-e4O_HvT47L5aFadoTTsfwAM2WyA00ZOedeXrxATySNLFfHcJSY1kh4mw=w526-h296"
+  - "https://play-lh.googleusercontent.com/Vfjp6vkCmYEb8U91U6goSl_5LlQ2heL6herjW3uyUuJdJVOVO7yK94PUN87Iwn9tq7k=w526-h296"
+  - "https://play-lh.googleusercontent.com/M5wICC6b3Iq7qP3HY-c_WIEv78orgwH2tVDS20nOuPUvSgzi-4xnMXzNsjqr4CYhgg=w526-h296"
+rating: 4.8
+lastUpdated: "Jul 23, 2025"
 ---
 
-# 4Line for Color lines
+**4Line for Color line** is a totally free game of logic, puzzle and brain teaser design for Android.
+It is easy, intuitive and addictive. Take a stimulating pause. Enjoy having your mind active and do it in a pleasant way.
+Challenge your mind! You are ready for a new challenge!
 
-4Line trae el clásico juego de "Color Lines" a tu dispositivo Android con un toque moderno y vibrante. El objetivo es simple pero desafiante: mantén el tablero despejado el mayor tiempo posible.
+## Game Tutorial
 
-## Mecánica del Juego
+*   **Objective**: 4Line for Color line game consists of moving color squares around the board forming lines with at least 4 squares of the same color.
+*   **Gameplay**: Each time we move a square another 3 with different colors come up, and randomly arrange themselves around the board.
+*   **Strategy**: The squares can be placed horizontally, vertically or diagonally. The more squares you can make disappear at the same time, the more points you get.
+*   **End Game**: The game ends when there are no empty squares or possible movements over the board.
 
-Mueve las bolas de un lugar a otro para formar líneas de 4 o más bolas del mismo color. Las líneas pueden ser horizontales, verticales o diagonales. Cuando formas una línea, las bolas desaparecen y ganas puntos. ¡Pero cuidado! Si mueves una bola y no formas una línea, aparecerán nuevas bolas en el tablero.
+The game is similar to classic game 4Line for Color lines, etc, for a single player.
 
-## Características
+## Features
 
-- **Gráficos HD**: Bolas y animaciones fluidas que hacen que jugar sea un placer visual.
-- **Tablas de Clasificación**: Compite con jugadores de todo el mundo por el primer puesto.
-- **Deshacer**: Rectifica tu último movimiento si ves una mejor estrategia.
-- **Guardado de Partida**: Tu juego se guarda siempre, así que puedes jugar una partida rápida cuando tengas un minuto libre.
+*   **Leaderboards**: Check daily, weakly and the highest score of the standings.
+*   **Updates**: Frequent game enhancements based on your comments.
 
-¿Cuánto tiempo podrás sobrevivir antes de que el tablero se llene? ¡Descúbrelo en 4Line!
+Get ready to face a new challenge! Enjoy the game!
