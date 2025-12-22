@@ -6,7 +6,7 @@ heroImage: "/images/puzzlehub-hero.svg"
 icon: "category"
 tags: ["Puzzle", "Collection", "Logic"]
 googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.puzzlesuite"
-realIconUrl: "https://play-lh.googleusercontent.com/x7fgE7nKdp2LoyMdHSEIzEWTfRrhqlYky6K_TEmeAhqPWZb7v-qD-y8_NK4w0poOIWYsXMv1j7u-womc_fmCFg=s512"
+realIconUrl: "/images/app-icon-puzzlehub.svg"
 screenshots:
   - "https://play-lh.googleusercontent.com/ck8ICfBirIAyNEhzGuNz0vpn7JqbP3vm77BB5xd0C4Q5NuTadMuwfTHnxcwMPfbRxI4kdadpuz2AdqP6hNvQ6A=w526-h296"
   - "https://play-lh.googleusercontent.com/u75Tn-oTWp3yCsKgbi7dg6-ZpVekJBkAP6sLNEiK0xXDxZAQkjaHS9n-4FzRSQYPJCp45K8JHjNbM3H4vrkayDM=w526-h296"

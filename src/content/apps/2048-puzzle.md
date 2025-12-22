@@ -6,7 +6,7 @@ heroImage: "/images/2048-hero.svg"
 icon: "view_module"
 tags: ["Puzzle", "Logic", "Casual"]
 googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.a2048"
-realIconUrl: "https://play-lh.googleusercontent.com/Hp8a3SgsuK8CObY9Q5_VPhaSBpRGiE38lVWaoFIi-4Kf6Phznl78VNyEtfLVSXyTkQ=s512"
+realIconUrl: "/images/app-icon-2048.svg"
 screenshots:
   - "https://play-lh.googleusercontent.com/OCydhTOqatjYNKvtjlNu9UXX2JVtaQ2RhG49Wzu21_TOrgD6aKkwh9IvgI9zjhCJfUE=w526-h296"
   - "https://play-lh.googleusercontent.com/NNV8TxRpj89B7-1GODUHV2dENBbyF_sajVqXm0GcVz1abv5_nzN-on6wnYazM6oFRw=w526-h296"
