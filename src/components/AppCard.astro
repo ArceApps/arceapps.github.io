@@ -3,31 +3,52 @@ interface Props {
   title: string;
   description: string;
   icon?: string;
+  realIconUrl?: string;
   link: string;
   color?: string; // Optional custom color class for icon background
+  ctaText?: string;
+  isExternal?: boolean;
 }
 
-const { title, description, icon = "android", link, color = "bg-primary" } = Astro.props;
+const {
+  title,
+  description,
+  icon = "android",
+  realIconUrl,
+  link,
+  color = "bg-primary",
+  ctaText = "Descargar en Google Play",
+  isExternal = true
+} = Astro.props;
 ---
 
-<a href={link} target="_blank" rel="noopener noreferrer" class="group block h-full">
-  <article class="h-full material-card p-6 flex flex-col hover:elevation-3 hover:-translate-y-1 relative overflow-hidden">
+<a
+  href={link}
+  target={isExternal ? "_blank" : undefined}
+  rel={isExternal ? "noopener noreferrer" : undefined}
+  class="group block h-full"
+>
+  <article class="h-full bg-surface dark:bg-dark-surface p-6 flex flex-col hover:shadow-xl hover:-translate-y-1 relative overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 transition-all duration-300">
     <!-- Icon -->
-    <div class={`w-14 h-14 rounded-2xl ${color} flex items-center justify-center text-white shadow-md mb-6 group-hover:scale-110 transition-transform duration-300`}>
-      <span class="material-icons text-3xl">{icon}</span>
+    <div class={`w-14 h-14 rounded-2xl ${!realIconUrl ? color : 'bg-white'} flex items-center justify-center text-white shadow-md mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
+      {realIconUrl ? (
+        <img src={realIconUrl} alt={`${title} icon`} class="w-full h-full object-cover" />
+      ) : (
+        <span class="material-icons text-3xl">{icon}</span>
+      )}
     </div>
 
     <!-- Content -->
     <h3 class="text-xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">
       {title}
     </h3>
-    <p class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed flex-grow">
+    <p class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed flex-grow line-clamp-3">
       {description}
     </p>
 
     <!-- Action -->
     <div class="mt-6 flex items-center text-primary font-medium">
-      <span>Descargar en Google Play</span>
+      <span>{ctaText}</span>
       <span class="material-icons ml-1 text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
     </div>
 

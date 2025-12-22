@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import BlogCard from "../components/BlogCard.astro";
+import AppCard from "../components/AppCard.astro";
 import { getCollection } from "astro:content";
 
 // Get latest blog posts
@@ -31,36 +32,15 @@ const apps = (await getCollection("apps"))
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {apps.map(app => (
-           <a href={`/apps/${app.slug}`} class="group block h-full">
-            <article class="h-full bg-surface dark:bg-dark-surface p-6 flex flex-col hover:shadow-xl hover:-translate-y-1 relative overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 transition-all duration-300">
-              <div class="w-14 h-14 rounded-2xl bg-white shadow-md mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
-                {app.data.realIconUrl ? (
-                  <img src={app.data.realIconUrl} alt={app.data.title} class="w-full h-full object-cover" />
-                ) : (
-                  <div class="w-full h-full bg-primary flex items-center justify-center text-white">
-                    <span class="material-icons text-3xl">{app.data.icon}</span>
-                  </div>
-                )}
-              </div>
-
-              <!-- Content -->
-              <h3 class="text-xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">
-                {app.data.title}
-              </h3>
-              <p class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed flex-grow line-clamp-3">
-                {app.data.description}
-              </p>
-
-              <!-- Action -->
-              <div class="mt-6 flex items-center text-primary font-medium">
-                <span>Ver Detalles</span>
-                <span class="material-icons ml-1 text-sm transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </div>
-
-              <!-- Background Gradient Effect -->
-              <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none"></div>
-            </article>
-          </a>
+          <AppCard
+            title={app.data.title}
+            description={app.data.description}
+            icon={app.data.icon}
+            realIconUrl={app.data.realIconUrl}
+            link={`/apps/${app.slug}`}
+            ctaText="Ver Detalles"
+            isExternal={false}
+          />
         ))}
       </div>
 

@@ -1,0 +1,69 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  heroImage?: string;
+  realIconUrl?: string;
+  tags?: string[];
+  pubDate: Date;
+  slug: string;
+}
+
+const { title, description, heroImage, realIconUrl, tags = [], pubDate, slug } = Astro.props;
+---
+
+<a href={`/apps/${slug}`} class="group relative flex flex-col h-full bg-surface dark:bg-dark-surface rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-800">
+  <!-- Image Area -->
+  <div class="relative h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
+    {heroImage ? (
+      <img
+        src={heroImage}
+        alt={title}
+        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center text-gray-300 dark:text-gray-700">
+        <span class="material-icons text-6xl">smartphone</span>
+      </div>
+    )}
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+
+    {realIconUrl && (
+       <div class="absolute top-4 right-4 w-16 h-16 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 backdrop-blur-sm z-10">
+          <img src={realIconUrl} alt="App Icon" class="w-full h-full object-cover" />
+       </div>
+    )}
+
+    <!-- Tags Overlay -->
+    <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+      {tags.slice(0, 2).map(tag => (
+        <span class="px-3 py-1 text-xs font-bold bg-white/20 backdrop-blur-md text-white rounded-full border border-white/30">
+          {tag}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- Content Area -->
+  <div class="p-8 flex flex-col flex-grow relative">
+     <!-- Decorative glow -->
+     <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full -mr-4 -mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+    <h2 class="text-2xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">
+      {title}
+    </h2>
+    <p class="text-on-surface-variant dark:text-dark-on-surface-variant mb-6 line-clamp-3 leading-relaxed flex-grow">
+      {description}
+    </p>
+
+    <div class="flex items-center justify-between mt-auto pt-6 border-t border-gray-100 dark:border-gray-800">
+      <span class="text-sm font-medium text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
+        {pubDate.toLocaleDateString()}
+      </span>
+      <span class="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 transition-transform">
+        Ver Detalles
+        <span class="material-icons ml-1 text-base">arrow_forward</span>
+      </span>
+    </div>
+  </div>
+</a>
