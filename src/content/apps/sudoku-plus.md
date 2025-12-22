@@ -6,7 +6,7 @@ heroImage: "/images/sudoku-hero.svg"
 icon: "grid_on"
 tags: ["Puzzle", "Logic", "Classic"]
 googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.sudoku"
-realIconUrl: "https://play-lh.googleusercontent.com/8FjSJhtdP7JNPM8v2gmn7G7TdMM5BX4KNSZ9PTZKxzaeAQ6coTqss8--s6lXai2weULf=s512"
+realIconUrl: "/images/app-icon-sudoku.svg"
 screenshots:
   - "https://play-lh.googleusercontent.com/HyVC5vsXRT80DeTTXN_frseubKnyNy7PRo-CR-DfCTe7k3lsjPAljqWVOfk12IM9KQ=w526-h296"
   - "https://play-lh.googleusercontent.com/mq4-hc1iAyQxfH49spPXc3Y1gxUehaBcQar8N0FjSbDhJL6BV5u2SWoT5qdbMRge0Q=w526-h296"

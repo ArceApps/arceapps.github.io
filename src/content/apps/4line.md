@@ -6,7 +6,7 @@ heroImage: "/images/4line-hero.svg"
 icon: "linear_scale"
 tags: ["Puzzle", "Strategy", "Brain Training"]
 googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.a4line"
-realIconUrl: "https://play-lh.googleusercontent.com/6rGaNE9lQxno4idyUqPCu5XkCDxz3mkS6HxUX-E9U4oXxGzzB2YooGgeJe96m7g8mQ=s512"
+realIconUrl: "/images/app-icon-4line.svg"
 screenshots:
   - "https://play-lh.googleusercontent.com/ScAmhEgQkkBvx9FiLQrj_f4B_l6wUiBE8XhKoHS9aR7uvXB2siHbznTRDqRYNKP61t4=w526-h296"
   - "https://play-lh.googleusercontent.com/RBiMrDK9QMLJADQ2Ob7X3mZYPC1-eZzhDMMTKos7Nc_fVfpMM4-yENJOqknZOZDk9Tg=w526-h296"
