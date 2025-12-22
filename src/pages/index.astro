@@ -33,8 +33,14 @@ const apps = (await getCollection("apps"))
         {apps.map(app => (
            <a href={`/apps/${app.slug}`} class="group block h-full">
             <article class="h-full bg-surface dark:bg-dark-surface p-6 flex flex-col hover:shadow-xl hover:-translate-y-1 relative overflow-hidden rounded-2xl border border-gray-100 dark:border-gray-800 transition-all duration-300">
-              <div class="w-14 h-14 rounded-2xl bg-primary flex items-center justify-center text-white shadow-md mb-6 group-hover:scale-110 transition-transform duration-300">
-                <span class="material-icons text-3xl">{app.data.icon}</span>
+              <div class="w-14 h-14 rounded-2xl bg-white shadow-md mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+                {app.data.realIconUrl ? (
+                  <img src={app.data.realIconUrl} alt={app.data.title} class="w-full h-full object-cover" />
+                ) : (
+                  <div class="w-full h-full bg-primary flex items-center justify-center text-white">
+                    <span class="material-icons text-3xl">{app.data.icon}</span>
+                  </div>
+                )}
               </div>
 
               <!-- Content -->
