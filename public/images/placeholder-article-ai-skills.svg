@@ -1,0 +1,24 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#ffffff" />
+  <rect x="100" y="100" width="150" height="150" fill="#e0f2f1" fill-opacity="0.5" />
+  <rect x="325" y="100" width="150" height="150" fill="#fff3e0" fill-opacity="0.5" />
+  <rect x="550" y="100" width="150" height="150" fill="#e0f2f1" fill-opacity="0.5" />
+  <circle cx="175" cy="175" r="40" fill="#018786" fill-opacity="0.7" />
+  <circle cx="400" cy="175" r="40" fill="#FF9800" fill-opacity="0.7" />
+  <circle cx="625" cy="175" r="40" fill="#018786" fill-opacity="0.7" />
+  <rect x="100" y="300" width="150" height="150" fill="#fff3e0" fill-opacity="0.5" />
+  <rect x="325" y="300" width="150" height="150" fill="#e0f2f1" fill-opacity="0.5" />
+  <rect x="550" y="300" width="150" height="150" fill="#fff3e0" fill-opacity="0.5" />
+  <circle cx="175" cy="375" r="40" fill="#ffb74d" fill-opacity="0.7" />
+  <circle cx="400" cy="375" r="40" fill="#018786" fill-opacity="0.7" />
+  <circle cx="625" cy="375" r="40" fill="#ffb74d" fill-opacity="0.7" />
+  <line x1="175" y1="250" x2="175" y2="300" stroke="#005b5b" stroke-width="3" />
+  <line x1="400" y1="250" x2="400" y2="300" stroke="#005b5b" stroke-width="3" />
+  <line x1="625" y1="250" x2="625" y2="300" stroke="#005b5b" stroke-width="3" />
+  <line x1="250" y1="175" x2="325" y2="175" stroke="#005b5b" stroke-width="3" />
+  <line x1="475" y1="175" x2="550" y2="175" stroke="#005b5b" stroke-width="3" />
+  <line x1="250" y1="375" x2="325" y2="375" stroke="#005b5b" stroke-width="3" />
+  <line x1="475" y1="375" x2="550" y2="375" stroke="#005b5b" stroke-width="3" />
+  <rect x="300" y="500" width="200" height="50" rx="25" fill="#018786" fill-opacity="0.8" />
+  <circle cx="400" cy="525" r="15" fill="#ffffff" />
+</svg>
