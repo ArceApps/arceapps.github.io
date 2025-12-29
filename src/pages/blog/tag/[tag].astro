@@ -16,12 +16,14 @@ export async function getStaticPaths() {
     
     return {
       params: { tag: encodeURIComponent(tag) },
-      props: { tag, posts: filteredPosts },
+      props: { posts: filteredPosts },
     };
   });
 }
 
-const { tag, posts } = Astro.props;
+// Decode the tag parameter from the URL
+const tag = decodeURIComponent(Astro.params.tag || '');
+const { posts } = Astro.props;
 ---
 
 <Layout title={`Tag: ${tag} - Blog ArceApps`}>

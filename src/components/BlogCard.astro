@@ -34,7 +34,6 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
             <a 
               href={`/blog/tag/${encodeURIComponent(tag)}/`}
               class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors"
-              onclick="event.stopPropagation();"
             >
               {tag}
             </a>
