@@ -51,9 +51,12 @@ const relatedPosts = allPosts
     <header class="container mx-auto px-4 mb-12 max-w-4xl text-center">
       <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
         {post.data.tags && post.data.tags.map((tag: string) => (
-           <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wider whitespace-nowrap">
+           <a 
+             href={`/blog/tag/${encodeURIComponent(tag)}/`}
+             class="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors"
+           >
              {tag}
-           </span>
+           </a>
         ))}
       </div>
 

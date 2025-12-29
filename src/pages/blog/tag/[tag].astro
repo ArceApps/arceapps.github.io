@@ -1,0 +1,60 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import BlogCard from "../../../components/BlogCard.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("blog");
+  
+  // Get all unique tags
+  const uniqueTags = [...new Set(allPosts.flatMap(post => post.data.tags || []))];
+  
+  return uniqueTags.map(tag => {
+    const filteredPosts = allPosts.filter(post => 
+      post.data.tags?.includes(tag)
+    ).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    
+    return {
+      params: { tag: encodeURIComponent(tag) },
+      props: { tag, posts: filteredPosts },
+    };
+  });
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<Layout title={`Tag: ${tag} - Blog ArceApps`}>
+  <div class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16 md:py-24">
+    <div class="container mx-auto px-4 text-center">
+      <a href="/blog" class="inline-flex items-center text-primary hover:text-primary/80 transition-colors mb-6">
+        <span class="material-icons mr-2">arrow_back</span>
+        Volver al blog
+      </a>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-on-surface dark:text-dark-on-surface">
+        Artículos con el tag: <span class="text-primary">{tag}</span>
+      </h1>
+      <p class="text-xl text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto">
+        {posts.length} {posts.length === 1 ? 'artículo encontrado' : 'artículos encontrados'}
+      </p>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4">
+      {posts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
+            <BlogCard post={post} />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-xl text-on-surface-variant dark:text-dark-on-surface-variant">
+            No se encontraron artículos con este tag.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
