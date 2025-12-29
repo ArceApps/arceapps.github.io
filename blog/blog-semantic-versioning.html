@@ -53,154 +53,2285 @@
       </header>
 
       <div class="article-content">
-        <h2>Introducción al Versionado Semántico</h2>
-        <p>El versionado semántico (SemVer) es un sistema de versionado que utiliza un formato de tres números: MAJOR.MINOR.PATCH. En el contexto de Android, este sistema cobra especial importancia debido a las particularidades del ecosistema móvil y las políticas de Google Play Store.</p>
+        <h2>🎯 Introducción al Versionado Semántico</h2>
+        <p>El <strong>versionado semántico (Semantic Versioning o SemVer)</strong> es mucho más que simplemente asignar números a las releases de tu aplicación. Es un contrato de comunicación entre desarrolladores y usuarios, una promesa de estabilidad y una herramienta fundamental para gestionar la evolución del software de manera predecible y profesional.</p>
 
-        <h3>¿Por qué es importante en Android?</h3>
-        <p>Android maneja dos tipos de versiones diferentes:</p>
-        <ul>
-          <li><strong>versionName</strong>: Es la versión que ven los usuarios (ej: "1.2.3")</li>
-          <li><strong>versionCode</strong>: Es un número entero interno que Google Play usa para determinar actualizaciones</li>
-        </ul>
+        <p>En el desarrollo moderno de software, especialmente en Android donde millones de usuarios dependen de la estabilidad de sus aplicaciones, el versionado semántico se ha convertido en el <strong>estándar de facto</strong> de la industria. Fue creado por Tom Preston-Werner (co-fundador de GitHub) en 2013 y desde entonces ha sido adoptado por proyectos de todos los tamaños, desde pequeñas startups hasta gigantes tecnológicos como Google, Facebook y Microsoft.</p>
 
-        <h2>Configuración en build.gradle</h2>
+        <div class="info-box">
+          <h3>📚 ¿Qué es el Versionado Semántico?</h3>
+          <p>El versionado semántico es una especificación formal que define cómo deben numerarse y incrementarse las versiones del software. Utiliza un formato de tres números separados por puntos: <code>MAJOR.MINOR.PATCH</code>, donde cada número tiene un significado específico y bien definido:</p>
+          <ul>
+            <li><strong>MAJOR (X.0.0)</strong>: Se incrementa cuando realizas cambios incompatibles en la API o funcionalidad que rompen la compatibilidad hacia atrás</li>
+            <li><strong>MINOR (0.X.0)</strong>: Se incrementa cuando añades funcionalidad nueva de manera compatible con versiones anteriores</li>
+            <li><strong>PATCH (0.0.X)</strong>: Se incrementa cuando realizas correcciones de bugs compatibles hacia atrás</li>
+          </ul>
+        </div>
+
+        <h3>🏛️ Historia y Contexto del Versionado</h3>
+        <p>Antes del versionado semántico, cada proyecto seguía sus propias convenciones arbitrarias, creando confusión y dificultad para gestionar dependencias. Algunos usaban fechas (2025.01.15), otros números secuenciales simples (v1, v2, v3), y otros sistemas completamente aleatorios. Esta falta de estándares llevaba a problemas conocidos como "dependency hell" (infierno de dependencias), donde actualizar una librería podía romper toda tu aplicación sin previo aviso.</p>
+
+        <p>El versionado semántico resolvió estos problemas estableciendo un conjunto claro de reglas que permiten a los desarrolladores comunicar el impacto de sus cambios a través de los números de versión. Hoy en día, prácticamente todas las librerías y frameworks modernos utilizan SemVer, incluyendo Android Jetpack, Kotlin, y la mayoría de dependencias que usas en tu <code>build.gradle</code>.</p>
+
+        <h3>🎯 ¿Por qué es Crucial en Android?</h3>
+        <p>En el ecosistema Android, el versionado semántico cobra una importancia especial debido a múltiples factores únicos de la plataforma móvil:</p>
+
+        <div class="android-versioning-challenges">
+          <h4>Desafíos Únicos de Android:</h4>
+          
+          <div class="challenge-card">
+            <h5>1. 🌍 Distribución Global y Fragmentación</h5>
+            <p>Tu aplicación puede estar instalada en millones de dispositivos con diferentes versiones de Android, distintas capacidades de hardware, y diversos niveles de actualización. Un sistema de versionado claro ayuda a:</p>
+            <ul>
+              <li>Gestionar la compatibilidad con diferentes versiones de Android (desde API 21 hasta 34+)</li>
+              <li>Comunicar claramente qué dispositivos soporta cada versión</li>
+              <li>Planificar la obsolescencia de versiones antiguas de manera transparente</li>
+            </ul>
+          </div>
+
+          <div class="challenge-card">
+            <h5>2. 📱 Actualizaciones Progresivas</h5>
+            <p>Google Play Store permite lanzamientos escalonados (staged rollouts) donde una nueva versión se libera gradualmente al 5%, 10%, 50% o 100% de usuarios. Un versionado claro permite:</p>
+            <ul>
+              <li>Identificar rápidamente qué usuarios tienen qué versión</li>
+              <li>Realizar rollbacks efectivos si se detectan problemas</li>
+              <li>Analizar métricas y crashes por versión específica</li>
+              <li>Mantener múltiples versiones activas simultáneamente</li>
+            </ul>
+          </div>
+
+          <div class="challenge-card">
+            <h5>3. 🔄 Sistema Dual de Versionado</h5>
+            <p>Android maneja dos tipos de versiones diferentes que deben coordinarse cuidadosamente:</p>
+            <ul>
+              <li><strong>versionName (String)</strong>: Es la versión legible que ven los usuarios en Google Play Store (ej: "2.1.3"). Debe seguir SemVer para comunicar claramente los cambios.</li>
+              <li><strong>versionCode (Integer)</strong>: Es un número entero interno y monotónicamente creciente que Google Play usa para determinar qué versión es más reciente. Debe incrementarse en cada release.</li>
+            </ul>
+            <p>La relación entre estos dos números es crucial: un <code>versionCode</code> mal configurado puede impedir que los usuarios reciban actualizaciones, mientras que un <code>versionName</code> confuso puede llevar a los usuarios a no entender qué ha cambiado.</p>
+          </div>
+
+          <div class="challenge-card">
+            <h5>4. 💾 Persistencia de Datos y Migraciones</h5>
+            <p>Las aplicaciones Android almacenan datos localmente (Room, SharedPreferences, archivos). El versionado es esencial para:</p>
+            <ul>
+              <li>Gestionar migraciones de base de datos entre versiones</li>
+              <li>Mantener compatibilidad con datos guardados en versiones antiguas</li>
+              <li>Planificar la limpieza de código legacy basándose en adoption rates</li>
+            </ul>
+          </div>
+
+          <div class="challenge-card">
+            <h5>5. 📊 Analytics y Debugging</h5>
+            <p>Herramientas como Firebase Crashlytics, Analytics y Play Console organizan datos por versión. Un sistema claro permite:</p>
+            <ul>
+              <li>Identificar bugs específicos de una versión</li>
+              <li>Comparar métricas entre versiones (crash rates, retention, engagement)</li>
+              <li>Tomar decisiones basadas en datos sobre cuándo deprecar versiones antiguas</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>🔍 El Sistema Dual: versionName vs versionCode</h3>
+        <p>Entender la diferencia entre estos dos conceptos es fundamental para cualquier desarrollador Android:</p>
+
+        <div class="version-comparison">
+          <div class="version-type">
+            <h4>versionName (Usuario-facing)</h4>
+            <ul>
+              <li><strong>Tipo:</strong> String</li>
+              <li><strong>Propósito:</strong> Comunicación con usuarios</li>
+              <li><strong>Formato:</strong> "MAJOR.MINOR.PATCH" (SemVer)</li>
+              <li><strong>Ejemplo:</strong> "2.3.1"</li>
+              <li><strong>Visible en:</strong> Google Play Store, About screen</li>
+              <li><strong>Puede decrecer:</strong> Técnicamente sí, pero no recomendado</li>
+              <li><strong>Impacto en updates:</strong> Ninguno, solo informativo</li>
+            </ul>
+          </div>
+
+          <div class="version-type">
+            <h4>versionCode (Sistema interno)</h4>
+            <ul>
+              <li><strong>Tipo:</strong> Integer positivo</li>
+              <li><strong>Propósito:</strong> Control de actualizaciones del sistema</li>
+              <li><strong>Formato:</strong> Número entero secuencial</li>
+              <li><strong>Ejemplo:</strong> 20301</li>
+              <li><strong>Visible en:</strong> Solo para desarrolladores</li>
+              <li><strong>Debe ser monotónico:</strong> Siempre creciente</li>
+              <li><strong>Impacto en updates:</strong> CRÍTICO - determina si hay actualización disponible</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Advertencia Importante</h4>
+          <p>Un error común es publicar una nueva versión con un <code>versionCode</code> menor o igual al anterior. Esto hará que Google Play Store <strong>rechace la subida</strong> o que los usuarios existentes <strong>no vean la actualización</strong>. El versionCode debe incrementarse siempre, sin excepciones.</p>
+        </div>
+
+        <h2>⚙️ Configuración Detallada en build.gradle</h2>
+        <p>La configuración del versionado en Android se realiza en el archivo <code>build.gradle</code> (o <code>build.gradle.kts</code> para Kotlin DSL) dentro del módulo de la aplicación. Esta configuración es el corazón del sistema de versionado y debe establecerse cuidadosamente desde el inicio del proyecto.</p>
+
+        <h3>Configuración Básica</h3>
         <div class="code-block">
-          <pre><code>android {
+          <pre><code>// app/build.gradle
+android {
     compileSdk 34
     
     defaultConfig {
         applicationId "com.arceapps.miapp"
         minSdk 24
         targetSdk 34
-        versionCode 10203  // Formato: MMmmpp
-        versionName "1.2.3"
+        
+        // Versión numérica interna para Google Play
+        versionCode 10203  // Formato: MMmmpp (Major Minor Patch)
+        
+        // Versión legible para usuarios
+        versionName "1.2.3"  // Formato SemVer: MAJOR.MINOR.PATCH
+        
+        // Opcional: Información adicional de build
+        buildConfigField "String", "BUILD_TIME", "\"${buildTime()}\""
+        buildConfigField "String", "GIT_SHA", "\"${gitSha()}\""
     }
 }</code></pre>
         </div>
 
-        <h3>Estrategias de versionCode</h3>
-        <p>Una estrategia efectiva es usar el formato MMmmpp donde:</p>
-        <ul>
-          <li><strong>MM</strong>: Versión major (01-99)</li>
-          <li><strong>mm</strong>: Versión minor (00-99)</li>
-          <li><strong>pp</strong>: Versión patch (00-99)</li>
-        </ul>
+        <h3>🎯 Estrategias de versionCode: Análisis Completo</h3>
+        <p>El <code>versionCode</code> es crítico porque Google Play lo usa para determinar qué APK/AAB es más reciente. Existen varias estrategias probadas en la industria, cada una con sus ventajas y desventajas:</p>
 
-        <h2>Automatización con Gradle</h2>
-        <p>Podemos automatizar el versionado usando propiedades de Gradle:</p>
+        <div class="strategies-comparison">
+          <h4>1. Estrategia Simple Secuencial</h4>
+          <p>La más básica: simplemente incrementa el número en 1 con cada release.</p>
+          <div class="code-block">
+            <pre><code>versionCode 1  // Primera release
+versionCode 2  // Segunda release
+versionCode 3  // Tercera release
+// etc...</code></pre>
+          </div>
+          <div class="pros-cons">
+            <div class="pros">
+              <h5>✅ Ventajas:</h5>
+              <ul>
+                <li>Extremadamente simple</li>
+                <li>No hay riesgo de colisiones</li>
+                <li>Fácil de automatizar</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h5>❌ Desventajas:</h5>
+              <ul>
+                <li>No hay correlación con versionName</li>
+                <li>Imposible saber la versión semántica desde el código</li>
+                <li>Difícil gestionar releases paralelas (múltiples flavors/ABIs)</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4>2. Estrategia Derivada de SemVer (MMmmpp)</h4>
+          <p>Codifica directamente el versionName en el versionCode usando un formato de 6 dígitos.</p>
+          <div class="code-block">
+            <pre><code>// Para versionName "1.2.3"
+versionCode = 10203  // 01-02-03
+
+// Para versionName "2.15.42"
+versionCode = 21542  // 02-15-42
+
+// Fórmula:
+versionCode = (MAJOR * 10000) + (MINOR * 100) + PATCH</code></pre>
+          </div>
+          <div class="pros-cons">
+            <div class="pros">
+              <h5>✅ Ventajas:</h5>
+              <ul>
+                <li>Correlación directa con versionName</li>
+                <li>Fácil saber la versión semántica desde logs</li>
+                <li>Intuitivo para el equipo de desarrollo</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h5>❌ Desventajas:</h5>
+              <ul>
+                <li>Limitado a 99 para cada componente</li>
+                <li>No soporta múltiples ABIs/flavors sin modificación</li>
+                <li>Puede quedarse sin espacio en proyectos longevos</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4>3. Estrategia con Timestamp</h4>
+          <p>Usa el tiempo de build como versionCode, garantizando unicidad automática.</p>
+          <div class="code-block">
+            <pre><code>// Usar timestamp de Unix en segundos (últimos 9 dígitos)
+def timestamp = (System.currentTimeMillis() / 1000).toInteger()
+versionCode = timestamp % 1000000000  // Últimos 9 dígitos
+
+// Ejemplo: 1640995200 -> 640995200</code></pre>
+          </div>
+          <div class="pros-cons">
+            <div class="pros">
+              <h5>✅ Ventajas:</h5>
+              <ul>
+                <li>Automático, no requiere gestión manual</li>
+                <li>Garantiza unicidad absoluta</li>
+                <li>Útil para builds frecuentes en CI/CD</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h5>❌ Desventajas:</h5>
+              <ul>
+                <li>Sin correlación con versión semántica</li>
+                <li>Números muy grandes, difíciles de recordar</li>
+                <li>Puede causar problemas con límites de 32-bit Integer</li>
+              </ul>
+            </div>
+          </div>
+
+          <h4>4. Estrategia Híbrida (Recomendada para Producción)</h4>
+          <p>Combina versionado semántico con espacio para variantes (ABI, flavor, etc.)</p>
+          <div class="code-block">
+            <pre><code>// Formato: MMmmppXY
+// MM: Major (2 dígitos)
+// mm: Minor (2 dígitos)  
+// pp: Patch (2 dígitos)
+// X: Flavor (1 dígito: 0=free, 1=pro, etc.)
+// Y: ABI (1 dígito: 0=universal, 1=armeabi-v7a, 2=arm64-v8a, etc.)
+
+// Ejemplo para version "2.3.1" flavor pro, ABI arm64-v8a:
+versionCode = 2030112  // 02-03-01-1-2
+
+// Fórmula completa:
+def major = 2
+def minor = 3
+def patch = 1
+def flavor = 1  // pro
+def abi = 2     // arm64-v8a
+
+versionCode = (major * 100000) + (minor * 1000) + (patch * 10) + (flavor * 1) + abi</code></pre>
+          </div>
+          <div class="pros-cons">
+            <div class="pros">
+              <h5>✅ Ventajas:</h5>
+              <ul>
+                <li>Soporta múltiples variantes simultáneamente</li>
+                <li>Mantiene correlación con versionName</li>
+                <li>Escalable para proyectos grandes</li>
+                <li>Compatible con App Bundles y APK splits</li>
+              </ul>
+            </div>
+            <div class="cons">
+              <h5>❌ Desventajas:</h5>
+              <ul>
+                <li>Más complejo de implementar</li>
+                <li>Requiere documentación clara del formato</li>
+                <li>Limitaciones en el tamaño de cada componente</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="best-practice-box">
+          <h4>💡 Recomendación para tu Proyecto</h4>
+          <p><strong>Proyectos pequeños/medianos (1-2 flavors):</strong> Usa la estrategia MMmmpp (opción 2). Es simple, intuitiva y suficiente para la mayoría de casos.</p>
+          <p><strong>Proyectos grandes con múltiples variantes:</strong> Implementa la estrategia híbrida (opción 4) desde el inicio. Te ahorrará dolores de cabeza cuando necesites gestionar múltiples ABIs o flavors.</p>
+          <p><strong>Builds de desarrollo/testing:</strong> Considera usar timestamps para builds internos, pero siempre mantén el versionado semántico para producción.</p>
+        </div>
+
+        <h2>🤖 Automatización Avanzada con Gradle</h2>
+        <p>La automatización del versionado es crucial para mantener la consistencia y reducir errores humanos. Gradle nos proporciona un sistema poderoso y flexible para gestionar versiones automáticamente.</p>
+
+        <h3>Método 1: Archivo de Propiedades (Simple y Efectivo)</h3>
+        <p>Este es el método más simple y recomendado para la mayoría de proyectos. Mantiene las versiones en un archivo separado que es fácil de leer, modificar y automatizar.</p>
         
         <div class="code-block">
-          <pre><code>// version.properties
-VERSION_MAJOR=1
-VERSION_MINOR=2
-VERSION_PATCH=3
+          <div class="code-header">
+            <span class="code-title">version.properties</span>
+          </div>
+          <pre><code># Semantic Version Components
+VERSION_MAJOR=2
+VERSION_MINOR=3
+VERSION_PATCH=1
 
-// build.gradle
-def versionPropsFile = file('version.properties')
+# Build metadata (opcional)
+BUILD_NUMBER=0
+VERSION_SUFFIX=</code></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">app/build.gradle</span>
+          </div>
+          <pre><code>// Cargar propiedades de versión
+def versionPropsFile = file('../version.properties')
+if (!versionPropsFile.canRead()) {
+    throw new GradleException("No se puede leer version.properties")
+}
+
 def versionProps = new Properties()
 versionProps.load(new FileInputStream(versionPropsFile))
 
+// Extraer componentes de versión
 def vMajor = versionProps['VERSION_MAJOR'].toInteger()
 def vMinor = versionProps['VERSION_MINOR'].toInteger()
 def vPatch = versionProps['VERSION_PATCH'].toInteger()
+def vBuild = versionProps['BUILD_NUMBER']?.toInteger() ?: 0
+def vSuffix = versionProps['VERSION_SUFFIX'] ?: ''
+
+// Calcular versionCode (formato MMmmpp)
+def calculatedVersionCode = (vMajor * 10000) + (vMinor * 100) + vPatch
+
+// Construir versionName
+def calculatedVersionName = "${vMajor}.${vMinor}.${vPatch}"
+if (vSuffix) {
+    calculatedVersionName += "-${vSuffix}"
+}
 
 android {
     defaultConfig {
-        versionCode vMajor * 10000 + vMinor * 100 + vPatch
-        versionName "${vMajor}.${vMinor}.${vPatch}"
+        versionCode calculatedVersionCode
+        versionName calculatedVersionName
+        
+        // Añadir información de build a BuildConfig
+        buildConfigField "int", "VERSION_MAJOR", "$vMajor"
+        buildConfigField "int", "VERSION_MINOR", "$vMinor"
+        buildConfigField "int", "VERSION_PATCH", "$vPatch"
+        buildConfigField "String", "VERSION_NAME_FULL", "\"${calculatedVersionName}\""
     }
 }</code></pre>
         </div>
 
-        <h2>Consideraciones para Google Play</h2>
-        <p>Google Play Store tiene requisitos específicos:</p>
-        
-        <h3>App Bundle vs APK</h3>
-        <p>Con Android App Bundle, Google genera múltiples APKs optimizados. Cada uno debe tener el mismo versionCode, pero Google maneja internamente los códigos específicos.</p>
-
-        <h3>Canales de distribución</h3>
-        <ul>
-          <li><strong>Interno</strong>: Para testing interno del equipo</li>
-          <li><strong>Alpha</strong>: Para testing cerrado</li>
-          <li><strong>Beta</strong>: Para testing abierto</li>
-          <li><strong>Producción</strong>: Para usuarios finales</li>
-        </ul>
-
-        <h2>Integración con CI/CD</h2>
-        <p>En un flujo de integración continua, podemos automatizar el versionado:</p>
+        <h3>Método 2: Gradle Tasks para Incrementar Versiones</h3>
+        <p>Crea tasks personalizadas de Gradle para incrementar automáticamente cada componente de la versión:</p>
 
         <div class="code-block">
-          <pre><code># GitHub Actions example
-name: Build and Deploy
+          <div class="code-header">
+            <span class="code-title">app/build.gradle - Tasks de Versionado</span>
+          </div>
+          <pre><code>// Task para incrementar PATCH version
+task incrementPatch {
+    doLast {
+        def versionPropsFile = file('../version.properties')
+        def versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
+        
+        def patch = versionProps['VERSION_PATCH'].toInteger() + 1
+        versionProps['VERSION_PATCH'] = patch.toString()
+        
+        versionProps.store(versionPropsFile.newWriter(), null)
+        println "Version patch incremented to ${patch}"
+    }
+}
+
+// Task para incrementar MINOR version (resetea PATCH a 0)
+task incrementMinor {
+    doLast {
+        def versionPropsFile = file('../version.properties')
+        def versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
+        
+        def minor = versionProps['VERSION_MINOR'].toInteger() + 1
+        versionProps['VERSION_MINOR'] = minor.toString()
+        versionProps['VERSION_PATCH'] = '0'
+        
+        versionProps.store(versionPropsFile.newWriter(), null)
+        println "Version minor incremented to ${minor}, patch reset to 0"
+    }
+}
+
+// Task para incrementar MAJOR version (resetea MINOR y PATCH a 0)
+task incrementMajor {
+    doLast {
+        def versionPropsFile = file('../version.properties')
+        def versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
+        
+        def major = versionProps['VERSION_MAJOR'].toInteger() + 1
+        versionProps['VERSION_MAJOR'] = major.toString()
+        versionProps['VERSION_MINOR'] = '0'
+        versionProps['VERSION_PATCH'] = '0'
+        
+        versionProps.store(versionPropsFile.newWriter(), null)
+        println "Version major incremented to ${major}, minor and patch reset to 0"
+    }
+}
+
+// Task para establecer suffix de versión (alpha, beta, rc, etc.)
+task setVersionSuffix {
+    doLast {
+        def suffix = project.hasProperty('suffix') ? project.suffix : ''
+        def versionPropsFile = file('../version.properties')
+        def versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
+        
+        versionProps['VERSION_SUFFIX'] = suffix
+        
+        versionProps.store(versionPropsFile.newWriter(), null)
+        println "Version suffix set to '${suffix}'"
+    }
+}
+
+// Task para mostrar versión actual
+task printVersion {
+    doLast {
+        println "Current version: ${android.defaultConfig.versionName} (${android.defaultConfig.versionCode})"
+    }
+}</code></pre>
+        </div>
+
+        <div class="usage-examples">
+          <h4>📝 Uso de los Tasks:</h4>
+          <div class="code-block">
+            <pre><code># Incrementar patch (1.2.3 -> 1.2.4)
+./gradlew incrementPatch
+
+# Incrementar minor (1.2.3 -> 1.3.0)
+./gradlew incrementMinor
+
+# Incrementar major (1.2.3 -> 2.0.0)
+./gradlew incrementMajor
+
+# Establecer suffix para beta
+./gradlew setVersionSuffix -Psuffix=beta  # Resultado: 1.2.3-beta
+
+# Remover suffix
+./gradlew setVersionSuffix -Psuffix=  # Resultado: 1.2.3
+
+# Ver versión actual
+./gradlew printVersion
+
+# Build después de incrementar
+./gradlew incrementPatch assembleRelease</code></pre>
+          </div>
+        </div>
+
+        <h3>Método 3: Integración con Git Tags</h3>
+        <p>Una estrategia avanzada es derivar la versión directamente de los tags de Git, asegurando que el código y la versión estén siempre sincronizados:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">app/build.gradle - Versionado basado en Git</span>
+          </div>
+          <pre><code>import org.gradle.api.GradleException
+
+// Función para obtener el último tag de git
+def getGitTag() {
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'describe', '--tags', '--abbrev=0'
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
+    } catch (Exception e) {
+        return "0.0.0"
+    }
+}
+
+// Función para obtener el commit count desde el último tag
+def getCommitCount() {
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-list', '--count', 'HEAD'
+            standardOutput = stdout
+        }
+        return stdout.toString().trim().toInteger()
+    } catch (Exception e) {
+        return 0
+    }
+}
+
+// Función para obtener el SHA corto del commit actual
+def getGitSha() {
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'rev-parse', '--short', 'HEAD'
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
+    } catch (Exception e) {
+        return "unknown"
+    }
+}
+
+// Función para verificar si hay cambios sin commitear
+def hasUncommittedChanges() {
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine 'git', 'status', '--porcelain'
+            standardOutput = stdout
+        }
+        return !stdout.toString().trim().isEmpty()
+    } catch (Exception e) {
+        return false
+    }
+}
+
+// Parsear el tag de git
+def gitTag = getGitTag()
+def versionPattern = /v?(\d+)\.(\d+)\.(\d+)/
+def matcher = (gitTag =~ versionPattern)
+
+def vMajor = 0
+def vMinor = 0
+def vPatch = 0
+
+if (matcher.find()) {
+    vMajor = matcher.group(1).toInteger()
+    vMinor = matcher.group(2).toInteger()
+    vPatch = matcher.group(3).toInteger()
+}
+
+// Calcular version code y name
+def commitCount = getCommitCount()
+def gitSha = getGitSha()
+def isDirty = hasUncommittedChanges()
+
+def versionCode = (vMajor * 10000) + (vMinor * 100) + vPatch
+def versionName = "${vMajor}.${vMinor}.${vPatch}"
+
+// Si estamos en un commit que no es el tag, añadir información adicional
+if (commitCount > 0) {
+    versionName += "-dev.${commitCount}+${gitSha}"
+}
+if (isDirty) {
+    versionName += ".dirty"
+}
+
+android {
+    defaultConfig {
+        versionCode versionCode
+        versionName versionName
+        
+        buildConfigField "String", "GIT_SHA", "\"${gitSha}\""
+        buildConfigField "boolean", "IS_DIRTY_BUILD", "${isDirty}"
+    }
+}
+
+// Task para crear un nuevo tag
+task createVersionTag {
+    doLast {
+        def newVersion = project.hasProperty('version') ? project.version : null
+        if (newVersion == null) {
+            throw new GradleException("Version not specified. Use: ./gradlew createVersionTag -Pversion=1.2.3")
+        }
+        
+        if (hasUncommittedChanges()) {
+            throw new GradleException("Cannot create tag: You have uncommitted changes")
+        }
+        
+        exec {
+            commandLine 'git', 'tag', "-a", "v${newVersion}", "-m", "Version ${newVersion}"
+        }
+        println "Created tag: v${newVersion}"
+        println "Don't forget to push the tag: git push origin v${newVersion}"
+    }
+}</code></pre>
+        </div>
+
+        <div class="workflow-example">
+          <h4>🔄 Workflow Completo con Git Tags:</h4>
+          <div class="code-block">
+            <pre><code># 1. Desarrollar features en branches
+git checkout -b feature/new-login
+# ... hacer cambios ...
+git commit -m "feat: implement new login screen"
+
+# 2. Merge a main/develop
+git checkout main
+git merge feature/new-login
+
+# 3. Crear tag para nueva versión
+./gradlew createVersionTag -Pversion=2.1.0
+
+# 4. Push del tag
+git push origin v2.1.0
+
+# 5. Build automático usará la versión del tag
+./gradlew assembleRelease
+# Output: app-2.1.0-release.apk
+
+# 6. Entre tags, la versión incluye info de desarrollo
+# Ejemplo: 2.1.0-dev.5+a3f9c21 (5 commits después del tag v2.1.0)</code></pre>
+          </div>
+        </div>
+
+        <div class="best-practice-box">
+          <h4>✅ Ventajas del Versionado con Git Tags:</h4>
+          <ul>
+            <li><strong>Single Source of Truth:</strong> El repositorio de Git es la única fuente de verdad para las versiones</li>
+            <li><strong>Trazabilidad perfecta:</strong> Cada versión está vinculada a un commit específico</li>
+            <li><strong>Automatización completa:</strong> CI/CD puede derivar versiones automáticamente</li>
+            <li><strong>Rollback fácil:</strong> Checkout a cualquier tag para recompilar una versión antigua</li>
+            <li><strong>Historial claro:</strong> <code>git tag</code> muestra todas las versiones lanzadas</li>
+          </ul>
+        </div>
+
+        <h2>📱 Consideraciones Avanzadas para Google Play Store</h2>
+        <p>Google Play Store tiene un conjunto complejo de requisitos y características relacionadas con el versionado que todo desarrollador Android debe dominar. Comprender estas reglas es crucial para evitar rechazos y aprovechar al máximo las capacidades de la plataforma.</p>
+
+        <h3>🔄 Android App Bundle vs APK: Impacto en el Versionado</h3>
+        <p>El formato Android App Bundle (AAB) ha cambiado fundamentalmente cómo Google Play maneja las versiones:</p>
+
+        <div class="app-bundle-explanation">
+          <h4>Con APKs Tradicionales (Obsoleto desde Agosto 2021)</h4>
+          <p>Anteriormente, los desarrolladores subían múltiples APKs con diferentes configuraciones:</p>
+          <ul>
+            <li>Un APK para cada ABI (armeabi-v7a, arm64-v8a, x86, x86_64)</li>
+            <li>Un APK para cada densidad de pantalla</li>
+            <li>Un APK para cada nivel de API mínimo</li>
+          </ul>
+          <p>Cada APK requería un versionCode único y creciente, lo que complicaba enormemente la gestión.</p>
+
+          <h4>Con Android App Bundle (AAB) - Método Actual</h4>
+          <p>Google Play genera automáticamente APKs optimizados desde tu AAB:</p>
+          <ul>
+            <li><strong>Un solo versionCode</strong> para todo el App Bundle</li>
+            <li>Google genera internamente múltiples APKs con versionCodes derivados</li>
+            <li>Los usuarios descargan solo el APK optimizado para su dispositivo</li>
+            <li>Menor tamaño de descarga (hasta 35% de reducción)</li>
+          </ul>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-title">build.gradle - Configuración para AAB</span>
+            </div>
+            <pre><code>android {
+    bundle {
+        // Configuración de App Bundle
+        language {
+            // Habilitar split por idioma
+            enableSplit = true
+        }
+        density {
+            // Habilitar split por densidad
+            enableSplit = true
+        }
+        abi {
+            // Habilitar split por ABI
+            enableSplit = true
+        }
+    }
+    
+    defaultConfig {
+        // Un solo versionCode para el App Bundle
+        versionCode 20301  // 2.3.1
+        versionName "2.3.1"
+    }
+}
+
+// Task para generar App Bundle
+// ./gradlew bundleRelease</code></pre>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Advertencia Importante sobre Rollbacks</h4>
+          <p>Google Play NO permite subir una versión con un versionCode menor que cualquier versión anterior en CUALQUIER track (incluso tracks cerrados). Esto significa:</p>
+          <ul>
+            <li>Si subes versionCode 100 a beta y falla, NO puedes subir versionCode 99 a producción</li>
+            <li>Planifica tus versionCodes con margen para hotfixes</li>
+            <li>Considera usar gaps en versionCodes entre releases mayores</li>
+          </ul>
+        </div>
+
+        <h3>🚀 Canales de Distribución (Release Tracks)</h3>
+        <p>Google Play ofrece cuatro tracks de distribución, cada uno con propósitos específicos en el ciclo de vida del desarrollo:</p>
+
+        <div class="tracks-detailed">
+          <div class="track-card">
+            <h4>1. 🔬 Internal Testing (Pruebas Internas)</h4>
+            <p><strong>Propósito:</strong> Validación rápida con equipo interno antes de QA formal</p>
+            <div class="track-features">
+              <h5>Características:</h5>
+              <ul>
+                <li>Hasta 100 testers</li>
+                <li>Aprobación automática (disponible en minutos)</li>
+                <li>Ideal para daily builds o feature branches</li>
+                <li>Sin revisión de Google Play</li>
+              </ul>
+              <h5>Estrategia de Versionado:</h5>
+              <ul>
+                <li>Usa sufijos: "2.3.1-internal.5"</li>
+                <li>versionCode incremental por build: 203010, 203011, 203012...</li>
+                <li>Automatiza completamente con CI/CD</li>
+              </ul>
+              <h5>Caso de Uso:</h5>
+              <p>"Acabo de hacer merge de un PR, quiero que el equipo pruebe en dispositivos reales antes del sprint review"</p>
+            </div>
+          </div>
+
+          <div class="track-card">
+            <h4>2. 🧪 Alpha Testing (Pruebas Cerradas)</h4>
+            <p><strong>Propósito:</strong> QA formal y early adopters de confianza</p>
+            <div class="track-features">
+              <h5>Características:</h5>
+              <ul>
+                <li>Hasta 100,000 testers (múltiples listas posibles)</li>
+                <li>Revisión ligera de Google (horas, no días)</li>
+                <li>Feedback directo de testers</li>
+                <li>Métricas detalladas en Play Console</li>
+              </ul>
+              <h5>Estrategia de Versionado:</h5>
+              <ul>
+                <li>Usa sufijos: "2.3.1-alpha"</li>
+                <li>versionCode con gaps para hotfixes: 203100</li>
+                <li>Requiere cambios en changelog</li>
+              </ul>
+              <h5>Caso de Uso:</h5>
+              <p>"Release candidate para el próximo sprint, necesito feedback de QA y power users"</p>
+            </div>
+          </div>
+
+          <div class="track-card">
+            <h4>3. 🔓 Beta Testing (Pruebas Abiertas)</h4>
+            <p><strong>Propósito:</strong> Validación a escala con usuarios reales antes de producción</p>
+            <div class="track-features">
+              <h5>Características:</h5>
+              <ul>
+                <li>Ilimitado número de testers</li>
+                <li>Puede ser open beta (cualquiera se une) o closed beta</li>
+                <li>Revisión estándar de Google Play</li>
+                <li>Visible en Play Store para testers</li>
+                <li>Staged rollouts disponibles</li>
+              </ul>
+              <h5>Estrategia de Versionado:</h5>
+              <ul>
+                <li>Usa sufijos: "2.3.1-beta" o "2.4.0-beta"</li>
+                <li>versionCode con margen: 204000 (deja 203900-203999 para hotfixes en prod)</li>
+                <li>Pre-release para validar features mayores</li>
+              </ul>
+              <h5>Caso de Uso:</h5>
+              <p>"Nueva funcionalidad mayor lista, queremos validar con 10,000+ usuarios antes de lanzar a todos"</p>
+            </div>
+          </div>
+
+          <div class="track-card">
+            <h4>4. 🌍 Production (Producción)</h4>
+            <p><strong>Propósito:</strong> Release estable para todos los usuarios</p>
+            <div class="track-features">
+              <h5>Características:</h5>
+              <ul>
+                <li>Todos los usuarios pueden instalarlo</li>
+                <li>Revisión completa de Google Play (2-7 días típicamente)</li>
+                <li>Staged rollouts recomendados (5% -> 10% -> 50% -> 100%)</li>
+                <li>Rollback disponible a versión anterior</li>
+                <li>Impacta métricas principales (ratings, reviews)</li>
+              </ul>
+              <h5>Estrategia de Versionado:</h5>
+              <ul>
+                <li>Sin sufijos: "2.3.1" (SemVer limpio)</li>
+                <li>versionCode redondos: 203100, 203200, 204000</li>
+                <li>Changelog detallado y profesional requerido</li>
+              </ul>
+              <h5>Caso de Uso:</h5>
+              <p>"Release final validado en beta, listo para todos los usuarios"</p>
+            </div>
+          </div>
+        </div>
+
+        <h3>🎚️ Staged Rollouts (Lanzamientos Progresivos)</h3>
+        <p>Una de las características más poderosas de Google Play es la capacidad de lanzar actualizaciones gradualmente, minimizando el impacto de bugs críticos:</p>
+
+        <div class="staged-rollout-strategy">
+          <h4>Estrategia Recomendada de Rollout:</h4>
+          <div class="rollout-phases">
+            <div class="phase">
+              <h5>Fase 1: 5% de usuarios (Día 1)</h5>
+              <ul>
+                <li>Monitorea crash rates en tiempo real</li>
+                <li>Revisa reviews y ratings nuevos</li>
+                <li>Verifica métricas de rendimiento</li>
+                <li>Si todo está bien, procede en 24-48h</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <h5>Fase 2: 10% de usuarios (Día 2-3)</h5>
+              <ul>
+                <li>Valida con muestra estadísticamente significativa</li>
+                <li>Analiza edge cases no detectados en testing</li>
+                <li>Compara con versión anterior</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <h5>Fase 3: 50% de usuarios (Día 4-5)</h5>
+              <ul>
+                <li>Confirma estabilidad a escala media</li>
+                <li>Revisa feedback de diferentes segmentos</li>
+                <li>Última oportunidad para halt antes de mayoría</li>
+              </ul>
+            </div>
+            <div class="phase">
+              <h5>Fase 4: 100% de usuarios (Día 6-7)</h5>
+              <ul>
+                <li>Release completo a todos los usuarios</li>
+                <li>Mantén monitoreo activo por 48h adicionales</li>
+                <li>Prepara hotfix si es necesario</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">Automatización de Staged Rollout con Google Play Publisher API</span>
+          </div>
+          <pre><code>// Ejemplo usando Fastlane
+lane :deploy_staged do
+  # Upload to Google Play
+  upload_to_play_store(
+    track: 'production',
+    rollout: '0.05',  # 5% inicial
+    apk: 'app/build/outputs/bundle/release/app-release.aab',
+    skip_upload_apk: true,
+    skip_upload_screenshots: true,
+    skip_upload_images: true
+  )
+  
+  # Notificar al equipo
+  slack(
+    message: "🚀 Version 2.3.1 deployed to 5% of users. Monitoring for 24h.",
+    channel: "#releases"
+  )
+end
+
+lane :increase_rollout do |options|
+  percentage = options[:percentage] || 0.1
+  
+  supply(
+    track: 'production',
+    rollout: percentage.to_s
+  )
+  
+  slack(
+    message: "📈 Rollout increased to #{(percentage * 100).to_i}%",
+    channel: "#releases"
+  )
+end</code></pre>
+        </div>
+
+        <h3>🔧 Gestión de Múltiples Flavors y Variantes</h3>
+        <p>Cuando tu app tiene múltiples flavors (free/pro, diferentes brands), el versionado se complica:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">build.gradle - Múltiples Flavors con Versionado Independiente</span>
+          </div>
+          <pre><code>android {
+    flavorDimensions "tier", "brand"
+    
+    productFlavors {
+        free {
+            dimension "tier"
+            applicationIdSuffix ".free"
+            
+            // Versión específica para Free
+            versionCode 203110  // 2.3.1, tier=1, variant=0
+            versionName "2.3.1-free"
+        }
+        
+        pro {
+            dimension "tier"
+            applicationIdSuffix ".pro"
+            
+            // Versión específica para Pro
+            versionCode 203120  // 2.3.1, tier=2, variant=0
+            versionName "2.3.1-pro"
+        }
+        
+        brandA {
+            dimension "brand"
+            applicationIdSuffix ".brandA"
+        }
+        
+        brandB {
+            dimension "brand"
+            applicationIdSuffix ".brandB"
+        }
+    }
+    
+    // Customizar versionCode por variante
+    applicationVariants.all { variant ->
+        def flavorName = variant.flavorName
+        def buildType = variant.buildType.name
+        
+        // Calcular versionCode dinámicamente
+        def baseVersionCode = 203100
+        def tierCode = 0
+        def brandCode = 0
+        
+        if (flavorName.contains("pro")) tierCode = 1
+        if (flavorName.contains("brandB")) brandCode = 1
+        
+        def finalVersionCode = baseVersionCode + (tierCode * 10) + brandCode
+        
+        variant.outputs.each { output ->
+            output.versionCodeOverride = finalVersionCode
+        }
+        
+        println "Variant: ${flavorName} (${buildType}) -> versionCode: ${finalVersionCode}"
+    }
+}</code></pre>
+        </div>
+
+        <h2>🔄 Integración Completa con CI/CD</h2>
+        <p>La automatización del versionado en pipelines de CI/CD es esencial para mantener consistencia, reducir errores humanos y acelerar el tiempo de entrega. Una estrategia bien diseñada puede transformar completamente tu workflow de releases.</p>
+
+        <h3>🎯 Estrategia de Versionado en CI/CD</h3>
+        <p>El objetivo es lograr un pipeline completamente automatizado donde:</p>
+        <ul>
+          <li>Los commits a branches específicos triggean builds automáticos</li>
+          <li>Las versiones se derivan automáticamente del estado del repositorio</li>
+          <li>Los changelogs se generan desde commits y PRs</li>
+          <li>Las releases a diferentes tracks son automáticas basadas en el branch</li>
+        </ul>
+
+        <h3>Implementación con GitHub Actions (Completa)</h3>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">.github/workflows/release.yml</span>
+          </div>
+          <pre><code>name: Build and Release
 on:
   push:
+    branches:
+      - main
+      - develop
+      - 'release/**'
     tags:
       - 'v*'
+  pull_request:
+    branches:
+      - main
+      - develop
 
+env:
+  JAVA_VERSION: '17'
+  
 jobs:
-  build:
+  # ==========================================
+  # Job 1: Calcular versión automáticamente
+  # ==========================================
+  calculate-version:
+    name: Calculate Version
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      version-code: ${{ steps.version.outputs.version-code }}
+      version-name: ${{ steps.version.outputs.version-name }}
+      is-release: ${{ steps.version.outputs.is-release }}
+      track: ${{ steps.version.outputs.track }}
+    
     steps:
-      - name: Extract version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Necesario para git describe
       
-      - name: Update version
+      - name: Calculate version from Git
+        id: version
         run: |
-          ./gradlew updateVersion -PnewVersion=$VERSION</code></pre>
+          # Obtener el último tag
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Latest tag: $LATEST_TAG"
+          
+          # Parsear el tag (formato: v1.2.3)
+          VERSION=${LATEST_TAG#v}
+          MAJOR=$(echo $VERSION | cut -d. -f1)
+          MINOR=$(echo $VERSION | cut -d. -f2)
+          PATCH=$(echo $VERSION | cut -d. -f3)
+          
+          # Calcular versionCode (formato MMmmpp)
+          VERSION_CODE=$((MAJOR * 10000 + MINOR * 100 + PATCH))
+          
+          # Determinar si es un release tag
+          IS_RELEASE="false"
+          TRACK="internal"
+          
+          if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            IS_RELEASE="true"
+            VERSION_NAME="$VERSION"
+            
+            # Determinar track basado en el tag
+            if [[ "$VERSION" == *-alpha* ]]; then
+              TRACK="alpha"
+            elif [[ "$VERSION" == *-beta* ]]; then
+              TRACK="beta"
+            else
+              TRACK="production"
+            fi
+          else
+            # Para branches, añadir metadata
+            BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}" | sed 's/\//-/g')
+            COMMIT_COUNT=$(git rev-list --count HEAD ^${LATEST_TAG} 2>/dev/null || echo "0")
+            SHORT_SHA=$(git rev-parse --short HEAD)
+            
+            VERSION_NAME="${VERSION}-${BRANCH_NAME}.${COMMIT_COUNT}+${SHORT_SHA}"
+            VERSION_CODE=$((VERSION_CODE + COMMIT_COUNT))
+            
+            # Determinar track basado en branch
+            if [[ "$BRANCH_NAME" == "main" ]]; then
+              TRACK="beta"
+            elif [[ "$BRANCH_NAME" == "develop" ]]; then
+              TRACK="alpha"
+            else
+              TRACK="internal"
+            fi
+          fi
+          
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version-code=$VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "version-name=$VERSION_NAME" >> $GITHUB_OUTPUT
+          echo "is-release=$IS_RELEASE" >> $GITHUB_OUTPUT
+          echo "track=$TRACK" >> $GITHUB_OUTPUT
+          
+          echo "Calculated version: $VERSION_NAME (code: $VERSION_CODE, track: $TRACK)"
+
+  # ==========================================
+  # Job 2: Build and Test
+  # ==========================================
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    needs: calculate-version
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: 'temurin'
+          cache: 'gradle'
+      
+      - name: Update version in version.properties
+        run: |
+          VERSION="${{ needs.calculate-version.outputs.version }}"
+          MAJOR=$(echo $VERSION | cut -d. -f1)
+          MINOR=$(echo $VERSION | cut -d. -f2)
+          PATCH=$(echo $VERSION | cut -d. -f3)
+          
+          cat > version.properties << EOF
+          VERSION_MAJOR=$MAJOR
+          VERSION_MINOR=$MINOR
+          VERSION_PATCH=$PATCH
+          BUILD_NUMBER=${{ github.run_number }}
+          VERSION_SUFFIX=
+          EOF
+          
+          cat version.properties
+      
+      - name: Run tests
+        run: ./gradlew test lint
+      
+      - name: Build Release AAB
+        run: ./gradlew bundleRelease
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+      
+      - name: Upload AAB artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: app-release-aab
+          path: app/build/outputs/bundle/release/app-release.aab
+      
+      - name: Upload mapping files
+        uses: actions/upload-artifact@v3
+        with:
+          name: mapping-files
+          path: app/build/outputs/mapping/release/
+
+  # ==========================================
+  # Job 3: Generate Changelog
+  # ==========================================
+  changelog:
+    name: Generate Changelog
+    runs-on: ubuntu-latest
+    needs: calculate-version
+    if: needs.calculate-version.outputs.is-release == 'true'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Generate Changelog
+        id: changelog
+        uses: mikepenz/release-changelog-builder-action@v4
+        with:
+          configuration: ".github/changelog-config.json"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Create Release Notes
+        run: |
+          cat > release-notes.txt << 'EOF'
+          ${{ steps.changelog.outputs.changelog }}
+          EOF
+      
+      - name: Upload Release Notes
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-notes
+          path: release-notes.txt
+
+  # ==========================================
+  # Job 4: Deploy to Google Play
+  # ==========================================
+  deploy:
+    name: Deploy to Play Store
+    runs-on: ubuntu-latest
+    needs: [calculate-version, build, changelog]
+    if: needs.calculate-version.outputs.is-release == 'true'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Download AAB
+        uses: actions/download-artifact@v3
+        with:
+          name: app-release-aab
+          path: app/build/outputs/bundle/release/
+      
+      - name: Download Release Notes
+        uses: actions/download-artifact@v3
+        with:
+          name: release-notes
+          path: ./
+        if: needs.calculate-version.outputs.track == 'production'
+      
+      - name: Deploy to Play Store
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: com.arceapps.miapp
+          releaseFiles: app/build/outputs/bundle/release/app-release.aab
+          track: ${{ needs.calculate-version.outputs.track }}
+          inAppUpdatePriority: 2
+          status: completed
+          whatsNewDirectory: ./whatsnew/
+          mappingFile: app/build/outputs/mapping/release/mapping.txt
+      
+      - name: Create GitHub Release
+        if: needs.calculate-version.outputs.track == 'production'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ needs.calculate-version.outputs.version }}
+          release_name: Release ${{ needs.calculate-version.outputs.version }}
+          body_path: release-notes.txt
+          draft: false
+          prerelease: false
+      
+      - name: Notify team
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: |
+            🚀 Version ${{ needs.calculate-version.outputs.version-name }} 
+            📱 Deployed to ${{ needs.calculate-version.outputs.track }}
+            🔢 Version Code: ${{ needs.calculate-version.outputs.version-code }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+        if: always()</code></pre>
         </div>
 
-        <h2>Mejores Prácticas</h2>
-        
-        <h3>1. Consistencia en el equipo</h3>
-        <p>Establecer reglas claras sobre cuándo incrementar cada número:</p>
-        <ul>
-          <li><strong>MAJOR</strong>: Cambios incompatibles o rediseños completos</li>
-          <li><strong>MINOR</strong>: Nuevas funcionalidades compatibles</li>
-          <li><strong>PATCH</strong>: Corrección de bugs</li>
-        </ul>
-
-        <h3>2. Documentación automática</h3>
-        <p>Generar changelogs automáticamente basados en commits y PRs:</p>
-        
+        <h3>Configuración del Changelog Automático</h3>
         <div class="code-block">
-          <pre><code>## [1.2.3] - 2025-08-25
-### Added
-- Nueva funcionalidad de notificaciones push
-- Soporte para modo oscuro
-
-### Fixed
-- Corrección de crash al rotar pantalla
-- Mejora en la sincronización de datos</code></pre>
+          <div class="code-header">
+            <span class="code-title">.github/changelog-config.json</span>
+          </div>
+          <pre><code>{
+  "categories": [
+    {
+      "title": "## 🚀 Features",
+      "labels": ["feature", "enhancement"]
+    },
+    {
+      "title": "## 🐛 Bug Fixes",
+      "labels": ["bug", "bugfix"]
+    },
+    {
+      "title": "## 🔧 Improvements",
+      "labels": ["improvement", "refactor"]
+    },
+    {
+      "title": "## 📚 Documentation",
+      "labels": ["documentation"]
+    },
+    {
+      "title": "## 🔐 Security",
+      "labels": ["security"]
+    }
+  ],
+  "ignore_labels": [
+    "ignore",
+    "duplicate",
+    "wontfix"
+  ],
+  "sort": "ASC",
+  "template": "#{{CHANGELOG}}\n\n**Full Changelog**: #{{RELEASE_DIFF}}",
+  "pr_template": "- #{{TITLE}} by @#{{AUTHOR}} in ##{{NUMBER}}",
+  "empty_template": "No changes in this release",
+  "label_extractor": [
+    {
+      "pattern": "feat(.*)",
+      "target": "feature"
+    },
+    {
+      "pattern": "fix(.*)",
+      "target": "bug"
+    }
+  ]
+}</code></pre>
         </div>
 
-        <h3>3. Testing por versiones</h3>
-        <p>Implementar tests que verifiquen la compatibilidad entre versiones, especialmente para:</p>
-        <ul>
-          <li>Migración de bases de datos</li>
-          <li>Formato de preferencias guardadas</li>
-          <li>APIs internas cambiadas</li>
-        </ul>
+        <h3>🔐 Manejo de Secretos y Signing</h3>
+        <p>Para firmar APKs automáticamente en CI/CD, necesitas configurar correctamente los secretos:</p>
 
-        <h2>Herramientas Recomendadas</h2>
-        <div class="tools-grid">
-          <div class="tool-card">
-            <h4>Gradle Version Plugin</h4>
-            <p>Automatiza el incremento de versiones desde línea de comandos</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">app/build.gradle - Release Signing Config</span>
           </div>
-          <div class="tool-card">
-            <h4>Fastlane</h4>
-            <p>Automatización completa del pipeline de despliegue</p>
+          <pre><code>android {
+    signingConfigs {
+        release {
+            // Leer desde environment variables en CI, o desde local.properties en desarrollo
+            def keystorePropertiesFile = rootProject.file("keystore.properties")
+            def keystoreProperties = new Properties()
+            
+            if (keystorePropertiesFile.exists()) {
+                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            } else {
+                // En CI/CD, usar environment variables
+                storeFile file(System.getenv("KEYSTORE_FILE") ?: "release-keystore.jks")
+                storePassword System.getenv("KEYSTORE_PASSWORD")
+                keyAlias System.getenv("KEY_ALIAS")
+                keyPassword System.getenv("KEY_PASSWORD")
+            }
+        }
+    }
+    
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}</code></pre>
+        </div>
+
+        <div class="secrets-setup">
+          <h4>Configurar Secretos en GitHub:</h4>
+          <ol>
+            <li>Convertir keystore a base64:
+              <div class="code-block">
+                <pre><code>base64 -i release-keystore.jks | pbcopy  # macOS
+base64 -w 0 release-keystore.jks | xclip  # Linux</code></pre>
+              </div>
+            </li>
+            <li>Ir a GitHub repository → Settings → Secrets and variables → Actions</li>
+            <li>Añadir los siguientes secretos:
+              <ul>
+                <li><code>KEYSTORE_BASE64</code>: El keystore en base64</li>
+                <li><code>KEYSTORE_PASSWORD</code>: Password del keystore</li>
+                <li><code>KEY_ALIAS</code>: Alias de la key</li>
+                <li><code>KEY_PASSWORD</code>: Password de la key</li>
+                <li><code>PLAY_SERVICE_ACCOUNT_JSON</code>: JSON del service account de Google Play</li>
+              </ul>
+            </li>
+            <li>En el workflow, decodificar el keystore:
+              <div class="code-block">
+                <pre><code>- name: Decode Keystore
+  run: |
+    echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > release-keystore.jks</code></pre>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <h2>✅ Mejores Prácticas Avanzadas</h2>
+        <p>Después de años de experiencia y lecciones aprendidas en proyectos de todos los tamaños, estas son las mejores prácticas que todo equipo debería adoptar:</p>
+        
+        <h3>1. 📋 Consistencia en el Equipo: Establecer Reglas Claras</h3>
+        <p>El versionado semántico solo funciona si todo el equipo sigue las mismas reglas. Documenta claramente cuándo incrementar cada componente:</p>
+        
+        <div class="versioning-rules">
+          <div class="rule-card">
+            <h4>🔴 MAJOR (X.0.0) - Cambios Incompatibles</h4>
+            <p><strong>Incrementa cuando:</strong></p>
+            <ul>
+              <li>Eliminas o renombras características públicas</li>
+              <li>Cambias el comportamiento de funcionalidades existentes de manera incompatible</li>
+              <li>Actualizas versiones mínimas de Android (minSdk) significativamente</li>
+              <li>Rediseñas completamente la UI/UX</li>
+              <li>Cambias el modelo de datos sin migración automática</li>
+              <li>Eliminas soporte para versiones antiguas de la app</li>
+            </ul>
+            <p><strong>Ejemplos concretos en Android:</strong></p>
+            <ul>
+              <li>"Migración de Room 2.x a Room 3.x con cambios de API"</li>
+              <li>"Cambio de minSdk de 21 a 26, eliminando soporte para Android 5.x"</li>
+              <li>"Reescritura completa de Views a Jetpack Compose"</li>
+              <li>"Cambio de arquitectura MVC a MVVM"</li>
+            </ul>
+            <div class="warning-box">
+              <p>⚠️ Considera hacer un MAJOR release cuando más del 20% de tu código cambia</p>
+            </div>
           </div>
-          <div class="tool-card">
-            <h4>Semantic Release</h4>
-            <p>Versionado automático basado en commits convencionales</p>
+
+          <div class="rule-card">
+            <h4>🟡 MINOR (0.X.0) - Nuevas Funcionalidades</h4>
+            <p><strong>Incrementa cuando:</strong></p>
+            <ul>
+              <li>Añades nuevas pantallas o features</li>
+              <li>Implementas nueva funcionalidad visible al usuario</li>
+              <li>Añades nuevos permisos requeridos</li>
+              <li>Integras nuevas librerías o SDKs</li>
+              <li>Añades soporte para nuevas versiones de Android</li>
+              <li>Deprecas (pero no eliminas) funcionalidad antigua</li>
+            </ul>
+            <p><strong>Ejemplos concretos en Android:</strong></p>
+            <ul>
+              <li>"Añadida pantalla de estadísticas con gráficos"</li>
+              <li>"Integración de Google Maps para localización"</li>
+              <li>"Soporte para Material Design 3"</li>
+              <li>"Añadido modo oscuro"</li>
+              <li>"Implementación de notificaciones push"</li>
+            </ul>
+            <div class="info-box">
+              <p>💡 Los MINOR releases deberían ser backwards-compatible: usuarios pueden actualizar sin romper funcionalidad existente</p>
+            </div>
+          </div>
+
+          <div class="rule-card">
+            <h4>🟢 PATCH (0.0.X) - Correcciones de Bugs</h4>
+            <p><strong>Incrementa cuando:</strong></p>
+            <ul>
+              <li>Corriges crashes o bugs</li>
+              <li>Mejoras performance sin cambios visibles</li>
+              <li>Actualizas dependencias por seguridad</li>
+              <li>Corriges typos en UI</li>
+              <li>Arreglas problemas de UI/UX menores</li>
+              <li>Optimizas código sin cambios funcionales</li>
+            </ul>
+            <p><strong>Ejemplos concretos en Android:</strong></p>
+            <ul>
+              <li>"Corregido crash al rotar pantalla en MainActivity"</li>
+              <li>"Solucionado memory leak en ImageLoader"</li>
+              <li>"Actualizada librería OkHttp por vulnerabilidad de seguridad"</li>
+              <li>"Mejorada carga de imágenes, reducción del 30% en tiempo"</li>
+              <li>"Corregido texto en español en pantalla de login"</li>
+            </ul>
+            <div class="success-box">
+              <p>✅ PATCH releases pueden y deben ser frecuentes. No esperes a acumular muchos fixes.</p>
+            </div>
           </div>
         </div>
 
-        <h2>Conclusión</h2>
-        <p>El versionado semántico en Android requiere un enfoque híbrido que combine las mejores prácticas de SemVer con las particularidades de la plataforma. La clave está en la automatización y la consistencia en el equipo de desarrollo.</p>
+        <h3>2. 📖 Documentación Automática y Changelogs</h3>
+        <p>Los changelogs son críticos para comunicar cambios a usuarios, stakeholders y el equipo. Automatiza su generación para mantener consistencia:</p>
 
-        <p>Implementar estas prácticas desde el inicio del proyecto ahorra tiempo y reduce errores en el futuro, especialmente cuando la aplicación crece en complejidad y número de usuarios.</p>
+        <div class="changelog-best-practices">
+          <h4>Estructura Recomendada de CHANGELOG.md:</h4>
+          <div class="code-block">
+            <pre><code># Changelog
+
+Todos los cambios notables en este proyecto serán documentados en este archivo.
+
+El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
+y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [2.3.1] - 2025-08-25
+
+### 🐛 Fixed
+- Corregido crash al abrir configuración en dispositivos con Android 11 (#234)
+- Solucionado problema de sincronización con servidor (#241)
+- Arreglado memory leak en RecyclerView de mensajes (#245)
+
+### 🔧 Changed
+- Mejorado performance de carga inicial en 40%
+- Actualizada librería Glide de 4.15 a 4.16 por vulnerabilidad
+
+## [2.3.0] - 2025-08-18
+
+### ✨ Added
+- Nueva pantalla de estadísticas con gráficos interactivos (#210)
+- Soporte para exportar datos en formato CSV (#215)
+- Implementado modo oscuro en toda la app (#198)
+- Añadidas notificaciones programadas (#220)
+
+### 🐛 Fixed
+- Corregido bug donde los filtros no se aplicaban correctamente (#205)
+- Solucionado crash al tomar foto en algunos dispositivos Samsung (#212)
+
+### 🔒 Security
+- Actualizado cifrado de datos locales (Room) con AES-256
+
+## [2.2.5] - 2025-08-10
+
+### 🐛 Fixed
+- Hotfix: Corregido crash crítico al hacer login con Google (#202)
+
+## [2.2.4] - 2025-08-08
+
+### 🐛 Fixed
+- Corregido layout roto en tablets en orientación horizontal (#195)
+- Solucionado problema de timeout en llamadas de API (#197)
+
+### 🔧 Changed
+- Mejorada UI de la pantalla de perfil con Material Design 3
+
+## [2.2.0] - 2025-08-01
+
+### ✨ Added
+- Implementada búsqueda avanzada con filtros (#180)
+- Añadido soporte para compartir contenido (#185)
+- Nueva sección de favoritos (#175)
+
+### ⚠️ Deprecated
+- La API anterior de notificaciones será removida en v3.0.0
+- Método `getUserData()` deprecado, usar `getUserProfile()` en su lugar
+
+### 🐛 Fixed
+- Múltiples mejoras de estabilidad y correcciones menores
+
+---
+
+## [2.1.0] - 2025-07-15
+
+[Versiones anteriores...]
+
+[2.3.1]: https://github.com/usuario/proyecto/compare/v2.3.0...v2.3.1
+[2.3.0]: https://github.com/usuario/proyecto/compare/v2.2.5...v2.3.0
+[2.2.5]: https://github.com/usuario/proyecto/compare/v2.2.4...v2.2.5</code></pre>
+          </div>
+
+          <h4>Convenciones para Mensajes de Commit:</h4>
+          <p>Usa <a href="https://www.conventionalcommits.org/">Conventional Commits</a> para facilitar la generación automática de changelogs:</p>
+          <div class="code-block">
+            <pre><code># Formato:
+&lt;tipo&gt;[ámbito opcional]: &lt;descripción&gt;
+
+# Ejemplos:
+feat(auth): add biometric authentication support
+fix(chat): resolve message duplication issue (#234)
+perf(images): optimize image loading by 40%
+docs(readme): update installation instructions
+refactor(database): migrate Room queries to Flow
+test(profile): add unit tests for ProfileViewModel
+chore(deps): update Kotlin to 1.9.0
+security(api): update OkHttp to fix CVE-2023-1234
+
+# Con breaking change:
+feat(api)!: change authentication flow
+BREAKING CHANGE: AuthManager.login() now returns Flow instead of LiveData</code></pre>
+          </div>
+        </div>
+
+        <h3>3. 🧪 Testing por Versiones</h3>
+        <p>El versionado no es solo números - tiene implicaciones técnicas que deben ser testeadas:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">MigrationTest.kt - Testing de Migraciones de BD</span>
+          </div>
+          <pre><code>@RunWith(AndroidJUnit4::class)
+class MigrationTest {
+    private lateinit var database: AppDatabase
+    
+    @get:Rule
+    val helper: MigrationTestHelper = MigrationTestHelper(
+        InstrumentationRegistry.getInstrumentation(),
+        AppDatabase::class.java.canonicalName,
+        FrameworkSQLiteOpenHelperFactory()
+    )
+    
+    @Test
+    fun migrate2To3() {
+        // Crear BD en versión 2
+        helper.createDatabase(TEST_DB, 2).apply {
+            // Insertar datos de prueba en formato v2
+            execSQL("INSERT INTO users (id, name, email) VALUES (1, 'Test User', 'test@example.com')")
+            close()
+        }
+        
+        // Ejecutar migración a versión 3
+        val dbVersion3 = helper.runMigrationsAndValidate(TEST_DB, 3, true, MIGRATION_2_3)
+        
+        // Verificar que los datos migraron correctamente
+        val cursor = dbVersion3.query("SELECT * FROM users WHERE id = 1")
+        assertTrue(cursor.moveToFirst())
+        
+        // Verificar que la nueva columna existe
+        val columnIndex = cursor.getColumnIndex("profile_image_url")
+        assertTrue(columnIndex >= 0)
+        
+        cursor.close()
+        dbVersion3.close()
+    }
+    
+    @Test
+    fun migrateAllVersionsSequentially() {
+        // Test que todas las migraciones funcionan en secuencia
+        helper.createDatabase(TEST_DB, 1).close()
+        
+        // Migrar de 1 -> 2 -> 3 -> 4 -> 5
+        val db = helper.runMigrationsAndValidate(
+            TEST_DB,
+            5,
+            true,
+            MIGRATION_1_2,
+            MIGRATION_2_3,
+            MIGRATION_3_4,
+            MIGRATION_4_5
+        )
+        
+        db.close()
+    }
+}
+
+// Test de compatibilidad de SharedPreferences entre versiones
+@Test
+fun testSharedPreferencesBackwardCompatibility() {
+    // Simular preferencias guardadas en v2.2.0
+    val prefs = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+    prefs.edit()
+        .putString("user_theme", "dark")
+        .putInt("version_code", 202000)
+        .apply()
+    
+    // Simular upgrade a v2.3.0
+    val migrationHelper = PreferencesMigrationHelper(context)
+    migrationHelper.migrate(202000, 203000)
+    
+    // Verificar que las preferencias antiguas siguen funcionando
+    val theme = prefs.getString("user_theme", "light")
+    assertEquals("dark", theme)
+    
+    // Verificar que se añadieron nuevas preferencias con valores por defecto
+    val newFeatureEnabled = prefs.getBoolean("dark_mode_enabled", false)
+    assertTrue(newFeatureEnabled)  // Debe derivarse de user_theme
+}</code></pre>
+        </div>
+
+        <h3>4. 🔄 Estrategia de Deprecación</h3>
+        <p>Cuando necesitas eliminar funcionalidad, hazlo gradualmente usando el sistema de versionado:</p>
+
+        <div class="deprecation-strategy">
+          <h4>Proceso de Deprecación en 3 Fases:</h4>
+          
+          <div class="phase-card">
+            <h5>Fase 1: Deprecar (Version X.Y.0)</h5>
+            <div class="code-block">
+              <pre><code>@Deprecated(
+    message = "Use getUserProfile() instead",
+    replaceWith = ReplaceWith("getUserProfile()"),
+    level = DeprecationLevel.WARNING
+)
+fun getUserData(): User {
+    // Mantener implementación funcional
+    return getUserProfile()
+}
+
+fun getUserProfile(): User {
+    // Nueva implementación mejorada
+    return userRepository.getProfile()
+}</code></pre>
+            </div>
+            <p>📝 En el changelog de X.Y.0:</p>
+            <ul>
+              <li>Añadir nota en sección "Deprecated"</li>
+              <li>Explicar la alternativa recomendada</li>
+              <li>Indicar en qué versión se eliminará (típicamente next MAJOR)</li>
+            </ul>
+          </div>
+
+          <div class="phase-card">
+            <h5>Fase 2: Advertencia Fuerte (Version X.Y+1.0)</h5>
+            <div class="code-block">
+              <pre><code>@Deprecated(
+    message = "getUserData() will be removed in v${X+1}.0.0. Use getUserProfile() instead",
+    replaceWith = ReplaceWith("getUserProfile()"),
+    level = DeprecationLevel.ERROR  // Ahora es ERROR
+)
+fun getUserData(): User {
+    // Log para tracking
+    Timber.w("Deprecated method getUserData() called. Update to getUserProfile()")
+    Analytics.logEvent("deprecated_api_usage", mapOf("method" to "getUserData"))
+    
+    return getUserProfile()
+}</code></pre>
+            </div>
+            <p>Adicionalmente:</p>
+            <ul>
+              <li>Enviar notificación in-app a desarrolladores/beta testers</li>
+              <li>Añadir Analytics para medir uso de APIs deprecadas</li>
+              <li>Actualizar documentación con ejemplos de migración</li>
+            </ul>
+          </div>
+
+          <div class="phase-card">
+            <h5>Fase 3: Eliminar (Version X+1.0.0)</h5>
+            <div class="code-block">
+              <pre><code>// getUserData() completamente eliminado
+
+fun getUserProfile(): User {
+    return userRepository.getProfile()
+}</code></pre>
+            </div>
+            <p>📝 En el changelog de X+1.0.0:</p>
+            <ul>
+              <li>Listar en sección "Breaking Changes" o "Removed"</li>
+              <li>Incluir guía de migración</li>
+              <li>Comunicar claramente que es un MAJOR release</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3>5. 📊 Monitoreo y Analytics por Versión</h3>
+        <p>Usa el versionado para tomar decisiones basadas en datos:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-title">Analytics Setup</span>
+          </div>
+          <pre><code>// En Application.onCreate()
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        
+        // Enviar información de versión a analytics
+        FirebaseAnalytics.getInstance(this).apply {
+            setUserProperty("app_version_name", BuildConfig.VERSION_NAME)
+            setUserProperty("app_version_code", BuildConfig.VERSION_CODE.toString())
+            setUserProperty("app_version_major", BuildConfig.VERSION_MAJOR.toString())
+            setUserProperty("app_version_minor", BuildConfig.VERSION_MINOR.toString())
+        }
+        
+        // Configurar Crashlytics
+        FirebaseCrashlytics.getInstance().apply {
+            setCustomKey("version_name", BuildConfig.VERSION_NAME)
+            setCustomKey("version_code", BuildConfig.VERSION_CODE)
+        }
+        
+        // Log de adoption rate
+        logVersionAdoption()
+    }
+    
+    private fun logVersionAdoption() {
+        val prefs = getSharedPreferences("app_data", MODE_PRIVATE)
+        val previousVersionCode = prefs.getInt("previous_version_code", 0)
+        
+        if (previousVersionCode != 0 && previousVersionCode != BuildConfig.VERSION_CODE) {
+            // Usuario actualizó
+            Analytics.logEvent("app_updated", mapOf(
+                "from_version" to previousVersionCode,
+                "to_version" to BuildConfig.VERSION_CODE,
+                "update_type" to determineUpdateType(previousVersionCode, BuildConfig.VERSION_CODE)
+            ))
+        }
+        
+        prefs.edit().putInt("previous_version_code", BuildConfig.VERSION_CODE).apply()
+    }
+    
+    private fun determineUpdateType(from: Int, to: Int): String {
+        val fromMajor = from / 10000
+        val toMajor = to / 10000
+        
+        return when {
+            toMajor > fromMajor -> "major"
+            (to / 100) % 100 > (from / 100) % 100 -> "minor"
+            else -> "patch"
+        }
+    }
+}</code></pre>
+        </div>
+
+        <div class="analytics-dashboard">
+          <h4>Métricas Clave a Monitorear por Versión:</h4>
+          <ul>
+            <li><strong>Adoption Rate:</strong> % de usuarios en cada versión</li>
+            <li><strong>Crash Rate por Versión:</strong> Identificar regresiones rápidamente</li>
+            <li><strong>Performance Metrics:</strong> Tiempo de inicio, consumo de memoria por versión</li>
+            <li><strong>Retention Rate:</strong> Comparar entre versiones</li>
+            <li><strong>Feature Usage:</strong> Medir adopción de nuevas features por versión</li>
+            <li><strong>Update Velocity:</strong> Tiempo promedio que los usuarios tardan en actualizar</li>
+          </ul>
+        </div>
+
+        <h2>🛠️ Herramientas y Librerías Recomendadas</h2>
+        <p>El ecosistema Android ofrece múltiples herramientas que facilitan la gestión del versionado. Aquí están las más útiles y probadas:</p>
+
+        <div class="tools-detailed">
+          <div class="tool-card-detailed">
+            <h3>1. Gradle Version Plugin</h3>
+            <p><strong>Repositorio:</strong> <code>com.github.ben-manes:gradle-versions-plugin</code></p>
+            <p><strong>Qué hace:</strong> Automatiza el incremento de versiones y gestiona dependencias.</p>
+            
+            <div class="code-block">
+              <pre><code>// build.gradle (Project)
+plugins {
+    id 'com.github.ben-manes.versions' version '0.51.0'
+}
+
+// Verificar actualizaciones de dependencias
+./gradlew dependencyUpdates
+
+// Task personalizada para incrementar versión
+task bumpVersion {
+    doLast {
+        // Implementación personalizada
+    }
+}</code></pre>
+            </div>
+            
+            <div class="pros-cons-section">
+              <div class="pros">
+                <h4>✅ Ventajas:</h4>
+                <ul>
+                  <li>Integración nativa con Gradle</li>
+                  <li>Flexible y customizable</li>
+                  <li>No requiere dependencias externas</li>
+                  <li>Puede combinarse con otros plugins</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>❌ Limitaciones:</h4>
+                <ul>
+                  <li>Requiere configuración manual inicial</li>
+                  <li>No incluye features avanzadas out-of-the-box</li>
+                  <li>Necesitas escribir tus propios tasks</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-card-detailed">
+            <h3>2. Fastlane</h3>
+            <p><strong>Website:</strong> <a href="https://fastlane.tools/">fastlane.tools</a></p>
+            <p><strong>Qué hace:</strong> Suite completa de automatización para mobile, incluyendo versionado, builds, screenshots, y deployments.</p>
+            
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-title">Gemfile</span>
+              </div>
+              <pre><code>source "https://rubygems.org"
+
+gem "fastlane"
+gem "fastlane-plugin-increment_version_code"</code></pre>
+            </div>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-title">fastlane/Fastfile</span>
+              </div>
+              <pre><code>default_platform(:android)
+
+platform :android do
+  desc "Incrementar PATCH version"
+  lane :bump_patch do
+    # Leer versión actual
+    version_props = File.read("../version.properties")
+    current_patch = version_props.match(/VERSION_PATCH=(\d+)/)[1].to_i
+    
+    # Incrementar
+    new_patch = current_patch + 1
+    version_props.gsub!(/VERSION_PATCH=\d+/, "VERSION_PATCH=#{new_patch}")
+    
+    # Guardar
+    File.write("../version.properties", version_props)
+    
+    puts "✅ Patch version incremented to #{new_patch}"
+  end
+  
+  desc "Build and deploy to Play Store"
+  lane :deploy_production do
+    # Incrementar versión
+    bump_patch
+    
+    # Build
+    gradle(
+      task: "bundle",
+      build_type: "Release"
+    )
+    
+    # Upload a Play Store
+    upload_to_play_store(
+      track: 'production',
+      rollout: '0.1',  # 10% rollout inicial
+      skip_upload_screenshots: true,
+      skip_upload_images: true
+    )
+    
+    # Crear tag en git
+    add_git_tag(
+      tag: "v#{lane_context[SharedValues::VERSION_NAME]}"
+    )
+    push_git_tags
+    
+    # Notificar
+    slack(
+      message: "🚀 Nueva versión #{lane_context[SharedValues::VERSION_NAME]} en producción!"
+    )
+  end
+  
+  desc "Deploy to beta"
+  lane :deploy_beta do
+    gradle(task: "bundle", build_type: "Release")
+    
+    upload_to_play_store(
+      track: 'beta',
+      skip_upload_screenshots: true
+    )
+  end
+  
+  desc "Deploy to internal testing"
+  lane :deploy_internal do
+    gradle(task: "bundle", build_type: "Release")
+    
+    upload_to_play_store(
+      track: 'internal',
+      skip_upload_screenshots: true
+    )
+  end
+end</code></pre>
+            </div>
+
+            <div class="usage-examples">
+              <h4>Comandos útiles:</h4>
+              <div class="code-block">
+                <pre><code># Incrementar versión
+fastlane bump_patch
+
+# Deploy a producción
+fastlane deploy_production
+
+# Deploy a beta
+fastlane deploy_beta
+
+# Deploy a internal testing
+fastlane deploy_internal
+
+# Lista de lanes disponibles
+fastlane lanes</code></pre>
+              </div>
+            </div>
+            
+            <div class="pros-cons-section">
+              <div class="pros">
+                <h4>✅ Ventajas:</h4>
+                <ul>
+                  <li>Solución completa y probada en producción</li>
+                  <li>Comunidad grande y activa</li>
+                  <li>Plugins para casi cualquier necesidad</li>
+                  <li>Funciona en Android e iOS</li>
+                  <li>Integración con CI/CD out-of-the-box</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>❌ Limitaciones:</h4>
+                <ul>
+                  <li>Requiere Ruby (dependencia adicional)</li>
+                  <li>Curva de aprendizaje moderada</li>
+                  <li>Puede ser overhead para proyectos muy simples</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-card-detailed">
+            <h3>3. Semantic Release</h3>
+            <p><strong>Repository:</strong> <a href="https://github.com/semantic-release/semantic-release">semantic-release</a></p>
+            <p><strong>Qué hace:</strong> Versionado completamente automático basado en commits convencionales.</p>
+            
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-title">package.json</span>
+              </div>
+              <pre><code>{
+  "name": "my-android-app",
+  "version": "0.0.0-development",
+  "scripts": {
+    "semantic-release": "semantic-release"
+  },
+  "devDependencies": {
+    "semantic-release": "^22.0.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3"
+  }
+}</code></pre>
+            </div>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-title">.releaserc.json</span>
+              </div>
+              <pre><code>{
+  "branches": ["main"],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "./scripts/update-version.sh ${nextRelease.version}",
+        "publishCmd": "./gradlew bundleRelease"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": ["CHANGELOG.md", "version.properties"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "@semantic-release/github"
+  ]
+}</code></pre>
+            </div>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-title">scripts/update-version.sh</span>
+              </div>
+              <pre><code>#!/bin/bash
+# Script para actualizar version.properties
+
+NEW_VERSION=$1
+MAJOR=$(echo $NEW_VERSION | cut -d. -f1)
+MINOR=$(echo $NEW_VERSION | cut -d. -f2)
+PATCH=$(echo $NEW_VERSION | cut -d. -f3)
+
+cat > version.properties << EOF
+VERSION_MAJOR=$MAJOR
+VERSION_MINOR=$MINOR
+VERSION_PATCH=$PATCH
+BUILD_NUMBER=$GITHUB_RUN_NUMBER
+VERSION_SUFFIX=
+EOF
+
+echo "✅ Version updated to $NEW_VERSION"</code></pre>
+            </div>
+            
+            <div class="pros-cons-section">
+              <div class="pros">
+                <h4>✅ Ventajas:</h4>
+                <ul>
+                  <li>Versionado 100% automático</li>
+                  <li>Fuerza uso de conventional commits</li>
+                  <li>Genera changelogs automáticos y profesionales</li>
+                  <li>Integración perfecta con CI/CD</li>
+                  <li>Elimina errores humanos en versionado</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>❌ Limitaciones:</h4>
+                <ul>
+                  <li>Requiere Node.js (ecosistema diferente)</li>
+                  <li>TODO el equipo debe usar conventional commits</li>
+                  <li>Menos control manual sobre versiones</li>
+                  <li>Configuración inicial compleja</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="tool-card-detailed">
+            <h3>4. Git Version Plugin</h3>
+            <p><strong>Plugin:</strong> <code>com.palantir.git-version</code></p>
+            <p><strong>Qué hace:</strong> Deriva versiones directamente de tags de Git.</p>
+            
+            <div class="code-block">
+              <pre><code>// build.gradle (Project)
+plugins {
+    id 'com.palantir.git-version' version '3.0.0'
+}
+
+// build.gradle (App)
+def gitVersion = versionDetails()
+
+android {
+    defaultConfig {
+        versionName gitVersion.lastTag
+        versionCode gitVersion.commitDistance
+        
+        buildConfigField "String", "GIT_HASH", "\"${gitVersion.gitHash}\""
+        buildConfigField "boolean", "IS_CLEAN_TAG", "${gitVersion.isCleanTag}"
+    }
+}</code></pre>
+            </div>
+            
+            <div class="pros-cons-section">
+              <div class="pros">
+                <h4>✅ Ventajas:</h4>
+                <ul>
+                  <li>Git como single source of truth</li>
+                  <li>Sin archivos de configuración adicionales</li>
+                  <li>Perfecto para CI/CD</li>
+                  <li>Reproducibilidad garantizada</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>❌ Limitaciones:</h4>
+                <ul>
+                  <li>Dependencia estricta de Git tags</li>
+                  <li>Requiere disciplina en tagging</li>
+                  <li>Menos flexible para casos especiales</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-comparison-table">
+          <h3>Comparación Rápida:</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Herramienta</th>
+                <th>Complejidad</th>
+                <th>Automatización</th>
+                <th>Mejor para</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Gradle Plugin</strong></td>
+                <td>Baja</td>
+                <td>Media</td>
+                <td>Proyectos simples, equipos pequeños</td>
+              </tr>
+              <tr>
+                <td><strong>Fastlane</strong></td>
+                <td>Media</td>
+                <td>Alta</td>
+                <td>Proyectos medianos/grandes, equipos establecidos</td>
+              </tr>
+              <tr>
+                <td><strong>Semantic Release</strong></td>
+                <td>Alta</td>
+                <td>Muy Alta</td>
+                <td>Equipos que usan conventional commits, CI/CD maduro</td>
+              </tr>
+              <tr>
+                <td><strong>Git Version</strong></td>
+                <td>Baja</td>
+                <td>Alta</td>
+                <td>Proyectos con disciplina en Git, CI/CD</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="recommendation-box">
+          <h4>🎯 Nuestra Recomendación por Tamaño de Proyecto:</h4>
+          <ul>
+            <li><strong>Proyecto personal/pequeño (1-3 devs):</strong> Gradle tasks manuales o Git Version Plugin</li>
+            <li><strong>Startup/mediano (4-10 devs):</strong> Fastlane con configuración básica</li>
+            <li><strong>Empresa/grande (10+ devs):</strong> Semantic Release + Fastlane + CI/CD completo</li>
+            <li><strong>Múltiples apps/white label:</strong> Fastlane con configuración modular por proyecto</li>
+          </ul>
+        </div>
+
+        <h2>🎯 Conclusión y Pasos Siguientes</h2>
+        <p>El versionado semántico en Android es mucho más que simplemente incrementar números - es una <strong>filosofía de comunicación</strong>, una <strong>herramienta de gestión de riesgos</strong>, y un <strong>enabler para la automatización</strong>. Después de revisar todos los aspectos técnicos, estratégicos y prácticos, queda claro que un sistema de versionado bien diseñado e implementado es fundamental para el éxito a largo plazo de cualquier aplicación Android.</p>
+
+        <h3>🔑 Puntos Clave para Recordar</h3>
+        <div class="key-takeaways">
+          <div class="takeaway-card">
+            <h4>1. 📊 El Versionado es Comunicación</h4>
+            <p>Cada número de versión comunica información valiosa:</p>
+            <ul>
+              <li>A los <strong>usuarios</strong>: Qué esperar de la actualización</li>
+              <li>Al <strong>equipo</strong>: Qué tipo de cambios incluye el release</li>
+              <li>A <strong>stakeholders</strong>: El ritmo y alcance del desarrollo</li>
+              <li>A <strong>sistemas automatizados</strong>: Cómo procesar la actualización</li>
+            </ul>
+          </div>
+
+          <div class="takeaway-card">
+            <h4>2. 🎯 Consistencia > Perfección</h4>
+            <p>Es más importante que TODO el equipo siga el mismo sistema que tener el sistema "perfecto". La documentación clara y la automatización ayudan a mantener consistencia.</p>
+          </div>
+
+          <div class="takeaway-card">
+            <h4>3. 🤖 Automatiza Temprano</h4>
+            <p>Implementar automatización desde el principio ahorra innumerables horas y previene errores. El costo inicial de configuración se paga multiplicado en el tiempo.</p>
+          </div>
+
+          <div class="takeaway-card">
+            <h4>4. 📱 Android tiene Particularidades</h4>
+            <p>El sistema dual (versionCode/versionName), App Bundles, staged rollouts, y múltiples tracks de distribución hacen que el versionado en Android sea más complejo que en otras plataformas. Acepta y abraza esta complejidad.</p>
+          </div>
+
+          <div class="takeaway-card">
+            <h4>5. 📊 Mide y Aprende</h4>
+            <p>Usa analytics para entender adoption rates, crash rates por versión, y patrones de actualización. Los datos informan decisiones sobre deprecación, soporte de versiones antiguas, y velocidad de releases.</p>
+          </div>
+        </div>
+
+        <h3>🚀 Plan de Acción Recomendado</h3>
+        <p>Si estás empezando un nuevo proyecto o mejorando uno existente, sigue este plan paso a paso:</p>
+
+        <div class="action-plan">
+          <div class="action-phase">
+            <h4>Fase 1: Fundamentos (Semana 1)</h4>
+            <div class="checklist">
+              <label><input type="checkbox"> Documentar estrategia de versionado en README.md del proyecto</label>
+              <label><input type="checkbox"> Configurar version.properties o sistema equivalente</label>
+              <label><input type="checkbox"> Implementar versionCode calculation en build.gradle</label>
+              <label><input type="checkbox"> Definir reglas claras para MAJOR/MINOR/PATCH con el equipo</label>
+              <label><input type="checkbox"> Crear template de CHANGELOG.md</label>
+              <label><input type="checkbox"> Configurar git tags para releases (v1.0.0, v1.1.0, etc.)</label>
+            </div>
+          </div>
+
+          <div class="action-phase">
+            <h4>Fase 2: Automatización Básica (Semana 2)</h4>
+            <div class="checklist">
+              <label><input type="checkbox"> Crear Gradle tasks para incrementar versiones (bump-patch, bump-minor, bump-major)</label>
+              <label><input type="checkbox"> Configurar pre-commit hooks para validar commits</label>
+              <label><input type="checkbox"> Implementar generación automática de changelogs (básica)</label>
+              <label><input type="checkbox"> Configurar signing config para releases</label>
+              <label><input type="checkbox"> Documentar proceso de release en CONTRIBUTING.md</label>
+            </div>
+          </div>
+
+          <div class="action-phase">
+            <h4>Fase 3: CI/CD Integration (Semana 3-4)</h4>
+            <div class="checklist">
+              <label><input type="checkbox"> Configurar GitHub Actions o CI preferido</label>
+              <label><input type="checkbox"> Implementar builds automáticos en push a main/develop</label>
+              <label><input type="checkbox"> Configurar deployment automático a internal testing</label>
+              <label><input type="checkbox"> Añadir validación de version uniqueness</label>
+              <label><input type="checkbox"> Configurar notificaciones de releases (Slack, email, etc.)</label>
+              <label><input type="checkbox"> Implementar tagged releases automáticos</label>
+            </div>
+          </div>
+
+          <div class="action-phase">
+            <h4>Fase 4: Optimización y Monitoreo (Ongoing)</h4>
+            <div class="checklist">
+              <label><input type="checkbox"> Configurar Firebase Crashlytics con version tracking</label>
+              <label><input type="checkbox"> Implementar analytics de adoption rate</label>
+              <label><input type="checkbox"> Configurar staged rollouts para producción</label>
+              <label><input type="checkbox"> Crear dashboard de métricas por versión</label>
+              <label><input type="checkbox"> Implementar alertas automáticas para crash rate spikes</label>
+              <label><input type="checkbox"> Establecer proceso de deprecación y comunicación</label>
+              <label><input type="checkbox"> Revisar y refinar proceso cada trimestre</label>
+            </div>
+          </div>
+        </div>
+
+        <h3>⚠️ Errores Comunes y Cómo Evitarlos</h3>
+        <div class="common-mistakes">
+          <div class="mistake-card">
+            <h4>❌ Error #1: Olvidar Incrementar versionCode</h4>
+            <p><strong>Consecuencia:</strong> Google Play rechaza la subida o usuarios no ven la actualización</p>
+            <p><strong>Solución:</strong> Automatiza el incremento. Nunca lo hagas manualmente.</p>
+            <div class="code-block">
+              <pre><code>// ✅ BIEN: Calculado automáticamente
+versionCode = calculateVersionCode()
+
+// ❌ MAL: Hardcodeado y olvidable
+versionCode = 123</code></pre>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <h4>❌ Error #2: No Sincronizar versionName con versionCode</h4>
+            <p><strong>Consecuencia:</strong> Confusión en debugging, analytics inconsistentes</p>
+            <p><strong>Solución:</strong> Deriva ambos de la misma fuente (version.properties o git tags)</p>
+          </div>
+
+          <div class="mistake-card">
+            <h4>❌ Error #3: Cambios MAJOR sin Comunicación</h4>
+            <p><strong>Consecuencia:</strong> Usuarios sorprendidos, reviews negativas, churn</p>
+            <p><strong>Solución:</strong> Comunica cambios grandes con anticipación, usa beta extensively</p>
+          </div>
+
+          <div class="mistake-card">
+            <h4>❌ Error #4: No Tener Estrategia de Rollback</h4>
+            <p><strong>Consecuencia:</strong> Imposibilidad de revertir releases problemáticos rápidamente</p>
+            <p><strong>Solución:</strong> Usa staged rollouts, mantén versión anterior en beta, ten hotfix process</p>
+          </div>
+
+          <div class="mistake-card">
+            <h4>❌ Error #5: Ignorar Adoption Rates</h4>
+            <p><strong>Consecuencia:</strong> Deprecar features/versiones que aún tienen usuarios significativos</p>
+            <p><strong>Solución:</strong> Monitor analytics, establece thresholds antes de deprecar (ej: <5% usuarios)</p>
+          </div>
+        </div>
+
+        <h3>📚 Recursos Adicionales</h3>
+        <div class="resources-section">
+          <h4>Documentación Oficial:</h4>
+          <ul>
+            <li><a href="https://semver.org/">Semantic Versioning Specification (semver.org)</a> - La especificación oficial completa</li>
+            <li><a href="https://developer.android.com/studio/publish/versioning">Android Developer Guide: Version Your App</a> - Guía oficial de Google</li>
+            <li><a href="https://support.google.com/googleplay/android-developer/answer/9859152">Play Console Help: Release Tracks</a> - Documentación de tracks de Google Play</li>
+          </ul>
+
+          <h4>Herramientas y Plugins:</h4>
+          <ul>
+            <li><a href="https://fastlane.tools/">Fastlane</a> - Automatización completa para mobile</li>
+            <li><a href="https://github.com/semantic-release/semantic-release">Semantic Release</a> - Versionado automático</li>
+            <li><a href="https://www.conventionalcommits.org/">Conventional Commits</a> - Especificación para commits estructurados</li>
+            <li><a href="https://keepachangelog.com/">Keep a Changelog</a> - Guía para mantener changelogs</li>
+          </ul>
+
+          <h4>Artículos y Casos de Estudio:</h4>
+          <ul>
+            <li><a href="#">Cómo Spotify Gestiona Releases de Android</a> - Caso de estudio real</li>
+            <li><a href="#">Conventional Commits en Android</a> - Blog post relacionado</li>
+            <li><a href="#">CI/CD con GitHub Actions para Android</a> - Tutorial completo</li>
+          </ul>
+        </div>
+
+        <h3>🤝 Conclusión Final</h3>
+        <p>El versionado semántico en Android es un viaje, no un destino. Comienza simple, automatiza gradualmente, y refina tu proceso basándote en la experiencia del equipo. Lo más importante es la <strong>consistencia</strong> y la <strong>comunicación clara</strong>.</p>
+
+        <p>Recuerda que cada aplicación exitosa en Google Play Store - ya sea Gmail, WhatsApp, o la tuya propia - depende de un sistema robusto de versionado working silently in the background. Invierte tiempo en implementarlo correctamente desde el principio, y te ahorrará innumerables horas y dolores de cabeza en el futuro.</p>
+
+        <div class="final-quote">
+          <blockquote>
+            <p>"El mejor momento para implementar un buen sistema de versionado fue al inicio del proyecto. El segundo mejor momento es ahora."</p>
+            <cite>- Sabiduría de desarrolladores Android veteranos</cite>
+          </blockquote>
+        </div>
+
+        <div class="next-steps-box">
+          <h3>🚀 Próximos Pasos Recomendados</h3>
+          <ol>
+            <li><strong>Audita tu proyecto actual:</strong> ¿Sigue alguna convención? ¿Es automático?</li>
+            <li><strong>Documenta la estrategia:</strong> Escribe las reglas y compártelas con el equipo</li>
+            <li><strong>Implementa automatización básica:</strong> Gradle tasks para bumping versions</li>
+            <li><strong>Configura CI/CD:</strong> Builds y deployments automáticos</li>
+            <li><strong>Monitorea y mide:</strong> Analytics por versión, crash rates, adoption</li>
+            <li><strong>Itera y mejora:</strong> Refina el proceso basándote en feedback</li>
+            <li><strong>Comparte conocimiento:</strong> Educa al equipo sobre la importancia del versionado</li>
+          </ol>
+          <p><strong>¿Listo para implementar?</strong> Descarga nuestra <a href="#">plantilla de proyecto Android con versionado automático</a> y comienza en minutos.</p>
+        </div>
 
         <div class="article-footer">
           <div class="tags">
