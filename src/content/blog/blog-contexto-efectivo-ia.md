@@ -2,7 +2,7 @@
 title: "Contexto Efectivo para IA en Android: El Arte del Prompt Engineering Técnico"
 description: "Domina el arte de proporcionar contexto efectivo a agentes de IA para obtener código Android de calidad superior, consistente y sin alucinaciones."
 pubDate: "2025-12-15"
-heroImage: "/images/placeholder-article-contexto-efectivo-ia.svg"
+heroImage: "/images/placeholder-article-ai-context.svg"
 tags: ["AI", "Android", "Prompt Engineering", "Contexto", "Productividad", "GitHub Copilot", "Gemini"]
 ---
 
