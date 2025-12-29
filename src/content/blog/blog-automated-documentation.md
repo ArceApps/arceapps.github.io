@@ -1,4 +1,4 @@
-﻿---
+---
 title: "KDoc y Dokka: Documentación Profesional para Android 📚"
 description: "Domina las herramientas esenciales para documentar tu código Kotlin y Android: desde la sintaxis KDoc hasta la generación automática con Dokka."
 pubDate: "2025-03-15"
@@ -6,333 +6,170 @@ heroImage: "/images/placeholder-article-kdoc-dokka.svg"
 tags: ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Desarrollo"]
 ---
 
-La documentación no es opcional en el desarrollo Android profesional: es una **herramienta fundamental** que mejora la productividad, facilita el mantenimiento y hace que tu código sea comprensible para otros desarrolladores (y para ti mismo en el futuro).
+## 🧠 Introducción Técnica
 
-En el ecosistema Kotlin/Android, tenemos dos herramientas que se han convertido en el estándar de facto para documentación profesional: **KDoc** para escribir documentación directamente en el código y **Dokka** para generar documentación web navegable automáticamente.
+La documentación de software ha evolucionado desde archivos de texto separados hasta convertirse en una parte integral del código fuente. En el ecosistema Kotlin, esta integración se logra a través de **KDoc** (sintaxis) y **Dokka** (motor de generación).
 
-## 📝 KDoc: El Estándar de Documentación Kotlin
+Entender estas herramientas no es solo cuestión de aprenderse unos tags; es comprender cómo el compilador de Kotlin procesa los metadatos de tu código para generar artefactos útiles tanto para humanos (HTML/Markdown) como para máquinas (IDE Autocomplete).
 
-### ¿Qué es KDoc?
-**KDoc** es el formato oficial de documentación para código Kotlin, desarrollado por JetBrains. Similar a Javadoc, pero optimizado específicamente para las características únicas de Kotlin como propiedades, data classes, extension functions y más.
+## 📝 KDoc: Profundizando en el Estándar
 
-A diferencia de simples comentarios, KDoc es procesado por herramientas, integrado en el IDE y puede generar documentación navegable automáticamente.
+### La Diferencia Fundamental con Javadoc
+Aunque KDoc se inspira en Javadoc, su diseño refleja la filosofía de Kotlin: **concisión y seguridad de tipos**.
 
-### Sintaxis Fundamental de KDoc
+Mientras Javadoc es puramente textual en muchos aspectos, KDoc permite enlazar símbolos de manera fuerte. Cuando escribes `[MyClass]`, no es solo texto azul; el IDE y Dokka resuelven ese símbolo contra el AST (Abstract Syntax Tree). Si la clase cambia de nombre o paquete, el enlace se rompe o se actualiza (si usas refactoring tools), garantizando la integridad de la documentación.
 
-La sintaxis básica de KDoc sigue convenciones familiares pero con mejoras específicas para Kotlin:
+### Sintaxis Avanzada y Tags Semánticos
 
-```kotlin
-/**
- * Clase que representa un usuario en el sistema de autenticación.
- *
- * Esta clase encapsula toda la información necesaria para la gestión
- * de usuarios, incluyendo datos personales y configuración de seguridad.
- *
- * @property id Identificador único del usuario en el sistema
- * @property name Nombre completo del usuario
- * @property email Dirección de correo electrónico para autenticación
- * @property isActive Indica si la cuenta del usuario está activa
- * @constructor Crea un usuario con la información básica proporcionada
- * 
- * @sample com.example.samples.UserSamples.createUser
- * @see UserRepository
- * @since 1.0.0
- */
-data class User(
-    val id: String,
-    val name: String,
-    val email: String,
-    val isActive: Boolean = true
-)
-```
-
-### Tags Específicos de KDoc
-
-KDoc incluye tags especiales que van más allá de Javadoc tradicional:
+Más allá de los básicos `@param` y `@return`, KDoc ofrece tags que enriquecen la semántica del código:
 
 ```kotlin
 /**
- * Función que valida y procesa un login de usuario.
+ * Representa el resultado de una operación de red.
  *
- * @param email Dirección de correo electrónico del usuario
- * @param password Contraseña en texto plano (será hasheada internamente)
- * @return [LoginResult] con el resultado de la operación
- * @throws InvalidEmailException si el email no es válido
- * @throws AuthenticationException si las credenciales son incorrectas
- * 
- * @sample com.example.samples.AuthSamples.loginSuccess
- * @sample com.example.samples.AuthSamples.loginFailure
- * 
- * @see User
- * @see LoginResult
- * @since 1.2.0
- * @author Equipo de Autenticación
+ * @param T El tipo de dato encapsulado en caso de éxito.
+ * @property data El payload de la respuesta, si existe.
+ * @property error Excepción capturada en caso de fallo.
+ *
+ * @constructor Privado para forzar el uso de los constructores estáticos [Success] y [Error].
+ * @see retrofit2.Response
  */
-suspend fun authenticateUser(
-    email: String, 
-    password: String
-): LoginResult
+sealed class NetworkResult<out T> { ... }
 ```
 
-### Beneficios de KDoc en el Desarrollo
-KDoc no es solo documentación: es una herramienta que mejora tu experiencia de desarrollo:
-- **IntelliSense mejorado**: Android Studio muestra tu documentación en tooltips
-- **Autocompletado contextual**: Sugerencias basadas en tu documentación
-- **Navegación inteligente**: Jump to definition con contexto completo
-- **Validación automática**: Warnings para referencias incorrectas
-- **Refactoring seguro**: Actualización automática de referencias en docs
-- **API consistency**: Documentación uniforme en todo el proyecto
+**Tags menos conocidos pero vitales:**
+- `@receiver`: Esencial para Extension Functions. Explica *qué* estamos extendiendo.
+- `@suppress`: Oculta elementos de la documentación generada (útil para métodos internos o deprecated que aún no se pueden borrar).
 
-## 🔧 Dokka: Generador de Documentación Oficial
-
-### ¿Qué es Dokka?
-**Dokka** es el generador de documentación oficial de Kotlin, desarrollado por JetBrains. Toma tu código Kotlin con comentarios KDoc y genera documentación navegable en múltiples formatos profesionales: HTML, Markdown, JSON y más.
-
-Piensa en Dokka como "Javadoc para Kotlin", pero mucho más potente y diseñado específicamente para las características modernas del lenguaje.
-
-### Configuración Básica en Android
-
-La configuración de Dokka en proyectos Android es sencilla pero potente:
+### Markdown en KDoc
+A diferencia de Javadoc que usa HTML embebido (`<p>`, `<code>`), KDoc usa Markdown estándar. Esto facilita la lectura directa en el código fuente:
 
 ```kotlin
-// app/build.gradle.kts
-plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.dokka") version "1.9.20"
-}
+/**
+ * Calcula el hash SHA-256.
+ *
+ * # Algoritmo
+ * 1. Convierte el input a ByteArray.
+ * 2. Aplica el digest.
+ * 3. Formatea a Hex String.
+ *
+ * Uso:
+ * ```kotlin
+ * val hash = "password".sha256()
+ * ```
+ */
+fun String.sha256(): String { ... }
+```
 
-// Configuración básica de Dokka
+## 🔧 Dokka: El Motor de Generación Bajo el Capó
+
+### Arquitectura de Dokka
+Dokka no es un simple script de regex. Es una aplicación compleja que:
+1.  **Analiza**: Usa las librerías del compilador de Kotlin para entender la estructura del código.
+2.  **Modelado**: Crea un modelo intermedio unificado (Dokka Model).
+3.  **Plugins**: Permite transformar ese modelo.
+4.  **Renderizado**: Genera la salida final (HTML, Jekyll, GFM).
+
+Esta arquitectura permite que Dokka soporte proyectos mixtos Java/Kotlin, entendiendo las interacciones entre ambos lenguajes.
+
+### Configuración de Grado Fino (Fine-Tuning)
+
+A menudo, la configuración por defecto no es suficiente para un proyecto profesional.
+
+**1. Documentando Paquetes (Package-level docs)**
+Kotlin no tiene `package-info.java`. Dokka soluciona esto permitiendo incluir archivos Markdown externos.
+
+```kotlin
+// build.gradle.kts
 dokka {
-    outputDirectory.set(file("../docs/api"))
-    
-    dokkaSourceSets {
-        named("main") {
-            // Información del módulo
-            moduleName.set("MyAndroidApp")
-            moduleVersion.set(findProperty("VERSION_NAME").toString())
-            
-            // Incluir solo APIs públicas y protegidas
-            documentedVisibilities.set(
-                setOf(
-                    org.jetbrains.dokka.DokkaConfiguration.Visibility.PUBLIC,
-                    org.jetbrains.dokka.DokkaConfiguration.Visibility.PROTECTED
-                )
-            )
-            
-            // Enlaces a documentación externa
-            externalDocumentationLink {
-                url.set(URL("https://developer.android.com/reference/"))
-                packageListUrl.set(URL("https://developer.android.com/reference/kotlin/package-list"))
-            }
-            
-            // Configurar samples
-            samples.from("src/main/kotlin/samples/")
-            
-            // Incluir archivos Markdown adicionales
-            includes.from("Module.md", "README.md")
-        }
+    dokkaSourceSets.named("main") {
+        // Incluye documentación de alto nivel para el módulo
+        includes.from("Module.md", "packages.md")
     }
 }
 ```
 
-### Configuración Avanzada para Proyectos Grandes
-
-Para proyectos multi-módulo, Dokka ofrece configuración granular:
+**2. Enlaces a Fuentes Externas (Cross-referencing)**
+Dokka puede enlazar tus tipos con la documentación oficial de Android o librerías de terceros.
 
 ```kotlin
-// En el build.gradle.kts del proyecto raíz
-plugins {
-    id("org.jetbrains.dokka") version "1.9.20" apply false
-}
-
-subprojects {
-    apply(plugin = "org.jetbrains.dokka")
-    
-    tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
-        dokkaSourceSets {
-            named("main") {
-                // Configuración específica por módulo
-                when (project.name) {
-                    "app" -> {
-                        moduleName.set("Aplicación Principal")
-                        includes.from("Module.md")
-                    }
-                    "core" -> {
-                        moduleName.set("Core - Utilidades")
-                        includes.from("README.md")
-                    }
-                    "network" -> {
-                        moduleName.set("Network - API Client")
-                    }
-                    "database" -> {
-                        moduleName.set("Database - Persistencia")
-                    }
-                }
-                
-                // Configuración común
-                jdkVersion.set(17)
-                languageVersion.set("1.8")
-                apiVersion.set("1.8")
-            }
-        }
-    }
-}
-
-// Tarea para generar documentación unificada
-tasks.register("dokkaHtmlMultiModule", org.jetbrains.dokka.gradle.DokkaMultiModuleTask::class) {
-    outputDirectory.set(file("../docs/api"))
-    moduleName.set("Android App - Documentación Completa")
+externalDocumentationLink {
+    // Si tu función devuelve un 'RecyclerView', el link llevará a developer.android.com
+    url.set(URL("https://developer.android.com/reference/"))
+    packageListUrl.set(URL("https://developer.android.com/reference/androidx/package-list"))
 }
 ```
 
-### Formatos de Salida de Dokka
+### Formatos de Salida: Más allá de HTML
 
-Dokka puede generar documentación en múltiples formatos según tus necesidades:
+- **`dokkaHtml`**: El estándar moderno. Responsivo, con búsqueda integrada y modo oscuro. Ideal para publicar en GitHub Pages.
+- **`dokkaGfm` (GitHub Flavored Markdown)**: Genera archivos `.md`. Útil si quieres integrar la documentación dentro de un sitio Jekyll o Hugo existente.
+- **`dokkaJavadoc`**: Genera HTML clásico estilo Java. Útil solo por compatibilidad legacy o requisitos corporativos estrictos.
 
-```bash
-# Generar documentación HTML (default)
-./gradlew dokkaHtml
+## 🏗️ Estrategia de Documentación para Librerías Android
 
-# Generar documentación en Markdown  
-./gradlew dokkaGfm
+Si estás creando una librería o SDK para otros desarrolladores, la documentación es tu producto.
 
-# Generar documentación en formato Javadoc
-./gradlew dokkaJavadoc
+### El Patrón "Sample Code"
+Dokka permite incrustar código desde archivos fuente reales, no solo bloques de texto. Esto asegura que tus ejemplos **siempre compilen**.
 
-# Generar JSON para integraciones custom
-./gradlew dokkaJson
-
-# Para proyectos multi-módulo
-./gradlew dokkaHtmlMultiModule
+Estructura de carpetas:
+```
+project/
+├── src/main/kotlin/MyLib.kt
+└── src/samples/kotlin/MyLibSamples.kt
 ```
 
-## 🏗️ Casos de Uso Prácticos
-
-### Documentando una Clase Repository
-
-Ejemplo completo de cómo documentar una clase típica en Android:
-
+En `MyLib.kt`:
 ```kotlin
 /**
- * Repositorio principal para gestionar datos de usuarios.
- * 
- * Esta clase implementa el patrón Repository para abstraer las fuentes 
- * de datos y proporcionar una API limpia para el acceso a datos de usuario.
- * Combina datos locales (Room) y remotos (API REST).
+ * @sample com.example.samples.MyLibSamples.usageExample
+ */
+fun complexOperation() { ... }
+```
+
+En `build.gradle.kts`:
+```kotlin
+samples.from("src/samples/kotlin")
+```
+
+Si cambias la API y rompes el ejemplo, el build fallará. Esto es **Documentación Testeada**.
+
+## 💡 Mejores Prácticas y Errores Comunes
+
+### El Anti-Patrón "Comentarios Eco"
+Evita documentar lo obvio.
+
+❌ **Mal:**
+```kotlin
+/**
+ * Obtiene el usuario.
+ * @param id El id del usuario.
+ * @return El usuario.
+ */
+fun getUser(id: String): User
+```
+*Valor añadido: 0. Ruido visual: 100%.*
+
+✅ **Bien:**
+```kotlin
+/**
+ * Recupera el usuario desde el almacenamiento local o remoto.
+ * Si el usuario no existe en local, intenta un fetch de red.
  *
- * @property localDataSource Fuente de datos local (Room Database)
- * @property remoteDataSource Fuente de datos remota (API)
- * @property networkChecker Utilidad para verificar conectividad
- * 
- * @constructor Crea una instancia del repositorio con las dependencias necesarias
- * 
- * @sample com.example.samples.RepositorySamples.getUserFlow
- * @see User
- * @see UserDao
- * @see UserApiService
- * @since 1.0.0
- * @author Equipo Android
+ * @throws NoSuchElementException Si el usuario no existe en ninguna fuente.
  */
-class UserRepository @Inject constructor(
-    private val localDataSource: UserDao,
-    private val remoteDataSource: UserApiService,
-    private val networkChecker: NetworkChecker
-) {
-    
-    /**
-     * Obtiene un usuario por su ID, implementando cache-first strategy.
-     * 
-     * Esta función primero busca en la base de datos local. Si no encuentra
-     * el usuario o los datos están desactualizados, hace una llamada a la API.
-     *
-     * @param userId Identificador único del usuario
-     * @param forceRefresh Si true, omite la caché y fuerza actualización remota
-     * @return Flow que emite el usuario cuando está disponible
-     * @throws UserNotFoundException si el usuario no existe
-     * @throws NetworkException si hay problemas de conectividad
-     * 
-     * @sample com.example.samples.RepositorySamples.getUserById
-     * @since 1.0.0
-     */
-    suspend fun getUserById(userId: String, forceRefresh: Boolean = false): Flow<User> {
-        // Implementación...
-    }
-}
+fun getUser(id: String): User
 ```
 
-### Documentando Extension Functions
+### Documentando para el IDE (IntelliSense)
+Recuerda que el 90% de las veces, tu documentación será leída en un pequeño popup en Android Studio (Ctrl+Q).
+- Pon la información más importante en la **primera frase**.
+- Usa párrafos cortos.
+- Usa listas para enumerar condiciones.
 
-Las extension functions de Kotlin requieren documentación especial:
+## 🔗 Conclusión
 
-```kotlin
-/**
- * Valida si un String contiene un email válido.
- * 
- * Utiliza regex para verificar formato básico de email.
- * No valida si el dominio existe realmente.
- *
- * @receiver String a validar como email
- * @return true si el formato es válido, false en caso contrario
- * 
- * @sample com.example.samples.StringSamples.isValidEmail
- * @see isValidPhoneNumber
- * @since 1.1.0
- */
-fun String.isValidEmail(): Boolean {
-    val emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$".toRegex()
-    return emailRegex.matches(this)
-}
+Dokka y KDoc transforman el código fuente en una base de conocimiento accesible. No son herramientas pasivas; requieren una configuración activa y un mantenimiento consciente.
 
-/**
- * Convierte un String a formato de título (primera letra mayúscula).
- * 
- * @receiver String a convertir
- * @param locale Locale para la conversión (por defecto Locale.getDefault())
- * @return String con formato de título
- * 
- * @sample com.example.samples.StringSamples.toTitleCase
- * @since 1.2.0
- */
-fun String.toTitleCase(locale: Locale = Locale.getDefault()): String {
-    return replaceFirstChar { 
-        if (it.isLowerCase()) it.titlecase(locale) else it.toString() 
-    }
-}
-```
-
-## 💡 Mejores Prácticas
-
-### 🎯 Consejos para KDoc efectivo:
-- **Sé conciso pero completo**: Explica el "qué" y el "por qué"
-- **Usa ejemplos (@sample)**: El código habla más que las palabras
-- **Documenta el comportamiento**: No solo la sintaxis
-- **Mantén consistencia**: Usa el mismo estilo en todo el proyecto
-- **Actualiza con el código**: La documentación obsoleta es peor que ninguna
-- **Documenta APIs públicas**: Enfócate en lo que otros desarrolladores usarán
-
-### ⚙️ Consejos para Dokka efectivo:
-- **Configura external links**: Enlaces a Android SDK y librerías
-- **Usa includes**: Archivos Markdown para contexto adicional
-- **Organiza por módulos**: Documentación clara en proyectos grandes
-- **Filtra visibilidades**: Solo documenta APIs públicas/protected
-- **Incluye samples**: Ejemplos de código en archivos separados
-- **Genera regularmente**: Mantén la documentación actualizada
-
-## 🔗 Integración con Workflow de Desarrollo
-
-KDoc y Dokka se integran perfectamente en tu flujo de desarrollo Android:
-
-1. 📝 Escribir código con KDoc mientras desarrollas
-2. 🔍 Android Studio te ayuda con autocompletado y validación  
-3. 🏗️ Dokka genera documentación HTML automáticamente
-4. 🚀 Publicar en GitHub Pages o servidor interno
-5. 🔄 Repetir con cada actualización
-
-Para automatizar completamente este proceso (generar y publicar documentación automáticamente con cada commit), puedes consultar nuestro artículo sobre [automatización de documentación con GitHub Actions](blog-android-documentation.md).
-
-## 🎯 Conclusión
-
-KDoc y Dokka son herramientas fundamentales en el desarrollo Android moderno. **KDoc** te permite documentar tu código de manera estándar y profesional, mientras que **Dokka** convierte esa documentación en sitios web navegables y útiles.
-
-La inversión de tiempo en aprender y usar estas herramientas se paga rápidamente: código más mantenible, onboarding más fácil para nuevos desarrolladores, y una experiencia de desarrollo más productiva para todo el equipo.
+Al dominar la configuración avanzada de Dokka y la semántica de KDoc, elevas la calidad de tu entregable final. Tu código no solo funciona; **enseña a otros cómo usarlo correctamente**.

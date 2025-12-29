@@ -1,189 +1,108 @@
-﻿---
-title: "Inyección de Dependencias en Android: Dagger y Hilt para Expertos"
-description: "Domina la inyección de dependencias desde los fundamentos hasta implementaciones avanzadas con Dagger y Hilt. Descubre módulos, componentes, subcomponentes y scopes para crear grafos de dependencias robustos."
-pubDate: "2025-10-15"
+---
+title: "Dependency Injection en Android: Hilt vs Koin vs Manual"
+description: "Una comparativa profunda y técnica sobre inyección de dependencias en Android. ¿Cuándo usar Hilt? ¿Es Koin realmente inyección? ¿Qué hay de la inyección manual?"
+pubDate: "2025-10-05"
 heroImage: "/images/placeholder-article-dependency-injection.svg"
-tags: ["Android", "Dependency Injection", "Dagger", "Hilt", "Kotlin"]
+tags: ["Android", "Dependency Injection", "Hilt", "Koin", "Dagger", "Architecture"]
 ---
 
-## 🎯 ¿Qué es la Inyección de Dependencias y por qué necesitas dominarla?
+## 💉 Teoría: El Principio de Inversión de Dependencias (DIP)
 
-Imagina que estás construyendo una aplicación de chat como WhatsApp. Tu `ChatViewModel` necesita un repositorio de mensajes, un servicio de autenticación, un cliente de red, y un manejador de notificaciones. Si creas estas dependencias manualmente, tu código se convierte en una **pesadilla de acoplamiento** 🔗 que es imposible de testear y mantener.
+La Inyección de Dependencias (DI) es la implementación práctica del **Principio de Inversión de Dependencias** de SOLID.
 
-**La Inyección de Dependencias (DI)** es el patrón que resuelve este problema: en lugar de que tus clases creen sus propias dependencias, se las **"inyectas" desde el exterior**. Es como tener un mayordomo personal que te trae exactamente lo que necesitas, cuando lo necesitas.
+> "Los módulos de alto nivel no deben depender de módulos de bajo nivel. Ambos deben depender de abstracciones."
 
-### 🚀 ¿Por qué la DI es tu superpoder secreto?
-
-- **Testing Sin Dolor**: Mockea cualquier dependencia fácilmente para tests unitarios
-- **Flexibilidad Total**: Cambia implementaciones sin modificar el código cliente
-- **Construcción Automática**: El framework resuelve automáticamente las dependencias
-- **Reutilización Inteligente**: Comparte instancias según el scope configurado
-- **Depuración Simple**: Visualiza y debuggea el grafo de dependencias fácilmente
-- **Modularización Perfecta**: Organiza dependencias por módulos y características
-
-## 🗡️ Dagger vs Hilt: La Batalla de los Titanes
-
-### ⚔️ Dagger
-**El veterano poderoso**
-- **✅ Ventajas**: Control total, sin magic, rendimiento compile-time.
-- **❌ Desventajas**: Curva de aprendizaje empinada, mucho boilerplate.
-
-### 🗡️ Hilt
-**El elegido moderno**
-- **✅ Ventajas**: Simplicidad, best practices, integración con Jetpack, menos boilerplate.
-- **❌ Desventajas**: Menos control granular, específico para Android.
-
-### 🎯 ¿Cuál elegir?
-- **Elige Hilt si**: Estás creando una app Android moderna, usas Architecture Components, quieres productividad.
-- **Elige Dagger si**: Necesitas control total, trabajas con módulos Java puros, tienes configuraciones muy específicas.
-
-## 🏗️ Hilt en Acción: Construyendo ChatFlow
-
-Vamos a implementar **ChatFlow**, una aplicación de mensajería que demuestra todos los conceptos avanzados.
-
-### 📱 Configuración Inicial
-
+Sin DI:
 ```kotlin
-@HiltAndroidApp
-class ChatFlowApplication : Application() {
-    override fun onCreate() {
-        super.onCreate()
-        // Hilt maneja automáticamente la inicialización del grafo
-    }
+class UserViewModel {
+    // El ViewModel crea la dependencia. Fuerte acoplamiento.
+    private val repository = UserRepository()
 }
 ```
 
-### 🔧 Módulos: Los Bloques de Construcción
-
+Con DI:
 ```kotlin
-@Module
-@InstallIn(SingletonComponent::class)
-object NetworkModule {
-    
-    @Provides
-    @Singleton
-    fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor())
-            .build()
-    }
-    
-    @Provides
-    @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.API_BASE_URL)
-            .client(okHttpClient)
-            .build()
-    }
+class UserViewModel(private val repository: UserRepository) {
+    // El ViewModel recibe la dependencia. Inversión de control.
 }
 ```
 
+Esto permite:
+1.  **Sustitución**: En tests, pasamos un `FakeRepository`.
+2.  **Configuración**: `UserRepository` puede configurarse fuera del ViewModel (ej. URL de API).
+3.  **Gestión de Vida**: Podemos compartir la misma instancia de `UserRepository` entre varios ViewModels (Singleton).
+
+## 🥊 Los Contendientes
+
+En Android, tenemos tres enfoques principales.
+
+### 1. Dagger / Hilt (The Google Standard)
+**Hilt** es un wrapper sobre **Dagger**, que es un framework de **generación de código en tiempo de compilación**.
+
+-   **Cómo funciona**: Dagger analiza tus anotaciones (`@Inject`, `@Module`) y escribe código Java/Kotlin real que conecta las clases. Si te equivocas, el código no compila.
+-   **Pros**:
+    -   **Seguridad en compilación**: Imposible tener un `NullPointerException` por falta de dependencia en runtime.
+    -   **Performance**: Cero reflexión. Es tan rápido como el código escrito a mano.
+    -   **Integración Android**: Hilt sabe manejar el ciclo de vida de Activities y ViewModels automáticamente.
+-   **Contras**:
+    -   Tiempo de compilación más lento (kapt/ksp).
+    -   Curva de aprendizaje empinada.
+
 ```kotlin
-@Module
-@InstallIn(SingletonComponent::class)
-object DatabaseModule {
-    
-    @Provides
-    @Singleton
-    fun provideChatDatabase(@ApplicationContext context: Context): ChatDatabase {
-        return Room.databaseBuilder(
-            context,
-            ChatDatabase::class.java,
-            "chat_database"
-        ).build()
-    }
-    
-    @Provides
-    fun provideMessageDao(database: ChatDatabase): MessageDao = database.messageDao()
+@HiltViewModel
+class UserViewModel @Inject constructor(
+    private val repository: UserRepository
+) : ViewModel()
+```
+
+### 2. Koin (The Kotlin Pragmatist)
+**Koin** es un **Service Locator** DSL ligero escrito en puro Kotlin.
+
+-   **Cómo funciona**: Registras tus clases en un mapa (HashMap) al inicio de la app. Cuando pides una dependencia, Koin la busca en el mapa y te la da. Usa features de Kotlin como `reified` types.
+-   **Pros**:
+    -   **Súper simple**: Sin anotaciones, sin generación de código.
+    -   **Rápido de compilar**: No afecta el build time.
+    -   **Poderoso**: Soporta Scopes y Modules fácilmente.
+-   **Contras**:
+    -   **Seguridad en Runtime**: Si olvidas declarar una dependencia, la app crashea al abrir la pantalla (`KoinAppAlreadyStartedException` o similar).
+    -   **Performance**: Ligero overhead en runtime al buscar en el mapa (despreciable en la mayoría de apps modernas).
+
+```kotlin
+val appModule = module {
+    viewModel { UserViewModel(get()) }
+    single { UserRepository(get()) }
 }
 ```
 
-### 🏛️ Repository Pattern con DI
+### 3. Inyección Manual (The Purist)
+Escribir tus propios contenedores de dependencias.
 
-```kotlin
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
-    
-    @Binds
-    abstract fun bindChatRepository(
-        chatRepositoryImpl: ChatRepositoryImpl
-    ): ChatRepository
-}
+-   **Cómo funciona**: Creas una clase `AppContainer` que tiene las instancias.
+-   **Pros**: Entendimiento total de cómo funciona tu app. Cero magia.
+-   **Contras**: Mucho boilerplate. Manejar Scopes (como ActivityScope) a mano es doloroso y propenso a memory leaks.
 
-@Singleton
-class ChatRepositoryImpl @Inject constructor(
-    private val chatApiService: ChatApiService,
-    private val chatDao: ChatDao,
-    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
-) : ChatRepository {
-    // Implementación...
-}
-```
+## 🏆 Veredicto: ¿Cuál elegir?
 
-## 🎯 Scopes: Controlando el Ciclo de Vida
+### Usa Hilt si...
+-   Estás en un equipo grande donde la seguridad en compilación es crítica.
+-   Tu proyecto es una app empresarial a largo plazo.
+-   Quieres seguir el estándar oficial de Google y Jetpack.
 
-- **@Singleton**: Una instancia para toda la app (Repositories, Network clients).
-- **@ActivityScoped**: Vive durante toda la Activity (Navigation, Analytics).
-- **@ViewModelScoped**: Ligado al ciclo de vida del ViewModel (Use Cases, State).
+### Usa Koin si...
+-   Quieres iterar rápido y odias los errores de compilación crípticos de Dagger.
+-   Tu proyecto es 100% Kotlin (incluyendo Multiplatform - KMP).
+-   Prefieres una sintaxis DSL legible.
 
-### 🔧 Scopes Customizados
+### Usa Manual DI si...
+-   Estás aprendiendo cómo funciona DI (fines educativos).
+-   Tu app es extremadamente pequeña (una calculadora).
 
-```kotlin
-@Scope
-@MustBeDocumented
-@Retention(AnnotationRetention.RUNTIME)
-annotation class FeatureScoped
+## 🧠 Clean Architecture & DI
 
-@FeatureScoped
-@DefineComponent(parent = SingletonComponent::class)
-interface ChatFeatureComponent {
-    // ...
-}
-```
+Independientemente de la herramienta, tu capa de **Dominio** no debe saber nada de ella.
+-   No pongas anotaciones `@Inject` de Dagger en tus Entidades de Dominio (si quieres ser purista).
+-   No uses `KoinComponent` dentro de tus Use Cases.
 
-## 🧪 Testing con Dependencias Inyectadas
+La DI debe configurarse en la capa de "Framework" (o `app` module), inyectando las implementaciones de Data en los Use Cases, y los Use Cases en los ViewModels.
 
-```kotlin
-@HiltAndroidTest
-class ChatViewModelTest {
-    
-    @get:Rule
-    var hiltRule = HiltAndroidRule(this)
-    
-    @BindValue
-    @JvmField
-    val mockChatRepository: ChatRepository = mockk()
-    
-    @Before
-    fun setup() {
-        hiltRule.inject()
-        // Configurar mocks
-    }
-    
-    @Test
-    fun `when sending message then repository is called`() = runTest {
-        // Test logic
-    }
-}
-```
-
-## 🔍 Alternativas: Koin y Manual DI
-
-- **Koin**: DI ligero, Kotlin-first, resolución en runtime. Ideal para proyectos más simples o si prefieres evitar generación de código.
-- **Manual DI**: Control total, pero difícil de escalar. Útil para apps muy pequeñas o educativas.
-
-## 🎯 Best Practices
-
-1. **Organización de Módulos**: Agrupa por responsabilidad (Network, Database, UI).
-2. **Qualifiers Inteligentes**: Usa `@Qualifier` para distinguir instancias del mismo tipo.
-3. **Lazy Injection**: Usa `Lazy<T>` para retrasar la creación de dependencias pesadas.
-4. **Provider Pattern**: Usa `Provider<T>` para crear múltiples instancias.
-
-## 🏃‍♀️ Migración: De Manual a Hilt
-
-1. **Prepara la Base**: Añade dependencias y `@HiltAndroidApp`.
-2. **Migra Capa por Capa**: Empieza por Repositories, luego Use Cases, finalmente ViewModels.
-3. **Reemplaza Factory Manual**: Elimina factories custom y usa `@Inject`.
-4. **Optimiza y Limpia**: Revisa scopes y elimina código muerto.
+**Regla de Oro**: La herramienta de DI es un detalle de implementación. Tu lógica de negocio no debe casarse con ella.

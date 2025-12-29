@@ -1,229 +1,123 @@
-﻿---
-title: "Room Database en Android: Persistencia de Datos Moderna"
-description: "Domina la biblioteca de persistencia más poderosa de Android: desde configuración básica hasta técnicas avanzadas con corrutinas y migraciones."
-pubDate: "2025-09-15"
+---
+title: "Room Database: Persistencia Robusta en Android"
+description: "Guía completa de Room: desde entidades y DAOs hasta migraciones complejas, relaciones one-to-many y uso avanzado de Flow y Coroutines."
+pubDate: "2025-10-12"
 heroImage: "/images/placeholder-article-room.svg"
-tags: ["Android", "Room Database", "Persistence", "Kotlin", "Coroutines"]
+tags: ["Android", "Room", "Database", "SQL", "Persistence"]
 ---
 
-## 🗄️ Introducción a Room Database
+## 🏛️ Teoría: ¿Por qué Room y no SQLite puro?
 
-Room es la **biblioteca de persistencia oficial de Android** que proporciona una capa de abstracción sobre SQLite, ofreciendo una forma más robusta y declarativa de trabajar con bases de datos locales. Forma parte de Android Jetpack y está diseñada para trabajar perfectamente con Kotlin y corrutinas.
+SQLite es poderoso pero crudo. Escribir SQL a mano en Strings es propenso a errores, y mapear `Cursor` a Objetos es tedioso y repetitivo.
 
-A diferencia de SQLite directo, Room nos proporciona **validación en tiempo de compilación**, **integración nativa con LiveData y Flow**, y **migración automática de esquemas**. Es la solución recomendada por Google para cualquier aplicación que necesite persistencia local. 🚀
+**Room** es una capa de abstracción (ORM - Object Relational Mapper) sobre SQLite que ofrece:
+1.  **Validación en tiempo de compilación**: Si escribes mal tu query SQL, la app no compila.
+2.  **Integración con Coroutines/Flow**: Operaciones asíncronas sencillas.
+3.  **Mapeo automático**: De Columnas a Propiedades.
+4.  **Migraciones gestionadas**: Ayuda a evolucionar el esquema sin perder datos.
 
-### ¿Por qué elegir Room sobre SQLite directo?
+## 🏗️ Los 3 Componentes Mayores
 
-- **Type Safety**: Validación de queries en tiempo de compilación
-- **Observabilidad**: Integración nativa con LiveData y Flow
-- **Migraciones**: Sistema robusto de versionado de esquemas
-- **Performance**: Optimizaciones automáticas y threading inteligente
-
-## 🏗️ Configuración Básica de Room
-
-Configurar Room en tu proyecto Android es sencillo pero requiere entender tres componentes principales: **Entity**, **DAO** y **Database**.
-
-### 1. Dependencias en build.gradle
-
-```kotlin
-dependencies {
-    val room_version = "2.6.1"
-    
-    implementation("androidx.room:room-runtime:$room_version")
-    implementation("androidx.room:room-ktx:$room_version")
-    ksp("androidx.room:room-compiler:$room_version")
-    
-    // Para testing
-    testImplementation("androidx.room:room-testing:$room_version")
-}
-```
-
-### 2. Definir una Entity
+### 1. Entity (La Tabla)
+Define la estructura de la tabla.
 
 ```kotlin
 @Entity(tableName = "users")
-data class User(
-    @PrimaryKey(autoGenerate = true)
-    val id: Long = 0,
-    
-    @ColumnInfo(name = "user_name")
-    val userName: String,
-    
-    @ColumnInfo(name = "email")
-    val email: String,
-    
-    @ColumnInfo(name = "created_at")
-    val createdAt: Long = System.currentTimeMillis(),
-    
-    @ColumnInfo(name = "is_active")
-    val isActive: Boolean = true
+data class UserEntity(
+    @PrimaryKey val id: String,
+    @ColumnInfo(name = "full_name") val name: String,
+    val age: Int // Por defecto la columna se llama "age"
 )
 ```
 
-### 3. Crear el DAO (Data Access Object)
+### 2. DAO (Data Access Object)
+Define las operaciones. Es una interfaz; Room genera el código.
 
 ```kotlin
 @Dao
 interface UserDao {
-    
-    @Query("SELECT * FROM users WHERE is_active = 1")
-    fun getAllActiveUsers(): Flow<List<User>>
-    
-    @Query("SELECT * FROM users WHERE id = :userId")
-    suspend fun getUserById(userId: Long): User?
-    
+    // 1. Lectura Reactiva (Flow)
+    // Emite un nuevo valor cada vez que la tabla cambia.
+    @Query("SELECT * FROM users")
+    fun getAllUsers(): Flow<List<UserEntity>>
+
+    // 2. Escritura Suspendida (One-shot)
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUser(user: User): Long
+    suspend fun insertUser(user: UserEntity)
     
     @Delete
-    suspend fun deleteUser(user: User)
+    suspend fun delete(user: UserEntity)
 }
 ```
 
-### 4. Configurar la Database
+### 3. Database (El Punto de Acceso)
+El contenedor principal. Debe ser un Singleton.
 
 ```kotlin
-@Database(
-    entities = [User::class],
-    version = 1,
-    exportSchema = false
-)
-@TypeConverters(Converters::class)
+@Database(entities = [UserEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
-    
     abstract fun userDao(): UserDao
-    
-    companion object {
-        @Volatile
-        private var INSTANCE: AppDatabase? = null
-        
-        fun getDatabase(context: Context): AppDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "app_database"
-                ).build()
-                INSTANCE = instance
-                instance
-            }
-        }
-    }
 }
 ```
 
-## 🔄 TypeConverters: Manejo de Tipos Complejos
+## 🔄 Relaciones (Relationships)
 
-Room solo puede manejar tipos primitivos por defecto. Para tipos complejos como Date, List o objetos custom, necesitamos TypeConverters:
+Room no soporta listas de objetos directamente (porque SQL no lo hace). Tienes dos opciones.
+
+### Opción A: TypeConverters (Para datos simples)
+Convierte una `List<String>` a un JSON String para guardarlo, y viceversa al leerlo.
 
 ```kotlin
 class Converters {
     @TypeConverter
-    fun fromTimestamp(value: Long?): Date? {
-        return value?.let { Date(it) }
+    fun fromString(value: String): List<String> {
+        return Json.decodeFromString(value)
     }
-    
     @TypeConverter
-    fun dateToTimestamp(date: Date?): Long? {
-        return date?.time
+    fun fromList(list: List<String>): String {
+        return Json.encodeToString(list)
     }
 }
 ```
 
-## 🚀 Integración con Repository Pattern
-
-Room funciona perfectamente con el patrón Repository, proporcionando una capa de abstracción limpia entre la UI y los datos:
-
-```kotlin
-class UserRepository @Inject constructor(
-    private val userDao: UserDao,
-    private val apiService: ApiService
-) {
-    fun getAllUsers(): Flow<List<User>> = userDao.getAllActiveUsers()
-    
-    suspend fun refreshUsers() {
-        try {
-            val remoteUsers = apiService.getUsers()
-            userDao.insertUsers(remoteUsers)
-        } catch (e: Exception) {
-            // Manejo de errores - los datos locales siguen disponibles
-            Timber.e(e, "Error refreshing users")
-        }
-    }
-}
-```
-
-## ⚡ Queries Avanzadas y Relaciones
-
-### Relaciones One-to-Many
+### Opción B: @Relation (Para datos relacionales reales)
+Si un `User` tiene muchos `Posts`.
 
 ```kotlin
 data class UserWithPosts(
-    @Embedded val user: User,
+    @Embedded val user: UserEntity,
     @Relation(
         parentColumn = "id",
         entityColumn = "user_id"
     )
-    val posts: List<Post>
+    val posts: List<PostEntity>
 )
 
-@Transaction
-@Query("SELECT * FROM users WHERE id = :userId")
-suspend fun getUserWithPosts(userId: Long): UserWithPosts?
+// En DAO
+@Transaction // Importante para consistencia
+@Query("SELECT * FROM users")
+fun getUsersWithPosts(): Flow<List<UserWithPosts>>
 ```
 
-## 🔄 Migraciones de Base de Datos
+## ⚠️ Migraciones: El Terror de Producción
 
-Las migraciones son cruciales para mantener la integridad de los datos cuando evoluciona tu esquema:
+Si cambias tu Entity (añades un campo) y subes la versión de la DB sin proveer una migración, la app crasheará en los usuarios existentes (o borrará los datos si usas `fallbackToDestructiveMigration`).
 
 ```kotlin
 val MIGRATION_1_2 = object : Migration(1, 2) {
     override fun migrate(database: SupportSQLiteDatabase) {
-        database.execSQL("ALTER TABLE users ADD COLUMN profile_image_url TEXT")
+        database.execSQL("ALTER TABLE users ADD COLUMN age INTEGER NOT NULL DEFAULT 0")
     }
 }
 
-Room.databaseBuilder(context, AppDatabase::class.java, "database")
+// Al construir la DB
+Room.databaseBuilder(...)
     .addMigrations(MIGRATION_1_2)
     .build()
 ```
 
-## 🧪 Testing con Room
-
-Room facilita enormemente el testing con una base de datos en memoria:
-
-```kotlin
-@RunWith(AndroidJUnit4::class)
-class UserDaoTest {
-    
-    private lateinit var database: AppDatabase
-    private lateinit var userDao: UserDao
-    
-    @Before
-    fun createDb() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        database = Room.inMemoryDatabaseBuilder(
-            context, AppDatabase::class.java
-        ).build()
-        userDao = database.userDao()
-    }
-    
-    @Test
-    fun insertAndGetUser() = runTest {
-        val user = User(userName = "testuser", email = "test@example.com")
-        val userId = userDao.insertUser(user)
-        val retrievedUser = userDao.getUserById(userId)
-        assertThat(retrievedUser?.userName).isEqualTo("testuser")
-    }
-}
-```
-
-## 🔧 Mejores Prácticas
-
-1. **Uso correcto de Threading**: Nunca bloquees el Main Thread. Usa `suspend functions` y `Flow`.
-2. **Optimización de Queries**: Crea índices para columnas usadas en `WHERE` y `ORDER BY`.
-3. **Inyección de Dependencias**: Usa Hilt para proveer tu Database y DAOs como singletons.
+**Tip de Pro**: Usa los tests automáticos de migraciones de Room para verificar que tu migración funciona antes de liberar.
 
 ## 🎯 Conclusión
 
-Room Database representa la evolución natural de la persistencia en Android. Al adoptar Room, reduces errores, aumentas productividad y mejoras la mantenibilidad de tu código.
+Room es la pieza central de cualquier estrategia "Offline-First". Su capacidad para exponer `Flow` hace que la sincronización UI-Database sea trivial. Aunque requiere configuración inicial, la seguridad de tipos y la robustez que ofrece valen cada línea de código.

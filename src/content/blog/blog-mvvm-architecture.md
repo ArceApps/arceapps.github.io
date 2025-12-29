@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Arquitectura MVVM en Android: Guía Completa desde Cero"
 description: "Domina el patrón Model-View-ViewModel desde los conceptos básicos hasta implementaciones avanzadas con ejemplos prácticos de un juego de Buscaminas para Android."
 pubDate: "2025-10-01"
@@ -6,246 +6,153 @@ heroImage: "/images/placeholder-article-mvvm.svg"
 tags: ["Android", "MVVM", "Architecture", "Kotlin", "Best Practices"]
 ---
 
-## 🏗️ ¿Por qué necesitamos arquitecturas en nuestras apps?
+## 🏛️ Teoría: La Evolución de las Arquitecturas de UI
 
-Imagina que estás construyendo una casa. Podrías simplemente apilar ladrillos sin un plano, pero el resultado sería un **desastre caótico**. Lo mismo sucede con nuestras aplicaciones Android. Sin una arquitectura sólida, nuestro código se convierte en lo que llamamos "spaghetti code" 🍝 - imposible de mantener, testear y escalar.
+Antes de entender MVVM (Model-View-ViewModel), debemos entender el problema que intenta resolver: el **acoplamiento entre la lógica de presentación y la interfaz gráfica**.
 
-### 🎯 Beneficios clave de usar arquitecturas
+### Historia Breve
+1.  **MVC (Model-View-Controller)**: Nacido en los 70 para interfaces de escritorio. En Android, las Activities solían actuar como "View" y "Controller" a la vez, creando "God Objects" imposibles de testear.
+2.  **MVP (Model-View-Presenter)**: Popular en 2015. El Presenter no tenía referencias a Android (bueno para tests), pero tenía que actualizar la View manualmente (`view.showLoading()`, `view.hideLoading()`). Mucho boilerplate.
+3.  **MVVM (Model-View-ViewModel)**: Creado por Microsoft para WPF en 2005 y adoptado por Google en 2017. La clave es el **Data Binding** y la **Observabilidad**.
 
-- **Testabilidad**: Código separado en capas permite tests unitarios efectivos
-- **Mantenibilidad**: Cambios en una capa no afectan a las demás
-- **Escalabilidad**: Fácil añadir nuevas funcionalidades sin romper código existente
-- **Colaboración**: Equipos pueden trabajar en paralelo en diferentes capas
-- **Debugging**: Problemas localizados más fácilmente por responsabilidad
-- **Reutilización**: Componentes reutilizables entre diferentes partes de la app
+### El Patrón Observer en MVVM
+La diferencia fundamental de MVVM es que el ViewModel **no conoce a la View**. No hay `view.update()`.
+En su lugar, el ViewModel expone un **Estado** observable (`StateFlow` o `LiveData`). La View se suscribe a este estado y "reacciona".
 
-## 📱 ¿Cuándo usar arquitecturas en tu proyecto Android?
+> **ViewModel**: "El estado ha cambiado a 'Cargando'".
+> **View**: (Escucha el cambio) -> Muestra el ProgressBar.
 
-La pregunta no es "¿debería usar arquitecturas?" sino "¿cuál arquitectura es la adecuada para mi proyecto?".
+Esto invierte la dependencia y desacopla totalmente la lógica de la UI.
 
-### ✅ Proyectos donde SÍ necesitas arquitectura
-- **Apps con múltiples pantallas** y navegación compleja
-- **Equipos de más de 2 desarrolladores** trabajando simultaneamente
-- **Apps que consumen APIs** y manejan estados complejos
-- **Proyectos con ciclo de vida largo** (más de 6 meses de desarrollo)
-- **Apps comerciales** que requieren mantenimiento continuo
-- **Proyectos con testing requirements** estrictos
+## 🎯 Las Capas de MVVM: Anatomía Profunda
 
-### ⚠️ Proyectos donde podría ser overkill
-- **Prototipos rápidos** o proof of concepts
-- **Apps de una sola pantalla** muy simples
-- **Proyectos educativos** para aprender conceptos básicos
-- **Apps con deadline muy agresivo** (menos de 2 semanas)
+### 1. MODEL (La Verdad)
+Es agnóstico a la UI. Contiene la lógica de negocio y los datos.
+En Clean Architecture, esto se subdivide en:
+-   **Data Source**: API, DB.
+-   **Repository**: Fuente única de verdad.
+-   **Use Cases**: Reglas de negocio.
 
-## 🔍 Comparativa de Arquitecturas en Desarrollo Mobile
+### 2. VIEW (El Pintor)
+Es tonta. Solo sabe pintar pixels y capturar toques.
+-   **En XML**: Activities/Fragments.
+-   **En Compose**: Funciones @Composable.
+-   **Responsabilidad**: Observar el ViewModel y renderizarse a sí misma. **Nunca** toma decisiones lógicas.
 
-### 🏚️ No Architecture (God Activity/Fragment)
-- **✅ Pros**: Desarrollo muy rápido inicialmente, curva de aprendizaje mínima.
-- **❌ Contras**: Imposible de testear, código acoplado, pesadilla de mantenimiento.
+### 3. VIEWMODEL (El Orquestador)
+Es el puente. Transforma los datos del Modelo en "Estado de UI".
+-   Sobrevive a cambios de configuración (rotación).
+-   No tiene referencias a Views ni Contexts (para evitar Memory Leaks).
+-   Expone flujos de datos (Streams).
 
-### 🏗️ MVC (Model-View-Controller)
-- **✅ Pros**: Separación básica, patrón conocido.
-- **❌ Contras**: Controller crece descontroladamente, difícil testing.
+## 🎮 Implementando MVVM: Ejemplo con Buscaminas
 
-### 📊 MVP (Model-View-Presenter)
-- **✅ Pros**: View pasiva y testeable, separación clara.
-- **❌ Contras**: Boilerplate considerable, Presenter complejo.
+Para demostrar MVVM en acción, construiremos un **juego de Buscaminas**.
 
-### 🎯 MVVM (Model-View-ViewModel)
-- **✅ Pros**: Data binding automático, ViewModel sobrevive cambios de configuración, excelente separación, altamente testeable.
-- **❌ Contras**: Curva de aprendizaje moderada.
-
-### 🧅 Clean Architecture
-- **✅ Pros**: Separación extrema, altamente testeable, independiente de frameworks.
-- **❌ Contras**: Complejidad inicial alta, mucho boilerplate.
-
-## 🏆 ¿Por qué elegir MVVM frente a otras arquitecturas?
-
-MVVM se ha convertido en el **estándar de facto** para desarrollo Android por varias razones fundamentales:
-
-- **Soporte Nativo de Android**: Google diseñó Android Architecture Components específicamente para MVVM.
-- **Manejo Automático del Lifecycle**: ViewModel sobrevive automáticamente a rotaciones de pantalla.
-- **Data Binding Reactivo**: Con LiveData/StateFlow, la UI se actualiza automáticamente.
-- **Testing Simplificado**: ViewModel no tiene dependencias de Android Framework.
-
-## 🎯 Las Capas de MVVM: Anatomía de la Arquitectura
-
-MVVM divide nuestra aplicación en **tres capas principales**:
-
-### 📊 MODEL (Capa de Datos)
-**Responsabilidades**: Gestión de datos, lógica de negocio pura, repositorios.
-**Componentes**: Room, Retrofit, Repositories, Use Cases.
-
-### 👁️ VIEW (Capa de Presentación)
-**Responsabilidades**: Mostrar datos, capturar interacciones, observar cambios.
-**Componentes**: Activities, Fragments, Compose, Layouts.
-
-### 🎭 VIEWMODEL (Capa de Lógica de Presentación)
-**Responsabilidades**: Lógica de presentación, comunicación View-Model, transformación de datos.
-**Componentes**: ViewModel classes, LiveData/StateFlow.
-
-## 🎮 Implementando MVVM: Ejemplo con Buscaminas Android
-
-Para demostrar MVVM en acción, vamos a construir un **juego de Buscaminas**.
-
-### 📊 1. Capa MODEL: Entidades y Lógica de Negocio
+### 1. MODEL: Lógica Pura
 
 ```kotlin
-// MinesweeperCell.kt - Entidad básica
+// MinesweeperCell.kt - Entidad inmutable
 data class MinesweeperCell(
     val row: Int,
-    val column: Int,
+    val col: Int,
     val isMine: Boolean = false,
     val isRevealed: Boolean = false,
-    val isFlagged: Boolean = false,
-    val neighborMineCount: Int = 0
-) {
-    val displayValue: String
-        get() = when {
-            isFlagged -> "🚩"
-            !isRevealed -> "⬜"
-            isMine -> "💣"
-            neighborMineCount > 0 -> neighborMineCount.toString()
-            else -> "⬜"
-        }
-}
+    val isFlagged: Boolean = false
+)
 
-// GameState.kt - Estados del juego
-sealed class GameState {
-    object Loading : GameState()
-    object Playing : GameState()
-    object Won : GameState()
-    data class Lost(val explodedCell: MinesweeperCell) : GameState()
-}
-```
-
-### 🏗️ 2. Repository Pattern: Gestión de Datos
-
-```kotlin
-interface MinesweeperRepository {
-    suspend fun generateBoard(difficulty: GameDifficulty): List<List<MinesweeperCell>>
-    suspend fun saveGame(gameId: String, board: List<List<MinesweeperCell>>, state: GameState)
-    suspend fun loadGame(gameId: String): GameData?
-    suspend fun getGameStatistics(): GameStatistics
-    suspend fun updateStatistics(result: GameResult)
-}
-
-class MinesweeperRepositoryImpl @Inject constructor(
-    private val localDataSource: MinesweeperLocalDataSource,
-    private val gameGenerator: GameGenerator
-) : MinesweeperRepository {
-    
-    override suspend fun generateBoard(difficulty: GameDifficulty): List<List<MinesweeperCell>> {
-        return gameGenerator.generateBoard(
-            rows = difficulty.rows,
-            columns = difficulty.columns,
-            mineCount = difficulty.mineCount
-        )
-    }
-    // ... implementaciones
-}
-```
-
-### 🎯 3. Use Cases: Lógica de Negocio Específica
-
-```kotlin
+// Use Case: Lógica compleja de revelar celdas (Flood Fill)
 class RevealCellUseCase @Inject constructor() {
-    
-    operator fun invoke(
-        board: List<List<MinesweeperCell>>,
-        row: Int,
-        column: Int
-    ): RevealResult {
-        val cell = board[row][column]
-        
-        if (cell.isFlagged || cell.isRevealed) return RevealResult.Invalid
-        if (cell.isMine) return RevealResult.GameLost(cell)
-        
-        val updatedBoard = revealCell(board, row, column)
-        val isGameWon = checkWinCondition(updatedBoard)
-        
-        return RevealResult.Success(updatedBoard, isGameWon)
-    }
-    
-    private fun revealCell(board: List<List<MinesweeperCell>>, row: Int, column: Int): List<List<MinesweeperCell>> {
-        // Algoritmo flood-fill...
-        return board // simplificado
+    operator fun invoke(board: List<List<Cell>>, row: Int, col: Int): Board {
+        // Algoritmo recursivo puro, fácil de testear
+        // No sabe nada de Android, ni de ViewModels.
     }
 }
 ```
 
-### 🎭 4. ViewModel: El Corazón de MVVM
+### 2. VIEWMODEL: Gestión de Estado
 
 ```kotlin
+// UI State: Representa la pantalla completa en un instante del tiempo
+data class GameUiState(
+    val board: List<List<MinesweeperCell>> = emptyList(),
+    val gameState: GameStatus = GameStatus.PLAYING,
+    val isLoading: Boolean = false
+)
+
 @HiltViewModel
 class MinesweeperViewModel @Inject constructor(
-    private val repository: MinesweeperRepository,
     private val revealCellUseCase: RevealCellUseCase,
-    private val toggleFlagUseCase: ToggleFlagUseCase
+    private val repository: GameRepository
 ) : ViewModel() {
     
-    private val _uiState = MutableStateFlow(MinesweeperUiState())
-    val uiState: StateFlow<MinesweeperUiState> = _uiState.asStateFlow()
+    // Backing property para encapsular estado mutable
+    private val _uiState = MutableStateFlow(GameUiState())
+    val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
     
-    private val _gameState = MutableLiveData<GameState>(GameState.Loading)
-    val gameState: LiveData<GameState> = _gameState
-    
-    private val _board = MutableLiveData<List<List<MinesweeperCell>>>()
-    val board: LiveData<List<List<MinesweeperCell>>> = _board
-    
-    fun startNewGame(difficulty: GameDifficulty) {
+    fun onCellClick(row: Int, col: Int) {
+        // Lanzamos corrutina en el scope del ViewModel
         viewModelScope.launch {
-            _gameState.value = GameState.Loading
-            val newBoard = repository.generateBoard(difficulty)
-            _board.value = newBoard
-            _gameState.value = GameState.Playing
-            _uiState.value = _uiState.value.copy(isLoading = false)
-        }
-    }
-    
-    fun onCellClick(row: Int, column: Int) {
-        if (_gameState.value != GameState.Playing) return
-        
-        viewModelScope.launch {
-            val currentBoard = _board.value ?: return@launch
-            when (val result = revealCellUseCase(currentBoard, row, column)) {
-                is RevealResult.Success -> {
-                    _board.value = result.updatedBoard
-                    if (result.isGameWon) _gameState.value = GameState.Won
-                }
-                is RevealResult.GameLost -> _gameState.value = GameState.Lost(result.explodedCell)
-                RevealResult.Invalid -> {}
+            val currentBoard = _uiState.value.board
+            val newBoard = revealCellUseCase(currentBoard, row, col)
+
+            // Actualizamos el estado de forma inmutable
+            _uiState.update { currentState ->
+                currentState.copy(board = newBoard)
             }
+
+            checkWinCondition()
         }
     }
 }
 ```
 
-### 👁️ 5. VIEW: La Interfaz de Usuario
+### 3. VIEW (Compose): Reacción al Estado
 
 ```kotlin
-@AndroidEntryPoint
-class MinesweeperFragment : Fragment() {
+@Composable
+fun MinesweeperScreen(
+    viewModel: MinesweeperViewModel = hiltViewModel()
+) {
+    // 1. Consumir el estado de forma segura con el ciclo de vida
+    val state by viewModel.uiState.collectAsStateWithLifecycle()
     
-    private val viewModel: MinesweeperViewModel by viewModels()
-    private lateinit var boardAdapter: MinesweeperBoardAdapter
-    
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        
-        setupUI()
-        setupObservers()
-        viewModel.startNewGame(GameDifficulty.BEGINNER)
+    // 2. Renderizar basado SOLO en el estado
+    if (state.isLoading) {
+        CircularProgressIndicator()
+    } else {
+        BoardGrid(
+            board = state.board,
+            // 3. Pasar eventos hacia arriba (Unidirectional Data Flow)
+            onCellClick = { row, col -> viewModel.onCellClick(row, col) }
+        )
     }
     
-    private fun setupObservers() {
-        viewModel.gameState.observe(viewLifecycleOwner) { gameState ->
-            updateGameStateUI(gameState)
-        }
-        
-        viewModel.board.observe(viewLifecycleOwner) { board ->
-            boardAdapter.updateBoard(board)
-        }
+    // 4. Manejar efectos (One-off events) como Dialogs de Game Over
+    if (state.gameState == GameStatus.LOST) {
+        GameOverDialog()
     }
 }
 ```
+
+## 🔄 El Ciclo de Vida del ViewModel
+
+Una de las mayores ventajas de usar la clase `ViewModel` de AndroidX es su integración con el ciclo de vida.
+
+1.  **Creación**: Se crea cuando el Fragment/Activity se crea por primera vez.
+2.  **Retención**: Si rotas la pantalla, la Activity se destruye y recrea, pero **la instancia del ViewModel se mantiene en memoria**. Esto evita tener que recargar datos de la red.
+3.  **Limpieza**: Cuando sales de la pantalla (Back press), se llama a `onCleared()`, donde se cancelan automáticamente todas las corrutinas del `viewModelScope`.
+
+## ⚠️ Errores Comunes en MVVM
+
+1.  **Lógica en la UI**: `if (user.isAdmin) { showButton() }` en el Fragment.
+    *   *Solución*: El ViewModel debería exponer `val showAdminButton: Boolean`.
+2.  **Exponer objetos mutables**: Exponer `MutableStateFlow` o `MutableList`.
+    *   *Solución*: Siempre exponer interfaces de solo lectura (`StateFlow`, `List`).
+3.  **Pasar Context al ViewModel**: `ViewModel(context)`.
+    *   *Riesgo*: Memory Leak masivo.
+    *   *Solución*: Usar `AndroidViewModel(application)` si es estrictamente necesario (para Resources), pero preferiblemente inyectar un proveedor de recursos.
+
+## 🎯 Conclusión
+
+MVVM no es solo una forma de organizar código; es una estrategia defensiva. Defiende tu lógica de negocio del caos del ciclo de vida de Android. Defiende tu UI de la complejidad de los datos. Y sobre todo, hace que tu aplicación sea **robusta, testeable y mantenible**.

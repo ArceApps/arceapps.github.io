@@ -6,52 +6,78 @@ heroImage: "/images/placeholder-article-agents-md.svg"
 tags: ["AI", "agents.md", "Android", "Desarrollo", "GitHub Copilot", "Gemini"]
 ---
 
-## El Nacimiento de un Estándar
+## 🏗️ El Nacimiento de un Estándar
 
-En los últimos meses, hemos visto emerger un nuevo estándar en el desarrollo asistido por IA: el archivo **agents.md**. Similar a cómo `README.md` se convirtió en el estándar para documentar proyectos, `agents.md` se está estableciendo como el lugar estándar para definir cómo los agentes de IA deben interactuar con tu código.
+En los últimos meses, hemos visto emerger un nuevo estándar en el desarrollo asistido por IA: el archivo **agents.md**. Similar a cómo `README.md` se convirtió en el estándar universal para documentar proyectos de cara a humanos, `agents.md` se está estableciendo como el punto de entrada definitivo para definir cómo los agentes de IA deben interactuar, comprender y generar código en tu proyecto.
 
-**¿Por qué surgió este estándar?** Los equipos de desarrollo se dieron cuenta de que necesitaban una forma consistente de comunicar convenciones, arquitectura y mejores prácticas a los asistentes de IA. Lo que comenzó como documentación informal en distintos formatos convergió naturalmente hacia `agents.md`.
+### Contexto Histórico: La Evolución de la Documentación
+Para entender por qué `agents.md` es necesario, debemos mirar la evolución de la documentación en ingeniería de software:
 
-## ¿Qué es agents.md?
+1.  **Era Pre-Git**: Documentación en documentos Word o wikis externas, desconectadas del código.
+2.  **Era GitHub (README.md)**: La documentación vive con el código. El `README.md` es la portada para humanos.
+3.  **Era Open Source (CONTRIBUTING.md)**: Reglas específicas para colaboradores humanos que quieren aportar.
+4.  **Era IA (agents.md)**: Reglas específicas para "colaboradores sintéticos" (IAs) que generan código.
 
-`agents.md` es un archivo Markdown en la raíz de tu proyecto que sirve como **"manual de instrucciones"** para agentes de IA como GitHub Copilot, Gemini, o cualquier otro asistente que trabaje con tu código. Piensa en él como la documentación que le darías a un nuevo desarrollador, pero optimizada para ser consumida por IA.
+**¿Por qué surgió este estándar?** Los equipos de desarrollo se dieron cuenta de que, aunque los LLMs (Large Language Models) son poderosos, sufren de "alucinaciones" o inconsistencias cuando les falta contexto. Lo que comenzó como una práctica informal de copiar y pegar reglas en cada prompt, convergió naturalmente hacia un archivo único y estandarizado: `agents.md`.
 
-### Estructura Básica
+## 🧠 Teoría: ¿Por Qué Funciona agents.md?
+
+La efectividad de `agents.md` no es mágica; se basa en principios fundamentales de cómo funcionan los LLMs actuales.
+
+### 1. Gestión de Ventana de Contexto (Context Window)
+Los LLMs tienen una memoria limitada (ventana de contexto). No pueden "leer" todo tu repositorio de una vez en cada interacción sin incurrir en costos masivos o pérdida de precisión.
+`agents.md` actúa como una **compresión de alta densidad** del conocimiento tribal de tu proyecto. Al colocar este archivo en la raíz y referenciarlo, estás inyectando las "reglas del juego" en la memoria activa de la IA con un costo de tokens muy bajo, pero con un impacto en la calidad del código muy alto.
+
+### 2. Prompt Engineering Sistémico (System Prompting)
+Técnicamente, `agents.md` funciona como un **System Prompt extendido**. Cuando instruyes a Copilot o Gemini para que "lean agents.md", estás modificando su comportamiento base.
+- **Zero-shot Learning**: Sin `agents.md`, la IA adivina tus convenciones.
+- **Few-shot Learning**: Con `agents.md` (y sus ejemplos de código), la IA tiene ejemplos concretos ("shots") de cómo se hacen las cosas en *tu* proyecto, incrementando drásticamente la probabilidad de que el código generado sea correcto al primer intento.
+
+### 3. Reducción de la Carga Cognitiva
+Para el desarrollador, `agents.md` externaliza la necesidad de recordar y escribir todas las reglas en cada prompt. Funciona como un "contrato" entre el humano y la IA: "Yo prometo mantener este archivo actualizado; tú prometes seguir estas reglas".
+
+## 📘 ¿Qué es agents.md?
+
+`agents.md` es un archivo Markdown en la raíz de tu proyecto que sirve como **"manual de instrucciones"** para agentes de IA como GitHub Copilot, Gemini, Cursor, o cualquier otro asistente. Piensa en él como la documentación técnica que le darías a un Senior Developer en su primer día, pero optimizada para ser parseada por una máquina.
+
+### Estructura Canónica
+
+Aunque flexible, la estructura estándar que ha demostrado mejores resultados es:
 
 ```markdown
 # Agents Guide - [Nombre del Proyecto]
 
-## Project Overview
-Breve descripción del proyecto, stack tecnológico y objetivo principal.
+## 1. Project Overview
+Breve descripción del dominio, stack tecnológico y objetivos. Esto da el "contexto semántico" a la IA.
 
-## Architecture
-Arquitectura utilizada (MVVM, Clean Architecture, etc.) y estructura de carpetas.
+## 2. Architecture
+Arquitectura de alto nivel (MVVM, Clean Arch). Crucial para que la IA sepa dónde colocar los archivos.
 
-## Coding Conventions
-Estándares de código, naming conventions y mejores prácticas específicas.
+## 3. Coding Conventions
+Estándares de código, naming conventions. Reglas duras de sintaxis y estilo.
 
-## Testing Strategy
-Approach de testing, frameworks utilizados y cobertura esperada.
+## 4. Testing Strategy
+Qué frameworks usar, qué cobertura buscar y patrones de testing.
 
-## Common Tasks
-Tareas frecuentes con ejemplos de cómo se deben implementar.
+## 5. Common Tasks (The "Few-Shot" Section)
+Ejemplos de "Input -> Output" para tareas frecuentes. Esta es la sección más valiosa para la IA.
 
-## Dependencies
-Principales dependencias y cómo se utilizan en el proyecto.
+## 6. Dependencies
+Librerías clave. Evita que la IA alucine librerías que no usas.
 
-## DO's and DON'Ts
-Lista clara de prácticas recomendadas y prohibidas.
+## 7. DO's and DON'Ts
+Reglas de oro y antipatrones a evitar.
 ```
 
-## agents.md para Proyectos Android
+## 📱 agents.md para Proyectos Android: Un Ejemplo Real
 
-Veamos un ejemplo completo de `agents.md` para un proyecto Android moderno:
+Veamos un ejemplo detallado de `agents.md` para un proyecto Android moderno, explicando el **porqué** de cada sección.
 
 ```markdown
 # Android App - Agents Guide
 
 ## Project Overview
-Aplicación Android nativa desarrollada en Kotlin que implementa [descripción].
+Aplicación Android nativa desarrollada en Kotlin para gestión de tareas (To-Do).
 - **Min SDK**: 24 (Android 7.0)
 - **Target SDK**: 34 (Android 14)
 - **Lenguaje**: Kotlin 1.9+
@@ -59,590 +85,147 @@ Aplicación Android nativa desarrollada en Kotlin que implementa [descripción].
 - **Arquitectura**: Clean Architecture + MVVM
 
 ## Tech Stack
-- **Dependency Injection**: Hilt
-- **Networking**: Retrofit + OkHttp + Moshi
-- **Database**: Room
-- **Asynchrony**: Coroutines + Flow
-- **Navigation**: Compose Navigation
-- **Image Loading**: Coil
-- **Testing**: JUnit5, MockK, Turbine
+*Contexto crítico para evitar que la IA sugiera librerías obsoletas como AsyncTask o XML layouts.*
+- **DI**: Hilt
+- **Network**: Retrofit + Moshi
+- **DB**: Room
+- **Async**: Coroutines + Flow
+- **Nav**: Compose Navigation
 
 ## Project Structure
+*Define el "mapa mental" del proyecto para la IA.*
 ```
-app/
-├── src/main/kotlin/com/example/app/
-│   ├── di/              # Hilt modules
-│   ├── data/
-│   │   ├── local/       # Room database, DAOs
-│   │   ├── remote/      # API services, DTOs
-│   │   └── repository/  # Repository implementations
-│   ├── domain/
-│   │   ├── model/       # Domain models
-│   │   ├── repository/  # Repository interfaces
-│   │   └── usecase/     # Use cases
-│   └── ui/
-│       ├── screens/     # Composable screens
-│       ├── components/  # Reusable components
-│       ├── theme/       # Material3 theme
-│       └── viewmodel/   # ViewModels
+app/src/main/kotlin/com/example/app/
+├── di/              # Hilt modules
+├── data/            # Repository impl, DataSources
+├── domain/          # UseCases, Models, Repository Interfaces
+└── ui/              # Composables, ViewModels
 ```
 
 ## Architecture Guidelines
 
 ### Data Layer
+*Explicación teórica*: Forzamos el patrón "Cache First" para asegurar que la app funcione offline.
 ```kotlin
 // Repository pattern with cache-first strategy
 interface UserRepository {
     fun getUser(id: String): Flow<Result<User>>
-    suspend fun refreshUser(id: String): Result<User>
 }
 
 class UserRepositoryImpl @Inject constructor(
-    private val remoteDataSource: UserRemoteDataSource,
-    private val localDataSource: UserLocalDataSource,
-    private val networkMonitor: NetworkMonitor
+    private val local: UserLocalDataSource,
+    private val remote: UserRemoteDataSource
 ) : UserRepository {
-    
-    override fun getUser(id: String): Flow<Result<User>> = flow {
-        // Emit cached data first
-        localDataSource.getUser(id)?.let {
-            emit(Result.success(it))
-        }
-        
-        // Fetch from network if connected
-        if (networkMonitor.isConnected()) {
-            try {
-                val user = remoteDataSource.getUser(id)
-                localDataSource.saveUser(user)
-                emit(Result.success(user))
-            } catch (e: Exception) {
-                emit(Result.failure(e))
-            }
-        }
-    }.flowOn(Dispatchers.IO)
-}
-```
-
-### Domain Layer
-```kotlin
-// Use cases with single responsibility
-class GetUserUseCase @Inject constructor(
-    private val userRepository: UserRepository
-) {
-    operator fun invoke(userId: String): Flow<Result<User>> {
-        return userRepository.getUser(userId)
-    }
+    // Implementación detallada...
 }
 ```
 
 ### Presentation Layer
+*Explicación teórica*: Definimos el contrato de comunicación UI-ViewModel usando `StateFlow` y `UiState` sealed classes para garantizar estados deterministas.
+
 ```kotlin
-// ViewModels with UiState pattern
+// ViewModels must use UiState pattern
 @HiltViewModel
-class UserViewModel @Inject constructor(
-    private val getUserUseCase: GetUserUseCase,
-    private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
+class UserViewModel @Inject constructor(...) : ViewModel() {
     
-    private val userId: String = checkNotNull(savedStateHandle["userId"])
-    
+    // BACKING PROPERTY pattern
     private val _uiState = MutableStateFlow<UserUiState>(UserUiState.Loading)
     val uiState: StateFlow<UserUiState> = _uiState.asStateFlow()
     
-    init {
-        loadUser()
-    }
-    
-    private fun loadUser() {
-        viewModelScope.launch {
-            getUserUseCase(userId)
-                .catch { error ->
-                    _uiState.value = UserUiState.Error(error.message ?: "Unknown error")
-                }
-                .collect { result ->
-                    _uiState.value = when (result) {
-                        is Result.Success -> UserUiState.Success(result.data)
-                        is Result.Error -> UserUiState.Error(result.exception.message)
-                    }
-                }
-        }
-    }
-}
-
-sealed interface UserUiState {
-    object Loading : UserUiState
-    data class Success(val user: User) : UserUiState
-    data class Error(val message: String) : UserUiState
+    // ...
 }
 ```
 
 ## Coding Conventions
 
 ### Naming
-- **Packages**: lowercase, sin underscore (`com.example.feature`)
-- **Classes**: PascalCase (`UserViewModel`, `UserRepository`)
-- **Functions**: camelCase (`loadUser`, `getUserById`)
-- **Constants**: UPPER_SNAKE_CASE (`MAX_RETRY_COUNT`)
-- **Resources**: snake_case (`ic_user_profile`, `txt_welcome_message`)
+*La consistencia ayuda a la IA a predecir nombres de archivos y clases.*
+- **Packages**: lowercase (`com.example.feature`)
+- **Classes**: PascalCase (`UserViewModel`)
+- **Functions**: camelCase (`loadUser`)
+- **Composables**: PascalCase (`UserProfileScreen`)
 
-### Composables
-```kotlin
-// Composables stateless siempre que sea posible
-@Composable
-fun UserProfile(
-    user: User,
-    onEditClick: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    // Implementation
-}
-
-// Hoisting de estado
-@Composable
-fun UserProfileScreen(
-    viewModel: UserViewModel = hiltViewModel()
-) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    
-    UserProfileContent(
-        uiState = uiState,
-        onEditClick = viewModel::onEditClick
-    )
-}
-```
-
-### Error Handling
-```kotlin
-// Usar sealed classes para results
-sealed class Result<out T> {
-    data class Success<T>(val data: T) : Result<T>()
-    data class Error(val exception: Throwable) : Result<Nothing>()
-    object Loading : Result<Nothing>()
-}
-
-// Manejo de errores específicos
-sealed class AppException(message: String) : Exception(message) {
-    class NetworkException(message: String = "Network error") : AppException(message)
-    class DatabaseException(message: String = "Database error") : AppException(message)
-    class ValidationException(message: String) : AppException(message)
-}
-```
+### Composables Rules
+1. **Stateless First**: Los Composables no deben tener estado interno si es posible.
+2. **State Hoisting**: Elevar el estado al ViewModel o padre inmediato.
+3. **Modifiers**: El primer parámetro opcional siempre debe ser `modifier: Modifier`.
 
 ## Testing Guidelines
 
+*Instruimos a la IA para que genere tests robustos, no solo "código que compile".*
+
 ### Unit Tests
 ```kotlin
-// Naming: should[ExpectedBehavior]When[Condition]
+// Naming standard: should[Behavior]When[Condition]
 @Test
 fun `should emit success state when user loads successfully`() = runTest {
-    // Arrange
-    val expectedUser = User("1", "Test User")
-    coEvery { repository.getUser("1") } returns flowOf(Result.success(expectedUser))
-    
-    // Act
-    viewModel.loadUser("1")
-    
-    // Assert
+    // Use Turbine for Flow testing
     viewModel.uiState.test {
         assertEquals(UserUiState.Loading, awaitItem())
-        assertEquals(UserUiState.Success(expectedUser), awaitItem())
+        // ...
     }
 }
 ```
 
-### Integration Tests
-- Usar TestApplicationComponent para Hilt
-- In-memory database para Room tests
-- MockWebServer para API tests
+## DO's ✅ & DON'Ts ❌
 
-### UI Tests
-```kotlin
-@Test
-fun userProfile_displaysUserInformation() {
-    composeTestRule.setContent {
-        UserProfile(
-            user = testUser,
-            onEditClick = {}
-        )
-    }
-    
-    composeTestRule
-        .onNodeWithText(testUser.name)
-        .assertIsDisplayed()
-}
+*Reglas heurísticas para podar el árbol de decisión de la IA.*
+
+**DO's:**
+1. Usa `StateFlow` en lugar de `LiveData` (Modern Android).
+2. Usa inyección por constructor (`@Inject`).
+3. Maneja errores con `Result<T>` wrapper.
+
+**DON'Ts:**
+1. ❌ NO uses `GlobalScope`.
+2. ❌ NO hagas llamadas de red en el Main Thread.
+3. ❌ NO uses `Synthetics` (obsoleto).
+4. ❌ NO captures `Context` en ViewModels (memory leak risk).
 ```
 
-## Dependencies & Best Practices
+## 💡 Por Qué agents.md Funciona: Análisis Profundo
 
-### Hilt Modules
-```kotlin
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class DataModule {
-    
-    @Binds
-    abstract fun bindUserRepository(
-        impl: UserRepositoryImpl
-    ): UserRepository
-}
-
-@Module
-@InstallIn(SingletonComponent::class)
-object NetworkModule {
-    
-    @Provides
-    @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.API_BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-    }
-}
-```
-
-### Room Database
-```kotlin
-// Siempre usar suspend functions para operaciones de escritura
-// Usar Flow para operaciones de lectura que necesitan observación
-@Dao
-interface UserDao {
-    @Query("SELECT * FROM users WHERE id = :userId")
-    fun getUserFlow(userId: String): Flow<UserEntity?>
-    
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertUser(user: UserEntity)
-    
-    @Query("DELETE FROM users WHERE id = :userId")
-    suspend fun deleteUser(userId: String)
-}
-```
-
-## DO's ✅
-
-1. **Usa StateFlow en lugar de LiveData** para nuevo código
-2. **Implementa UiState pattern** para manejar estados de UI
-3. **Documenta con KDoc** todas las funciones públicas
-4. **Escribe tests** para toda lógica de negocio
-5. **Usa Hilt** para dependency injection
-6. **Implementa cache-first strategy** en repositories
-7. **Maneja errores explícitamente** con sealed classes
-8. **Usa Composables sin estado** cuando sea posible
-9. **Implementa ContentDescription** para accesibilidad
-10. **Sigue Material3 guidelines** para diseño
-
-## DON'Ts ❌
-
-1. **No uses GlobalScope** - usa viewModelScope o lifecycleScope
-2. **No hagas llamadas de red en el Main thread**
-3. **No expongas mutable state** desde ViewModels
-4. **No uses !! operator** - maneja nullability correctamente
-5. **No ignores excepciones** - siempre maneja o propaga
-6. **No uses magic numbers** - define constantes nombradas
-7. **No hagas repositories con lógica de UI**
-8. **No uses LiveData** para nuevo código (usa StateFlow)
-9. **No copies código** - refactoriza a funciones reutilizables
-10. **No commitees secrets** - usa BuildConfig o local.properties
-
-## Common Prompts for AI Agents
-
-### "Create a new feature"
-Cuando crees una nueva feature, genera:
-1. Domain model en `domain/model/`
-2. Repository interface en `domain/repository/`
-3. Repository implementation en `data/repository/`
-4. Use case en `domain/usecase/`
-5. ViewModel en `ui/viewmodel/`
-6. Composable screens en `ui/screens/`
-7. Tests para cada capa
-
-### "Add network call"
-Para nuevas llamadas de red:
-1. Definir DTO en `data/remote/dto/`
-2. Añadir función en ApiService
-3. Implementar en RemoteDataSource
-4. Actualizar Repository
-5. Añadir mapping de DTO a domain model
-6. Crear tests con MockWebServer
-
-### "Refactor to Clean Architecture"
-Cuando refactorices código existente:
-1. Extraer modelos de dominio
-2. Crear repository interface
-3. Mover lógica de datos a repository impl
-4. Crear use cases si hay lógica de negocio
-5. Actualizar ViewModel para usar use cases
-6. Mantener tests funcionando
-
-## Code Review Checklist
-
-Antes de marcar un PR como listo:
-- [ ] Código sigue convenciones de naming
-- [ ] Implementa arquitectura Clean
-- [ ] Incluye tests unitarios (cobertura > 80%)
-- [ ] KDoc en APIs públicas
-- [ ] Manejo de errores apropiado
-- [ ] Sin warnings de lint
-- [ ] Accesibilidad implementada
-- [ ] Revisión de seguridad (sin secrets)
-- [ ] Rendimiento considerado
-- [ ] Backward compatibility verificada
-
-## Resources
-
-- [Android Developers](https://developer.android.com)
-- [Kotlin Documentation](https://kotlinlang.org/docs/home.html)
-- [Jetpack Compose Docs](https://developer.android.com/jetpack/compose)
-- [Architecture Guide](https://developer.android.com/topic/architecture)
-```
-
-## Por Qué agents.md Funciona
-
-### 1. **Consistencia Automática**
-Con `agents.md`, cada vez que pides a un agente que genere código, sigue las mismas convenciones:
+### 1. Consistencia Semántica
+Sin `agents.md`, un agente podría generar un `UserRepo` (abreviado) en un archivo, y un `ProductRepository` (completo) en otro. Con el archivo estándar, la IA infiere la regla "siempre usar sufijo Repository completo" y la aplica consistentemente.
 
 ```kotlin
-// Sin agents.md - código inconsistente:
-class userRepo {  // naming incorrecto
-    fun getuser(id: String) {  // camelCase inconsistente
-        // LiveData cuando el proyecto usa StateFlow
-        val user = MutableLiveData<User>()
-    }
-}
+// Sin agents.md - Inconsistencia
+class userRepo { ... } // Estilo A
+class ProductRepository { ... } // Estilo B
 
-// Con agents.md - código consistente:
-class UserRepository @Inject constructor(
-    private val remoteDataSource: UserRemoteDataSource
-) {
-    fun getUser(id: String): Flow<Result<User>> {
-        // Implementación siguiendo convenciones del proyecto
-    }
-}
+// Con agents.md - Consistencia forzada
+class UserRepository { ... }
+class ProductRepository { ... }
 ```
 
-### 2. **Onboarding Acelerado**
-Nuevos miembros del equipo (humanos o IA) tienen una referencia clara:
+### 2. Anclaje de Alucinaciones
+Los LLMs tienden a "alucinar" librerías que no existen o versiones antiguas. Al declarar explícitamente `Retrofit + Moshi` en `agents.md`, reduces la probabilidad de que la IA intente usar `Gson` o `Volley`, librerías que quizás fueron populares en su set de entrenamiento pero que no usas.
 
-```markdown
-# Para nuevos desarrolladores
-Antes de tu primer commit, lee agents.md para entender:
-- Arquitectura del proyecto
-- Convenciones de código
-- Setup de desarrollo
-- Workflow de testing
-```
+### 3. Onboarding Acelerado (Humanos + IA)
+Curiosamente, `agents.md` ha demostrado ser una herramienta increíble para humanos. Un desarrollador nuevo puede leerlo en 5 minutos y entender la "filosofía" del código mucho mejor que leyendo cientos de líneas de código dispersas.
 
-### 3. **Documentación Viva**
-A diferencia de documentación tradicional, `agents.md` se mantiene actualizado porque:
-- Se usa constantemente por los agentes
-- Código desactualizado genera problemas inmediatos
-- Es revisado en cada PR
+## 🛠️ Integrando agents.md en tu Workflow
 
-## Mejores Prácticas para agents.md
+### Fase de Desarrollo
+Cuando pidas código a Copilot, acostúmbrate a referenciar el contexto:
+> "Genera el repositorio para 'Pedidos' siguiendo las reglas definidas en agents.md, especialmente la estrategia de caché."
 
-### 1. Sé Específico y Concreto
-```markdown
-❌ MAL:
-## Testing
-Escribe tests para tu código.
+### Fase de Code Review
+Usa `agents.md` como la "ley". Si un PR viola una regla del `agents.md`, el comentario es simple:
+> "Por favor, alinea la implementación del ViewModel con la sección 'Presentation Layer' de agents.md."
 
-✅ BIEN:
-## Testing
-- Usa JUnit5 para unit tests
-- Naming: `should[ExpectedBehavior]When[Condition]`
-- Cobertura mínima: 80%
-- Ejemplo:
-```kotlin
-@Test
-fun `should emit success when data loads correctly`() = runTest {
-    // test implementation
-}
-```
-```
+### Herramientas Compatibles
+- **GitHub Copilot**: Lee automáticamente archivos abiertos y contexto cercano. Mantener `agents.md` abierto o pineado ayuda.
+- **Cursor IDE**: Permite añadir `@agents.md` al contexto global del chat.
+- **Gemini Code Assist**: Puede indexar el archivo como parte del contexto del proyecto.
 
-### 2. Incluye Ejemplos de Código
-Los agentes aprenden mejor de ejemplos concretos:
+## 🔮 Conclusión y Futuro
 
-```markdown
-## Dependency Injection
+El archivo `agents.md` no es una moda pasajera; es la respuesta de la ingeniería de software a la era de la IA Generativa. Representa el cambio de paradigma de "escribir código" a "escribir las reglas para que otro (la IA) escriba el código".
 
-### Providing Dependencies
-```kotlin
-@Module
-@InstallIn(SingletonComponent::class)
-object AppModule {
-    
-    @Provides
-    @Singleton
-    fun provideDatabase(
-        @ApplicationContext context: Context
-    ): AppDatabase {
-        return Room.databaseBuilder(
-            context,
-            AppDatabase::class.java,
-            "app-database"
-        ).build()
-    }
-}
-```
+Implementar `agents.md` hoy te da una ventaja competitiva inmediata:
+1.  **Código de mayor calidad** generado por IA.
+2.  **Menor deuda técnica** por inconsistencias.
+3.  **Documentación viva** que realmente se usa.
 
-### Injecting Dependencies
-```kotlin
-@HiltViewModel
-class MyViewModel @Inject constructor(
-    private val repository: MyRepository,
-    private val savedStateHandle: SavedStateHandle
-) : ViewModel()
-```
-```
-
-### 3. Mantén Secciones Organizadas
-```markdown
-# Estructura Recomendada
-
-## 📋 Project Overview (qué es el proyecto)
-## 🏗️ Architecture (cómo está estructurado)
-## 📝 Coding Conventions (cómo escribir código)
-## 🧪 Testing Strategy (cómo hacer tests)
-## 🔧 Common Tasks (tareas frecuentes)
-## 📦 Dependencies (librerías y uso)
-## ✅ DO's (prácticas recomendadas)
-## ❌ DON'Ts (prácticas prohibidas)
-## 🤖 AI Prompts (prompts comunes para agentes)
-```
-
-### 4. Actualiza Regularmente
-```markdown
-## Changelog del agents.md
-
-### 2025-12-29
-- Añadida sección de Jetpack Compose guidelines
-- Actualizado testing con Turbine para Flows
-- Migración de LiveData a StateFlow documentada
-
-### 2025-11-15
-- Añadida arquitectura Clean
-- Documentadas convenciones de naming
-- Ejemplos de Hilt modules
-```
-
-## Integrando agents.md en tu Workflow
-
-### Durante Desarrollo
-```bash
-# El agente lee agents.md automáticamente
-$ gh copilot suggest "create user repository"
-
-# GitHub Copilot:
-# Basándome en agents.md, creo el repository siguiendo
-# Clean Architecture con cache-first strategy...
-
-interface UserRepository {
-    fun getUser(id: String): Flow<Result<User>>
-}
-
-class UserRepositoryImpl @Inject constructor(...)
-```
-
-### Durante Code Review
-```markdown
-# En PR template
-## Checklist
-- [ ] Código sigue guidelines de agents.md
-- [ ] Arquitectura consistente con agents.md
-- [ ] Testing según estrategia en agents.md
-- [ ] Naming conventions respetadas
-```
-
-### Durante Onboarding
-```markdown
-# Guía para nuevos desarrolladores
-
-1. Lee README.md para entender el proyecto
-2. Lee agents.md para entender cómo desarrollamos
-3. Configura tu entorno según SETUP.md
-4. Lee el código con el contexto de agents.md
-```
-
-## Herramientas que Soportan agents.md
-
-### GitHub Copilot
-```javascript
-// .github/copilot-instructions.md
-// GitHub Copilot lee automáticamente:
-// - agents.md en la raíz
-// - .github/copilot-instructions.md
-// - README.md
-```
-
-### Gemini Code Assist
-```markdown
-# Gemini puede ser configurado para:
-1. Leer agents.md al inicio de cada sesión
-2. Referenciar agents.md en sugerencias
-3. Validar código contra guidelines de agents.md
-```
-
-### Cursor IDE
-```json
-// .cursor/settings.json
-{
-  "cursor.aiContext": [
-    "agents.md",
-    "README.md",
-    "ARCHITECTURE.md"
-  ]
-}
-```
-
-## Casos de Uso Avanzados
-
-### agents.md Multi-Módulo
-Para proyectos grandes con múltiples módulos:
-
-```
-project/
-├── agents.md (general guidelines)
-├── app/
-│   └── agents.md (app-specific guidelines)
-├── core/
-│   └── agents.md (core-specific guidelines)
-└── feature-user/
-    └── agents.md (feature-specific guidelines)
-```
-
-### agents.md con Diferentes Roles
-```markdown
-# agents.md
-
-## For Code Generation Agents
-[Instrucciones para generar código nuevo]
-
-## For Code Review Agents
-[Criterios para revisar código]
-
-## For Documentation Agents
-[Guidelines para generar documentación]
-
-## For Testing Agents
-[Estrategia para generar tests]
-```
-
-## Conclusión
-
-El archivo `agents.md` se ha convertido en un estándar porque resuelve un problema real: **comunicar efectivamente el contexto del proyecto a agentes de IA**. No es solo documentación; es una herramienta de productividad que:
-
-- Mantiene consistencia en el código generado
-- Acelera onboarding de nuevos desarrolladores
-- Captura decisiones de arquitectura
-- Facilita colaboración entre humanos y IA
-
-**Para empezar:**
-1. Crea `agents.md` en la raíz de tu proyecto
-2. Documenta tu arquitectura y convenciones
-3. Añade ejemplos concretos
-4. Itera basándote en el uso real
-5. Mantén actualizado con cada cambio arquitectónico
-
-El futuro del desarrollo incluye colaboración estrecha con agentes de IA, y `agents.md` es tu forma de asegurar que esa colaboración sea productiva y consistente con tu visión del proyecto.
+**Tu tarea para hoy:** Crea un archivo `agents.md` en la raíz de tu proyecto. Empieza simple (Overview y Stack) y hazlo crecer a medida que descubras patrones que quieres que tu IA respete.
