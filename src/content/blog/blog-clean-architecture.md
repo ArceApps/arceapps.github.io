@@ -1,378 +1,184 @@
-﻿---
-title: "Clean Architecture en Android: La Arquitectura que Revolucionará tu Desarrollo"
-description: "Descubre cómo Clean Architecture transforma apps Android complejas en código mantenible, testeable y escalable. Aprende a implementar las capas correctamente con ejemplos prácticos."
-pubDate: "2025-01-15"
-heroImage: "/images/placeholder-article-clean-architecture.svg"
-tags: ["Android", "Clean Architecture", "Architecture", "Kotlin", "Best Practices"]
+---
+title: "Clean Architecture: La Guía Definitiva para Android Moderno"
+description: "Desmitificando Clean Architecture: Una inmersión profunda en capas, dependencias y flujo de datos para construir apps Android indestructibles."
+pubDate: "2025-10-15"
+heroImage: "/images/placeholder-article-clean-arch.svg"
+tags: ["Architecture", "Android", "Clean Architecture", "Kotlin", "Best Practices"]
 ---
 
-## 🏛️ ¿Qué es Clean Architecture y por qué debería importarte?
+## 🏛️ Filosofía: ¿Qué es realmente "Clean"?
 
-Imagina que tienes una app de e-commerce con miles de líneas de código. Un día necesitas cambiar la base de datos de Room a Realm, otro día quieres migrar de Retrofit a OkHttp, y la semana siguiente tu jefe quiere añadir pagos con criptomonedas. Si tu código está **acoplado como espaguetis** 🍝, cada cambio será una pesadilla que puede romper toda la aplicación.
+**Clean Architecture**, propuesta por Robert C. Martin (Uncle Bob), no es una plantilla de carpetas; es una **filosofía de diseño de software** centrada en la **independencia**.
 
-**Clean Architecture** es la solución que Robert C. Martin (Uncle Bob) propuso para este problema. No es solo otro patrón de moda: es una **filosofía de diseño** que separa tu aplicación en capas concéntricas, donde las dependencias siempre apuntan hacia el centro (la lógica de negocio).
+El objetivo final es crear sistemas que sean:
+1.  **Independientes de Frameworks**: Android es un detalle, no el centro de tu arquitectura.
+2.  **Testables**: La lógica de negocio se puede probar sin UI, base de datos o servidor web.
+3.  **Independientes de la UI**: La UI puede cambiar fácilmente sin cambiar el resto del sistema.
+4.  **Independientes de la Base de Datos**: Puedes cambiar de Room a Realm o SQLDelight sin tocar la lógica de negocio.
 
-### 🎯 ¿Por qué Clean Architecture es el game-changer que necesitas?
+## 🧅 La Regla de Dependencia (The Dependency Rule)
 
-- **Mantenibilidad Extrema**: Cambios en UI no afectan la lógica de negocio, y viceversa
-- **Testing sin Dolor**: Cada capa se testea independientemente sin dependencias externas
-- **Escalabilidad Real**: Equipos grandes pueden trabajar en paralelo sin conflictos
-- **Flexibilidad Total**: Cambiar frameworks o bibliotecas sin reescribir la aplicación
-- **Independencia de Framework**: Lógica de negocio pura, sin dependencias de Android
-- **Reglas de Negocio Claras**: Lógica de dominio protegida en el centro de la arquitectura
+Esta es la única regla que **no puedes romper**.
 
-## 🎪 Las Capas de Clean Architecture
+> "Las dependencias de código fuente solo pueden apuntar hacia adentro, hacia políticas de nivel superior."
 
-Clean Architecture organiza tu app como un **circo de tres pistas**, donde cada capa tiene su función específica y las dependencias fluyen hacia el centro:
+Imagina la arquitectura como una cebolla:
+- **Centro (Domain Layer)**: Entidades y Lógica de Negocio Pura. No sabe nada de Android.
+- **Capa Intermedia (Data Layer / Adapters)**: Convierte datos externos al formato que el Dominio necesita.
+- **Capa Externa (Presentation / Framework)**: UI, Base de datos, API, Android SDK.
 
-### 📱 Capa de Presentación (UI Layer)
-**La cara bonita de tu app**
+El Dominio **nunca** importa clases de la capa de Datos o Presentación. Jamás verás `import android.*` o `import retrofit2.*` en la capa de Dominio.
 
-**Responsabilidades:**
-- **Activities y Fragments**: Gestión del ciclo de vida de Android
-- **Jetpack Compose**: UI declarativa y reactiva
-- **ViewModels**: Estado de UI y comunicación con Use Cases
-- **UI Models**: Datos preparados específicamente para la UI
+## 🏗️ Implementación Práctica en Android
 
-**🚫 Lo que NO debe hacer:**
-- Contener lógica de negocio compleja
-- Acceder directamente a fuentes de datos
-- Formatear datos más allá de la presentación
+Vamos a diseccionar cada capa con un ejemplo real: Una app de Noticias.
 
-### 🧠 Capa de Dominio (Business Logic)
-**El corazón inteligente**
+### 1. Domain Layer (El Núcleo Sagrado)
 
-**Responsabilidades:**
-- **Entities**: Objetos de negocio puros con reglas
-- **Use Cases**: Casos de uso específicos de la aplicación
-- **Repository Interfaces**: Contratos para acceso a datos
-- **Domain Services**: Lógica de dominio compleja
+Esta capa contiene la "Verdad" de tu aplicación. Es puro Kotlin.
 
-**✅ Características clave:**
-- Sin dependencias de Android Framework
-- 100% Kotlin puro o Java
-- Fácilmente testeable
-- Reutilizable en otros proyectos
-
-### 💾 Capa de Datos (Infrastructure)
-**Los trabajadores incansables**
-
-**Responsabilidades:**
-- **Repository Implementations**: Lógica real de acceso a datos
-- **Data Sources**: Local (Room) y Remote (Retrofit)
-- **Data Models**: DTOs y entidades de base de datos
-- **Mappers**: Conversión entre capas de datos
-
-**🎯 Funciones especiales:**
-- Gestión de caché inteligente
-- Sincronización offline/online
-- Manejo de errores de red
-- Transformación de datos
-
-## 🛠️ ShopFlow: Implementando Clean Architecture en una App Real
-
-Vamos a construir **ShopFlow**, una app de e-commerce que permita a los usuarios navegar productos, añadirlos al carrito y realizar compras.
-
-### 🎯 Capa de Dominio: El Núcleo del Negocio
-
-Comenzamos por el centro: las **Entities** que representan nuestros conceptos de negocio puros:
+**Componentes:**
+- **Entities (Modelos)**: Objetos de negocio puros.
+- **Use Cases (Interactors)**: Reglas de negocio específicas de la aplicación.
+- **Repository Interfaces**: Contratos que la capa de datos debe cumplir.
 
 ```kotlin
-// ✅ Entity pura sin dependencias de Android
-data class Product(
-    val id: ProductId,
-    val name: String,
-    val description: String,
-    val price: Money,
-    val category: ProductCategory,
-    val imageUrls: List<String>,
-    val isAvailable: Boolean,
-    val stockQuantity: Int,
-    val rating: ProductRating
+// Entity: Puro Kotlin, sin anotaciones de JSON o DB
+data class NewsArticle(
+    val id: String,
+    val title: String,
+    val publishedAt: LocalDateTime
+)
+
+// Repository Interface: El contrato (Dependency Inversion)
+interface NewsRepository {
+    fun getLatestNews(): Flow<Result<List<NewsArticle>>>
+}
+
+// Use Case: Orquestador de lógica
+class GetLatestNewsUseCase @Inject constructor(
+    private val repository: NewsRepository
 ) {
-    // 🧠 Lógica de dominio encapsulada
-    fun canBePurchased(requestedQuantity: Int): Boolean {
-        return isAvailable && stockQuantity >= requestedQuantity
-    }
-    
-    fun calculateDiscountedPrice(discount: Discount): Money {
-        return when (discount.type) {
-            DiscountType.PERCENTAGE -> price * (1 - discount.value)
-            DiscountType.FIXED_AMOUNT -> (price - discount.value).coerceAtLeast(Money.ZERO)
-        }
-    }
-    
-    fun isLowStock(): Boolean = stockQuantity < 10
-}
-```
-
-Ahora definamos los **Use Cases** que encapsulan las reglas de negocio de nuestra app:
-
-```kotlin
-// ✅ Use Case con lógica de negocio específica
-class GetProductsUseCase @Inject constructor(
-    private val productRepository: ProductRepository,
-    private val userPreferencesRepository: UserPreferencesRepository
-) {
-    suspend operator fun invoke(
-        category: ProductCategory? = null,
-        sortBy: ProductSortOption = ProductSortOption.RELEVANCE
-    ): Result<List<Product>> {
-        return try {
-            val userPreferences = userPreferencesRepository.getUserPreferences()
-            
-            // 🧠 Lógica de negocio: filtrar por preferencias del usuario
-            val products = when (category) {
-                null -> productRepository.getAllProducts()
-                else -> productRepository.getProductsByCategory(category)
-            }
-            
-            // 🎯 Aplicar filtros de negocio
-            val filteredProducts = products
-                .filter { it.isAvailable }
-                .filter { product -> 
-                    !userPreferences.hideOutOfStock || product.stockQuantity > 0 
+    operator fun invoke(): Flow<Result<List<NewsArticle>>> {
+        return repository.getLatestNews()
+            .map { result ->
+                // Regla de negocio: Filtrar noticias futuras (posible error de API)
+                result.map { list ->
+                    list.filter { it.publishedAt <= LocalDateTime.now() }
                 }
-                .let { productList ->
-                    if (userPreferences.onlyHighRated) {
-                        productList.filter { it.rating.isHighlyRated() }
-                    } else productList
-                }
-            
-            // 🔄 Aplicar ordenamiento
-            val sortedProducts = when (sortBy) {
-                ProductSortOption.PRICE_LOW_TO_HIGH -> filteredProducts.sortedBy { it.price.amount }
-                ProductSortOption.PRICE_HIGH_TO_LOW -> filteredProducts.sortedByDescending { it.price.amount }
-                ProductSortOption.RATING -> filteredProducts.sortedByDescending { it.rating.average }
-                ProductSortOption.NAME -> filteredProducts.sortedBy { it.name }
-                ProductSortOption.RELEVANCE -> filteredProducts // Ya ordenados por relevancia
             }
-            
-            Result.success(sortedProducts)
-            
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
     }
 }
 ```
 
+### 2. Data Layer (El Adaptador)
+
+Esta capa es el "plugin" que conecta tu Dominio con el mundo exterior.
+
+**Componentes:**
+- **Data Models (DTOs)**: Modelos de API (Retrofit) o DB (Room).
+- **Mappers**: Transforman DTO <-> Entity.
+- **Repository Implementation**: Implementa la interfaz del Dominio.
+- **Data Sources**: Fuentes de datos crudas.
+
 ```kotlin
-// ✅ Use Case con validaciones de negocio complejas
-class AddToCartUseCase @Inject constructor(
-    private val cartRepository: CartRepository,
-    private val productRepository: ProductRepository,
-    private val inventoryService: InventoryService
-) {
-    suspend operator fun invoke(
-        productId: ProductId,
-        quantity: Int
-    ): Result<CartItem> {
-        return try {
-            // 🔍 Validaciones de negocio
-            if (quantity <= 0) {
-                return Result.failure(InvalidQuantityException())
-            }
-            
-            val product = productRepository.getProductById(productId)
-                ?: return Result.failure(ProductNotFoundException(productId))
-            
-            // 🧠 Verificar disponibilidad según reglas de negocio
-            if (!product.canBePurchased(quantity)) {
-                return Result.failure(InsufficientStockException(product.stockQuantity))
-            }
-            
-            // 📊 Verificar límites de carrito (regla de negocio)
-            val currentCart = cartRepository.getCurrentCart()
-            val totalItemsAfterAdd = currentCart.totalQuantity + quantity
-            
-            if (totalItemsAfterAdd > MAX_CART_ITEMS) {
-                return Result.failure(CartCapacityExceededException())
-            }
-            
-            // 💰 Calcular precio con descuentos aplicables
-            val applicableDiscount = inventoryService.getApplicableDiscount(product)
-            val finalPrice = applicableDiscount?.let { 
-                product.calculateDiscountedPrice(it) 
-            } ?: product.price
-            
-            // ✅ Crear item de carrito
-            val cartItem = CartItem(
-                product = product,
-                quantity = quantity,
-                unitPrice = finalPrice,
-                discount = applicableDiscount
-            )
-            
-            val updatedCart = cartRepository.addItem(cartItem)
-            
-            Result.success(cartItem)
-            
-        } catch (e: Exception) {
-            Result.failure(e)
-        }
-    }
-    
-    companion object {
-        private const val MAX_CART_ITEMS = 99
+// DTO: Modelo de red con anotaciones específicas
+@JsonClass(generateAdapter = true)
+data class NetworkNewsArticle(
+    @Json(name = "article_id") val id: String,
+    @Json(name = "header") val title: String
+)
+
+// Mapper: Extension function para conversión
+fun NetworkNewsArticle.toDomain(): NewsArticle {
+    return NewsArticle(
+        id = this.id,
+        title = this.title,
+        publishedAt = LocalDateTime.now() // Simplificado
+    )
+}
+
+// Repository Impl: Aquí es donde "Android" y librerías viven
+class NewsRepositoryImpl @Inject constructor(
+    private val api: NewsApiService,
+    private val dao: NewsDao
+) : NewsRepository { // Implementa interfaz de Dominio
+
+    override fun getLatestNews(): Flow<Result<List<NewsArticle>>> = flow {
+        // Lógica de caché, red, etc.
+        val apiResponse = api.fetchNews()
+        val domainNews = apiResponse.map { it.toDomain() }
+        emit(Result.success(domainNews))
     }
 }
 ```
 
-### 💾 Capa de Datos: Implementando los Repositorios
+### 3. Presentation Layer (La Cara)
 
-La capa de datos implementa las interfaces definidas en el dominio y gestiona todas las fuentes de datos:
+Esta capa se encarga de pintar pixels en la pantalla.
 
-```kotlin
-// ✅ Implementación del repositorio con múltiples fuentes de datos
-@Singleton
-class ProductRepositoryImpl @Inject constructor(
-    private val remoteDataSource: ProductRemoteDataSource,
-    private val localDataSource: ProductLocalDataSource,
-    private val networkMonitor: NetworkMonitor,
-    private val productMapper: ProductMapper
-) : ProductRepository {
-
-    override suspend fun getAllProducts(): List<Product> {
-        return withContext(Dispatchers.IO) {
-            try {
-                // 🌐 Estrategia: Intentar remoto primero, fallback a local
-                if (networkMonitor.isConnected()) {
-                    val remoteProducts = remoteDataSource.getProducts()
-                    
-                    // 💾 Cachear datos localmente
-                    localDataSource.saveProducts(remoteProducts)
-                    
-                    // 🔄 Mapear de DTOs a entidades de dominio
-                    remoteProducts.map { productMapper.mapToDomain(it) }
-                } else {
-                    // 📱 Modo offline: usar datos locales
-                    val cachedProducts = localDataSource.getCachedProducts()
-                    cachedProducts.map { productMapper.mapToDomain(it) }
-                }
-            } catch (e: Exception) {
-                // 🔄 Fallback a caché en caso de error
-                val cachedProducts = localDataSource.getCachedProducts()
-                cachedProducts.map { productMapper.mapToDomain(it) }
-            }
-        }
-    }
-    // ... otros métodos
-}
-```
-
-### 📱 Capa de Presentación: ViewModels Clean
-
-Los ViewModels actúan como el puente entre la UI y los Use Cases, manteniendo el estado y orquestando las operaciones:
+**Componentes:**
+- **ViewModel**: Mantiene el estado de la UI y ejecuta Use Cases.
+- **UI (Compose/XML)**: Observa el estado del ViewModel.
 
 ```kotlin
-// ✅ ViewModel clean que solo orquesta Use Cases
 @HiltViewModel
-class ProductListViewModel @Inject constructor(
-    private val getProductsUseCase: GetProductsUseCase,
-    private val addToCartUseCase: AddToCartUseCase,
-    private val searchProductsUseCase: SearchProductsUseCase
+class NewsViewModel @Inject constructor(
+    private val getLatestNews: GetLatestNewsUseCase // Inyectamos Use Case
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(ProductListUiState())
-    val uiState: StateFlow<ProductListUiState> = _uiState.asStateFlow()
-
-    fun loadProducts(category: ProductCategory? = null) {
-        viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, error = null) }
-            
-            getProductsUseCase(
-                category = category,
-                sortBy = _uiState.value.sortOption
-            ).fold(
-                onSuccess = { products ->
-                    _uiState.update { currentState ->
-                        currentState.copy(
-                            products = products.map { it.toUiModel() },
-                            isLoading = false,
-                            error = null
-                        )
-                    }
-                },
-                onFailure = { error ->
-                    _uiState.update { currentState ->
-                        currentState.copy(
-                            isLoading = false,
-                            error = error.toUiError()
-                        )
-                    }
-                }
-            )
-        }
-    }
+    // ViewModel NO conoce el Repository, solo el Use Case
+    // ViewModel NO conoce Retrofit ni Room
 }
 ```
 
-## 🧪 Testing: La Ventaja Definitiva de Clean Architecture
+## 🔄 El Flujo de Control vs. Flujo de Dependencias
 
-Una de las mayores ventajas de Clean Architecture es lo **increíblemente fácil** que es testear cada capa independientemente:
+Aquí es donde muchos se confunden.
+
+- **Flujo de Control (Runtime)**: UI -> ViewModel -> Use Case -> Repository Impl -> API.
+- **Flujo de Dependencias (Compile time)**:
+  - Presentation -> Domain
+  - Data -> Domain
+  - Presentation -> Data (Solo para inyección de dependencias en el Root/App module)
+
+Gracias a la **Inversión de Dependencias (DIP)**, aunque el flujo de control va del Use Case al Repository Implementation, la dependencia de código fuente va al revés: `RepositoryImpl` depende de `RepositoryInterface` (que está en Dominio).
+
+## 🧪 Beneficios en Testing
+
+Al tener el Dominio aislado, probar los Use Cases es trivial:
 
 ```kotlin
-// ✅ Test unitario puro sin dependencias de Android
-@ExtendWith(MockitoExtension::class)
-class GetProductsUseCaseTest {
+// Test puro de Kotlin, corre en milisegundos en la JVM local
+class GetLatestNewsUseCaseTest {
 
-    @Mock
-    private lateinit var productRepository: ProductRepository
-    
-    @Mock
-    private lateinit var userPreferencesRepository: UserPreferencesRepository
-
-    private lateinit var getProductsUseCase: GetProductsUseCase
-
-    @BeforeEach
-    fun setup() {
-        getProductsUseCase = GetProductsUseCase(productRepository, userPreferencesRepository)
-    }
+    private val fakeRepository = FakeNewsRepository() // Fake en memoria
+    private val useCase = GetLatestNewsUseCase(fakeRepository)
 
     @Test
-    fun `when user prefers high rated products, should filter accordingly`() = runTest {
-        // Given
-        val userPreferences = UserPreferences(onlyHighRated = true, hideOutOfStock = false)
-        val products = listOf(
-            createProduct(rating = ProductRating(4.5, 100)), // Alta calificación
-            createProduct(rating = ProductRating(3.0, 50)),  // Baja calificación
-            createProduct(rating = ProductRating(4.2, 15))   // Alta calificación
-        )
+    fun `should filter future news`() = runTest {
+        // Arrange
+        val futureArticle = NewsArticle("1", "Future", LocalDateTime.now().plusDays(1))
+        fakeRepository.emit(listOf(futureArticle))
         
-        whenever(userPreferencesRepository.getUserPreferences())
-            .thenReturn(userPreferences)
-        whenever(productRepository.getAllProducts())
-            .thenReturn(products)
+        // Act
+        val result = useCase().first()
 
-        // When
-        val result = getProductsUseCase()
-
-        // Then
-        result.onSuccess { filteredProducts ->
-            assertThat(filteredProducts).hasSize(2)
-            assertThat(filteredProducts.all { it.rating.isHighlyRated() }).isTrue()
-        }
+        // Assert
+        assertTrue(result.getOrThrow().isEmpty())
     }
 }
 ```
 
-## ⚡ Clean Architecture vs MVVM: ¿Enemigos o Mejores Amigos?
+## ⚠️ Errores Comunes (Pitfalls)
 
-Muchos desarrolladores piensan que Clean Architecture y MVVM son **competencia**, pero la realidad es que son **complementarios perfectos**:
-
-**MVVM + Clean Architecture = Power Couple**
-
-**🎯 MVVM maneja...**
-- Presentación y estado de UI
-- Binding entre View y ViewModel
-- Lifecycle awareness
-
-**🏗️ Clean Architecture maneja...**
-- Reglas de negocio
-- Acceso a datos
-- Independencia de frameworks
+1.  **Modelos Anémicos Compartidos**: Usar el mismo objeto para DB, API y UI.
+    *   *Por qué está mal*: Si cambias la API, rompes la UI. Viola la separación de capas.
+2.  **Use Cases Pasamanos**: Use Cases que solo llaman al repositorio y no hacen nada más.
+    *   *Defensa*: A veces parece boilerplate, pero protege tu arquitectura para cuando las reglas cambien. Aún así, si *realmente* no hay lógica, algunos equipos permiten llamar al Repo directo desde el ViewModel (Pragmatic Clean Arch), pero ten cuidado.
+3.  **Lógica de Negocio en ViewModel**: "Si el usuario es premium, muestra esto".
+    *   *Solución*: Mueve esa lógica al Use Case o a la Entidad de Dominio.
 
 ## 🎯 Conclusión
 
-Clean Architecture puede parecer compleja al principio, pero la inversión vale la pena. Obtienes una aplicación robusta, testeable y preparada para el futuro.
+Clean Architecture tiene un costo inicial: más archivos, más mapeo de datos. Pero el retorno de inversión es una base de código que **sobrevive al tiempo**. Frameworks van y vienen (AsyncTask -> RxJava -> Coroutines -> ?), pero tu lógica de negocio, protegida en el centro de la cebolla, permanece inmutable.

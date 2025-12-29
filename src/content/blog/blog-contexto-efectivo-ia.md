@@ -1,401 +1,101 @@
 ---
-title: "Contexto Efectivo para Agentes IA: El Arte de la Comunicación con IA"
-description: "Aprende las mejores prácticas para proporcionar contexto a agentes de IA, maximizando la calidad y precisión del código generado en proyectos Android."
-pubDate: "2025-12-29"
-heroImage: "/images/placeholder-article-ai-context.svg"
-tags: ["AI", "Android", "Desarrollo", "Context", "GitHub Copilot", "Gemini", "Mejores Prácticas"]
+title: "Contexto Efectivo para IA en Android: El Arte del Prompt Engineering Técnico"
+description: "Domina el arte de proporcionar contexto efectivo a agentes de IA para obtener código Android de calidad superior, consistente y sin alucinaciones."
+pubDate: "2025-12-15"
+heroImage: "/images/placeholder-article-contexto-efectivo-ia.svg"
+tags: ["AI", "Android", "Prompt Engineering", "Contexto", "Productividad", "GitHub Copilot", "Gemini"]
 ---
 
-## El Problema del Contexto
+## 🧠 ¿Por qué el Contexto es Rey?
 
-Has notado que a veces le pides algo a GitHub Copilot o Gemini y el resultado es genérico, desconectado de tu proyecto, o simplemente incorrecto? El problema no es la IA, es el **contexto**.
+Imagina a un desarrollador Senior nuevo que se une a tu equipo. Si le dices: "Haz la pantalla de login", probablemente te hará mil preguntas o asumirá cosas incorrectas. Pero si le dices: "Haz la pantalla de login usando nuestro `AuthViewModel` base, siguiendo el diseño de `LoginScreen.kt` existente y reutilizando `PrimaryButton`", el resultado será mucho mejor.
 
-Los agentes de IA son increíblemente poderosos, pero solo son tan buenos como el contexto que les proporcionas. Es como contratar a un desarrollador senior: si le das contexto completo del proyecto, convenciones, y objetivos claros, producirá código excelente. Si solo le dices "haz esto" sin contexto, el resultado será genérico.
+Los agentes de IA (LLMs) funcionan igual. No leen tu mente; leen el **contexto** que les proporcionas. La calidad de la salida (código generado) es directamente proporcional a la calidad de la entrada (contexto proporcionado).
 
-## Los 5 Niveles de Contexto
+En el desarrollo de software, y específicamente en Android, el contexto no es solo texto; es arquitectura, dependencias, convenciones y patrones.
 
-### Nivel 1: Sin Contexto (❌ Malo)
-```
-Prompt: "Crea un ViewModel para usuarios"
-```
+## 🏗️ Los 4 Pilares del Contexto Efectivo
 
-El agente no sabe:
-- ¿Qué arquitectura usas?
-- ¿Qué librerías de DI?
-- ¿LiveData o StateFlow?
-- ¿Cómo manejas estados?
+Para obtener resultados de nivel Senior de una IA, necesitas proporcionarle cuatro tipos de contexto:
 
-**Resultado**: Código genérico que no encaja en tu proyecto.
+### 1. Contexto Arquitectónico (The Blueprint)
+El agente debe saber **cómo** construyes software.
+- ¿Usas Clean Architecture?
+- ¿MVVM o MVI?
+- ¿Dónde van los DTOs vs Domain Models?
+- ¿Cómo manejas la inyección de dependencias (Hilt/Koin)?
 
-### Nivel 2: Contexto Básico (⚠️ Regular)
-```
-Prompt: "Crea un ViewModel para usuarios usando MVVM y Hilt"
-```
+**Ejemplo de Prompt:**
+> "Estamos usando Clean Architecture con MVVM. La capa de dominio es pura Kotlin. La capa de datos usa el patrón Repository con una estrategia cache-first."
 
-Mejor, pero aún falta:
-- ¿Cómo estructuras estados UI?
-- ¿Cómo manejas errores?
-- ¿Naming conventions?
-- ¿Testing strategy?
+### 2. Contexto Tecnológico (The Stack)
+El agente debe conocer tu **caja de herramientas**.
+- ¿Jetpack Compose o XML?
+- ¿Coroutines o RxJava?
+- ¿Retrofit o Ktor?
+- ¿Room o Realm?
 
-**Resultado**: Código que compila pero no sigue tus convenciones.
+**Ejemplo de Prompt:**
+> "Usa Jetpack Compose para UI (Material3), Hilt para DI, y Coroutines/Flow para asincronía. No uses LiveData, usa StateFlow."
 
-### Nivel 3: Contexto Específico (✅ Bueno)
-```
-Prompt: "Crea un ViewModel para usuarios siguiendo:
-- MVVM con Clean Architecture
-- @HiltViewModel para DI
-- StateFlow para estados UI (no LiveData)
-- Sealed interface para UserUiState (Loading, Success, Error)
-- Use cases para lógica de negocio
-- Documentación KDoc"
-```
+### 3. Contexto de Convenciones (The Style)
+El agente debe imitar tu **estilo de codificación**.
+- ¿Cómo nombras tus ViewModels?
+- ¿Dónde pones los modifiers en Compose?
+- ¿Cómo manejas los estados de error?
 
-**Resultado**: Código que encaja bien en tu proyecto.
+**Ejemplo de Prompt:**
+> "Los ViewModels deben exponer un único `uiState` como `StateFlow`. Los errores se manejan con una sealed interface `UiState`. Los tests usan el patrón `should...when...`."
 
-### Nivel 4: Contexto Completo (🌟 Excelente)
-```
-Prompt: "Basándote en agents.md y siguiendo el patrón usado en 
-ProfileViewModel.kt, crea un ViewModel para usuarios que:
+### 4. Contexto de Negocio (The Domain)
+El agente debe entender **qué** estás construyendo.
+- ¿Qué es un "Usuario" en tu sistema?
+- ¿Qué reglas de validación aplican?
 
-1. Use GetUserUseCase y UpdateUserUseCase
-2. Maneje estados con UserUiState (Loading, Success, Error)
-3. Implemente validaciones inline
-4. Use viewModelScope para coroutines
-5. Incluya funciones: loadUser(), updateUser(), refresh()
-6. Documente con KDoc igual que otros ViewModels
-7. Siga naming conventions del proyecto
+**Ejemplo de Prompt:**
+> "Un Usuario tiene un ID único y un email. El email debe ser único en el sistema. Los usuarios premium tienen acceso a features beta."
 
-Ver ejemplos en:
-- src/ui/viewmodel/ProfileViewModel.kt (patrón de estados)
-- src/domain/usecase/user/ (use cases existentes)
-"
-```
+## 🛠️ Estrategias para Inyectar Contexto
 
-**Resultado**: Código indistinguible del que escribirías tú mismo.
+### Estrategia 1: El Archivo `agents.md` (Contexto Estático)
 
-### Nivel 5: Contexto Inteligente (🚀 Maestro)
-```
-El agente tiene acceso a:
-- agents.md (convenciones del proyecto)
-- Archivos relevantes automáticamente
-- Historial de decisiones
-- Tests existentes como ejemplos
-- Documentation standards
-
-Prompt simple: "Crea UserViewModel"
-```
-
-**Resultado**: Código perfecto que sigue todas las convenciones automáticamente.
-
-## Técnicas de Contexto para Android
-
-### 1. Contexto Arquitectónico
-
-**Proporciona la big picture:**
+La forma más efectiva de mantener contexto persistente es usar un archivo `agents.md` en la raíz de tu proyecto. (Ver artículo completo sobre [agents.md](blog-agents-md-estandar.md)).
 
 ```markdown
-# Contexto para el Agente IA
+# agents.md
+## Architecture
+- Clean Architecture (Domain, Data, UI)
+- MVVM pattern
+- Repository pattern
 
-## Arquitectura del Proyecto
-```
-app/
-├── data/        # Repositories, DTOs, Data Sources
-├── domain/      # Models, Use Cases, Repository Interfaces
-└── ui/          # ViewModels, Composables, Screens
-```
+## Tech Stack
+- Kotlin, Coroutines, Flow
+- Jetpack Compose, Material3
+- Hilt, Retrofit, Room
+- JUnit5, MockK, Turbine
 
-## Flujo de Datos
-UI (Composable) 
-  ↓ events
-ViewModel (MutableStateFlow)
-  ↓ use case invocation
-Use Case (Domain Logic)
-  ↓ repository call
-Repository (Data Source Abstraction)
-  ↓ network/database
-Data Sources (Retrofit/Room)
-
-## Patrones Clave
-- **ViewModel**: Expone StateFlow<UiState>, usa use cases
-- **Use Case**: Una responsabilidad, retorna Flow<Result<T>>
-- **Repository**: Implementa cache-first strategy
-- **UiState**: Sealed interface con Loading, Success, Error
+## Conventions
+- Use StateFlow, not LiveData
+- ViewModels expose strict UiState
+- Composable functions are stateless
 ```
 
-### 2. Contexto por Ejemplo
+### Estrategia 2: Contexto en el Código (KDoc Semántico)
 
-**El código habla más que las palabras:**
+Documenta tus clases base y interfaces clave. Los agentes leen los comentarios para entender la intención.
 
 ```kotlin
-// Incluye esto en tu prompt:
 /**
- * EJEMPLO DE VIEWMODEL QUE DEBES SEGUIR:
+ * Base Repository interface defining standard CRUD operations.
+ * All repositories must implement this pattern.
+ * Uses Result<T> wrapper for error handling.
  */
-@HiltViewModel
-class ProfileViewModel @Inject constructor(
-    private val getUserUseCase: GetUserUseCase,
-    private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
-    
-    private val _uiState = MutableStateFlow<ProfileUiState>(ProfileUiState.Loading)
-    val uiState: StateFlow<ProfileUiState> = _uiState.asStateFlow()
-    
-    init {
-        loadProfile()
-    }
-    
-    private fun loadProfile() {
-        viewModelScope.launch {
-            getUserUseCase(userId)
-                .catch { error ->
-                    _uiState.value = ProfileUiState.Error(error.message)
-                }
-                .collect { result ->
-                    _uiState.value = when (result) {
-                        is Result.Success -> ProfileUiState.Success(result.data)
-                        is Result.Error -> ProfileUiState.Error(result.exception.message)
-                    }
-                }
-        }
-    }
+interface BaseRepository<T> {
+    fun getAll(): Flow<Result<List<T>>>
+    suspend fun getById(id: String): Result<T>
 }
 
-/**
- * Crea UserViewModel siguiendo EXACTAMENTE este mismo patrón:
- * - Mismo estilo de inyección
- * - Mismo patrón de estados
- * - Mismo manejo de errores
- * - Misma estructura de funciones
- */
-```
-
-### 3. Contexto de Convenciones
-
-**Define reglas claras:**
-
-```kotlin
-/*
- * CONVENCIONES DEL PROYECTO
- * 
- * NAMING:
- * - ViewModels: [Feature]ViewModel (ej: UserViewModel)
- * - States: [Feature]UiState (ej: UserUiState)
- * - Use Cases: [Action][Entity]UseCase (ej: GetUserUseCase)
- * - Repositories: [Entity]Repository (ej: UserRepository)
- * 
- * DI:
- * - Siempre usa @Inject constructor
- * - ViewModels con @HiltViewModel
- * - Repositories en singleton
- * 
- * ESTADOS:
- * sealed interface [Feature]UiState {
- *     object Loading : [Feature]UiState
- *     data class Success(val data: T) : [Feature]UiState
- *     data class Error(val message: String) : [Feature]UiState
- * }
- * 
- * ERROR HANDLING:
- * - Usa .catch {} en Flows
- * - Mensajes de error user-friendly
- * - Logging con Timber en catch blocks
- * 
- * COROUTINES:
- * - viewModelScope para ViewModels
- * - Dispatchers.IO para operaciones de I/O
- * - Structured concurrency siempre
- */
-```
-
-### 4. Contexto de Testing
-
-**Muestra cómo quieres tests:**
-
-```kotlin
-/**
- * EJEMPLO DE TEST QUE DEBES GENERAR:
- */
-@ExperimentalCoroutinesApi
-class ProfileViewModelTest {
-    
-    @get:Rule
-    val mainDispatcherRule = MainDispatcherRule()
-    
-    private lateinit var viewModel: ProfileViewModel
-    private val mockUseCase = mockk<GetUserUseCase>()
-    
-    @Before
-    fun setup() {
-        viewModel = ProfileViewModel(mockUseCase, SavedStateHandle())
-    }
-    
-    @Test
-    fun `should emit loading state initially`() = runTest {
-        // Assert
-        assertThat(viewModel.uiState.value).isInstanceOf<ProfileUiState.Loading>()
-    }
-    
-    @Test
-    fun `should emit success when user loads correctly`() = runTest {
-        // Arrange
-        val expectedUser = User("1", "Test")
-        coEvery { mockUseCase(any()) } returns flowOf(Result.success(expectedUser))
-        
-        // Act
-        viewModel.loadProfile()
-        
-        // Assert
-        viewModel.uiState.test {
-            assertThat(awaitItem()).isInstanceOf<ProfileUiState.Loading>()
-            val success = awaitItem() as ProfileUiState.Success
-            assertThat(success.user).isEqualTo(expectedUser)
-        }
-    }
-}
-
-/**
- * Genera tests para UserViewModel siguiendo este EXACTO formato:
- * - Mismo setup con MainDispatcherRule
- * - MockK para dependencias
- * - Turbine para test de Flows
- * - Naming: `should [expected] when [condition]`
- * - Arrange-Act-Assert pattern
- */
-```
-
-### 5. Contexto Incremental
-
-**Construye contexto paso a paso:**
-
-```kotlin
-// PASO 1: Contexto general
-"Voy a crear un feature de gestión de usuarios en mi app Android"
-
-// PASO 2: Arquitectura
-"La app usa Clean Architecture con MVVM. 
-Estructura: data/ → domain/ → ui/"
-
-// PASO 3: Stack técnico
-"Stack: Kotlin, Jetpack Compose, Hilt, Room, Retrofit, Coroutines, StateFlow"
-
-// PASO 4: Convenciones
-"Convenciones:
-- ViewModels exponen StateFlow<UiState>
-- Use cases retornan Flow<Result<T>>
-- Repositories implementan cache-first
-- Tests con JUnit5, MockK, Turbine"
-
-// PASO 5: Request específico
-"Ahora crea UserViewModel que:
-1. Cargue lista de usuarios al iniciar
-2. Permita refrescar datos
-3. Permita buscar usuarios por nombre
-4. Maneje estados Loading/Success/Error
-5. Incluya tests completos"
-```
-
-## Estrategias Avanzadas de Contexto
-
-### Estrategia 1: Contexto por Archivo
-
-Estructura tus archivos para proveer contexto automático:
-
-```kotlin
-// src/ui/viewmodel/UserViewModel.kt
-
-/**
- * ViewModel para gestión de usuarios.
- * 
- * CONTEXTO PARA IA:
- * Este ViewModel sigue el patrón estándar del proyecto:
- * - @HiltViewModel para DI
- * - StateFlow para estados UI
- * - Use cases para lógica de negocio
- * - viewModelScope para coroutines
- * 
- * DEPENDENCIES:
- * - GetUsersUseCase: Lista todos los usuarios
- * - GetUserByIdUseCase: Obtiene usuario específico
- * - UpdateUserUseCase: Actualiza datos de usuario
- * 
- * UI STATE:
- * - Loading: Cargando datos
- * - Success: Datos cargados exitosamente
- * - Error: Error al cargar (con mensaje user-friendly)
- * 
- * EJEMPLO DE USO:
- * ```
- * @Composable
- * fun UserScreen(viewModel: UserViewModel = hiltViewModel()) {
- *     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
- *     
- *     when (uiState) {
- *         is UserUiState.Loading -> LoadingIndicator()
- *         is UserUiState.Success -> UserList(uiState.users)
- *         is UserUiState.Error -> ErrorMessage(uiState.message)
- *     }
- * }
- * ```
- */
-@HiltViewModel
-class UserViewModel @Inject constructor(
-    private val getUsersUseCase: GetUsersUseCase,
-    private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
-    // Implementation...
-}
-```
-
-### Estrategia 2: Contexto en Comentarios
-
-Usa comentarios estratégicos:
-
-```kotlin
-class UserRepository @Inject constructor(
-    private val apiService: UserApiService,
-    private val userDao: UserDao
-) {
-    
-    /**
-     * Obtiene lista de usuarios con cache-first strategy.
-     * 
-     * FLOW:
-     * 1. Emite datos cacheados inmediatamente (si existen)
-     * 2. Hace request a API en paralelo
-     * 3. Actualiza cache con datos frescos
-     * 4. Emite datos actualizados
-     * 
-     * AI NOTE: Este patrón debe ser usado en TODOS los repositories
-     * para garantizar UX responsive incluso sin conexión.
-     */
-    fun getUsers(): Flow<Result<List<User>>> = flow {
-        // 1. Cache first
-        val cachedUsers = userDao.getAllUsers()
-        if (cachedUsers.isNotEmpty()) {
-            emit(Result.success(cachedUsers.map { it.toModel() }))
-        }
-        
-        // 2. Fetch from network
-        try {
-            val response = apiService.getUsers()
-            if (response.isSuccessful && response.body() != null) {
-                val users = response.body()!!.map { it.toEntity() }
-                
-                // 3. Update cache
-                userDao.insertUsers(users)
-                
-                // 4. Emit fresh data
-                emit(Result.success(users.map { it.toModel() }))
-            }
-        } catch (e: Exception) {
-            // Si hay cache, no emitimos error
-            if (cachedUsers.isEmpty()) {
-                emit(Result.failure(e))
-            }
-        }
-    }.flowOn(Dispatchers.IO)
-}
+// Prompt: "Implementa UserRepository siguiendo el patrón de BaseRepository"
 ```
 
 ### Estrategia 3: Contexto Dinámico con Promptfiles

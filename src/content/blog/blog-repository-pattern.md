@@ -1,203 +1,95 @@
-﻿---
-title: "Patrón Repository en Android: La Base de una Arquitectura Sólida"
-description: "Descubre cómo el patrón Repository transforma el manejo de datos en tu app de puzzles, creando una capa de abstracción que hace tu código más limpio, testeable y mantenible."
-pubDate: "2025-07-05"
-heroImage: "/images/placeholder-article-repository.svg"
-tags: ["Android", "Repository Pattern", "Clean Architecture", "MVVM", "Room", "Retrofit", "Caching"]
+---
+title: "Repository Pattern: La Verdadera Abstracción de Datos"
+description: "Por qué el Repository es el patrón más importante en Clean Architecture. Estrategias de caché, manejo de errores y orquestación de fuentes de datos."
+pubDate: "2025-10-18"
+heroImage: "/images/placeholder-article-repository-pattern.svg"
+tags: ["Architecture", "Design Patterns", "Android", "Data Layer"]
 ---
 
-## 🏛️ ¿Qué es el Patrón Repository?
+## 🏛️ Teoría: El Guardián de los Datos
 
-Imagina que estás desarrollando **PuzzleQuest**, nuestra app de juegos de puzzles. Los datos de tus partidas pueden venir de múltiples fuentes: base de datos local, API remota, caché en memoria, o incluso archivos locales. El patrón Repository actúa como un **bibliotecario especializado** que sabe exactamente dónde encontrar cada dato que necesitas, sin que tu código de negocio tenga que preocuparse por los detalles.
+El **Repository Pattern** tiene un propósito simple pero vital: **Desacoplar la lógica de negocio de la procedencia de los datos.**
 
-El patrón Repository encapsula la lógica necesaria para acceder a fuentes de datos. Centraliza la funcionalidad común de acceso a datos, proporcionando mejor mantenibilidad y desacoplando la infraestructura o tecnología usada para acceder a bases de datos de la capa de modelo de dominio.
+El Use Case (o ViewModel) pregunta: *"Dame los usuarios"*.
+Al Use Case no le importa si los usuarios vienen de:
+-   Una API REST (Retrofit)
+-   Una base de datos local (Room)
+-   Un archivo JSON en assets
+-   Una caché en memoria
 
-## 🎯 ¿Por qué necesitas Repository en tu app de puzzles?
+Esto permite cambiar la implementación de datos sin tocar ni una línea de la lógica de negocio.
 
-- **Abstracción de Fuentes de Datos**: Tu ViewModel no necesita saber si los puzzles vienen de Room, Retrofit o SharedPreferences.
-- **Testabilidad Superior**: Puedes crear implementaciones fake del repository para tests unitarios.
-- **Cacheo Inteligente**: Implementa estrategias de caché transparentes para el resto de la aplicación.
-- **Sincronización Offline/Online**: Maneja automáticamente cuándo usar datos locales vs remotos.
+## 🏗️ Anatomía de un Repositorio Moderno
 
-## 🏗️ Arquitectura del Repository en PuzzleQuest
-
-### 📊 Flujo de Datos
-1. **UI (Fragment/Activity)**
-2. **ViewModel**
-3. **Repository**
-4. **Data Sources** (Room DB, Retrofit API, Memory Cache)
-
-## 🔧 Implementación Práctica: PuzzleRepository
-
-### 1. Definiendo el Modelo de Datos
+### 1. La Interfaz (Dominio)
+Define **qué** se puede hacer, no **cómo**.
 
 ```kotlin
-@Entity(tableName = "puzzles")
-data class Puzzle(
-    @PrimaryKey
-    val id: String,
-    val title: String,
-    val description: String,
-    val difficulty: Int,
-    val imageUrl: String,
-    val gridSize: Int,
-    val pieces: List<PuzzlePiece>,
-    val isCompleted: Boolean = false
-)
-```
+interface ProductRepository {
+    // Retorna Flow para actualizaciones en tiempo real
+    fun getProducts(): Flow<Result<List<Product>>>
 
-### 2. Interface del Repository
+    // Funciones suspendidas para operaciones one-shot
+    suspend fun refreshProducts(): Result<Unit>
 
-```kotlin
-interface PuzzleRepository {
-    suspend fun getAllPuzzles(): Flow<List<Puzzle>>
-    suspend fun getPuzzleById(id: String): Puzzle?
-    suspend fun updatePuzzleProgress(puzzleId: String, pieces: List<PuzzlePiece>)
-    suspend fun syncPuzzlesFromRemote(): Result<Unit>
+    suspend fun getProductById(id: String): Result<Product>
 }
 ```
 
-### 3. Implementación del Repository
+### 2. La Implementación (Capa de Datos)
+Aquí vive la lógica sucia de coordinación.
 
 ```kotlin
-@Singleton
-class PuzzleRepositoryImpl @Inject constructor(
-    private val localDataSource: PuzzleLocalDataSource,
-    private val remoteDataSource: PuzzleRemoteDataSource,
-    private val cacheDataSource: PuzzleCacheDataSource,
-    private val networkMonitor: NetworkMonitor
-) : PuzzleRepository {
+class ProductRepositoryImpl @Inject constructor(
+    private val remote: ProductRemoteDataSource, // Retrofit
+    private val local: ProductLocalDataSource,   // Room
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+) : ProductRepository { ... }
+```
 
-    override suspend fun getAllPuzzles(): Flow<List<Puzzle>> {
-        return flow {
-            // 1. Emitir datos del caché si están disponibles
-            val cachedPuzzles = cacheDataSource.getAllPuzzles()
-            if (cachedPuzzles.isNotEmpty()) emit(cachedPuzzles)
+## 🔄 Estrategias de Sincronización
 
-            // 2. Obtener datos locales
-            val localPuzzles = localDataSource.getAllPuzzles().first()
-            emit(localPuzzles)
+El valor real del repositorio está en cómo coordina Local y Remote.
 
-            // 3. Si hay conexión, sincronizar con remoto
-            if (networkMonitor.isConnected()) {
-                try {
-                    val remotePuzzles = remoteDataSource.getAllPuzzles()
-                    val mergedPuzzles = mergePuzzles(localPuzzles, remotePuzzles)
-                    
-                    cacheDataSource.savePuzzles(mergedPuzzles)
-                    localDataSource.insertPuzzles(mergedPuzzles)
-                    
-                    emit(mergedPuzzles)
-                } catch (e: Exception) {
-                    Timber.w(e, "Error al sincronizar puzzles remotos")
-                }
+### Estrategia: Single Source of Truth (SSOT)
+La base de datos local es la ÚNICA verdad.
+
+1.  La UI observa la DB (Room Flow).
+2.  Cuando se piden datos, el Repo lanza una llamada a la API.
+3.  Si la API responde, el Repo guarda en la DB.
+4.  Room notifica automáticamente a la UI con los nuevos datos.
+
+```kotlin
+override fun getProducts(): Flow<Result<List<Product>>> {
+    return local.getProducts() // Flow desde Room
+        .map { Result.Success(it) }
+        .onStart {
+            // Trigger refresh lateral
+            try {
+                val remoteData = remote.fetch()
+                local.save(remoteData)
+            } catch (e: Exception) {
+                emit(Result.Error(e))
             }
-        }.distinctUntilChanged()
-    }
-}
-```
-
-## 💾 Data Sources: Separando las Responsabilidades
-
-### Local Data Source (Room)
-
-```kotlin
-@Singleton
-class PuzzleLocalDataSource @Inject constructor(
-    private val puzzleDao: PuzzleDao
-) {
-    fun getAllPuzzles(): Flow<List<Puzzle>> = puzzleDao.getAllPuzzles()
-    suspend fun insertPuzzles(puzzles: List<Puzzle>) = puzzleDao.insertAll(puzzles)
-}
-```
-
-### Remote Data Source (Retrofit)
-
-```kotlin
-@Singleton
-class PuzzleRemoteDataSource @Inject constructor(
-    private val puzzleApiService: PuzzleApiService
-) {
-    suspend fun getAllPuzzles(): List<Puzzle> {
-        return puzzleApiService.getAllPuzzles().map { it.toDomain() }
-    }
-}
-```
-
-## 🧪 Testing del Repository
-
-```kotlin
-@Test
-fun `when getAllPuzzles called with cache available, should emit cached data first`() = runTest {
-    // Given
-    val cachedPuzzles = listOf(createTestPuzzle("1"), createTestPuzzle("2"))
-    val localPuzzles = listOf(createTestPuzzle("3"))
-    
-    every { mockCacheDataSource.getAllPuzzles() } returns cachedPuzzles
-    every { mockLocalDataSource.getAllPuzzles() } returns flowOf(localPuzzles)
-    
-    // When
-    val result = repository.getAllPuzzles().take(2).toList()
-    
-    // Then
-    assertEquals(2, result.size)
-    assertEquals(cachedPuzzles, result.first())
-    assertEquals(localPuzzles, result[1])
-}
-```
-
-## 🔗 Integración con ViewModel
-
-```kotlin
-@HiltViewModel
-class PuzzleListViewModel @Inject constructor(
-    private val puzzleRepository: PuzzleRepository
-) : ViewModel() {
-    
-    private val _uiState = MutableStateFlow(PuzzleListUiState())
-    val uiState: StateFlow<PuzzleListUiState> = _uiState.asStateFlow()
-    
-    init {
-        loadPuzzles()
-    }
-    
-    private fun loadPuzzles() {
-        viewModelScope.launch {
-            puzzleRepository.getAllPuzzles()
-                .collect { puzzles ->
-                    _uiState.update { it.copy(puzzles = puzzles) }
-                }
         }
-    }
 }
 ```
 
-## ⚡ Mejores Prácticas
+Esta estrategia es robusta porque la app funciona **Offline-First** por defecto.
 
-- **Cache Strategy**: Implementa múltiples niveles de caché (memoria, disco, red).
-- **Sync Strategy**: Sync en background usando WorkManager.
-- **Offline-First**: Prioriza datos locales para mejor UX.
-- **Testing Strategy**: Mock data sources individualmente.
+### Estrategia: Cache-Aside (Lectura con Fallback)
+Útil para datos que cambian poco o no se guardan en DB.
 
-## 🔧 Configuración con Dependency Injection
+1.  Busca en memoria/disco.
+2.  Si no existe o expiró -> Llama a red.
+3.  Retorna y guarda.
 
-```kotlin
-@Module
-@InstallIn(SingletonComponent::class)
-object RepositoryModule {
-    
-    @Provides
-    @Singleton
-    fun providePuzzleRepository(
-        localDataSource: PuzzleLocalDataSource,
-        remoteDataSource: PuzzleRemoteDataSource,
-        cacheDataSource: PuzzleCacheDataSource,
-        networkMonitor: NetworkMonitor
-    ): PuzzleRepository = PuzzleRepositoryImpl(
-        localDataSource,
-        remoteDataSource,
-        cacheDataSource,
-        networkMonitor
-    )
-}
-```
+## ⚠️ Errores Comunes
+
+1.  **Exponer DTOs**: El Repo debe devolver Modelos de Dominio, no `NetworkResponse<UserDto>`. Mapea siempre dentro del Repo.
+2.  **Lógica de Negocio**: El Repo no debe decidir "si el usuario es VIP, dale descuento". Eso es del Use Case. El Repo solo almacena y recupera.
+3.  **Manejo de Hilos**: El Repo debe ser "Main-Safe". Usa `withContext(Dispatchers.IO)` para asegurarte de que llamar al repo desde la UI nunca bloquee.
+
+## 🎯 Conclusión
+
+Un buen Repository es invisible. La capa de dominio confía ciegamente en él. Al centralizar el acceso a datos, ganas la capacidad de optimizar (añadir caché en memoria, cambiar de SQL a NoSQL) sin romper el resto de la app. Es la pieza clave de la mantenibilidad a largo plazo.

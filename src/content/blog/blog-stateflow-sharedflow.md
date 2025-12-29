@@ -1,151 +1,85 @@
-﻿---
-title: "StateFlow y SharedFlow: Gestión Avanzada de Estado y Eventos"
-description: "Domina las diferencias críticas, casos de uso, configuración de búfer y políticas de repetición para construir aplicaciones reactivas robustas y libres de memory leaks."
-pubDate: "2025-11-15"
+---
+title: "StateFlow vs SharedFlow: Guía Definitiva para Android"
+description: "Deja de usar LiveData. Entiende las diferencias profundas entre StateFlow y SharedFlow, cuándo usar cada uno y cómo evitar trampas comunes."
+pubDate: "2025-09-30"
 heroImage: "/images/placeholder-article-stateflow-sharedflow.svg"
-tags: ["Android", "Kotlin", "StateFlow", "SharedFlow", "Coroutines", "Reactive Programming"]
+tags: ["Kotlin", "Coroutines", "Flow", "Android", "State Management"]
 ---
 
-## 🎯 ¿Por qué Este Artículo es Para Expertos?
+## 🌊 Teoría: Hot Flows
 
-Si ya dominas **Kotlin Coroutines** y **Flow**, pero has tenido dolores de cabeza con memory leaks, pérdida de estado o comportamientos inesperados en la UI al usar flujos reactivos, este artículo es tu salvavidas. 🚨
+Tanto `StateFlow` como `SharedFlow` son **Hot Flows**.
+-   **Cold Flow (Flow normal)**: El código dentro del `flow { ... }` no se ejecuta hasta que alguien llama a `collect()`. Cada colector reinicia el flujo.
+-   **Hot Flow**: El flujo está activo independientemente de si hay colectores. Los datos se emiten y si nadie escucha, se pierden (o se guardan en buffer).
 
-StateFlow y SharedFlow no son simplemente "otra versión de LiveData" - son herramientas poderosas con comportamientos específicos que, mal utilizadas, pueden hundir tu app en un océano de bugs sutiles.
+## 📦 StateFlow: El Sucesor de LiveData
 
-## 🌊 StateFlow vs SharedFlow: El Duelo Definitivo
+`StateFlow` es una especialización de `SharedFlow` diseñada para **mantener estado**.
 
-Aunque ambos son **hot streams**, sus comportamientos y casos de uso son fundamentalmente diferentes:
+### Características Clave
+1.  **Siempre tiene valor**: Requiere un valor inicial. `state.value` siempre es seguro.
+2.  **Conflated**: Solo emite el *último* valor. Si emites "A", "B", "C" muy rápido y el colector es lento, solo recibirá "C". "A" y "B" se pierden (conflation).
+3.  **DistinctUntilChanged**: Si emites "A" y luego "A" otra vez, no notifica a los colectores.
 
-### 🗃️ StateFlow: El Guardián del Estado
-- **Propósito:** Mantener y emitir estado actual
-- **Replay:** Siempre 1 (último valor)
-- **Valor inicial:** Requerido obligatoriamente
-- **Emisión:** Solo cuando el valor cambia (.value != previousValue)
-
-### 📡 SharedFlow: El Mensajero de Eventos
-- **Propósito:** Emitir eventos y notificaciones
-- **Replay:** Configurable (0 por defecto)
-- **Valor inicial:** No requerido
-- **Emisión:** Cada emit() genera una emisión
-
-## 🔬 StateFlow: Anatomía del Estado Perfecto
-
-StateFlow es tu mejor amigo para manejar estado de UI. Es como un LiveData con esteroides, pero con superpoderes de Flow:
+**Uso Perfecto**: Estado de UI (`UiState`).
 
 ```kotlin
-@HiltViewModel
-class UserProfileViewModel @Inject constructor(
-    private val userRepository: UserRepository
-) : ViewModel() {
-    
-    // ✅ StateFlow para estado de UI complejo
-    private val _uiState = MutableStateFlow(UserProfileUiState.Loading)
-    val uiState: StateFlow<UserProfileUiState> = _uiState.asStateFlow()
-    
-    fun loadUserProfile(userId: String) {
-        viewModelScope.launch {
-            _uiState.value = UserProfileUiState.Loading
-            try {
-                val user = userRepository.getUserProfile(userId)
-                _uiState.value = UserProfileUiState.Success(user)
-            } catch (e: Exception) {
-                _uiState.value = UserProfileUiState.Error(e.message ?: "Unknown error")
-            }
-        }
-    }
-}
+private val _uiState = MutableStateFlow(UiState.Loading)
+val uiState = _uiState.asStateFlow()
 ```
 
-### 🎯 Cuándo usar StateFlow
-- Estado de UI (loading, error, success)
-- Configuraciones del usuario
-- Estado de autenticación
-- Contadores, progreso, cualquier valor "actual"
+## 📢 SharedFlow: El Bus de Eventos
 
-## 🚀 SharedFlow: El Maestro de los Eventos
+`SharedFlow` es más configurable y general. No necesita valor inicial y puede reemitir valores antiguos (replay) o no.
 
-SharedFlow es la herramienta perfecta para eventos que necesitan ser recibidos por múltiples collectors, pero no representan un "estado actual":
-
+### Configuración
 ```kotlin
-@HiltViewModel
-class GameEventsViewModel @Inject constructor() : ViewModel() {
-    
-    // ✅ SharedFlow para eventos de UI one-time
-    private val _uiEvents = MutableSharedFlow<GameUiEvent>(
-        replay = 0,    // No replay - eventos one-time
-        extraBufferCapacity = 64,  // Buffer para evitar suspend
-        onBufferOverflow = BufferOverflow.DROP_OLDEST
-    )
-    val uiEvents: SharedFlow<GameUiEvent> = _uiEvents.asSharedFlow()
-    
-    fun onPlayerMove(move: GameMove) {
-        viewModelScope.launch {
-            if (move.isWinning) {
-                _uiEvents.emit(GameUiEvent.ShowVictoryDialog)
-            }
-        }
-    }
-}
-```
-
-## ⚠️ Trampas Comunes y Memory Leaks
-
-### 1. SharingStarted: La Configuración Mortal
-
-```kotlin
-// ❌ MEMORY LEAK GARANTIZADO
-val userData = flow.stateIn(scope, SharingStarted.Eagerly, null)
-
-// ✅ PERFECTO: Se detiene automáticamente cuando no hay subscribers
-val userData = flow.stateIn(
-    scope = viewModelScope,
-    started = SharingStarted.WhileSubscribed(5000),
-    initialValue = null
+val sharedFlow = MutableSharedFlow<Event>(
+    replay = 0,      // Cuántos valores viejos enviar a nuevos suscriptores
+    extraBufferCapacity = 0,
+    onBufferOverflow = BufferOverflow.SUSPEND
 )
 ```
 
-### 2. SharedFlow Replay: El Arma de Doble Filo
+**Uso Perfecto**: Eventos de una sola vez ("One-off events") como Toasts, Navegación, Snackbars.
+Para eventos, usa `replay = 0`.
+
+## ⚠️ La Trampa del Lifecycle
+
+LiveData pausaba la observación automáticamente cuando la Activity estaba en `STOPPED`. Los Flows **NO**.
+
+Si colectas un Flow en `lifecycleScope.launch` directamente, seguirá colectando en background, gastando recursos y pudiendo crashear si intenta actualizar la UI.
+
+### La Solución Correcta
 
 ```kotlin
-// ❌ PELIGROSO: Replay alto puede causar comportamientos inesperados
-private val _events = MutableSharedFlow<Event>(replay = 10)
-
-// ✅ CORRECTO: Para eventos one-time
-private val _events = MutableSharedFlow<Event>(replay = 0)
-```
-
-## 🎨 Patterns en Jetpack Compose
-
-Con Compose, el consumo de StateFlow y SharedFlow tiene sus propias mejores prácticas:
-
-```kotlin
-@Composable
-fun ChatScreen(viewModel: ChatViewModel) {
-    // ✅ StateFlow se convierte automáticamente en State
-    val chatState by viewModel.chatState.collectAsState()
-    
-    // ✅ SharedFlow para eventos side-effect
-    LaunchedEffect(viewModel) {
-        viewModel.chatEvents.collect { event ->
-            // Handle event
-        }
+// En Activity/Fragment
+lifecycleScope.launch {
+    repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.uiState.collect { ... }
     }
 }
 ```
+O usando la extensión de `lifecycle-runtime-compose` en Jetpack Compose:
+```kotlin
+val state by viewModel.uiState.collectAsStateWithLifecycle()
+```
 
-## 🚀 Migración desde LiveData
+## 🎯 Tabla Comparativa
 
-| LiveData Pattern | StateFlow Equivalent |
-|------------------|----------------------|
-| `MutableLiveData<T>` | `MutableStateFlow<T>` |
-| `LiveData<T>` | `StateFlow<T>` |
-| `SingleLiveEvent` | `SharedFlow(replay=0)` |
+| Característica | StateFlow | SharedFlow | LiveData |
+|---|---|---|---|
+| Valor Inicial | Obligatorio | Opcional | Opcional |
+| Replay | 1 (Fijo) | Configurable | 1 (Último valor) |
+| Conflation | Sí | Configurable | Sí |
+| Distinct | Sí | No | No |
+| Lifecycle Aware | No (requiere wrapper) | No | Sí |
+| Threading | FlowOn / Context | FlowOn / Context | Main Thread Forzado |
 
-## 🎯 Conclusiones
+## 🎯 Conclusión
 
-StateFlow y SharedFlow no son simplemente "mejores versiones" de LiveData - son herramientas especializadas que requieren comprensión profunda de sus comportamientos y trade-offs.
+La migración es clara:
+-   `LiveData` -> `StateFlow` (Para Estado)
+-   `SingleLiveEvent` -> `SharedFlow` (Para Eventos)
 
-- **Usa StateFlow** para "datos" y estado actual.
-- **Usa SharedFlow** para "eventos" y notificaciones.
-- **Configura buffers** generosamente pero monitorea memory usage.
-- **Usa SharingStarted.WhileSubscribed()** para evitar leaks.
+Dominar estos dos tipos de Flows te da control total sobre la reactividad de tu aplicación, permitiendo patrones potentes y seguros.

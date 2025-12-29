@@ -1,381 +1,68 @@
 ---
-title: "Code Review Asistido por IA: Mejores Revisiones con Agentes Inteligentes"
-description: "Descubre cómo los agentes de IA revolucionan el code review en Android, detectando bugs, sugiriendo mejoras y manteniendo estándares de código de manera automatizada."
-pubDate: "2025-12-29"
+title: "Code Review con IA: Tu Nuevo Compañero de Equipo Incansable"
+description: "Aprende a configurar agentes de IA para realizar revisiones de código automáticas, detectar bugs sutiles y hacer cumplir estándares antes de que un humano intervenga."
+pubDate: "2025-11-05"
 heroImage: "/images/placeholder-article-code-review-ia.svg"
-tags: ["AI", "Code Review", "Android", "Calidad", "GitHub Copilot", "Gemini"]
+tags: ["AI", "Code Review", "DevOps", "Quality Assurance", "GitHub Actions"]
 ---
 
-## El Problema del Code Review Tradicional
+## 🧐 El Problema del Code Review Humano
 
-El code review es fundamental para calidad de código, pero tiene desafíos:
+El Code Review es vital, pero tiene problemas inherentes a la naturaleza humana:
+1.  **Fatiga**: Después de revisar 200 líneas, la atención cae en picada.
+2.  **Subjetividad**: "No me gusta este nombre de variable" vs "Este algoritmo es O(n^2)".
+3.  **Context Switching**: Interrumpir tu flujo para revisar el PR de otro.
+4.  **Nitpicking**: Perder tiempo discutiendo indentación en lugar de arquitectura.
 
-- ⏰ **Lento**: Esperar a reviewers disponibles
-- 😴 **Inconsistente**: Diferentes reviewers, diferentes estándares
-- 🔍 **Superficial**: Enfoque en style, no en lógica
-- 🎯 **Sesgado**: Revisar lo que ya conoces, ignorar lo complejo
-- 😓 **Tedioso**: Revisar boilerplate y formatting
+La IA no se cansa, no tiene ego y puede revisar la indentación en milisegundos.
 
-**IA transforma esto:**
-- ⚡ **Instantáneo**: Review inmediato al crear PR
-- 🎯 **Consistente**: Mismos estándares siempre
-- 🔬 **Profundo**: Analiza lógica, performance, seguridad
-- 🤖 **Exhaustivo**: Revisa todo, sin cansarse
-- 🧠 **Educativo**: Explica problemas y soluciones
+## 🤖 Niveles de Code Review con IA
 
-## Niveles de Code Review con IA
+Podemos integrar la IA en diferentes etapas del ciclo de revisión.
 
-### Nivel 1: Linting y Formatting
+### Nivel 1: El Linter Semántico (Pre-commit)
 
-```kotlin
-// IA detecta automáticamente:
+Las herramientas estáticas (Detekt, Lint) encuentran errores de sintaxis. La IA encuentra errores de **intención**.
 
-// ❌ PROBLEMA: Formatting inconsistente
-class UserViewModel(private val repository:UserRepository,
-private val useCase:GetUserUseCase){
-fun load(){
-loadUser()
-}
-}
+Imagina un script local que corre antes de hacer commit:
+> "Revisa mis cambios. ¿Estoy introduciendo algún riesgo de seguridad o rompiendo el patrón MVVM?"
 
-// ✅ IA SUGIERE: Formatting correcto
-class UserViewModel(
-    private val repository: UserRepository,
-    private val useCase: GetUserUseCase
-) {
-    fun load() {
-        loadUser()
-    }
-}
+**Herramientas**: Cursor IDE, plugins de IDE con GPT-4.
 
-// IA también detecta:
-// - Imports no usados
-// - Variables no usadas
-// - Trailing whitespace
-// - Inconsistent indentation
-```
+### Nivel 2: El Revisor de PR Automático (CI Pipeline)
 
-### Nivel 2: Code Quality
+Aquí es donde la magia ocurre. Cuando abres un Pull Request, un agente (como **CodeRabbit**, **Coderabbit.ai** o acciones custom con OpenAI API) analiza el diff.
 
-```kotlin
-// ❌ PROBLEMA: God Object
-class UserManager {
-    fun createUser() { ... }
-    fun deleteUser() { ... }
-    fun sendEmail() { ... }
-    fun validateData() { ... }
-    fun logActivity() { ... }
-    fun generateReport() { ... }
-    fun processPayment() { ... }
-}
+**¿Qué busca la IA?**
+- **Complejidad Ciclomática**: "¿Esta función es demasiado difícil de leer?"
+- **Ausencia de Tests**: "Has añadido lógica nueva en `UserViewModel` pero no veo cambios en `UserViewModelTest`."
+- **Documentación**: "Has creado una función pública nueva sin KDoc."
+- **Seguridad**: "Estás logueando información sensible (PII) en este `Log.d`."
 
-// ✅ IA COMENTA EN PR:
-"""
-⚠️ **Violación de Single Responsibility Principle**
+**Ejemplo de comentario generado por IA en un PR:**
+> 🤖 **AI Reviewer**:
+> "En la línea 45, estás colectando un `Flow` dentro de un `LaunchedEffect` sin usar `lifecycle.repeatOnLifecycle`. Esto podría causar que la colección continúe cuando la app está en background, desperdiciando recursos.
+>
+> **Sugerencia**: Usa `collectAsStateWithLifecycle()` o envuélvelo en `repeatOnLifecycle`."
 
-Esta clase tiene múltiples responsabilidades:
-- Gestión de usuarios
-- Email
-- Validación
-- Logging
-- Reportes
-- Pagos
+### Nivel 3: El Generador de Resúmenes (Contexto para Humanos)
 
-**Sugerencia:**
-Dividir en clases especializadas:
-- UserRepository: CRUD de usuarios
-- EmailService: Envío de emails
-- DataValidator: Validaciones
-- ActivityLogger: Logging
-- ReportGenerator: Reportes
-- PaymentProcessor: Pagos
+A veces, entender *qué* hace un PR gigante es difícil. La IA puede leer todos los cambios y generar una descripción humana:
 
-**Ejemplo de refactor:**
-```kotlin
-class UserRepository @Inject constructor(
-    private val userDao: UserDao
-) {
-    suspend fun createUser(user: User): Result<User>
-    suspend fun deleteUser(id: String): Result<Unit>
-}
+> **Resumen del PR (Generado por IA)**:
+> "Este PR migra el módulo de Login de XML a Jetpack Compose.
+> - Elimina `activity_login.xml`.
+> - Crea `LoginScreen.kt`.
+> - Actualiza `LoginViewModel` para usar StateFlow.
+> - **Alerta**: Modifica el `AndroidManifest.xml`, por favor revisar permisos."
 
-class EmailService @Inject constructor(
-    private val emailClient: EmailClient
-) {
-    suspend fun sendEmail(to: String, subject: String, body: String)
-}
-```
-"""
-```
+Esto ahorra al revisor humano 10 minutos de "arqueología" para entender el propósito del cambio.
 
-### Nivel 3: Logic Issues
+## 🛠️ Configurando un AI Code Reviewer con GitHub Actions
 
-```kotlin
-// ❌ PROBLEMA: Null pointer potential
-class ProductViewModel @Inject constructor(
-    private val repository: ProductRepository
-) : ViewModel() {
-    
-    var selectedProduct: Product? = null
-    
-    fun updatePrice(newPrice: Double) {
-        // Potential NullPointerException
-        selectedProduct.price = newPrice
-        repository.updateProduct(selectedProduct)
-    }
-}
-
-// ✅ IA COMENTA:
-"""
-🐛 **Potential NullPointerException**
-
-`selectedProduct` puede ser null, causando crash en línea 8.
-
-**Problema:**
-- selectedProduct es nullable (Product?)
-- No hay null check antes de usar
-
-**Impacto:** 
-🔴 HIGH - Crash en producción
-
-**Sugerencia:**
-```kotlin
-fun updatePrice(newPrice: Double) {
-    val product = selectedProduct ?: run {
-        Timber.w("Cannot update price: no product selected")
-        return
-    }
-    
-    val updated = product.copy(price = newPrice)
-    repository.updateProduct(updated)
-}
-```
-
-**O mejor, usa Result:**
-```kotlin
-fun updatePrice(newPrice: Double): Result<Unit> {
-    val product = selectedProduct 
-        ?: return Result.failure(NoProductSelectedException())
-    
-    val updated = product.copy(price = newPrice)
-    return repository.updateProduct(updated)
-}
-```
-"""
-```
-
-### Nivel 4: Performance Issues
-
-```kotlin
-// ❌ PROBLEMA: Performance issue
-@Composable
-fun ProductList(products: List<Product>) {
-    LazyColumn {
-        items(products.size) { index ->
-            val product = products[index]
-            
-            // Cálculo pesado en cada recomposition
-            val discount = calculateComplexDiscount(product)
-            
-            ProductCard(
-                product = product,
-                discount = discount
-            )
-        }
-    }
-}
-
-// ✅ IA COMENTA:
-"""
-⚡ **Performance Issue: Expensive Computation in Composition**
-
-`calculateComplexDiscount()` se ejecuta en cada recomposición,
-causando lag en la UI.
-
-**Problema:**
-- Cálculo pesado dentro de Composable
-- Sin memoization
-- Se recalcula en cada scroll
-
-**Impacto:**
-🟡 MEDIUM - UI lag, batería, overhead
-
-**Medición:**
-```
-Operación: calculateComplexDiscount()
-Tiempo: ~50ms por item
-Items visibles: ~10
-Total: ~500ms por recomposition
-Frame budget: 16ms
-Resultado: Frames dropped
-```
-
-**Sugerencia 1 - Precalcular:**
-```kotlin
-@Composable
-fun ProductList(products: List<Product>) {
-    // Calcular una sola vez
-    val productsWithDiscounts = remember(products) {
-        products.map { product ->
-            product to calculateComplexDiscount(product)
-        }
-    }
-    
-    LazyColumn {
-        items(productsWithDiscounts) { (product, discount) ->
-            ProductCard(product = product, discount = discount)
-        }
-    }
-}
-```
-
-**Sugerencia 2 - Memoization por item:**
-```kotlin
-@Composable
-fun ProductCard(product: Product) {
-    val discount = remember(product.id, product.price) {
-        calculateComplexDiscount(product)
-    }
-    
-    // UI ...
-}
-```
-
-**Sugerencia 3 - Background calculation:**
-```kotlin
-@HiltViewModel
-class ProductListViewModel @Inject constructor() : ViewModel() {
-    
-    val productsWithDiscounts: StateFlow<List<ProductWithDiscount>> = 
-        repository.getProducts()
-            .map { products ->
-                products.map { product ->
-                    ProductWithDiscount(
-                        product = product,
-                        discount = calculateComplexDiscount(product)
-                    )
-                }
-            }
-            .stateIn(
-                scope = viewModelScope,
-                started = SharingStarted.WhileSubscribed(5000),
-                initialValue = emptyList()
-            )
-}
-```
-"""
-```
-
-### Nivel 5: Security Issues
-
-```kotlin
-// ❌ PROBLEMA: Security vulnerability
-class LoginViewModel @Inject constructor(
-    private val authService: AuthService,
-    private val preferences: SharedPreferences
-) : ViewModel() {
-    
-    fun login(email: String, password: String) {
-        viewModelScope.launch {
-            val result = authService.login(email, password)
-            
-            if (result.isSuccess) {
-                // ⚠️ Almacenando password en plain text
-                preferences.edit()
-                    .putString("user_email", email)
-                    .putString("user_password", password)
-                    .apply()
-            }
-        }
-    }
-}
-
-// ✅ IA COMENTA:
-"""
-🔒 **CRITICAL SECURITY VULNERABILITY**
-
-Password almacenado en SharedPreferences sin encriptar.
-
-**Riesgo:**
-🔴 CRITICAL - Exposición de credenciales
-
-**Amenazas:**
-1. Root access: Lectura directa de SharedPreferences
-2. Backup: Password en backups del sistema
-3. ADB: Acceso con USB debugging
-4. Malware: Apps pueden leer SharedPreferences
-
-**NUNCA HACER:**
-❌ Guardar passwords en plain text
-❌ Guardar tokens en SharedPreferences normales
-❌ Guardar API keys en código
-
-**SOLUCIÓN CORRECTA:**
-```kotlin
-class LoginViewModel @Inject constructor(
-    private val authService: AuthService,
-    private val secureStorage: SecureStorage // EncryptedSharedPreferences
-) : ViewModel() {
-    
-    fun login(email: String, password: String) {
-        viewModelScope.launch {
-            val result = authService.login(email, password)
-            
-            if (result.isSuccess) {
-                // ✅ Solo guardar token (encriptado)
-                secureStorage.saveToken(result.token)
-                
-                // ✅ NUNCA guardar password
-                // El backend debe validar con token
-            }
-        }
-    }
-}
-```
-
-**Implementación SecureStorage:**
-```kotlin
-class SecureStorage @Inject constructor(
-    @ApplicationContext context: Context
-) {
-    private val encryptedPrefs = EncryptedSharedPreferences.create(
-        "secure_prefs",
-        MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC),
-        context,
-        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-    )
-    
-    fun saveToken(token: String) {
-        encryptedPrefs.edit()
-            .putString("auth_token", token)
-            .apply()
-    }
-    
-    fun getToken(): String? {
-        return encryptedPrefs.getString("auth_token", null)
-    }
-    
-    fun clearToken() {
-        encryptedPrefs.edit()
-            .remove("auth_token")
-            .apply()
-    }
-}
-```
-
-**Referencias:**
-- [Android Security Best Practices](https://developer.android.com/topic/security/best-practices)
-- [EncryptedSharedPreferences](https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences)
-"""
-```
-
-## Configurando AI Code Review
-
-### GitHub Actions con AI Review
+Podemos construir un revisor simple usando la API de OpenAI y GitHub Actions.
 
 ```yaml
-# .github/workflows/ai-code-review.yml
 name: AI Code Review
 
 on:
@@ -383,504 +70,41 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  ai-review:
+  review:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       
-      - name: AI Code Review
-        uses: ai-code-reviewer/action@v1
+      - name: Get Diff
+        run: git diff origin/main > pr_diff.txt
+
+      - name: Ask GPT-4
+        uses: openai/gpt-action@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          model: 'gpt-4'
-          review-level: 'detailed'
-          focus-areas: |
-            - security
-            - performance
-            - architecture
-            - best-practices
-            - android-specific
-          ignore-patterns: |
-            - '*.md'
-            - 'build.gradle'
-          custom-rules: '.ai-review-rules.yml'
+          api_key: ${{ secrets.OPENAI_API_KEY }}
+          prompt: |
+            Actúa como un Senior Android Reviewer.
+            Analiza el siguiente diff de código.
+            Busca:
+            1. Bugs potenciales de concurrencia.
+            2. Violaciones de Clean Architecture.
+            3. Errores de manejo de memoria (leaks).
+
+            Sé conciso. Si el código está bien, di "LGTM".
+
+            Diff:
+            ${{ env.DIFF_CONTENT }}
 ```
 
-### Custom Rules para Android
+## ⚖️ El Equilibrio Humano-IA
 
-```yaml
-# .ai-review-rules.yml
-android:
-  architecture:
-    - rule: "ViewModels must use @HiltViewModel"
-      severity: error
-      message: "Use @HiltViewModel annotation for dependency injection"
-    
-    - rule: "StateFlow preferred over LiveData"
-      severity: warning
-      message: "Consider using StateFlow instead of LiveData for new code"
-    
-    - rule: "Repository pattern required"
-      severity: error
-      message: "Data access must go through Repository"
-  
-  performance:
-    - rule: "No computation in Composables"
-      severity: warning
-      message: "Move expensive computations to remember or ViewModel"
-    
-    - rule: "LazyColumn must use keys"
-      severity: warning
-      message: "Provide stable keys for efficient recomposition"
-  
-  security:
-    - rule: "No hardcoded secrets"
-      severity: critical
-      message: "Use BuildConfig or secure storage"
-    
-    - rule: "Use EncryptedSharedPreferences for sensitive data"
-      severity: error
-      message: "Never use plain SharedPreferences for tokens/passwords"
-  
-  testing:
-    - rule: "Public functions must have tests"
-      severity: warning
-      message: "Add unit tests for public APIs"
-    
-    - rule: "ViewModels must have test coverage > 80%"
-      severity: error
-      message: "Increase test coverage for ViewModels"
-```
+La IA no debe tener la última palabra (todavía).
 
-## Prompts para Code Review con IA
+- **IA**: Excelente para encontrar patrones, boilerplate faltante, errores de sintaxis lógica y cumplimiento de estándares.
+- **Humano**: Excelente para juzgar si la feature cumple con el requerimiento de negocio, si la UX es buena y si la arquitectura tiene sentido a largo plazo.
 
-### Review Completo
+**La Regla de Oro**: Deja que la IA haga el "Nitpicking" (estilo, docs, tests básicos) para que el humano pueda concentrarse en la Arquitectura y el Negocio.
 
-```
-"Revisa este Pull Request enfocándote en:
+## 🎯 Conclusión
 
-1. **Arquitectura:**
-   - ¿Sigue Clean Architecture?
-   - ¿Separation of concerns correcta?
-   - ¿SOLID principles respetados?
-
-2. **Android Best Practices:**
-   - ¿Lifecycle awareness?
-   - ¿Memory leaks potenciales?
-   - ¿Configuration changes manejados?
-
-3. **Performance:**
-   - ¿Operaciones pesadas en main thread?
-   - ¿Allocations innecesarias?
-   - ¿N+1 queries?
-
-4. **Security:**
-   - ¿Input validation?
-   - ¿SQL injection risks?
-   - ¿Secrets exposed?
-
-5. **Testing:**
-   - ¿Coverage adecuada?
-   - ¿Edge cases cubiertos?
-   - ¿Tests legibles?
-
-Para cada issue encontrado:
-- Severidad (Critical/High/Medium/Low)
-- Explicación del problema
-- Ejemplo de código correcto
-- Referencias a docs
-"
-```
-
-### Review Específico de Performance
-
-```
-"Analiza este código para performance en Android:
-
-Detecta:
-- ✗ Main thread blocking
-- ✗ Memory allocations en loops
-- ✗ Nested loops
-- ✗ Synchronous I/O
-- ✗ Large bitmaps sin reciclar
-- ✗ RecyclerView sin ViewHolder reuse
-- ✗ Queries N+1 en Room
-
-Para cada issue:
-1. Línea específica
-2. Impacto estimado (ms, MB, etc)
-3. Sugerencia de fix
-4. Código de ejemplo
-"
-```
-
-### Review de Seguridad
-
-```
-"Auditoría de seguridad para Android:
-
-Busca:
-🔒 Credenciales en código
-🔒 SQL injection vectors
-🔒 Path traversal risks
-🔒 Insecure random
-🔒 Weak crypto
-🔒 WebView vulnerabilities
-🔒 Intent vulnerabilities
-🔒 Certificate pinning missing
-🔒 Backup flag enabled sin encryption
-
-Clasifica por CVSS score y sugiere fixes.
-"
-```
-
-## Integrando AI Review en Workflow
-
-### Pre-commit Hook con AI
-
-```bash
-#!/bin/bash
-# .git/hooks/pre-commit
-
-echo "Running AI code review..."
-
-# Obtener archivos staged
-FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.kt$')
-
-if [ -z "$FILES" ]; then
-    exit 0
-fi
-
-# Revisar con IA
-for FILE in $FILES; do
-    echo "Reviewing $FILE..."
-    
-    # Llamar a AI review API
-    REVIEW_RESULT=$(ai-review --file="$FILE" --quick)
-    
-    # Si hay issues críticos, bloquear commit
-    if echo "$REVIEW_RESULT" | grep -q "CRITICAL"; then
-        echo "❌ Critical issues found in $FILE"
-        echo "$REVIEW_RESULT"
-        exit 1
-    fi
-    
-    # Warnings no bloquean, solo informan
-    if echo "$REVIEW_RESULT" | grep -q "WARNING"; then
-        echo "⚠️  Warnings in $FILE:"
-        echo "$REVIEW_RESULT"
-    fi
-done
-
-echo "✅ AI code review passed"
-exit 0
-```
-
-### PR Template con AI Review
-
-```markdown
-## Description
-[Descripción del cambio]
-
-## AI Review Checklist
-
-Antes de solicitar review humano, verifica que AI review pasó:
-
-- [ ] ✅ No issues críticos de seguridad
-- [ ] ✅ No memory leaks detectados
-- [ ] ✅ Performance OK (no blocking operations)
-- [ ] ✅ Tests coverage > 80%
-- [ ] ✅ Architecture guidelines seguidas
-- [ ] ✅ No code smells detectados
-
-## AI Review Report
-
-```
-[Pegar aquí el reporte de AI review]
-```
-
-## Type of Change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Refactoring
-- [ ] Performance improvement
-- [ ] Documentation
-
-## Testing
-- [ ] Unit tests added/updated
-- [ ] Integration tests added/updated
-- [ ] Manual testing performed
-
-## Screenshots
-[Si aplica]
-```
-
-## AI Review vs Human Review
-
-### Lo que IA hace MEJOR:
-- ✅ Detectar patterns automáticamente
-- ✅ Consistency checks exhaustivos
-- ✅ Security vulnerabilities conocidas
-- ✅ Performance antipatterns
-- ✅ Code style violations
-- ✅ 24/7 disponibilidad
-
-### Lo que HUMANOS hacen MEJOR:
-- 🧠 Entender contexto de negocio
-- 🧠 Evaluar UX implications
-- 🧠 Detectar logic bugs complejos
-- 🧠 Architectural decisions
-- 🧠 Priorizar refactorings
-- 🧠 Mentoring y knowledge transfer
-
-### El Mejor Enfoque: HÍBRIDO
-
-```
-1. IA hace first pass (instantáneo)
-   - Security
-   - Performance
-   - Style
-   - Common bugs
-
-2. Developer corrige issues automáticos
-
-3. Human review se enfoca en:
-   - Business logic
-   - Architecture
-   - UX
-   - Edge cases de dominio
-
-Resultado: 
-- Review más rápido
-- Mejor calidad
-- Menos burnout de reviewers
-```
-
-## Herramientas de AI Code Review
-
-### GitHub Copilot for PRs
-
-```
-# En PR, escribe comentario:
-@github-copilot review this change
-
-# Copilot analiza y comenta:
-- Issues encontrados
-- Sugerencias de mejora
-- Best practices violated
-- Código alternativo
-```
-
-### Code Climate with AI
-
-```yaml
-# .codeclimate.yml
-version: "2"
-
-plugins:
-  sonar-kotlin:
-    enabled: true
-  
-  ai-reviewer:
-    enabled: true
-    config:
-      model: gpt-4
-      focus:
-        - architecture
-        - android-specifics
-      auto-fix: false
-
-checks:
-  argument-count:
-    enabled: true
-    config:
-      threshold: 4
-  
-  complex-logic:
-    enabled: true
-    config:
-      threshold: 10
-  
-  method-lines:
-    enabled: true
-    config:
-      threshold: 25
-```
-
-### SonarQube + AI
-
-```kotlin
-// SonarQube detecta code smells
-// AI sugiere fixes específicos para Android
-
-// SonarQube detecta:
-// "Cognitive Complexity of this method is 15 (max 10)"
-
-// AI sugiere:
-"""
-Esta función tiene alta complejidad cognitiva.
-
-**Sugerencia de refactor:**
-```kotlin
-// ANTES: Complejidad 15
-fun processOrder(order: Order): Result<Receipt> {
-    if (order.items.isEmpty()) {
-        return Result.failure(EmptyOrderException())
-    }
-    
-    if (!order.isValid()) {
-        return Result.failure(InvalidOrderException())
-    }
-    
-    val user = getUserOrNull(order.userId)
-    if (user == null) {
-        return Result.failure(UserNotFoundException())
-    }
-    
-    if (!user.isActive) {
-        return Result.failure(InactiveUserException())
-    }
-    
-    // ... más lógica compleja
-}
-
-// DESPUÉS: Complejidad 5
-fun processOrder(order: Order): Result<Receipt> {
-    validateOrder(order)?. let { return it }
-    val user = validateUser(order.userId)?.let { return it }
-    
-    return executeOrder(order, user)
-}
-
-private fun validateOrder(order: Order): Result.Failure? {
-    if (order.items.isEmpty()) {
-        return Result.failure(EmptyOrderException())
-    }
-    if (!order.isValid()) {
-        return Result.failure(InvalidOrderException())
-    }
-    return null
-}
-
-private fun validateUser(userId: String): Result.Failure? {
-    val user = getUserOrNull(userId)
-        ?: return Result.failure(UserNotFoundException())
-    
-    if (!user.isActive) {
-        return Result.failure(InactiveUserException())
-    }
-    
-    return null
-}
-```
-"""
-```
-
-## Mejores Prácticas
-
-### 1. AI Review Como Primera Línea
-
-```
-Workflow óptimo:
-1. Developer crea PR
-2. AI review automático (< 1 min)
-3. Developer corrige issues automáticos
-4. Human review (enfocado en lógica/arquitectura)
-5. Merge
-```
-
-### 2. Configurar Reglas del Proyecto
-
-```kotlin
-// Define tus estándares en agents.md
-// AI review los aplicará automáticamente
-
-/**
- * Project Standards for AI Review
- * 
- * MANDATORY:
- * - @HiltViewModel en todos los ViewModels
- * - StateFlow en lugar de LiveData
- * - Repository pattern para datos
- * - Tests coverage > 80%
- * - KDoc en APIs públicas
- * 
- * FORBIDDEN:
- * - Hardcoded secrets
- * - Main thread blocking
- * - Memory leaks (unclosed resources)
- * - God objects (> 300 lines)
- */
-```
-
-### 3. Educación Continua
-
-```kotlin
-// AI review no solo detecta, ENSEÑA:
-
-// Comentario AI:
-"""
-❌ **Anti-pattern detectado: Callback Hell**
-
-```kotlin
-loadUser { user ->
-    loadOrders(user.id) { orders ->
-        loadProducts(orders) { products ->
-            updateUI(products) { result ->
-                // Callback hell!
-            }
-        }
-    }
-}
-```
-
-**Por qué es problema:**
-- Hard to read
-- Hard to handle errors
-- Hard to test
-- Leads to memory leaks
-
-**Solución moderna con Coroutines:**
-```kotlin
-viewModelScope.launch {
-    try {
-        val user = loadUser()
-        val orders = loadOrders(user.id)
-        val products = loadProducts(orders)
-        updateUI(products)
-    } catch (e: Exception) {
-        handleError(e)
-    }
-}
-```
-
-**Aprende más:**
-- [Kotlin Coroutines](...)
-- [Callback Hell Problem](...)
-"""
-```
-
-## Conclusión
-
-**AI Code Review** transforma el proceso de revisión de:
-- Tarea tediosa → Proceso automatizado y educativo
-- Revisión superficial → Análisis profundo y exhaustivo
-- Slow feedback → Feedback instantáneo
-- Inconsistente → Estándares aplicados uniformemente
-
-**Resultado:**
-- ✅ **Mejor calidad** de código
-- ✅ **Más rápido** time-to-merge
-- ✅ **Menos bugs** en producción
-- ✅ **Team aprende** continuamente
-- ✅ **Reviewers felices** (se enfocan en lo importante)
-
-**Tu siguiente paso:**
-1. Configura AI review en tu repositorio
-2. Define reglas específicas de tu proyecto
-3. Integra en tu workflow (PR + CI)
-4. Itera basándote en feedback
-
-El futuro del code review es híbrido: AI para lo rutinario, humanos para lo estratégico.
+Integrar IA en tu proceso de Code Review es como tener un "Junior muy aplicado" que lee cada línea de código al instante. No reemplaza al Senior, pero le quita el 80% del trabajo tedioso, permitiendo que el equipo se mueva más rápido y con mayor confianza.

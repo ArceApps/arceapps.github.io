@@ -1,378 +1,147 @@
-﻿---
-title: "CDE + Versionado Semántico: El Workflow Definitivo para Proyectos Modernos"
-description: "Descubre cómo combinar Commit-Driven Development con semantic versioning para crear un flujo de trabajo automatizado, trazable y escalable."
-pubDate: "2026-01-27"
-heroImage: "/images/placeholder-article-cde-semver.svg"
-tags: ["CDE", "Semantic Versioning", "Conventional Commits", "CI/CD", "Git Workflow", "Automation", "DevOps", "Release Management"]
+---
+title: "Semantic Versioning en CD/CI: La Ciencia Exacta del Despliegue Continuo"
+description: "Domina el versionado semántico en pipelines de CI/CD. Aprende a calcular versiones automáticamente y garantizar la trazabilidad total en tus despliegues Android."
+pubDate: "2025-12-05"
+heroImage: "/images/placeholder-article-semantic-versioning.svg"
+tags: ["DevOps", "CI/CD", "Semantic Versioning", "Android", "GitHub Actions"]
 ---
 
-En el desarrollo moderno, la calidad del código no solo se mide por su funcionalidad, sino también por la claridad de su evolución. Los commits no son solo puntos de control, sino que se convierten en la narrativa de tu proyecto: **qué se hizo, por qué se hizo, y cómo impacta al sistema**.
+## 📐 Teoría: El Contrato Social del Versionado
 
-Hoy vamos a explorar cómo implementar un flujo de trabajo realista combinando **CDE (Commit-Driven Development)** con [commits semánticos](blog-conventional-commits.md) y [versionado semántico](blog-semantic-versioning.md), creando un ecosistema donde cada commit impulsa automatización y documentación.
+El **Semantic Versioning (SemVer)** no es solo una convención de nombrado (`X.Y.Z`); es un **contrato social** entre el desarrollador y el consumidor del software (ya sea otro desarrollador o el usuario final).
 
-## 🚀 ¿Qué es CDE (Commit-Driven Development)?
+En el formato `MAJOR.MINOR.PATCH`:
+- **MAJOR**: Cambios incompatibles (Breaking Changes). El contrato se rompe.
+- **MINOR**: Funcionalidad nueva compatible hacia atrás. El contrato se expande.
+- **PATCH**: Corrección de bugs compatible hacia atrás. El contrato se mantiene.
 
-CDE es una metodología donde **cada commit es atómico y responde a una intención clara**. No es solo sobre escribir buenos mensajes, sino sobre estructurar el desarrollo alrededor de cambios significativos y trazables.
+### El Reto en CI/CD (Continuous Delivery)
+En un entorno de CD, los humanos no deberían decidir versiones. Si un humano decide "esta es la versión 2.0", introduce subjetividad y error. **La versión debe ser una función determinista del historial de cambios.**
 
-### 🎯 Principios fundamentales del CDE:
-- **Atomicidad**: Un commit = una responsabilidad específica
-- **Trazabilidad**: Cada cambio cuenta una historia completa
-- **Automatización**: Los commits impulsan CI/CD y release automation
-- **Documentación viva**: El historial git es documentación de decisiones
+`Versión(t) = Versión(t-1) + Impacto(Commit_t)`
 
-## 🏗️ Estructura de Ramas: El Ecosistema Perfecto
+## 🔄 El Bucle de Retroalimentación de Versiones
 
-Para implementar CDE efectivamente, necesitamos una estrategia de branching que soporte tanto el desarrollo paralelo como la automatización:
+Un pipeline de CI/CD moderno para Android debe seguir este bucle estrictamente:
 
-### 1. Ramas Principales
-```
-main          → Siempre estable, deployment a producción
-develop       → Integración de features, testing conjunto  
-release/*     → Preparación de releases específicos
-```
+1.  **Code Change**: Desarrollador hace commit siguiendo [Conventional Commits](blog-conventional-commits.md).
+2.  **Analysis**: CI analiza el commit. ¿Es `feat`? ¿Es `fix`? ¿Es `BREAKING CHANGE`?
+3.  **Calculation**: CI calcula la nueva versión basándose en la última etiqueta (tag) y el impacto del cambio.
+4.  **Release**: CI genera el artefacto (APK/AAB) con esa versión.
+5.  **Tagging**: CI etiqueta el commit con la nueva versión, cerrando el ciclo.
 
-### 2. Ramas de Trabajo
-```
-feature/*     → Nuevas funcionalidades
-fix/*         → Corrección de bugs
-hotfix/*      → Fixes críticos para producción
-chore/*       → Tareas de mantenimiento
-```
+## 🛠️ Implementación Práctica en GitHub Actions
 
-## 💎 Ejemplo Práctico: Sistema de Autenticación
+Vamos a construir un pipeline que implemente esta teoría usando la herramienta `semantic-release` o equivalentes.
 
-Veamos cómo se ve un flujo real desarrollando un sistema de login completo:
+### Paso 1: Análisis de Commits (The Parser)
 
-### 🔹 Rama feature/auth
-
-```
-feat(auth): añadir formulario de login con validación de campos
-
-- Implementa UI responsive para login
-- Añade validación en tiempo real de email y contraseña  
-- Integra con AuthRepository para gestión de estado
-- Incluye manejo de errores UX-friendly
-
-Closes #AUTH-123
-```
-
-```
-docs(auth): documentar flujo de autenticación en README
-
-- Añade diagramas de secuencia para login/logout
-- Documenta endpoints de API utilizados
-- Incluye ejemplos de uso del AuthManager
-- Actualiza architecture decision records (ADR)
-```
-
-```
-fix(auth): corregir validación de email con dominios internacionales
-
-- Reemplaza regex básica con validación RFC compliant
-- Añade soporte para dominios .museum, .travel, etc.
-- Incluye tests para casos edge de emails válidos
-- Actualiza mensajes de error más descriptivos
-
-Fixes #BUG-456
-```
-
-### 🔹 Rama feature/ui
-
-```
-feat(ui): implementar diseño responsive del header
-
-- Añade navigation drawer para móviles
-- Implementa breakpoints optimizados para tablets
-- Integra animaciones micro-interactivas
-- Optimiza performance con lazy loading de componentes
-```
-
-```
-style(ui): refactorizar sistema de tokens de diseño
-
-- Consolida variables CSS en design tokens
-- Actualiza spacing scale siguiendo modular scale
-- Estandariza typography scale y line heights
-- Mejora accesibilidad con contrast ratios WCAG AA
-```
-
-### 🔹 Rama fix/session
-
-```
-fix(session): evitar cierre automático de sesión al refrescar página
-
-- Implementa token refresh automático en interceptors
-- Añade persistencia segura de auth state en SessionStorage  
-- Incluye fallback a re-auth silenciosa via refresh tokens
-- Mejora UX con loading states durante token refresh
-
-Resolves #CRITICAL-789
-```
-
-## 🔄 Merge a Develop: Historial Limpio y Semántico
-
-Cuando hacemos merge de features a develop, mantenemos un historial que sirve para automatización:
-
-```
-# Historial resultante en develop:
-feat(auth): añadir formulario de login con validación de campos
-docs(auth): documentar flujo de autenticación en README  
-fix(auth): corregir validación de email con dominios internacionales
-feat(ui): implementar diseño responsive del header
-style(ui): refactorizar sistema de tokens de diseño
-fix(session): evitar cierre automático de sesión al refrescar página
-```
-
-## ⚙️ Automatización con CI/CD: El Poder del CDE
-
-Este es donde CDE realmente brilla. Cada push a develop dispara un pipeline inteligente:
+Necesitamos una herramienta que entienda Conventional Commits. Usaremos `PaulHatch/semantic-version`.
 
 ```yaml
-# .github/workflows/cde-pipeline.yml
-name: CDE Pipeline
+      - name: Calculate Semantic Version
+        id: semver
+        uses: PaulHatch/semantic-version@v5.3.0
+        with:
+          # Define la raíz del código fuente para ignorar cambios en docs/readme
+          change_path: "app/src"
+          # Mapeo de tipos de commit a incrementos de versión
+          major_pattern: "(MAJOR|BREAKING CHANGE)"
+          minor_pattern: "feat:"
+          # Formato de salida
+          version_format: "${major}.${minor}.${patch}"
+```
 
-on:
-  push:
-    branches: [ develop, main ]
-  pull_request:
-    branches: [ main ]
+### Paso 2: Cálculo de VersionCode (Android Specific)
 
-jobs:
-  analyze-commits:
-    runs-on: ubuntu-latest
-    outputs:
-      version-bump: ${{ steps.semver.outputs.version-bump }}
-      changelog: ${{ steps.changelog.outputs.content }}
-      
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
+Como vimos en [Automatización de Versionado](blog-automated-versioning.md), Android necesita un entero. Aquí aplicamos la teoría de conjuntos: el `versionCode` debe ser una proyección inyectiva del `versionName`.
+
+```yaml
+      - name: Compute Android Version Code
+        id: compute_code
+        run: |
+          # Extraer componentes semánticos
+          MAJOR=$(echo ${{ steps.semver.outputs.version }} | cut -d. -f1)
+          MINOR=$(echo ${{ steps.semver.outputs.version }} | cut -d. -f2)
+          PATCH=$(echo ${{ steps.semver.outputs.version }} | cut -d. -f3)
+
+          # Algoritmo de Posicionamiento Decimal
+          # Permite: 21 Major, 99 Minor, 99 Patch -> 219999
+          CODE=$((MAJOR * 10000 + MINOR * 100 + PATCH))
+
+          echo "android_code=$CODE" >> $GITHUB_OUTPUT
+```
+
+### Paso 3: Inmutabilidad del Artefacto
+
+Una regla de oro en DevOps es: **Construye una vez, despliega en todas partes**.
+El APK que se prueba en QA debe ser **bit a bit idéntico** al que va a Producción.
+
+Esto significa que la versión se inyecta en el momento del build, y ese artefacto "viaja" por los entornos. No reconstruimos para producción.
+
+```yaml
+      - name: Build Once
+        run: ./gradlew bundleRelease -PversionName=${{ steps.semver.outputs.version }} -PversionCode=${{ steps.compute_code.outputs.android_code }}
         
-    - name: Analyze Semantic Commits
-      id: semver
-      run: |
-        # Detectar tipo de cambio desde último tag
-        COMMITS=$(git log $(git describe --tags --abbrev=0)..HEAD --oneline)
-        
-        if echo "$COMMITS" | grep -q "feat\|feat!"; then
-          echo "version-bump=minor" >> $GITHUB_OUTPUT
-        elif echo "$COMMITS" | grep -q "BREAKING CHANGE\|!:"; then  
-          echo "version-bump=major" >> $GITHUB_OUTPUT
-        elif echo "$COMMITS" | grep -q "fix\|perf"; then
-          echo "version-bump=patch" >> $GITHUB_OUTPUT  
-        else
-          echo "version-bump=none" >> $GITHUB_OUTPUT
-        fi
-
-    - name: Generate Smart Changelog
-      id: changelog
-      run: |
-        # Generar changelog categorizado desde commits
-        FEATURES=$(git log --oneline --grep="feat:" | sed 's/^[a-f0-9]* /- /')
-        FIXES=$(git log --oneline --grep="fix:" | sed 's/^[a-f0-9]* /- /')
-        BREAKING=$(git log --grep="BREAKING CHANGE" --format="- %s")
-        
-        cat > changelog.md << EOF
-        ## 🚀 Nuevas Funcionalidades
-        $FEATURES
-        
-        ## 🐛 Correcciones
-        $FIXES
-        
-        ## ⚠️ Cambios Breaking
-        $BREAKING
-        EOF
-
-  deploy-staging:
-    needs: analyze-commits
-    if: github.ref == 'refs/heads/develop'
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Deploy to Staging Environment
-      run: |
-        echo "🚀 Desplegando a staging con changelog automático..."
-        echo "${{ needs.analyze-commits.outputs.changelog }}"
-
-  release-production:  
-    needs: analyze-commits
-    if: github.ref == 'refs/heads/main' && needs.analyze-commits.outputs.version-bump != 'none'
-    runs-on: ubuntu-latest
-    
-    steps:
-    - name: Create Automated Release
-      uses: actions/create-release@v1
-      with:
-        tag_name: ${{ needs.analyze-commits.outputs.version-bump }}
-        release_name: Release ${{ needs.analyze-commits.outputs.version-bump }}
-        body: ${{ needs.analyze-commits.outputs.changelog }}
-        draft: false
-        prerelease: false
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: app/build/outputs/bundle/release/*.aab
 ```
 
-## 🏷️ Versionado Semántico Automático
+## ⚠️ Manejo de Pre-Releases (Alpha/Beta)
 
-Con CDE y commits semánticos, el versionado se vuelve predecible y automático:
+El versionado semántico también cubre ciclos de vida inestables.
 
-### 📈 Reglas de versionado automático:
-- **feat:** → `minor` release → `1.2.0 → 1.3.0`
-- **fix:** → `patch` release → `1.2.0 → 1.2.1`
-- **BREAKING CHANGE:** → `major` release → `1.2.0 → 2.0.0`
-- **chore/docs:** → no version bump → `1.2.0 → 1.2.0`
+- `1.0.0-alpha.1`: Primera alpha.
+- `1.0.0-beta.1`: Feature freeze.
+- `1.0.0-rc.1`: Release Candidate.
 
-### Ejemplo de Commit con Breaking Change
+### Estrategia de Ramas
+- `feature/*` -> Genera versiones alpha (`1.1.0-alpha.x`).
+- `develop` -> Genera versiones beta (`1.1.0-beta.x`).
+- `main` -> Genera versiones finales (`1.1.0`).
 
-```
-feat(auth)!: migrar autenticación a OAuth 2.1 con PKCE
+Configuración del Action para manejar prereleases:
 
-- Reemplaza sistema de autenticación básica con OAuth 2.1
-- Implementa PKCE para mayor seguridad en mobile apps  
-- Actualiza todos los endpoints de /auth/* con nuevos formatos
-- Migra tokens JWT a formato RFC 7519 compliant
-
-BREAKING CHANGE: Los endpoints /auth/login y /auth/refresh han cambiado formato. 
-Ver guía de migración en /docs/auth-migration.md
-
-Closes #SECURITY-001
-```
-
-Este commit automáticamente:
-- ✅ Incrementa versión `major`: `2.1.3 → 3.0.0`
-- ✅ Genera tag Git: `v3.0.0`
-- ✅ Crea release en GitHub con changelog
-- ✅ Despliega automáticamente a producción
-- ✅ Notifica al equipo sobre breaking changes
-
-## 🛠️ Configuración Práctica con Semantic Release
-
-Para automatizar completamente el proceso, usamos semantic-release:
-
-```json
-# package.json
-{
-  "name": "mi-proyecto-cde",
-  "devDependencies": {
-    "@semantic-release/changelog": "^6.0.0",
-    "@semantic-release/git": "^10.0.0",
-    "@semantic-release/github": "^8.0.0",
-    "semantic-release": "^20.0.0"
-  },
-  "release": {
-    "branches": ["main"],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/github",
-      [
-        "@semantic-release/git",
-        {
-          "assets": ["CHANGELOG.md"],
-          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }
-      ]
-    ]
-  }
-}
+```yaml
+      - name: Determine Prerelease Label
+        id: prerelease
+        run: |
+          if [[ $GITHUB_REF == *"feature/"* ]]; then
+            echo "label=alpha" >> $GITHUB_OUTPUT
+          elif [[ $GITHUB_REF == *"develop"* ]]; then
+            echo "label=beta" >> $GITHUB_OUTPUT
+          else
+            echo "label=" >> $GITHUB_OUTPUT
+          fi
 ```
 
-### Resultado Automático
-Semantic Release genera automáticamente:
+## 📉 Errores Comunes y Cómo Evitarlos
 
-```markdown
-# CHANGELOG.md
+### 1. El "Tag Manual"
+Desarrollador hace `git tag v1.0.0` manualmente.
+**Problema**: Rompe la fuente única de verdad. Si el CI intenta generar `v1.0.0` después, fallará.
+**Solución**: Bloquear la creación de tags manuales en GitHub para todos excepto el bot de CI.
 
-## [3.0.0](https://github.com/mi-org/mi-proyecto/compare/v2.1.3...v3.0.0) (2026-01-27)
+### 2. Commits "Sucios"
+Mensajes como "wip", "fix bug", "changes".
+**Problema**: El analizador semántico no sabe qué hacer (default a PATCH o ignora).
+**Solución**: Usar un *commit-msg hook* o un *lint action* que obligue al formato Conventional Commits.
 
-### ⚠ BREAKING CHANGES
-
-* **auth:** Los endpoints /auth/login y /auth/refresh han cambiado formato
-
-### Features
-
-* **auth:** migrar autenticación a OAuth 2.1 con PKCE ([abc1234](https://github.com/mi-org/mi-proyecto/commit/abc1234))
-* **ui:** implementar diseño responsive del header ([def5678](https://github.com/mi-org/mi-proyecto/commit/def5678))
-
-### Bug Fixes  
-
-* **auth:** corregir validación de email con dominios internacionales ([ghi9012](https://github.com/mi-org/mi-proyecto/commit/ghi9012))
-* **session:** evitar cierre automático de sesión al refrescar página ([jkl3456](https://github.com/mi-org/mi-proyecto/commit/jkl3456))
+```yaml
+      - name: Lint Commit Messages
+        uses: wagoid/commitlint-github-action@v5
 ```
 
-## 🎯 Beneficios del Flujo CDE + Semantic Versioning
+### 3. Explosión del VersionCode
+Si usas timestamps o números de build de GitHub (`GITHUB_RUN_NUMBER`) directamente.
+**Problema**: Si cambias de proveedor de CI (de GitHub a GitLab), el contador se reinicia y Google Play rechaza actualizaciones (Error: Version code 1 < 500).
+**Solución**: Usar siempre el cálculo derivado de SemVer (`Major*10000...`). Es agnóstico a la plataforma de CI.
 
-### 🚀 Para el equipo de desarrollo:
-- **Claridad total**: Cada commit explica qué, por qué y cómo
-- **Releases predecibles**: Sin sorpresas en versionado
-- **Rollbacks inteligentes**: Fácil identificar qué revertir
-- **Code reviews eficientes**: Contexto claro en cada PR
+## 🎯 Conclusión
 
-### 📈 Para el proyecto:
-- **Documentación automática**: Changelog siempre actualizado
-- **Trazabilidad completa**: De feature request a deployment
-- **Calidad consistente**: Validación automática en pipeline
-- **Deployment confidence**: Releases basados en análisis automático
+Implementar Semantic Versioning en tu CI/CD no es burocracia; es **ingeniería de confiabilidad**. Transformas el acto subjetivo y peligroso de "versionar" en un proceso matemático, determinista y completamente automatizado.
 
-## ⚡ Implementación en tu Proyecto
-
-¿Listo para implementar CDE en tu equipo? Sigue esta roadmap gradual:
-
-### 🎢 Roadmap de implementación:
-1. **Semana 1**: Configura conventional commits y commitlint
-2. **Semana 2**: Implementa branch strategy y merge policies
-3. **Semana 3**: Configura semantic-release en un proyecto piloto
-4. **Semana 4**: Añade pipeline de CI/CD con análisis automático
-5. **Mes 2**: Extiende a todos los proyectos del equipo
-6. **Mes 3**: Optimiza con métricas y feedback del equipo
-
-### 🔧 Herramientas Esenciales
-- **Commitlint + Husky**: Validación automática de formato de commits en cada commit
-- **Semantic Release**: Automatización completa de versionado y changelog generation
-- **GitHub Actions**: Pipeline de CI/CD inteligente basado en análisis de commits
-- **Conventional Changelog**: Generación automática de release notes categorizadas
-
-## 🎭 Casos de Uso Reales
-
-### Hotfix Crítico en Producción
-
-```bash
-# Desde main branch
-git checkout -b hotfix/critical-security-patch
-
-# Commit atómico con fix
-git commit -m "fix(security)!: patch XSS vulnerability in user input validation
-
-- Sanitiza todos los inputs de usuario antes de renderizar
-- Añade Content Security Policy headers estrictos  
-- Actualiza dependencies con vulnerabilidades conocidas
-- Incluye tests de penetración automatizados
-
-BREAKING CHANGE: Usuarios con scripts en bio necesitan re-formatear contenido
-Security-Advisory: CVE-2026-1234"
-
-# Merge directo a main para hotfix
-git checkout main  
-git merge hotfix/critical-security-patch
-git push origin main
-
-# Semantic Release automáticamente:
-# 1. Detecta fix! → crea versión 2.3.1  
-# 2. Genera release notes con security advisory
-# 3. Despliega inmediatamente a producción
-# 4. Notifica al equipo sobre breaking change
-```
-
-## Conclusión
-
-CDE + Versionado Semántico no es solo una metodología, es un **cambio de mindset** que transforma cómo pensamos sobre cada línea de código que escribimos. Cada commit se convierte en una pieza de documentación viva, cada merge en una decisión de producto, y cada release en un milestone claramente definido.
-
-La magia sucede cuando el equipo adopta completamente este flujo: los commits dejan de ser "trabajo sucio" para convertirse en la base de toda la automatización del proyecto. Como ya exploramos en nuestros artículos sobre [conventional commits](blog-conventional-commits.md) y [versionado semántico](blog-semantic-versioning.md), la consistencia es clave.
-
-### 🚀 Tu próximo commit cuenta
-No esperes al "proyecto perfecto" para implementar CDE. Empieza hoy mismo:
-1. Toma tu próximo commit y hazlo atómico y descriptivo
-2. Usa el formato conventional en tu próxima feature
-3. Configura semantic-release en un proyecto personal
-4. Comparte estos conceptos con tu equipo
-5. ¡Disfruta viendo tu historial git contar la historia real de tu proyecto!
+Cuando un manager pregunte "¿Qué hay en la versión 2.1.0?", no necesitas buscar en emails. El sistema te dirá exactamente: "Contiene todas las `feat` desde la 2.0.0 y es compatible hacia atrás". Eso es poder.
