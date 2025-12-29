@@ -17,31 +17,31 @@ screenshots:
 lastUpdated: "Oct 16, 2025"
 ---
 
-**Dive into PuzzleHub**, the ultimate brain-training collection with 10 classic and modern logic puzzles in one app! Perfect for all skill levels, PuzzleHub offers thousands of procedurally generated puzzles to sharpen your logical reasoning and mental speed. Play anytime, anywhere, even offline.
+**Disfruta PuzzleHub**, la colección definitiva de entrenamiento cerebral con 10 rompecabezas clásicos y modernos de lógica, todo en una sola aplicación. Perfecto para todos los niveles, PuzzleHub ofrece miles de puzles generados de forma procedimental para afinar tu razonamiento lógico y velocidad mental. Juega en cualquier momento y en cualquier lugar, incluso sin conexión.
 
-## Key Features
+## Características Principales
 
-*   **10 Games in 1**: Enjoy endless variety with Hashi, Calcudoku, Minesweeper, and more.
-*   **Unlimited Puzzles**: Thousands of levels with scalable difficulty from Easy to Expert.
-*   **Multiple Game Modes**: Choose between Relax, Time Attack, and Daily Challenges.
-*   **Learn and Improve**: Use smart hints and error checking to hone your skills.
-*   **Track Your Progress**: Monitor stats, streaks, and unlock achievements.
-*   **Play Anywhere**: Optimized for touch and fully playable offline.
-*   **Customizable**: Include multiple visual themes.
+*   **10 Juegos en 1**: Disfruta de variedad infinita con Hashi, Calcudoku, Buscaminas y más.
+*   **Puzles Ilimitados**: Miles de niveles con dificultad escalable desde Fácil hasta Experto.
+*   **Múltiples Modos de Juego**: Elige entre Relax, Contrarreloj y Desafíos Diarios.
+*   **Mejora y Aprende**: Usa pistas inteligentes y comprobación de errores para perfeccionar tus habilidades.
+*   **Controla tu Progreso**: Monitorea estadísticas, rachas y desbloquea logros.
+*   **Juega Donde Quieras**: Optimizado para pantallas táctiles y completamente jugable sin conexión.
+*   **Personalizable**: Incluye varios temas visuales.
 
-PuzzleHub is more than just a pastime; it's your personal mental gym. If you love challenges like Sudoku, crosswords, or logic riddles, you've found your new addiction. Improve your mental agility, boost your concentration, and have fun while solving unique puzzles. Perfect for all ages!
+PuzzleHub es más que un simple pasatiempo; es tu gimnasio mental personal. Si disfrutas de desafíos como el Sudoku, crucigramas o acertijos de lógica, aquí encontrarás tu nueva adicción. Mejora tu agilidad mental, aumenta tu concentración y diviértete resolviendo puzles únicos. ¡Perfecto para todas las edades!
 
-## Explore Our Game Collection
+## Explora Nuestra Colección de Juegos
 
-*   **Kakuro**: A crossword-style number puzzle. Fill the grid with digits to match the sums in the clues. (Cross Sums)
-*   **Hitori**: An elimination puzzle. Shade cells to ensure no numbers are repeated in any row or column.
-*   **Shikaku**: A geometric challenge. Divide the grid into rectangular regions, each containing a number equal to its area. (Rectangles)
-*   **Galaxies**: A game of symmetry. Divide the grid into 180° rotationally symmetrical regions, each centered on a dot. (Tentai Show)
-*   **Hashi**: Build bridges to connect islands into a single network, matching the number of bridges to the number on each island. (Bridges, Hashiwokakero)
-*   **Calcudoku**: A Sudoku twist where logic meets math. Fill the grid while respecting the arithmetic operations in each cage. (KenKen, Mathdoku)
-*   **Slitherlink**: Form a single, continuous loop based on the numerical clues in the grid. (Fences, Loop the Loop)
-*   **Minesweeper**: The timeless classic of deduction. Use number clues to locate and flag all the hidden mines.
-*   **Fillomino**: A territory-filling puzzle. Create regions of a specific size, as indicated by the numbers within them. (Polyominous)
-*   **Dominosa**: Uncover the layout of a complete set of dominoes by pairing adjacent numbers. (Solitaire Dominoes)
+*   **Kakuro**: Un rompecabezas de números estilo crucigrama. Rellena la cuadrícula con dígitos para coincidir con las sumas en las pistas. (Sumas Cruzadas)
+*   **Hitori**: Un rompecabezas de eliminación. Sombrea celdas para asegurar que no se repitan números en ninguna fila o columna.
+*   **Shikaku**: Un desafío geométrico. Divide la cuadrícula en regiones rectangulares, cada una con un número igual a su área. (Rectángulos)
+*   **Galaxies**: Un juego de simetría. Divide la cuadrícula en regiones simétricas rotadas 180°, cada una centrada en un punto. (Tentai Show)
+*   **Hashi**: Construye puentes para conectar islas en una sola red, coincidiendo el número de puentes con el número en cada isla. (Puentes, Hashiwokakero)
+*   **Calcudoku**: Un giro al Sudoku donde la lógica se encuentra con las matemáticas. Rellena la cuadrícula respetando las operaciones aritméticas en cada jaula. (KenKen, Mathdoku)
+*   **Slitherlink**: Forma un bucle único y continuo basado en las pistas numéricas de la cuadrícula. (Vallas, Loop the Loop)
+*   **Buscaminas**: El clásico atemporal de la deducción. Usa pistas numéricas para localizar y marcar todas las minas ocultas.
+*   **Fillomino**: Un rompecabezas de llenado de territorio. Crea regiones de un tamaño específico, como lo indican los números dentro de ellas. (Polyominous)
+*   **Dominosa**: Descubre el diseño de un conjunto completo de dominós emparejando números adyacentes. (Dominós Solitario)
 
-Ready to challenge your mind? **Download PuzzleHub now** and start your brain-training journey today!
+¿Listo para desafiar tu mente? **Descarga PuzzleHub ahora** y comienza tu viaje de entrenamiento cerebral hoy!
