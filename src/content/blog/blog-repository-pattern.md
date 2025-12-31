@@ -2,7 +2,7 @@
 title: "Repository Pattern: La Verdadera Abstracción de Datos"
 description: "Por qué el Repository es el patrón más importante en Clean Architecture. Estrategias de caché, manejo de errores y orquestación de fuentes de datos."
 pubDate: "2025-10-18"
-heroImage: "/images/placeholder-article-repository-pattern.svg"
+heroImage: "/images/placeholder-article-repository.svg"
 tags: ["Architecture", "Design Patterns", "Android", "Data Layer"]
 ---
 

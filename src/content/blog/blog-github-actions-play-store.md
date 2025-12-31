@@ -2,7 +2,7 @@
 title: "GitHub Actions para Google Play Store: La Guía Definitiva de CD en Android"
 description: "Aprende a configurar un pipeline de Continuous Deployment robusto que compile, firme y publique tu App Android automáticamente en Google Play Store."
 pubDate: "2025-10-30"
-heroImage: "/images/placeholder-article-play-store-cd.svg"
+heroImage: "/images/placeholder-article-github-actions-play-store.svg"
 tags: ["GitHub Actions", "Android", "Google Play Store", "CI/CD", "DevOps"]
 ---
 

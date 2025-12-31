@@ -2,7 +2,7 @@
 title: "Semantic Versioning en CD/CI: La Ciencia Exacta del Despliegue Continuo"
 description: "Domina el versionado semántico en pipelines de CI/CD. Aprende a calcular versiones automáticamente y garantizar la trazabilidad total en tus despliegues Android."
 pubDate: "2025-12-05"
-heroImage: "/images/placeholder-article-semantic-versioning.svg"
+heroImage: "/images/placeholder-article-cde-semver.svg"
 tags: ["DevOps", "CI/CD", "Semantic Versioning", "Android", "GitHub Actions"]
 ---
 

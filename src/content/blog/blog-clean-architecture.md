@@ -2,7 +2,7 @@
 title: "Clean Architecture: La Guía Definitiva para Android Moderno"
 description: "Desmitificando Clean Architecture: Una inmersión profunda en capas, dependencias y flujo de datos para construir apps Android indestructibles."
 pubDate: "2025-10-15"
-heroImage: "/images/placeholder-article-clean-arch.svg"
+heroImage: "/images/placeholder-article-clean-architecture.svg"
 tags: ["Architecture", "Android", "Clean Architecture", "Kotlin", "Best Practices"]
 ---
 
