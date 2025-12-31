@@ -2,7 +2,7 @@
 title: "MVVM Model: La Capa de Datos Invisible pero Vital"
 description: "El 'Model' en MVVM es mucho más que clases de datos. Aprende a diseñar una capa de modelo robusta que sobreviva a cambios de UI y backend."
 pubDate: "2025-10-02"
-heroImage: "/images/placeholder-article-mvvm-model.svg"
+heroImage: "/images/placeholder-article-model-layer.svg"
 tags: ["Android", "MVVM", "Architecture", "Data Layer", "Clean Code"]
 ---
 
