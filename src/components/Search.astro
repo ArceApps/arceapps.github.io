@@ -1,0 +1,182 @@
+<div class="relative">
+  <button
+    id="search-button"
+    class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+    aria-label="Buscar"
+  >
+    <span class="material-icons text-xl">search</span>
+  </button>
+
+  <!-- Search Modal/Dropdown -->
+  <div
+    id="search-modal"
+    class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-start justify-center pt-20 px-4"
+  >
+    <div class="bg-surface dark:bg-dark-surface w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden animate-fade-in-down border border-gray-200 dark:border-gray-700">
+      <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center gap-3">
+        <span class="material-icons text-primary text-2xl">search</span>
+        <input
+          type="text"
+          id="search-input"
+          class="w-full bg-transparent border-none text-lg text-on-surface dark:text-dark-on-surface focus:outline-none focus:ring-0 placeholder-gray-400 dark:placeholder-gray-500"
+          placeholder="Buscar artículos, aplicaciones..."
+          autocomplete="off"
+        />
+        <button
+          id="close-search"
+          class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none"
+        >
+          <span class="material-icons">close</span>
+        </button>
+      </div>
+
+      <div id="search-results" class="max-h-[60vh] overflow-y-auto p-2 hidden">
+        <!-- Results will be injected here -->
+      </div>
+
+      <div id="search-status" class="p-4 text-center text-gray-500 dark:text-gray-400 hidden">
+        Escribe para buscar...
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import Fuse from 'fuse.js';
+
+  let fuse;
+  let searchIndex = [];
+
+  const searchButton = document.getElementById('search-button');
+  const searchModal = document.getElementById('search-modal');
+  const closeSearch = document.getElementById('close-search');
+  const searchInput = document.getElementById('search-input') as HTMLInputElement;
+  const searchResults = document.getElementById('search-results');
+  const searchStatus = document.getElementById('search-status');
+
+  async function initSearch() {
+    if (searchIndex.length > 0) return;
+
+    try {
+      const response = await fetch('/search-index.json');
+      searchIndex = await response.json();
+
+      fuse = new Fuse(searchIndex, {
+        keys: [
+          { name: 'title', weight: 0.7 },
+          { name: 'description', weight: 0.3 },
+          { name: 'tags', weight: 0.2 },
+        ],
+        includeScore: true,
+        threshold: 0.4,
+      });
+    } catch (error) {
+      console.error("Error loading search index:", error);
+    }
+  }
+
+  function openModal() {
+    searchModal?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    initSearch();
+    setTimeout(() => searchInput?.focus(), 100);
+  }
+
+  function closeModal() {
+    searchModal?.classList.add('hidden');
+    document.body.style.overflow = '';
+    if (searchInput) searchInput.value = '';
+    if (searchResults) {
+      searchResults.innerHTML = '';
+      searchResults.classList.add('hidden');
+    }
+    if (searchStatus) {
+      searchStatus.textContent = 'Escribe para buscar...';
+      searchStatus.classList.remove('hidden');
+    }
+  }
+
+  function performSearch(query) {
+    if (!fuse) return;
+
+    if (query.length < 2) {
+        if (searchResults) searchResults.classList.add('hidden');
+        if (searchStatus) {
+            searchStatus.textContent = 'Escribe al menos 2 caracteres...';
+            searchStatus.classList.remove('hidden');
+        }
+        return;
+    }
+
+    const results = fuse.search(query);
+
+    if (results.length === 0) {
+        if (searchResults) searchResults.classList.add('hidden');
+        if (searchStatus) {
+            searchStatus.textContent = 'No se encontraron resultados.';
+            searchStatus.classList.remove('hidden');
+        }
+        return;
+    }
+
+    if (searchStatus) searchStatus.classList.add('hidden');
+    if (searchResults) {
+        searchResults.classList.remove('hidden');
+        searchResults.innerHTML = results.slice(0, 10).map(result => {
+            const item = result.item;
+            const icon = item.type === 'App' ? 'android' : 'article';
+            return `
+                <a href="${item.slug}" class="block p-3 rounded-lg hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors group">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1">
+                            <span class="material-icons text-sm">${icon}</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">${item.title}</h4>
+                            <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2">${item.description}</p>
+                            <div class="flex gap-2 mt-1">
+                                <span class="text-xs px-2 py-0.5 rounded-full bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-gray-500">${item.type}</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `;
+        }).join('');
+    }
+  }
+
+  searchButton?.addEventListener('click', openModal);
+  closeSearch?.addEventListener('click', closeModal);
+
+  // Close on backdrop click
+  searchModal?.addEventListener('click', (e) => {
+    if (e.target === searchModal) closeModal();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !searchModal?.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+
+  searchInput?.addEventListener('input', (e) => {
+    performSearch((e.target as HTMLInputElement).value);
+  });
+</script>
+
+<style>
+  @keyframes fade-in-down {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-down {
+    animation: fade-in-down 0.2s ease-out;
+  }
+</style>

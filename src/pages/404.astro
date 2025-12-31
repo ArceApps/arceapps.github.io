@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const title = "404 - Página no encontrada";
+---
+
+<Layout title={title}>
+  <div class="flex flex-col items-center justify-center min-h-[70vh] text-center px-4">
+    <!-- Visual Indicator -->
+    <div class="relative w-40 h-40 mb-8">
+      <div class="absolute inset-0 bg-primary/20 rounded-full animate-pulse"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="material-icons text-9xl text-primary transform rotate-12">android</span>
+      </div>
+      <div class="absolute bottom-0 right-0 bg-surface dark:bg-dark-surface p-2 rounded-full border-2 border-primary">
+         <span class="material-icons text-4xl text-error text-red-500">priority_high</span>
+      </div>
+    </div>
+
+    <h1 class="text-6xl font-bold text-primary mb-2">404</h1>
+    <h2 class="text-3xl font-bold text-on-surface dark:text-dark-on-surface mb-4">¡Bug detectado!</h2>
+
+    <p class="text-xl text-on-surface-variant dark:text-dark-on-surface-variant max-w-lg mb-8">
+      Parece que esta página ha sido recolectada por el garbage collector o nunca existió.
+    </p>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a href="/" class="btn-primary flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-bold hover:bg-primary-dark transition-colors shadow-lg hover:shadow-xl">
+        <span class="material-icons">home</span>
+        Volver al Inicio
+      </a>
+
+      <a href="/blog" class="flex items-center gap-2 px-6 py-3 rounded-lg bg-surface-variant dark:bg-gray-800 text-on-surface dark:text-dark-on-surface font-medium hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors border border-gray-300 dark:border-gray-700">
+        <span class="material-icons">article</span>
+        Leer el Blog
+      </a>
+    </div>
+
+    <!-- Helpful Links -->
+    <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800 w-full max-w-md">
+      <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant mb-4">Quizás buscabas:</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/apps" class="text-primary hover:underline text-sm font-medium">Aplicaciones</a>
+        <span class="text-gray-400">•</span>
+        <a href="/about" class="text-primary hover:underline text-sm font-medium">Sobre Mí</a>
+        <span class="text-gray-400">•</span>
+        <a href="https://play.google.com/store/apps/developer?id=Arce+Apps" target="_blank" class="text-primary hover:underline text-sm font-medium">Play Store</a>
+      </div>
+    </div>
+  </div>
+</Layout>
