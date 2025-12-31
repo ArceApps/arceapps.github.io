@@ -1,4 +1,6 @@
 ---
+import Search from "./Search.astro";
+
 const navItems = [
   { label: "Inicio", href: "/" },
   { label: "Apps", href: "/apps" },
@@ -33,6 +35,9 @@ const navItems = [
 
     <!-- Actions -->
     <div class="flex items-center gap-2">
+      <!-- Search -->
+      <Search />
+
       <!-- Theme Toggle -->
       <button
         id="theme-toggle"

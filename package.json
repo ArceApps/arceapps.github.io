@@ -9,10 +9,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
     "@fontsource/material-icons": "^5.2.7",
     "@fontsource/roboto": "^5.2.9",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.16.3",
+    "fuse.js": "^7.1.0",
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
