@@ -42,8 +42,7 @@
 </div>
 
 <script>
-  import Fuse from 'fuse.js';
-
+  // Dynamic import implemented to optimize initial load
   let fuse;
   let searchIndex = [];
 
@@ -58,7 +57,12 @@
     if (searchIndex.length > 0) return;
 
     try {
-      const response = await fetch('/search-index.json');
+      // Parallelize fetching index and loading library
+      const [response, { default: Fuse }] = await Promise.all([
+        fetch('/search-index.json'),
+        import('fuse.js')
+      ]);
+
       searchIndex = await response.json();
 
       fuse = new Fuse(searchIndex, {
