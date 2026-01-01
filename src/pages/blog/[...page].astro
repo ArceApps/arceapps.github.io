@@ -10,7 +10,7 @@ export async function getStaticPaths({ paginate }) {
 
   const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))].sort();
 
-  return paginate(allPosts, { pageSize: 7, props: { allTags } });
+  return paginate(allPosts, { pageSize: 6, props: { allTags } });
 }
 
 const { page, allTags } = Astro.props;
