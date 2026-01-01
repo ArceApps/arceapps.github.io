@@ -16,7 +16,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
 ---
 
 <article class="h-full material-card overflow-hidden flex flex-col hover:elevation-2 transition-all relative group">
-  <a href={`/blog/${post.slug}/`} class="absolute inset-0 z-0" aria-label={`Leer ${post.data.title}`}></a>
+  <a href={`/blog/${post.slug}/`} class="absolute inset-0 z-10" aria-label={`Leer ${post.data.title}`}></a>
 
   {post.data.heroImage && (
     <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -29,12 +29,12 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
     </div>
   )}
 
-  <div class="p-6 flex flex-col flex-grow z-10">
+  <div class="p-6 flex flex-col flex-grow relative z-20 pointer-events-none">
     <div class="flex items-center gap-2 mb-3">
        {post.data.tags && post.data.tags.slice(0, 1).map((tag: string) => (
           <a
             href={`/blog/tag/${encodeURIComponent(tag)}/`}
-            class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors relative z-20"
+            class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors relative z-30 pointer-events-auto"
           >
             {tag}
           </a>
