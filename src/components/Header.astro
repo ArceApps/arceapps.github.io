@@ -7,6 +7,15 @@ const navItems = [
   { label: "Blog", href: "/blog" },
   { label: "Sobre Mí", href: "/about" },
 ];
+
+const { pathname } = Astro.url;
+const normalize = (path: string) => path.replace(/\/$/, '') || '/';
+const currentPath = normalize(pathname);
+
+const isActive = (href: string) => {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+};
 ---
 
 <header class="sticky top-0 z-50 bg-surface/90 dark:bg-dark-surface/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
@@ -23,14 +32,23 @@ const navItems = [
 
     <!-- Desktop Nav -->
     <nav class="hidden md:flex items-center gap-8">
-      {navItems.map(item => (
-        <a
-          href={item.href}
-          class="text-sm font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors"
-        >
-          {item.label}
-        </a>
-      ))}
+      {navItems.map(item => {
+        const active = isActive(item.href);
+        return (
+          <a
+            href={item.href}
+            aria-current={active ? 'page' : undefined}
+            class:list={[
+              "text-sm font-medium transition-colors",
+              active
+                ? "text-primary font-bold"
+                : "text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary dark:hover:text-primary"
+            ]}
+          >
+            {item.label}
+          </a>
+        );
+      })}
     </nav>
 
     <!-- Actions -->
@@ -53,6 +71,8 @@ const navItems = [
         id="menu-toggle"
         class="md:hidden w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
         aria-label="Menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
       >
         <span class="material-icons text-2xl">menu</span>
       </button>
@@ -62,14 +82,23 @@ const navItems = [
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 dark:border-gray-800 bg-surface dark:bg-dark-surface absolute w-full shadow-lg">
     <nav class="flex flex-col p-4">
-      {navItems.map(item => (
-        <a
-          href={item.href}
-          class="py-3 px-4 text-base font-medium text-on-surface dark:text-dark-on-surface hover:bg-surface-variant dark:hover:bg-gray-800 rounded-lg transition-colors"
-        >
-          {item.label}
-        </a>
-      ))}
+      {navItems.map(item => {
+        const active = isActive(item.href);
+        return (
+          <a
+            href={item.href}
+            aria-current={active ? 'page' : undefined}
+            class:list={[
+              "py-3 px-4 text-base font-medium rounded-lg transition-colors",
+              active
+                ? "text-primary bg-primary/10 dark:bg-primary/5"
+                : "text-on-surface dark:text-dark-on-surface hover:bg-surface-variant dark:hover:bg-gray-800"
+            ]}
+          >
+            {item.label}
+          </a>
+        );
+      })}
     </nav>
   </div>
 </header>
@@ -94,9 +123,13 @@ const navItems = [
 
   menuToggle?.addEventListener('click', () => {
     mobileMenu?.classList.toggle('hidden');
+
+    const isExpanded = !mobileMenu?.classList.contains('hidden');
+    menuToggle.setAttribute('aria-expanded', String(isExpanded));
+
     const icon = menuToggle.querySelector('.material-icons');
     if (icon) {
-      icon.textContent = mobileMenu?.classList.contains('hidden') ? 'menu' : 'close';
+      icon.textContent = isExpanded ? 'close' : 'menu';
     }
   });
 </script>
