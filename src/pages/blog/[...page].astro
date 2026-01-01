@@ -3,11 +3,17 @@ import Layout from "../../layouts/Layout.astro";
 import BlogCard from "../../components/BlogCard.astro";
 import { getCollection } from "astro:content";
 
-const allPosts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-);
+export async function getStaticPaths({ paginate }) {
+  const allPosts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
 
-const tags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))].sort();
+  const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))].sort();
+
+  return paginate(allPosts, { pageSize: 6, props: { allTags } });
+}
+
+const { page, allTags } = Astro.props;
 ---
 
 <Layout title="Blog - ArceApps">
@@ -19,7 +25,7 @@ const tags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))].sort
       </p>
 
       <div class="mt-10 flex flex-wrap justify-center gap-3 animate-fade-in-up">
-        {tags.map((tag) => (
+        {allTags.map((tag) => (
           <a
             href={`/blog/tag/${encodeURIComponent(tag)}/`}
             class="px-4 py-2 rounded-full bg-surface dark:bg-dark-surface border border-primary/20 hover:border-primary text-on-surface dark:text-dark-on-surface hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md"
@@ -31,12 +37,26 @@ const tags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))].sort
     </div>
   </div>
 
-  <section class="py-16 md:py-24 fade-in-section">
+  <section class="py-16 md:py-24">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {allPosts.map((post) => (
+        {page.data.map((post) => (
           <BlogCard post={post} />
         ))}
+      </div>
+
+      <!-- Pagination Controls -->
+      <div class="flex justify-center mt-12 gap-4">
+        {page.url.prev && (
+          <a href={page.url.prev} class="px-6 py-2 rounded-lg bg-surface dark:bg-dark-surface border border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors duration-300">
+            Anterior
+          </a>
+        )}
+        {page.url.next && (
+          <a href={page.url.next} class="px-6 py-2 rounded-lg bg-surface dark:bg-dark-surface border border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors duration-300">
+            Siguiente
+          </a>
+        )}
       </div>
     </div>
   </section>
