@@ -15,3 +15,15 @@
   - Lógica `isActive` basada en `Astro.url.pathname`.
   - Enlaces de escritorio y móvil ahora reflejan el estado activo.
   - Botón de menú móvil actualizado con `aria-controls` y gestión de estado `aria-expanded`.
+
+## 2024-05-25 - Indicadores de Campos Requeridos en ContactForm
+
+**Revisión:**
+- Se analizó `src/components/ContactForm.astro` y se detectó que los campos requeridos (Nombre, Correo electrónico, Mensaje) tenían el atributo `required` en el HTML, pero no tenían un indicador visual explícito en la etiqueta.
+
+**Propuesta:**
+- Añadir un asterisco rojo (`*`) a las etiquetas de los campos requeridos para mejorar la usabilidad y accesibilidad, indicando claramente qué campos son obligatorios antes de intentar enviar el formulario.
+
+**Realizado:**
+- Modificado `src/components/ContactForm.astro`:
+  - Se añadió `<span class="text-red-500">*</span>` a las etiquetas `label` de "Nombre", "Correo electrónico" y "Mensaje".
