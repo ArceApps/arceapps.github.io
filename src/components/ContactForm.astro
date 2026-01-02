@@ -1,8 +1,10 @@
 ---
+// Security: Use environment variable for email to prevent hardcoding secrets in repo
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || "your@email.com";
 ---
 <form
   id="contact-form"
-  action="https://formsubmit.co/your@email.com"
+  action={`https://formsubmit.co/${contactEmail}`}
   method="POST"
   class="bg-surface dark:bg-dark-surface p-6 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm"
 >
@@ -11,6 +13,8 @@
   <input type="hidden" name="_template" value="table">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_next" value="https://arceapps.github.io/about-me">
+  <!-- Honeypot for spam protection -->
+  <input type="text" name="_honey" class="hidden">
 
   <div class="mb-4">
     <label for="name" class="block text-sm font-medium text-on-surface dark:text-dark-on-surface mb-1">
@@ -20,6 +24,7 @@
       type="text"
       name="name"
       id="name"
+      autocomplete="name"
       required
       class="w-full px-4 py-2 rounded-lg bg-surface-variant/30 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-on-surface dark:text-dark-on-surface"
       placeholder="Tu nombre"
@@ -34,6 +39,7 @@
       type="email"
       name="email"
       id="email"
+      autocomplete="email"
       required
       class="w-full px-4 py-2 rounded-lg bg-surface-variant/30 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-on-surface dark:text-dark-on-surface"
       placeholder="tu@email.com"
@@ -66,9 +72,9 @@
   <div class="mt-4 p-3 bg-primary/10 rounded-lg text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
     <p class="font-bold mb-1">⚠️ Configuración requerida:</p>
     <ol class="list-decimal list-inside space-y-1">
-      <li>Edita este archivo (<code>src/components/ContactForm.astro</code>) y cambia <code>your@email.com</code> por tu correo real.</li>
-      <li>Envía un mensaje de prueba desde la web. Recibirás un correo de activación de FormSubmit.</li>
-      <li><strong>Opcional (para ocultar tu correo):</strong> Después de activar, FormSubmit te dará un "Random String" (token). Reemplaza tu correo aquí con ese token.</li>
+      <li>Opción A: Crea un archivo <code>.env</code> con <code>PUBLIC_CONTACT_EMAIL=tu@email.com</code>.</li>
+      <li>Opción B: Edita este archivo y cambia el fallback <code>your@email.com</code>.</li>
+      <li>Envía un mensaje de prueba para activar FormSubmit.</li>
     </ol>
   </div>
 </form>
