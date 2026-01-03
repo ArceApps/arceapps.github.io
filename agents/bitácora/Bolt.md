@@ -20,3 +20,11 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 1.  Se reemplazó la importación estática `import Fuse from 'fuse.js'` por un `import('fuse.js')` dinámico dentro de la función `initSearch`.
 2.  Se implementó `Promise.all` para ejecutar la petición del índice de búsqueda (`fetch('/search-index.json')`) y la carga de la librería en paralelo.
 **Impacto:** Reducción del tamaño del bundle JS inicial en ~6.6kB (gzip). La librería ahora solo se descarga cuando el usuario abre el modal de búsqueda.
+
+## 2025-05-22 - [Optimización de Carga de Imágenes en Tarjetas]
+**Revisado:** `astro.config.mjs`, `package.json`, `src/layouts/Layout.astro`, `src/components/ProjectCard.astro`, `src/components/AppCard.astro`. Se verificó que el proyecto usa `astro:assets` pero las imágenes de contenido se sirven desde `public/` (limitando la optimización automática de tiempo de compilación).
+**Propuesta:** Se identificó que las imágenes en `ProjectCard` y `AppCard` se cargaban de forma "eager" (predeterminada). Dado que estos componentes se utilizan principalmente en listas que suelen extenderse por debajo del pliegue (below the fold) o en secciones secundarias (como en `src/pages/index.astro` donde `AppCard` está bajo el Hero), esto consumía ancho de banda innecesario en la carga inicial.
+**Cambios Realizados:**
+1.  Se añadieron los atributos `loading="lazy"` y `decoding="async"` a la etiqueta `<img>` en `src/components/ProjectCard.astro`.
+2.  Se añadieron los atributos `loading="lazy"` y `decoding="async"` a la etiqueta `<img>` en `src/components/AppCard.astro`.
+**Impacto:** Reducción de la contención del hilo principal y ahorro de ancho de banda inicial al diferir la carga de imágenes fuera de pantalla. Esto prioriza los recursos críticos (fuentes, CSS, imagen LCP del Hero).
