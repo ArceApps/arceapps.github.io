@@ -53,6 +53,17 @@
   const searchResults = document.getElementById('search-results');
   const searchStatus = document.getElementById('search-status');
 
+  // Simple HTML escape function to prevent XSS
+  function escapeHtml(unsafe) {
+    if (!unsafe) return '';
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+  }
+
   async function initSearch() {
     if (searchIndex.length > 0) return;
 
@@ -136,8 +147,8 @@
                             <span class="material-icons text-sm">${icon}</span>
                         </div>
                         <div>
-                            <h4 class="font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">${item.title}</h4>
-                            <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2">${item.description}</p>
+                            <h4 class="font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">${escapeHtml(item.title)}</h4>
+                            <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2">${escapeHtml(item.description)}</p>
                             <div class="flex gap-2 mt-1">
                                 <span class="text-xs px-2 py-0.5 rounded-full bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-gray-500">${item.type}</span>
                             </div>
