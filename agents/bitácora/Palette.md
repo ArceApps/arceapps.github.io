@@ -27,3 +27,19 @@
 **Realizado:**
 - Modificado `src/components/ContactForm.astro`:
   - Se añadió `<span class="text-red-500">*</span>` a las etiquetas `label` de "Nombre", "Correo electrónico" y "Mensaje".
+
+## 2024-05-27 - Auditoría de Infraestructura y Botón Volver Arriba
+
+**Revisión:**
+- **Infraestructura:** Se analizaron `package.json`, `astro.config.mjs` y `src/styles/global.css`. El proyecto usa Astro 5.16.3 y Tailwind CSS v4.1.17. No se detectaron dependencias obsoletas críticas ni cambios recientes que rompan la UI. El sistema de diseño basado en Material Design está estable en `global.css`.
+- **UX:** Se observó que en artículos largos del blog, la navegación de retorno al inicio es tediosa. Aunque existe un enlace de accesibilidad "Saltar al contenido", falta un mecanismo rápido para volver al menú principal visualmente.
+
+**Propuesta:**
+- Implementar un botón "Volver Arriba" (Scroll to Top) flotante que aparezca al hacer scroll.
+- Usar `requestAnimationFrame` para optimizar el listener de scroll y evitar problemas de rendimiento (jank).
+- Asegurar que el botón sea accesible (aria-label) y respete el diseño Material (FAB style).
+
+**Realizado:**
+- Modificado `src/layouts/Layout.astro`:
+  - Se añadió el botón con icono `arrow_upward` y clases de Tailwind para animación de entrada.
+  - Se implementó la lógica en JS usando `requestAnimationFrame` para un control eficiente del estado de visibilidad basado en `window.scrollY`.
