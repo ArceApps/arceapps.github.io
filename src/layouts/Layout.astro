@@ -114,7 +114,41 @@ const socialImageURL = new URL(image, Astro.url);
       <slot />
     </main>
     <Footer />
+    <!-- Scroll to Top Button -->
+    <button
+      id="scroll-to-top"
+      aria-label="Volver arriba"
+      class="fixed bottom-8 right-8 z-50 bg-primary text-white w-12 h-12 rounded-full shadow-lg elevation-4 flex items-center justify-center translate-y-20 opacity-0 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/50 hover:bg-primary-dark hover:scale-110 pointer-events-none"
+    >
+      <span class="material-icons">arrow_upward</span>
+    </button>
+
     <script>
+      // Scroll to Top Logic
+      const scrollBtn = document.getElementById('scroll-to-top');
+      let isScrolling = false;
+
+      const toggleScrollBtn = () => {
+        if (!isScrolling) {
+          window.requestAnimationFrame(() => {
+            if (window.scrollY > 300) {
+              scrollBtn?.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+              scrollBtn?.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+            } else {
+              scrollBtn?.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+              scrollBtn?.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+            }
+            isScrolling = false;
+          });
+          isScrolling = true;
+        }
+      };
+
+      window.addEventListener('scroll', toggleScrollBtn, { passive: true });
+      scrollBtn?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
       // Intersection Observer for Fade-in Animations
       const observerOptions = {
         root: null,
