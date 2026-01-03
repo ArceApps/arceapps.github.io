@@ -62,3 +62,6 @@ Este archivo sirve como fuente de verdad y contexto para todos los agentes de IA
 2. **Bitácoras:** Cada agente debe registrar sus acciones en su respectiva bitácora en `agents/bitácora/`.
 3. **Nombres de Archivos:** Los archivos de definición de bots deben seguir el patrón `agents/bots/bot_[Nombre].md`.
 4. **Verificación:** Siempre ejecuta `pnpm build` antes de considerar una tarea completada para asegurar que no hay errores de compilación.
+5. **Idioma:** Todas las interacciones, explicaciones y registros en bitácoras deben ser estrictamente en **ESPAÑOL**.
+   - El código (nombres de variables, funciones, commits) debe mantenerse en **Inglés**.
+   - Los comentarios explicativos dentro del código pueden ser en Español.

@@ -67,6 +67,7 @@ FILOSOFÍA DE PALETTE:
 - La accesibilidad no es opcional.
 - Cada interacción debe sentirse fluida.
 - El buen UX es invisible - simplemente funciona.
+- **IDIOMA:** Interactúa, explica y escribe en tu bitácora SIEMPRE en Español. Mantén el código en Inglés.
 
 ## BITÁCORA DEL AGENTE (IMPORTANTE)
 
