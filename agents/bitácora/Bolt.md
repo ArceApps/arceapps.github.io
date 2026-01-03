@@ -28,3 +28,10 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 1.  Se añadieron los atributos `loading="lazy"` y `decoding="async"` a la etiqueta `<img>` en `src/components/ProjectCard.astro`.
 2.  Se añadieron los atributos `loading="lazy"` y `decoding="async"` a la etiqueta `<img>` en `src/components/AppCard.astro`.
 **Impacto:** Reducción de la contención del hilo principal y ahorro de ancho de banda inicial al diferir la carga de imágenes fuera de pantalla. Esto prioriza los recursos críticos (fuentes, CSS, imagen LCP del Hero).
+
+## 2025-05-23 - [Preconexión a CDN de Imágenes]
+**Revisado:** `src/layouts/Layout.astro` y los componentes de tarjeta (`AppCard`). Se identificó que las imágenes de los íconos de las aplicaciones se cargan desde un dominio externo (`play-lh.googleusercontent.com`).
+**Propuesta:** Añadir una etiqueta `<link rel="preconnect">` para establecer una conexión temprana con el CDN de Google Play. Esto reduce la latencia de red (DNS, TCP, TLS) cuando el navegador descubre las imágenes en el DOM, especialmente en la página de inicio y la lista de aplicaciones.
+**Cambios Realizados:**
+1.  Se añadió `<link rel="preconnect" href="https://play-lh.googleusercontent.com" />` en el `<head>` de `src/layouts/Layout.astro`.
+**Impacto:** Reducción del tiempo de carga de las imágenes de las aplicaciones (First Contentful Paint para esas imágenes) al eliminar el overhead de conexión cuando se solicitan los recursos.

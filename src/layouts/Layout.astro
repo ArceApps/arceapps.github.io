@@ -62,6 +62,9 @@ const socialImageURL = new URL(image, Astro.url);
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#018786" />
 
+    <!-- Performance Optimizations -->
+    <link rel="preconnect" href="https://play-lh.googleusercontent.com" />
+
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
