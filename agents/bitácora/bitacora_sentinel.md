@@ -18,3 +18,13 @@
 - Se añadieron atributos `autocomplete="name"` y `autocomplete="email"`.
 - Se actualizaron las instrucciones en el componente para reflejar el uso de variables de entorno.
 **Aprendizaje (si aplica):** Incluso en sitios estáticos, usar variables de entorno para datos de configuración sensibles (como correos de destino) previene fugas accidentales en el control de versiones.
+
+## 2025-05-26 - Prevención de XSS en Búsqueda
+**Estado:** Realizado
+**Análisis:**
+- El componente `src/components/Search.astro` inyectaba `item.title` y `item.description` directamente en el DOM mediante `innerHTML`.
+- Aunque los datos provienen de una fuente interna (`search-index.json`), si el contenido del blog o las apps contuviera scripts maliciosos (por ejemplo, en un PR de un colaborador), se ejecutarían en el navegador del usuario al realizar una búsqueda.
+**Cambios:**
+- Se implementó una función `escapeHtml` en el script del cliente para sanitizar caracteres peligrosos (`&`, `<`, `>`, `"`, `'`).
+- Se aplicó esta función a los campos de título y descripción antes de renderizarlos.
+**Aprendizaje (si aplica):** Siempre que se use `innerHTML` o inyección directa de HTML, es obligatorio sanitizar los datos de entrada, incluso si provienen de fuentes "confiables", para mantener una defensa en profundidad.
