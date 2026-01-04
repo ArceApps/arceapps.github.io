@@ -2,7 +2,7 @@
 title: "PuzzleHub"
 description: "La colección definitiva de entrenamiento cerebral con 10 juegos de lógica clásicos y modernos en una sola aplicación."
 pubDate: "2023-12-01"
-heroImage: "/images/puzzlehub-hero.svg"
+heroImage: "https://play-lh.googleusercontent.com/ck8ICfBirIAyNEhzGuNz0vpn7JqbP3vm77BB5xd0C4Q5NuTadMuwfTHnxcwMPfbRxI4kdadpuz2AdqP6hNvQ6A=w526-h296"
 icon: "category"
 tags: ["Puzzle", "Collection", "Logic"]
 googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.puzzlesuite"
