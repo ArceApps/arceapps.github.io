@@ -32,7 +32,7 @@ const {
     <!-- Icon -->
     <div class={`w-14 h-14 rounded-2xl ${!realIconUrl ? color : 'bg-white'} flex items-center justify-center text-white shadow-md mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden`}>
       {realIconUrl ? (
-        <img src={realIconUrl} alt={`${title} icon`} loading="lazy" decoding="async" class="w-full h-full object-cover" />
+        <img src={realIconUrl} alt={`${title} icon`} loading="lazy" decoding="async" width="56" height="56" class="w-full h-full object-cover" />
       ) : (
         <span class="material-icons text-3xl">{icon}</span>
       )}
