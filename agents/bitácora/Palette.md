@@ -43,3 +43,23 @@
 - Modificado `src/layouts/Layout.astro`:
   - Se añadió el botón con icono `arrow_upward` y clases de Tailwind para animación de entrada.
   - Se implementó la lógica en JS usando `requestAnimationFrame` para un control eficiente del estado de visibilidad basado en `window.scrollY`.
+
+## 2024-05-28 - Accesibilidad y Feedback Visual en Búsqueda
+
+**Revisión:**
+- Se analizó `src/components/Search.astro` y se encontraron deficiencias en accesibilidad y feedback:
+  - Faltaban atributos ARIA críticos (`aria-expanded`, `aria-controls`, `role="dialog"`, `aria-modal`).
+  - No existía indicador visual durante la carga asíncrona del índice y la librería Fuse.js.
+  - El estado de "No resultados" era texto plano, poco amigable.
+
+**Propuesta:**
+- Añadir atributos ARIA para cumplir estándares de accesibilidad (WAI-ARIA).
+- Implementar un estado de carga visual con un spinner animado.
+- Mejorar el diseño del estado vacío ("No results") con un icono ilustrativo.
+
+**Realizado:**
+- Modificado `src/components/Search.astro`:
+  - Se añadieron `role="dialog"`, `aria-modal="true"`, `aria-expanded` y `aria-controls`.
+  - Se implementó lógica JS para gestionar el estado `aria-expanded`.
+  - Se añadió un spinner de carga (`animate-spin`) en el contenedor `searchStatus` durante la inicialización.
+  - Se mejoró el mensaje de no resultados con un icono `sentiment_dissatisfied`.
