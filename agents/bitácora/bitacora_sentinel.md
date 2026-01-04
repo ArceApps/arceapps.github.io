@@ -28,3 +28,13 @@
 - Se implementó una función `escapeHtml` en el script del cliente para sanitizar caracteres peligrosos (`&`, `<`, `>`, `"`, `'`).
 - Se aplicó esta función a los campos de título y descripción antes de renderizarlos.
 **Aprendizaje (si aplica):** Siempre que se use `innerHTML` o inyección directa de HTML, es obligatorio sanitizar los datos de entrada, incluso si provienen de fuentes "confiables", para mantener una defensa en profundidad.
+
+## 2025-05-27 - Cabeceras de Seguridad en Layout
+**Estado:** Realizado
+**Análisis:**
+- El archivo `src/layouts/Layout.astro` carecía de cabeceras de seguridad fundamentales que se pueden establecer vía meta tags en sitios estáticos.
+- Faltaban configuraciones explícitas para la política de referer y la política de seguridad de contenido básica.
+**Cambios:**
+- Se añadió `<meta name="referrer" content="strict-origin-when-cross-origin" />` para proteger la privacidad del usuario al navegar a otros sitios, manteniendo la información de origen para el mismo sitio.
+- Se añadió `<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />` para forzar la actualización de recursos HTTP a HTTPS, mitigando riesgos de contenido mixto.
+**Aprendizaje (si aplica):** En sitios estáticos donde no se tiene control total sobre las cabeceras del servidor (como GitHub Pages sin configuración avanzada), el uso de meta tags para políticas de seguridad es una capa esencial de defensa.
