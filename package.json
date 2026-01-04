@@ -23,5 +23,6 @@
     "@playwright/test": "^1.57.0",
     "daisyui": "^5.5.5",
     "typescript": "^5.9.3"
+    "playwright": "^1.57.0"
   }
 }
