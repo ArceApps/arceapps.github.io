@@ -35,3 +35,17 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Cambios Realizados:**
 1.  Se añadió `<link rel="preconnect" href="https://play-lh.googleusercontent.com" />` en el `<head>` de `src/layouts/Layout.astro`.
 **Impacto:** Reducción del tiempo de carga de las imágenes de las aplicaciones (First Contentful Paint para esas imágenes) al eliminar el overhead de conexión cuando se solicitan los recursos.
+
+## 2025-05-24 - [Dimensiones Explícitas para Íconos y Tipado Estricto]
+**Revisado:** `src/components/ProjectCard.astro`, `src/components/AppCard.astro`, `src/components/Search.astro`, `src/components/ContactForm.astro`.
+**Propuesta:**
+1. Se detectó que las imágenes de los íconos de las aplicaciones (`realIconUrl`) carecían de atributos `width` y `height`, dependiendo solo de CSS para su tamaño. Esto puede causar cambios de diseño acumulativos (CLS) menores durante la carga.
+2. Se encontraron errores de TypeScript en `Search.astro` (tipos `any` implícitos) y `ContactForm.astro` (acceso a propiedad `disabled` en `HTMLElement`) que impedían una verificación limpia (`pnpm check`).
+**Cambios Realizados:**
+1.  Se añadieron `width="64" height="64"` a la etiqueta `<img>` en `src/components/ProjectCard.astro`.
+2.  Se añadieron `width="56" height="56"` a la etiqueta `<img>` en `src/components/AppCard.astro`.
+3.  Se corrigieron los tipos en `src/components/Search.astro` (definiendo `fuse: any`, `searchIndex: any[]` y parámetros de funciones).
+4.  Se corrigió el tipado del botón de envío en `src/components/ContactForm.astro` (casting a `HTMLButtonElement`).
+**Impacto:**
+- **Rendimiento:** Prevención de Layout Shift (CLS) en los contenedores de íconos, mejorando la estabilidad visual.
+- **Calidad de Código:** Resolución de 6 errores de TypeScript, mejorando la robustez y mantenibilidad del código.

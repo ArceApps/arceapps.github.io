@@ -82,7 +82,7 @@ const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL || "your@email.com";
 <script>
   // Simple JS to handle loading state
   const form = document.getElementById('contact-form');
-  const btn = document.getElementById('submit-btn');
+  const btn = document.getElementById('submit-btn') as HTMLButtonElement | null;
   const btnIcon = document.getElementById('btn-icon');
   const btnText = document.getElementById('btn-text');
 
