@@ -2,7 +2,7 @@
 title: "4Line for Color lines"
 description: "Un juego de lógica y rompecabezas colorido. Forma líneas de 4 o más fichas del mismo color para limpiar el tablero y obtener puntos."
 pubDate: "2023-11-15"
-heroImage: "https://play-lh.googleusercontent.com/ScAmhEgQkkBvx9FiLQrj_f4B_l6wUiBE8XhKoHS9aR7uvXB2siHbznTRDqRYNKP61t4=w526-h296"
+heroImage: "https://play-lh.googleusercontent.com/ScAmhEgQkkBvx9FiLQrj_f4B_l6wUiBE8XhKoHS9aR7uvXB2siHbznTRDqRYNKP61t4=w1200"
 icon: "linear_scale"
 tags: ["Puzzle", "Strategy", "Brain Training"]
 googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.a4line"
