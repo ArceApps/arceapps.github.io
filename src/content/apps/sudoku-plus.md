@@ -2,7 +2,7 @@
 title: "Sudoku+"
 description: "La experiencia de Sudoku definitiva. Niveles equilibrados, tutoriales completos y un diseño elegante para principiantes y expertos."
 pubDate: "2023-10-15"
-heroImage: "/images/sudoku-hero.svg"
+heroImage: "https://play-lh.googleusercontent.com/HyVC5vsXRT80DeTTXN_frseubKnyNy7PRo-CR-DfCTe7k3lsjPAljqWVOfk12IM9KQ=w526-h296"
 icon: "grid_on"
 tags: ["Puzzle", "Logic", "Classic"]
 googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.sudoku"

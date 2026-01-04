@@ -2,7 +2,7 @@
 title: "2048 Puzzle Challenge"
 description: "El clásico juego de rompecabezas numérico reinventado. Desliza, combina y alcanza la meta 2048 en esta experiencia adictiva y desafiante."
 pubDate: "2023-10-27"
-heroImage: "/images/2048-hero.svg"
+heroImage: "https://play-lh.googleusercontent.com/OCydhTOqatjYNKvtjlNu9UXX2JVtaQ2RhG49Wzu21_TOrgD6aKkwh9IvgI9zjhCJfUE=w526-h296"
 icon: "view_module"
 tags: ["Puzzle", "Logic", "Casual"]
 googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.a2048"
