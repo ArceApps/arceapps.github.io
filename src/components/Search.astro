@@ -43,8 +43,8 @@
 
 <script>
   // Dynamic import implemented to optimize initial load
-  let fuse;
-  let searchIndex = [];
+  let fuse: any;
+  let searchIndex: any[] = [];
 
   const searchButton = document.getElementById('search-button');
   const searchModal = document.getElementById('search-modal');
@@ -54,7 +54,7 @@
   const searchStatus = document.getElementById('search-status');
 
   // Simple HTML escape function to prevent XSS
-  function escapeHtml(unsafe) {
+  function escapeHtml(unsafe: string) {
     if (!unsafe) return '';
     return unsafe
          .replace(/&/g, "&amp;")
@@ -111,7 +111,7 @@
     }
   }
 
-  function performSearch(query) {
+  function performSearch(query: string) {
     if (!fuse) return;
 
     if (query.length < 2) {
@@ -137,7 +137,7 @@
     if (searchStatus) searchStatus.classList.add('hidden');
     if (searchResults) {
         searchResults.classList.remove('hidden');
-        searchResults.innerHTML = results.slice(0, 10).map(result => {
+        searchResults.innerHTML = results.slice(0, 10).map((result: any) => {
             const item = result.item;
             const icon = item.type === 'App' ? 'android' : 'article';
             return `
