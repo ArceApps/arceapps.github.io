@@ -3,6 +3,8 @@
     id="search-button"
     class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
     aria-label="Buscar"
+    aria-expanded="false"
+    aria-controls="search-modal"
   >
     <span class="material-icons text-xl">search</span>
   </button>
@@ -11,6 +13,9 @@
   <div
     id="search-modal"
     class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-start justify-center pt-20 px-4"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Búsqueda"
   >
     <div class="bg-surface dark:bg-dark-surface w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden animate-fade-in-down border border-gray-200 dark:border-gray-700">
       <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center gap-3">
@@ -67,6 +72,12 @@
   async function initSearch() {
     if (searchIndex.length > 0) return;
 
+    // Show loading state
+    if (searchStatus) {
+      searchStatus.innerHTML = '<div class="flex items-center justify-center gap-2"><span class="material-icons animate-spin">refresh</span><span>Cargando índice...</span></div>';
+      searchStatus.classList.remove('hidden');
+    }
+
     try {
       // Parallelize fetching index and loading library
       const [response, { default: Fuse }] = await Promise.all([
@@ -85,13 +96,24 @@
         includeScore: true,
         threshold: 0.4,
       });
+
+      // Clear loading state if input is empty
+      if (searchInput && searchInput.value === '' && searchStatus) {
+         searchStatus.textContent = 'Escribe para buscar...';
+      } else if (searchInput && searchInput.value !== '') {
+         // If user already typed, search immediately
+         performSearch(searchInput.value);
+      }
+
     } catch (error) {
       console.error("Error loading search index:", error);
+      if (searchStatus) searchStatus.textContent = 'Error al cargar el buscador.';
     }
   }
 
   function openModal() {
     searchModal?.classList.remove('hidden');
+    searchButton?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
     initSearch();
     setTimeout(() => searchInput?.focus(), 100);
@@ -99,6 +121,7 @@
 
   function closeModal() {
     searchModal?.classList.add('hidden');
+    searchButton?.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
     if (searchInput) searchInput.value = '';
     if (searchResults) {
@@ -128,7 +151,7 @@
     if (results.length === 0) {
         if (searchResults) searchResults.classList.add('hidden');
         if (searchStatus) {
-            searchStatus.textContent = 'No se encontraron resultados.';
+            searchStatus.innerHTML = '<div class="flex flex-col items-center justify-center py-4 gap-2 text-gray-400"><span class="material-icons text-4xl">sentiment_dissatisfied</span><span>No se encontraron resultados.</span></div>';
             searchStatus.classList.remove('hidden');
         }
         return;
