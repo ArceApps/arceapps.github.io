@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
 import BlogCard from "../components/BlogCard.astro";
-import AppCard from "../components/AppCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
 
 // Get latest blog posts
@@ -10,10 +10,10 @@ const allPosts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-// Get featured apps (latest 4)
+// Get featured apps (latest 3)
 const apps = (await getCollection("apps"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 4);
+  .slice(0, 3);
 ---
 
 <Layout title="ArceApps - Apps Android Premium">
@@ -30,16 +30,16 @@ const apps = (await getCollection("apps"))
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {apps.map(app => (
-          <AppCard
+          <ProjectCard
             title={app.data.title}
             description={app.data.description}
-            icon={app.data.icon}
+            heroImage={app.data.heroImage}
             realIconUrl={app.data.realIconUrl}
-            link={`/apps/${app.slug}`}
-            ctaText="Ver Detalles"
-            isExternal={false}
+            tags={app.data.tags}
+            pubDate={app.data.pubDate}
+            slug={app.slug}
           />
         ))}
       </div>
