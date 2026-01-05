@@ -49,3 +49,16 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Prevención de Layout Shift (CLS) en los contenedores de íconos, mejorando la estabilidad visual.
 - **Calidad de Código:** Resolución de 6 errores de TypeScript, mejorando la robustez y mantenibilidad del código.
+
+## 2025-05-25 - [Optimización de Scroll Listener con Intersection Observer]
+**Revisado:** `src/layouts/Layout.astro`, `src/pages/blog/[...page].astro`
+**Propuesta:**
+1. El botón de "Volver arriba" utilizaba un listener de evento `scroll` en el objeto `window` que se ejecutaba en cada píxel de desplazamiento. Aunque usaba `requestAnimationFrame`, seguía activando lógica en el hilo principal innecesariamente. Se propuso usar `IntersectionObserver` con un elemento centinela para detectar cuándo mostrar el botón.
+2. `pnpm astro check` fallaba debido a tipos faltantes en la paginación del blog.
+**Cambios Realizados:**
+1. Se añadió un `div#scroll-sentinel` absoluto al inicio del body.
+2. Se reemplazó el evento `window.onscroll` con un `IntersectionObserver` que observa el centinela. Cuando el centinela sale del viewport, se muestra el botón.
+3. Se añadieron tipos explícitos (`Page<CollectionEntry<'blog'>>`) en `src/pages/blog/[...page].astro` para corregir errores de TypeScript.
+**Impacto:**
+- **Rendimiento:** Eliminación completa del listener `scroll` constante en el hilo principal, liberando recursos para otras tareas de renderizado e interacción.
+- **Calidad de Código:** Corrección de errores de tipado estricto en la paginación del blog, permitiendo un pipeline de CI/CD (o `check`) limpio.
