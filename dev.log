@@ -1,0 +1,31 @@
+
+> arceapps-astro-site@0.0.1 dev /app
+> astro dev
+
+22:40:28 [types] Generated 1ms
+22:40:28 [content] Syncing content
+[Shiki] The language "gradle" doesn't exist, falling back to "plaintext".
+[Shiki] The language "gradle" doesn't exist, falling back to "plaintext".
+22:40:30 [content] Synced content
+22:40:30 [vite] Re-optimizing dependencies because vite config has changed
+
+ astro  v5.16.6 ready in 2949 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+22:40:30 watching for file changes...
+22:43:38 [200] / 573ms
+22:43:39 [200] / 14ms
+22:43:49 [200] / 11ms
+22:43:49 [200] / 13ms
+22:44:01 [watch] verify_scroll_btn.py
+22:44:01 [watch] verify_scroll_btn.py
+22:44:07 [200] / 76ms
+22:44:07 [200] / 11ms
+22:44:32 [watch] agents/bitácora/Bolt.md
+22:44:32 [watch] agents/bitácora/Bolt.md
+22:45:33 [watch] src/layouts/Layout.astro
+22:45:33 [watch] src/layouts/Layout.astro
+22:45:39 [200] / 140ms
+22:45:40 [200] / 12ms

@@ -117,6 +117,9 @@ const socialImageURL = new URL(image, Astro.url);
     </script>
   </head>
   <body class="flex flex-col min-h-screen">
+    <!-- Scroll Sentinel -->
+    <div id="scroll-sentinel" class="absolute top-0 w-full h-[300px] pointer-events-none -z-50" aria-hidden="true"></div>
+
     <a
       href="#main-content"
       class="fixed top-4 left-4 z-[100] -translate-y-[150%] bg-primary text-white px-4 py-2 rounded-lg shadow-lg font-bold focus:translate-y-0 transition-transform duration-300 focus:outline-none focus:ring-4 focus:ring-white/50"
@@ -140,28 +143,27 @@ const socialImageURL = new URL(image, Astro.url);
     <script>
       // Scroll to Top Logic
       const scrollBtn = document.getElementById('scroll-to-top');
-      let isScrolling = false;
+      const scrollSentinel = document.getElementById('scroll-sentinel');
 
-      const toggleScrollBtn = () => {
-        if (!isScrolling) {
-          window.requestAnimationFrame(() => {
-            if (window.scrollY > 300) {
-              scrollBtn?.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-              scrollBtn?.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+      if (scrollBtn && scrollSentinel) {
+        const scrollObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+              scrollBtn.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+              scrollBtn.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
             } else {
-              scrollBtn?.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-              scrollBtn?.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+              scrollBtn.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+              scrollBtn.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
             }
-            isScrolling = false;
           });
-          isScrolling = true;
-        }
-      };
+        }, { root: null, threshold: 0 });
 
-      window.addEventListener('scroll', toggleScrollBtn, { passive: true });
-      scrollBtn?.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
+        scrollObserver.observe(scrollSentinel);
+
+        scrollBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
 
       // Intersection Observer for Fade-in Animations
       const observerOptions = {
