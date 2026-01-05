@@ -43,6 +43,13 @@ const socialImageURL = new URL(image, Astro.url);
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 
+    <!-- Anti-Clickjacking (Frame Buster) -->
+    <script is:inline>
+      if (window.self !== window.top) {
+        window.top.location = window.self.location;
+      }
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
