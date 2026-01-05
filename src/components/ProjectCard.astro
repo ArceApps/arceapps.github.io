@@ -12,7 +12,7 @@ interface Props {
 const { title, description, heroImage, realIconUrl, tags = [], pubDate, slug } = Astro.props;
 ---
 
-<a href={`/apps/${slug}`} class="group relative flex flex-col h-full bg-surface dark:bg-dark-surface rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-800">
+<a href={`/apps/${slug}`} class="group relative flex flex-col h-full bg-surface dark:bg-dark-surface rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-gray-800 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
   <!-- Image Area -->
   <div class="relative h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
     {heroImage ? (
@@ -24,15 +24,15 @@ const { title, description, heroImage, realIconUrl, tags = [], pubDate, slug } =
         class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
       />
     ) : (
-      <div class="w-full h-full flex items-center justify-center text-gray-300 dark:text-gray-700">
+      <div class="w-full h-full flex items-center justify-center text-gray-300 dark:text-gray-700" aria-hidden="true">
         <span class="material-icons text-6xl">smartphone</span>
       </div>
     )}
-    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" aria-hidden="true"></div>
 
     {realIconUrl && (
        <div class="absolute top-4 right-4 w-16 h-16 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 backdrop-blur-sm z-10">
-          <img src={realIconUrl} alt="App Icon" loading="lazy" decoding="async" width="64" height="64" class="w-full h-full object-cover" />
+          <img src={realIconUrl} alt={`Icono de ${title}`} loading="lazy" decoding="async" width="64" height="64" class="w-full h-full object-cover" />
        </div>
     )}
 
@@ -49,7 +49,7 @@ const { title, description, heroImage, realIconUrl, tags = [], pubDate, slug } =
   <!-- Content Area -->
   <div class="p-8 flex flex-col flex-grow relative">
      <!-- Decorative glow -->
-     <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full -mr-4 -mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+     <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full -mr-4 -mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true"></div>
 
     <h2 class="text-2xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">
       {title}
@@ -64,7 +64,7 @@ const { title, description, heroImage, realIconUrl, tags = [], pubDate, slug } =
       </span>
       <span class="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 transition-transform">
         Ver Detalles
-        <span class="material-icons ml-1 text-base">arrow_forward</span>
+        <span class="material-icons ml-1 text-base" aria-hidden="true">arrow_forward</span>
       </span>
     </div>
   </div>
