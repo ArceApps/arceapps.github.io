@@ -38,3 +38,13 @@
 - Se añadió `<meta name="referrer" content="strict-origin-when-cross-origin" />` para proteger la privacidad del usuario al navegar a otros sitios, manteniendo la información de origen para el mismo sitio.
 - Se añadió `<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />` para forzar la actualización de recursos HTTP a HTTPS, mitigando riesgos de contenido mixto.
 **Aprendizaje (si aplica):** En sitios estáticos donde no se tiene control total sobre las cabeceras del servidor (como GitHub Pages sin configuración avanzada), el uso de meta tags para políticas de seguridad es una capa esencial de defensa.
+
+## 2025-05-28 - Mejora CSP: Protección Clickjacking y Contenido Mixto
+**Estado:** Realizado
+**Análisis:**
+- El sitio carecía de protección contra Clickjacking (ser embebido en un iframe malicioso). Al ser un sitio estático, no se pueden configurar cabeceras HTTP como `X-Frame-Options` directamente.
+- Se detectó un enlace con protocolo HTTP inseguro (`http://try.crashlytics.com`) en `src/pages/privacy-policy.astro`, generando advertencias de contenido mixto.
+**Cambios:**
+- Se implementó un script de "Frame Busting" en `src/layouts/Layout.astro` para prevenir que el sitio sea cargado dentro de un iframe.
+- Se corrigió el enlace en `src/pages/privacy-policy.astro` para usar HTTPS.
+**Aprendizaje (si aplica):** La directiva `frame-ancestors` de CSP es ignorada en etiquetas `<meta>`, por lo que en entornos de hosting estático puro (como GitHub Pages), se requiere un script de bloqueo de iframes (Frame Buster) como medida de defensa en profundidad.
