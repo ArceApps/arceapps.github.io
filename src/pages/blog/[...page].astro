@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import BlogCard from "../../components/BlogCard.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import type { Page, GetStaticPathsOptions } from "astro";
+import { slugify } from "../../utils/slugs";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   const allPosts = (await getCollection("blog")).sort(
@@ -33,7 +34,7 @@ const { page, allTags } = Astro.props;
       <div class="mt-10 flex flex-wrap justify-center gap-3 animate-fade-in-up">
         {allTags.map((tag) => (
           <a
-            href={`/blog/tag/${encodeURIComponent(tag)}/`}
+            href={`/blog/tag/${slugify(tag)}/`}
             class="px-4 py-2 rounded-full bg-surface dark:bg-dark-surface border border-primary/20 hover:border-primary text-on-surface dark:text-dark-on-surface hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md"
           >
             #{tag}
