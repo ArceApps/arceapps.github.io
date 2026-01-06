@@ -3,9 +3,8 @@ title: "IA + TDD en Android: La Nueva Era del Testing"
 description: "Test Driven Development (TDD) siempre fue difícil de adoptar. Descubre cómo la IA elimina la fricción de escribir tests primero y transforma tu flujo de trabajo."
 pubDate: "2025-10-31"
 heroImage: "/images/placeholder-article-tdd-ia.svg"
-tags: ["AI", "TDD", "Testing", "Android", "Best Practices"]
+tags: ["IA", "TDD", "Testing", "Android", "Best Practices"]
 ---
-
 ## 🐢 La Paradoja del TDD
 
 Todos conocemos la teoría de **TDD (Test Driven Development)**:

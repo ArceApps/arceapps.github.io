@@ -3,9 +3,8 @@ title: "AI Skills en el Desarrollo: Potencia Tu Flujo de Trabajo Android"
 description: "Descubre cómo los AI Skills transforman el desarrollo moderno, automatizando tareas complejas y mejorando la productividad en proyectos Android."
 pubDate: "2025-12-29"
 heroImage: "/images/placeholder-article-ai-skills.svg"
-tags: ["AI", "Android", "Desarrollo", "Skills", "Gemini", "GitHub Copilot"]
+tags: ["IA", "Android", "Desarrollo", "Skills", "Gemini", "GitHub Copilot"]
 ---
-
 ## 🧠 ¿Qué son los AI Skills? Teoría y Conceptos
 
 En el mundo de la Ingeniería de Prompts, un **Skill** no es simplemente una "instrucción". Técnicamente, un Skill es una **configuración de contexto persistente** diseñada para especializar a un Modelo de Lenguaje (LLM) en una tarea específica.

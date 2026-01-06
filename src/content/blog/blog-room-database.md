@@ -5,7 +5,6 @@ pubDate: "2025-10-12"
 heroImage: "/images/placeholder-article-room.svg"
 tags: ["Android", "Room", "Database", "SQL", "Persistence"]
 ---
-
 ## 🏛️ Teoría: ¿Por qué Room y no SQLite puro?
 
 SQLite es poderoso pero crudo. Escribir SQL a mano en Strings es propenso a errores, y mapear `Cursor` a Objetos es tedioso y repetitivo.

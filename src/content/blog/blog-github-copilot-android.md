@@ -3,9 +3,8 @@ title: "GitHub Copilot en Android: Tu Pair Programmer IA"
 description: "Maximiza tu productividad en Android Studio con GitHub Copilot. Técnicas avanzadas de prompting, generación de tests y refactoring asistido."
 pubDate: "2025-10-10"
 heroImage: "/images/placeholder-article-copilot-android.svg"
-tags: ["AI", "GitHub Copilot", "Android", "Productivity", "IDE"]
+tags: ["IA", "GitHub Copilot", "Android", "Productividad", "IDE"]
 ---
-
 ## 🤖 ¿Qué es realmente GitHub Copilot?
 
 Copilot no es un "autocompletado con esteroides". Es un modelo de lenguaje (basado en OpenAI Codex) que entiende el contexto de tu código.

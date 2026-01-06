@@ -3,9 +3,8 @@ title: "Tu Staff Virtual: Configurando Sentinel, Bolt y Palette"
 description: "Guía práctica paso a paso para implementar una arquitectura de agentes en tu proyecto Android. Configura tu propio equipo de expertos y define sus reglas."
 pubDate: "2025-05-21"
 tags: ["IA", "Tutorial", "Configuración", "Android", "Agentes"]
-heroImage: "/images/blog-placeholder-about.jpg"
+heroImage: "/images/placeholder-article-ai-setup.svg"
 ---
-
 En el [artículo anterior](/blog/blog-agentes-ia-android-teoria), exploramos por qué necesitamos agentes especializados en lugar de chats genéricos. Hoy, vamos a ensuciarnos las manos. Vamos a construir la infraestructura necesaria para que **Sentinel**, **Bolt** y **Palette** vivan en tu repositorio Android.
 
 No necesitas instalar librerías complejas de Python ni configurar servidores locales. Solo necesitas organizar tu conocimiento en archivos Markdown que las IAs actuales (Claude, ChatGPT, Gemini) puedan consumir como contexto.

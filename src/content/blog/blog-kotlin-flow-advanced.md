@@ -5,7 +5,6 @@ pubDate: "2025-10-15"
 heroImage: "/images/placeholder-article-flow-advanced.svg"
 tags: ["Kotlin", "Flow", "Reactive Programming", "Android", "Coroutines"]
 ---
-
 ## 🌊 Más allá del `collect` básico
 
 Si ya usas `StateFlow` y `SharedFlow`, estás en el buen camino. Pero el verdadero poder de Kotlin Flow reside en sus operadores de transformación y combinación. Estos te permiten modelar flujos de datos complejos de forma declarativa, eliminando "callback hells" y variables de estado mutables dispersas.

@@ -3,9 +3,8 @@ title: "Pair Programming Asíncrono con Agentes: Sentinel, Bolt y Palette en Acc
 description: "Casos reales de desarrollo Android donde delegar en agentes especializados supera a cualquier chat de IA estándar. Seguridad, Rendimiento y UX."
 pubDate: "2025-05-22"
 tags: ["IA", "Kotlin", "Workflow", "Casos de Uso", "Android"]
-heroImage: "/images/blog-placeholder-about.jpg"
+heroImage: "/images/placeholder-article-ai-workflow.svg"
 ---
-
 Ya tienes la [teoría](/blog/blog-agentes-ia-android-teoria) y tienes la [configuración](/blog/blog-configuracion-agentes-ia). Ahora vamos a ver la magia en acción. Vamos a simular tres escenarios de desarrollo Android reales y ver cómo **Sentinel**, **Bolt** y **Palette** resuelven problemas que un "chatbot" generalista probablemente ignoraría o solucionaría mal.
 
 ## Caso 1: Sentinel vs. El AndroidManifest Inseguro 🛡️

@@ -5,7 +5,6 @@ pubDate: "2025-10-02"
 heroImage: "/images/placeholder-article-model-layer.svg"
 tags: ["Android", "MVVM", "Architecture", "Data Layer", "Clean Code"]
 ---
-
 ## 🏗️ Teoría: ¿Qué es el "Model" realmente?
 
 En discusiones sobre MVVM, la gente se obsesiona con el ViewModel y la View, y el **Model** queda relegado a "un par de data classes". Esto es un error grave.

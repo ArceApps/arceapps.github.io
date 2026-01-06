@@ -5,7 +5,6 @@ pubDate: "2025-10-10"
 heroImage: "/images/placeholder-article-use-cases.svg"
 tags: ["Architecture", "Clean Architecture", "Android", "Best Practices"]
 ---
-
 ## 🏛️ Teoría: Single Responsibility a Nivel de Clase
 
 En MVVM básico, el ViewModel suele acumular demasiada lógica.

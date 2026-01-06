@@ -5,7 +5,6 @@ pubDate: "2025-03-15"
 heroImage: "/images/placeholder-article-kdoc-dokka.svg"
 tags: ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Desarrollo"]
 ---
-
 ## 🧠 Introducción Técnica
 
 La documentación de software ha evolucionado desde archivos de texto separados hasta convertirse en una parte integral del código fuente. En el ecosistema Kotlin, esta integración se logra a través de **KDoc** (sintaxis) y **Dokka** (motor de generación).

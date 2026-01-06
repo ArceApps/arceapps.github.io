@@ -2,10 +2,9 @@
 title: "Más allá del Chat: Por qué necesitas Agentes en tu equipo de Android"
 description: "Descubre cómo pasar de simples prompts a un equipo de agentes de IA especializados que conocen tu arquitectura Android y multiplican tu productividad."
 pubDate: "2025-05-20"
-tags: ["Inteligencia Artificial", "Productividad", "Android", "Agentes", "Workflow"]
-heroImage: "/images/blog-placeholder-about.jpg"
+tags: ["IA", "Productividad", "Android", "Agentes", "Workflow"]
+heroImage: "/images/placeholder-article-ai-evolution.svg"
 ---
-
 Seguramente te ha pasado. Estás trabajando en una refactorización compleja de un `ViewModel` en Kotlin, te encuentras con un error oscuro de corrutinas y decides pedir ayuda a ChatGPT o Claude. Copias el error, pegas el código, y la IA te da una solución genérica que no tiene en cuenta tu arquitectura Clean, ni que usas Hilt para inyección de dependencias, ni tus reglas de estilo.
 
 Vuelves a escribir: *"No, recuerda que uso UseCases y Flow, no LiveData"*. La IA se corrige. Cinco minutos después, en otro chat, tienes que volver a explicarle lo mismo.

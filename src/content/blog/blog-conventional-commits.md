@@ -5,7 +5,6 @@ pubDate: "2025-11-01"
 heroImage: "/images/placeholder-article-commits.svg"
 tags: ["Git", "Best Practices", "DevOps", "Conventional Commits", "Communication"]
 ---
-
 ## 🗣️ El Problema de la Comunicación en Git
 
 Revisemos el historial de un proyecto promedio:

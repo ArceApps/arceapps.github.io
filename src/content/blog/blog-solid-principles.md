@@ -5,7 +5,6 @@ pubDate: "2025-06-15"
 heroImage: "/images/placeholder-article-solid.svg"
 tags: ["Android", "SOLID", "Architecture", "Design Patterns", "Clean Code"]
 ---
-
 ## 🏗️ Introducción a SOLID en Android
 
 Los principios SOLID son la base de la programación orientada a objetos moderna y son cruciales para el desarrollo de apps Android escalables como **PuzzleQuest**.

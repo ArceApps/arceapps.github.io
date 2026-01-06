@@ -3,9 +3,8 @@ title: "Contexto Efectivo para IA en Android: El Arte del Prompt Engineering Té
 description: "Domina el arte de proporcionar contexto efectivo a agentes de IA para obtener código Android de calidad superior, consistente y sin alucinaciones."
 pubDate: "2025-12-15"
 heroImage: "/images/placeholder-article-ai-context.svg"
-tags: ["AI", "Android", "Prompt Engineering", "Contexto", "Productividad", "GitHub Copilot", "Gemini"]
+tags: ["IA", "Android", "Prompt Engineering", "Contexto", "Productividad", "GitHub Copilot", "Gemini"]
 ---
-
 ## 🧠 ¿Por qué el Contexto es Rey?
 
 Imagina a un desarrollador Senior nuevo que se une a tu equipo. Si le dices: "Haz la pantalla de login", probablemente te hará mil preguntas o asumirá cosas incorrectas. Pero si le dices: "Haz la pantalla de login usando nuestro `AuthViewModel` base, siguiendo el diseño de `LoginScreen.kt` existente y reutilizando `PrimaryButton`", el resultado será mucho mejor.

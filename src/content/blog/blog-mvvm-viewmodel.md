@@ -5,7 +5,6 @@ pubDate: "2025-10-04"
 heroImage: "/images/placeholder-article-viewmodel.svg"
 tags: ["Android", "MVVM", "ViewModel", "StateFlow", "Coroutines"]
 ---
-
 ## 🧠 Teoría: ¿Qué hace a un ViewModel un ViewModel?
 
 El `ViewModel` de Android es una clase diseñada con un superpoder específico: **sobrevivir a cambios de configuración**.
