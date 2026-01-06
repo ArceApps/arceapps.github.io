@@ -108,7 +108,7 @@ const socialImageURL = new URL(image, Astro.url);
         "datePublished": publishDate.toISOString(),
         "dateModified": publishDate.toISOString()
       })
-    })} />
+    }).replace(/</g, '\\u003C')} />
 
     <script is:inline>
       // Theme Script

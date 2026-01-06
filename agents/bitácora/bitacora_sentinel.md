@@ -48,3 +48,12 @@
 - Se implementó un script de "Frame Busting" en `src/layouts/Layout.astro` para prevenir que el sitio sea cargado dentro de un iframe.
 - Se corrigió el enlace en `src/pages/privacy-policy.astro` para usar HTTPS.
 **Aprendizaje (si aplica):** La directiva `frame-ancestors` de CSP es ignorada en etiquetas `<meta>`, por lo que en entornos de hosting estático puro (como GitHub Pages), se requiere un script de bloqueo de iframes (Frame Buster) como medida de defensa en profundidad.
+
+## 2025-05-29 - Sanitización de JSON-LD (Prevención XSS)
+**Estado:** Realizado
+**Análisis:**
+- Se identificó que la inyección de Schema.org en `src/layouts/Layout.astro` utilizaba `JSON.stringify` directamente dentro de `set:html`.
+- `JSON.stringify` no escapa el carácter `<` por defecto, lo que permite que una cadena maliciosa conteniendo `</script>` rompa el contexto del script y ejecute código JavaScript arbitrario (XSS).
+**Cambios:**
+- Se añadió `.replace(/</g, '\\u003C')` al resultado de `JSON.stringify`. Esto asegura que cualquier etiqueta HTML inyectada en los metadatos sea tratada como texto unicode seguro y no como marcado HTML parseable.
+**Aprendizaje (si aplica):** Al inyectar JSON en un contexto HTML (dentro de `<script>`), `JSON.stringify` no es suficiente. Es crítico escapar los caracteres que pueden cerrar el bloque de script prematuramente.
