@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import { slugify } from '../utils/slugs';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -33,7 +34,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
     <div class="flex items-center gap-2 mb-3">
        {post.data.tags && post.data.tags.slice(0, 1).map((tag: string) => (
           <a
-            href={`/blog/tag/${encodeURIComponent(tag)}/`}
+            href={`/blog/tag/${slugify(tag)}/`}
             class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors relative z-30 pointer-events-auto"
           >
             {tag}
