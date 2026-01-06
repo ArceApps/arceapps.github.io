@@ -1,7 +1,7 @@
 ---
 title: "Refinando la Experiencia: Rendimiento y Detalles Invisibles"
 description: "Confesiones de una semana optimizando ArceApps. La batalla contra los overlays de CSS, la carga perezosa de imágenes y por qué refactoricé la búsqueda."
-pubDate: "2025-05-26"
+pubDate: "2026-01-06"
 heroImage: "/images/performance-hero.svg"
 tags: ["performance", "ux", "astro", "optimization"]
 ---
