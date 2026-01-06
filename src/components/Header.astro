@@ -59,11 +59,25 @@ const isActive = (href: string) => {
       <!-- Theme Toggle -->
       <button
         id="theme-toggle"
-        class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
+        class="relative w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 overflow-hidden"
         aria-label="Cambiar tema"
       >
-        <span class="material-icons text-xl dark:hidden">dark_mode</span>
-        <span class="material-icons text-xl hidden dark:block">light_mode</span>
+        <div class="relative w-6 h-6">
+          <!-- Moon Icon (Visible in Light Mode -> Action: Go Dark) -->
+          <span
+            id="icon-dark"
+            class="material-icons absolute inset-0 text-xl transform transition-all duration-500 rotate-0 scale-100 opacity-100 dark:-rotate-90 dark:scale-0 dark:opacity-0"
+          >
+            dark_mode
+          </span>
+          <!-- Sun Icon (Visible in Dark Mode -> Action: Go Light) -->
+          <span
+            id="icon-light"
+            class="material-icons absolute inset-0 text-xl transform transition-all duration-500 rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100"
+          >
+            light_mode
+          </span>
+        </div>
       </button>
 
       <!-- Mobile Menu Button -->

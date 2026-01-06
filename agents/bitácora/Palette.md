@@ -17,3 +17,22 @@
   - Se actualizó el `alt` de la imagen del icono.
   - Se añadieron atributos `aria-hidden="true"` al placeholder de icono, al gradiente decorativo y al icono de flecha.
   - Se añadieron clases `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none` al enlace principal.
+
+## 2024-05-31 - Micro-interacción en Toggle de Tema
+
+**Revisión:**
+- Se analizó `src/components/Header.astro`.
+- Se observó que el cambio de tema (claro/oscuro) era instantáneo y carecía de feedback visual suave ("delight").
+- Los iconos simplemente se alternaban usando clases `hidden`, lo que impedía animaciones de transición.
+
+**Propuesta:**
+- Implementar una animación de rotación y escala al cambiar el tema.
+- Reestructurar el botón para contener ambos iconos posicionados absolutamente, permitiendo animar sus propiedades `opacity`, `transform`, `rotate` y `scale`.
+
+**Realizado:**
+- Modificado `src/components/Header.astro`:
+  - Se cambió la estructura del botón `#theme-toggle`.
+  - Se usaron clases de Tailwind para manejar estados:
+    - Icono activo: `scale-100 opacity-100 rotate-0` (o `dark:rotate-0`).
+    - Icono inactivo: `scale-0 opacity-0` con rotación (`-rotate-180` o `rotate-180`).
+  - Se añadió `transition-all duration-500` para suavizar la interacción.
