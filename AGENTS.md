@@ -26,6 +26,10 @@ Este archivo sirve como fuente de verdad y contexto para todos los agentes de IA
   - `images/`: Todas las imágenes deben residir aquí y referenciarse como `/images/nombre.ext`.
 - `agents/`:
   - `bots/`: Definiciones de agentes (`bot_*.md`).
+    - `bot_Sentinel.md`: Seguridad y QA.
+    - `bot_Palette.md`: Diseño y UX.
+    - `bot_Bolt.md`: Performance y Optimización.
+    - `bot_Scribe.md`: Redacción y Contenido (Blog, Apps, Devlog).
   - `bitácora/`: Logs de actividad de los agentes.
 
 ## 4. Comandos de Desarrollo
