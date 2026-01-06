@@ -1,0 +1,25 @@
+
+> arceapps-astro-site@0.0.1 dev /app
+> astro dev
+
+▶ Astro collects anonymous usage data.
+  This information helps us improve Astro.
+  Run "astro telemetry disable" to opt-out.
+  https://astro.build/telemetry
+
+22:56:10 [types] Generated 1ms
+22:56:10 [content] Syncing content
+[Shiki] The language "gradle" doesn't exist, falling back to "plaintext".
+[Shiki] The language "gradle" doesn't exist, falling back to "plaintext".
+[Shiki] The language "dataview" doesn't exist, falling back to "plaintext".
+22:56:12 [content] Synced content
+
+ astro  v5.16.6 ready in 3236 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+22:56:13 watching for file changes...
+22:56:19 [200] /devlog/refinando-la-experiencia 253ms
+22:56:20 [200] / 17ms
+ ELIFECYCLE  Command failed with exit code 143.

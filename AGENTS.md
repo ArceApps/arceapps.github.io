@@ -74,6 +74,7 @@ Este archivo sirve como fuente de verdad y contexto para todos los agentes de IA
 Para asegurar la consistencia visual del sitio, se aplican las siguientes reglas al crear contenido:
 - **Ámbito:** Nuevas Apps (`src/content/apps`), Artículos de Blog (`src/content/blog`) y Entradas de Bitácora/Devlog (`src/content/story` o `src/content/devlog`).
 - **Regla:** Todo nuevo contenido **DEBE** incluir una imagen de portada especificada en el campo `heroImage` del frontmatter.
+- **Fecha:** Todo nuevo contenido debe usar la fecha actual. Si se crean múltiples entradas a la vez, usar días consecutivos terminando en la fecha actual.
 - **Generación Automática:** Si el usuario no proporciona una imagen específica, el agente **DEBE generar una imagen SVG minimalista**.
   - **Estilo:** Geométrico, limpio y profesional.
   - **Colores:** Debe usar estrictamente los colores de marca: Teal (`#018786`) y Orange (`#FF9800`).
