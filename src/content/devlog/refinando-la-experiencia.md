@@ -2,7 +2,6 @@
 title: "Refinando la Experiencia: Rendimiento y Detalles Invisibles"
 description: "Un vistazo a las optimizaciones recientes bajo el capó: desde carga perezosa y mejoras en la búsqueda hasta correcciones de UX que hacen que todo se sienta más fluido."
 pubDate: "2025-05-26"
-heroImage: "/images/placeholder-story-refining.svg"
 tags: ["performance", "ux", "astro", "optimization"]
 ---
 
