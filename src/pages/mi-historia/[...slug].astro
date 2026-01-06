@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const stories = await getCollection('story');
+  return stories.map((story) => ({
+    params: { slug: story.slug },
+    props: story,
+  }));
+}
+
+const story = Astro.props;
+const { Content } = await story.render();
+
+const formattedDate = story.data.pubDate.toLocaleDateString('es-ES', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout title={`${story.data.title} - Mi Historia`} description={story.data.description}>
+  <article class="pt-24 pb-20">
+    <!-- Header -->
+    <header class="container mx-auto px-4 mb-12 max-w-3xl text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold mb-6">
+         <span class="material-icons text-sm">history_edu</span>
+         Mi Historia
+      </div>
+
+      <h1 class="text-3xl md:text-5xl font-bold mb-6 text-on-surface dark:text-dark-on-surface leading-tight">
+        {story.data.title}
+      </h1>
+
+      <div class="flex items-center justify-center text-on-surface-variant dark:text-dark-on-surface-variant text-lg">
+        <span class="material-icons mr-2 text-primary">calendar_today</span>
+        <time datetime={story.data.pubDate.toISOString()}>{formattedDate}</time>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <div class="container mx-auto px-4 max-w-3xl">
+      <div class="prose prose-slate dark:prose-invert md:prose-lg max-w-none bg-surface dark:bg-dark-surface p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800">
+        <Content />
+      </div>
+
+      <div class="mt-12 flex justify-center">
+         <a href="/mi-historia" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-icons mr-2">arrow_back</span>
+            Volver a la línea de tiempo
+         </a>
+      </div>
+    </div>
+  </article>
+</Layout>
+
+<style is:global>
+   /* Custom prose styles if needed */
+   .prose blockquote {
+      border-left-color: var(--color-primary);
+      background-color: var(--color-surface-variant);
+      color: var(--color-on-surface-variant);
+      padding: 1rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+   }
+   /* Dark mode adjustment via class strategy if prose-invert isn't catching everything */
+   .dark .prose blockquote {
+      background-color: rgba(255, 255, 255, 0.05);
+   }
+</style>
