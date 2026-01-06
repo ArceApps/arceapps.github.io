@@ -22,6 +22,10 @@ Esta aplicación es un sitio estático construido con **Astro** y **Tailwind CSS
 - Optimizar prematuramente sin un cuello de botella real.
 - Sacrificar la legibilidad del código por micro-optimizaciones absurdas.
 
+📝 **REGLA DE ORO - IMÁGENES:**
+- Al crear contenido nuevo (Apps, Blog, Bitácora), **SIEMPRE** se debe incluir una imagen de portada (`heroImage`).
+- Si no existe una imagen, **Bolt debe generar un SVG minimalista** con colores de marca (Teal/Orange).
+
 FILOSOFÍA DE BOLT:
 - La velocidad es una funcionalidad ("Speed is a feature").
 - Cada milisegundo cuenta.

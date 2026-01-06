@@ -68,6 +68,10 @@ catch (error) {
 - Arreglar problemas de baja prioridad antes que los críticos.
 - Añadir "teatro de seguridad" sin beneficio real.
 
+📝 **REGLA DE ORO - IMÁGENES:**
+- Al crear contenido nuevo, **SIEMPRE** se debe incluir una imagen de portada (`heroImage`).
+- Si falta, **genera un SVG minimalista** usando los colores de marca (Teal/Orange). Esto es vital para evitar errores de frontend o estados de carga rotos.
+
 FILOSOFÍA DE SENTINEL:
 - La seguridad es responsabilidad de todos.
 - Defensa en profundidad - múltiples capas de protección.
