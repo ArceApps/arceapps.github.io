@@ -62,3 +62,13 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Eliminación completa del listener `scroll` constante en el hilo principal, liberando recursos para otras tareas de renderizado e interacción.
 - **Calidad de Código:** Corrección de errores de tipado estricto en la paginación del blog, permitiendo un pipeline de CI/CD (o `check`) limpio.
+
+## 2025-05-26 - [Validación de Integridad de Contenido]
+**Revisado:** `src/content/blog/` y `public/images/`
+**Propuesta:** Se añadieron 3 nuevos artículos avanzados de Kotlin. Para evitar errores 404 y mantener la calidad visual, se debía asegurar que cada artículo tuviera su imagen hero correspondiente.
+**Cambios Realizados:**
+1.  Se generaron y validaron 3 archivos SVG ligeros en `public/images/` correspondientes al frontmatter de los nuevos artículos (`placeholder-article-collections.svg`, `placeholder-article-flow-advanced.svg`, `placeholder-article-delegation.svg`).
+2.  Se realizó una verificación mediante inspección del build generado (`dist/blog`) para confirmar la presencia y el enlace correcto de los artículos y sus imágenes.
+**Impacto:**
+- **UX/UI:** Se garantiza que no haya "broken images" en el feed del blog.
+- **Integridad:** Se validó que el contenido Markdown se procesa correctamente en la build estática de Astro.

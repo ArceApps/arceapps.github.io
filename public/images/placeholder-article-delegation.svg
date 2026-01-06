@@ -1,0 +1,6 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#6A1B9A" />
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="40" fill="#ffffff">Kotlin Delegation 'by'</text>
+  <line x1="100" y1="100" x2="300" y2="300" stroke="white" stroke-width="10" opacity="0.3" stroke-dasharray="10"/>
+  <rect x="500" y="100" width="150" height="150" rx="20" fill="white" opacity="0.2"/>
+</svg>
