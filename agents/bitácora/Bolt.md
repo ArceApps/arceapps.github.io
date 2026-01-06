@@ -72,3 +72,12 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **UX/UI:** Se garantiza que no haya "broken images" en el feed del blog.
 - **Integridad:** Se validó que el contenido Markdown se procesa correctamente en la build estática de Astro.
+## 2025-05-27 - [Optimización de Caché Service Worker]
+**Revisado:** `public/sw.js`
+**Propuesta:** El Service Worker utilizaba una estrategia "Stale-while-revalidate" indiscriminada para todas las peticiones no navegacionales. Esto provocaba errores al intentar cachear peticiones `POST` (ej. Google Analytics) y llenaba el almacenamiento del usuario con respuestas opacas o de terceros innecesarias.
+**Cambios Realizados:**
+1.  Se añadió un filtro explícito `if (event.request.method !== 'GET') return;` al inicio del listener `fetch`.
+2.  Dentro de la lógica de caché, se añadió una verificación de respuesta válida: `networkResponse.status === 200` y `networkResponse.type === 'basic'` (mismo origen).
+**Impacto:**
+- **Estabilidad:** Eliminación de errores en consola por intentos de cachear peticiones POST.
+- **Eficiencia:** Prevención de "cache bloat" al evitar guardar respuestas opacas, de error (4xx/5xx) o recursos externos no críticos. El Service Worker ahora solo cachea recursos estáticos del propio dominio que han cargado correctamente.

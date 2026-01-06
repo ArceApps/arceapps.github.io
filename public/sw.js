@@ -13,9 +13,16 @@ self.addEventListener('install', (event) => {
       return cache.addAll(ASSETS_TO_CACHE);
     })
   );
+  // Force the waiting service worker to become the active service worker
+  self.skipWaiting();
 });
 
 self.addEventListener('fetch', (event) => {
+  // Only handle GET requests
+  if (event.request.method !== 'GET') {
+    return;
+  }
+
   // Network first, fall back to cache for HTML
   if (event.request.mode === 'navigate') {
     event.respondWith(
@@ -35,12 +42,27 @@ self.addEventListener('fetch', (event) => {
   // Stale-while-revalidate for other assets
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
+      // If we have a cached response, return it, but also update the cache in the background
       const fetchPromise = fetch(event.request).then((networkResponse) => {
+        // Check if we received a valid response
+        if (
+          !networkResponse ||
+          networkResponse.status !== 200 ||
+          networkResponse.type !== 'basic'
+        ) {
+          return networkResponse;
+        }
+
+        // Clone the response because it's a stream and can only be consumed once
+        const responseToCache = networkResponse.clone();
+
         caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, networkResponse.clone());
+          cache.put(event.request, responseToCache);
         });
+
         return networkResponse;
       });
+
       return cachedResponse || fetchPromise;
     })
   );
@@ -58,4 +80,6 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
+  // Claim clients immediately
+  return self.clients.claim();
 });
