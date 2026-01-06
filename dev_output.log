@@ -1,0 +1,27 @@
+
+> arceapps-astro-site@0.0.1 dev /app
+> astro dev
+
+▶ Astro collects anonymous usage data.
+  This information helps us improve Astro.
+  Run "astro telemetry disable" to opt-out.
+  https://astro.build/telemetry
+
+21:51:46 [types] Generated 1ms
+21:51:47 [content] Syncing content
+[Shiki] The language "gradle" doesn't exist, falling back to "plaintext".
+[Shiki] The language "gradle" doesn't exist, falling back to "plaintext".
+21:51:49 [content] Synced content
+
+ astro  v5.16.6 ready in 2999 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+21:51:49 watching for file changes...
+21:51:59 [200] /blog/obsidian-para-desarrolladores 262ms
+21:52:00 [200] / 18ms
+21:52:11 [watch] verification/verify_obsidian_image.py
+21:52:11 [watch] verification/verify_obsidian_image.py
+21:52:18 [200] /blog/obsidian-para-desarrolladores 76ms
+21:52:18 [200] / 10ms

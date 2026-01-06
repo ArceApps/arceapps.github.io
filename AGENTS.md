@@ -65,3 +65,12 @@ Este archivo sirve como fuente de verdad y contexto para todos los agentes de IA
 5. **Idioma:** Todas las interacciones, explicaciones y registros en bitácoras deben ser estrictamente en **ESPAÑOL**.
    - El código (nombres de variables, funciones, commits) debe mantenerse en **Inglés**.
    - Los comentarios explicativos dentro del código pueden ser en Español.
+
+## 7. Requisito de Imágenes
+Para asegurar la consistencia visual del sitio, se aplican las siguientes reglas al crear contenido:
+- **Ámbito:** Nuevas Apps (`src/content/apps`), Artículos de Blog (`src/content/blog`) y Entradas de Bitácora/Devlog (`src/content/story` o `src/content/devlog`).
+- **Regla:** Todo nuevo contenido **DEBE** incluir una imagen de portada especificada en el campo `heroImage` del frontmatter.
+- **Generación Automática:** Si el usuario no proporciona una imagen específica, el agente **DEBE generar una imagen SVG minimalista**.
+  - **Estilo:** Geométrico, limpio y profesional.
+  - **Colores:** Debe usar estrictamente los colores de marca: Teal (`#018786`) y Orange (`#FF9800`).
+  - **Ubicación:** Guardar en `public/images/` y referenciar correctamente.
