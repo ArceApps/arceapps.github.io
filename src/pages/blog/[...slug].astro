@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import { slugify } from '../../utils/slugs';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -55,10 +56,10 @@ const relatedPosts = allPosts
       <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
         {post.data.tags && post.data.tags.map((tag: string) => (
            <a 
-             href={`/blog/tag/${encodeURIComponent(tag)}/`}
+             href={`/blog/tag/${slugify(tag)}/`}
              class="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors"
            >
-             {tag}
+             #{tag}
            </a>
         ))}
       </div>
