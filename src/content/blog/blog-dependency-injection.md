@@ -5,7 +5,6 @@ pubDate: "2025-10-05"
 heroImage: "/images/placeholder-article-dependency-injection.svg"
 tags: ["Android", "Dependency Injection", "Hilt", "Koin", "Dagger", "Architecture"]
 ---
-
 ## 💉 Teoría: El Principio de Inversión de Dependencias (DIP)
 
 La Inyección de Dependencias (DI) es la implementación práctica del **Principio de Inversión de Dependencias** de SOLID.

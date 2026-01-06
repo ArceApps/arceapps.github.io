@@ -5,7 +5,6 @@ pubDate: "2025-10-15"
 heroImage: "/images/placeholder-article-clean-architecture.svg"
 tags: ["Architecture", "Android", "Clean Architecture", "Kotlin", "Best Practices"]
 ---
-
 ## 🏛️ Filosofía: ¿Qué es realmente "Clean"?
 
 **Clean Architecture**, propuesta por Robert C. Martin (Uncle Bob), no es una plantilla de carpetas; es una **filosofía de diseño de software** centrada en la **independencia**.

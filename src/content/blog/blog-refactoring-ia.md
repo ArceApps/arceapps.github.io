@@ -3,9 +3,8 @@ title: "Refactoring con IA: De Legacy Code a Clean Code"
 description: "Aprende estrategias seguras para modernizar bases de código antiguas usando asistentes de IA. Refactoriza clases masivas, elimina código muerto y migra a Kotlin."
 pubDate: "2025-11-25"
 heroImage: "/images/placeholder-article-refactoring-ia.svg"
-tags: ["AI", "Refactoring", "Clean Code", "Legacy Code", "Android"]
+tags: ["IA", "Refactoring", "Clean Code", "Legacy Code", "Android"]
 ---
-
 ## 🏚️ El Desafío del Legacy Code
 
 El código legacy (heredado) es código sin tests, difícil de entender y miedo de tocar. Refactorizarlo manualmente es lento y arriesgado. Aquí es donde la IA brilla como una herramienta de transformación masiva.

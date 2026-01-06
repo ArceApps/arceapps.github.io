@@ -5,7 +5,6 @@ pubDate: "2025-10-01"
 heroImage: "/images/placeholder-article-mvvm.svg"
 tags: ["Android", "MVVM", "Architecture", "Kotlin", "Best Practices"]
 ---
-
 ## 🏛️ Teoría: La Evolución de las Arquitecturas de UI
 
 Antes de entender MVVM (Model-View-ViewModel), debemos entender el problema que intenta resolver: el **acoplamiento entre la lógica de presentación y la interfaz gráfica**.

@@ -5,7 +5,6 @@ pubDate: "2025-09-15"
 heroImage: "/images/placeholder-article-kotlin-let.svg"
 tags: ["Kotlin", "Best Practices", "Language Design", "Refactoring", "Clean Code"]
 ---
-
 ## 🧐 El Problema que Resuelven (Teoría de Diseño de Lenguajes)
 
 En Java y otros lenguajes imperativos, a menudo nos encontramos repitiendo el nombre de una variable para realizar múltiples operaciones sobre ella, o creando variables temporales innecesarias.

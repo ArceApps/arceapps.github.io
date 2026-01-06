@@ -5,7 +5,6 @@ pubDate: "2025-09-30"
 heroImage: "/images/placeholder-article-stateflow-sharedflow.svg"
 tags: ["Kotlin", "Coroutines", "Flow", "Android", "State Management"]
 ---
-
 ## 🌊 Teoría: Hot Flows
 
 Tanto `StateFlow` como `SharedFlow` son **Hot Flows**.

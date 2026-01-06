@@ -5,7 +5,6 @@ pubDate: "2025-09-10"
 heroImage: "/images/placeholder-article-null-safety.svg"
 tags: ["Kotlin", "Null Safety", "Best Practices", "Clean Code", "Java Interop"]
 ---
-
 ## 💥 Teoría: El Error de los Mil Millones de Dólares
 
 Tony Hoare, el inventor de la referencia nula (null reference) en 1965, lo llamó "mi error de los mil millones de dólares". En Java (y C++, C#), cualquier objeto puede ser `null`, lo que lleva a la temida `NullPointerException` (NPE) en runtime.

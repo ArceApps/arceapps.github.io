@@ -5,7 +5,6 @@ pubDate: "2025-10-30"
 heroImage: "/images/placeholder-article-github-actions-play-store.svg"
 tags: ["GitHub Actions", "Android", "Google Play Store", "CI/CD", "DevOps"]
 ---
-
 ## 🚀 El Santo Grial del Desarrollo Android
 
 Imagina este escenario: terminas una feature, haces merge a `main`, y te vas a tomar un café. 20 minutos después, tu Project Manager te dice: "Ya lo estoy probando en mi teléfono".

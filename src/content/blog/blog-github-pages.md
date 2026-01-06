@@ -5,7 +5,6 @@ pubDate: "2025-11-15"
 heroImage: "/images/placeholder-article-github-pages.svg"
 tags: ["GitHub Pages", "Web", "Portfolio", "Astro", "Personal Branding"]
 ---
-
 ## 🌍 ¿Por qué GitHub Pages?
 
 Como desarrolladores Android, a menudo descuidamos nuestra presencia web. "Yo hago apps, no webs", decimos. Pero tener un portafolio o un blog técnico es vital para tu carrera.

@@ -3,9 +3,8 @@ title: "Specs-Driven Development: Código que Cumple Promesas"
 description: "Cómo transformar requisitos vagos en especificaciones técnicas precisas y usarlas para guiar el desarrollo con IA en proyectos Android."
 pubDate: "2025-10-28"
 heroImage: "/images/placeholder-article-specs-driven.svg"
-tags: ["Development Process", "Specs", "AI", "Planning", "Productivity"]
+tags: ["Development Process", "Specs", "IA", "Planning", "Productividad"]
 ---
-
 ## 📝 Teoría: El Problema de la Ambigüedad
 
 La mayor causa de bugs y re-trabajo no es la falta de habilidad técnica, sino la **falta de claridad**.

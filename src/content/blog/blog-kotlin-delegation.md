@@ -5,7 +5,6 @@ pubDate: "2025-10-25"
 heroImage: "/images/placeholder-article-delegation.svg"
 tags: ["Kotlin", "Delegation", "Design Patterns", "Clean Code", "Android"]
 ---
-
 ## 🎭 ¿Qué es la Delegación?
 
 En el diseño de software, la delegación es un patrón donde un objeto maneja una solicitud delegándola a un segundo objeto (el delegado). Kotlin tiene soporte de **primer nivel** para esto, lo que lo hace increíblemente potente y evita el boilerplate clásico de Java.

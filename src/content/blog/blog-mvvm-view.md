@@ -5,7 +5,6 @@ pubDate: "2025-10-03"
 heroImage: "/images/placeholder-article-view-layer.svg"
 tags: ["Android", "MVVM", "UI", "Jetpack Compose", "XML"]
 ---
-
 ## 🎭 Teoría: El Rol de la Vista
 
 En MVVM, la **View** (Activity, Fragment o Composable) tiene una única responsabilidad: **Reflejar el estado del ViewModel**.

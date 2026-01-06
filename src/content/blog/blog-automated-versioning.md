@@ -5,7 +5,6 @@ pubDate: "2025-12-10"
 heroImage: "/images/placeholder-article-automated-versioning.svg"
 tags: ["Android", "GitHub Actions", "CI/CD", "Automatización", "Versionado", "DevOps"]
 ---
-
 ## 🧠 Teoría: La Matemática del Versionado
 
 El versionado de software no es un arte arbitrario; es una ciencia precisa necesaria para manejar la complejidad en sistemas distribuidos. En el ecosistema Android, este problema tiene dos dimensiones distintas que a menudo se confunden:

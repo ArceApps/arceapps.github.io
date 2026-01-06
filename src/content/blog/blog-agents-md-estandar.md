@@ -3,9 +3,8 @@ title: "agents.md: El Nuevo Estándar para Desarrollo con IA"
 description: "Descubre por qué agents.md se ha convertido en el estándar de facto para configurar agentes de IA y cómo implementarlo efectivamente en proyectos Android."
 pubDate: "2025-12-29"
 heroImage: "/images/placeholder-article-agents-md.svg"
-tags: ["AI", "agents.md", "Android", "Desarrollo", "GitHub Copilot", "Gemini"]
+tags: ["IA", "agents.md", "Android", "Desarrollo", "GitHub Copilot", "Gemini"]
 ---
-
 ## 🏗️ El Nacimiento de un Estándar
 
 En los últimos meses, hemos visto emerger un nuevo estándar en el desarrollo asistido por IA: el archivo **agents.md**. Similar a cómo `README.md` se convirtió en el estándar universal para documentar proyectos de cara a humanos, `agents.md` se está estableciendo como el punto de entrada definitivo para definir cómo los agentes de IA deben interactuar, comprender y generar código en tu proyecto.

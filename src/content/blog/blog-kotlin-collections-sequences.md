@@ -5,7 +5,6 @@ pubDate: "2025-10-05"
 heroImage: "/images/placeholder-article-collections.svg"
 tags: ["Kotlin", "Performance", "Collections", "Functional Programming", "Android"]
 ---
-
 ## 🧐 El Dilema del Rendimiento en Listas
 
 En el desarrollo Android moderno, manipulamos listas constantemente: respuestas de API, listas de contactos, items de un carrito de compras. Kotlin nos ofrece una API de colecciones rica y expresiva (`map`, `filter`, `groupBy`), pero un uso ingenuo puede disparar el consumo de memoria y CPU.

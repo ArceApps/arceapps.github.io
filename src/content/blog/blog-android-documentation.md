@@ -3,9 +3,8 @@ title: "Documentación en Android: KDoc, Dokka y Flujo de Trabajo Profesional �
 description: "Domina las herramientas esenciales para documentar tu código Kotlin y Android como un profesional: desde KDoc hasta Dokka, con integración completa en tu workflow de desarrollo."
 pubDate: "2025-03-10"
 heroImage: "/images/placeholder-article-android-documentation.svg"
-tags: ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Flujo de Trabajo", "GitHub Actions", "Mejores Prácticas", "Productividad"]
+tags: ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Workflow", "GitHub Actions", "Best Practices", "Productividad"]
 ---
-
 La documentación no es un "extra" opcional; es la diferencia entre un proyecto mantenible a largo plazo y una deuda técnica impagable. En el desarrollo Android profesional, a menudo nos centramos en la arquitectura limpia y los tests, pero olvidamos que **el código es un medio de comunicación entre humanos**, no solo instrucciones para una máquina.
 
 ¿Por qué documentamos? No es solo para explicar "qué" hace el código (eso debería ser obvio por el nombre de la función), sino para explicar el **"por qué"**, las **limitaciones**, los **edge cases** y las **decisiones de diseño**.

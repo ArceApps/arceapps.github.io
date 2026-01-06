@@ -5,7 +5,6 @@ pubDate: "2025-12-05"
 heroImage: "/images/placeholder-article-cde-semver.svg"
 tags: ["DevOps", "CI/CD", "Semantic Versioning", "Android", "GitHub Actions"]
 ---
-
 ## 📐 Teoría: El Contrato Social del Versionado
 
 El **Semantic Versioning (SemVer)** no es solo una convención de nombrado (`X.Y.Z`); es un **contrato social** entre el desarrollador y el consumidor del software (ya sea otro desarrollador o el usuario final).

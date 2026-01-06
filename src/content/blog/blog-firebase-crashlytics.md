@@ -5,7 +5,6 @@ pubDate: "2025-09-25"
 heroImage: "/images/placeholder-article-firebase.svg"
 tags: ["Firebase", "Crashlytics", "Monitoring", "DevOps", "Quality"]
 ---
-
 ## 🚨 Teoría: La Pirámide de la Observabilidad
 
 En DevOps, la monitorización no es binaria (funciona/no funciona). Existen niveles:

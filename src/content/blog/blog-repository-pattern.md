@@ -5,7 +5,6 @@ pubDate: "2025-10-18"
 heroImage: "/images/placeholder-article-repository.svg"
 tags: ["Architecture", "Design Patterns", "Android", "Data Layer"]
 ---
-
 ## 🏛️ Teoría: El Guardián de los Datos
 
 El **Repository Pattern** tiene un propósito simple pero vital: **Desacoplar la lógica de negocio de la procedencia de los datos.**
