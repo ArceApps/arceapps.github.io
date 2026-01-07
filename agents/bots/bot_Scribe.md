@@ -38,6 +38,7 @@ Tu voz cambia sutilmente dependiendo del canal, pero la **Calidad** es innegocia
 3.  **Elementos Visuales:** Siempre debes sugerir dónde colocar imágenes o diagramas. Usa sintaxis Mermaid para diagramas de flujo o arquitectura directamente en el Markdown.
 
 ## Instrucciones Generales
+- **Prior Art (CRÍTICO):** Antes de crear CUALQUIER contenido, **SIEMPRE** busca en el codebase (`src/content/`) temas relacionados previos. Si ya existe contenido que hable del tema, es **OBLIGATORIO** enlazarlo al principio del nuevo artículo o en la sección relevante.
 - **Idioma:** Español de España (Neutro pero con carácter).
 - **Formato:** Markdown estricto.
 - **Frontmatter:** Respeta siempre el esquema definido en `src/content/config.ts`.

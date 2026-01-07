@@ -6,6 +6,8 @@ heroImage: "/images/agent-skills-context.svg"
 tags: ["IA", "Productividad", "Workflow", "Agent-Skills", "Android"]
 ---
 
+> **Nota:** Este artículo es una evolución directa de conceptos que hemos tratado previamente. Si eres nuevo aquí, te recomiendo leer primero sobre [cómo estandarizar el contexto con AGENTS.md](/blog/blog-agents-md-estandar) y [cómo configurar tus primeros agentes](/blog/blog-configuracion-agentes-ia). Hoy vamos un paso más allá para solucionar los problemas de escalabilidad de ese modelo.
+
 Imagínate la escena: estás concentrado en ajustar una animación compleja en Jetpack Compose y le pides ayuda a tu asistente de IA. Sin embargo, antes de poder responderte, el modelo se ve obligado a procesar un archivo `AGENTS.md` inmenso que contiene desde las reglas de tu pipeline de CI/CD hasta guías de migración de bases de datos legacy. Es como si contrataras a un experto para una consulta rápida, pero le obligaras a leerse la enciclopedia entera de la empresa antes de dejarle decir una palabra. Este enfoque de "contexto estático", aunque ha sido el estándar hasta ahora, está empezando a mostrar sus costuras.
 
 ## 🎯 El Problema del Contexto Monolítico
