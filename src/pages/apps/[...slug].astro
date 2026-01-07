@@ -116,6 +116,9 @@ const { Content } = await app.render();
               <img
                 src={app.data.heroImage}
                 alt={app.data.title}
+                width="400"
+                height="500"
+                fetchpriority="high"
                 class="w-full h-full object-cover"
               />
             ) : (
