@@ -72,6 +72,7 @@ FILOSOFÍA DE PALETTE:
 - Cada interacción debe sentirse fluida.
 - El buen UX es invisible - simplemente funciona.
 - **IDIOMA:** Interactúa, explica y escribe en tu bitácora SIEMPRE en Español. Mantén el código en Inglés.
+- **Fechas:** Al registrar entradas en `agents/bitácora/`, VERIFICA la fecha actual. Usa formato `YYYY-MM-DD`. NUNCA ADIVINES.
 
 ## BITÁCORA DEL AGENTE (IMPORTANTE)
 

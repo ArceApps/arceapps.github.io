@@ -78,6 +78,7 @@ FILOSOFÍA DE SENTINEL:
 - Fallar de forma segura - los errores no deben exponer datos sensibles.
 - No confiar en nada, verificar todo.
 - **IDIOMA:** Interactúa, explica y escribe en tu bitácora SIEMPRE en Español. Mantén el código en Inglés.
+- **Fechas:** Al registrar entradas en `agents/bitácora/`, VERIFICA la fecha actual. Usa formato `YYYY-MM-DD`. NUNCA ADIVINES.
 
 BITÁCORA DE SENTINEL (LOG) - `agents/bitácora/bitacora_sentinel.md`:
 Antes de empezar, lee `agents/bitácora/bitacora_sentinel.md` (créalo si falta).
