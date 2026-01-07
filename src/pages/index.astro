@@ -10,6 +10,10 @@ const allPosts = (await getCollection("blog"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
+// Get latest devlog entry
+const latestDevlog = (await getCollection("devlog"))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
+
 // Get featured apps (latest 3)
 const apps = (await getCollection("apps"))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -20,13 +24,41 @@ const apps = (await getCollection("apps"))
 
   <Hero />
 
+  <!-- Bitácora Section (Highlighted) -->
+  {latestDevlog && (
+    <section class="py-12 bg-surface dark:bg-dark-surface border-b border-gray-100 dark:border-gray-800">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:p-8 rounded-2xl bg-surface-variant/30 dark:bg-dark-surface-variant/30 border border-gray-200 dark:border-gray-700">
+          <div class="flex-1">
+            <div class="inline-flex items-center gap-2 mb-3">
+              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+              <span class="text-sm font-bold text-primary tracking-wide uppercase">Building in Public</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold mb-3 text-on-surface dark:text-dark-on-surface">
+              {latestDevlog.data.title}
+            </h2>
+            <p class="text-on-surface-variant dark:text-dark-on-surface-variant mb-0 line-clamp-2">
+              {latestDevlog.data.description}
+            </p>
+          </div>
+          <div class="shrink-0">
+             <a href={`/devlog/${latestDevlog.slug}`} class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-on-surface dark:text-dark-on-surface font-medium hover:border-primary hover:text-primary transition-all duration-300 shadow-sm">
+               Leer entrada
+               <span class="material-icons ml-2 text-sm">arrow_forward</span>
+             </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Apps Section -->
   <section id="apps" class="py-24 bg-surface-variant/30 dark:bg-dark-surface-variant/30">
     <div class="container mx-auto px-4">
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-on-surface dark:text-dark-on-surface">Nuestras Aplicaciones</h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-on-surface dark:text-dark-on-surface">Lo que estoy construyendo</h2>
         <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant">
-          Diseñadas para entretener, desafiar tu mente y ofrecerte la mejor experiencia de usuario en Android.
+          Proyectos personales enfocados en resolver problemas reales y explorar nuevas tecnologías en Android.
         </p>
       </div>
 
@@ -57,13 +89,13 @@ const apps = (await getCollection("apps"))
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
         <div>
-          <h2 class="text-3xl md:text-4xl font-bold mb-4 text-on-surface dark:text-dark-on-surface">Últimos Artículos</h2>
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 text-on-surface dark:text-dark-on-surface">Artículos Técnicos</h2>
           <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl">
-            Tutoriales, noticias y recursos sobre desarrollo Android, Kotlin y tecnología.
+            Tutoriales profundos y guías sobre desarrollo Android, Kotlin y el uso de Agentes AI.
           </p>
         </div>
         <a href="/blog" class="inline-flex items-center font-medium text-primary hover:text-secondary transition-colors group">
-          Ver todo el blog
+          Ver todos los artículos
           <span class="material-icons ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
         </a>
       </div>
@@ -83,14 +115,20 @@ const apps = (await getCollection("apps"))
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 20px 20px;"></div>
 
     <div class="container mx-auto px-4 relative z-10 text-center text-white">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">¿Listo para mejorar tu experiencia Android?</h2>
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Explora mi código y herramientas</h2>
       <p class="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
-        Descarga nuestras aplicaciones hoy mismo y únete a miles de usuarios satisfechos.
+        Todo mi trabajo es transparente. Echa un vistazo a mis repositorios o prueba las aplicaciones directamente.
       </p>
-      <a href="https://play.google.com/store/apps/developer?id=Arce+Apps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-primary font-bold text-lg shadow-xl hover:bg-gray-100 transition-colors">
-        <span class="material-icons mr-2">shop</span>
-        Visitar Google Play Store
-      </a>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://github.com/arceapps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-primary font-bold text-lg shadow-xl hover:bg-gray-100 transition-colors">
+          <span class="material-icons mr-2">code</span>
+          Ver GitHub
+        </a>
+        <a href="https://play.google.com/store/apps/developer?id=Arce+Apps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-dark/30 backdrop-blur-sm border border-white/30 text-white font-bold text-lg shadow-xl hover:bg-primary-dark/50 transition-colors">
+          <span class="material-icons mr-2">shop</span>
+          Google Play Store
+        </a>
+      </div>
     </div>
   </section>
 

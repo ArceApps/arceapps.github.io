@@ -20,8 +20,8 @@
   --color-dark-on-surface-variant: #CAC4D0;
 
   /* Fonts */
-  --font-sans: 'Roboto', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Roboto', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Inter', system-ui, sans-serif;
 }
 
 /* Material Design 3 Utilities */
