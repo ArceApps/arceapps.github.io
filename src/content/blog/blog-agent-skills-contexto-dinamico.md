@@ -6,17 +6,13 @@ heroImage: "/images/agent-skills-context.svg"
 tags: ["IA", "Productividad", "Workflow", "Agent-Skills", "Android"]
 ---
 
-Llevas meses configurando tu `CLAUDE.md` o `AGENTS.md` para que la IA entienda tu proyecto... y cada vez que arranca una sesión, le vuelcas **TODO** el contexto. ¿Sabes cuántos tokens desperdicias cargando información que ni siquiera va a usar? Peor aún, ¿sabes cuánto "ruido" introduces, confundiendo al modelo con reglas irrelevantes para la tarea actual?
-
-Hay una forma mejor, y está convirtiéndose rápidamente en un estándar de la industria: los **Agent Skills**.
+Imagínate la escena: estás concentrado en ajustar una animación compleja en Jetpack Compose y le pides ayuda a tu asistente de IA. Sin embargo, antes de poder responderte, el modelo se ve obligado a procesar un archivo `AGENTS.md` inmenso que contiene desde las reglas de tu pipeline de CI/CD hasta guías de migración de bases de datos legacy. Es como si contrataras a un experto para una consulta rápida, pero le obligaras a leerse la enciclopedia entera de la empresa antes de dejarle decir una palabra. Este enfoque de "contexto estático", aunque ha sido el estándar hasta ahora, está empezando a mostrar sus costuras.
 
 ## 🎯 El Problema del Contexto Monolítico
 
-La diferencia fundamental es arquitectónica. Archivos como `CLAUDE.md`, `.cursorrules` o `AGENTS.md` funcionan tradicionalmente como **contexto estático**. Se inyectan en el *System Prompt* al inicio de cada conversación. Todo. Cada línea. Cada vez.
+El problema de volcar todo el conocimiento del proyecto de golpe es triple. Por un lado, sacrificamos **precisión**: al inundar la ventana de contexto con reglas irrelevantes, bajamos la relación señal-ruido, lo que confunde al modelo y provoca alucinaciones o la aplicación de normas que no tocan. Por otro, está el **coste** y la eficiencia; desperdiciamos tokens procesando miles de líneas que no aportan nada a la tarea actual. Y no olvidemos la **experiencia de desarrollo**: mantener un archivo monolítico de instrucciones se vuelve insostenible a medida que el proyecto escala, convirtiéndose en un documento que nadie quiere tocar por miedo a romper algo.
 
-Si tienes reglas para migrar bases de datos Room, configurar CI/CD en GitHub Actions y diseñar interfaces en Jetpack Compose, tu IA las lee todas aunque solo le hayas pedido "centrar un botón".
-
-Los **Agent Skills** funcionan bajo el principio de **"Progressive Disclosure"** (Divulgación Progresiva): solo se carga la información cuando es estrictamente relevante para la tarea en curso.
+La solución pasa por un cambio de paradigma: abandonar el bloque estático en favor de los **Agent Skills** y la **Divulgación Progresiva**. La idea es sencilla pero potente: dotar a tu IA de una arquitectura modular similar a la de un equipo de especialistas. En lugar de saberlo todo todo el tiempo, el agente debe ser capaz de "cargar" habilidades específicas —como un módulo experto en Gradle o una guía de estilos de UI— solo cuando el contexto lo demande. Así, obtenemos respuestas más rápidas, más baratas y, sobre todo, mucho más acertadas.
 
 > **Write once, use everywhere:** Lo mejor de este enfoque es que el formato de Skills se está estandarizando. Una estructura similar funciona en **Claude Code**, **GitHub Copilot**, y herramientas emergentes basadas en protocolos abiertos como MCP (Model Context Protocol).
 
