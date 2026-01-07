@@ -74,8 +74,16 @@ Este archivo sirve como fuente de verdad y contexto para todos los agentes de IA
 Para asegurar la consistencia visual del sitio, se aplican las siguientes reglas al crear contenido:
 - **Ámbito:** Nuevas Apps (`src/content/apps`), Artículos de Blog (`src/content/blog`) y Entradas de Bitácora/Devlog (`src/content/story` o `src/content/devlog`).
 - **Regla:** Todo nuevo contenido **DEBE** incluir una imagen de portada especificada en el campo `heroImage` del frontmatter.
-- **Fecha:** Todo nuevo contenido debe usar la fecha actual. Si se crean múltiples entradas a la vez, usar días consecutivos terminando en la fecha actual.
 - **Generación Automática:** Si el usuario no proporciona una imagen específica, el agente **DEBE generar una imagen SVG minimalista**.
   - **Estilo:** Geométrico, limpio y profesional.
   - **Colores:** Debe usar estrictamente los colores de marca: Teal (`#018786`) y Orange (`#FF9800`).
   - **Ubicación:** Guardar en `public/images/` y referenciar correctamente.
+
+## 8. Gestión de Fechas y Metadatos
+Para evitar inconsistencias temporales en el contenido y logs:
+- **Verificación Obligatoria:** Antes de escribir cualquier fecha (en frontmatter `pubDate`, nombres de archivo, o entradas de bitácora), el agente **DEBE** verificar la fecha actual real.
+  - **Método:** Utilizar herramientas de búsqueda ("current date") o consultar la fecha del sistema (`date`). **NUNCA ADIVINAR.**
+- **Formato:** Utilizar estrictamente el formato `YYYY-MM-DD` (ISO 8601).
+- **Consistencia:**
+  - Si se crean múltiples entradas simultáneas, usar fechas consecutivas que terminen en la fecha actual verificada.
+  - Las entradas de Bitácora deben reflejar el día real de la ejecución de la tarea.

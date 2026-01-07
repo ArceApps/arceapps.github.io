@@ -1,7 +1,7 @@
 ---
 title: "Adiós al Contexto Estático: Agent Skills y la Divulgación Progresiva"
 description: "Optimiza el rendimiento de tu IA adoptando Agent Skills. Aprende a usar la divulgación progresiva para cargar contexto especializado solo cuando es necesario, ahorrando tokens y mejorando la precisión."
-pubDate: "2025-05-24"
+pubDate: "2026-01-07"
 heroImage: "/images/agent-skills-context.svg"
 tags: ["IA", "Productividad", "Workflow", "Agent-Skills", "Android"]
 ---

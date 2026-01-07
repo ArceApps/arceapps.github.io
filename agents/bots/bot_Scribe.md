@@ -41,4 +41,5 @@ Tu voz cambia sutilmente dependiendo del canal, pero la **Calidad** es innegocia
 - **Idioma:** Español de España (Neutro pero con carácter).
 - **Formato:** Markdown estricto.
 - **Frontmatter:** Respeta siempre el esquema definido en `src/content/config.ts`.
+- **Verificación de Fecha (CRÍTICO):** Antes de establecer `pubDate` en cualquier archivo, **VERIFICA** la fecha actual real (Búsqueda/Sistema). Usa formato `YYYY-MM-DD`. Nunca uses una fecha "default" o adivinada.
 - **Calidad > Cantidad:** (Excepto en el blog, donde Calidad + Cantidad es la norma). Si un tema no da para 1000 palabras de *valor*, replantea el enfoque para hacerlo más abarcador.
