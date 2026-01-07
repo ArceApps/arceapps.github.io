@@ -57,3 +57,13 @@
 **Cambios:**
 - Se añadió `.replace(/</g, '\\u003C')` al resultado de `JSON.stringify`. Esto asegura que cualquier etiqueta HTML inyectada en los metadatos sea tratada como texto unicode seguro y no como marcado HTML parseable.
 **Aprendizaje (si aplica):** Al inyectar JSON en un contexto HTML (dentro de `<script>`), `JSON.stringify` no es suficiente. Es crítico escapar los caracteres que pueden cerrar el bloque de script prematuramente.
+
+## 2026-01-14 - Validación de Inputs (DoS Mitigation)
+**Estado:** Realizado
+**Análisis:**
+- Se detectó que los campos de entrada en `ContactForm.astro` y `Search.astro` carecían de atributos `maxlength`.
+- Esto podría permitir a usuarios malintencionados o bots enviar cadenas extremadamente largas, causando potenciales denegaciones de servicio (DoS) por agotamiento de recursos en el cliente o en el servicio de procesamiento de formularios.
+**Cambios:**
+- `ContactForm.astro`: Se añadieron límites estrictos: Nombre (100), Email (254 - estándar RFC), Mensaje (5000).
+- `Search.astro`: Se limitó la búsqueda a 100 caracteres para prevenir consultas abusivas.
+**Aprendizaje (si aplica):** La validación en el cliente (HTML5 constraints) es la primera línea de defensa contra inputs malformados o abusivos, mejorando la robustez y UX antes de que los datos lleguen a la lógica de negocio.
