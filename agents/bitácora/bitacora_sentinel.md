@@ -67,3 +67,14 @@
 - `ContactForm.astro`: Se añadieron límites estrictos: Nombre (100), Email (254 - estándar RFC), Mensaje (5000).
 - `Search.astro`: Se limitó la búsqueda a 100 caracteres para prevenir consultas abusivas.
 **Aprendizaje (si aplica):** La validación en el cliente (HTML5 constraints) es la primera línea de defensa contra inputs malformados o abusivos, mejorando la robustez y UX antes de que los datos lleguen a la lógica de negocio.
+## 2026-01-16 - Sanitización Automática de Enlaces en Markdown
+**Estado:** Realizado
+**Análisis:**
+- Se identificó un riesgo potencial en los contenidos Markdown (Blog, Apps, Devlog): los enlaces externos creados con sintaxis estándar `[Texto](url)` se renderizan como `<a>` sin atributos de seguridad.
+- Si un autor añade `target="_blank"` (o si se decide forzarlo), la ausencia de `rel="noopener noreferrer"` expone a vulnerabilidades de Reverse Tabnabbing.
+- Además, para mejorar la UX y retención, es estándar que los enlaces externos se abran en nueva pestaña, pero esto debe hacerse de forma segura.
+**Cambios:**
+- Se instaló `rehype-external-links` como dependencia de desarrollo.
+- Se configuró `astro.config.mjs` para incluir este plugin en el procesamiento de Markdown.
+- Configuración aplicada: `target: '_blank'` y `rel: ['noopener', 'noreferrer']` para todos los enlaces externos.
+**Aprendizaje (si aplica):** La seguridad no debe depender de la memoria del autor del contenido. Automatizar la sanitización de enlaces en la capa de compilación (build time) garantiza que *todo* enlace externo sea seguro por defecto, eliminando el error humano.

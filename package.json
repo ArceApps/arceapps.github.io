@@ -25,6 +25,7 @@
     "@playwright/test": "^1.57.0",
     "daisyui": "^5.5.5",
     "playwright": "^1.57.0",
+    "rehype-external-links": "^3.0.0",
     "rss-parser": "^3.13.0",
     "typescript": "^5.9.3"
   }
