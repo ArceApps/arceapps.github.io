@@ -23,7 +23,7 @@ const { title, description, heroImage, realIconUrl, tags = [], pubDate, slug } =
         height="224"
         loading="lazy"
         decoding="async"
-        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+        class="w-full h-full object-cover transform group-hover:scale-110 group-focus-visible:scale-110 transition-transform duration-700"
       />
     ) : (
       <div class="w-full h-full flex items-center justify-center text-gray-300 dark:text-gray-700" aria-hidden="true">
@@ -53,7 +53,7 @@ const { title, description, heroImage, realIconUrl, tags = [], pubDate, slug } =
      <!-- Decorative glow -->
      <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full -mr-4 -mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true"></div>
 
-    <h2 class="text-2xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">
+    <h2 class="text-2xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary group-focus-visible:text-primary transition-colors">
       {title}
     </h2>
     <p class="text-on-surface-variant dark:text-dark-on-surface-variant mb-6 line-clamp-3 leading-relaxed flex-grow">
@@ -64,7 +64,7 @@ const { title, description, heroImage, realIconUrl, tags = [], pubDate, slug } =
       <span class="text-sm font-medium text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
         {pubDate.toLocaleDateString()}
       </span>
-      <span class="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 transition-transform">
+      <span class="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 group-focus-visible:translate-x-1 transition-transform">
         Ver Detalles
         <span class="material-icons ml-1 text-base" aria-hidden="true">arrow_forward</span>
       </span>
