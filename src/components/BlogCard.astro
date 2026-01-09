@@ -30,6 +30,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
         alt={post.data.title}
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         loading="lazy"
+        decoding="async"
       />
     </div>
   )}
