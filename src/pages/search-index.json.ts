@@ -1,8 +1,8 @@
 import { getCollection } from 'astro:content';
 
 export async function GET() {
-  const posts = await getCollection('blog');
-  const apps = await getCollection('apps');
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const apps = await getCollection('apps', ({ data }) => !data.draft);
 
   const searchIndex = [
     ...posts.map((post) => ({

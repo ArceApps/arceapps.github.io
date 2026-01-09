@@ -78,3 +78,15 @@
 - Se configuró `astro.config.mjs` para incluir este plugin en el procesamiento de Markdown.
 - Configuración aplicada: `target: '_blank'` y `rel: ['noopener', 'noreferrer']` para todos los enlaces externos.
 **Aprendizaje (si aplica):** La seguridad no debe depender de la memoria del autor del contenido. Automatizar la sanitización de enlaces en la capa de compilación (build time) garantiza que *todo* enlace externo sea seguro por defecto, eliminando el error humano.
+
+## 2026-01-20 - Control de Acceso de Contenido (Draft Support)
+**Estado:** Realizado
+**Análisis:**
+- Se identificó la falta de un mecanismo formal para ocultar contenido en borrador (`draft`) en las colecciones de contenido (Blog, Apps, Devlog).
+- Sin este filtro, cualquier contenido en progreso commiteado al repositorio se publicaría automáticamente, filtrando información incompleta o no autorizada.
+- Aunque el riesgo de seguridad directo es bajo (confidencialidad), es una buena práctica de "Defensa en Profundidad" para controlar la superficie de información expuesta.
+**Cambios:**
+- Se actualizó el esquema en `src/content/config.ts` para incluir `draft: z.boolean().optional().default(false)` en todas las colecciones.
+- Se implementaron filtros en `src/pages/search-index.json.ts` para excluir borradores del índice de búsqueda.
+- Se añadieron filtros en todas las páginas de listado (`index`, `blog`, `apps`, `devlog`) y en la generación de rutas estáticas (`[...slug]`) para prevenir el acceso y generación de páginas de borrador.
+**Aprendizaje (si aplica):** La seguridad de la información incluye controlar *cuándo* se hace pública. Implementar flags de características o estados de publicación a nivel de esquema previene fugas accidentales de contenido sensible o no listo.

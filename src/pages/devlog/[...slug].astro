@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
-  const devlogs = await getCollection('devlog');
+  const devlogs = await getCollection('devlog', ({ data }) => !data.draft);
   return devlogs.map((log) => ({
     params: { slug: log.slug },
     props: log,
