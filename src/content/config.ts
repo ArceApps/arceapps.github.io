@@ -8,6 +8,7 @@ const blogCollection = defineCollection({
     pubDate: z.string().transform((str) => new Date(str)),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).optional(),
+    draft: z.boolean().optional().default(false),
   }),
 });
 
@@ -17,6 +18,7 @@ const appsCollection = defineCollection({
     description: z.string(),
     pubDate: z.string().transform((str) => new Date(str)),
     heroImage: z.string().optional(),
+    draft: z.boolean().optional().default(false),
     icon: z.string().optional().default('android'),
     realIconUrl: z.string().optional(),
     screenshots: z.array(z.string()).optional(),
@@ -37,6 +39,7 @@ const devlogCollection = defineCollection({
     pubDate: z.string().transform((str) => new Date(str)),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).optional(),
+    draft: z.boolean().optional().default(false),
   }),
 });
 

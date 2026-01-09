@@ -6,16 +6,16 @@ import ProjectCard from "../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
 
 // Get latest blog posts
-const allPosts = (await getCollection("blog"))
+const allPosts = (await getCollection("blog", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
 // Get latest devlog entry
-const latestDevlog = (await getCollection("devlog"))
+const latestDevlog = (await getCollection("devlog", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
 
 // Get featured apps (latest 3)
-const apps = (await getCollection("apps"))
+const apps = (await getCollection("apps", ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 ---

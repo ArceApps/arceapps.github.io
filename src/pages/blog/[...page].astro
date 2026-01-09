@@ -6,7 +6,7 @@ import type { Page, GetStaticPathsOptions } from "astro";
 import { slugify } from "../../utils/slugs";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
-  const allPosts = (await getCollection("blog")).sort(
+  const allPosts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
 

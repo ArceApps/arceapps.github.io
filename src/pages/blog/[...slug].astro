@@ -5,7 +5,7 @@ import BlogCard from '../../components/BlogCard.astro';
 import { slugify } from '../../utils/slugs';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: post,
@@ -29,7 +29,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 
 // Related posts logic
-const allPosts = await getCollection('blog');
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const currentTags = post.data.tags || [];
 const relatedPosts = allPosts
   .filter(p => p.slug !== post.slug)
