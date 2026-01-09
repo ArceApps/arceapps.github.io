@@ -72,6 +72,7 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **UX/UI:** Se garantiza que no haya "broken images" en el feed del blog.
 - **Integridad:** Se validó que el contenido Markdown se procesa correctamente en la build estática de Astro.
+
 ## 2025-05-27 - [Optimización de Caché Service Worker]
 **Revisado:** `public/sw.js`
 **Propuesta:** El Service Worker utilizaba una estrategia "Stale-while-revalidate" indiscriminada para todas las peticiones no navegacionales. Esto provocaba errores al intentar cachear peticiones `POST` (ej. Google Analytics) y llenaba el almacenamiento del usuario con respuestas opacas o de terceros innecesarias.
@@ -81,3 +82,14 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Estabilidad:** Eliminación de errores en consola por intentos de cachear peticiones POST.
 - **Eficiencia:** Prevención de "cache bloat" al evitar guardar respuestas opacas, de error (4xx/5xx) o recursos externos no críticos. El Service Worker ahora solo cachea recursos estáticos del propio dominio que han cargado correctamente.
+
+## 2026-01-09 - [Optimización de Imágenes de Marca con Astro Assets]
+**Revisado:** `src/components/Header.astro`, `src/components/Footer.astro`, `public/images/`.
+**Propuesta:** Se detectó que el logo de la marca (`brand-icon.png`) se servía como una imagen estática estándar (`<img>`) desde la carpeta `public/`. Esto impedía que Astro realizara optimizaciones de formato (WebP/AVIF), redimensionamiento y cache-busting (hashing), afectando potencialmente el LCP (Largest Contentful Paint) en la cabecera.
+**Cambios Realizados:**
+1.  Se creó el directorio `src/assets` y se migró una copia del archivo `brand-icon.png` desde `public/`.
+2.  Se refactorizó `src/components/Header.astro` para usar el componente `<Image />` de `astro:assets` con `loading="eager"` y `fetchpriority="high"`.
+3.  Se refactorizó `src/components/Footer.astro` para usar el componente `<Image />` de `astro:assets`.
+**Impacto:**
+- **Rendimiento:** Conversión automática a formatos modernos (WebP) y optimización de tamaño. Mejora del LCP en dispositivos móviles al priorizar la carga del logo.
+- **Best Practices:** Uso consistente del pipeline de assets de Astro, eliminando referencias estáticas no procesadas en componentes críticos.

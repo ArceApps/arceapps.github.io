@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import brandIcon from "../assets/brand-icon.png";
 import Search from "./Search.astro";
 
 const navItems = [
@@ -23,7 +25,15 @@ const isActive = (href: string) => {
   <div class="container mx-auto px-4 h-16 flex items-center justify-between">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-2 group">
-      <img src="/images/brand-icon.png" alt="ArceApps Logo" width="40" height="40" fetchpriority="high" class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition-transform" />
+      <Image
+        src={brandIcon}
+        alt="ArceApps Logo"
+        width={40}
+        height={40}
+        loading="eager"
+        fetchpriority="high"
+        class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition-transform"
+      />
       <span class="text-xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface">
         Arce<span class="text-primary">Apps</span>
       </span>
