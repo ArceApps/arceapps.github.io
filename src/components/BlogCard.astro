@@ -1,66 +1,83 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { slugify } from '../utils/slugs';
+import type { CollectionEntry } from "astro:content";
+import { slugify } from "../utils/slugs";
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
 
 // Format date
-const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
+const formattedDate = post.data.pubDate.toLocaleDateString("es-ES", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 ---
 
-<article class="h-full material-card overflow-hidden flex flex-col hover:elevation-2 transition-all relative group">
+<article
+  class="h-full material-card overflow-hidden flex flex-col hover:shadow-xl hover:scale-[1.02] transition-all duration-300 relative group transform-gpu"
+>
   <a
     href={`/blog/${post.slug}/`}
     class="absolute inset-0 z-10 rounded-xl focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none transition-shadow"
-    aria-label={`Leer ${post.data.title}`}
-  ></a>
+    aria-label={`Leer ${post.data.title}`}></a>
 
-  {post.data.heroImage && (
-    <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-      <img
-        src={post.data.heroImage}
-        alt={post.data.title}
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  )}
+  {
+    post.data.heroImage && (
+      <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+        <img
+          src={post.data.heroImage}
+          alt={post.data.title}
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    )
+  }
 
   <div class="p-6 flex flex-col flex-grow relative z-20 pointer-events-none">
     <div class="flex items-center gap-2 mb-3">
-       {post.data.tags && post.data.tags.slice(0, 1).map((tag: string) => (
-          <a
-            href={`/blog/tag/${slugify(tag)}/`}
-            class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-          >
-            {tag}
-          </a>
-       ))}
-       <span class="text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70 ml-auto">
-          {formattedDate}
-       </span>
+      {
+        post.data.tags &&
+          post.data.tags.slice(0, 1).map((tag: string) => (
+            <a
+              href={`/blog/tag/${slugify(tag)}/`}
+              class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+            >
+              {tag}
+            </a>
+          ))
+      }
+      <span
+        class="text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70 ml-auto"
+      >
+        {formattedDate}
+      </span>
     </div>
 
-    <h3 class="text-xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors line-clamp-2 pointer-events-none">
+    <h3
+      class="text-xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors line-clamp-2 pointer-events-none"
+    >
       {post.data.title}
     </h3>
 
-    <p class="text-on-surface-variant dark:text-dark-on-surface-variant text-sm line-clamp-3 mb-4 flex-grow leading-relaxed pointer-events-none">
+    <p
+      class="text-on-surface-variant dark:text-dark-on-surface-variant text-sm line-clamp-3 mb-4 flex-grow leading-relaxed pointer-events-none"
+    >
       {post.data.description}
     </p>
 
-    <div class="flex items-center text-primary font-medium text-sm mt-auto pointer-events-none">
+    <div
+      class="flex items-center text-primary font-medium text-sm mt-auto pointer-events-none"
+    >
       Leer artículo
-      <span class="material-icons text-base ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+      <span
+        class="material-icons text-base ml-1 group-hover:translate-x-1 transition-transform"
+        >arrow_forward</span
+      >
     </div>
   </div>
 </article>
