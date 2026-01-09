@@ -30,3 +30,22 @@
   - Título: añadido `group-focus-visible:text-primary`.
   - Acción "Ver Detalles": añadido `group-focus-visible:translate-x-1`.
 - Verificado mediante script de Playwright y captura de pantalla que muestra el anillo de foco y los estilos aplicados correctamente.
+
+## 2026-01-24 - Micro-interacciones y Feedback en Formulario de Contacto
+
+**Revisión:**
+- Se analizó `src/components/ContactForm.astro`.
+- Se observó falta de feedback visual inmediato en la interacción de los campos (etiquetas estáticas) y validación (errores invisibles hasta el envío).
+- El botón de envío carecía de feedback táctil (estado `active`).
+
+**Propuesta:**
+- Implementar el patrón de "Label Highlighting" de Material Design, donde la etiqueta cambia de color al enfocar el input.
+- Añadir validación visual contextual: mostrar borde rojo solo si el campo es inválido, tiene contenido y ha perdido el foco (para no molestar mientras se escribe).
+- Añadir micro-interacción de escala al presionar el botón de envío.
+
+**Realizado:**
+- Modificado `src/components/ContactForm.astro`:
+  - Añadida clase `group` a los contenedores de campo y `group-focus-within:text-primary` a las etiquetas `<label>`.
+  - Añadida lógica CSS de validación: `invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500`.
+  - Añadida clase `active:scale-[0.98]` al botón de envío para mejorar la sensación de "click".
+- Verificado visualmente con Playwright: las etiquetas cambian a color `primary` al enfocar, y los emails inválidos se marcan en rojo al salir del campo.
