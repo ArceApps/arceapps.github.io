@@ -3,7 +3,7 @@ title: "2025 W45: Dominar la Incertidumbre"
 description: "De la teoría a la práctica: Cómo implementamos Dominosa en una semana y aprendimos que la aleatoriedad verdadera es un enemigo."
 pubDate: "2025-11-09"
 tags: ["devlog", "algorithms", "dominosa", "completion", "production"]
-heroImage: "/images/blog-placeholder-4.jpg"
+heroImage: "/images/devlog-w45-algorithms.svg"
 ---
 
 Si la semana pasada fue sobre la audacia de comenzar algo nuevo, la Semana 45 (del 3 al 9 de Noviembre) ha sido sobre la cruda realidad de terminarlo. Una cosa es decir "vamos a hacer un juego de dominó" y otra muy distinta es hacer que se sienta justo, divertido y libre de errores en un teléfono móvil.

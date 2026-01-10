@@ -3,7 +3,7 @@ title: "2026 W01: Limpieza de Casa y Cimientos Sólidos"
 description: "Arrancamos el año poniendo orden en Hitori y mejorando la accesibilidad en Slitherlink. Menos código, más robustez."
 pubDate: "2026-01-07"
 tags: ["devlog", "refactoring", "hitori", "accessibility", "clean-architecture"]
-heroImage: "/images/blog-placeholder-3.jpg"
+heroImage: "/images/devlog-w01-refactoring.svg"
 ---
 
 Arrancar el año programando se siente un poco como limpiar el garaje un domingo por la mañana. Sabes que tienes que hacerlo, te da pereza empezar, pero una vez que tiras la primera caja vieja, no puedes parar.

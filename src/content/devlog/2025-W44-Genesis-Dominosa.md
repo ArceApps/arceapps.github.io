@@ -3,7 +3,7 @@ title: "2025 W44: El Noveno Pasajero"
 description: "Cuando creías que el catálogo estaba cerrado, Dominosa llega para desafiar nuestra arquitectura. Una historia sobre feature creep y diseño modular."
 pubDate: "2025-11-02"
 tags: ["devlog", "architecture", "dominosa", "planning", "philosophy"]
-heroImage: "/images/blog-placeholder-about.jpg"
+heroImage: "/images/devlog-w44-dominosa-genesis.svg"
 ---
 
 Hay un momento en todo proyecto de software donde el equipo se mira a los ojos y dice: "Ya está. No más *features*". Es el momento de congelar, de pulir, de estabilizar. En *PuzzleSuite*, pensábamos que habíamos llegado a ese punto a finales de Octubre. Teníamos ocho juegos sólidos: *KenKen* para los matemáticos, *Hashi* para los arquitectos, *Slitherlink* para los topólogos. La suite se sentía completa.

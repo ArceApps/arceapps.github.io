@@ -3,7 +3,7 @@ title: "2025 W53: Cerrando el Año con Nivel Experto"
 description: "Unificación de sistemas de dificultad en toda la suite y la llegada del modo Experto para despedir el 2025."
 pubDate: "2026-01-04"
 tags: ["devlog", "refactoring", "ui-ux", "difficulty-systems", "2025-closing"]
-heroImage: "/images/blog-placeholder-4.jpg"
+heroImage: "/images/devlog-w53-difficulty.svg"
 ---
 
 Hay algo profundamente satisfactorio en cerrar el año con la casa limpia. En el desarrollo de software, "limpiar la casa" a menudo significa pagar deuda técnica, estandarizar componentes y asegurarse de que todos los sistemas hablen el mismo idioma. Esta última semana de 2025, entre las festividades y el brindis de fin de año, nos propusimos una misión: **Estandarización Absoluta**.
