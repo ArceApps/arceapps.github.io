@@ -49,3 +49,23 @@
   - Añadida lógica CSS de validación: `invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500`.
   - Añadida clase `active:scale-[0.98]` al botón de envío para mejorar la sensación de "click".
 - Verificado visualmente con Playwright: las etiquetas cambian a color `primary` al enfocar, y los emails inválidos se marcan en rojo al salir del campo.
+
+## 2026-01-10 - Mejora de Accesibilidad y Feedback Visual en el Buscador
+
+**Revisión:**
+- Se analizó `src/components/Search.astro`.
+- Se detectó que el botón de cerrar carecía de estilos de foco claros (solo `outline-none`), dificultando su uso con teclado.
+- Los resultados de búsqueda tenían estilos `hover` pero carecían de estilos `focus-visible` claros, haciendo imposible navegar la lista de resultados con teclado de manera visible.
+- El contenedor del input de búsqueda no reaccionaba visualmente al foco interno, reduciendo la sensación de "componente activo".
+
+**Propuesta:**
+- Mejorar la accesibilidad del botón de cerrar añadiendo un anillo de foco visible y consistente con el diseño.
+- Implementar estilos `focus-visible` en los resultados de búsqueda dinámicos para igualar la experiencia de ratón y teclado.
+- Añadir feedback visual (`focus-within`) al contenedor del input para resaltar el área activa de búsqueda.
+
+**Realizado:**
+- Modificado `src/components/Search.astro`:
+  - Botón de cerrar: añadido `focus-visible:ring-2 focus-visible:ring-primary rounded-full p-1` y estados hover mejorados.
+  - Resultados (JS inyectado): añadido `focus-visible:bg-surface-variant dark:focus-visible:bg-gray-800 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
+  - Contenedor Input: añadido `focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20 transition-colors`.
+- Verificado mediante `pnpm build` exitoso.
