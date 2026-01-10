@@ -93,3 +93,12 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Conversión automática a formatos modernos (WebP) y optimización de tamaño. Mejora del LCP en dispositivos móviles al priorizar la carga del logo.
 - **Best Practices:** Uso consistente del pipeline de assets de Astro, eliminando referencias estáticas no procesadas en componentes críticos.
+
+## 2026-01-10 - [Prevención de CLS en Tarjetas del Blog]
+**Revisado:** `src/components/BlogCard.astro`, `src/components/ProjectCard.astro`.
+**Propuesta:** Se identificó que las imágenes en `BlogCard.astro` carecían de atributos explícitos `width` y `height`. Aunque el contenedor CSS forza una relación de aspecto 16:9 (`aspect-video`), la ausencia de atributos HTML puede causar que el navegador no reserve el espacio correctamente durante el renderizado inicial en algunos contextos, o que herramientas de auditoría (Lighthouse) penalicen el CLS.
+**Cambios Realizados:**
+1.  Se añadieron los atributos `width="800"` y `height="450"` a la etiqueta `<img>` en `src/components/BlogCard.astro`.
+**Impacto:**
+- **Rendimiento:** Eliminación de riesgo de Cumulative Layout Shift (CLS) al proporcionar dimensiones explícitas al navegador.
+- **Consistencia:** Alineación con `ProjectCard.astro` y `AppCard.astro` que ya incluían estas optimizaciones.
