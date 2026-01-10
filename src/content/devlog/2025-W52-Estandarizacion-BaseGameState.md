@@ -1,7 +1,7 @@
 ---
 title: "2025 W52: Limpieza de Casa y Cimientos Sólidos"
 description: "Refactorización masiva de estados de juego y mejoras visuales en Hashi antes de cerrar el año."
-pubDate: 2025-12-28
+pubDate: "2025-12-28"
 tags: ["devlog", "refactoring", "architecture", "ui", "hashi"]
 heroImage: "/images/blog-placeholder-4.jpg"
 ---

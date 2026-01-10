@@ -1,7 +1,7 @@
 ---
 title: "2025 W53: Cerrando el Año con Nivel Experto"
 description: "Unificación de sistemas de dificultad en toda la suite y la llegada del modo Experto para despedir el 2025."
-pubDate: 2026-01-04
+pubDate: "2026-01-04"
 tags: ["devlog", "refactoring", "ui-ux", "difficulty-systems", "2025-closing"]
 heroImage: "/images/blog-placeholder-4.jpg"
 ---

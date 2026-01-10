@@ -1,7 +1,7 @@
 ---
 title: "2026 W01: Limpieza de Casa y Cimientos Sólidos"
 description: "Arrancamos el año poniendo orden en Hitori y mejorando la accesibilidad en Slitherlink. Menos código, más robustez."
-pubDate: 2026-01-07
+pubDate: "2026-01-07"
 tags: ["devlog", "refactoring", "hitori", "accessibility", "clean-architecture"]
 heroImage: "/images/blog-placeholder-3.jpg"
 ---
