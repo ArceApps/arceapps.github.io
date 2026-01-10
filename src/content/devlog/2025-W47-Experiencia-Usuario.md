@@ -1,7 +1,7 @@
 ---
 title: "2025 W47: La Mentira Piadosa y el Rediseño"
 description: "Cómo rediseñamos la entrada principal de la aplicación y descubrimos que habíamos estado mintiendo a nuestros usuarios sobre sus estadísticas."
-pubDate: 2025-11-23
+pubDate: "2025-11-23"
 tags: ["devlog", "frontend", "stats", "bugfix", "design-system"]
 heroImage: "/images/blog-placeholder-5.jpg"
 ---

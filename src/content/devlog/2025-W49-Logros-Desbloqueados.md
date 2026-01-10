@@ -1,7 +1,7 @@
 ---
 title: "2025 W49: Logros Desbloqueados"
 description: "Minesweeper y Galaxies se unen a la fiesta completando el sistema de logros para los 10 juegos."
-pubDate: 2025-12-07
+pubDate: "2025-12-07"
 tags: ["devlog", "gamification", "minesweeper", "galaxies"]
 heroImage: "/images/blog-placeholder-3.jpg"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "2025 W50: Perfeccionando el Final"
 description: "Mejorando la experiencia de completar un puzzle: diálogos más útiles, estandarizados y con la opción de admirar tu obra."
-pubDate: 2025-12-14
+pubDate: "2025-12-14"
 tags: ["devlog", "ux", "ui", "quality"]
 heroImage: "/images/blog-placeholder-5.jpg"
 ---
