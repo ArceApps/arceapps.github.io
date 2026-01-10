@@ -67,6 +67,7 @@
 - `ContactForm.astro`: Se añadieron límites estrictos: Nombre (100), Email (254 - estándar RFC), Mensaje (5000).
 - `Search.astro`: Se limitó la búsqueda a 100 caracteres para prevenir consultas abusivas.
 **Aprendizaje (si aplica):** La validación en el cliente (HTML5 constraints) es la primera línea de defensa contra inputs malformados o abusivos, mejorando la robustez y UX antes de que los datos lleguen a la lógica de negocio.
+
 ## 2026-01-16 - Sanitización Automática de Enlaces en Markdown
 **Estado:** Realizado
 **Análisis:**
@@ -90,3 +91,15 @@
 - Se implementaron filtros en `src/pages/search-index.json.ts` para excluir borradores del índice de búsqueda.
 - Se añadieron filtros en todas las páginas de listado (`index`, `blog`, `apps`, `devlog`) y en la generación de rutas estáticas (`[...slug]`) para prevenir el acceso y generación de páginas de borrador.
 **Aprendizaje (si aplica):** La seguridad de la información incluye controlar *cuándo* se hace pública. Implementar flags de características o estados de publicación a nivel de esquema previene fugas accidentales de contenido sensible o no listo.
+
+## 2026-01-21 - Protección Avanzada Anti-Clickjacking
+**Estado:** Realizado
+**Análisis:**
+- La protección anterior contra Clickjacking (Frame Buster) utilizaba una comprobación simple de JS (`window.self !== window.top`) que podía ser evadida mediante el atributo `sandbox="allow-scripts allow-same-origin"` en un iframe malicioso, bloqueando la navegación `top.location`.
+- Esto dejaba al sitio vulnerable a ataques de UI Redressing en navegadores modernos bajo ciertas condiciones.
+**Cambios:**
+- Se actualizó `src/layouts/Layout.astro` implementando la técnica defensiva basada en CSS (estándar OWASP Legacy).
+- El contenido del `body` se oculta por defecto (`display: none !important`) mediante estilos.
+- Un script síncrono verifica si `self === top`; si es seguro, elimina el estilo y muestra el contenido. Si no, intenta romper el frame.
+- Se añadió soporte `<noscript>` para garantizar que el contenido sea visible si JavaScript está desactivado.
+**Aprendizaje (si aplica):** La defensa en profundidad requiere asumir que las contramedidas simples pueden fallar. Ocultar el contenido *hasta* verificar la seguridad es más robusto que intentar navegar *después* de detectar el ataque.

@@ -1,15 +1,10 @@
-
-> arceapps-astro-site@0.0.1 dev
-> astro dev
-
-21:49:16 [types] Generated 1ms
-21:49:17 [content] Syncing content
-21:49:17 [content] Synced content
-21:49:17 [vite] Port 4321 is in use, trying another one...
-
- astro  v5.16.3 ready in 1393 ms
-
-┃ Local    http://localhost:4322/
-┃ Network  use --host to expose
-
-21:49:17 watching for file changes...
+127.0.0.1 - - [10/Jan/2026 21:16:52] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [10/Jan/2026 21:16:52] "GET /_astro/ClientRouter.astro_astro_type_script_index_0_lang.QW52Ox2j.js HTTP/1.1" 200 -
+127.0.0.1 - - [10/Jan/2026 21:16:53] "GET /_astro/about-me.1dpKX8M3.css HTTP/1.1" 200 -
+127.0.0.1 - - [10/Jan/2026 21:16:53] "GET /_astro/brand-icon.CeqAFkma_Z1IRStT.webp HTTP/1.1" 200 -
+127.0.0.1 - - [10/Jan/2026 21:16:53] "GET /_astro/Search.astro_astro_type_script_index_0_lang.D1dtqlwH.js HTTP/1.1" 200 -
+127.0.0.1 - - [10/Jan/2026 21:16:53] "GET /sw.js HTTP/1.1" 200 -
+127.0.0.1 - - [10/Jan/2026 21:16:53] "GET /~partytown/partytown-sw.js HTTP/1.1" 200 -
+127.0.0.1 - - [10/Jan/2026 21:16:53] "GET /favicon.svg HTTP/1.1" 200 -
+127.0.0.1 - - [10/Jan/2026 21:16:53] "GET /logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [10/Jan/2026 21:16:53] "GET /manifest.json HTTP/1.1" 200 -
