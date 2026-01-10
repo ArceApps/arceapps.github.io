@@ -48,30 +48,6 @@ const socialImageURL = new URL(image, Astro.url);
       content="upgrade-insecure-requests"
     />
 
-    <!-- Anti-Clickjacking (Frame Buster) -->
-    <style id="anti-clickjack">
-      body {
-        display: none !important;
-      }
-    </style>
-    <script is:inline>
-      if (self === top) {
-        var antiClickjack = document.getElementById("anti-clickjack");
-        if (antiClickjack) {
-          antiClickjack.parentNode.removeChild(antiClickjack);
-        }
-      } else {
-        top.location = self.location;
-      }
-    </script>
-    <noscript>
-      <style>
-        body {
-          display: block !important;
-        }
-      </style>
-    </noscript>
-
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
