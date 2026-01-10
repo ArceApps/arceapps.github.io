@@ -8,7 +8,7 @@ heroImage: "/images/devlog/2025-w40-cover.png"
 
 Todo proyecto grande comienza con un `File > New Project`. Es un momento de optimismo puro, pero también de terror paralizante. El terror al "folio en blanco".
 
-La Semana 40 (del 1 al 5 de Octubre de 2025) marca el nacimiento oficial de **PuzzleSuite**.
+La Semana 40 (del 1 al 5 de Octubre de 2025) marca el nacimiento oficial de **PuzzleHub**.
 
 La idea en el papel es sencilla pero ambiciosa: crear la colección definitiva de puzzles lógicos para Android. No queremos ser otro clon de Sudoku lleno de anuncios intrusivos y estéticas dudosas. Queremos ser la "Biblia" de los puzzles. Una interfaz limpia, sin distracciones, una experiencia "premium" gratuita y, sobre todo, una profundidad técnica que respete la inteligencia del jugador.
 
@@ -17,7 +17,7 @@ Pero antes de que naciese el primer píxel en pantalla, tuvimos que tomar decisi
 ## La Tiranía de la Arquitectura
 
 Podríamos haber empezado tirando código en la `MainActivity`. Un par de `Buttons`, un `Canvas` rápido y listo. Habríamos tenido un prototipo funcional de *Shikaku* el martes por la tarde.
-Pero *PuzzleSuite* no va a tener un juego. Va a tener diez. Quizás veinte.
+Pero *PuzzleHub* no va a tener un juego. Va a tener diez. Quizás veinte.
 
 Si no separamos las preocupaciones ahora, en Noviembre estaremos ahogados en un plato de espagueti de código inmanejable. Imaginad tener que corregir un bug en el temporizador y tener que editar 15 archivos diferentes. Eso es la muerte del proyecto.
 
@@ -81,7 +81,7 @@ Tenemos una `MainActivity` que navega a un menú vacío.
 Tenemos una base de datos `AppDatabase` configurada con Hilt inyectando dependencias como si no costara.
 Y tenemos un prototipo de *Shikaku* que, aunque feo (usamos colores neón de debug que harían llorar a un diseñador), se siente sólido bajo el dedo. Responde al instante.
 
-No parece mucho para una semana entera de trabajo de 40 horas. Un solo juego feo.
+No parece mucho para una semana entera de trabajo de 30 horas. Un solo juego feo.
 Pero los cimientos de un rascacielos nunca son bonitos; son profundos.
 La semana que viene, intentaremos construir el segundo piso sobre estos cimientos. Y si la teoría de la Clean Architecture es cierta, el segundo piso debería construirse en la mitad de tiempo.
 

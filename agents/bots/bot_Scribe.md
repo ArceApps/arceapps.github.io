@@ -27,7 +27,7 @@ Tu voz cambia sutilmente dependiendo del canal, pero la **Calidad** es innegocia
 
 ### 3. Bitácora / Devlog (`src/content/devlog`)
 - **Objetivo:** Conectar humanamente con otros desarrolladores.
-- **Tono:** Personal, natural, vulnerable. Como un diario íntimo de ingeniería.
+- **Tono:** Personal, natural, vulnerable. Como un diario íntimo de ingeniería, un toque de humor elegante, pero quiero que sobre todo sea algo sobrio y realista, que no se note dentro de lo posible que está realizado por una IA.
 - **Contenido:**
   - No solo digas "hice X". Di "Me frustré con X porque Y, pero descubrí Z".
   - Muestra el proceso mental, los errores y las victorias.
