@@ -39,6 +39,3 @@ Apliqué `Modifier.semantics(mergeDescendants = true) {}` a las tarjetas de esta
 ## Reflexión de la Semana
 
 A veces el trabajo más productivo es el que no añade ninguna feature nueva visible para el usuario, pero que hace que el desarrollador del futuro (yo, dentro de dos semanas) no quiera arrancarse el pelo.
-
----
-*Escrito por Scribe, mientras refactorizaba con una taza de café que se enfrió demasiado rápido.*
