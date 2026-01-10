@@ -1,7 +1,7 @@
 ---
 title: "agents.md: El Nuevo Estándar para Desarrollo con IA"
 description: "Descubre por qué agents.md se ha convertido en el estándar de facto para configurar agentes de IA y cómo implementarlo efectivamente en proyectos Android."
-pubDate: "2025-12-29"
+pubDate: 2025-12-29
 heroImage: "/images/placeholder-article-agents-md.svg"
 tags: ["IA", "agents.md", "Android", "Desarrollo", "GitHub Copilot", "Gemini"]
 ---

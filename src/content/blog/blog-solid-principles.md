@@ -1,7 +1,7 @@
 ---
 title: "SOLID en Android: Clean Architecture para Apps Modernas"
 description: "Descubre cómo aplicar los principios SOLID en tu app de puzzles Android para crear una arquitectura robusta, escalable y mantenible."
-pubDate: "2025-06-15"
+pubDate: 2025-06-15
 heroImage: "/images/placeholder-article-solid.svg"
 tags: ["Android", "SOLID", "Architecture", "Design Patterns", "Clean Code"]
 ---

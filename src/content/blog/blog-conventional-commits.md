@@ -1,7 +1,7 @@
 ---
 title: "Conventional Commits: El Lenguaje Universal de tu Repositorio"
 description: "Descubre por qué Conventional Commits es el estándar de oro para equipos modernos, habilitando versionado semántico automático y changelogs generados por IA."
-pubDate: "2025-11-01"
+pubDate: 2025-11-01
 heroImage: "/images/placeholder-article-commits.svg"
 tags: ["Git", "Best Practices", "DevOps", "Conventional Commits", "Communication"]
 ---

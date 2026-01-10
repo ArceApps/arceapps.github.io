@@ -1,7 +1,7 @@
 ---
 title: "Kotlin 'let' (y amigos): Scope Functions Explicadas con Teoría"
 description: "let, run, with, apply, also... ¿Cuál usar y por qué? Una inmersión profunda en las Scope Functions de Kotlin, su diseño de lenguaje y mejores prácticas."
-pubDate: "2025-09-15"
+pubDate: 2025-09-15
 heroImage: "/images/placeholder-article-kotlin-let.svg"
 tags: ["Kotlin", "Best Practices", "Language Design", "Refactoring", "Clean Code"]
 ---

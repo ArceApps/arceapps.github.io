@@ -1,7 +1,7 @@
 ---
 title: "GitHub Actions: El Motor de tu CI/CD"
 description: "Aprende los fundamentos de GitHub Actions para automatizar tus flujos de trabajo, desde la ejecución de tests hasta el despliegue automático."
-pubDate: "2025-10-25"
+pubDate: 2025-10-25
 heroImage: "/images/placeholder-article-github-actions.svg"
 tags: ["GitHub Actions", "CI/CD", "DevOps", "Automatización", "Workflow"]
 ---

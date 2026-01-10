@@ -1,7 +1,7 @@
 ---
 title: "Arquitectura MVVM en Android: Guía Completa desde Cero"
 description: "Domina el patrón Model-View-ViewModel desde los conceptos básicos hasta implementaciones avanzadas con ejemplos prácticos de un juego de Buscaminas para Android."
-pubDate: "2025-10-01"
+pubDate: 2025-10-01
 heroImage: "/images/placeholder-article-mvvm.svg"
 tags: ["Android", "MVVM", "Architecture", "Kotlin", "Best Practices"]
 ---

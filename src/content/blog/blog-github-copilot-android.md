@@ -1,7 +1,7 @@
 ---
 title: "GitHub Copilot en Android: Tu Pair Programmer IA"
 description: "Maximiza tu productividad en Android Studio con GitHub Copilot. Técnicas avanzadas de prompting, generación de tests y refactoring asistido."
-pubDate: "2025-10-10"
+pubDate: 2025-10-10
 heroImage: "/images/placeholder-article-copilot-android.svg"
 tags: ["IA", "GitHub Copilot", "Android", "Productividad", "IDE"]
 ---

@@ -1,7 +1,7 @@
 ﻿---
 title: "Versionado Semántico en Android: Mejores Prácticas para Desarrolladores"
 description: "Una guía completa sobre cómo implementar versionado semántico en aplicaciones Android, desde versionCode hasta Google Play Store."
-pubDate: "2025-08-25"
+pubDate: 2025-08-25
 heroImage: "/images/placeholder-article-versioning.svg"
 tags: ["Android", "Versionado", "Gradle", "CI/CD"]
 ---

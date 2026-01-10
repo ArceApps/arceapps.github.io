@@ -1,7 +1,7 @@
 ---
 title: "Dominando las Colecciones y Secuencias en Kotlin: Rendimiento y Optimización"
 description: "¿Map o Sequence? Aprende a optimizar tus listas en Kotlin para Android, evitando overhead de memoria con Lazy Evaluation y dominando las operaciones funcionales."
-pubDate: "2025-10-05"
+pubDate: 2025-10-05
 heroImage: "/images/placeholder-article-collections.svg"
 tags: ["Kotlin", "Performance", "Collections", "Functional Programming", "Android"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Use Cases en Android: Lógica de Negocio Limpia y Reutilizable"
 description: "Por qué los Use Cases (Interactors) son el componente secreto de una arquitectura escalable. Cómo diseñarlos, testearlos y reutilizarlos."
-pubDate: "2025-10-10"
+pubDate: 2025-10-10
 heroImage: "/images/placeholder-article-use-cases.svg"
 tags: ["Architecture", "Clean Architecture", "Android", "Best Practices"]
 ---

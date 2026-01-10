@@ -1,7 +1,7 @@
 ---
 title: "Delegación en Kotlin: El poder del patrón 'by'"
 description: "Escribe menos código y reutiliza lógica de forma elegante con los Delegados de Kotlin. Lazy, Observable, Vetoable y cómo crear tus propios Custom Delegates."
-pubDate: "2025-10-25"
+pubDate: 2025-10-25
 heroImage: "/images/placeholder-article-delegation.svg"
 tags: ["Kotlin", "Delegation", "Design Patterns", "Clean Code", "Android"]
 ---

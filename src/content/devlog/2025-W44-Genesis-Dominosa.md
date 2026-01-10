@@ -1,7 +1,7 @@
 ---
 title: "2025 W44: El Noveno Pasajero"
 description: "Cuando creías que el catálogo estaba cerrado, Dominosa llega para desafiar nuestra arquitectura. Una historia sobre feature creep y diseño modular."
-pubDate: "2025-11-02"
+pubDate: 2025-11-02
 tags: ["devlog", "architecture", "dominosa", "planning", "philosophy"]
 heroImage: "/images/devlog-w44-dominosa-genesis.svg"
 ---

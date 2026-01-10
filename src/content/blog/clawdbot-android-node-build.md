@@ -1,7 +1,7 @@
 ---
 title: "Clawdbot en Android: Compila e Instala tu Propio Nodo desde el Código Fuente"
 description: "Guía técnica para compilar la app nativa de Clawdbot para Android, permitiendo a tu asistente acceder a la cámara, ubicación y modo de voz."
-pubDate: "2026-01-07"
+pubDate: 2026-01-07
 tags: ["Android", "Clawdbot", "Kotlin", "Build", "Gradle", "IA"]
 heroImage: "/images/clawdbot-android-node.svg"
 ---

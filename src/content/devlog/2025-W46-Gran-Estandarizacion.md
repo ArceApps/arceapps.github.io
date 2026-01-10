@@ -1,7 +1,7 @@
 ---
 title: "2025 W46: La Teoría de las Ventanas Rotas"
 description: "Por qué decidimos detener el desarrollo de nuevas funciones para arreglar un píxel 6dp fuera de lugar, y la cacería del bug geométrico en Hashi."
-pubDate: "2025-11-16"
+pubDate: 2025-11-16
 tags: ["devlog", "refactoring", "bugfix", "ui", "clean-code"]
 heroImage: "/images/devlog-w46-broken-window.svg"
 ---

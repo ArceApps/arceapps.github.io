@@ -1,7 +1,7 @@
 ---
 title: "Dependency Injection en Android: Hilt vs Koin vs Manual"
 description: "Una comparativa profunda y técnica sobre inyección de dependencias en Android. ¿Cuándo usar Hilt? ¿Es Koin realmente inyección? ¿Qué hay de la inyección manual?"
-pubDate: "2025-10-05"
+pubDate: 2025-10-05
 heroImage: "/images/placeholder-article-dependency-injection.svg"
 tags: ["Android", "Dependency Injection", "Hilt", "Koin", "Dagger", "Architecture"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Kotlin Flow a Fondo: Operadores y Patrones Avanzados"
 description: "Pasa de nivel con Kotlin Flow. Domina operadores como combine, zip, flatMapLatest y aprende a manejar streams reactivos complejos en Android."
-pubDate: "2025-10-15"
+pubDate: 2025-10-15
 heroImage: "/images/placeholder-article-flow-advanced.svg"
 tags: ["Kotlin", "Flow", "Reactive Programming", "Android", "Coroutines"]
 ---

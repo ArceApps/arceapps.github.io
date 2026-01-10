@@ -1,7 +1,7 @@
 ---
 title: "Specs-Driven Development: Código que Cumple Promesas"
 description: "Cómo transformar requisitos vagos en especificaciones técnicas precisas y usarlas para guiar el desarrollo con IA en proyectos Android."
-pubDate: "2025-10-28"
+pubDate: 2025-10-28
 heroImage: "/images/placeholder-article-specs-driven.svg"
 tags: ["Development Process", "Specs", "IA", "Planning", "Productividad"]
 ---

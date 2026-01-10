@@ -1,7 +1,7 @@
 ---
 title: "MVVM ViewModel: El Cerebro de la Operación"
 description: "Profundiza en el componente ViewModel: Gestión de estado, ciclo de vida, corrutinas y cómo evitar los errores más comunes de diseño."
-pubDate: "2025-10-04"
+pubDate: 2025-10-04
 heroImage: "/images/placeholder-article-viewmodel.svg"
 tags: ["Android", "MVVM", "ViewModel", "StateFlow", "Coroutines"]
 ---

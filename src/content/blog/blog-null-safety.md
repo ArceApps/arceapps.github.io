@@ -1,7 +1,7 @@
 ---
 title: "Null Safety en Kotlin: El Fin de la 'One Billion Dollar Mistake'"
 description: "Entiende profundamente el sistema de tipos de Kotlin, cómo elimina NullPointerExceptions y técnicas avanzadas para manejar la nulabilidad de forma elegante."
-pubDate: "2025-09-10"
+pubDate: 2025-09-10
 heroImage: "/images/placeholder-article-null-safety.svg"
 tags: ["Kotlin", "Null Safety", "Best Practices", "Clean Code", "Java Interop"]
 ---

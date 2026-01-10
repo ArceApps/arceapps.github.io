@@ -1,7 +1,7 @@
 ---
 title: "MVVM View: UI Inteligente pero Pasiva en Android"
 description: "Aprende a implementar la capa View en MVVM correctamente, ya sea con XML o Jetpack Compose. Evita lógica en la UI y domina el Unidirectional Data Flow."
-pubDate: "2025-10-03"
+pubDate: 2025-10-03
 heroImage: "/images/placeholder-article-view-layer.svg"
 tags: ["Android", "MVVM", "UI", "Jetpack Compose", "XML"]
 ---

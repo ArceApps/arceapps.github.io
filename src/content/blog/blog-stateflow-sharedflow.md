@@ -1,7 +1,7 @@
 ---
 title: "StateFlow vs SharedFlow: Guía Definitiva para Android"
 description: "Deja de usar LiveData. Entiende las diferencias profundas entre StateFlow y SharedFlow, cuándo usar cada uno y cómo evitar trampas comunes."
-pubDate: "2025-09-30"
+pubDate: 2025-09-30
 heroImage: "/images/placeholder-article-stateflow-sharedflow.svg"
 tags: ["Kotlin", "Coroutines", "Flow", "Android", "State Management"]
 ---

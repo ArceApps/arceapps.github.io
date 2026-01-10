@@ -1,7 +1,7 @@
 ---
 title: "GitHub Pages para Android Devs: Tu Portafolio Gratis y Profesional"
 description: "Aprende a desplegar este mismo blog, documentación de librerías o landing pages de tus apps usando GitHub Pages y Astro, totalmente gratis."
-pubDate: "2025-11-15"
+pubDate: 2025-11-15
 heroImage: "/images/placeholder-article-github-pages.svg"
 tags: ["GitHub Pages", "Web", "Portfolio", "Astro", "Personal Branding"]
 ---

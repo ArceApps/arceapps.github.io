@@ -1,7 +1,7 @@
 ---
 title: "Firebase Crashlytics: Monitorización Proactiva de Errores"
 description: "Pasa de reactivo a proactivo. Configura Firebase Crashlytics para detectar, agrupar y solucionar errores críticos antes de que tus usuarios se quejen."
-pubDate: "2025-09-25"
+pubDate: 2025-09-25
 heroImage: "/images/placeholder-article-firebase.svg"
 tags: ["Firebase", "Crashlytics", "Monitoring", "DevOps", "Quality"]
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Refactoring con IA: De Legacy Code a Clean Code"
 description: "Aprende estrategias seguras para modernizar bases de código antiguas usando asistentes de IA. Refactoriza clases masivas, elimina código muerto y migra a Kotlin."
-pubDate: "2025-11-25"
+pubDate: 2025-11-25
 heroImage: "/images/placeholder-article-refactoring-ia.svg"
 tags: ["IA", "Refactoring", "Clean Code", "Legacy Code", "Android"]
 ---

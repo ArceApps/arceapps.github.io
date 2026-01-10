@@ -1,7 +1,7 @@
 ---
 title: "Documentación en Android: KDoc, Dokka y Flujo de Trabajo Profesional 📚"
 description: "Domina las herramientas esenciales para documentar tu código Kotlin y Android como un profesional: desde KDoc hasta Dokka, con integración completa en tu workflow de desarrollo."
-pubDate: "2025-03-10"
+pubDate: 2025-03-10
 heroImage: "/images/placeholder-article-android-documentation.svg"
 tags: ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Workflow", "GitHub Actions", "Best Practices", "Productividad"]
 ---

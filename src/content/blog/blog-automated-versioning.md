@@ -1,7 +1,7 @@
 ---
 title: "Automatización de Versionado con GitHub Actions: La Revolución del Desarrollador Android"
 description: "Descubre cómo automatizar completamente el versionado de tu app Android con GitHub Actions: desde commits hasta Google Play Store, sin intervención manual."
-pubDate: "2025-12-10"
+pubDate: 2025-12-10
 heroImage: "/images/placeholder-article-automated-versioning.svg"
 tags: ["Android", "GitHub Actions", "CI/CD", "Automatización", "Versionado", "DevOps"]
 ---

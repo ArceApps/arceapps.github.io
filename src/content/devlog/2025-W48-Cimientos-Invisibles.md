@@ -1,7 +1,7 @@
 ---
 title: "2025 W48: Los Cimientos Invisibles"
 description: "Preparando el terreno para la paridad de características. Trabajo de backend, migraciones de Room y por qué Minesweeper es diferente a todo lo demás."
-pubDate: "2025-11-30"
+pubDate: 2025-11-30
 tags: ["devlog", "backend", "room", "architecture", "minesweeper"]
 heroImage: "/images/devlog-w48-foundations.svg"
 ---

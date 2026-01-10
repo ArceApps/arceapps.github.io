@@ -1,7 +1,7 @@
 ---
 title: "Code Review con IA: Tu Nuevo Compañero de Equipo Incansable"
 description: "Aprende a configurar agentes de IA para realizar revisiones de código automáticas, detectar bugs sutiles y hacer cumplir estándares antes de que un humano intervenga."
-pubDate: "2025-11-05"
+pubDate: 2025-11-05
 heroImage: "/images/placeholder-article-code-review-ia.svg"
 tags: ["IA", "Code Review", "DevOps", "Quality Assurance", "GitHub Actions"]
 ---

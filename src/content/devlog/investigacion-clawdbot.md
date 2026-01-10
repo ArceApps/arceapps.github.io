@@ -1,7 +1,7 @@
 ---
 title: "Investigación: Clawdbot y la Arquitectura Local-First"
 description: "Diario de investigación sobre Clawdbot. Más allá del tutorial, aquí analizo la arquitectura descentralizada y los retos de integración con Gemini 3.0."
-pubDate: "2026-01-07"
+pubDate: 2026-01-07
 tags: ["Investigación", "Clawdbot", "Arquitectura", "Local-First"]
 heroImage: "/images/devlog-default.svg"
 ---

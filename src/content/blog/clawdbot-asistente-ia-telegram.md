@@ -1,7 +1,7 @@
 ---
 title: "Clawdbot: Tu Asistente IA Privado en Telegram con Gemini 3.0 y GitHub Copilot"
 description: "Aprende a instalar Clawdbot, conectarlo a Telegram y potenciarlo con Gemini 3.0 y GitHub Copilot para tener un 'Code Buddy' 24/7 en tu bolsillo."
-pubDate: "2026-01-07"
+pubDate: 2026-01-07
 tags: ["IA", "Clawdbot", "Telegram", "Gemini", "GitHub Copilot", "Productividad", "Android"]
 heroImage: "/images/clawdbot-telegram-gemini.svg"
 ---

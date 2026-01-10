@@ -1,7 +1,7 @@
 ---
 title: "2025 W51: Rompiendo la Barrera del Idioma"
 description: "Un sprint masivo de internacionalización para eliminar textos hardcodeados y preparar PuzzleSuite para el mundo."
-pubDate: "2025-12-21"
+pubDate: 2025-12-21
 tags: ["devlog", "i18n", "refactoring", "quality"]
 heroImage: "/images/devlog-w51-i18n.svg"
 ---

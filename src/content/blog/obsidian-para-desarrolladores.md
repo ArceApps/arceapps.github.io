@@ -1,7 +1,7 @@
 ---
 title: "Obsidian para Desarrolladores: Guía Definitiva 2025"
 description: "Transforma Obsidian en un IDE de conocimiento. Aprende a integrar Git, Dataview, Diagramas de Arquitectura y logs automatizados para potenciar tu carrera de desarrollo."
-pubDate: "2025-05-27"
+pubDate: 2025-05-27
 heroImage: "/images/obsidian-dev-hero.svg"
 tags: ["productividad", "workflow", "herramientas", "documentación"]
 ---

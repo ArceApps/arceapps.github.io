@@ -1,7 +1,7 @@
 ---
 title: "Room Database: Persistencia Robusta en Android"
 description: "Guía completa de Room: desde entidades y DAOs hasta migraciones complejas, relaciones one-to-many y uso avanzado de Flow y Coroutines."
-pubDate: "2025-10-12"
+pubDate: 2025-10-12
 heroImage: "/images/placeholder-article-room.svg"
 tags: ["Android", "Room", "Database", "SQL", "Persistence"]
 ---

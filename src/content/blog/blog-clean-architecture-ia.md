@@ -1,7 +1,7 @@
 ---
 title: "Clean Architecture + IA: El Dúo Dinámico del Desarrollo Moderno"
 description: "Descubre cómo la Inteligencia Artificial y Clean Architecture se potencian mutuamente para crear código Android mantenible, escalable y generado automáticamente con precisión."
-pubDate: "2025-11-20"
+pubDate: 2025-11-20
 heroImage: "/images/placeholder-article-clean-arch-ia.svg"
 tags: ["IA", "Clean Architecture", "Android", "Productividad", "GitHub Copilot"]
 ---

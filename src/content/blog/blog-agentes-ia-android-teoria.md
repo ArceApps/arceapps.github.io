@@ -1,7 +1,7 @@
 ---
 title: "Más allá del Chat: Por qué necesitas Agentes en tu equipo de Android"
 description: "Descubre cómo pasar de simples prompts a un equipo de agentes de IA especializados que conocen tu arquitectura Android y multiplican tu productividad."
-pubDate: "2025-05-20"
+pubDate: 2025-05-20
 tags: ["IA", "Productividad", "Android", "Agentes", "Workflow"]
 heroImage: "/images/placeholder-article-ai-evolution.svg"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "KDoc y Dokka: Documentación Profesional para Android 📚"
 description: "Domina las herramientas esenciales para documentar tu código Kotlin y Android: desde la sintaxis KDoc hasta la generación automática con Dokka."
-pubDate: "2025-03-15"
+pubDate: 2025-03-15
 heroImage: "/images/placeholder-article-kdoc-dokka.svg"
 tags: ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Desarrollo"]
 ---

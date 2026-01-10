@@ -1,7 +1,7 @@
 ---
 title: "Gemini en Desarrollo Android: Más allá del Chatbot"
 description: "Descubre cómo integrar Gemini (el modelo multimodal de Google) en tu flujo de desarrollo Android y cómo usar su API para crear apps inteligentes."
-pubDate: "2025-10-20"
+pubDate: 2025-10-20
 heroImage: "/images/placeholder-article-gemini.svg"
 tags: ["IA", "Gemini", "Android", "Machine Learning", "Google Cloud"]
 ---

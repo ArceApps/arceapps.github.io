@@ -1,7 +1,7 @@
 ---
 title: "AI Skills en el Desarrollo: Potencia Tu Flujo de Trabajo Android"
 description: "Descubre cómo los AI Skills transforman el desarrollo moderno, automatizando tareas complejas y mejorando la productividad en proyectos Android."
-pubDate: "2025-12-29"
+pubDate: 2025-12-29
 heroImage: "/images/placeholder-article-ai-skills.svg"
 tags: ["IA", "Android", "Desarrollo", "Skills", "Gemini", "GitHub Copilot"]
 ---

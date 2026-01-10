@@ -1,7 +1,7 @@
 ---
 title: "Pair Programming Asíncrono con Agentes: Sentinel, Bolt y Palette en Acción"
 description: "Casos reales de desarrollo Android donde delegar en agentes especializados supera a cualquier chat de IA estándar. Seguridad, Rendimiento y UX."
-pubDate: "2025-05-22"
+pubDate: 2025-05-22
 tags: ["IA", "Kotlin", "Workflow", "Casos de Uso", "Android"]
 heroImage: "/images/placeholder-article-ai-workflow.svg"
 ---

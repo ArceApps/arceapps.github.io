@@ -4,8 +4,7 @@ const blogCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    // Transform string date to Date object
-    pubDate: z.string().transform((str) => new Date(str)),
+    pubDate: z.coerce.date(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().optional().default(false),
@@ -16,7 +15,7 @@ const appsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    pubDate: z.string().transform((str) => new Date(str)),
+    pubDate: z.coerce.date(),
     heroImage: z.string().optional(),
     draft: z.boolean().optional().default(false),
     icon: z.string().optional().default('android'),
@@ -36,7 +35,7 @@ const devlogCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    pubDate: z.string().transform((str) => new Date(str)),
+    pubDate: z.coerce.date(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().optional().default(false),
