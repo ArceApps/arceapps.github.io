@@ -1,9 +1,9 @@
 ---
 title: "2025 W48: Los Cimientos Invisibles"
 description: "Preparando el terreno para la paridad de características. Trabajo de backend, migraciones de Room y por qué Minesweeper es diferente a todo lo demás."
-pubDate: 2025-11-30
+pubDate: "2025-11-30"
 tags: ["devlog", "backend", "room", "architecture", "minesweeper"]
-heroImage: "/images/blog-placeholder-3.jpg"
+heroImage: "/images/devlog-w48-foundations.svg"
 ---
 
 Llegamos al final de Noviembre. La Semana 48 (del 24 al 30 de Noviembre) ha sido, visualmente, la menos impresionante del mes. Si descargas la versión de esta semana y la comparas con la anterior, apenas notarás diferencias en la pantalla.
