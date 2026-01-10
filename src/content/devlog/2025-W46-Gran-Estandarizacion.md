@@ -3,7 +3,7 @@ title: "2025 W46: La Teoría de las Ventanas Rotas"
 description: "Por qué decidimos detener el desarrollo de nuevas funciones para arreglar un píxel 6dp fuera de lugar, y la cacería del bug geométrico en Hashi."
 pubDate: "2025-11-16"
 tags: ["devlog", "refactoring", "bugfix", "ui", "clean-code"]
-heroImage: "/images/blog-placeholder-2.jpg"
+heroImage: "/images/devlog-w46-broken-window.svg"
 ---
 
 Hay una teoría criminológica llamada "La Ventana Rota". Dice que si dejas una ventana rota en un edificio, pronto todas las demás ventanas serán destrozadas. El desorden invita al desorden. La negligencia visible indica que "a nadie le importa", y eso reduce los estándares de todos.

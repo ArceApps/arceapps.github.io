@@ -3,7 +3,7 @@ title: "2025 W50: Perfeccionando el Final"
 description: "Mejorando la experiencia de completar un puzzle: diálogos más útiles, estandarizados y con la opción de admirar tu obra."
 pubDate: "2025-12-14"
 tags: ["devlog", "ux", "ui", "quality"]
-heroImage: "/images/blog-placeholder-5.jpg"
+heroImage: "/images/devlog-w50-polishing.svg"
 ---
 
 Completar un puzzle difícil es un momento de satisfacción. Es ese instante de dopamina cuando colocas la última pieza y todo encaja. Esta semana nos dimos cuenta de que nuestra interfaz estaba... bueno, interrumpiendo ese momento.

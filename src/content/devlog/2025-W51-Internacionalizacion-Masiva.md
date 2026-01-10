@@ -3,7 +3,7 @@ title: "2025 W51: Rompiendo la Barrera del Idioma"
 description: "Un sprint masivo de internacionalización para eliminar textos hardcodeados y preparar PuzzleSuite para el mundo."
 pubDate: "2025-12-21"
 tags: ["devlog", "i18n", "refactoring", "quality"]
-heroImage: "/images/blog-placeholder-2.jpg"
+heroImage: "/images/devlog-w51-i18n.svg"
 ---
 
 A veces, para ir rápido, dejas cosas por el camino. En el desarrollo de *PuzzleSuite*, una de esas cosas fue el idioma. "Ya lo arreglaremos luego", decíamos mientras escribíamos `Text("Estadísticas")` directamente en el código de la UI.

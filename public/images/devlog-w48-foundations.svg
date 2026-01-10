@@ -1,0 +1,21 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#004D40"/>
+  
+  <!-- Foundation layers -->
+  <rect x="100" y="450" width="1000" height="80" fill="#018786" opacity="0.3"/>
+  <rect x="150" y="380" width="900" height="70" fill="#018786" opacity="0.5"/>
+  <rect x="200" y="310" width="800" height="70" fill="#018786" opacity="0.7"/>
+  
+  <!-- Building blocks on top -->
+  <rect x="300" y="200" width="150" height="110" fill="#FF9800" rx="5"/>
+  <rect x="480" y="200" width="150" height="110" fill="#FF9800" rx="5"/>
+  <rect x="660" y="200" width="150" height="110" fill="#FF9800" rx="5"/>
+  
+  <rect x="390" y="90" width="150" height="110" fill="#FF9800" opacity="0.7" rx="5"/>
+  <rect x="570" y="90" width="150" height="110" fill="#FF9800" opacity="0.7" rx="5"/>
+  
+  <!-- Support beams -->
+  <line x1="375" y1="200" x2="465" y2="90" stroke="#FFFFFF" stroke-width="3" opacity="0.5"/>
+  <line x1="555" y1="200" x2="645" y2="90" stroke="#FFFFFF" stroke-width="3" opacity="0.5"/>
+  <line x1="735" y1="200" x2="645" y2="90" stroke="#FFFFFF" stroke-width="3" opacity="0.5"/>
+</svg>
