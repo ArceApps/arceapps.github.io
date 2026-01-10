@@ -1,70 +1,88 @@
 ---
-title: "2025 W40: El Primer Pixel"
-description: "Cómo nace una suite de puzzles. La decisión de usar Clean Architecture desde el día 0 y por qué Kotlin Multiplatform todavía no es para nosotros."
+title: "2025 W40: El Primer Píxel"
+description: "El miedo al folio en blanco, la decisión crítica entre Canvas y Compose, y por qué elegimos una arquitectura que nos frenó durante tres días para acelerarnos el resto del año."
 pubDate: 2025-10-05
-tags: ["devlog", "genesis", "architecture", "android", "kotlin"]
-heroImage: "/images/blog-placeholder-about.jpg"
+tags: ["devlog", "architecture", "canvas", "clean-code", "jetpack-compose"]
+heroImage: "/images/devlog/2025-w40-cover.png"
 ---
 
-Todo proyecto grande comienza con un `File > New Project`. Pero el miedo al "folio en blanco" es real.
-La Semana 40 (del 1 al 5 de Octubre) marca el nacimiento oficial de **PuzzleSuite**.
+Todo proyecto grande comienza con un `File > New Project`. Es un momento de optimismo puro, pero también de terror paralizante. El terror al "folio en blanco".
 
-La idea es sencilla pero ambiciosa: crear la colección definitiva de puzzles lógicos para Android. No queremos ser otro clon de Sudoku lleno de anuncios. Queremos ser la "Biblia" de los puzzles. Una interfaz limpia, sin distracciones, y con una profundidad técnica que respete la inteligencia del jugador.
+La Semana 40 (del 1 al 5 de Octubre de 2025) marca el nacimiento oficial de **PuzzleSuite**.
 
-Pero antes de pintar el primer pixel, tuvimos que tomar decisiones que definirán los próximos años de desarrollo.
+La idea en el papel es sencilla pero ambiciosa: crear la colección definitiva de puzzles lógicos para Android. No queremos ser otro clon de Sudoku lleno de anuncios intrusivos y estéticas dudosas. Queremos ser la "Biblia" de los puzzles. Una interfaz limpia, sin distracciones, una experiencia "premium" gratuita y, sobre todo, una profundidad técnica que respete la inteligencia del jugador.
+
+Pero antes de que naciese el primer píxel en pantalla, tuvimos que tomar decisiones que definirán los próximos años de desarrollo. Decisiones que, si salen mal, nos condenarán a reescribir todo en Navidad.
 
 ## La Tiranía de la Arquitectura
 
-Podríamos haber empezado tirando código en la `MainActivity`. Un par de `Buttons`, un `Canvas` y listo. Habríamos tenido un prototipo funcional el martes.
-Pero *PuzzleSuite* no va a tener un juego. Va a tener diez. O veinte.
-Si no separamos las preocupaciones ahora, en Noviembre estaremos ahogados en un plato de espagueti de código inmanejable.
+Podríamos haber empezado tirando código en la `MainActivity`. Un par de `Buttons`, un `Canvas` rápido y listo. Habríamos tenido un prototipo funcional de *Shikaku* el martes por la tarde.
+Pero *PuzzleSuite* no va a tener un juego. Va a tener diez. Quizás veinte.
 
-Decidimos adoptar **Clean Architecture** (la variante recomendada por Google, pero estricta).
-Cada juego será un módulo (o al menos un paquete aislado) con sus propias capas:
-1.  **Domain**: Reglas puras. ¿Es válido este movimiento de ajedrez? Aquí no existe Android. Solo Kotlin puro.
-2.  **Data**: Persistencia. ¿Cómo guardamos la partida? Room, DataStore, JSON.
-3.  **Presentation**: UI. Jetpack Compose. ViewModels.
+Si no separamos las preocupaciones ahora, en Noviembre estaremos ahogados en un plato de espagueti de código inmanejable. Imaginad tener que corregir un bug en el temporizador y tener que editar 15 archivos diferentes. Eso es la muerte del proyecto.
 
-Esta decisión tiene un coste: **Boilerplate**.
-Para hacer un simple "Hola Mundo" en este sistema, necesitas crear 5 archivos. `GameEntity`, `GameDao`, `GameRepository`, `GameUseCase`, `GameViewModel`.
-Durante los primeros tres días, parecía que no avanzábamos. Escribíamos cientos de líneas de código de infraestructura que no hacían *nada* visible en pantalla.
+Decidimos adoptar **Clean Architecture** (la variante recomendada por Google, pero aplicada de forma estricta).
+Cada juego será un módulo lógico (o al menos un paquete totalmente aislado) con sus propias capas impermeables:
+1.  **Domain (Dominio)**: Reglas puras. ¿Es válido este movimiento? Aquí no existe Android. No hay Contexto. No hay UI. Solo Kotlin puro.
+2.  **Data (Datos)**: Persistencia. ¿Cómo guardamos la partida? Room, DataStore, JSON.
+3.  **Presentation (Presentación)**: UI. Jetpack Compose. ViewModels.
 
-> *"¿Estamos sobre-ingenierizando esto?"*
+Esta decisión tiene un coste inmediato: **Boilerplate** (código repetitivo).
+Para hacer un simple "Hola Mundo" en este sistema, necesitas crear al menos 5 archivos: `GameEntity`, `GameDao`, `GameRepository`, `GameUseCase`, `GameViewModel`.
 
-Es la pregunta que nos hicimos el miércoles. Pero entonces, implementamos el primer juego: **Shikaku**.
+Durante los primeros tres días (lunes, martes y miércoles), la sensación fue de estar caminando en melaza. Escribíamos cientos de líneas de código de infraestructura que no hacían *nada* visible en pantalla.
+
+> *"¿Estamos sobre-ingenierizando esto? ¿Es necesario un UseCase solo para guardar la puntuación?"*
+
+Es la pregunta que nos hicimos el miércoles por la noche, mirando pantallas llenas de interfaces vacías. Pero entonces, el jueves, implementamos la lógica del primer juego: **Shikaku**.
 
 ### Shikaku: El Conejillo de Indias
 
-Elegimos Shikaku (dividir una cuadrícula en rectángulos) porque sus reglas son geométricas pero simples.
-Gracias a la arquitectura separada, pudimos escribir las pruebas unitarias (`ShikakuLogicTest`) sin siquiera tener una pantalla.
-Pudimos verificar que el algoritmo de validación de rectángulos funcionaba en la consola.
+Elegimos Shikaku (dividir una cuadrícula en rectángulos que contengan un solo número) porque sus reglas son geométricas pero simples.
+Gracias a la arquitectura separada, pudimos escribir las pruebas unitarias (`ShikakuLogicTest`) sin siquiera tener una `Activity`.
+Pudimos verificar que el algoritmo de validación de rectángulos funcionaba en la consola, ejecutándose en nanisegundos.
 
-Cuando finalmente conectamos la capa de **Presentation** (UI) el viernes, fue "plug-and-play". La UI no tenía lógica. Solo pintaba lo que el `ViewModel` le decía. Si el modelo decía "error", la UI pintaba rojo. La separación funcionó.
+Cuando finalmente conectamos la capa de **Presentation** (UI) el viernes, fue una experiencia "plug-and-play". La UI no tenía lógica. Solo pintaba lo que el `ViewModel` le decía. Si el modelo decía "error", la UI pintaba rojo. La separación funcionó. Y de repente, la melaza se convirtió en una autopista.
 
-## Canvas vs. Componentes
+## La Gran Cisma: Canvas vs. Componentes
 
-La segunda gran decisión de la semana fue sobre el renderizado.
-¿Deberíamos usar botones y celdas de Compose (`Box`, `Row`, `Column`) para dibujar el tablero?
-Para un 5x5, funciona. Pero, ¿y para un 20x20?
+La segunda gran decisión de la semana fue sobre el motor de renderizado.
+Jetpack Compose es maravilloso. Te permite construir UIs componiendo cajitas (`Box`, `Row`, `Column`).
+La tentación de usar esto para el tablero era fuerte.
+*   "Cada celda es un `Box` con un borde".
+*   "Cada número es un `Text` dentro del `Box`".
 
-Hicimos una prueba de concepto. Renderizar 400 celdas usando composables individuales destrozó el rendimiento. El *frame rate* bajó a 20fps al hacer scroll.
-La sobrecarga de crear tantos objetos View/Node es demasiada.
+Para un tablero de 5x5, funciona de maravilla.
+Pero, ¿y para un tablero de 20x20? Eso son 400 celdas.
 
-La solución: **Canvas**.
-Dibujamos todo el tablero en un solo `Canvas` gigante. Es como volver a programar videojuegos en los 90. Nosotros controlamos cada línea, cada círculo, cada texto.
-*   **Ventaja**: Rendimiento infinito. 60fps estables incluso en tableros de 50x50.
-*   **Desventaja**: Perdemos la accesibilidad y los eventos de clic nativos. Tuvimos que escribir nuestro propio detector de gestos (`detectTapGestures`) para saber en qué celda tocó el usuario basándonos en coordenadas X/Y matemáticas.
+Hicimos una prueba de concepto ("Stress Test"). Renderizar 400 celdas usando composables individuales destrozó el rendimiento. El *frame rate* bajó a 22fps al hacer scroll o zoom. La sobrecarga de crear tantos objetos View/Node, medir sus tamaños y dibujarlos individualmente es demasiada para un móvil de gama media.
+
+La solución fue radical: **Canvas**.
+Dibujamos todo el tablero en un solo `Canvas` gigante. Es como volver a programar videojuegos en los años 90. Nosotros controlamos cada línea, cada círculo, cada pixel de texto.
+
+*   **Ventaja**: Rendimiento infinito. 60fps (o 120fps) estables incluso en tableros de 50x50. Solo hay "una vista" que redibujar.
+*   **Desventaja**: Perdemos la accesibilidad y los eventos de clic nativos. Un `Canvas` es una imagen plana. No sabe lo que es un "botón".
+
+Tuvimos que escribir nuestro propio sistema de detección de gestos (`detectTapGestures`). Tuvimos que hacer matemáticas para traducir un toque en la pantalla (x=453, y=890) a una celda lógica (Fila 4, Columna 8).
 
 ```kotlin
+// Matemáticas de 1º de ESO al rescate
 val cellWidth = size.width / cols
 val col = (tapOffset.x / cellWidth).toInt()
 val row = (tapOffset.y / cellWidth).toInt()
 ```
-Matemáticas simples, pero poderosas.
 
-## El Primer Commit
+Matemáticas simples, pero poderosas. Ahora tenemos un motor gráfico que vuela.
 
-Cerramos la semana con un esqueleto funcional. Tenemos una `MainActivity` que navega a un menú vacío. Tenemos una base de datos `AppDatabase` configurada con Hilt. Y tenemos un prototipo de Shikaku que, aunque feo (colores de debug neón), funciona suave como la seda.
+## El Primer Commit Real
 
-No parece mucho para una semana de trabajo. Pero los cimientos de un rascacielos nunca son bonitos; son profundos.
-La semana que viene, intentaremos construir el segundo piso.
+Cerramos la semana con un esqueleto funcional.
+Tenemos una `MainActivity` que navega a un menú vacío.
+Tenemos una base de datos `AppDatabase` configurada con Hilt inyectando dependencias como si no costara.
+Y tenemos un prototipo de *Shikaku* que, aunque feo (usamos colores neón de debug que harían llorar a un diseñador), se siente sólido bajo el dedo. Responde al instante.
+
+No parece mucho para una semana entera de trabajo de 40 horas. Un solo juego feo.
+Pero los cimientos de un rascacielos nunca son bonitos; son profundos.
+La semana que viene, intentaremos construir el segundo piso sobre estos cimientos. Y si la teoría de la Clean Architecture es cierta, el segundo piso debería construirse en la mitad de tiempo.
+
+Veremos si la teoría sobrevive a la realidad.
