@@ -49,3 +49,21 @@
   - Añadida lógica CSS de validación: `invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500`.
   - Añadida clase `active:scale-[0.98]` al botón de envío para mejorar la sensación de "click".
 - Verificado visualmente con Playwright: las etiquetas cambian a color `primary` al enfocar, y los emails inválidos se marcan en rojo al salir del campo.
+
+## 2026-01-25 - Accesibilidad y UX en Búsqueda
+
+**Revisión:**
+- Se analizó `src/components/Search.astro`.
+- Se detectó que no había indicador visual para el atajo de teclado `ESC` para cerrar el modal.
+- El mensaje de "No se encontraron resultados" era genérico y poco útil.
+
+**Propuesta:**
+- Añadir un indicador visual `ESC` tipo tecla (`kbd`) visible en desktop para mejorar la descubribilidad del atajo.
+- Mejorar el estado vacío con un icono más descriptivo (`search_off`) y sugerencias de acción (revisar ortografía).
+- Asegurar que el botón de cerrar tenga una etiqueta `aria-label` explícita.
+
+**Realizado:**
+- Modificado `src/components/Search.astro`:
+  - Añadido elemento `<kbd>ESC</kbd>` visible en pantallas medianas y superiores.
+  - Actualizado el HTML inyectado para resultados vacíos con mejor feedback y diseño.
+  - Añadido `aria-label="Cerrar búsqueda"` al botón de cierre.
