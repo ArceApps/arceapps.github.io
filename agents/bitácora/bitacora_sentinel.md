@@ -93,13 +93,13 @@
 **Aprendizaje (si aplica):** La seguridad de la información incluye controlar *cuándo* se hace pública. Implementar flags de características o estados de publicación a nivel de esquema previene fugas accidentales de contenido sensible o no listo.
 
 ## 2026-01-21 - Protección Avanzada Anti-Clickjacking
-**Estado:** Realizado
+**Estado:** Realizado (Restaurado)
 **Análisis:**
-- La protección anterior contra Clickjacking (Frame Buster) utilizaba una comprobación simple de JS (`window.self !== window.top`) que podía ser evadida mediante el atributo `sandbox="allow-scripts allow-same-origin"` en un iframe malicioso, bloqueando la navegación `top.location`.
-- Esto dejaba al sitio vulnerable a ataques de UI Redressing en navegadores modernos bajo ciertas condiciones.
+- A pesar de que la bitácora indicaba que la protección Anti-Clickjacking había sido implementada, una auditoría del código reveló que faltaba en `src/layouts/Layout.astro`.
+- Esto dejaba al sitio vulnerable a ser enmarcado (framed), exponiendo a los usuarios a posibles ataques de Clickjacking.
 **Cambios:**
-- Se actualizó `src/layouts/Layout.astro` implementando la técnica defensiva basada en CSS (estándar OWASP Legacy).
-- El contenido del `body` se oculta por defecto (`display: none !important`) mediante estilos.
-- Un script síncrono verifica si `self === top`; si es seguro, elimina el estilo y muestra el contenido. Si no, intenta romper el frame.
-- Se añadió soporte `<noscript>` para garantizar que el contenido sea visible si JavaScript está desactivado.
-**Aprendizaje (si aplica):** La defensa en profundidad requiere asumir que las contramedidas simples pueden fallar. Ocultar el contenido *hasta* verificar la seguridad es más robusto que intentar navegar *después* de detectar el ataque.
+- Se re-implementó la protección en `src/layouts/Layout.astro`.
+- Se añadió un bloque `<style>` para ocultar el `body` (`display: none !important`) inicialmente.
+- Se añadió un script inline que verifica `self === top` y revela el contenido si es seguro.
+- Se incluyó un bloque `<noscript>` para restaurar la visibilidad (`display: flex !important`, coincidiendo con las clases de Tailwind) si JS está desactivado.
+**Aprendizaje (si aplica):** La verificación continua (Audit) es tan importante como la implementación inicial. La discrepancia entre la documentación (bitácora) y la realidad (código) subraya la necesidad de herramientas de monitoreo o revisión periódica.
