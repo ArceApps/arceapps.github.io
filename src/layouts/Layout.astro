@@ -112,31 +112,39 @@ const socialImageURL = new URL(image, Astro.url);
 
     <script is:inline>
       // Theme Script
-      function applyTheme() {
-        const theme = (() => {
-          if (
-            typeof localStorage !== "undefined" &&
-            localStorage.getItem("theme")
-          ) {
-            return localStorage.getItem("theme");
-          }
-          if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-            return "dark";
-          }
-          return "light";
-        })();
-
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
+      function getTheme() {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
         }
-
-        window.localStorage.setItem("theme", theme);
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
       }
 
-      applyTheme();
-      document.addEventListener("astro:after-swap", applyTheme);
+      function applyTheme(doc) {
+        const theme = getTheme();
+        if (theme === "dark") {
+          doc.documentElement.classList.add("dark");
+        } else {
+          doc.documentElement.classList.remove("dark");
+        }
+        // Ensure localStorage is synced (optional but good for consistency)
+        if (typeof localStorage !== "undefined") {
+          localStorage.setItem("theme", theme);
+        }
+      }
+
+      // Initial load
+      applyTheme(document);
+
+      // View Transitions: Apply theme to new document BEFORE swap to prevent FOUC
+      document.addEventListener("astro:before-swap", (ev) => {
+        applyTheme(ev.newDocument);
+      });
     </script>
   </head>
   <body class="flex flex-col min-h-screen">
