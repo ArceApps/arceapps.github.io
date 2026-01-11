@@ -159,17 +159,13 @@ const isActive = (href: string) => {
     const mobileMenu = document.getElementById("mobile-menu");
 
     if (menuToggle && mobileMenu) {
-      // Clone to remove old listeners
-      const newMenuToggle = menuToggle.cloneNode(true);
-      menuToggle.parentNode?.replaceChild(newMenuToggle, menuToggle);
-
-      newMenuToggle.addEventListener("click", () => {
+      menuToggle.addEventListener("click", () => {
         mobileMenu.classList.toggle("hidden");
 
         const isExpanded = !mobileMenu.classList.contains("hidden");
-        newMenuToggle.setAttribute("aria-expanded", String(isExpanded));
+        menuToggle.setAttribute("aria-expanded", String(isExpanded));
 
-        const icon = newMenuToggle.querySelector(".material-icons");
+        const icon = menuToggle.querySelector(".material-icons");
         if (icon) {
           icon.textContent = isExpanded ? "close" : "menu";
         }
@@ -177,9 +173,6 @@ const isActive = (href: string) => {
     }
   }
 
-  // Run on first load
-  initHeader();
-
-  // Run on view transitions
+  // Run on view transitions (fires on initial load too)
   document.addEventListener("astro:page-load", initHeader);
 </script>
