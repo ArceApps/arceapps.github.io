@@ -3,7 +3,7 @@ title: "2026 W02: Generics, Canvas y la Búsqueda de la Eficiencia"
 description: "Cómo eliminamos cientos de líneas de código repetido con Repositorios Genéricos y por qué migramos Kakuro a Canvas puro."
 pubDate: 2026-01-14
 tags: ["devlog", "optimization", "android", "compose", "canvas", "generics"]
-heroImage: "/images/blog-placeholder-2.jpg"
+heroImage: "/images/devlog-w02-canvas.svg"
 ---
 
 Esta semana ha sido una de contrastes: por un lado, abstracciones de alto nivel con Generics de Kotlin, y por otro, bajando al barro de los píxeles con Canvas.
