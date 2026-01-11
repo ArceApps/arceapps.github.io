@@ -205,23 +205,13 @@
       }
     }
 
-    // Event Listeners - using replaceChild or similar to clean up old listeners is hard without a wrapping element,
-    // so we will rely on Astro's swapping mechanism to replace the HTML, but for event listeners directly attached
-    // to elements found by ID, they need to be re-attached.
-
-    const newSearchButton = searchButton?.cloneNode(true);
-    searchButton?.parentNode?.replaceChild(newSearchButton!, searchButton);
-    newSearchButton?.addEventListener("click", openModal);
-
-    const newCloseSearch = closeSearch?.cloneNode(true);
-    closeSearch?.parentNode?.replaceChild(newCloseSearch!, closeSearch);
-    newCloseSearch?.addEventListener("click", closeModal);
+    // Event Listeners
+    searchButton?.addEventListener("click", openModal);
+    closeSearch?.addEventListener("click", closeModal);
 
     // Close on backdrop click
-    const newSearchModal = searchModal?.cloneNode(true);
-    searchModal?.parentNode?.replaceChild(newSearchModal!, searchModal);
-    newSearchModal?.addEventListener("click", (e: Event) => {
-      if (e.target === newSearchModal) closeModal();
+    searchModal?.addEventListener("click", (e: Event) => {
+      if (e.target === searchModal) closeModal();
     });
 
     // Close on Escape - document listener persists, so check if we added it?
@@ -230,22 +220,17 @@
     document.addEventListener("keydown", handleEscape);
 
     function handleEscape(e: KeyboardEvent) {
-      if (e.key === "Escape" && !newSearchModal?.classList.contains("hidden")) {
+      if (e.key === "Escape" && !searchModal?.classList.contains("hidden")) {
         closeModal();
       }
     }
 
-    const newSearchInput = searchInput?.cloneNode(true);
-    searchInput?.parentNode?.replaceChild(newSearchInput!, searchInput);
-    newSearchInput?.addEventListener("input", (e: Event) => {
+    searchInput?.addEventListener("input", (e: Event) => {
       performSearch((e.target as HTMLInputElement).value);
     });
   }
 
-  // Initial load
-  initSearchComponent();
-
-  // View Transitions load
+  // View Transitions load (fires on initial load too)
   document.addEventListener("astro:page-load", initSearchComponent);
 </script>
 

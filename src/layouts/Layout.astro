@@ -216,10 +216,7 @@ const socialImageURL = new URL(image, Astro.url);
 
           scrollObserver.observe(scrollSentinel);
 
-          const newScrollBtn = scrollBtn.cloneNode(true);
-          scrollBtn.parentNode.replaceChild(newScrollBtn, scrollBtn);
-
-          newScrollBtn.addEventListener("click", () => {
+          scrollBtn.addEventListener("click", () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
           });
         }
@@ -259,10 +256,9 @@ const socialImageURL = new URL(image, Astro.url);
       }
 
       // Initial load
-      initLayout();
       initServiceWorker();
 
-      // View Transitions load
+      // View Transitions load (fires on initial load too)
       document.addEventListener("astro:page-load", initLayout);
     </script>
   </body>

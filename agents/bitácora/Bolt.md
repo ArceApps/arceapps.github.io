@@ -102,3 +102,15 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Eliminación de riesgo de Cumulative Layout Shift (CLS) al proporcionar dimensiones explícitas al navegador.
 - **Consistencia:** Alineación con `ProjectCard.astro` y `AppCard.astro` que ya incluían estas optimizaciones.
+
+## 2026-01-11 - [Eliminación de Manipulación DOM Redundante]
+**Revisado:** `src/components/Header.astro`, `src/components/Search.astro`, `src/layouts/Layout.astro`.
+**Propuesta:** Se detectó un patrón anti-patrón de uso de `cloneNode` para reiniciar listeners de eventos, el cual era ineficiente y redundante dado que `ClientRouter` de Astro reemplaza el `body` en las transiciones de vista. Además, se encontró código ejecutándose dos veces en la carga inicial (una por llamada directa y otra por `astro:page-load`) y un error de TypeScript en `Search.astro` debido a la inferencia incorrecta de tipos en nodos clonados.
+**Cambios Realizados:**
+1.  Se eliminó la llamada manual inicial a `initHeader` y `initLayout`, unificando la ejecución bajo el evento `astro:page-load` (que también dispara en carga inicial).
+2.  Se eliminó el patrón `cloneNode` y `replaceChild` en `Header.astro`, `Layout.astro` y `Search.astro`, ya que los elementos son nuevos en cada navegación.
+3.  Se simplificó la lógica de listeners en `Search.astro`, lo que colateralmente solucionó el error de TypeScript `Property 'classList' does not exist on type 'Node'`.
+**Impacto:**
+- **Rendimiento:** Reducción de operaciones DOM costosas (`cloneNode`, `replaceChild`) en cada navegación.
+- **Eficiencia:** Eliminación de ejecución duplicada de scripts de inicialización en la carga de la página.
+- **Calidad de Código:** Código más limpio, idiomático de Astro View Transitions y libre de errores de tipo (`pnpm astro check` pasando).
