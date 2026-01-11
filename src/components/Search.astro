@@ -32,9 +32,13 @@
           autocomplete="off"
           maxlength="100"
         />
+        <div class="hidden md:flex items-center gap-1 pointer-events-none select-none">
+          <kbd class="hidden md:inline-block px-1.5 py-0.5 text-xs font-mono font-medium text-gray-500 bg-gray-100 border border-gray-300 rounded dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400">ESC</kbd>
+        </div>
         <button
           id="close-search"
-          class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none"
+          class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none ml-2"
+          aria-label="Cerrar búsqueda"
         >
           <span class="material-icons">close</span>
         </button>
@@ -164,7 +168,9 @@
         if (searchResults) searchResults.classList.add("hidden");
         if (searchStatus) {
           searchStatus.innerHTML =
-            '<div class="flex flex-col items-center justify-center py-4 gap-2 text-gray-400"><span class="material-icons text-4xl">sentiment_dissatisfied</span><span>No se encontraron resultados.</span></div>';
+            '<div class="flex flex-col items-center justify-center py-8 gap-3 text-gray-500 dark:text-gray-400"><span class="material-icons text-5xl opacity-50">search_off</span><p class="font-medium">No encontramos resultados para "' +
+            escapeHtml(query) +
+            '"</p><p class="text-sm">Intenta con otras palabras clave o revisa la ortografía.</p></div>';
           searchStatus.classList.remove("hidden");
         }
         return;
