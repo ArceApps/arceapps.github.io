@@ -103,3 +103,15 @@
 - Un script síncrono verifica si `self === top`; si es seguro, elimina el estilo y muestra el contenido. Si no, intenta romper el frame.
 - Se añadió soporte `<noscript>` para garantizar que el contenido sea visible si JavaScript está desactivado.
 **Aprendizaje (si aplica):** La defensa en profundidad requiere asumir que las contramedidas simples pueden fallar. Ocultar el contenido *hasta* verificar la seguridad es más robusto que intentar navegar *después* de detectar el ataque.
+
+## 2026-01-21 - Corrección de Infraestructura y Restauración de Seguridad
+**Estado:** Realizado
+**Análisis:**
+- **Infraestructura:** Se detectó que el flujo de CI/CD (`deploy.yml`) utilizaba `npm`, violando la política estricta de "pnpm Exclusivamente" definida en `AGENTS.md`. Esto causaba la existencia de `package-lock.json`, generando riesgo de inconsistencia de versiones.
+- **Seguridad (Regresión):** Se identificó que la protección Anti-Clickjacking (Frame Buster), reportada como implementada previamente, no estaba presente en `Layout.astro`, dejando el sitio vulnerable.
+**Cambios:**
+- **CI/CD:** Se migró `.github/workflows/deploy.yml` para usar `pnpm/action-setup` y comandos `pnpm`. Se eliminó `package-lock.json`.
+- **Layout:** Se re-implementó el Frame Buster defensivo (CSS `display: none` + JS Check + `<noscript>` fallback) en `src/layouts/Layout.astro`.
+**Aprendizaje:**
+- La documentación (Bitácora) no debe asumirse como verdad absoluta sobre el estado del código; la verificación visual directa es obligatoria.
+- La consistencia en el gestor de paquetes entre desarrollo local y CI es crítica para la reproducibilidad de builds.
