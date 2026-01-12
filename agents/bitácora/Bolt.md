@@ -114,3 +114,11 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 - **Rendimiento:** Reducción de operaciones DOM costosas (`cloneNode`, `replaceChild`) en cada navegación.
 - **Eficiencia:** Eliminación de ejecución duplicada de scripts de inicialización en la carga de la página.
 - **Calidad de Código:** Código más limpio, idiomático de Astro View Transitions y libre de errores de tipo (`pnpm astro check` pasando).
+
+## 2026-01-12 - [Registro Diferido del Service Worker]
+**Revisado:** `src/layouts/Layout.astro`
+**Propuesta:** La función `initServiceWorker()` se invocaba inmediatamente en el `<script>` del layout principal. Esto causaba que el navegador iniciara el proceso de registro (y potencial descarga/parseo del SW) durante la fase crítica de renderizado inicial, compitiendo por el hilo principal y recursos de red. Se propuso diferir este registro hasta que la página haya completado su carga (`load` event).
+**Cambios Realizados:**
+1.  Se envolvió la llamada a `navigator.serviceWorker.register` en un listener condicional: si `document.readyState` es `complete`, se ejecuta inmediatamente; de lo contrario, se espera al evento `window.addEventListener('load')`.
+**Impacto:**
+- **Rendimiento:** Reducción del Total Blocking Time (TBT) y liberación del hilo principal durante la carga crítica inicial. El Service Worker (que es una mejora progresiva) se inicializa solo cuando la página ya es interactiva para el usuario.
