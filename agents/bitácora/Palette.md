@@ -39,7 +39,7 @@
 - El botón de envío carecía de feedback táctil (estado `active`).
 
 **Propuesta:**
-- Implementar el patrón de "Label Highlighting" de Material Design, donde la etiqueta cambia de color al enfocar el input.
+- Implementar el patrón de "Label Highlighting" de Material Design, donde la etiqueta cambia a color primario al enfocar el input.
 - Añadir validación visual contextual: mostrar borde rojo solo si el campo es inválido, tiene contenido y ha perdido el foco (para no molestar mientras se escribe).
 - Añadir micro-interacción de escala al presionar el botón de envío.
 
@@ -67,3 +67,22 @@
   - Añadido elemento `<kbd>ESC</kbd>` visible en pantallas medianas y superiores.
   - Actualizado el HTML inyectado para resultados vacíos con mejor feedback y diseño.
   - Añadido `aria-label="Cerrar búsqueda"` al botón de cierre.
+
+## 2026-01-12 - Mejora UX Menú Móvil
+
+**Revisión:**
+- Se analizó `src/components/Header.astro`.
+- Se observó que el menú móvil no se cerraba al hacer clic fuera de él (en el contenido de la página) ni al presionar la tecla `ESC`, lo cual es un patrón de comportamiento estándar esperado por los usuarios.
+- Tampoco se cerraba explícitamente al navegar a enlaces internos (anchors) que no provocan una recarga completa inmediata.
+
+**Propuesta:**
+- Implementar lógica de "Click Outside" para cerrar el menú si el usuario toca el contenido principal.
+- Añadir soporte para la tecla `Escape` para accesibilidad.
+- Asegurar que cualquier clic en enlaces dentro del menú provoque su cierre inmediato.
+
+**Realizado:**
+- Modificado `src/components/Header.astro`:
+  - Refactorizada la lógica de apertura para adjuntar listeners globales (`click` en document, `keydown`) solo cuando el menú está abierto.
+  - Implementado `e.stopPropagation()` en el botón de toggle para evitar conflictos de eventos.
+  - Añadida lógica de limpieza automática de listeners al cerrar el menú o al navegar (`astro:before-swap`).
+- Verificado con script de Playwright: el menú se cierra correctamente al hacer clic en el cuerpo de la página y al usar ESC.

@@ -150,7 +150,6 @@ const isActive = (href: string) => {
       localStorage.setItem("theme", isDark ? "dark" : "light");
     };
 
-    // Remove previous listener if exists (to avoid duplicates on re-run, though replacing element is safer, here we just re-attach)
     themeToggle?.removeEventListener("click", handleThemeToggle);
     themeToggle?.addEventListener("click", handleThemeToggle);
 
@@ -159,17 +158,63 @@ const isActive = (href: string) => {
     const mobileMenu = document.getElementById("mobile-menu");
 
     if (menuToggle && mobileMenu) {
-      menuToggle.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-
-        const isExpanded = !mobileMenu.classList.contains("hidden");
-        menuToggle.setAttribute("aria-expanded", String(isExpanded));
-
+      const closeMenu = () => {
+        if (mobileMenu.classList.contains("hidden")) return;
+        mobileMenu.classList.add("hidden");
+        menuToggle.setAttribute("aria-expanded", "false");
         const icon = menuToggle.querySelector(".material-icons");
-        if (icon) {
-          icon.textContent = isExpanded ? "close" : "menu";
+        if (icon) icon.textContent = "menu";
+
+        // Cleanup global listeners
+        document.removeEventListener("click", closeOnClickOutside);
+        document.removeEventListener("keydown", closeOnEscape);
+      };
+
+      const openMenu = () => {
+        mobileMenu.classList.remove("hidden");
+        menuToggle.setAttribute("aria-expanded", "true");
+        const icon = menuToggle.querySelector(".material-icons");
+        if (icon) icon.textContent = "close";
+
+        // Add global listeners
+        document.addEventListener("click", closeOnClickOutside);
+        document.addEventListener("keydown", closeOnEscape);
+      };
+
+      const toggleMenu = (e) => {
+        e.stopPropagation(); // Prevent event from bubbling to document and triggering close immediately
+        const isHidden = mobileMenu.classList.contains("hidden");
+        if (isHidden) {
+          openMenu();
+        } else {
+          closeMenu();
         }
+      };
+
+      const closeOnClickOutside = (e) => {
+        const target = e.target;
+        if (!mobileMenu.contains(target) && !menuToggle.contains(target)) {
+          closeMenu();
+        }
+      };
+
+      const closeOnEscape = (e) => {
+        if (e.key === "Escape") {
+          closeMenu();
+        }
+      };
+
+      // Reset state (remove old listeners if any from previous init)
+      menuToggle.removeEventListener("click", toggleMenu);
+      menuToggle.addEventListener("click", toggleMenu);
+
+      // Close on Link Click (Internal navigation)
+      mobileMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", closeMenu);
       });
+
+      // Safety cleanup on navigation
+      document.addEventListener("astro:before-swap", closeMenu, { once: true });
     }
   }
 
