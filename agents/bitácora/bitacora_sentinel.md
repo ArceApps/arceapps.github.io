@@ -103,3 +103,14 @@
 - Un script síncrono verifica si `self === top`; si es seguro, elimina el estilo y muestra el contenido. Si no, intenta romper el frame.
 - Se añadió soporte `<noscript>` para garantizar que el contenido sea visible si JavaScript está desactivado.
 **Aprendizaje (si aplica):** La defensa en profundidad requiere asumir que las contramedidas simples pueden fallar. Ocultar el contenido *hasta* verificar la seguridad es más robusto que intentar navegar *después* de detectar el ataque.
+
+## 2026-01-22 - Implementación de Security.txt
+**Estado:** Realizado
+**Análisis:**
+- El sitio carecía de un archivo `security.txt` estandarizado (RFC 9116).
+- Sin este archivo, los investigadores de seguridad no tienen una forma clara y estándar de contactar al propietario del sitio para reportar vulnerabilidades de manera responsable.
+**Cambios:**
+- Se creó el directorio `public/.well-known/`.
+- Se añadió el archivo `security.txt` con los campos `Contact`, `Expires`, `Preferred-Languages` y `Policy`.
+- Se apuntó la política a `/privacy-policy` y el contacto al correo del formulario.
+**Aprendizaje (si aplica):** Adoptar estándares de seguridad como RFC 9116 facilita la divulgación responsable y demuestra un compromiso proactivo con la seguridad, incluso en sitios estáticos.
