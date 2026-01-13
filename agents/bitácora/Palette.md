@@ -67,3 +67,21 @@
   - Añadido elemento `<kbd>ESC</kbd>` visible en pantallas medianas y superiores.
   - Actualizado el HTML inyectado para resultados vacíos con mejor feedback y diseño.
   - Añadido `aria-label="Cerrar búsqueda"` al botón de cierre.
+
+## 2026-01-26 - Accesibilidad de Foco en Hero Buttons
+
+**Revisión:**
+- Se analizó `src/components/Hero.astro`.
+- Se detectó que los botones principales ("Mis Proyectos" y "Leer Bitácora") carecían de estilos explícitos de foco (`focus-visible`).
+- Esto dificultaba la navegación por teclado, ya que no había un indicador visual claro de qué botón estaba seleccionado.
+
+**Propuesta:**
+- Añadir estilos `focus-visible` a ambos botones.
+- Para el botón primario, replicar la animación de elevación (`translate-y`) que ocurre en hover.
+- Asegurar un anillo de foco consistente usando el color primario.
+
+**Realizado:**
+- Modificado `src/components/Hero.astro`:
+  - Botón "Mis Proyectos": añadido `focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:-translate-y-0.5`.
+  - Botón "Leer Bitácora": añadido `focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30`.
+- Verificado mediante script de Playwright: los botones muestran el anillo de foco y el primario se eleva al recibir foco por teclado.
