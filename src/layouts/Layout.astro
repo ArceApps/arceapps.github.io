@@ -257,7 +257,7 @@ const socialImageURL = new URL(image, Astro.url);
       }
 
       // Initial load
-      initServiceWorker();
+      window.addEventListener("load", initServiceWorker);
 
       // View Transitions load (fires on initial load too)
       document.addEventListener("astro:page-load", initLayout);
