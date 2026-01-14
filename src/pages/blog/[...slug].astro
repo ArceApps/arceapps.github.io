@@ -88,6 +88,8 @@ const relatedPosts = allPosts
             src={post.data.heroImage}
             alt={post.data.title}
             class="w-full h-full object-cover"
+            loading="eager"
+            fetchpriority="high"
           />
         </div>
       </div>
