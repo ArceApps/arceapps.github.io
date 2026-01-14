@@ -42,6 +42,27 @@ const socialImageURL = new URL(image, Astro.url);
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
 
+    <!-- Anti-Clickjacking (Frame Busting) -->
+    <style id="anti-clickjack">
+      body {
+        display: none !important;
+      }
+    </style>
+    <script is:inline data-astro-rerun>
+      if (self === top) {
+        var antiClickjack = document.getElementById("anti-clickjack");
+        if (antiClickjack) antiClickjack.parentNode.removeChild(antiClickjack);
+      } else {
+        try {
+          top.location = self.location;
+        } catch (e) {
+          // If automatic redirection fails (e.g. blocked by sandbox),
+          // we are still safe because the body is hidden.
+          // Optional: Display a message or button to open in new tab
+        }
+      }
+    </script>
+
     <!-- Security Headers -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
@@ -76,6 +97,14 @@ const socialImageURL = new URL(image, Astro.url);
     <link rel="preconnect" href="https://play-lh.googleusercontent.com" />
 
     <!-- Google Analytics -->
+    <noscript>
+      <style>
+        body {
+          display: block !important;
+        }
+      </style>
+    </noscript>
+
     <script
       type="text/partytown"
       src="https://www.googletagmanager.com/gtag/js?id=G-CZLNYSWY76"></script>
