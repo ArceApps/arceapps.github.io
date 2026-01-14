@@ -85,3 +85,22 @@
   - Botón "Mis Proyectos": añadido `focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:-translate-y-0.5`.
   - Botón "Leer Bitácora": añadido `focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30`.
 - Verificado mediante script de Playwright: los botones muestran el anillo de foco y el primario se eleva al recibir foco por teclado.
+
+## 2026-01-14 - Accesibilidad de Foco en CTAs del Home
+
+**Revisión:**
+- Se analizó `src/pages/index.astro`.
+- Se detectó que los botones de CTA (GitHub, Play Store) y enlaces secundarios ("Ver todas las aplicaciones", "Ver todos los artículos") carecían de estilos explícitos de foco (`focus-visible`).
+- Esto afectaba la accesibilidad por teclado, especialmente en secciones con fondo de gradiente.
+
+**Propuesta:**
+- Añadir anillos de foco (`focus-visible:ring`) y transformaciones para asegurar que el usuario sepa dónde está el foco.
+- Usar colores contrastantes (blanco sobre gradiente, primario/secundario sobre fondos claros).
+
+**Realizado:**
+- Modificado `src/pages/index.astro`:
+  - Botón "Building in Public": añadido `focus-visible:ring-primary`.
+  - Botón "Ver todas las aplicaciones": añadido `focus-visible:ring-primary/30`.
+  - Enlace "Ver todos los artículos": añadido `focus-visible:ring-secondary` y `rounded`.
+  - Botones CTA (GitHub/Play Store): añadido `focus-visible:ring-white/50` y `scale-105`.
+- Verificado mediante script de Playwright: se confirmó la visibilidad de los anillos de foco en todos los elementos.
