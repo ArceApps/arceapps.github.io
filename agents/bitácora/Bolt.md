@@ -122,3 +122,11 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 1.  Se envolvió la llamada a `initServiceWorker()` dentro de un listener `window.addEventListener('load', ...)` en `src/layouts/Layout.astro`.
 **Impacto:**
 - **Rendimiento:** Reducción de la contención del hilo principal durante la carga crítica. El Service Worker ahora se registra solo cuando la página ha terminado de cargar sus recursos críticos.
+
+## 2026-01-13 - [Optimización de LCP en Detalle de Blog]
+**Revisado:** `src/pages/blog/[...slug].astro`, `package.json`, `astro.config.mjs`.
+**Propuesta:** Durante el análisis de infraestructura y rendimiento frontend, se identificó que la imagen Hero de los artículos del blog (candidata a LCP) se cargaba con prioridad estándar y sin directiva de carga inmediata.
+**Cambios Realizados:**
+1.  Se añadieron los atributos `loading="eager"` y `fetchpriority="high"` a la etiqueta `<img>` principal en `src/pages/blog/[...slug].astro`.
+**Impacto:**
+- **Rendimiento:** Mejora del LCP (Largest Contentful Paint) en las páginas de artículos, indicando al navegador que priorice la descarga de la imagen principal antes que otros recursos subcríticos.
