@@ -130,3 +130,17 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 1.  Se añadieron los atributos `loading="eager"` y `fetchpriority="high"` a la etiqueta `<img>` principal en `src/pages/blog/[...slug].astro`.
 **Impacto:**
 - **Rendimiento:** Mejora del LCP (Largest Contentful Paint) en las páginas de artículos, indicando al navegador que priorice la descarga de la imagen principal antes que otros recursos subcríticos.
+
+## 2026-01-15 - [Migración a Variable Fonts y Optimización de Iconos]
+**Revisado:** `package.json`, `src/layouts/Layout.astro`, `src/styles/global.css`, `src/pages/about-me.astro`.
+**Propuesta:**
+1. Se identificó que se cargaban 4 archivos de fuentes estáticos (`Inter` pesos 300, 400, 500, 700), lo que generaba múltiples peticiones HTTP bloqueantes. El uso de fuentes variables (`@fontsource-variable/inter`) permite cargar un solo archivo optimizado.
+2. Se detectó que los iconos de "Tech Stack" en `about-me.astro` carecían de atributos `width`/`height` y carga diferida, causando potencial CLS y consumo innecesario de ancho de banda.
+**Cambios Realizados:**
+1. Se desinstaló `@fontsource/inter` y se instaló `@fontsource-variable/inter`.
+2. Se actualizó `src/layouts/Layout.astro` para importar la fuente variable.
+3. Se actualizó `src/styles/global.css` para usar `'Inter Variable'`.
+4. Se añadieron `width="20" height="20" loading="lazy" decoding="async"` a los iconos en `src/pages/about-me.astro`.
+**Impacto:**
+- **Rendimiento:** Reducción de 4 peticiones de fuentes a 1. Ahorro de ancho de banda y reducción de latencia en la carga de fuentes.
+- **CLS:** Eliminación de cambios de diseño en la sección "About Me" al reservar espacio explícito para los iconos.
