@@ -114,3 +114,14 @@
 - Se añadió el archivo `security.txt` con los campos `Contact`, `Expires`, `Preferred-Languages` y `Policy`.
 - Se apuntó la política a `/privacy-policy` y el contacto al correo del formulario.
 **Aprendizaje (si aplica):** Adoptar estándares de seguridad como RFC 9116 facilita la divulgación responsable y demuestra un compromiso proactivo con la seguridad, incluso en sitios estáticos.
+## 2026-01-23 - Restauración de Protección Anti-Clickjacking
+**Estado:** Realizado
+**Análisis:**
+- Durante una auditoría de rutina, se detectó que la protección Anti-Clickjacking (Frame Busting) documentada en el log (2026-01-21) no estaba presente en `src/layouts/Layout.astro`.
+- La ausencia de este mecanismo exponía al sitio a ataques de UI Redressing.
+- Se identificó un problema específico con la compilación de Astro: el bloque `<style>` con ID se estaba procesando y bundling, eliminando el ID del DOM final, lo que causaba que el script de desbloqueo fallara al intentar eliminar el estilo de ocultación (dejando el sitio invisible).
+**Cambios:**
+- Se re-implementó el bloque de estilos y script en `src/layouts/Layout.astro`.
+- Se añadió el atributo `is:inline` a la etiqueta `<style>` para evitar que Astro procese y agrupe este CSS crítico, garantizando que el ID `anti-clickjack` permanezca en el DOM para que el script lo encuentre.
+- Se verificó visualmente que el contenido es visible en un contexto seguro (`self === top`) y que el script elimina correctamente el estilo de bloqueo.
+**Aprendizaje (si aplica):** Cuando se manipula el DOM basándose en IDs de estilos críticos en Astro, es imperativo usar `is:inline` en la etiqueta `<style>` para evitar que el pipeline de optimización CSS rompa la lógica de JavaScript que depende de la presencia de ese elemento específico.
