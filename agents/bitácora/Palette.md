@@ -104,3 +104,22 @@
   - Enlace "Ver todos los artículos": añadido `focus-visible:ring-secondary` y `rounded`.
   - Botones CTA (GitHub/Play Store): añadido `focus-visible:ring-white/50` y `scale-105`.
 - Verificado mediante script de Playwright: se confirmó la visibilidad de los anillos de foco en todos los elementos.
+
+## 2026-01-15 - Accesibilidad de Foco en Navegación del Header
+
+**Revisión:**
+- Se analizó `src/components/Header.astro`.
+- Se detectó que los enlaces de navegación, el logo y los botones de control (tema, menú móvil) carecían de estilos explícitos de foco (`focus-visible`), dependiendo de los estilos por defecto del navegador.
+- Esto generaba una experiencia inconsistente y poco clara para usuarios de teclado.
+
+**Propuesta:**
+- Implementar `focus-visible` con un anillo de color primario y bordes redondeados para todos los elementos interactivos del header.
+- Ajustar el padding de los enlaces de navegación para que el anillo de foco tenga espacio y se vea estético.
+
+**Realizado:**
+- Modificado `src/components/Header.astro`:
+  - Logo: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg`.
+  - Enlaces de navegación: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded px-2 py-1`.
+  - Botones de Tema y Menú Móvil: actualizado a `focus-visible:ring-2 focus-visible:ring-primary`.
+  - Enlaces del menú móvil: añadido `focus-visible:ring-2 focus-visible:ring-primary`.
+- Verificado visualmente con Playwright: los elementos muestran un anillo de foco claro y consistente al navegar con el teclado.
