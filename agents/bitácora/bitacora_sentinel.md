@@ -39,7 +39,7 @@
 - Se añadió `<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />` para forzar la actualización de recursos HTTP a HTTPS, mitigando riesgos de contenido mixto.
 **Aprendizaje (si aplica):** En sitios estáticos donde no se tiene control total sobre las cabeceras del servidor (como GitHub Pages sin configuración avanzada), el uso de meta tags para políticas de seguridad es una capa esencial de defensa.
 
-## 2025-05-28 - Mejora CSP: Protección Clickjacking y Contenido Mixto
+## 2025-05-28 - Mejoras CSP: Protección Clickjacking y Contenido Mixto
 **Estado:** Realizado
 **Análisis:**
 - El sitio carecía de protección contra Clickjacking (ser embebido en un iframe malicioso). Al ser un sitio estático, no se pueden configurar cabeceras HTTP como `X-Frame-Options` directamente.
@@ -114,3 +114,13 @@
 - Se añadió el archivo `security.txt` con los campos `Contact`, `Expires`, `Preferred-Languages` y `Policy`.
 - Se apuntó la política a `/privacy-policy` y el contacto al correo del formulario.
 **Aprendizaje (si aplica):** Adoptar estándares de seguridad como RFC 9116 facilita la divulgación responsable y demuestra un compromiso proactivo con la seguridad, incluso en sitios estáticos.
+
+## 2026-02-04 - Restauración Anti-Clickjacking y Actualización de Dependencias
+**Estado:** Realizado
+**Análisis:**
+- Se identificó que la protección Anti-Clickjacking, documentada previamente en la bitácora, estaba ausente en el código fuente de `src/layouts/Layout.astro`. Esto dejaba al sitio vulnerable a UI Redressing.
+- Se detectaron 4 vulnerabilidades en dependencias transitivas (3 de severidad Alta: `devalue`, `h3`) mediante `pnpm audit`.
+**Cambios:**
+- Se re-implementó el mecanismo de Frame Busting en `src/layouts/Layout.astro` utilizando CSS (`display: none`) y un script de verificación de `self === top` en el `<head>`, asegurando que el contenido solo sea visible si no está embebido en un iframe. Se incluyó soporte `<noscript>`.
+- Se ejecutó `pnpm update`, actualizando dependencias clave como `astro` (v5.16.11), `tailwindcss` (v4.1.18) y otras, resolviendo todas las vulnerabilidades reportadas.
+**Aprendizaje (si aplica):** La documentación de seguridad (bitácora) debe ser verificada contra la realidad del código periódicamente. Una defensa documentada pero no implementada es un riesgo silencioso. Además, mantener las dependencias actualizadas es la forma más efectiva de mitigar vulnerabilidades conocidas en el ecosistema.
