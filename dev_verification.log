@@ -1,0 +1,20 @@
+
+> arceapps-astro-site@0.0.1 dev /app
+> astro dev
+
+21:20:41 [types] Generated 1ms
+21:20:42 [content] Syncing content
+21:20:42 [content] Synced content
+
+ astro  v5.16.6 ready in 1482 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+21:20:42 watching for file changes...
+21:21:35 [200] / 533ms
+21:21:36 [200] /_image 387ms
+21:21:36 [200] /_image 423ms
+21:21:37 [200] / 25ms
+21:21:37 [404] /favicon.svg 12ms
+21:21:39 [200] /about-me 18ms
