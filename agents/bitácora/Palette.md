@@ -7,7 +7,7 @@
 
 **Propuesta:**
 - Añadir estilos `focus-visible` al enlace principal para que toda la tarjeta se resalte al recibir foco.
-- Añadir estilos `focus-visible` a los enlaces de las etiquetas para mantener la consistencia y usabilidad.
+- Añadir estilos `focus-visible` a los enlaces de etiquetas para mantener la consistencia y usabilidad.
 
 **Realizado:**
 - Modificado `src/components/BlogCard.astro`:
@@ -123,3 +123,21 @@
   - Botones de Tema y Menú Móvil: actualizado a `focus-visible:ring-2 focus-visible:ring-primary`.
   - Enlaces del menú móvil: añadido `focus-visible:ring-2 focus-visible:ring-primary`.
 - Verificado visualmente con Playwright: los elementos muestran un anillo de foco claro y consistente al navegar con el teclado.
+
+## 2026-01-16 - Accesibilidad de Foco en Footer
+
+**Revisión:**
+- Se analizó `src/components/Footer.astro`.
+- Se detectó que los enlaces de navegación, legales y de redes sociales, así como el logo de la marca, carecían de estilos explícitos de foco (`focus-visible`).
+- Esto generaba una experiencia inconsistente para usuarios de teclado en una zona crítica de navegación.
+
+**Propuesta:**
+- Implementar `focus-visible` con un anillo de color primario y bordes redondeados para todos los elementos interactivos del footer.
+- Ajustar clases para asegurar que el anillo sea visible y estético.
+
+**Realizado:**
+- Modificado `src/components/Footer.astro`:
+  - Enlace de Marca: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg`.
+  - Enlaces de Navegación y Legales: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded`.
+  - Iconos Sociales: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded`.
+- Verificado mediante script de Playwright: los elementos muestran un anillo de foco claro y consistente.
