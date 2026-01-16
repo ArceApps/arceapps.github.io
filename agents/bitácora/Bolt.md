@@ -144,3 +144,14 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Reducción de 4 peticiones de fuentes a 1. Ahorro de ancho de banda y reducción de latencia en la carga de fuentes.
 - **CLS:** Eliminación de cambios de diseño en la sección "About Me" al reservar espacio explícito para los iconos.
+
+## 2026-01-16 - [Eliminación de Fugas de Memoria y Listeners Duplicados]
+**Revisado:** `src/layouts/Layout.astro`.
+**Propuesta:** Se detectó que el script de inicialización del layout (Scroll to Top, Fade-in) se ejecutaba en cada navegación debido a su ubicación en el `body` y al comportamiento de View Transitions, causando la acumulación de listeners duplicados en `document` y fugas de memoria por instancias de `IntersectionObserver` no desconectadas. Además, la falta de tipos estrictos impedía una verificación robusta.
+**Cambios Realizados:**
+1.  Se extrajo la lógica del script inline a un módulo TypeScript externo `src/scripts/layout.ts`.
+2.  Se implementó lógica de limpieza (`disconnect()`) para los observadores de intersección antes de crear nuevas instancias.
+3.  Se reemplazó el bloque `<script>` inline en `Layout.astro` por una importación `<script src="../scripts/layout.ts"></script>`.
+**Impacto:**
+- **Estabilidad:** Prevención de fugas de memoria y ejecución duplicada de lógica de UI.
+- **Calidad de Código:** Separación de preocupaciones (script vs markup) y uso de TypeScript estricto para mayor robustez.
