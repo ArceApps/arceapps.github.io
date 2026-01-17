@@ -155,3 +155,14 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Estabilidad:** Prevención de fugas de memoria y ejecución duplicada de lógica de UI.
 - **Calidad de Código:** Separación de preocupaciones (script vs markup) y uso de TypeScript estricto para mayor robustez.
+
+## 2026-01-17 - [Corrección de Fuga de Eventos en Búsqueda]
+**Revisado:** `src/components/Search.astro`, `src/scripts/search.ts`.
+**Propuesta:** Se identificó una fuga de memoria grave en el componente de búsqueda: cada navegación añadía un nuevo listener `keydown` (para cerrar con ESC) al objeto global `document`, y estos nunca se eliminaban porque la función handler se redefinía en cada ejecución.
+**Cambios Realizados:**
+1.  Se extrajo la lógica del script inline de `Search.astro` a un nuevo módulo `src/scripts/search.ts`.
+2.  Se optimizó la gestión del evento `keydown`: ahora solo se añade el listener global cuando el modal se abre, y se elimina explícitamente cuando se cierra.
+3.  Se aseguró que las referencias a elementos DOM se actualicen correctamente en cada evento `astro:page-load`.
+**Impacto:**
+- **Rendimiento:** Eliminación de listeners acumulativos en `document`. Reducción de overhead al no escuchar eventos de teclado innecesariamente cuando el buscador está cerrado.
+- **Mantenibilidad:** Código más limpio, tipado y separado de la presentación.

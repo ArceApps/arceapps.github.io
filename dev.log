@@ -7,8 +7,8 @@
   Run "astro telemetry disable" to opt-out.
   https://astro.build/telemetry
 
-21:19:23 [types] Generated 1ms
-21:19:24 [content] Syncing content
+21:26:30 [types] Generated 1ms
+21:26:31 [content] Syncing content
 [Shiki] The language "gradle" doesn't exist, falling back to "plaintext".
 [Shiki] The language "gradle" doesn't exist, falling back to "plaintext".
 [Shiki] The language "dataview" doesn't exist, falling back to "plaintext".
@@ -16,18 +16,18 @@
  update  ▶ New version of Astro available: 5.16.11
   Run pnpm dlx @astrojs/upgrade to update
 
-21:19:27 [content] Synced content
+21:26:34 [content] Synced content
 
- astro  v5.16.6 ready in 3881 ms
+ astro  v5.16.6 ready in 3542 ms
 
 ┃ Local    http://localhost:4321/
 ┃ Network  use --host to expose
 
-21:19:27 watching for file changes...
-21:19:29 [200] / 496ms
-21:19:35 [200] / 15ms
-21:19:35 [200] /_image 393ms
-21:19:36 [200] / 20ms
-21:19:36 [404] /favicon.svg 23ms
-21:19:38 [200] /_image 279ms
+21:26:34 watching for file changes...
+21:26:55 [200] / 540ms
+21:26:56 [200] /_image 316ms
+21:26:56 [200] /_image 333ms
+21:26:56 [200] / 19ms
+21:26:56 [404] /favicon.svg 10ms
+21:26:58 [200] /search-index.json 2ms
  ELIFECYCLE  Command failed with exit code 143.
