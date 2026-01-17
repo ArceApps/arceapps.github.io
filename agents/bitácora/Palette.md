@@ -141,3 +141,21 @@
   - Enlaces de Navegación y Legales: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded`.
   - Iconos Sociales: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded`.
 - Verificado mediante script de Playwright: los elementos muestran un anillo de foco claro y consistente.
+
+## 2026-01-17 - Accesibilidad de Foco en Página 404
+
+**Revisión:**
+- Se analizó `src/pages/404.astro`.
+- Botones de acción y enlaces de ayuda sin estilos de foco (`focus-visible`).
+- Iconos decorativos sin atributos `aria-hidden`, potencialmente generando ruido en lectores de pantalla.
+
+**Propuesta:**
+- Añadir anillos de foco consistentes con el resto del sitio para mejorar accesibilidad por teclado.
+- Añadir `aria-hidden="true"` a los iconos decorativos.
+
+**Realizado:**
+- Modificado `src/pages/404.astro`:
+  - Añadido `focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none` a los botones primario y secundario.
+  - Añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded` a los enlaces de ayuda.
+  - Añadido `aria-hidden="true"` a los iconos de Android y advertencia.
+- Verificado mediante script de Playwright: los elementos muestran el anillo de foco y los iconos están ocultos a tecnologías de asistencia.
