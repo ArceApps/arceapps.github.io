@@ -114,3 +114,14 @@
 - Se añadió el archivo `security.txt` con los campos `Contact`, `Expires`, `Preferred-Languages` y `Policy`.
 - Se apuntó la política a `/privacy-policy` y el contacto al correo del formulario.
 **Aprendizaje (si aplica):** Adoptar estándares de seguridad como RFC 9116 facilita la divulgación responsable y demuestra un compromiso proactivo con la seguridad, incluso en sitios estáticos.
+
+## 2026-01-23 - Restauración y Corrección Anti-Clickjacking
+**Estado:** Realizado
+**Análisis:**
+- Se detectó que la protección Anti-Clickjacking reportada en el log del día 21 estaba **ausente** en el código de producción (`src/layouts/Layout.astro`), dejando el sitio vulnerable a pesar de los registros.
+- Al restaurar la implementación clásica (CSS hide + JS reveal), se introdujo una regresión crítica con Astro View Transitions (`<ClientRouter />`): al navegar, el estilo ocultaba el body pero el script inline no se re-ejecutaba, dejando la página invisible.
+**Cambios:**
+- Se restauró la protección de "Frame Busting" basada en CSS (`display: none`) y JS síncrono.
+- Se añadió el atributo `data-astro-rerun` a la etiqueta `<script is:inline>` encargada de la seguridad. Esto fuerza a Astro a re-ejecutar el script de verificación en cada navegación, asegurando que el estilo de ocultación se elimine correctamente en todas las páginas.
+- Se mantuvo el bloque `<noscript>` para accesibilidad sin JS.
+**Aprendizaje (si aplica):** Las técnicas de seguridad "legacy" (como scripts inline de frame-busting) pueden entrar en conflicto con frameworks modernos de SPA/View Transitions. Es vital verificar el ciclo de vida de los scripts de seguridad en cada navegación del cliente, no solo en la carga inicial.
