@@ -114,3 +114,13 @@
 - Se añadió el archivo `security.txt` con los campos `Contact`, `Expires`, `Preferred-Languages` y `Policy`.
 - Se apuntó la política a `/privacy-policy` y el contacto al correo del formulario.
 **Aprendizaje (si aplica):** Adoptar estándares de seguridad como RFC 9116 facilita la divulgación responsable y demuestra un compromiso proactivo con la seguridad, incluso en sitios estáticos.
+
+## 2026-01-23 - Restauración de Protección Anti-Clickjacking
+**Estado:** Realizado
+**Análisis:**
+- Durante la auditoría rutinaria, se descubrió que el código de protección Anti-Clickjacking documentado en el log del día 21 no estaba presente en `src/layouts/Layout.astro`.
+- Esto dejaba al sitio vulnerable a ataques de UI Redressing, a pesar de la documentación indicando lo contrario.
+**Cambios:**
+- Se re-implementó la protección Anti-Clickjacking en `src/layouts/Layout.astro` utilizando la técnica de "CSS kill-switch" (ocultar body) + script de verificación de frame.
+- Se aseguró la inclusión de un bloque `<noscript>` para accesibilidad.
+**Aprendizaje (si aplica):** La documentación (logs) y la realidad (código) pueden divergir. La verificación continua es esencial para asegurar que los controles de seguridad documentados están realmente activos en producción.

@@ -39,6 +39,28 @@ const socialImageURL = new URL(image, Astro.url);
     <meta name="generator" content={Astro.generator} />
     <ClientRouter />
 
+    <!-- Anti-Clickjacking Protection -->
+    <style id="anti-clickjack">
+      body {
+        display: none !important;
+      }
+    </style>
+    <script is:inline>
+      if (self === top) {
+        var antiClickjack = document.getElementById("anti-clickjack");
+        if (antiClickjack) antiClickjack.parentNode.removeChild(antiClickjack);
+      } else {
+        top.location = self.location;
+      }
+    </script>
+    <noscript>
+      <style>
+        body {
+          display: block !important;
+        }
+      </style>
+    </noscript>
+
     <!-- Security Headers -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
