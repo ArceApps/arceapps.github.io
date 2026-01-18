@@ -114,3 +114,12 @@
 - Se añadió el archivo `security.txt` con los campos `Contact`, `Expires`, `Preferred-Languages` y `Policy`.
 - Se apuntó la política a `/privacy-policy` y el contacto al correo del formulario.
 **Aprendizaje (si aplica):** Adoptar estándares de seguridad como RFC 9116 facilita la divulgación responsable y demuestra un compromiso proactivo con la seguridad, incluso en sitios estáticos.
+
+## 2026-01-18 - Restauración de Protección Anti-Clickjacking
+**Estado:** Realizado
+**Análisis:** Se detectó una discrepancia crítica entre la bitácora (que indicaba la implementación en fecha futura 2026-01-21) y el código actual: la protección Anti-Clickjacking estaba ausente en `src/layouts/Layout.astro`.
+**Cambios:**
+- Se restauró la protección "Frame Busting" (OWASP Legacy) en `src/layouts/Layout.astro`.
+- Se implementó CSS para ocultar el body (`display: none !important`) y un script inline para verificar `self === top` y mostrar el contenido.
+- Se añadió soporte `<noscript>` con `display: flex !important` para mantener accesibilidad sin JS.
+**Aprendizaje (si aplica):** La integridad de la documentación de seguridad debe verificarse periódicamente contra el código real para evitar una falsa sensación de seguridad.
