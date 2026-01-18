@@ -166,3 +166,15 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Eliminación de listeners acumulativos en `document`. Reducción de overhead al no escuchar eventos de teclado innecesariamente cuando el buscador está cerrado.
 - **Mantenibilidad:** Código más limpio, tipado y separado de la presentación.
+
+## 2026-01-18 - [Optimización de Memoria en Animaciones y Layout]
+**Revisado:** `src/scripts/layout.ts`, `src/styles/global.css`.
+**Propuesta:**
+1. Se detectó que `initLayout` creaba incondicionalmente un `IntersectionObserver` para animaciones "fade-in" incluso en páginas sin elementos `.fade-in-section`, consumiendo recursos innecesarios.
+2. La clase CSS `.fade-in-section` utilizaba `will-change: opacity, transform`, lo que fuerza al navegador a crear nuevas capas de composición (compositor layers) para todos los elementos afectados, aumentando el consumo de memoria GPU/RAM permanentemente, incluso cuando no se están animando.
+**Cambios Realizados:**
+1.  En `src/scripts/layout.ts`, se añadió una comprobación `if (fadeElements.length > 0)` antes de instanciar el `IntersectionObserver`.
+2.  En `src/styles/global.css`, se eliminó la propiedad `will-change: opacity, transform` de `.fade-in-section`.
+**Impacto:**
+- **Memoria:** Reducción del consumo de memoria al evitar la creación de capas de composición costosas para elementos estáticos o fuera de pantalla.
+- **Eficiencia:** Evita la instanciación de observadores inútiles en páginas que no usan las animaciones de entrada.
