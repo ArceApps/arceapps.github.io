@@ -56,23 +56,24 @@ function initLayout() {
   }
 
   // Intersection Observer for Fade-in Animations
-  const observerOptions = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.1,
-  };
-
-  fadeObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
   const fadeElements = document.querySelectorAll(".fade-in-section");
-  if (fadeObserver) {
+
+  if (fadeElements.length > 0) {
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
+    };
+
+    fadeObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
     fadeElements.forEach((el) => fadeObserver!.observe(el));
   }
 }
