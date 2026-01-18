@@ -159,3 +159,23 @@
   - Añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded` a los enlaces de ayuda.
   - Añadido `aria-hidden="true"` a los iconos de Android y advertencia.
 - Verificado mediante script de Playwright: los elementos muestran el anillo de foco y los iconos están ocultos a tecnologías de asistencia.
+
+## 2026-01-18 - Accesibilidad de Foco en Navegación de Artículo (Blog Post)
+
+**Revisión:**
+- Se analizó `src/pages/blog/[...slug].astro`.
+- Se detectó que los enlaces "Volver al Blog" (sidebar y móvil), enlaces del índice de contenidos (TOC), tags y el botón de copiar código carecían de estilos explícitos de foco (`focus-visible`).
+- Esto dificultaba la navegación por teclado en la lectura de artículos.
+
+**Propuesta:**
+- Añadir estilos `focus-visible` (anillo primario, outline none) a todos los elementos interactivos mencionados.
+- Asegurar consistencia visual con el resto del sitio.
+
+**Realizado:**
+- Modificado `src/pages/blog/[...slug].astro`:
+  - Enlaces "Volver al Blog": añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded`.
+  - Enlaces TOC (Sidebar/Móvil): añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded`.
+  - Summary TOC (Móvil): añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-xl`.
+  - Tags: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
+  - Botón Copiar Código (Script): añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
+- Verificado mediante script de Playwright y capturas de pantalla.
