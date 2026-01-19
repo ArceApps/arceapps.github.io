@@ -178,3 +178,16 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Memoria:** Reducción del consumo de memoria al evitar la creación de capas de composición costosas para elementos estáticos o fuera de pantalla.
 - **Eficiencia:** Evita la instanciación de observadores inútiles en páginas que no usan las animaciones de entrada.
+
+## 2026-01-19 - [Optimización de Scroll y Memoria en Blog]
+**Revisado:** `src/pages/blog/[...slug].astro`.
+**Propuesta:** Se identificó que la barra de progreso de lectura utilizaba un listener `scroll` en `window` ejecutándose en el hilo principal sin control de frecuencia, y este listener nunca se eliminaba al navegar entre artículos (SPA/View Transitions), provocando fugas de memoria y acumulación de handlers.
+**Cambios Realizados:**
+1.  Se extrajo la lógica de cliente a un nuevo módulo `src/scripts/blog.ts`.
+2.  Se implementó `requestAnimationFrame` para desacoplar el cálculo visual del evento de scroll, evitando "layout thrashing".
+3.  Se añadió limpieza explícita del listener en el evento `astro:before-swap` para prevenir fugas de memoria.
+4.  Se aseguró que los botones de "Copiar código" se inicialicen correctamente en cada navegación.
+**Impacto:**
+- **Rendimiento:** Reducción del trabajo en el hilo principal durante el scroll.
+- **Estabilidad:** Eliminación de fuga de memoria por listeners acumulados en `window`.
+- **Calidad de Código:** Separación de lógica y presentación, siguiendo el patrón de arquitectura de los otros scripts (`layout.ts`, `search.ts`).
