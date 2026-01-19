@@ -114,3 +114,15 @@
 - Se añadió el archivo `security.txt` con los campos `Contact`, `Expires`, `Preferred-Languages` y `Policy`.
 - Se apuntó la política a `/privacy-policy` y el contacto al correo del formulario.
 **Aprendizaje (si aplica):** Adoptar estándares de seguridad como RFC 9116 facilita la divulgación responsable y demuestra un compromiso proactivo con la seguridad, incluso en sitios estáticos.
+
+## 2026-01-19 - Implementación Defensa Anti-Clickjacking
+**Estado:** Realizado
+**Análisis:**
+- Se detectó la ausencia de protección contra Clickjacking (UI Redressing) en `src/layouts/Layout.astro`.
+- Aunque existían planes futuros para esto, la vulnerabilidad estaba presente y activa.
+**Cambios:**
+- Se implementó la defensa "Frame Busting" basada en CSS (Legacy OWASP) en `src/layouts/Layout.astro`.
+- Se utilizó `<style is:inline>` para ocultar el `body` inicialmente.
+- Se añadió un script `is:inline` con `data-astro-rerun` para verificar `self === top` y restaurar la visibilidad.
+- `data-astro-rerun` es crucial para soportar la navegación por cliente de Astro (View Transitions).
+**Aprendizaje (si aplica):** Al usar Astro View Transitions, los scripts de seguridad en `<head>` que manipulan el DOM o estilos críticos deben incluir `data-astro-rerun` para asegurar que se ejecuten en cada navegación, evitando que el sitio quede en un estado inconsistente (ej. pantalla en blanco).
