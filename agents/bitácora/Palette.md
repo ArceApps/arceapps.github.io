@@ -179,3 +179,25 @@
   - Tags: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
   - Botón Copiar Código (Script): añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
 - Verificado mediante script de Playwright y capturas de pantalla.
+
+## 2026-01-19 - Mejora de Accesibilidad en Componente de Búsqueda
+
+**Revisión:**
+- Se analizó `src/components/Search.astro` y `src/scripts/search.ts`.
+- Se detectó que el botón "Cerrar" (`#close-search`) y los resultados generados dinámicamente carecían de estilos `focus-visible`, haciendo difícil la navegación por teclado.
+- El input de búsqueda tenía `focus:outline-none` y `focus:ring-0` sin un indicador de foco alternativo claro en su contenedor.
+- El icono decorativo de búsqueda carecía de `aria-hidden="true"`.
+
+**Propuesta:**
+- Añadir estilos `focus-visible` al botón de cierre y a los enlaces de resultados generados por JS.
+- Implementar estilos `focus-within` en el contenedor del input para simular un anillo de foco cuando el input está activo.
+- Añadir atributo `aria-hidden` al icono decorativo.
+
+**Realizado:**
+- Modificado `src/components/Search.astro`:
+  - Contenedor del input: añadido `transition-colors focus-within:border-primary focus-within:ring-1 focus-within:ring-primary/20`.
+  - Icono de búsqueda: añadido `aria-hidden="true"`.
+  - Botón de cierre: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded transition-colors`.
+- Modificado `src/scripts/search.ts`:
+  - Template de resultados: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none` a los enlaces `<a>`.
+- Verificado mediante script de Playwright: confirmada la visualización de los anillos de foco en input, botón de cierre y resultados.
