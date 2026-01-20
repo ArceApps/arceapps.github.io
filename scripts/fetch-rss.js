@@ -9,7 +9,7 @@ const FEEDS = [
   { name: 'ProAndroidDev', url: 'https://proandroiddev.com/feed' },
   { name: 'Kotlin Blog', url: 'https://blog.jetbrains.com/kotlin/feed/' },
   { name: 'Hugging Face Blog', url: 'https://huggingface.co/blog/feed.xml' },
-  { name: 'Google AI Blog', url: 'http://feeds.feedburner.com/blogspot/gJZg' }
+  { name: 'Google AI Blog', url: 'https://feeds.feedburner.com/blogspot/gJZg' }
 ];
 
 const OUTPUT_DIR = path.join(process.cwd(), 'agents', 'workspace');

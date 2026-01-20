@@ -114,3 +114,13 @@
 - Se añadió el archivo `security.txt` con los campos `Contact`, `Expires`, `Preferred-Languages` y `Policy`.
 - Se apuntó la política a `/privacy-policy` y el contacto al correo del formulario.
 **Aprendizaje (si aplica):** Adoptar estándares de seguridad como RFC 9116 facilita la divulgación responsable y demuestra un compromiso proactivo con la seguridad, incluso en sitios estáticos.
+
+## 2026-01-20 - Re-implementación Anti-Clickjacking y Mejora HTTPS
+**Estado:** Realizado
+**Análisis:**
+- Se detectó que la protección Anti-Clickjacking descrita en registros futuros (2026-01-21) no estaba presente en el código base (`src/layouts/Layout.astro`), dejando el sitio vulnerable.
+- El script de RSS (`scripts/fetch-rss.js`) utilizaba un enlace HTTP inseguro para el blog de Google AI.
+**Cambios:**
+- Se implementó la defensa Anti-Clickjacking (Frame Busting) en `src/layouts/Layout.astro` usando CSS (`display: none`) y un script de verificación de `self === top`. Se aseguró compatibilidad con `<noscript>`.
+- Se actualizó el enlace del feed RSS de Google AI a HTTPS.
+**Aprendizaje (si aplica):** La presencia de un registro en la bitácora no garantiza que el código esté en la rama actual; la verificación manual del código ("Verificar todo") es indispensable.
