@@ -21,6 +21,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-ES", {
 >
   <a
     href={`/blog/${post.slug}/`}
+    data-astro-prefetch
     class="absolute inset-0 z-10 rounded-xl focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none transition-shadow"
     aria-label={`Leer ${post.data.title}`}></a>
 
@@ -47,6 +48,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-ES", {
           post.data.tags.slice(0, 1).map((tag: string) => (
             <a
               href={`/blog/tag/${slugify(tag)}/`}
+              data-astro-prefetch
               class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
             >
               {tag}
