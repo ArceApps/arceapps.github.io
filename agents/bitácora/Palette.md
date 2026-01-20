@@ -201,3 +201,23 @@
 - Modificado `src/scripts/search.ts`:
   - Template de resultados: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none` a los enlaces `<a>`.
 - Verificado mediante script de Playwright: confirmada la visualización de los anillos de foco en input, botón de cierre y resultados.
+
+## 2026-01-20 - Mejora UX y Fix Memory Leaks en Menú Móvil
+
+**Revisión:**
+- Se analizó `src/components/Header.astro`.
+- Se detectó un bug crítico donde los event listeners se duplicaban en cada navegación debido a una lógica de limpieza incorrecta en `initHeader`.
+- El menú móvil carecía de comportamientos estándar de accesibilidad: no se cerraba al presionar Escape ni al hacer clic fuera de él.
+
+**Propuesta:**
+- Implementar una gestión robusta del ciclo de vida de los listeners usando `astro:page-load` y `astro:before-swap` con closures para limpieza correcta.
+- Añadir funcionalidad "Close on Escape" y "Close on Click Outside" para el menú móvil.
+- Asegurar que el menú se cierre al navegar (clic en enlaces).
+
+**Realizado:**
+- Modificado `src/components/Header.astro`:
+  - Reescrita la lógica del script para usar una variable `cleanup` global al módulo.
+  - Implementado `closeMenu` que limpia listeners específicos del menú.
+  - Añadido soporte para tecla Escape y clic fuera del menú.
+  - Añadido cierre automático al hacer clic en enlaces de navegación.
+- Verificado mediante script de Playwright: el menú se comporta correctamente y no deja listeners huérfanos.
