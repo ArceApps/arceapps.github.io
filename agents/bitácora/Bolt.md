@@ -191,3 +191,25 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 - **Rendimiento:** Reducción del trabajo en el hilo principal durante el scroll.
 - **Estabilidad:** Eliminación de fuga de memoria por listeners acumulados en `window`.
 - **Calidad de Código:** Separación de lógica y presentación, siguiendo el patrón de arquitectura de los otros scripts (`layout.ts`, `search.ts`).
+
+## 2026-01-20 - [Dimensiones Explícitas y Optimización LCP]
+**Revisado:** `src/components/Header.astro`, `src/components/Footer.astro`, `src/components/ProjectCard.astro`, `src/pages/apps/[...slug].astro`.
+**Propuesta:** Se identificó que las imágenes críticas (Logotipo en cabecera/pie y Hero Images en tarjetas y detalle de apps) carecían de atributos `width` y `height` explícitos. Aunque CSS controla su tamaño visual, la ausencia de atributos HTML obliga al navegador a recalcular el layout (Reflow) una vez que la imagen se descarga, causando CLS (Cumulative Layout Shift). Además, la imagen principal de la página de detalle de App (LCP) no tenía prioridad de carga.
+**Cambios Realizados:**
+1.  **Header y Footer:** Se añadieron `width="40" height="40"` (Header) y `width="32" height="32"` (Footer) a los logos.
+2.  **ProjectCard:** Se añadieron `width="400" height="224"` a la imagen de portada.
+3.  **App Detail:** Se añadieron `width="400" height="500"` y `fetchpriority="high"` a la imagen Hero.
+**Impacto:**
+- **CLS:** Eliminación de movimientos de layout en la carga inicial de cabecera y tarjetas.
+- **LCP:** Mejora en el tiempo de renderizado de la imagen principal de las apps gracias a `fetchpriority="high"`.
+**Aprendizaje:** Incluso con clases de Tailwind como `w-10 h-10`, el navegador necesita los atributos HTML para reservar el espacio antes de que se cargue el CSS o la imagen.
+
+## 2026-01-20 - [Habilitación de Prefetching de Enlaces]
+**Revisado:** `astro.config.mjs`, `src/components/Header.astro`, `src/components/Footer.astro`, `src/components/ProjectCard.astro`, `src/components/BlogCard.astro`.
+**Propuesta:** La navegación entre páginas, aunque rápida gracias a Astro, no estaba aprovechando la capacidad nativa de "Prefetching" para cargar recursos antes de que el usuario haga clic. Esto crea una percepción de latencia en redes móviles o conexiones lentas.
+**Cambios Realizados:**
+1.  Se habilitó `prefetch: true` en `astro.config.mjs` para activar el script de prefetching de Astro.
+2.  Se añadieron los atributos `data-astro-prefetch` a los enlaces principales de navegación en cabecera, pie de página, tarjetas de proyectos y tarjetas de blog.
+**Impacto:**
+- **Velocidad Percibida:** Navegación casi instantánea para el usuario, ya que los recursos de la siguiente página (JS/CSS/HTML) se cargan cuando el enlace entra en el viewport o se hace hover (dependiendo de la estrategia por defecto, que ahora es 'hover' al usar el atributo standard).
+- **UX:** Experiencia "App-like" más fluida sin necesidad de frameworks JS pesados.

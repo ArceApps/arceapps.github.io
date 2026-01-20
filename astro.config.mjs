@@ -22,6 +22,8 @@ export default defineConfig({
     ],
   },
 
+  prefetch: true,
+
   integrations: [
     sitemap(),
     partytown({
