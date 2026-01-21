@@ -28,6 +28,7 @@
     "playwright": "^1.57.0",
     "rehype-external-links": "^3.0.0",
     "rss-parser": "^3.13.0",
+    "terser": "5.46.0",
     "typescript": "^5.9.3"
   }
 }
