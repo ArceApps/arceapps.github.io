@@ -221,3 +221,20 @@
   - Añadido soporte para tecla Escape y clic fuera del menú.
   - Añadido cierre automático al hacer clic en enlaces de navegación.
 - Verificado mediante script de Playwright: el menú se comporta correctamente y no deja listeners huérfanos.
+
+## 2026-01-21 - Accesibilidad de Foco en Políticas de Privacidad
+
+**Revisión:**
+- Se analizaron `src/pages/privacy-policy.astro` y `src/pages/politica-privacidad.astro`.
+- Se detectó que el selector de idioma (enlace `<a>`) carecía de estilos explícitos de foco (`focus-visible`).
+- Los enlaces dentro del contenido legal (prose) dependían de los estilos por defecto del navegador, lo cual podía ser inconsistente con el diseño del sitio.
+
+**Propuesta:**
+- Añadir estilos `focus-visible` al selector de idioma para asegurar una navegación por teclado clara.
+- Utilizar el modificador `prose-a` de Tailwind Typography para aplicar estilos de foco a todos los enlaces dentro del contenido legal.
+
+**Realizado:**
+- Modificado `src/pages/privacy-policy.astro` y `src/pages/politica-privacidad.astro`:
+  - Selector de idioma: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
+  - Contenedor Prose: añadido `prose-a:focus-visible:ring-2 prose-a:focus-visible:ring-primary prose-a:focus-visible:outline-none prose-a:rounded-sm`.
+- Verificado mediante script de Playwright y capturas de pantalla: los enlaces muestran claramente el foco.
