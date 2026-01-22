@@ -76,7 +76,7 @@ const { Content } = await app.render();
                 href={app.data.googlePlayUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-3 bg-on-surface dark:bg-white text-surface dark:text-black px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-xl"
+                class="flex items-center gap-3 bg-on-surface dark:bg-white text-surface dark:text-black px-8 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform shadow-xl focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none"
               >
                 <span class="material-icons">shop</span>
                 Google Play
@@ -88,7 +88,7 @@ const { Content } = await app.render();
                 href={app.data.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-3 bg-surface border-2 border-primary text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary/5 transition-colors"
+                class="flex items-center gap-3 bg-surface border-2 border-primary text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary/5 transition-colors focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none"
               >
                 <span class="material-icons">visibility</span>
                 Live Demo
@@ -100,7 +100,7 @@ const { Content } = await app.render();
                 href={app.data.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="flex items-center gap-3 text-on-surface-variant dark:text-dark-on-surface-variant px-6 py-4 font-bold text-lg hover:text-primary transition-colors"
+                class="flex items-center gap-3 text-on-surface-variant dark:text-dark-on-surface-variant px-6 py-4 font-bold text-lg hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg"
               >
                 <span class="material-icons">code</span>
                 Código
@@ -145,7 +145,11 @@ const { Content } = await app.render();
             <span class="material-icons text-primary">collections</span>
             Galería
           </h2>
-          <div class="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scrollbar-hide">
+          <div
+            class="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scrollbar-hide focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-xl"
+            tabindex="0"
+            aria-label="Galería de capturas de pantalla"
+          >
             {app.data.screenshots.map((screenshot, index) => (
               <img
                 src={screenshot}
@@ -164,7 +168,7 @@ const { Content } = await app.render();
 
       <!-- Navigation Footer -->
       <div class="mt-12 flex justify-between items-center">
-        <a href="/apps" class="flex items-center gap-2 text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors font-medium">
+        <a href="/apps" class="flex items-center gap-2 text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
           <span class="material-icons">arrow_back</span>
           Volver al Portfolio
         </a>
