@@ -238,3 +238,21 @@
   - Selector de idioma: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
   - Contenedor Prose: añadido `prose-a:focus-visible:ring-2 prose-a:focus-visible:ring-primary prose-a:focus-visible:outline-none prose-a:rounded-sm`.
 - Verificado mediante script de Playwright y capturas de pantalla: los enlaces muestran claramente el foco.
+
+## 2026-01-22 - Accesibilidad de Foco en Detalle de App
+
+**Revisión:**
+- Se analizó `src/pages/apps/[...slug].astro`.
+- Se detectó que los botones de acción (Google Play, Demo, Código) y el enlace de retorno carecían de estilos explícitos de foco (`focus-visible`).
+- La galería de capturas de pantalla era un contenedor desplazable pero no accesible por teclado (falta de `tabindex` y foco), lo que impedía el desplazamiento horizontal para usuarios de teclado.
+
+**Propuesta:**
+- Añadir estilos `focus-visible` a todos los elementos interactivos.
+- Hacer que la galería de capturas sea focusable (`tabindex="0"`) y tenga una etiqueta accesible, permitiendo el desplazamiento con flechas.
+
+**Realizado:**
+- Modificado `src/pages/apps/[...slug].astro`:
+  - Google Play/Demo: añadido `focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none`.
+  - Código/Volver: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
+  - Galería: añadido `tabindex="0"`, `aria-label` y estilos de foco.
+- Verificado mediante script de Playwright: confirmada la navegabilidad y visibilidad del foco en todos los elementos.
