@@ -99,23 +99,34 @@ const contactEmail =
 </form>
 
 <script>
-  // Simple JS to handle loading state
-  const form = document.getElementById("contact-form");
-  const btn = document.getElementById("submit-btn") as HTMLButtonElement | null;
-  const btnIcon = document.getElementById("btn-icon");
-  const btnText = document.getElementById("btn-text");
+  function initContactForm() {
+    const form = document.getElementById("contact-form");
+    const btn = document.getElementById(
+      "submit-btn",
+    ) as HTMLButtonElement | null;
+    const btnIcon = document.getElementById("btn-icon");
+    const btnText = document.getElementById("btn-text");
 
-  if (form && btn && btnIcon && btnText) {
-    form.addEventListener("submit", () => {
-      // Disable button
-      btn.disabled = true;
+    if (form && btn && btnIcon && btnText) {
+      // Remove any existing listener to avoid duplicates if called multiple times (though page-load usually cleans up DOM)
+      // Actually, since the DOM element 'form' is new on navigation, we don't need to remove old listeners on it.
 
-      // Change icon to loading spinner
-      btnIcon.textContent = "autorenew";
-      btnIcon.classList.add("animate-spin");
+      form.addEventListener("submit", () => {
+        // Disable button
+        btn.disabled = true;
 
-      // Change text
-      btnText.textContent = "Enviando...";
-    });
+        // Change icon to loading spinner
+        btnIcon.textContent = "autorenew";
+        btnIcon.classList.add("animate-spin");
+
+        // Change text
+        btnText.textContent = "Enviando...";
+      });
+    }
   }
+
+  // Initialize on initial load and view transitions
+  // We use the same pattern as search.ts and layout.ts
+  initContactForm(); // Immediate init for first load
+  document.addEventListener("astro:page-load", initContactForm);
 </script>
