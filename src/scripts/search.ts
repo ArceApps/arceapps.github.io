@@ -12,13 +12,21 @@ let searchInput: HTMLInputElement | null = null;
 let searchResults: HTMLElement | null = null;
 let searchStatus: HTMLElement | null = null;
 
+// Utility: Debounce function to limit execution frequency
+function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
+  let timeout: ReturnType<typeof setTimeout>;
+  return function(this: any, ...args: Parameters<T>) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
 function escapeHtml(unsafe: string) {
   if (!unsafe) return "";
   return unsafe
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
 
@@ -185,8 +193,6 @@ function initSearchComponent() {
 
   // Re-attach event listeners
   if (searchButton) {
-      // Remove any existing listener (safe due to element replacement, but good practice)
-      // Actually, since elements are new, they have no listeners.
       searchButton.addEventListener("click", openModal);
   }
 
@@ -201,9 +207,11 @@ function initSearchComponent() {
   }
 
   if (searchInput) {
-      searchInput.addEventListener("input", (e: Event) => {
+      const handleInput = debounce((e: Event) => {
           performSearch((e.target as HTMLInputElement).value);
-      });
+      }, 300);
+
+      searchInput.addEventListener("input", handleInput);
   }
 }
 

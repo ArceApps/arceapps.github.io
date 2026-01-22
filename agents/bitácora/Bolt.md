@@ -213,3 +213,13 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Velocidad Percibida:** Navegación casi instantánea para el usuario, ya que los recursos de la siguiente página (JS/CSS/HTML) se cargan cuando el enlace entra en el viewport o se hace hover (dependiendo de la estrategia por defecto, que ahora es 'hover' al usar el atributo standard).
 - **UX:** Experiencia "App-like" más fluida sin necesidad de frameworks JS pesados.
+
+## 2026-01-20 - [Optimización de Input en Búsqueda (Debounce)]
+**Revisado:** `src/scripts/search.ts`
+**Propuesta:** El campo de búsqueda ejecutaba la lógica de filtrado (`fuse.search` y renderizado de DOM) síncronamente en cada evento `input`. Esto causaba "layout thrashing" y trabajo excesivo en el hilo principal durante la escritura rápida, especialmente con índices de búsqueda grandes.
+**Cambios Realizados:**
+1.  Se implementó una función de utilidad `debounce` en `src/scripts/search.ts`.
+2.  Se aplicó un debounce de 300ms al listener del evento `input`.
+**Impacto:**
+- **Rendimiento (CPU):** Reducción drástica de ejecuciones de búsqueda y manipulaciones del DOM. Ahora solo se busca cuando el usuario deja de escribir por 300ms.
+- **Eficiencia:** Eliminación de renderizados intermedios inútiles (ej. buscar "h", "ho", "hol", "hola" -> solo busca "hola").
