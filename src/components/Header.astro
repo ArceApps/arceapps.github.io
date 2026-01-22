@@ -251,6 +251,7 @@ const isActive = (href: string) => {
   }
 
   // Run on view transitions (fires on initial load too)
+  initHeader();
   document.addEventListener("astro:page-load", initHeader);
   document.addEventListener("astro:before-swap", () => cleanup && cleanup());
 </script>
