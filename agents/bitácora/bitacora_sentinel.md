@@ -135,3 +135,12 @@
 - Se configuraron directivas explícitas: `default-src 'self'`, `script-src` (incluyendo GTM), `img-src` (incluyendo CDN de iconos y Google Play), `connect-src` (Google Analytics) y `form-action` (FormSubmit).
 - Se mantuvo `unsafe-inline` para scripts y estilos debido a la naturaleza de hidratación de Astro, pero se restringió el origen externo de scripts a solo GTM.
 **Aprendizaje (si aplica):** Aunque `unsafe-inline` debilita CSP, restringir `script-src` a dominios de confianza y `object-src` a 'none' reduce significativamente la superficie de ataque comparado con no tener CSP o usar una muy permisiva.
+
+## 2026-01-22 - Actualización de Dependencias y Reducción de Superficie
+**Estado:** Realizado
+**Análisis:** Se detectaron vulnerabilidades de severidad alta en dependencias (`devalue`, `h3`) mediante `pnpm audit`. Además, se identificó la dependencia `daisyui` como instalada pero no utilizada, aumentando la superficie de ataque y mantenimiento innecesariamente.
+**Cambios:**
+- Se eliminó la dependencia `daisyui` de `devDependencies`.
+- Se actualizaron `astro` y `@tailwindcss/vite` a sus versiones más recientes para mitigar las vulnerabilidades reportadas.
+- Se verificó la eliminación de alertas de severidad alta con `pnpm audit`.
+**Aprendizaje (si aplica):** Mantener las dependencias actualizadas y eliminar las no utilizadas es fundamental para reducir la deuda técnica y los riesgos de seguridad, incluso si las vulnerabilidades parecen ser de entorno de desarrollo.
