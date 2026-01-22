@@ -43,7 +43,7 @@ const socialImageURL = new URL(image, Astro.url);
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="upgrade-insecure-requests"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.simpleicons.org https://play-lh.googleusercontent.com https://*.googleusercontent.com; font-src 'self'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'; upgrade-insecure-requests;"
     />
 
     <!-- Anti-Clickjacking / Frame Busting -->

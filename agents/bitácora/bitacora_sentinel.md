@@ -124,3 +124,14 @@
 - Se implementó la defensa Anti-Clickjacking (Frame Busting) en `src/layouts/Layout.astro` usando CSS (`display: none`) y un script de verificación de `self === top`. Se aseguró compatibilidad con `<noscript>`.
 - Se actualizó el enlace del feed RSS de Google AI a HTTPS.
 **Aprendizaje (si aplica):** La presencia de un registro en la bitácora no garantiza que el código esté en la rama actual; la verificación manual del código ("Verificar todo") es indispensable.
+
+## 2026-01-21 - Implementación de CSP Estricto
+**Estado:** Realizado
+**Análisis:**
+- La Política de Seguridad de Contenido (CSP) era débil (`upgrade-insecure-requests`), permitiendo potencialmente XSS y la carga de recursos maliciosos si otras defensas fallaban.
+- Se requería una política más granular para restringir los orígenes de scripts, estilos, imágenes y conexiones.
+**Cambios:**
+- Se actualizó `src/layouts/Layout.astro` con una nueva directiva CSP en la etiqueta `<meta>`.
+- Se configuraron directivas explícitas: `default-src 'self'`, `script-src` (incluyendo GTM), `img-src` (incluyendo CDN de iconos y Google Play), `connect-src` (Google Analytics) y `form-action` (FormSubmit).
+- Se mantuvo `unsafe-inline` para scripts y estilos debido a la naturaleza de hidratación de Astro, pero se restringió el origen externo de scripts a solo GTM.
+**Aprendizaje (si aplica):** Aunque `unsafe-inline` debilita CSP, restringir `script-src` a dominios de confianza y `object-src` a 'none' reduce significativamente la superficie de ataque comparado con no tener CSP o usar una muy permisiva.
