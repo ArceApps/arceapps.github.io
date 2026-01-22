@@ -96,4 +96,5 @@ function initServiceWorker() {
 window.addEventListener("load", initServiceWorker);
 
 // View Transitions load (fires on initial load too)
+initLayout();
 document.addEventListener("astro:page-load", initLayout);
