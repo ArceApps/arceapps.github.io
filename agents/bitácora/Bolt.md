@@ -223,3 +223,15 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento (CPU):** Reducción drástica de ejecuciones de búsqueda y manipulaciones del DOM. Ahora solo se busca cuando el usuario deja de escribir por 300ms.
 - **Eficiencia:** Eliminación de renderizados intermedios inútiles (ej. buscar "h", "ho", "hol", "hola" -> solo busca "hola").
+
+## 2026-01-20 - [Optimización de ContactForm y Preconexión CDN]
+**Revisado:** `src/layouts/Layout.astro`, `src/components/ContactForm.astro`, `src/pages/about-me.astro`.
+**Propuesta:**
+1. Se detectó que el `ContactForm` usaba un script inline simple que no se re-ejecutaba al navegar a la página mediante View Transitions (ClientRouter), causando que el formulario perdiera su funcionalidad interactiva (estados de carga).
+2. Se identificó que la página "About Me" carga múltiples iconos de `cdn.simpleicons.org` sin una conexión anticipada, retrasando su visualización.
+**Cambios Realizados:**
+1.  **Layout:** Se añadió `<link rel="preconnect" href="https://cdn.simpleicons.org" />` para acelerar el handshake SSL/TCP.
+2.  **ContactForm:** Se refactorizó el script para encapsular la inicialización en una función y ejecutarla tanto en carga inicial como en el evento `astro:page-load`, asegurando compatibilidad con SPA.
+**Impacto:**
+- **Robustez:** El formulario de contacto ahora funciona correctamente tras la navegación del cliente.
+- **Rendimiento:** Reducción de latencia en la carga de iconos en la página "About Me".
