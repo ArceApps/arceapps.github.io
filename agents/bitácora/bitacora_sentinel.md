@@ -144,3 +144,9 @@
 - Se actualizaron `astro` y `@tailwindcss/vite` a sus versiones más recientes para mitigar las vulnerabilidades reportadas.
 - Se verificó la eliminación de alertas de severidad alta con `pnpm audit`.
 **Aprendizaje (si aplica):** Mantener las dependencias actualizadas y eliminar las no utilizadas es fundamental para reducir la deuda técnica y los riesgos de seguridad, incluso si las vulnerabilidades parecen ser de entorno de desarrollo.
+
+## 2026-01-23 - Validación de Esquema de URL
+**Estado:** Realizado
+**Análisis:** El esquema de la colección de contenido permitía cadenas arbitrarias para campos de URL (`repoUrl`, `demoUrl`, etc.), creando un vector potencial de XSS mediante esquemas `javascript:`.
+**Cambios:** Se actualizó `src/content/config.ts` para usar `z.string().url()` en los campos de enlaces externos.
+**Aprendizaje (si aplica):** Aplicar tipos de datos y formatos a nivel de esquema es la forma más efectiva de sanitizar entradas basadas en contenido.
