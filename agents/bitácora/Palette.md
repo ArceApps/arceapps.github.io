@@ -256,3 +256,27 @@
   - Código/Volver: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
   - Galería: añadido `tabindex="0"`, `aria-label` y estilos de foco.
 - Verificado mediante script de Playwright: confirmada la navegabilidad y visibilidad del foco en todos los elementos.
+
+## 2026-01-23 - Accesibilidad de Foco en Bitácora (Devlog)
+
+**Revisión:**
+- Se analizó `src/pages/devlog/index.astro` y `src/pages/devlog/[...slug].astro`.
+- Se detectó que la tarjeta de entrada en el índice tenía efectos de hover pero no reaccionaba al foco de teclado en sus enlaces internos.
+- Los enlaces de título, "Leer entrada" y "Volver a la bitácora" carecían de estilos `focus-visible`.
+- Iconos decorativos en la línea de tiempo y cabeceras no tenían `aria-hidden="true"`.
+
+**Propuesta:**
+- Implementar estilos `focus-visible` en todos los enlaces de navegación de la sección Bitácora.
+- Añadir comportamiento `focus-within` al contenedor de la tarjeta para replicar los efectos de hover (elevación y sombra) cuando el usuario navega por teclado.
+- Ocultar iconos decorativos a los lectores de pantalla.
+
+**Realizado:**
+- Modificado `src/pages/devlog/index.astro`:
+  - Contenedor de tarjeta: añadido `focus-within:shadow-xl focus-within:-translate-y-1`.
+  - Título y enlace "Leer entrada": añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded`.
+  - Icono de timeline y flecha: añadido `aria-hidden="true"`.
+- Modificado `src/pages/devlog/[...slug].astro`:
+  - Enlace "Volver": añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded px-2 py-1`.
+  - Contenedor Prose: añadido `prose-a:focus-visible:ring-2 prose-a:focus-visible:ring-primary prose-a:focus-visible:outline-none prose-a:rounded-sm`.
+  - Iconos de cabecera: añadido `aria-hidden="true"`.
+- Verificado mediante script de Playwright: los anillos de foco y efectos de elevación funcionan correctamente.
