@@ -150,3 +150,13 @@
 **Análisis:** El esquema de la colección de contenido permitía cadenas arbitrarias para campos de URL (`repoUrl`, `demoUrl`, etc.), creando un vector potencial de XSS mediante esquemas `javascript:`.
 **Cambios:** Se actualizó `src/content/config.ts` para usar `z.string().url()` en los campos de enlaces externos.
 **Aprendizaje (si aplica):** Aplicar tipos de datos y formatos a nivel de esquema es la forma más efectiva de sanitizar entradas basadas en contenido.
+
+## 2026-01-24 - Endurecimiento de Búsqueda (Sanitización y Truncado)
+**Estado:** Realizado
+**Análisis:**
+- Se identificó que el índice de búsqueda (`search-index.json`) exponía descripciones completas sin sanitizar. Esto permitía payload bloat (DoS) y potenciales problemas de renderizado.
+- `escapeHtml` en el cliente no escapaba comillas dobles, lo que teóricamente permitiría romper atributos HTML.
+**Cambios:**
+- Se implementó `sanitizeText` en `src/pages/search-index.json.ts` para eliminar etiquetas HTML, enlaces Markdown y truncar descripciones a 200 caracteres.
+- Se actualizó `escapeHtml` en `src/scripts/search.ts` para escapar comillas dobles (`"` -> `&quot;`).
+**Aprendizaje (si aplica):** La sanitización debe ocurrir tanto en el servidor (para integridad y rendimiento) como en el cliente (para seguridad). Truncar datos no esenciales reduce la superficie de ataque y mejora el rendimiento.
