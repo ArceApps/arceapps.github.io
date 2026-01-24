@@ -44,7 +44,7 @@ const apps = (await getCollection("apps", ({ data }) => !data.draft))
           <div class="shrink-0">
              <a href={`/devlog/${latestDevlog.slug}`} class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-on-surface dark:text-dark-on-surface font-medium hover:border-primary hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transition-all duration-300 shadow-sm">
                Leer entrada
-               <span class="material-icons ml-2 text-sm">arrow_forward</span>
+               <span class="material-icons ml-2 text-sm" aria-hidden="true">arrow_forward</span>
              </a>
           </div>
         </div>
@@ -96,7 +96,7 @@ const apps = (await getCollection("apps", ({ data }) => !data.draft))
         </div>
         <a href="/blog" class="inline-flex items-center font-medium text-primary hover:text-secondary rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:text-secondary transition-colors group">
           Ver todos los artículos
-          <span class="material-icons ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          <span class="material-icons ml-1 transform group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
         </a>
       </div>
 
@@ -121,11 +121,11 @@ const apps = (await getCollection("apps", ({ data }) => !data.draft))
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="https://github.com/arceapps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-primary font-bold text-lg shadow-xl hover:bg-gray-100 focus-visible:ring-4 focus-visible:ring-white/50 focus-visible:outline-none focus-visible:scale-105 transform transition-all">
-          <span class="material-icons mr-2">code</span>
+          <span class="material-icons mr-2" aria-hidden="true">code</span>
           Ver GitHub
         </a>
         <a href="https://play.google.com/store/apps/developer?id=Arce+Apps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-dark/30 backdrop-blur-sm border border-white/30 text-white font-bold text-lg shadow-xl hover:bg-primary-dark/50 focus-visible:ring-4 focus-visible:ring-white/50 focus-visible:outline-none focus-visible:scale-105 transform transition-all">
-          <span class="material-icons mr-2">shop</span>
+          <span class="material-icons mr-2" aria-hidden="true">shop</span>
           Google Play Store
         </a>
       </div>
