@@ -1,9 +1,9 @@
 // Basic Service Worker for caching assets and offline support
-const CACHE_NAME = 'arceapps-v1';
+const CACHE_NAME = 'arceapps-v2';
 const ASSETS_TO_CACHE = [
   '/',
-  '/favicon.svg',
-  '/logo.png',
+  '/icons/favicon.png',
+  '/icons/icon-192.png',
   '/manifest.json'
 ];
 
