@@ -246,3 +246,17 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Reducción significativa del tamaño de descarga de las imágenes (de MBs a KBs en algunos casos).
 - **Estabilidad:** Eliminación de errores de carga de imágenes (bloqueos ORB) en navegadores basados en Chromium.
+
+## 2026-01-24 - [Optimización de Iconos PWA y Preconexión Analytics]
+**Revisado:** `public/logo.png`, `public/manifest.json`, `src/layouts/Layout.astro`, `public/sw.js`.
+**Propuesta:**
+1. Se identificó que el sitio usaba una única imagen de alta resolución (`logo.png`, ~300KB) para todos los iconos (favicon, PWA icons), desperdiciando ancho de banda en cada carga de página.
+2. Se detectó falta de `preconnect` para los dominios de Google Analytics/GTM, retrasando la inicialización de métricas.
+**Cambios Realizados:**
+1.  Se implementó el script `scripts/generate-icons.js` usando `sharp` para generar iconos optimizados: `favicon.png` (32x32), `apple-touch-icon.png` (180x180), `icon-192.png`, y `icon-512.png`.
+2.  Se actualizaron `src/layouts/Layout.astro` y `public/manifest.json` para usar los nuevos recursos ligeros.
+3.  Se actualizó `public/sw.js` para cachear los iconos optimizados y se incrementó la versión del caché a `v2`.
+4.  Se añadieron `<link rel="preconnect">` para `www.googletagmanager.com` y `www.google-analytics.com` en `Layout.astro`.
+**Impacto:**
+- **Rendimiento:** Reducción de ~300KB en la carga inicial (favicon). Mejora en métricas de PWA.
+- **Eficiencia:** Inicialización más rápida de scripts de terceros (Analytics).
