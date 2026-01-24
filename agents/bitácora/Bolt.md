@@ -233,5 +233,16 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 1.  **Layout:** Se añadió `<link rel="preconnect" href="https://cdn.simpleicons.org" />` para acelerar el handshake SSL/TCP.
 2.  **ContactForm:** Se refactorizó el script para encapsular la inicialización en una función y ejecutarla tanto en carga inicial como en el evento `astro:page-load`, asegurando compatibilidad con SPA.
 **Impacto:**
-- **Robustez:** El formulario de contacto ahora funciona correctamente tras la navegación del cliente.
+- **Robustez:** El formulario de contacto ahora funciona correctamente correctamente tras la navegación del cliente.
 - **Rendimiento:** Reducción de latencia en la carga de iconos en la página "About Me".
+
+## 2026-01-23 - [Optimización Dinámica de Imágenes Google Play]
+**Revisado:** `src/utils/image-optimization.ts`, `src/components/ProjectCard.astro`, `src/pages/apps/[...slug].astro`.
+**Propuesta:** Se identificó que las imágenes alojadas en Google Play (iconos y capturas de pantalla) se cargaban en su resolución original, desperdiciando ancho de banda. Además, el uso de `crossorigin="anonymous"` en estas imágenes causaba bloqueos esporádicos por políticas de seguridad del navegador (CORB/ORB) a pesar de las cabeceras CORS correctas.
+**Cambios Realizados:**
+1.  Se creó `src/utils/image-optimization.ts` para inyectar dinámicamente parámetros de redimensionamiento (`=w`, `=s`) en las URLs de Google Play.
+2.  Se actualizaron los componentes para solicitar tamaños optimizados (ej. `w400` para tarjetas, `w1200` para Hero).
+3.  Se eliminó el atributo `crossorigin="anonymous"` de las etiquetas `<img>` para estas fuentes externas, confiando en el comportamiento estándar de carga de imágenes para maximizar la compatibilidad.
+**Impacto:**
+- **Rendimiento:** Reducción significativa del tamaño de descarga de las imágenes (de MBs a KBs en algunos casos).
+- **Estabilidad:** Eliminación de errores de carga de imágenes (bloqueos ORB) en navegadores basados en Chromium.
