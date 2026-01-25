@@ -27,6 +27,7 @@ function escapeHtml(unsafe: string) {
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
 
@@ -162,7 +163,7 @@ function performSearch(query: string) {
         const item = result.item;
         const icon = item.type === "App" ? "android" : "article";
         return `
-                <a href="${item.slug}" class="block p-3 rounded-lg hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
+                <a href="${escapeHtml(item.slug)}" class="block p-3 rounded-lg hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
                     <div class="flex items-start gap-3">
                         <div class="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1">
                             <span class="material-icons text-sm">${icon}</span>

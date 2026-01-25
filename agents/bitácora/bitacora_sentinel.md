@@ -150,3 +150,13 @@
 **Análisis:** El esquema de la colección de contenido permitía cadenas arbitrarias para campos de URL (`repoUrl`, `demoUrl`, etc.), creando un vector potencial de XSS mediante esquemas `javascript:`.
 **Cambios:** Se actualizó `src/content/config.ts` para usar `z.string().url()` en los campos de enlaces externos.
 **Aprendizaje (si aplica):** Aplicar tipos de datos y formatos a nivel de esquema es la forma más efectiva de sanitizar entradas basadas en contenido.
+
+## 2026-01-25 - Fix XSS en Componente de Búsqueda
+**Estado:** Realizado
+**Análisis:**
+- Se detectó que la función `escapeHtml` en `src/scripts/search.ts` no sanitizaba las comillas dobles (`"`).
+- Además, el atributo `href` en los resultados de búsqueda inyectaba `item.slug` sin escapar, lo que permitía una potencial inyección de atributos (XSS) si un slug malicioso fuera introducido en el sistema (ej. vía frontmatter).
+**Cambios:**
+- Se actualizó `escapeHtml` para convertir `"` en `&quot;`.
+- Se aplicó `escapeHtml(item.slug)` al construir el enlace del resultado.
+**Aprendizaje (si aplica):** Al construir HTML mediante strings (template literals), *toda* variable inyectada en atributos debe ser sanitizada, incluso si parece provenir de una fuente interna como el sistema de archivos, para mantener la defensa en profundidad.
