@@ -280,3 +280,20 @@
   - Contenedor Prose: añadido `prose-a:focus-visible:ring-2 prose-a:focus-visible:ring-primary prose-a:focus-visible:outline-none prose-a:rounded-sm`.
   - Iconos de cabecera: añadido `aria-hidden="true"`.
 - Verificado mediante script de Playwright: los anillos de foco y efectos de elevación funcionan correctamente.
+
+## 2026-01-24 - Accesibilidad en Iconos Decorativos (About Me y Home)
+
+**Revisión:**
+- Se analizaron `src/pages/about-me.astro`, `src/pages/index.astro` y `src/components/Hero.astro`.
+- Se detectó que múltiples iconos decorativos (Material Icons) carecían del atributo `aria-hidden="true"`, lo que provoca que los lectores de pantalla los anuncien como texto irrelevante (ej. "check_circle", "rocket_launch").
+- Los iconos de habilidades en "About Me" tenían texto alternativo redundante (`alt={name}`) junto al texto visible, causando duplicación en la lectura.
+
+**Propuesta:**
+- Añadir `aria-hidden="true"` a todos los iconos decorativos para ocultarlos de las tecnologías de asistencia.
+- Cambiar el texto alternativo de los iconos de habilidades a vacío (`alt=""`) ya que el texto visible adyacente ya proporciona la información.
+
+**Realizado:**
+- Modificado `src/pages/about-me.astro`: Añadido `aria-hidden="true"` a iconos de categorías, misión y contacto. Cambiado `alt` de skills a `""`.
+- Modificado `src/pages/index.astro`: Añadido `aria-hidden="true"` a iconos de flechas y botones de CTA.
+- Modificado `src/components/Hero.astro`: Añadido `aria-hidden="true"` a iconos de botones principales.
+- Verificado mediante script de Playwright (`verification/verify_accessibility_icons.spec.ts`) que valida la presencia de los atributos correctos.
