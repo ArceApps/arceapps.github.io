@@ -39,6 +39,10 @@
   .material-card {
     @apply rounded-xl bg-surface dark:bg-dark-surface-variant border border-gray-200 dark:border-gray-800 transition-all duration-300;
   }
+
+  .cv-auto {
+    content-visibility: auto;
+  }
 }
 
 /* Material Icons Class */

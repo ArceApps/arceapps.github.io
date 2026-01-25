@@ -26,7 +26,7 @@ const apps = (await getCollection("apps", ({ data }) => !data.draft))
 
   <!-- Bitácora Section (Highlighted) -->
   {latestDevlog && (
-    <section class="py-12 bg-surface dark:bg-dark-surface border-b border-gray-100 dark:border-gray-800">
+    <section class="py-12 bg-surface dark:bg-dark-surface border-b border-gray-100 dark:border-gray-800 cv-auto" style="contain-intrinsic-size: 200px;">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:p-8 rounded-2xl bg-surface-variant/30 dark:bg-dark-surface-variant/30 border border-gray-200 dark:border-gray-700">
           <div class="flex-1">
@@ -53,7 +53,7 @@ const apps = (await getCollection("apps", ({ data }) => !data.draft))
   )}
 
   <!-- Apps Section -->
-  <section id="apps" class="py-24 bg-surface-variant/30 dark:bg-dark-surface-variant/30">
+  <section id="apps" class="py-24 bg-surface-variant/30 dark:bg-dark-surface-variant/30 cv-auto" style="contain-intrinsic-size: 800px;">
     <div class="container mx-auto px-4">
       <div class="text-center max-w-3xl mx-auto mb-16">
         <h2 class="text-3xl md:text-4xl font-bold mb-4 text-on-surface dark:text-dark-on-surface">Lo que estoy construyendo</h2>
@@ -85,7 +85,7 @@ const apps = (await getCollection("apps", ({ data }) => !data.draft))
   </section>
 
   <!-- Blog Section -->
-  <section class="py-24 bg-surface dark:bg-dark-surface">
+  <section class="py-24 bg-surface dark:bg-dark-surface cv-auto" style="contain-intrinsic-size: 600px;">
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
         <div>
@@ -109,7 +109,7 @@ const apps = (await getCollection("apps", ({ data }) => !data.draft))
   </section>
 
   <!-- CTA -->
-  <section class="py-20 relative overflow-hidden">
+  <section class="py-20 relative overflow-hidden cv-auto" style="contain-intrinsic-size: 300px;">
     <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-90"></div>
     <!-- Decorative pattern -->
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 20px 20px;"></div>
