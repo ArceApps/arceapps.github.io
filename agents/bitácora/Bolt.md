@@ -246,3 +246,13 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Reducción significativa del tamaño de descarga de las imágenes (de MBs a KBs en algunos casos).
 - **Estabilidad:** Eliminación de errores de carga de imágenes (bloqueos ORB) en navegadores basados en Chromium.
+
+## 2026-01-25 - [Optimización de Renderizado (Content Visibility)]
+**Revisado:** `src/styles/global.css`, `src/components/Footer.astro`, `src/pages/index.astro`.
+**Propuesta:** Se identificó que las páginas largas (como la Home) renderizan todo el contenido del DOM en la carga inicial, lo que aumenta el tiempo de bloqueo del hilo principal (Main Thread Blocking Time) y retrasa el First Contentful Paint (FCP) o Interaction to Next Paint (INP) en dispositivos de gama baja. La propiedad CSS `content-visibility: auto` permite al navegador omitir el trabajo de renderizado (layout/paint) para elementos fuera de pantalla.
+**Cambios Realizados:**
+1.  Se añadió la clase utilitaria `.cv-auto` (`content-visibility: auto`) en `src/styles/global.css`.
+2.  Se aplicó esta optimización al Footer en `src/components/Footer.astro` y a las secciones pesadas ("Apps", "Blog", "CTA", "Devlog") en `src/pages/index.astro`, usando `contain-intrinsic-size` con estimaciones de altura para prevenir saltos de scroll (layout shift) excesivos.
+**Impacto:**
+- **Rendimiento:** Reducción del trabajo de renderizado inicial. El navegador ahora solo procesa el layout de las secciones inferiores cuando se acercan al viewport.
+- **Eficiencia:** Mejora en métricas de INP y FCP al liberar el hilo principal durante la carga crítica.
