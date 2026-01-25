@@ -1,7 +1,7 @@
 
 let scrollHandler: (() => void) | undefined;
 
-function setupProgressBar() {
+export function setupProgressBar() {
   const progressBar = document.getElementById("progress-bar");
   if (!progressBar) return;
 
@@ -32,7 +32,7 @@ function setupProgressBar() {
   window.addEventListener("scroll", scrollHandler, { passive: true });
 }
 
-function setupCopyButtons() {
+export function setupCopyButtons() {
   const preTags = document.querySelectorAll("pre");
   preTags.forEach((pre) => {
     // Avoid duplicates if script runs multiple times on same DOM
@@ -47,7 +47,7 @@ function setupCopyButtons() {
 
     button.addEventListener("click", () => {
       const code = pre.querySelector("code");
-      const text = code ? code.innerText : pre.innerText;
+      const text = (code ? code.textContent : pre.textContent) || "";
 
       navigator.clipboard
         .writeText(text)
