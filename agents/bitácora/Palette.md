@@ -297,3 +297,22 @@
 - Modificado `src/pages/index.astro`: Añadido `aria-hidden="true"` a iconos de flechas y botones de CTA.
 - Modificado `src/components/Hero.astro`: Añadido `aria-hidden="true"` a iconos de botones principales.
 - Verificado mediante script de Playwright (`verification/verify_accessibility_icons.spec.ts`) que valida la presencia de los atributos correctos.
+
+## 2026-01-25 - Accesibilidad en Iconos Decorativos (Global)
+
+**Revisión:**
+- Se analizaron `src/components/BlogCard.astro`, `src/pages/blog/[...slug].astro`, `src/pages/apps/[...slug].astro`, `src/layouts/Layout.astro`, `src/components/Header.astro`, `src/components/Footer.astro` y `src/scripts/blog.ts`.
+- Se detectó que numerosos iconos decorativos (`material-icons`) carecían del atributo `aria-hidden="true"`, lo que provocaba que los lectores de pantalla anunciaran el nombre del icono (ej. "arrow_forward", "calendar_today") como texto, generando ruido.
+
+**Propuesta:**
+- Añadir `aria-hidden="true"` a todos los iconos que son puramente decorativos o acompañan a texto visible que ya transmite la información.
+
+**Realizado:**
+- Modificado `src/components/BlogCard.astro`: Icono de flecha en enlace "Leer artículo".
+- Modificado `src/pages/blog/[...slug].astro`: Iconos de metadatos (fecha, tiempo lectura), TOC, navegación, menú móvil y artículos relacionados.
+- Modificado `src/pages/apps/[...slug].astro`: Iconos de rating, versión, actualización, botones de acción (Google Play, Demo, Código), placeholder y galería.
+- Modificado `src/layouts/Layout.astro`: Icono del botón "Volver arriba".
+- Modificado `src/components/Header.astro`: Iconos de tema (sol/luna) y menú móvil.
+- Modificado `src/components/Footer.astro`: Iconos de redes sociales/tiendas.
+- Modificado `src/scripts/blog.ts`: Icono del botón de copiar código (generado dinámicamente).
+- Verificado mediante script `verification/verify_aria_hidden.py` que la mayoría de los iconos ahora están ocultos correctamente a tecnologías de asistencia.

@@ -70,11 +70,11 @@ const relatedPosts = allPosts
 
       <div class="flex items-center justify-center gap-6 text-on-surface-variant dark:text-dark-on-surface-variant text-lg">
         <div class="flex items-center">
-          <span class="material-icons mr-2 text-primary">calendar_today</span>
+          <span class="material-icons mr-2 text-primary" aria-hidden="true">calendar_today</span>
           <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
         </div>
         <div class="flex items-center">
-          <span class="material-icons mr-2 text-primary">schedule</span>
+          <span class="material-icons mr-2 text-primary" aria-hidden="true">schedule</span>
           <span>⏱️ {readingTime} min de lectura</span>
         </div>
       </div>
@@ -105,7 +105,7 @@ const relatedPosts = allPosts
             {tocHeadings.length > 0 && (
               <nav class="p-4 bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800">
                 <h2 class="text-lg font-bold mb-4 text-on-surface dark:text-dark-on-surface flex items-center">
-                  <span class="material-icons mr-2 text-primary">list</span>
+                  <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
                   Índice
                 </h2>
                 <ul class="space-y-2 text-sm">
@@ -128,7 +128,7 @@ const relatedPosts = allPosts
 
             <div class="mt-8">
                <a href="/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
-                  <span class="material-icons mr-2">arrow_back</span>
+                  <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
                   Volver al Blog
                </a>
             </div>
@@ -144,10 +144,10 @@ const relatedPosts = allPosts
                 <details class="bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden group">
                    <summary class="p-4 flex items-center justify-between cursor-pointer font-bold text-on-surface dark:text-dark-on-surface list-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-xl">
                       <div class="flex items-center">
-                         <span class="material-icons mr-2 text-primary">list</span>
+                         <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
                          Índice de contenidos
                       </div>
-                      <span class="material-icons group-open:rotate-180 transition-transform">expand_more</span>
+                      <span class="material-icons group-open:rotate-180 transition-transform" aria-hidden="true">expand_more</span>
                    </summary>
                    <nav class="px-4 pb-4">
                       <ul class="space-y-2 text-sm pt-2 border-t border-gray-100 dark:border-gray-700">
@@ -180,7 +180,7 @@ const relatedPosts = allPosts
           -->
           <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 lg:hidden">
              <a href="/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
-                <span class="material-icons mr-2">arrow_back</span>
+                <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
                 Volver al Blog
              </a>
           </div>
@@ -194,7 +194,7 @@ const relatedPosts = allPosts
       <div class="mt-20 py-16 bg-surface-variant/30 dark:bg-dark-surface-variant/30 fade-in-section">
          <div class="container mx-auto px-4 max-w-6xl">
             <h2 class="text-3xl font-bold mb-10 text-on-surface dark:text-dark-on-surface text-center flex items-center justify-center gap-3">
-               <span class="material-icons text-primary text-4xl">style</span>
+               <span class="material-icons text-primary text-4xl" aria-hidden="true">style</span>
                También te puede interesar
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

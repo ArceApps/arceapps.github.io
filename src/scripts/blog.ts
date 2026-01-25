@@ -41,7 +41,8 @@ function setupCopyButtons() {
     const button = document.createElement("button");
     button.className =
       "copy-code-btn focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none";
-    button.innerHTML = '<span class="material-icons">content_copy</span>';
+    button.innerHTML =
+      '<span class="material-icons" aria-hidden="true">content_copy</span>';
     button.title = "Copiar código";
     button.setAttribute("aria-label", "Copiar código");
 
@@ -53,7 +54,8 @@ function setupCopyButtons() {
         .writeText(text)
         .then(() => {
           const originalIcon = button.innerHTML;
-          button.innerHTML = '<span class="material-icons">check</span>';
+          button.innerHTML =
+            '<span class="material-icons" aria-hidden="true">check</span>';
           button.classList.add("text-green-400"); // Visual feedback
 
           setTimeout(() => {
