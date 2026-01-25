@@ -87,6 +87,7 @@ const isActive = (href: string) => {
           <span
             id="icon-dark"
             class="material-icons absolute inset-0 text-xl transform transition-all duration-500 rotate-0 scale-100 opacity-100 dark:-rotate-90 dark:scale-0 dark:opacity-0"
+            aria-hidden="true"
           >
             dark_mode
           </span>
@@ -94,6 +95,7 @@ const isActive = (href: string) => {
           <span
             id="icon-light"
             class="material-icons absolute inset-0 text-xl transform transition-all duration-500 rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100"
+            aria-hidden="true"
           >
             light_mode
           </span>
@@ -108,7 +110,7 @@ const isActive = (href: string) => {
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
-        <span class="material-icons text-2xl">menu</span>
+        <span class="material-icons text-2xl" aria-hidden="true">menu</span>
       </button>
     </div>
   </div>
