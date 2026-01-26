@@ -13,7 +13,7 @@ let searchResults: HTMLElement | null = null;
 let searchStatus: HTMLElement | null = null;
 
 // Utility: Debounce function to limit execution frequency
-function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
+export function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
   let timeout: ReturnType<typeof setTimeout>;
   return function(this: any, ...args: Parameters<T>) {
     clearTimeout(timeout);
@@ -21,7 +21,7 @@ function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
   };
 }
 
-function escapeHtml(unsafe: string) {
+export function escapeHtml(unsafe: string) {
   if (!unsafe) return "";
   return unsafe
     .replace(/&/g, "&amp;")
@@ -37,7 +37,7 @@ function handleEscape(e: KeyboardEvent) {
   }
 }
 
-function closeModal() {
+export function closeModal() {
   if (searchModal) {
     searchModal.classList.add("hidden");
     document.body.style.overflow = "";
@@ -65,7 +65,7 @@ function closeModal() {
   }
 }
 
-async function initFuse() {
+export async function initFuse() {
   if (searchIndex.length > 0) return;
 
   // Show loading state
@@ -111,7 +111,7 @@ async function initFuse() {
   }
 }
 
-function openModal() {
+export function openModal() {
   if (searchModal) {
     searchModal.classList.remove("hidden");
     document.body.style.overflow = "hidden";
@@ -128,7 +128,7 @@ function openModal() {
   }
 }
 
-function performSearch(query: string) {
+export function performSearch(query: string) {
   if (!fuse) return;
 
   if (query.length < 2) {
@@ -183,7 +183,7 @@ function performSearch(query: string) {
   }
 }
 
-function initSearchComponent() {
+export function initSearchComponent() {
   // Update DOM references for current page
   searchButton = document.getElementById("search-button");
   searchModal = document.getElementById("search-modal");
