@@ -160,3 +160,17 @@
 - Se actualizó `escapeHtml` para convertir `"` en `&quot;`.
 - Se aplicó `escapeHtml(item.slug)` al construir el enlace del resultado.
 **Aprendizaje (si aplica):** Al construir HTML mediante strings (template literals), *toda* variable inyectada en atributos debe ser sanitizada, incluso si parece provenir de una fuente interna como el sistema de archivos, para mantener la defensa en profundidad.
+
+## 2026-01-26 - Actualización de Dependencias y Hardening
+**Estado:** Realizado
+**Análisis:**
+- Se detectó vulnerabilidad en `lodash` (<4.17.23) en dependencias transitivas.
+- Se identificó la existencia de `package-lock.json` duplicado, generando riesgo de inconsistencia.
+- Se observó la etiqueta `meta generator` exponiendo la versión de Astro.
+- Los tests de búsqueda no reflejaban las últimas mejoras de seguridad (escapado de comillas).
+**Cambios:**
+- Se eliminó `package-lock.json` para forzar uso exclusivo de `pnpm`.
+- Se aplicó `pnpm.overrides` en `package.json` forzando `lodash >=4.17.23`.
+- Se eliminó la etiqueta `generator` en `Layout.astro`.
+- Se actualizaron los tests unitarios en `src/scripts/search.test.ts`.
+**Aprendizaje (si aplica):** La consistencia en el gestor de paquetes y la ocultación de metadatos de framework son prácticas básicas de higiene y reducción de superficie de ataque. Las pruebas unitarias deben evolucionar junto con los parches de seguridad.
