@@ -256,3 +256,12 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Reducción del trabajo de renderizado inicial. El navegador ahora solo procesa el layout de las secciones inferiores cuando se acercan al viewport.
 - **Eficiencia:** Mejora en métricas de INP y FCP al liberar el hilo principal durante la carga crítica.
+
+## 2026-01-26 - [Reparación de Instalación Service Worker]
+**Revisado:** `public/sw.js`, `src/layouts/Layout.astro`, `public/`.
+**Propuesta:** Se detectó que el Service Worker intentaba cachear `/favicon.svg` durante la fase de instalación (`install`). Sin embargo, este archivo no existe en el directorio `public/`, lo que provocaba que la promesa `cache.addAll()` fallara y el Service Worker nunca se instalara correctamente. Esto deshabilitaba completamente el soporte offline y el cacheo de assets estáticos.
+**Cambios Realizados:**
+1.  Se eliminó `/favicon.svg` del array `ASSETS_TO_CACHE` en `public/sw.js`.
+**Impacto:**
+- **Funcionalidad:** Habilitación exitosa del Service Worker.
+- **Rendimiento:** Cacheo efectivo de la shell de la aplicación (`/`, `/logo.png`, `/manifest.json`) para cargas subsecuentes instantáneas y soporte offline.
