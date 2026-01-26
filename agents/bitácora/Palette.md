@@ -316,3 +316,22 @@
 - Modificado `src/components/Footer.astro`: Iconos de redes sociales/tiendas.
 - Modificado `src/scripts/blog.ts`: Icono del botón de copiar código (generado dinámicamente).
 - Verificado mediante script `verification/verify_aria_hidden.py` que la mayoría de los iconos ahora están ocultos correctamente a tecnologías de asistencia.
+
+## 2026-01-26 - Accesibilidad de Foco en Navegación de Blog
+
+**Revisión:**
+- Se analizó `src/pages/blog/[...page].astro` y `src/pages/blog/tag/[tag].astro`.
+- Se detectó que los enlaces de tags y controles de paginación en el índice del blog carecían de estilos explícitos de foco (`focus-visible`).
+- En la página de detalle de tag, el enlace "Volver al blog" tampoco tenía indicador de foco y su icono decorativo carecía de `aria-hidden`.
+
+**Propuesta:**
+- Añadir estilos `focus-visible` consistentes a tags, paginación y enlaces de navegación.
+- Ocultar el icono decorativo de la flecha de retorno.
+
+**Realizado:**
+- Modificado `src/pages/blog/[...page].astro`:
+  - Tags: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
+  - Paginación: añadido `focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none`.
+- Modificado `src/pages/blog/tag/[tag].astro`:
+  - Enlace volver: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded`.
+  - Icono flecha: añadido `aria-hidden="true"`.
