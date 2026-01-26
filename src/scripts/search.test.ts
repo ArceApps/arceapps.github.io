@@ -37,7 +37,7 @@ describe('Search Script', () => {
 
   describe('escapeHtml', () => {
     it('should escape special characters', () => {
-      expect(searchModule.escapeHtml('<script>alert("xss")</script>')).toBe('&lt;script&gt;alert("xss")&lt;/script&gt;');
+      expect(searchModule.escapeHtml('<script>alert("xss")</script>')).toBe('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
     });
 
     it('should handle empty strings', () => {

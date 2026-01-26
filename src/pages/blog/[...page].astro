@@ -35,7 +35,7 @@ const { page, allTags } = Astro.props;
         {allTags.map((tag) => (
           <a
             href={`/blog/tag/${slugify(tag)}/`}
-            class="px-4 py-2 rounded-full bg-surface dark:bg-dark-surface border border-primary/20 hover:border-primary text-on-surface dark:text-dark-on-surface hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md"
+            class="px-4 py-2 rounded-full bg-surface dark:bg-dark-surface border border-primary/20 hover:border-primary text-on-surface dark:text-dark-on-surface hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
           >
             #{tag}
           </a>
@@ -55,12 +55,12 @@ const { page, allTags } = Astro.props;
       <!-- Pagination Controls -->
       <div class="flex justify-center mt-12 gap-4">
         {page.url.prev && (
-          <a href={page.url.prev} class="px-6 py-2 rounded-lg bg-surface dark:bg-dark-surface border border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors duration-300">
+          <a href={page.url.prev} class="px-6 py-2 rounded-lg bg-surface dark:bg-dark-surface border border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors duration-300 focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none">
             Anterior
           </a>
         )}
         {page.url.next && (
-          <a href={page.url.next} class="px-6 py-2 rounded-lg bg-surface dark:bg-dark-surface border border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors duration-300">
+          <a href={page.url.next} class="px-6 py-2 rounded-lg bg-surface dark:bg-dark-surface border border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors duration-300 focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none">
             Siguiente
           </a>
         )}
