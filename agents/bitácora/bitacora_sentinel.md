@@ -160,3 +160,14 @@
 - Se actualizó `escapeHtml` para convertir `"` en `&quot;`.
 - Se aplicó `escapeHtml(item.slug)` al construir el enlace del resultado.
 **Aprendizaje (si aplica):** Al construir HTML mediante strings (template literals), *toda* variable inyectada en atributos debe ser sanitizada, incluso si parece provenir de una fuente interna como el sistema de archivos, para mantener la defensa en profundidad.
+
+## 2026-01-27 - Sanitización de Índice de Búsqueda y Hardening de Cabeceras
+**Estado:** Realizado
+**Análisis:**
+- Se identificó que `src/pages/search-index.json.ts` no implementaba la sanitización y truncamiento descrita en la memoria de seguridad, generando riesgos de DoS por payloads grandes y XSS almacenado (aunque mitigado por el cliente).
+- Se detectó que `src/layouts/Layout.astro` exponía la versión del framework mediante la etiqueta `meta generator`.
+**Cambios:**
+- Se creó `src/utils/sanitizer.ts` con la función `sanitizeForSearch` (strip HTML + truncamiento) y sus respectivos tests unitarios.
+- Se actualizó `src/pages/search-index.json.ts` para aplicar esta sanitización a los campos de título (100 chars) y descripción (200 chars).
+- Se eliminó la etiqueta `<meta name="generator" ... />` de `src/layouts/Layout.astro`.
+**Aprendizaje (si aplica):** La sanitización en el servidor (o build time) es crucial para la defensa en profundidad, reduciendo la superficie de ataque antes de que los datos lleguen al cliente.
