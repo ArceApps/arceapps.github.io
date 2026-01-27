@@ -316,3 +316,23 @@
 - Modificado `src/components/Footer.astro`: Iconos de redes sociales/tiendas.
 - Modificado `src/scripts/blog.ts`: Icono del botón de copiar código (generado dinámicamente).
 - Verificado mediante script `verification/verify_aria_hidden.py` que la mayoría de los iconos ahora están ocultos correctamente a tecnologías de asistencia.
+
+## 2026-01-27 - Accesibilidad en Navegación del Blog
+
+**Revisión:**
+- Se analizaron `src/pages/blog/[...page].astro` y `src/pages/blog/tag/[tag].astro`.
+- Se detectó que los enlaces de tags, la paginación y el botón de retorno ("Volver al blog") carecían de estilos explícitos de foco (`focus-visible`).
+- Los controles de paginación eran enlaces de texto simple sin iconos de dirección, reduciendo la affordance visual.
+- Los iconos de dirección añadidos o existentes carecían de `aria-hidden="true"`.
+
+**Propuesta:**
+- Implementar `focus-visible` consistente (anillo primario) en tags, paginación y botón de retorno.
+- Añadir iconos direccionales (`arrow_back`, `arrow_forward`) a los controles de paginación para mejorar la experiencia visual.
+- Asegurar que todos los iconos decorativos estén ocultos a tecnologías de asistencia.
+
+**Realizado:**
+- Modificado `src/pages/blog/[...page].astro`:
+  - Tags: añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none`.
+  - Paginación: convertidos a flexbox, añadido iconos con `aria-hidden="true"`, y aplicado estilos de foco.
+- Modificado `src/pages/blog/tag/[tag].astro`:
+  - Enlace "Volver al blog": añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded` y `aria-hidden="true"` al icono.
