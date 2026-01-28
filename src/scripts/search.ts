@@ -217,5 +217,4 @@ export function initSearchComponent() {
 }
 
 // Initialize on page load and view transitions
-initSearchComponent();
 document.addEventListener("astro:page-load", initSearchComponent);
