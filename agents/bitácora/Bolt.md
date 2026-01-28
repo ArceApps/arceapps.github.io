@@ -256,3 +256,13 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Reducción del trabajo de renderizado inicial. El navegador ahora solo procesa el layout de las secciones inferiores cuando se acercan al viewport.
 - **Eficiencia:** Mejora en métricas de INP y FCP al liberar el hilo principal durante la carga crítica.
+
+## 2026-01-27 - [Dimensiones Explícitas en Imágenes Hero]
+**Revisado:** `src/pages/blog/[...slug].astro`, `src/pages/devlog/[...slug].astro`.
+**Propuesta:** Se identificó que las imágenes Hero en las páginas de detalle de Blog y Bitácora carecían de atributos `width` y `height` explícitos. Aunque el contenedor tiene `aspect-ratio` por CSS, añadir estos atributos al HTML mejora la capacidad del navegador para calcular el layout antes de que cargue el CSS y previene potenciales cambios de diseño acumulativos (CLS) en contextos donde el CSS falle o tarde.
+**Cambios Realizados:**
+1.  Se añadieron `width="1280"` y `height="720"` a la etiqueta `<img>` en `src/pages/blog/[...slug].astro`.
+2.  Se añadieron `width="1280"` y `height="720"` a la etiqueta `<img>` en `src/pages/devlog/[...slug].astro`.
+**Impacto:**
+- **Rendimiento:** Asegura que el espacio para la imagen LCP (Largest Contentful Paint) esté reservado inmediatamente en el árbol DOM.
+- **Estabilidad:** Refuerza la prevención de CLS.
