@@ -66,7 +66,7 @@
 **Cambios:**
 - `ContactForm.astro`: Se añadieron límites estrictos: Nombre (100), Email (254 - estándar RFC), Mensaje (5000).
 - `Search.astro`: Se limitó la búsqueda a 100 caracteres para prevenir consultas abusivas.
-**Aprendizaje (si aplica):** La validación en el cliente (HTML5 constraints) es la primera línea de defensa contra inputs malformados o abusivos, mejorando la robustez y UX antes de que los datos lleguen a la lógica de negocio.
+**Aprendizaje (si aplica):** La validación en el cliente (HTML5 constraints) es la primera línea de defensa contra inputs malformados o abusivos, mejorando la robustez y UX antes de que los datos lleguen al cliente.
 
 ## 2026-01-16 - Sanitización Automática de Enlaces en Markdown
 **Estado:** Realizado
@@ -171,3 +171,9 @@
 - Se actualizó `src/pages/search-index.json.ts` para aplicar esta sanitización a los campos de título (100 chars) y descripción (200 chars).
 - Se eliminó la etiqueta `<meta name="generator" ... />` de `src/layouts/Layout.astro`.
 **Aprendizaje (si aplica):** La sanitización en el servidor (o build time) es crucial para la defensa en profundidad, reduciendo la superficie de ataque antes de que los datos lleguen al cliente.
+
+## 2026-01-28 - Implementación de Sanitización en Recolección de RSS
+**Estado:** Realizado
+**Análisis:** Se detectó que `scripts/fetch-rss.js` extraía contenido de feeds RSS externos sin sanitización ni truncamiento adecuados. Esto presentaba un riesgo de Denegación de Servicio (DoS) por payloads excesivamente grandes y potencial inyección de contenido malicioso en el sistema de agentes (Curator).
+**Cambios:** Se modificó `scripts/fetch-rss.js` para usar `JSDOM` para limpiar etiquetas HTML de forma robusta y se implementó un límite estricto de caracteres (150 para títulos, 500 para snippets). Se normalizaron los espacios en blanco.
+**Aprendizaje (si aplica):** Nunca confiar en datos externos, incluso de fuentes "conocidas". La sanitización debe ocurrir en la frontera de entrada (Input Boundary).
