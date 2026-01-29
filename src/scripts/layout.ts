@@ -1,7 +1,7 @@
 let scrollObserver: IntersectionObserver | undefined;
 let fadeObserver: IntersectionObserver | undefined;
 
-function initLayout() {
+export function initLayout() {
   // Clean up previous observers
   if (scrollObserver) {
     scrollObserver.disconnect();
@@ -92,7 +92,7 @@ function initLayout() {
   }
 }
 
-function initServiceWorker() {
+export function initServiceWorker() {
   // Service Worker Registration
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
@@ -110,5 +110,4 @@ function initServiceWorker() {
 window.addEventListener("load", initServiceWorker);
 
 // View Transitions load (fires on initial load too)
-initLayout();
 document.addEventListener("astro:page-load", initLayout);

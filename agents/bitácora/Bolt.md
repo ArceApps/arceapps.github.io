@@ -266,3 +266,14 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Asegura que el espacio para la imagen LCP (Largest Contentful Paint) esté reservado inmediatamente en el árbol DOM.
 - **Estabilidad:** Refuerza la prevención de CLS.
+
+## 2026-01-28 - [Optimización de Ejecución de Scripts y Prevención de Fugas de Memoria en Header]
+**Revisado:** `src/components/Header.astro`, `src/scripts/layout.ts`, `src/scripts/search.ts`.
+**Propuesta:** Se detectó que el script del Header (menú móvil, tema) estaba inline, lo que causaba su re-ejecución completa en cada navegación con View Transitions, acumulando listeners en `document` y ejecutando lógica redundante. Además, `layout.ts` y `search.ts` ejecutaban su inicialización dos veces en la carga inicial (una por llamada manual y otra por evento `astro:page-load`).
+**Cambios Realizados:**
+1.  Se extrajo la lógica de `Header.astro` a un módulo TypeScript externo `src/scripts/header.ts` con exportación de `initHeader`.
+2.  Se eliminaron las llamadas manuales a `initLayout` y `initSearchComponent` en `src/scripts/layout.ts` y `src/scripts/search.ts`, confiando únicamente en `document.addEventListener("astro:page-load", ...)` para evitar doble ejecución.
+3.  Se añadieron tests unitarios para verificar la lógica de inicialización en `src/scripts/header.test.ts` y `src/scripts/layout.test.ts`.
+**Impacto:**
+- **Rendimiento:** Eliminación de ejecución duplicada de scripts en la carga inicial. Prevención de acumulación de event listeners en `document` durante la navegación.
+- **Calidad de Código:** Mejora en la testabilidad y mantenibilidad al extraer lógica a módulos TypeScript puros.
