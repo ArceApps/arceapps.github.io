@@ -1,0 +1,45 @@
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="400" fill="#f0f4f8"/>
+
+  <!-- Gemini/AI Core - Blue/Purple Gradient hint via solid colors -->
+  <circle cx="400" cy="200" r="70" fill="#4285F4" opacity="0.1"/>
+  <circle cx="400" cy="200" r="55" stroke="#4285F4" stroke-width="3"/>
+
+  <!-- Star/Sparkle Icon (Gemini-like) -->
+  <path d="M400 160 L410 190 L440 200 L410 210 L400 240 L390 210 L360 200 L390 190 Z" fill="#4285F4"/>
+
+  <!-- Orbiting Skills - Skill 1 (Kotlin/Android) - Green -->
+  <g transform="translate(400, 200) rotate(30) translate(120, 0) rotate(-30)">
+    <circle r="30" fill="#3DDC84" opacity="0.2"/>
+    <circle r="25" stroke="#3DDC84" stroke-width="2" fill="white"/>
+    <!-- Simple Android head hint -->
+    <path d="M-10 5 L10 5 L10 -5 A 10 10 0 0 0 -10 -5 Z" fill="#3DDC84"/>
+    <line x1="-5" y1="-5" x2="-8" y2="-12" stroke="#3DDC84" stroke-width="2"/>
+    <line x1="5" y1="-5" x2="8" y2="-12" stroke="#3DDC84" stroke-width="2"/>
+  </g>
+
+  <!-- Orbiting Skills - Skill 2 (Commits) - Orange/Git -->
+  <g transform="translate(400, 200) rotate(150) translate(120, 0) rotate(-150)">
+    <circle r="30" fill="#F4511E" opacity="0.2"/>
+    <circle r="25" stroke="#F4511E" stroke-width="2" fill="white"/>
+    <!-- Git branch hint -->
+    <circle cx="-8" cy="5" r="3" fill="#F4511E"/>
+    <circle cx="8" cy="-5" r="3" fill="#F4511E"/>
+    <path d="M-8 5 L-8 -5 Q-8 5 0 0 T8 -5" stroke="#F4511E" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Orbiting Skills - Skill 3 (Tools) - Purple -->
+  <g transform="translate(400, 200) rotate(270) translate(120, 0) rotate(-270)">
+    <circle r="30" fill="#9C27B0" opacity="0.2"/>
+    <circle r="25" stroke="#9C27B0" stroke-width="2" fill="white"/>
+    <rect x="-10" y="-10" width="20" height="20" rx="2" stroke="#9C27B0" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- Orbit Paths -->
+  <circle cx="400" cy="200" r="120" stroke="#B0BEC5" stroke-width="1" stroke-dasharray="8 8"/>
+
+  <!-- Text Label -->
+  <text x="400" y="330" font-family="monospace" font-size="16" fill="#5F6368" text-anchor="middle" letter-spacing="3">GEMINI & COPILOT</text>
+  <text x="400" y="360" font-family="sans-serif" font-weight="bold" font-size="28" fill="#202124" text-anchor="middle">AGENT SKILLS</text>
+</svg>
