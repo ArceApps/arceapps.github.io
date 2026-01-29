@@ -266,3 +266,16 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Asegura que el espacio para la imagen LCP (Largest Contentful Paint) esté reservado inmediatamente en el árbol DOM.
 - **Estabilidad:** Refuerza la prevención de CLS.
+
+## 2026-01-28 - [Extracción de Lógica de Header y Optimización de Ejecución]
+**Revisado:** `src/components/Header.astro`.
+**Propuesta:** Se identificó que la lógica de cliente del Header (menú móvil, cambio de tema) estaba inline dentro del componente `.astro`. Esto impedía su cacheo eficiente por el navegador, dificultaba las pruebas unitarias y provocaba una ejecución redundante del script de inicialización (`initHeader` se llamaba manualmente y también vía `astro:page-load`, ejecutándose dos veces en la carga inicial).
+**Cambios Realizados:**
+1.  Se extrajo la lógica a un nuevo módulo `src/scripts/header.ts`.
+2.  Se refactorizó el componente `src/components/Header.astro` para importar el script (`<script src="...">`) en lugar de incluirlo inline.
+3.  Se eliminó la llamada manual a `initHeader()` en el script, confiando únicamente en el evento `astro:page-load` (que dispara tanto en carga inicial como en navegación), eliminando la doble ejecución.
+4.  Se creó un test unitario `src/scripts/header.test.ts` para verificar la lógica.
+**Impacto:**
+- **Rendimiento:** Mejor cacheabilidad del script (ahora es un módulo externo gestionado por Vite).
+- **Eficiencia:** Eliminación de la doble ejecución de lógica de inicialización en la carga.
+- **Calidad de Código:** Código más limpio, modular y testable.
