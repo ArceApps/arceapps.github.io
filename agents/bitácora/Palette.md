@@ -337,6 +337,23 @@
 - Modificado `src/pages/blog/tag/[tag].astro`:
   - Enlace "Volver al blog": añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded` y `aria-hidden="true"` al icono.
 
+
+## 2026-01-29 - Accesibilidad en Página 404 y Scroll to Top
+
+**Revisión:**
+- Se analizaron `src/pages/404.astro`, `src/layouts/Layout.astro` y `src/scripts/layout.ts`.
+- Se detectó que los iconos en los botones de acción de la página 404 carecían de `aria-hidden="true"`, pudiendo generar ruido en lectores de pantalla.
+- Se observó que el botón "Volver arriba" (Scroll to Top) permanecía en el árbol de accesibilidad (tab order) incluso cuando estaba visualmente oculto, permitiendo que usuarios de teclado hicieran foco en un elemento invisible.
+
+**Propuesta:**
+- Añadir `aria-hidden="true"` a los iconos decorativos de la página 404.
+- Gestionar dinámicamente la accesibilidad del botón "Volver arriba": eliminarlo del tab order (`tabindex="-1"`) y ocultarlo a tecnologías de asistencia (`aria-hidden="true"`) cuando no es visible.
+
+**Realizado:**
+- Modificado `src/pages/404.astro`: Añadido `aria-hidden="true"` a los iconos de los botones "Volver al Inicio" y "Leer el Blog".
+- Modificado `src/layouts/Layout.astro`: Añadidos atributos `tabindex="-1"` y `aria-hidden="true"` al estado inicial del botón `#scroll-to-top`.
+- Modificado `src/scripts/layout.ts`: Actualizada la lógica del `IntersectionObserver` para alternar los atributos `tabindex` y `aria-hidden` según la visibilidad del botón.
+
 ## 2026-01-28 - Soporte para Preferencia de Movimiento Reducido
 
 **Revisión:**

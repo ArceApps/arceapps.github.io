@@ -31,6 +31,8 @@ export function initLayout() {
               "opacity-100",
               "pointer-events-auto",
             );
+            scrollBtn.removeAttribute("tabindex");
+            scrollBtn.setAttribute("aria-hidden", "false");
           } else {
             scrollBtn.classList.add(
               "translate-y-20",
@@ -42,6 +44,8 @@ export function initLayout() {
               "opacity-100",
               "pointer-events-auto",
             );
+            scrollBtn.setAttribute("tabindex", "-1");
+            scrollBtn.setAttribute("aria-hidden", "true");
           }
         });
       },

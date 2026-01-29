@@ -201,6 +201,8 @@ const socialImageURL = new URL(image, Astro.url);
     <button
       id="scroll-to-top"
       aria-label="Volver arriba"
+      tabindex="-1"
+      aria-hidden="true"
       class="fixed bottom-8 right-8 z-50 bg-primary text-white w-12 h-12 rounded-full shadow-lg elevation-4 flex items-center justify-center translate-y-20 opacity-0 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/50 hover:bg-primary-dark hover:scale-110 pointer-events-none"
     >
       <span class="material-icons" aria-hidden="true">arrow_upward</span>
