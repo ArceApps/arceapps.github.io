@@ -328,8 +328,10 @@ const techStack = [
       0 6px 6px rgba(0, 0, 0, 0.23);
   }
 
-  .animate-fade-in {
-    animation: fadeIn 1s ease-out;
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-in {
+      animation: fadeIn 1s ease-out;
+    }
   }
 
   @keyframes fadeIn {

@@ -51,7 +51,13 @@ function initLayout() {
     scrollObserver.observe(scrollSentinel);
 
     scrollBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
     });
   }
 
@@ -59,22 +65,30 @@ function initLayout() {
   const fadeElements = document.querySelectorAll(".fade-in-section");
 
   if (fadeElements.length > 0) {
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.1,
-    };
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-    fadeObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
+    if (prefersReducedMotion) {
+      fadeElements.forEach((el) => el.classList.add("is-visible"));
+    } else {
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
 
-    fadeElements.forEach((el) => fadeObserver!.observe(el));
+      fadeObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      fadeElements.forEach((el) => fadeObserver!.observe(el));
+    }
   }
 }
 
