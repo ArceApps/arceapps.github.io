@@ -2,7 +2,6 @@
 const CACHE_NAME = 'arceapps-v1';
 const ASSETS_TO_CACHE = [
   '/',
-  '/favicon.svg',
   '/logo.png',
   '/manifest.json'
 ];

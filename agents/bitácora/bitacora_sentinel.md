@@ -172,8 +172,20 @@
 - Se eliminó la etiqueta `<meta name="generator" ... />` de `src/layouts/Layout.astro`.
 **Aprendizaje (si aplica):** La sanitización en el servidor (o build time) es crucial para la defensa en profundidad, reduciendo la superficie de ataque antes de que los datos lleguen al cliente.
 
-## 2026-01-28 - Implementación de Sanitización en Recolección de RSS
+## 2026-01-28 - Sanitización de Recolección de RSS
 **Estado:** Realizado
 **Análisis:** Se detectó que `scripts/fetch-rss.js` extraía contenido de feeds RSS externos sin sanitización ni truncamiento adecuados. Esto presentaba un riesgo de Denegación de Servicio (DoS) por payloads excesivamente grandes y potencial inyección de contenido malicioso en el sistema de agentes (Curator).
 **Cambios:** Se modificó `scripts/fetch-rss.js` para usar `JSDOM` para limpiar etiquetas HTML de forma robusta y se implementó un límite estricto de caracteres (150 para títulos, 500 para snippets). Se normalizaron los espacios en blanco.
 **Aprendizaje (si aplica):** Nunca confiar en datos externos, incluso de fuentes "conocidas". La sanitización debe ocurrir en la frontera de entrada (Input Boundary).
+
+## 2026-01-29 - Hardening de Dependencias y Fiabilidad de SW
+**Estado:** Realizado
+**Análisis:**
+- Se detectó una vulnerabilidad moderada (Prototype Pollution) en `lodash` (dependencia transitiva) mediante `pnpm audit`.
+- Se identificó que el Service Worker (`sw.js`) intentaba cachear `/favicon.svg`, archivo inexistente, lo que provocaba un fallo en la instalación del SW y pérdida de funcionalidad offline.
+- Se encontraron tests unitarios rotos (`layout.test.ts`) debido a falta de mocking en el entorno JSDOM.
+**Cambios:**
+- Se añadió `pnpm.overrides` en `package.json` forzando `lodash` a `^4.17.23`.
+- Se eliminó `/favicon.svg` de la lista de caché en `sw.js`.
+- Se arregló el entorno de pruebas mockeando `window.matchMedia`.
+**Aprendizaje (si aplica):** La seguridad incluye la disponibilidad. Un Service Worker roto impide que la aplicación funcione en condiciones adversas. Además, mantener un CI verde (tests pasando) es vital para detectar regresiones de seguridad rápidamente.
