@@ -337,6 +337,7 @@
 - Modificado `src/pages/blog/tag/[tag].astro`:
   - Enlace "Volver al blog": añadido `focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded` y `aria-hidden="true"` al icono.
 
+
 ## 2026-01-29 - Accesibilidad en Página 404 y Scroll to Top
 
 **Revisión:**
@@ -352,3 +353,26 @@
 - Modificado `src/pages/404.astro`: Añadido `aria-hidden="true"` a los iconos de los botones "Volver al Inicio" y "Leer el Blog".
 - Modificado `src/layouts/Layout.astro`: Añadidos atributos `tabindex="-1"` y `aria-hidden="true"` al estado inicial del botón `#scroll-to-top`.
 - Modificado `src/scripts/layout.ts`: Actualizada la lógica del `IntersectionObserver` para alternar los atributos `tabindex` y `aria-hidden` según la visibilidad del botón.
+
+## 2026-01-28 - Soporte para Preferencia de Movimiento Reducido
+
+**Revisión:**
+- Se analizó `src/styles/global.css`, `src/scripts/layout.ts` y `src/pages/about-me.astro`.
+- Se detectó que las animaciones de entrada (`fade-in`, `fade-in-section`) y el desplazamiento suave (`scroll-smooth`) se aplicaban incondicionalmente.
+- Esto puede causar malestar a usuarios con sensibilidad al movimiento (trastornos vestibulares).
+
+**Propuesta:**
+- Implementar soporte global para `prefers-reduced-motion`.
+- Deshabilitar animaciones de entrada y desplazamiento suave cuando la preferencia está activa.
+- Hacer que el contenido sea visible inmediatamente sin depender del scroll.
+
+**Realizado:**
+- Modificado `src/styles/global.css`:
+  - Añadido bloque `@media (prefers-reduced-motion: reduce)` para forzar `scroll-behavior: auto`.
+  - Envuelto animaciones `.fade-in` y transiciones `.fade-in-section` en `@media (prefers-reduced-motion: no-preference)`.
+- Modificado `src/scripts/layout.ts`:
+  - Añadida detección de `prefers-reduced-motion` en `initLayout`.
+  - Si está activo, se muestran elementos `.fade-in-section` inmediatamente y se salta el `IntersectionObserver`.
+  - El botón "Volver arriba" usa comportamiento `auto` en lugar de `smooth`.
+- Modificado `src/pages/about-me.astro`:
+  - Envuelta animación personalizada `.animate-fade-in` en media query de no-preferencia.

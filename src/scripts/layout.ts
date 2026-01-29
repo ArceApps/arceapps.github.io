@@ -1,7 +1,7 @@
 let scrollObserver: IntersectionObserver | undefined;
 let fadeObserver: IntersectionObserver | undefined;
 
-function initLayout() {
+export function initLayout() {
   // Clean up previous observers
   if (scrollObserver) {
     scrollObserver.disconnect();
@@ -55,7 +55,13 @@ function initLayout() {
     scrollObserver.observe(scrollSentinel);
 
     scrollBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      window.scrollTo({
+        top: 0,
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+      });
     });
   }
 
@@ -63,26 +69,34 @@ function initLayout() {
   const fadeElements = document.querySelectorAll(".fade-in-section");
 
   if (fadeElements.length > 0) {
-    const observerOptions = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.1,
-    };
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-    fadeObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
+    if (prefersReducedMotion) {
+      fadeElements.forEach((el) => el.classList.add("is-visible"));
+    } else {
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      };
 
-    fadeElements.forEach((el) => fadeObserver!.observe(el));
+      fadeObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      fadeElements.forEach((el) => fadeObserver!.observe(el));
+    }
   }
 }
 
-function initServiceWorker() {
+export function initServiceWorker() {
   // Service Worker Registration
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
@@ -100,5 +114,4 @@ function initServiceWorker() {
 window.addEventListener("load", initServiceWorker);
 
 // View Transitions load (fires on initial load too)
-initLayout();
 document.addEventListener("astro:page-load", initLayout);
