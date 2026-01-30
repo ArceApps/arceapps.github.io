@@ -189,3 +189,15 @@
 - Se eliminó `/favicon.svg` de la lista de caché en `sw.js`.
 - Se arregló el entorno de pruebas mockeando `window.matchMedia`.
 **Aprendizaje (si aplica):** La seguridad incluye la disponibilidad. Un Service Worker roto impide que la aplicación funcione en condiciones adversas. Además, mantener un CI verde (tests pasando) es vital para detectar regresiones de seguridad rápidamente.
+
+## 2026-01-30 - Mitigación de DoS en Parser XML
+**Estado:** Realizado
+**Análisis:**
+- Se detectó una vulnerabilidad de severidad ALTA (DoS Numeric Entities Bug) en `fast-xml-parser` versiones `< 5.3.4` mediante `pnpm audit`.
+- Esta librería es una dependencia transitiva de `@astrojs/rss`, utilizada para la generación de feeds RSS del blog.
+- La vulnerabilidad permitía ataques de Denegación de Servicio mediante entidades numéricas malformadas.
+**Cambios:**
+- Se añadió un override en `package.json` para forzar el uso de `fast-xml-parser` versión `^5.3.4`.
+- Se verificó la eliminación de la vulnerabilidad con `pnpm audit`.
+- Se confirmó la integridad del build con `pnpm build`.
+**Aprendizaje (si aplica):** Las vulnerabilidades en dependencias transitivas deben ser mitigadas proactivamente mediante overrides si los paquetes padres no han lanzado actualizaciones oportunas, especialmente cuando afectan la disponibilidad (DoS).
