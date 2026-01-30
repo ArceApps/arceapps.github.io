@@ -22,7 +22,7 @@ const { Content } = await app.render();
     <div class="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
 
     <!-- Decorative Blurs -->
-    <div class="absolute top-20 right-20 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] animate-pulse"></div>
+    <div class="absolute top-20 right-20 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] animate-pulse motion-reduce:animate-none"></div>
     <div class="absolute bottom-20 left-20 w-[400px] h-[400px] bg-secondary/10 rounded-full blur-[80px]"></div>
 
     <div class="container mx-auto px-4 relative z-10 py-20">
@@ -111,7 +111,7 @@ const { Content } = await app.render();
 
         <!-- Hero Image -->
         <div class="order-1 lg:order-2 flex justify-center perspective-1000">
-          <div class="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl transform rotate-y-12 hover:rotate-y-0 transition-transform duration-700 bg-gray-200 dark:bg-gray-800">
+          <div class="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl transform rotate-y-12 hover:rotate-y-0 transition-transform duration-700 motion-reduce:transform-none motion-reduce:transition-none bg-gray-200 dark:bg-gray-800">
             {app.data.heroImage ? (
               <img
                 src={app.data.heroImage}
@@ -181,10 +181,12 @@ const { Content } = await app.render();
   .perspective-1000 {
     perspective: 1000px;
   }
-  .rotate-y-12 {
-    transform: rotateY(-12deg) rotateX(5deg);
-  }
-  .hover\:rotate-y-0:hover {
-    transform: rotateY(0) rotateX(0);
+  @media (prefers-reduced-motion: no-preference) {
+    .rotate-y-12 {
+      transform: rotateY(-12deg) rotateX(5deg);
+    }
+    .hover\:rotate-y-0:hover {
+      transform: rotateY(0) rotateX(0);
+    }
   }
 </style>
