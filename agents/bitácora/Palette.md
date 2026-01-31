@@ -376,3 +376,22 @@
   - El botón "Volver arriba" usa comportamiento `auto` en lugar de `smooth`.
 - Modificado `src/pages/about-me.astro`:
   - Envuelta animación personalizada `.animate-fade-in` en media query de no-preferencia.
+
+## 2026-01-31 - Estilos de Impresión
+
+**Revisión:**
+- Se analizó `src/styles/global.css`.
+- Se detectó que el sitio carecía de estilos específicos para impresión (`@media print`), lo que resultaba en impresiones desordenadas, con elementos de navegación innecesarios y colores de fondo que desperdician tinta.
+
+**Propuesta:**
+- Implementar una hoja de estilos de impresión en `src/styles/global.css` para optimizar la legibilidad en papel y PDF.
+- Ocultar elementos de navegación (`header`, `footer`), botones de acción (`#scroll-to-top`) y otros elementos decorativos.
+- Forzar alto contraste (fondo blanco, texto negro) y expandir enlaces externos para referencia.
+
+**Realizado:**
+- Modificado `src/styles/global.css`:
+  - Añadido bloque `@media print` al final del archivo.
+  - Configurado `display: none` para `header`, `footer`, `#scroll-to-top`, `.no-print`.
+  - Reseteado márgenes y anchos para aprovechar el papel.
+  - Añadido `content: " (" attr(href) ")"` para enlaces externos.
+  - Evitados saltos de página en encabezados y artículos.

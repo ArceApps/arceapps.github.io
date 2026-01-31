@@ -154,3 +154,47 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Print Styles */
+@media print {
+  /* Hide non-essential elements */
+  header, footer, #scroll-to-top, .no-print {
+    display: none !important;
+  }
+
+  /* Reset layout */
+  body, main {
+    background: white !important;
+    color: black !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Typography readability */
+  p, h1, h2, h3, h4, h5, h6, li {
+    color: #000 !important;
+    text-shadow: none !important;
+  }
+
+  /* Expand links for reference */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    word-break: break-all;
+  }
+
+  /* Ensure images are visible */
+  img {
+    max-width: 100% !important;
+    break-inside: avoid;
+  }
+
+  /* Page breaks */
+  h1, h2 {
+    break-after: avoid;
+  }
+  article {
+    break-inside: avoid;
+  }
+}
