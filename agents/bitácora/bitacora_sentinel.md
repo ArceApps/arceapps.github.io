@@ -189,3 +189,14 @@
 - Se eliminó `/favicon.svg` de la lista de caché en `sw.js`.
 - Se arregló el entorno de pruebas mockeando `window.matchMedia`.
 **Aprendizaje (si aplica):** La seguridad incluye la disponibilidad. Un Service Worker roto impide que la aplicación funcione en condiciones adversas. Además, mantener un CI verde (tests pasando) es vital para detectar regresiones de seguridad rápidamente.
+
+## 2026-01-30 - Fix RSS Draft Leak & Dependency Vulnerability
+**Estado:** Realizado
+**Análisis:**
+- Se detectó que `src/pages/rss.xml.js` incluía posts en borrador (`draft: true`) en el feed RSS público, lo que constituye una fuga de información.
+- Se identificó una vulnerabilidad de alta severidad (DoS) en `fast-xml-parser` (dependencia transitiva de `@astrojs/rss`).
+**Cambios:**
+- Se actualizó la consulta en `src/pages/rss.xml.js` para filtrar posts donde `draft` sea verdadero.
+- Se añadió un override en `package.json` para forzar `fast-xml-parser` a la versión `^5.3.4`, mitigando la vulnerabilidad.
+- Se verificó la ausencia de borradores en el feed generado y la resolución de la vulnerabilidad con `pnpm audit`.
+**Aprendizaje (si aplica):** La seguridad de contenido requiere consistencia en todos los canales de distribución. Si se filtran borradores en la web, también deben filtrarse en RSS, sitemaps y búsquedas.
