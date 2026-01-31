@@ -277,3 +277,14 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Eliminación de ejecución duplicada de scripts en la carga inicial. Prevención de acumulación de event listeners en `document` durante la navegación.
 - **Calidad de Código:** Mejora en la testabilidad y mantenibilidad al extraer lógica a módulos TypeScript puros.
+
+## 2026-02-05 - [Optimización de Renderizado en Hero (Radial Gradient)]
+**Revisado:** `src/components/Hero.astro`.
+**Propuesta:** Se identificó que el uso de filtros CSS `blur-3xl` (blur de 64px) en los blobs decorativos del fondo del Hero era computacionalmente costoso, especialmente para el renderizado en dispositivos móviles, ya que fuerza al navegador a aplicar una convolución pesada.
+**Cambios Realizados:**
+1.  Se reemplazaron los `div` con clases `bg-primary/10` y `blur-3xl` por `div` con `radial-gradient` utilizando `color-mix`.
+2.  La implementación usa `radial-gradient(closest-side, color-mix(in srgb, var(--color-primary), transparent 90%) 0%, transparent 100%)` para replicar el efecto visual de difuminado sin usar filtros de desenfoque.
+3.  Se mantuvieron las clases de opacidad (`opacity-50`, `dark:opacity-20`) para preservar el equilibrio visual en modos claro y oscuro.
+**Impacto:**
+- **Rendimiento:** Mejora en el rendimiento de renderizado (paint/composite) al eliminar filtros costosos del hilo de composición.
+- **Eficiencia:** Reducción del uso de GPU/CPU para efectos decorativos simples.
