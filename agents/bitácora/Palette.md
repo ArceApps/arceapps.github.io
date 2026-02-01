@@ -376,3 +376,25 @@
   - El botón "Volver arriba" usa comportamiento `auto` en lugar de `smooth`.
 - Modificado `src/pages/about-me.astro`:
   - Envuelta animación personalizada `.animate-fade-in` en media query de no-preferencia.
+
+## 2026-01-30 - Soporte Ampliado para Movimiento Reducido
+
+**Revisión:**
+- Se analizaron `src/components/Search.astro`, `src/components/Header.astro`, `src/components/Hero.astro`, `src/pages/404.astro`, `src/pages/index.astro`, `src/pages/apps/[...slug].astro` y `src/components/ContactForm.astro`.
+- Se detectó que animaciones como `animate-fade-in-down` (Búsqueda), `animate-pulse` (Home, 404, Hero, Apps), rotaciones 3D (Apps), transiciones de rotación (Tema) y spinners de carga (Contacto) no respetaban la preferencia de `prefers-reduced-motion: reduce`.
+- Esto podía causar problemas a usuarios con sensibilidad vestibular.
+
+**Propuesta:**
+- Envolver animaciones personalizadas en media queries de no-preferencia.
+- Utilizar variantes `motion-reduce:animate-none`, `motion-reduce:transition-none` y `motion-reduce:transform-none` (o equivalentes) para deshabilitar efectos cuando sea necesario.
+- Asegurar que la funcionalidad visual (spinner) siga siendo comprensible sin movimiento.
+
+**Realizado:**
+- Modificado `src/components/Search.astro`: Envuelta animación `.animate-fade-in-down` en `@media (prefers-reduced-motion: no-preference)`.
+- Modificado `src/components/Header.astro`: Añadido `motion-reduce:duration-0` a los iconos de cambio de tema.
+- Modificado `src/pages/404.astro`: Añadido `motion-reduce:animate-none` al círculo pulsante.
+- Modificado `src/pages/index.astro`: Añadido `motion-reduce:animate-none` al indicador "Building in Public".
+- Modificado `src/components/Hero.astro`: Añadido `motion-reduce:animate-none` al indicador de estado.
+- Modificado `src/pages/apps/[...slug].astro`: Añadido `motion-reduce:animate-none` al fondo decorativo y `motion-reduce:transform-none` a la imagen 3D.
+- Modificado `src/components/ContactForm.astro`: Actualizado script para añadir `motion-reduce:animate-none` junto con `animate-spin`.
+- Verificado mediante script de Playwright (`verification/verify_reduced_motion.py`) y capturas de pantalla, confirmando la ausencia de movimiento en modo reducido.

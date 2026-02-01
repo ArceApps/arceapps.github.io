@@ -86,7 +86,7 @@ const isActive = (href: string) => {
           <!-- Moon Icon (Visible in Light Mode -> Action: Go Dark) -->
           <span
             id="icon-dark"
-            class="material-icons absolute inset-0 text-xl transform transition-all duration-500 rotate-0 scale-100 opacity-100 dark:-rotate-90 dark:scale-0 dark:opacity-0"
+            class="material-icons absolute inset-0 text-xl transform transition-all duration-500 motion-reduce:duration-0 rotate-0 scale-100 opacity-100 dark:-rotate-90 dark:scale-0 dark:opacity-0"
             aria-hidden="true"
           >
             dark_mode
@@ -94,7 +94,7 @@ const isActive = (href: string) => {
           <!-- Sun Icon (Visible in Dark Mode -> Action: Go Light) -->
           <span
             id="icon-light"
-            class="material-icons absolute inset-0 text-xl transform transition-all duration-500 rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100"
+            class="material-icons absolute inset-0 text-xl transform transition-all duration-500 motion-reduce:duration-0 rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100"
             aria-hidden="true"
           >
             light_mode

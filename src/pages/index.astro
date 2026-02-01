@@ -31,7 +31,7 @@ const apps = (await getCollection("apps", ({ data }) => !data.draft))
         <div class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:p-8 rounded-2xl bg-surface-variant/30 dark:bg-dark-surface-variant/30 border border-gray-200 dark:border-gray-700">
           <div class="flex-1">
             <div class="inline-flex items-center gap-2 mb-3">
-              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse motion-reduce:animate-none"></span>
               <span class="text-sm font-bold text-primary tracking-wide uppercase">Building in Public</span>
             </div>
             <h2 class="text-2xl md:text-3xl font-bold mb-3 text-on-surface dark:text-dark-on-surface">

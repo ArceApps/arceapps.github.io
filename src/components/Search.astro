@@ -71,7 +71,9 @@
       transform: translateY(0);
     }
   }
-  .animate-fade-in-down {
-    animation: fade-in-down 0.2s ease-out;
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-in-down {
+      animation: fade-in-down 0.2s ease-out;
+    }
   }
 </style>
