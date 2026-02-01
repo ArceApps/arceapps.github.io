@@ -201,3 +201,13 @@
 - Se verificó la eliminación de la vulnerabilidad con `pnpm audit`.
 - Se confirmó la integridad del build con `pnpm build`.
 **Aprendizaje (si aplica):** Las vulnerabilidades en dependencias transitivas deben ser mitigadas proactivamente mediante overrides si los paquetes padres no han lanzado actualizaciones oportunas, especialmente cuando afectan la disponibilidad (DoS).
+
+## 2026-02-01 - Prevención de XSS en Colecciones de Contenido
+**Estado:** Realizado
+**Análisis:**
+- Se identificó que los campos de URL en el esquema de la colección de contenido (`src/content/config.ts`) utilizaban `z.string().url()`, lo cual permite esquemas inseguros como `javascript:`.
+- Esto presentaba un riesgo de XSS Almacenado si un actor malicioso lograba introducir contenido manipulado en el repositorio (ej. `repoUrl: "javascript:alert(1)"`).
+**Cambios:**
+- Se refinó la validación en `src/content/config.ts` añadiendo `.regex(/^https?:\/\//)` a los campos `repoUrl`, `demoUrl`, `googlePlayUrl` y `realIconUrl`.
+- Esto obliga a que los enlaces comiencen explícitamente con `http://` o `https://`.
+**Aprendizaje (si aplica):** La validación `z.string().url()` de Zod solo verifica la estructura de la URL, no el protocolo. Para prevenir XSS, es necesario restringir explícitamente los esquemas permitidos (whitelist).
