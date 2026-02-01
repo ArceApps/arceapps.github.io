@@ -289,3 +289,13 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento (Render):** Reducción de la carga en la GPU al eliminar filtros de desenfoque costosos.
 - **Eficiencia (JS):** Eliminación de ejecución duplicada de lógica de inicialización en el formulario de contacto.
+
+## 2026-02-01 - [Prefetching de Búsqueda y Manejo de Concurrencia]
+**Revisado:** `src/scripts/search.ts`.
+**Propuesta:** Se identificó que la inicialización del buscador (`initFuse`) podía desencadenar múltiples peticiones de red si se llamaba concurrentemente. Además, el índice de búsqueda solo se cargaban al hacer clic, causando latencia.
+**Cambios Realizados:**
+1.  Se implementó una variable `loadingPromise` para gestionar el estado de la carga asíncrona, evitando peticiones duplicadas.
+2.  Se añadió un listener `mouseenter` al botón de búsqueda para iniciar la carga (`prefetch`) cuando el usuario pasa el mouse.
+**Impacto:**
+- **Rendimiento:** Eliminación de condiciones de carrera en la descarga del índice.
+- **UX:** Mejora en la velocidad percibida del buscador al precargar recursos.
