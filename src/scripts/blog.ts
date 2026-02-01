@@ -53,14 +53,20 @@ export function setupCopyButtons() {
       navigator.clipboard
         .writeText(text)
         .then(() => {
-          const originalIcon = button.innerHTML;
+          // Visual feedback
           button.innerHTML =
             '<span class="material-icons" aria-hidden="true">check</span>';
-          button.classList.add("text-green-400"); // Visual feedback
+          button.classList.add("text-green-400");
+          button.setAttribute("aria-label", "¡Copiado!");
+          button.title = "¡Copiado!";
 
           setTimeout(() => {
-            button.innerHTML = originalIcon;
+            // Restore original state
+            button.innerHTML =
+              '<span class="material-icons" aria-hidden="true">content_copy</span>';
             button.classList.remove("text-green-400");
+            button.setAttribute("aria-label", "Copiar código");
+            button.title = "Copiar código";
           }, 2000);
         })
         .catch((err) => {

@@ -398,3 +398,20 @@
 - Modificado `src/pages/apps/[...slug].astro`: Añadido `motion-reduce:animate-none` al fondo decorativo y `motion-reduce:transform-none` a la imagen 3D.
 - Modificado `src/components/ContactForm.astro`: Actualizado script para añadir `motion-reduce:animate-none` junto con `animate-spin`.
 - Verificado mediante script de Playwright (`verification/verify_reduced_motion.py`) y capturas de pantalla, confirmando la ausencia de movimiento en modo reducido.
+
+## 2026-02-01 - Accesibilidad de Feedback en Copia de Código
+
+**Revisión:**
+- Se analizó `src/scripts/blog.ts`.
+- Se detectó que el botón de copiar código cambiaba visualmente (icono check) pero no notificaba a los lectores de pantalla del éxito de la acción.
+- El `aria-label` permanecía como "Copiar código" incluso después de copiar exitosamente.
+
+**Propuesta:**
+- Actualizar el `aria-label` y `title` del botón a "¡Copiado!" cuando la acción es exitosa.
+- Revertir estos atributos a su estado original ("Copiar código") después de 2 segundos, sincronizado con el feedback visual.
+
+**Realizado:**
+- Modificado `src/scripts/blog.ts`:
+  - Se implementó lógica para cambiar `aria-label` y `title` a "¡Copiado!" en el evento de éxito del portapapeles.
+  - Se añadió lógica de restauración que fuerza los valores a "Copiar código" después de 2000ms, evitando condiciones de carrera con clics rápidos.
+- Verificado mediante tests unitarios (`src/scripts/blog.test.ts`) y script de verificación visual con Playwright.

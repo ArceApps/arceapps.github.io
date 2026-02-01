@@ -45,6 +45,8 @@ describe('Blog Script', () => {
         // Check visual feedback (async)
         await new Promise(resolve => setTimeout(resolve, 0));
         expect(btn.classList.contains('text-green-400')).toBe(true);
+        expect(btn.getAttribute('aria-label')).toBe('¡Copiado!');
+        expect(btn.title).toBe('¡Copiado!');
     });
   });
 
