@@ -277,3 +277,15 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento:** Eliminación de ejecución duplicada de scripts en la carga inicial. Prevención de acumulación de event listeners en `document` durante la navegación.
 - **Calidad de Código:** Mejora en la testabilidad y mantenibilidad al extraer lógica a módulos TypeScript puros.
+
+## 2026-01-29 - [Optimización de Renderizado Hero y Corrección Script Contacto]
+**Revisado:** `src/components/Hero.astro`, `src/components/ContactForm.astro`.
+**Propuesta:**
+1. Se identificó que `Hero.astro` utilizaba filtros CSS costosos (`blur-3xl`) para efectos de fondo decorativos, lo que puede afectar el rendimiento de renderizado (Compositor) en dispositivos móviles. Se propuso reemplazarlo con `radial-gradient` y `color-mix`.
+2. Se detectó que el script de `ContactForm.astro` ejecutaba su inicialización dos veces en la carga inicial (manual + evento `astro:page-load`), causando redundancia en la asignación de listeners.
+**Cambios Realizados:**
+1.  **Hero:** Se reemplazaron los `div` con clases `blur-3xl` por `div` con estilo inline `background: radial-gradient(...)` utilizando `color-mix` para replicar la transparencia del tema.
+2.  **ContactForm:** Se eliminó la llamada manual a `initContactForm()` al final del script, confiando únicamente en el listener `astro:page-load`.
+**Impacto:**
+- **Rendimiento (Render):** Reducción de la carga en la GPU al eliminar filtros de desenfoque costosos.
+- **Eficiencia (JS):** Eliminación de ejecución duplicada de lógica de inicialización en el formulario de contacto.
