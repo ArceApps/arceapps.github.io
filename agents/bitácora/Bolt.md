@@ -289,3 +289,13 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento (Render):** Reducción de la carga en la GPU al eliminar filtros de desenfoque costosos.
 - **Eficiencia (JS):** Eliminación de ejecución duplicada de lógica de inicialización en el formulario de contacto.
+
+## 2026-02-02 - [Optimización de Renderizado en Portfolio]
+**Revisado:** `src/pages/apps/index.astro`
+**Propuesta:** Se identificó que la página de portfolio (`apps/index.astro`) utilizaba filtros CSS costosos (`blur-3xl`) para los elementos decorativos de fondo, lo que genera una carga innecesaria en el compositor de la GPU, especialmente en dispositivos móviles.
+**Cambios Realizados:**
+1.  Se reemplazaron los `div` con clases `blur-3xl` por `div` con `radial-gradient` y `color-mix`, replicando el estilo visual pero con un método de renderizado más eficiente.
+2.  Se aseguró el uso de `pointer-events-none` y `aria-hidden` implícito (al ser divs vacíos) para evitar interferencias en la interacción.
+**Impacto:**
+- **Rendimiento:** Reducción del uso de la GPU y memoria al eliminar capas de composición pesadas creadas por el filtro de desenfoque.
+- **Consistencia:** Alineación con la optimización previamente implementada en `Hero.astro`.
