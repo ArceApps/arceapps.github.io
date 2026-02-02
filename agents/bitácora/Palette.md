@@ -398,3 +398,20 @@
 - Modificado `src/pages/apps/[...slug].astro`: Añadido `motion-reduce:animate-none` al fondo decorativo y `motion-reduce:transform-none` a la imagen 3D.
 - Modificado `src/components/ContactForm.astro`: Actualizado script para añadir `motion-reduce:animate-none` junto con `animate-spin`.
 - Verificado mediante script de Playwright (`verification/verify_reduced_motion.py`) y capturas de pantalla, confirmando la ausencia de movimiento en modo reducido.
+
+## 2026-01-31 - Estado Vacío y Optimización en Portafolio
+
+**Revisión:**
+- Se analizó `src/pages/apps/index.astro`.
+- Se detectó la ausencia de un estado vacío ("Empty State") cuando no hay aplicaciones disponibles, mostrando una rejilla vacía.
+- Se observó el uso de filtros `blur-3xl` en los elementos decorativos del fondo, lo cual es costoso en términos de rendimiento de renderizado en comparación con la técnica de `radial-gradient` usada en `Hero.astro`.
+
+**Propuesta:**
+- Implementar un estado vacío amigable con icono y texto explicativo para mejorar la experiencia de usuario cuando no hay contenido.
+- Reemplazar los filtros de desenfoque por gradientes radiales con `color-mix` para optimizar el rendimiento y mantener la consistencia visual con la Home.
+
+**Realizado:**
+- Modificado `src/pages/apps/index.astro`:
+  - Añadida lógica condicional para mostrar un mensaje "Aún no hay aplicaciones" si `apps.length === 0`.
+  - Reemplazados los `div` con `blur-3xl` por `div` con `background: radial-gradient(...)` y `opacity-50`, alineándose con la implementación de `Hero.astro`.
+- Verificado mediante script de Playwright: el build de producción se genera correctamente y la página de aplicaciones se renderiza con el nuevo fondo optimizado.
