@@ -201,3 +201,13 @@
 - Se verificó la eliminación de la vulnerabilidad con `pnpm audit`.
 - Se confirmó la integridad del build con `pnpm build`.
 **Aprendizaje (si aplica):** Las vulnerabilidades en dependencias transitivas deben ser mitigadas proactivamente mediante overrides si los paquetes padres no han lanzado actualizaciones oportunas, especialmente cuando afectan la disponibilidad (DoS).
+
+## 2026-01-31 - Leak de Borradores en RSS
+**Estado:** Realizado
+**Análisis:**
+- Se detectó que el endpoint `src/pages/rss.xml.js` recuperaba la colección 'blog' completa sin aplicar el filtro de borradores (`draft: true`).
+- Esto exponía contenido en progreso o no autorizado en el feed RSS público, permitiendo el acceso a información que debería estar oculta.
+**Cambios:**
+- Se modificó `src/pages/rss.xml.js` para incluir una función de filtrado en `getCollection('blog', ({ data }) => !data.draft)`.
+- Se verificó la corrección creando un post borrador y confirmando su ausencia en `dist/rss.xml`.
+**Aprendizaje (si aplica):** La función `getCollection` de Astro devuelve *todos* los elementos por defecto. Siempre se debe aplicar un filtro explícito para excluir borradores o contenido privado en *cualquier* punto de acceso (listados, búsqueda, RSS).
