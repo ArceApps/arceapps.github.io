@@ -289,3 +289,15 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento (Render):** Reducción de la carga en la GPU al eliminar filtros de desenfoque costosos.
 - **Eficiencia (JS):** Eliminación de ejecución duplicada de lógica de inicialización en el formulario de contacto.
+
+## 2026-02-03 - [Optimización de Renderizado en Listado de Apps]
+**Revisado:** `src/pages/apps/index.astro`, `src/components/AppCard.astro`.
+**Propuesta:**
+1. Se identificó que la página de listado de aplicaciones utilizaba filtros CSS costosos (`blur-3xl`) para efectos de fondo decorativos, similar al problema encontrado previamente en `Hero.astro`.
+2. Se detectó que el componente `src/components/AppCard.astro` no se estaba utilizando en ningún lugar del proyecto (código muerto).
+**Cambios Realizados:**
+1. **Apps List:** Se reemplazaron los `div` con clases `blur-3xl` por `div` con estilo inline `background: radial-gradient(...)` utilizando `color-mix` y `opacity` para replicar el efecto visual sin el coste de rendimiento del filtro de desenfoque.
+2. **Cleanup:** Se eliminó el archivo `src/components/AppCard.astro`.
+**Impacto:**
+- **Rendimiento (Render):** Reducción de la carga en la GPU y memoria al eliminar capas de composición pesadas generadas por filtros de desenfoque.
+- **Mantenibilidad:** Eliminación de código muerto para reducir la deuda técnica.
