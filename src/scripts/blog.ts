@@ -40,7 +40,7 @@ export function setupCopyButtons() {
 
     const button = document.createElement("button");
     button.className =
-      "copy-code-btn focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none";
+      "copy-code-btn focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none print:hidden";
     button.innerHTML =
       '<span class="material-icons" aria-hidden="true">content_copy</span>';
     button.title = "Copiar código";

@@ -177,11 +177,11 @@ const socialImageURL = new URL(image, Astro.url);
       });
     </script>
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body class="flex flex-col min-h-screen print:bg-white print:text-black">
     <!-- Scroll Sentinel -->
     <div
       id="scroll-sentinel"
-      class="absolute top-0 w-full h-[300px] pointer-events-none -z-50"
+      class="absolute top-0 w-full h-[300px] pointer-events-none -z-50 print:hidden"
       aria-hidden="true"
     >
     </div>
@@ -203,7 +203,7 @@ const socialImageURL = new URL(image, Astro.url);
       aria-label="Volver arriba"
       tabindex="-1"
       aria-hidden="true"
-      class="fixed bottom-8 right-8 z-50 bg-primary text-white w-12 h-12 rounded-full shadow-lg elevation-4 flex items-center justify-center translate-y-20 opacity-0 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/50 hover:bg-primary-dark hover:scale-110 pointer-events-none"
+      class="fixed bottom-8 right-8 z-50 bg-primary text-white w-12 h-12 rounded-full shadow-lg elevation-4 flex items-center justify-center translate-y-20 opacity-0 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/50 hover:bg-primary-dark hover:scale-110 pointer-events-none print:hidden"
     >
       <span class="material-icons" aria-hidden="true">arrow_upward</span>
     </button>

@@ -46,7 +46,7 @@ const relatedPosts = allPosts
 
 <Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description}>
   <!-- Progress Bar -->
-  <div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-[100] bg-transparent">
+  <div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-[100] bg-transparent print:hidden">
     <div id="progress-bar" class="h-full bg-secondary w-0 transition-all duration-100 ease-out"></div>
   </div>
 
@@ -99,10 +99,10 @@ const relatedPosts = allPosts
 
     <!-- Main Grid Layout -->
     <div class="container mx-auto px-4 max-w-6xl">
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 print:block">
 
         <!-- Sidebar (Desktop TOC) -->
-        <aside class="hidden lg:block lg:col-span-1">
+        <aside class="hidden lg:block lg:col-span-1 print:hidden">
           <div class="sticky top-24">
             {tocHeadings.length > 0 && (
               <nav class="p-4 bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800">
@@ -138,10 +138,10 @@ const relatedPosts = allPosts
         </aside>
 
         <!-- Content Column -->
-        <div class="lg:col-span-3">
+        <div class="lg:col-span-3 print:w-full">
 
           <!-- Mobile TOC -->
-          <div class="lg:hidden mb-8">
+          <div class="lg:hidden mb-8 print:hidden">
              {tocHeadings.length > 0 && (
                 <details class="bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden group">
                    <summary class="p-4 flex items-center justify-between cursor-pointer font-bold text-on-surface dark:text-dark-on-surface list-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-xl">
@@ -180,7 +180,7 @@ const relatedPosts = allPosts
           <!-- Share / Back (Mobile only since desktop has it in sidebar, or keep bottom one as well?)
                User asked for responsive. Keeping a bottom nav is good UX.
           -->
-          <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 lg:hidden">
+          <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 lg:hidden print:hidden">
              <a href="/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
                 <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
                 Volver al Blog
@@ -193,7 +193,7 @@ const relatedPosts = allPosts
 
     <!-- Related Articles -->
     {relatedPosts.length > 0 && (
-      <div class="mt-20 py-16 bg-surface-variant/30 dark:bg-dark-surface-variant/30 fade-in-section">
+      <div class="mt-20 py-16 bg-surface-variant/30 dark:bg-dark-surface-variant/30 fade-in-section print:hidden">
          <div class="container mx-auto px-4 max-w-6xl">
             <h2 class="text-3xl font-bold mb-10 text-on-surface dark:text-dark-on-surface text-center flex items-center justify-center gap-3">
                <span class="material-icons text-primary text-4xl" aria-hidden="true">style</span>

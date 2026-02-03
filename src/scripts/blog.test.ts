@@ -31,6 +31,7 @@ describe('Blog Script', () => {
         blogModule.setupCopyButtons();
         const btn = document.querySelector('.copy-code-btn');
         expect(btn).not.toBeNull();
+        expect(btn?.classList.contains('print:hidden')).toBe(true);
     });
 
     it('should copy text on click', async () => {

@@ -398,3 +398,25 @@
 - Modificado `src/pages/apps/[...slug].astro`: Añadido `motion-reduce:animate-none` al fondo decorativo y `motion-reduce:transform-none` a la imagen 3D.
 - Modificado `src/components/ContactForm.astro`: Actualizado script para añadir `motion-reduce:animate-none` junto con `animate-spin`.
 - Verificado mediante script de Playwright (`verification/verify_reduced_motion.py`) y capturas de pantalla, confirmando la ausencia de movimiento en modo reducido.
+
+## 2026-01-31 - Estilos de Impresión
+
+**Revisión:**
+- Se analizó el sitio para verificar su comportamiento al imprimir.
+- Se detectó que elementos de navegación (Header, Footer, Sidebar, TOC), decorativos (blobs, scroll-to-top) y modales (Búsqueda) permanecían visibles, consumiendo tinta innecesaria y desordenando el contenido.
+- El contenido del blog no aprovechaba el ancho completo del papel al imprimirse debido a la columna lateral vacía.
+- Los botones de "Copiar código" aparecían en la impresión, lo cual es redundante en papel.
+
+**Propuesta:**
+- Ocultar todos los elementos de navegación y decorativos mediante `print:hidden`.
+- Forzar el contenedor principal de contenido a ancho completo (`print:w-full`) y bloque (`print:block`).
+- Asegurar alto contraste (`print:bg-white`, `print:text-black`) globalmente.
+- Ocultar dinámicamente los botones de copiar código generados por JavaScript.
+
+**Realizado:**
+- Modificado `src/styles/global.css`: Añadido reset global para impresión (`@media print`) forzando fondo blanco y texto negro.
+- Modificado `src/layouts/Layout.astro`: Ocultado botón "Volver arriba" y aplicado estilos globales al body.
+- Modificado componentes `Header.astro`, `Footer.astro`, `Search.astro`, `Hero.astro`: Añadido `print:hidden` a contenedores principales y elementos decorativos.
+- Modificado `src/pages/blog/[...slug].astro`: Ocultado sidebar y TOC. Aplicado `print:w-full` al contenedor de prosa.
+- Modificado `src/scripts/blog.ts`: Añadido clase `print:hidden` al botón de copiar código generado.
+- Verificado mediante pruebas automatizadas (Playwright) y revisión visual de capturas de pantalla emulando medios de impresión.
