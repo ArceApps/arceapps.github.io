@@ -398,3 +398,19 @@
 - Modificado `src/pages/apps/[...slug].astro`: Añadido `motion-reduce:animate-none` al fondo decorativo y `motion-reduce:transform-none` a la imagen 3D.
 - Modificado `src/components/ContactForm.astro`: Actualizado script para añadir `motion-reduce:animate-none` junto con `animate-spin`.
 - Verificado mediante script de Playwright (`verification/verify_reduced_motion.py`) y capturas de pantalla, confirmando la ausencia de movimiento en modo reducido.
+
+## 2026-02-04 - Soporte de Movimiento Reducido en Tarjetas
+
+**Revisión:**
+- Se analizaron `src/components/ProjectCard.astro` y `src/components/BlogCard.astro`.
+- Se detectó que las tarjetas tenían animaciones de escala y traslación en hover (`scale-102`, `scale-110`, `translate-x-1`) que se ejecutaban incluso cuando el usuario tenía activada la preferencia `prefers-reduced-motion: reduce`.
+- Esto podía causar malestar vestibular a ciertos usuarios.
+
+**Propuesta:**
+- Añadir modificadores `motion-reduce:transform-none` y `motion-reduce:transition-none` a los contenedores principales y elementos internos animados (imágenes, iconos).
+- Asegurar que la funcionalidad básica de enlace y visibilidad se mantenga intacta.
+
+**Realizado:**
+- Modificado `src/components/ProjectCard.astro`: Añadido `motion-reduce` utilities al contenedor principal, imagen hero y enlace de "Ver Detalles".
+- Modificado `src/components/BlogCard.astro`: Añadido `motion-reduce` utilities al contenedor principal, imagen hero e icono de flecha "Leer artículo".
+- Verificado mediante script de Playwright (`verification/verify_reduced_motion_cards.spec.ts`) que confirma que no ocurren transformaciones bajo simulación de movimiento reducido.
