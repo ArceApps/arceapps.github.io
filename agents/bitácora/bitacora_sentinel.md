@@ -201,3 +201,13 @@
 - Se verificó la eliminación de la vulnerabilidad con `pnpm audit`.
 - Se confirmó la integridad del build con `pnpm build`.
 **Aprendizaje (si aplica):** Las vulnerabilidades en dependencias transitivas deben ser mitigadas proactivamente mediante overrides si los paquetes padres no han lanzado actualizaciones oportunas, especialmente cuando afectan la disponibilidad (DoS).
+
+## 2026-02-04 - Mitigación XSS en Esquema de Contenido (URI Schemes)
+**Estado:** Realizado
+**Análisis:**
+- Se detectó que la validación `z.string().url()` en `src/content/config.ts` aceptaba el protocolo `javascript:`, permitiendo potenciales ataques XSS si se inyectaran enlaces maliciosos en campos como `repoUrl` o `demoUrl`.
+- Aunque la entrada es interna, la falta de validación de protocolo viola el principio de defensa en profundidad.
+**Cambios:**
+- Se actualizó el esquema de `appsCollection` en `src/content/config.ts`.
+- Se añadió `.regex(/^https?:\/\//)` a los campos `realIconUrl`, `repoUrl`, `demoUrl` y `googlePlayUrl` para restringir los enlaces estrictamente a HTTP/HTTPS.
+**Aprendizaje (si aplica):** La validación de URL estándar (`z.string().url()`) no es suficiente para prevenir XSS, ya que los navegadores y entornos JS consideran `javascript:` como una URL válida. Se debe validar explícitamente el protocolo.
