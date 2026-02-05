@@ -12,8 +12,8 @@ const apps = (await getCollection("apps", ({ data }) => !data.draft)).sort(
   <div class="relative bg-surface dark:bg-dark-surface py-20 md:py-32 overflow-hidden">
     <!-- Background Elements -->
     <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10"></div>
-    <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
-    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
+    <div class="absolute -top-40 -right-40 w-96 h-96 opacity-50 dark:opacity-20 pointer-events-none" style="background: radial-gradient(circle, color-mix(in srgb, var(--color-primary), transparent 90%) 0%, transparent 70%);"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 opacity-50 dark:opacity-20 pointer-events-none" style="background: radial-gradient(circle, color-mix(in srgb, var(--color-secondary), transparent 90%) 0%, transparent 70%);"></div>
 
     <div class="container mx-auto px-4 relative z-10 text-center">
       <h1 class="text-5xl md:text-6xl font-extrabold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
@@ -25,7 +25,7 @@ const apps = (await getCollection("apps", ({ data }) => !data.draft)).sort(
     </div>
   </div>
 
-  <section class="py-16 md:py-24 bg-surface-variant/30 dark:bg-dark-surface-variant/30">
+  <section class="py-16 md:py-24 bg-surface-variant/30 dark:bg-dark-surface-variant/30 cv-auto" style="contain-intrinsic-size: 800px;">
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {apps.map((app) => (

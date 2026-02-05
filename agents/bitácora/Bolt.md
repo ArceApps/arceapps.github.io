@@ -289,3 +289,15 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento (Render):** Reducción de la carga en la GPU al eliminar filtros de desenfoque costosos.
 - **Eficiencia (JS):** Eliminación de ejecución duplicada de lógica de inicialización en el formulario de contacto.
+
+## 2026-01-30 - [Optimización de Renderizado en Índice de Apps]
+**Revisado:** `src/pages/apps/index.astro`.
+**Propuesta:**
+1. Se identificó que la cabecera de la sección "Portfolio" utilizaba filtros `blur-3xl` en elementos decorativos, lo que es costoso para la GPU (Compositor), especialmente en dispositivos móviles.
+2. La lista de aplicaciones no utilizaba `content-visibility: auto`, renderizando todo el grid incluso si estaba fuera de pantalla.
+**Cambios Realizados:**
+1. Se reemplazaron los filtros `blur-3xl` por `radial-gradient` utilizando `color-mix` para lograr el mismo efecto visual con mucho menor costo computacional.
+2. Se añadió `cv-auto` (content-visibility: auto) y `contain-intrinsic-size` a la sección del grid de aplicaciones para diferir el renderizado de contenido fuera del viewport.
+**Impacto:**
+- **Rendimiento (Render):** Reducción de la carga de la GPU al eliminar filtros de desenfoque.
+- **Rendimiento (Layout):** Mejora del tiempo de carga inicial al saltar el layout de la sección de apps si no está visible inmediatamente.
