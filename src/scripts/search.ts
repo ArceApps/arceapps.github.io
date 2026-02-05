@@ -3,6 +3,7 @@
 // Module-level state (persists across View Transitions)
 let fuse: any;
 let searchIndex: any[] = [];
+let loadingPromise: Promise<void> | undefined;
 
 // DOM Element References (refreshed on each navigation)
 let searchModal: HTMLElement | null = null;
@@ -67,48 +68,54 @@ export function closeModal() {
 
 export async function initFuse() {
   if (searchIndex.length > 0) return;
+  if (loadingPromise) return loadingPromise;
 
-  // Show loading state
-  if (searchStatus) {
-    searchStatus.innerHTML =
-      '<div class="flex items-center justify-center gap-2"><span class="material-icons animate-spin">refresh</span><span>Cargando índice...</span></div>';
-    searchStatus.classList.remove("hidden");
-  }
+  loadingPromise = (async () => {
+    // Show loading state
+    if (searchStatus) {
+      searchStatus.innerHTML =
+        '<div class="flex items-center justify-center gap-2"><span class="material-icons animate-spin">refresh</span><span>Cargando índice...</span></div>';
+      searchStatus.classList.remove("hidden");
+    }
 
-  try {
-    // Parallelize fetching index and loading library
-    const [response, { default: Fuse }] = await Promise.all([
-      fetch("/search-index.json"),
-      import("fuse.js"),
-    ]);
+    try {
+      // Parallelize fetching index and loading library
+      const [response, { default: Fuse }] = await Promise.all([
+        fetch("/search-index.json"),
+        import("fuse.js"),
+      ]);
 
-    if (!response.ok) {
+      if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      searchIndex = await response.json();
+
+      fuse = new Fuse(searchIndex, {
+        keys: [
+          { name: "title", weight: 0.7 },
+          { name: "description", weight: 0.3 },
+          { name: "tags", weight: 0.2 },
+        ],
+        includeScore: true,
+        threshold: 0.4,
+      });
+
+      // Clear loading state if input is empty
+      if (searchInput && searchInput.value === "" && searchStatus) {
+        searchStatus.textContent = "Escribe para buscar...";
+      } else if (searchInput && searchInput.value !== "") {
+        performSearch(searchInput.value);
+      }
+    } catch (error) {
+      console.error("Error loading search index:", error);
+      if (searchStatus)
+        searchStatus.textContent = "Error al cargar el buscador.";
+      loadingPromise = undefined; // Allow retry on error
     }
+  })();
 
-    searchIndex = await response.json();
-
-    fuse = new Fuse(searchIndex, {
-      keys: [
-        { name: "title", weight: 0.7 },
-        { name: "description", weight: 0.3 },
-        { name: "tags", weight: 0.2 },
-      ],
-      includeScore: true,
-      threshold: 0.4,
-    });
-
-    // Clear loading state if input is empty
-    if (searchInput && searchInput.value === "" && searchStatus) {
-      searchStatus.textContent = "Escribe para buscar...";
-    } else if (searchInput && searchInput.value !== "") {
-      performSearch(searchInput.value);
-    }
-  } catch (error) {
-    console.error("Error loading search index:", error);
-    if (searchStatus)
-      searchStatus.textContent = "Error al cargar el buscador.";
-  }
+  return loadingPromise;
 }
 
 export function openModal() {
@@ -195,6 +202,8 @@ export function initSearchComponent() {
   // Re-attach event listeners
   if (searchButton) {
       searchButton.addEventListener("click", openModal);
+      searchButton.addEventListener("mouseenter", initFuse);
+      searchButton.addEventListener("focus", initFuse);
   }
 
   if (closeSearch) {
