@@ -23,7 +23,7 @@ const {
 <a
   href={`/apps/${slug}`}
   data-astro-prefetch
-  class="group relative flex flex-col h-full bg-surface dark:bg-dark-surface rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-gray-100 dark:border-gray-800 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transform-gpu"
+  class="group relative flex flex-col h-full bg-surface dark:bg-dark-surface rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:scale-[1.02] motion-reduce:transform-none transition-all duration-300 border border-gray-100 dark:border-gray-800 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transform-gpu"
 >
   <!-- Image Area -->
   <div class="relative h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -36,7 +36,7 @@ const {
           height="224"
           loading="lazy"
           decoding="async"
-          class="w-full h-full object-cover transform group-hover:scale-110 group-focus-visible:scale-110 transition-transform duration-700"
+          class="w-full h-full object-cover transform group-hover:scale-110 group-focus-visible:scale-110 motion-reduce:transform-none transition-transform duration-700"
         />
       ) : (
         <div
@@ -112,7 +112,7 @@ const {
         {pubDate.toLocaleDateString()}
       </span>
       <span
-        class="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 group-focus-visible:translate-x-1 transition-transform"
+        class="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none transition-transform"
       >
         Ver Detalles
         <span class="material-icons ml-1 text-base" aria-hidden="true"
