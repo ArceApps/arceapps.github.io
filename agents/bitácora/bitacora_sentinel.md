@@ -211,3 +211,12 @@
 - Se refinó la validación en `src/content/config.ts` añadiendo `.regex(/^https?:\/\//)` a los campos `repoUrl`, `demoUrl`, `googlePlayUrl` y `realIconUrl`.
 - Esto obliga a que los enlaces comiencen explícitamente con `http://` o `https://`.
 **Aprendizaje (si aplica):** La validación `z.string().url()` de Zod solo verifica la estructura de la URL, no el protocolo. Para prevenir XSS, es necesario restringir explícitamente los esquemas permitidos (whitelist).
+
+## 2026-02-02 - Fix Draft Leakage in RSS Feed
+**Estado:** Realizado
+**Análisis:**
+- Se identificó que `src/pages/rss.xml.js` no filtraba los borradores (`draft: true`) de la colección `blog` al generar el feed RSS.
+- Esto resultaba en la exposición pública de contenido no finalizado o sensible, contradiciendo la política de control de acceso de contenido.
+**Cambios:**
+- Se actualizó `src/pages/rss.xml.js` añadiendo el filtro `({ data }) => !data.draft` a la llamada `getCollection('blog')`.
+**Aprendizaje (si aplica):** Los endpoints de generación de feeds y sitemaps deben aplicar los mismos filtros de visibilidad que las páginas de listado para evitar fugas de información.
