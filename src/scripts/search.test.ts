@@ -76,4 +76,30 @@ describe('Search Script', () => {
         expect(results?.innerHTML).toContain('Test App');
     });
   });
+
+  describe('initSearchComponent', () => {
+    it('should prefetch on mouseenter', () => {
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([]),
+        });
+
+        const button = document.getElementById('search-button');
+        button?.dispatchEvent(new Event('mouseenter'));
+
+        expect(global.fetch).toHaveBeenCalledWith('/search-index.json');
+    });
+
+    it('should prefetch on focus', () => {
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([]),
+        });
+
+        const button = document.getElementById('search-button');
+        button?.dispatchEvent(new Event('focus'));
+
+        expect(global.fetch).toHaveBeenCalledWith('/search-index.json');
+    });
+  });
 });

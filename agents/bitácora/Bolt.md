@@ -301,3 +301,14 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento (Render):** Reducción de la carga de la GPU al eliminar filtros de desenfoque.
 - **Rendimiento (Layout):** Mejora del tiempo de carga inicial al saltar el layout de la sección de apps si no está visible inmediatamente.
+
+## 2026-02-01 - [Optimización de Búsqueda (Prefetch en Hover)]
+**Revisado:** `src/scripts/search.ts`
+**Propuesta:** Se identificó que la carga del índice de búsqueda y la librería `fuse.js` se iniciaba únicamente al hacer clic en el botón de búsqueda, introduciendo una latencia perceptible. Se propuso iniciar la carga anticipadamente cuando el usuario hace hover o focus en el botón.
+**Cambios Realizados:**
+1.  Se implementó un mecanismo de prefetching en `src/scripts/search.ts` añadiendo listeners `mouseenter` y `focus` al botón de búsqueda.
+2.  Se añadió control de concurrencia mediante `loadingPromise` para evitar peticiones duplicadas si el usuario hace hover y click rápidamente.
+3.  Se actualizaron los tests unitarios en `src/scripts/search.test.ts` para verificar la lógica de prefetching.
+**Impacto:**
+- **Rendimiento Percibido:** La funcionalidad de búsqueda está lista casi instantáneamente cuando el usuario decide abrirla, eliminando el tiempo de espera de red y parsing (ahorro estimado de 100-300ms).
+- **Eficiencia:** Prevención de race conditions y llamadas redundantes a la API.
