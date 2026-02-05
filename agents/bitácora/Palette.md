@@ -415,3 +415,19 @@
   - Se implementó lógica para cambiar `aria-label` y `title` a "¡Copiado!" en el evento de éxito del portapapeles.
   - Se añadió lógica de restauración que fuerza los valores a "Copiar código" después de 2000ms, evitando condiciones de carrera con clics rápidos.
 - Verificado mediante tests unitarios (`src/scripts/blog.test.ts`) y script de verificación visual con Playwright.
+
+## 2026-02-05 - Soporte Ampliado para Movimiento Reducido en Tarjetas y Listados
+
+**Revisión:**
+- Se analizaron `src/components/BlogCard.astro`, `src/components/ProjectCard.astro` y `src/pages/devlog/index.astro`.
+- Se detectó que las animaciones de hover (escala de imagen, desplazamiento de flechas, escala de tarjeta) no respetaban `prefers-reduced-motion`.
+- Esto podía causar problemas a usuarios con sensibilidad vestibular.
+
+**Propuesta:**
+- Añadir utilidades `motion-reduce:transform-none` para deshabilitar las transformaciones en hover cuando el usuario prefiere movimiento reducido.
+
+**Realizado:**
+- Modificado `src/components/BlogCard.astro`: Añadido `motion-reduce:transform-none` al contenedor, imagen hero y flecha de acción.
+- Modificado `src/components/ProjectCard.astro`: Añadido `motion-reduce:transform-none` al contenedor, imagen hero y flecha de acción.
+- Modificado `src/pages/devlog/index.astro`: Añadido `motion-reduce:transform-none` al contenedor de tarjeta y a la imagen hero.
+- Verificado mediante inspección estática (`grep`) de las clases aplicadas.

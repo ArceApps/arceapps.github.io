@@ -32,14 +32,14 @@ const defaultImage = "/images/devlog-default.svg";
             </div>
 
             <!-- Card -->
-            <div class="w-[calc(100%-4rem)] ml-16 md:ml-0 md:w-[calc(50%-2.5rem)] bg-surface dark:bg-dark-surface rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 hover:shadow-xl focus-within:shadow-xl transition-all duration-300 hover:-translate-y-1 focus-within:-translate-y-1 overflow-hidden">
+            <div class="w-[calc(100%-4rem)] ml-16 md:ml-0 md:w-[calc(50%-2.5rem)] bg-surface dark:bg-dark-surface rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 hover:shadow-xl focus-within:shadow-xl transition-all duration-300 hover:-translate-y-1 focus-within:-translate-y-1 motion-reduce:transform-none overflow-hidden">
 
               <!-- Hero Image -->
               <div class="aspect-video w-full overflow-hidden relative">
                  <img
                     src={log.data.heroImage || defaultImage}
                     alt={`Portada de ${log.data.title}`}
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
                     loading="lazy"
                     decoding="async"
                  />

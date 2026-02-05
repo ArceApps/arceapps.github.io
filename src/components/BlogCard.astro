@@ -17,7 +17,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-ES", {
 ---
 
 <article
-  class="h-full material-card overflow-hidden flex flex-col hover:shadow-xl hover:scale-[1.02] transition-all duration-300 relative group transform-gpu"
+  class="h-full material-card overflow-hidden flex flex-col hover:shadow-xl hover:scale-[1.02] motion-reduce:transform-none transition-all duration-300 relative group transform-gpu"
 >
   <a
     href={`/blog/${post.slug}/`}
@@ -31,7 +31,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-ES", {
         <img
           src={post.data.heroImage}
           alt={post.data.title}
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          class="w-full h-full object-cover group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500"
           loading="lazy"
           decoding="async"
           width="800"
@@ -79,7 +79,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-ES", {
     >
       Leer artículo
       <span
-        class="material-icons text-base ml-1 group-hover:translate-x-1 transition-transform"
+        class="material-icons text-base ml-1 group-hover:translate-x-1 motion-reduce:transform-none transition-transform"
         aria-hidden="true">arrow_forward</span
       >
     </div>
