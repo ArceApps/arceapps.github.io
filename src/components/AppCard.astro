@@ -20,6 +20,8 @@ const {
   ctaText = "Descargar en Google Play",
   isExternal = true,
 } = Astro.props;
+
+import { optimizeGooglePlayImage } from "../utils/image-optimization";
 ---
 
 <a
@@ -38,7 +40,7 @@ const {
       {
         realIconUrl ? (
           <img
-            src={realIconUrl}
+            src={optimizeGooglePlayImage(realIconUrl, 112, "square")}
             alt={`${title} icon`}
             loading="lazy"
             decoding="async"

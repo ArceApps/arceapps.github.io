@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
+import { optimizeGooglePlayImage } from "../../utils/image-optimization";
 
 export async function getStaticPaths() {
   const apps = await getCollection("apps", ({ data }) => !data.draft);
@@ -39,7 +40,7 @@ const { Content } = await app.render();
 
           <div class="flex items-center gap-4 mb-4">
             {app.data.realIconUrl && (
-              <img src={app.data.realIconUrl} alt={`${app.data.title} icon`} class="w-16 h-16 rounded-2xl shadow-md" />
+              <img src={optimizeGooglePlayImage(app.data.realIconUrl, 128, 'square')} alt={`${app.data.title} icon`} class="w-16 h-16 rounded-2xl shadow-md" />
             )}
             <h1 class="text-5xl md:text-6xl font-black text-on-surface dark:text-dark-on-surface leading-tight">
               {app.data.title}
@@ -114,7 +115,7 @@ const { Content } = await app.render();
           <div class="relative w-full max-w-md aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl transform rotate-y-12 hover:rotate-y-0 transition-transform duration-700 motion-reduce:transform-none motion-reduce:transition-none bg-gray-200 dark:bg-gray-800">
             {app.data.heroImage ? (
               <img
-                src={app.data.heroImage}
+                src={optimizeGooglePlayImage(app.data.heroImage, 800, 'width')}
                 alt={app.data.title}
                 width="400"
                 height="500"

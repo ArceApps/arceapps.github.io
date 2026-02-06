@@ -312,3 +312,16 @@ Este patrón es robusto para interfaces tipo "tarjeta clickable" que contienen a
 **Impacto:**
 - **Rendimiento Percibido:** La funcionalidad de búsqueda está lista casi instantáneamente cuando el usuario decide abrirla, eliminando el tiempo de espera de red y parsing (ahorro estimado de 100-300ms).
 - **Eficiencia:** Prevención de race conditions y llamadas redundantes a la API.
+
+## 2026-02-02 - [Optimización de Imágenes Google Play]
+**Revisado:** `src/components/AppCard.astro`, `src/components/ProjectCard.astro`, `src/pages/apps/[...slug].astro`
+**Propuesta:** Se identificó que las imágenes alojadas en Google Play (iconos y capturas de pantalla) se cargaban con sus dimensiones originales o predeterminadas, a menudo mucho más grandes de lo necesario (ej. 512px para un icono de 64px), desperdiciando ancho de banda y afectando el rendimiento de carga.
+**Cambios Realizados:**
+1.  Se creó una utilidad `optimizeGooglePlayImage` en `src/utils/image-optimization.ts` que inyecta parámetros de redimensionamiento (`=w` y `=s`) en las URLs de Google Play.
+2.  Se actualizó `AppCard.astro` para solicitar iconos de 112px (para mostrar a 56px @2x).
+3.  Se actualizó `ProjectCard.astro` para solicitar imágenes hero de 800px (para mostrar a 400px @2x) e iconos de 128px.
+4.  Se actualizó el detalle de la app (`[...slug].astro`) para usar imágenes optimizadas.
+5.  Se añadieron tests unitarios en `src/utils/image-optimization.test.ts`.
+**Impacto:**
+- **Rendimiento (Red):** Reducción significativa del tamaño de las imágenes transferidas (ej. un icono de 512px pesa ~50KB, redimensionado a 128px pesa ~5KB).
+- **Eficiencia:** Mejor uso de la memoria del navegador al no decodificar imágenes innecesariamente grandes.

@@ -1,4 +1,6 @@
 ---
+import { optimizeGooglePlayImage } from "../utils/image-optimization";
+
 interface Props {
   title: string;
   description: string;
@@ -30,7 +32,7 @@ const {
     {
       heroImage ? (
         <img
-          src={heroImage}
+          src={optimizeGooglePlayImage(heroImage, 800, "width")}
           alt={title}
           width="400"
           height="224"
@@ -57,7 +59,7 @@ const {
       realIconUrl && (
         <div class="absolute top-4 right-4 w-16 h-16 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 backdrop-blur-sm z-10">
           <img
-            src={realIconUrl}
+            src={optimizeGooglePlayImage(realIconUrl, 128, "square")}
             alt={`Icono de ${title}`}
             loading="lazy"
             decoding="async"
