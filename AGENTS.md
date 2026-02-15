@@ -59,6 +59,7 @@ Este archivo sirve como fuente de verdad y contexto para todos los agentes de IA
 
 ### Contenido
 - **Blog:** Tono técnico, explicativo, con ejemplos prácticos.
+- **Referencias:** Todo artículo técnico debe incluir una sección de Bibliografía o Referencias al final.
 - **Frontmatter:** Definido estrictamente en `src/content/config.ts`.
 
 ## 6. Reglas para Agentes
