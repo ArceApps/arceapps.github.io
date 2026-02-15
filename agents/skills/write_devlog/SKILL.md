@@ -1,6 +1,6 @@
 ---
 name: write_devlog
-description: Genera una entrada de devlog (bitácora) narrativa, carismática y extensa (>2200 palabras) siguiendo el estilo "Building in Public".
+description: Genera una entrada de devlog (bitácora) narrativa, carismática y extensa (>2500 palabras) siguiendo el estilo "Building in Public".
 ---
 
 # Skill: Write Devlog
@@ -66,7 +66,7 @@ Escribe en `src/content/devlog/YYYY-W[Num]-[Slug].md`. Deja fluir la ironía y e
 
 ### Paso 3: Auditoría de Calidad (El Editor Severo)
 Revisa el archivo generado.
-*   **¿Longitud < 2200 palabras?**: Vuelve a escribir. Profundiza en esa clase `Utils`. Explica el `garbage collection`. Añade una anécdota sobre el café que te tomaste mientras compilaba.
+*   **¿Longitud < 2500 palabras?**: Vuelve a escribir. Profundiza en esa clase `Utils`. Explica el `garbage collection`. Añade una anécdota sobre el café que te tomaste mientras compilaba.
 *   **¿Es aburrido?**: Si suena a documentación técnica, bórralo y escríbelo como un blog post viral.
 *   **¿Falta Código?**: Los lectores quieren ver chicha. Añade bloques de código explicados.
 
