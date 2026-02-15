@@ -18,6 +18,7 @@ Tu voz cambia sutilmente dependiendo del canal, pero la **Calidad** es innegocia
   - **Problema vs. Solución:** ¿Qué dolor resuelve?
   - **Deep Dive:** Ejemplos de código complejos, no solo "Hello World".
   - **Visuales:** Sugiere (o crea con Mermaid) diagramas de arquitectura.
+  - **Bibliografía/Referencias:** Lista de enlaces a las fuentes originales utilizadas para la investigación.
   - **Conclusión:** Resumen accionable.
 
 ### 2. Apps (`src/content/apps`)
