@@ -43,6 +43,8 @@ export const ui = {
     'apps.subtitle': 'Premium Android Applications.',
     'common.read_more': 'Read more',
     'common.back': 'Back',
+    'philosophy.title': 'Our Philosophy',
+    'philosophy.text': 'We believe in clean and respectful applications. We don\'t want to flood your screen with intrusive ads because we value your experience and good design. However, we are independent developers and also seek to make a living from our passion. That\'s why we strive for a fair balance that allows us to keep creating quality tools for you.',
   },
   es: {
     'nav.home': 'Inicio',
@@ -81,5 +83,7 @@ export const ui = {
     'apps.subtitle': 'Aplicaciones Android Premium.',
     'common.read_more': 'Leer más',
     'common.back': 'Volver',
+    'philosophy.title': 'Nuestra Filosofía',
+    'philosophy.text': 'Creemos en aplicaciones limpias y respetuosas. No queremos inundar tu pantalla de publicidad intrusiva, porque valoramos tu experiencia y el buen diseño. Sin embargo, somos desarrolladores independientes y también buscamos vivir de nuestra pasión. Por eso, buscamos un equilibrio justo que nos permita seguir creando herramientas de calidad para ti.',
   },
 } as const;

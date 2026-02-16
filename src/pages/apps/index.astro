@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
+import PhilosophyCard from "../../components/PhilosophyCard.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../i18n/utils";
 
@@ -29,6 +30,7 @@ const apps = (await getCollection("apps", ({ data, id }) => !data.draft && id.st
 
   <section class="py-16 md:py-24 bg-surface-variant/30 dark:bg-dark-surface-variant/30 cv-auto" style="contain-intrinsic-size: 800px;">
     <div class="container mx-auto px-4">
+      <PhilosophyCard />
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {apps.map((app) => (
           <ProjectCard
