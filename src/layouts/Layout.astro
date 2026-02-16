@@ -5,6 +5,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
+import { getLangFromUrl } from "../i18n/utils";
 
 interface Props {
   title: string;
@@ -13,7 +14,10 @@ interface Props {
   type?: "website" | "article" | "profile";
   publishDate?: Date;
   author?: string;
+  lang?: string;
 }
+
+const lang = Astro.props.lang || getLangFromUrl(Astro.url);
 
 const {
   title,
@@ -29,7 +33,7 @@ const socialImageURL = new URL(image, Astro.url);
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -190,7 +194,7 @@ const socialImageURL = new URL(image, Astro.url);
       href="#main-content"
       class="fixed top-4 left-4 z-[100] -translate-y-[150%] bg-primary text-white px-4 py-2 rounded-lg shadow-lg font-bold focus:translate-y-0 transition-transform duration-300 focus:outline-none focus:ring-4 focus:ring-white/50"
     >
-      Saltar al contenido principal
+      Skip to content
     </a>
     <Header />
     <main id="main-content" class="flex-grow">
@@ -200,7 +204,7 @@ const socialImageURL = new URL(image, Astro.url);
     <!-- Scroll to Top Button -->
     <button
       id="scroll-to-top"
-      aria-label="Volver arriba"
+      aria-label="Scroll to top"
       tabindex="-1"
       aria-hidden="true"
       class="fixed bottom-8 right-8 z-50 bg-primary text-white w-12 h-12 rounded-full shadow-lg elevation-4 flex items-center justify-center translate-y-20 opacity-0 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary/50 hover:bg-primary-dark hover:scale-110 pointer-events-none"

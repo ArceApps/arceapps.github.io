@@ -1,8 +1,11 @@
 ---
 import { Image } from "astro:assets";
 import brandIcon from "../assets/brand-icon.png";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 const currentYear = new Date().getFullYear();
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer class="bg-surface-variant dark:bg-dark-surface-variant pt-16 pb-8 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300 cv-auto" style="contain-intrinsic-size: 400px;">
@@ -10,7 +13,7 @@ const currentYear = new Date().getFullYear();
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
       <!-- Brand -->
       <div class="col-span-1 md:col-span-2">
-        <a href="/" data-astro-prefetch class="flex items-center gap-2 group mb-4 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg p-1 -ml-1">
+        <a href={lang === 'es' ? '/es' : '/'} data-astro-prefetch class="flex items-center gap-2 group mb-4 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg p-1 -ml-1">
           <Image
             src={brandIcon}
             alt="ArceApps Logo"
@@ -23,27 +26,26 @@ const currentYear = new Date().getFullYear();
           </span>
         </a>
         <p class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed max-w-sm">
-          Desarrollando experiencias móviles únicas. Aplicaciones diseñadas con pasión, enfoque en el usuario y los más altos estándares de calidad.
+          {t('footer.brand_desc')}
         </p>
       </div>
 
       <!-- Links -->
       <div>
-        <h3 class="font-bold text-on-surface dark:text-dark-on-surface mb-4">Navegación</h3>
+        <h3 class="font-bold text-on-surface dark:text-dark-on-surface mb-4">{t('footer.navigation')}</h3>
         <ul class="space-y-3">
-          <li><a href="/" data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">Inicio</a></li>
-          <li><a href="/#apps" data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">Aplicaciones</a></li>
-          <li><a href="/about-me" data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">About Me</a></li>
-          <li><a href="/about-me#contact" data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">Contacto</a></li>
+          <li><a href={lang === 'es' ? '/es' : '/'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.home')}</a></li>
+          <li><a href={lang === 'es' ? '/es/apps' : '/apps'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.apps')}</a></li>
+          <li><a href={lang === 'es' ? '/es/about-me' : '/about-me'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.about')}</a></li>
+          <li><a href={lang === 'es' ? '/es/about-me#contact' : '/about-me#contact'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('footer.contact')}</a></li>
         </ul>
       </div>
 
       <!-- Legal & Social -->
       <div>
-        <h3 class="font-bold text-on-surface dark:text-dark-on-surface mb-4">Legal</h3>
+        <h3 class="font-bold text-on-surface dark:text-dark-on-surface mb-4">{t('footer.legal')}</h3>
         <ul class="space-y-3">
-          <li><a href="/politica-privacidad" data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">Política de Privacidad</a></li>
-          <li><a href="/privacy-policy" data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">Privacy Policy (EN)</a></li>
+          <li><a href={lang === 'es' ? '/es/privacy-policy' : '/privacy-policy'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('footer.privacy')}</a></li>
         </ul>
 
         <div class="mt-6 flex gap-4">
@@ -60,8 +62,8 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <div class="border-t border-gray-300 dark:border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant/80 dark:text-dark-on-surface-variant/80">
-      <p>&copy; {currentYear} ArceApps. Todos los derechos reservados.</p>
-      <p>Diseñado con <span class="text-secondary">♥</span> y Material Design.</p>
+      <p>{t('footer.copyright').replace('©', `© ${currentYear}`)}</p>
+      <p>{t('footer.designed_with')} <span class="text-secondary">♥</span> y Material Design.</p>
     </div>
   </div>
 </footer>

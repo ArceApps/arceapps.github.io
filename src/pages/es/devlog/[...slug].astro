@@ -1,12 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import { useTranslations } from '../../i18n/utils';
+import Layout from '../../../layouts/Layout.astro';
+import { useTranslations } from '../../../i18n/utils';
 
-const t = useTranslations('en');
+const t = useTranslations('es');
 
 export async function getStaticPaths() {
-  const posts = await getCollection('devlog', ({ data, id }) => !data.draft && id.startsWith('en/'));
+  const posts = await getCollection('devlog', ({ data, id }) => !data.draft && id.startsWith('es/'));
   return posts.map((post) => ({
     params: { slug: post.slug.split('/').pop() },
     props: post,
@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 const post = Astro.props;
 const { Content } = await post.render();
 
-const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
   weekday: 'long',
   year: 'numeric',
   month: 'long',
@@ -24,11 +24,11 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<Layout title={`${post.data.title} - ArceApps Devlog`} description={post.data.description}>
+<Layout title={`${post.data.title} - ArceApps Bitácora`} description={post.data.description}>
   <article class="pt-24 pb-20">
     <div class="container mx-auto px-4 max-w-4xl">
       <!-- Back Link -->
-      <a href="/devlog" class="inline-flex items-center text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors mb-8 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+      <a href="/es/devlog" class="inline-flex items-center text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors mb-8 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
         <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
         {t('common.back')}
       </a>

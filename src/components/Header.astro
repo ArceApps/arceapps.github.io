@@ -2,13 +2,17 @@
 import { Image } from "astro:assets";
 import brandIcon from "../assets/brand-icon.png";
 import Search from "./Search.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const navItems = [
-  { label: "Inicio", href: "/" },
-  { label: "Apps", href: "/apps" },
-  { label: "Blog", href: "/blog" },
-  { label: "Bitácora", href: "/devlog" },
-  { label: "About Me", href: "/about-me" },
+  { label: t('nav.home'), href: lang === 'es' ? '/es' : '/' },
+  { label: t('nav.apps'), href: lang === 'es' ? '/es/apps' : '/apps' },
+  { label: t('nav.blog'), href: lang === 'es' ? '/es/blog' : '/blog' },
+  { label: t('nav.devlog'), href: lang === 'es' ? '/es/devlog' : '/devlog' },
+  { label: t('nav.about'), href: lang === 'es' ? '/es/about-me' : '/about-me' },
 ];
 
 const { pathname } = Astro.url;
@@ -16,9 +20,27 @@ const normalize = (path: string) => path.replace(/\/$/, "") || "/";
 const currentPath = normalize(pathname);
 
 const isActive = (href: string) => {
-  if (href === "/") return currentPath === "/";
+  if (href === "/" || href === "/es") return currentPath === href;
   return currentPath.startsWith(href);
 };
+
+// Language Toggle Logic
+const currentLang = lang;
+const nextLang = currentLang === 'es' ? 'en' : 'es';
+const nextLangLabel = currentLang === 'es' ? 'EN' : 'ES';
+
+// Simple path replacement for language switching
+// Note: This works perfectly for structural pages. For content with different slugs (blog posts),
+// it might lead to 404s if slugs don't match.
+// Ideally, we would map exact content paths, but for now this covers the main navigation.
+let nextPath = pathname;
+if (currentLang === 'es') {
+  nextPath = pathname.replace(/^\/es/, '') || '/';
+} else {
+  nextPath = '/es' + pathname;
+}
+// Fix double slashes just in case
+nextPath = nextPath.replace(/\/\//g, '/');
 ---
 
 <header
@@ -27,7 +49,7 @@ const isActive = (href: string) => {
   <div class="container mx-auto px-4 h-16 flex items-center justify-between">
     <!-- Logo -->
     <a
-      href="/"
+      href={lang === 'es' ? '/es' : '/'}
       data-astro-prefetch
       class="flex items-center gap-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg p-1"
     >
@@ -75,6 +97,17 @@ const isActive = (href: string) => {
     <div class="flex items-center gap-2">
       <!-- Search -->
       <Search />
+
+      <!-- Language Toggle -->
+      <a
+        id="language-toggle"
+        href={nextPath}
+        class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        aria-label={t('nav.language')}
+        data-lang={nextLang}
+      >
+        {nextLangLabel}
+      </a>
 
       <!-- Theme Toggle -->
       <button
@@ -146,3 +179,17 @@ const isActive = (href: string) => {
 </header>
 
 <script src="../scripts/header.ts"></script>
+<script>
+  // Language preference handler
+  document.addEventListener('astro:page-load', () => {
+    const langToggle = document.getElementById('language-toggle');
+    if (langToggle) {
+      langToggle.addEventListener('click', () => {
+        const nextLang = langToggle.getAttribute('data-lang');
+        if (nextLang) {
+          localStorage.setItem('lang-preference', nextLang);
+        }
+      });
+    }
+  });
+</script>
