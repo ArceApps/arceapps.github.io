@@ -1,45 +1,31 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import BlogCard from "../components/BlogCard.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero.astro";
+import BlogCard from "../../components/BlogCard.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
-import { useTranslations } from "../i18n/utils";
+import { useTranslations } from "../../i18n/utils";
 
-const t = useTranslations('en');
+const t = useTranslations('es');
 
-// Get latest blog posts (English)
-const allPosts = (await getCollection("blog", ({ data, id }) => !data.draft && id.startsWith('en/')))
+// Get latest blog posts (Spanish)
+const allPosts = (await getCollection("blog", ({ data, id }) => !data.draft && id.startsWith('es/')))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-// Get latest devlog entry (English)
-const latestDevlog = (await getCollection("devlog", ({ data, id }) => !data.draft && id.startsWith('en/')))
+// Get latest devlog entry (Spanish)
+const latestDevlog = (await getCollection("devlog", ({ data, id }) => !data.draft && id.startsWith('es/')))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
 
-// Get featured apps (English)
-const apps = (await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('en/')))
+// Get featured apps (Spanish)
+const apps = (await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('es/')))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
 const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
 ---
 
-<Layout title="ArceApps - Premium Android Apps">
-  <!-- Language Detection Script -->
-  <script is:inline>
-    // Detect language and redirect if Spanish
-    // Only redirect if no preference is set and browser is Spanish
-    if (typeof localStorage !== 'undefined' && !localStorage.getItem('lang-preference')) {
-      const lang = navigator.language || navigator.userLanguage;
-      if (lang && lang.startsWith('es')) {
-        window.location.href = '/es/';
-      }
-    }
-    // Set preference on manual switch (handled in Header/Language Toggle if we added click handler,
-    // but typically just linking to /es sets the expectation.
-    // We can assume if they are here, they might want English or got redirected.)
-  </script>
+<Layout title="ArceApps - Apps Android Premium">
 
   <Hero />
 
@@ -61,7 +47,7 @@ const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
             </p>
           </div>
           <div class="shrink-0">
-             <a href={`/devlog/${devlogSlug}`} class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-on-surface dark:text-dark-on-surface font-medium hover:border-primary hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transition-all duration-300 shadow-sm">
+             <a href={`/es/devlog/${devlogSlug}`} class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-on-surface dark:text-dark-on-surface font-medium hover:border-primary hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transition-all duration-300 shadow-sm">
                {t('home.read_entry')}
                <span class="material-icons ml-2 text-sm" aria-hidden="true">arrow_forward</span>
              </a>
@@ -96,7 +82,7 @@ const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
       </div>
 
       <div class="mt-12 text-center">
-        <a href="/apps" class="inline-flex items-center justify-center px-8 py-3 rounded-full border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none transition-all duration-300">
+        <a href="/es/apps" class="inline-flex items-center justify-center px-8 py-3 rounded-full border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none transition-all duration-300">
           {t('home.view_all_apps')}
         </a>
       </div>
@@ -113,7 +99,7 @@ const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
             {t('home.tech_articles_desc')}
           </p>
         </div>
-        <a href="/blog" class="inline-flex items-center font-medium text-primary hover:text-secondary rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:text-secondary transition-colors group">
+        <a href="/es/blog" class="inline-flex items-center font-medium text-primary hover:text-secondary rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:text-secondary transition-colors group">
           {t('home.view_all_articles')}
           <span class="material-icons ml-1 transform group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
         </a>

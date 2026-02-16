@@ -1,5 +1,6 @@
 ---
 import { optimizeGooglePlayImage } from "../utils/image-optimization";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 interface Props {
   title: string;
@@ -20,10 +21,14 @@ const {
   pubDate,
   slug,
 } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
 ---
 
 <a
-  href={`/apps/${slug}`}
+  href={href}
   data-astro-prefetch
   class="group relative flex flex-col h-full bg-surface dark:bg-dark-surface rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:scale-[1.02] motion-reduce:transform-none transition-all duration-300 border border-gray-100 dark:border-gray-800 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transform-gpu"
 >
@@ -111,12 +116,12 @@ const {
       <span
         class="text-sm font-medium text-on-surface-variant/70 dark:text-dark-on-surface-variant/70"
       >
-        {pubDate.toLocaleDateString()}
+        {pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US')}
       </span>
       <span
         class="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none transition-transform"
       >
-        Ver Detalles
+        {t('common.read_more')}
         <span class="material-icons ml-1 text-base" aria-hidden="true"
           >arrow_forward</span
         >

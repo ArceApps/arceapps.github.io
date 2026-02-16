@@ -1,14 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import BlogCard from '../../components/BlogCard.astro';
-import { slugify } from '../../utils/slugs';
-import { useTranslations } from '../../i18n/utils';
+import Layout from '../../../layouts/Layout.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import { slugify } from '../../../utils/slugs';
+import { useTranslations } from '../../../i18n/utils';
 
-const t = useTranslations('en');
+const t = useTranslations('es');
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('en/'));
+  const posts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('es/'));
   return posts.map((post) => ({
     params: { slug: post.slug.split('/').pop() },
     props: post,
@@ -21,7 +21,7 @@ const { Content, headings } = await post.render();
 const wordCount = post.body.split(/\s+/g).length;
 const readingTime = Math.ceil(wordCount / 200);
 
-const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
   weekday: 'long',
   year: 'numeric',
   month: 'long',
@@ -32,7 +32,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 
 // Related posts logic
-const allPosts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('en/'));
+const allPosts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('es/'));
 const currentTags = post.data.tags || [];
 const relatedPosts = allPosts
   .filter(p => p.slug !== post.slug)
@@ -58,8 +58,8 @@ const relatedPosts = allPosts
     <header class="container mx-auto px-4 mb-12 max-w-4xl text-center">
       <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
         {post.data.tags && post.data.tags.map((tag: string) => (
-           <a 
-             href={`/blog/tag/${slugify(tag)}/`}
+           <a
+             href={`/es/blog/tag/${slugify(tag)}/`}
              class="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
            >
              #{tag}
@@ -78,7 +78,7 @@ const relatedPosts = allPosts
         </div>
         <div class="flex items-center">
           <span class="material-icons mr-2 text-primary" aria-hidden="true">schedule</span>
-          <span>⏱️ {readingTime} min read</span>
+          <span>⏱️ {readingTime} min de lectura</span>
         </div>
       </div>
     </header>
@@ -111,7 +111,7 @@ const relatedPosts = allPosts
               <nav class="p-4 bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800">
                 <h2 class="text-lg font-bold mb-4 text-on-surface dark:text-dark-on-surface flex items-center">
                   <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
-                  Table of Contents
+                  Índice
                 </h2>
                 <ul class="space-y-2 text-sm">
                   {tocHeadings.map(heading => (
@@ -132,9 +132,9 @@ const relatedPosts = allPosts
             )}
 
             <div class="mt-8">
-               <a href="/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+               <a href="/es/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
                   <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
-                  {t('common.back')}
+                  Volver al Blog
                </a>
             </div>
           </div>
@@ -150,7 +150,7 @@ const relatedPosts = allPosts
                    <summary class="p-4 flex items-center justify-between cursor-pointer font-bold text-on-surface dark:text-dark-on-surface list-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-xl">
                       <div class="flex items-center">
                          <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
-                         Table of Contents
+                         Índice de contenidos
                       </div>
                       <span class="material-icons group-open:rotate-180 transition-transform" aria-hidden="true">expand_more</span>
                    </summary>
@@ -182,9 +182,9 @@ const relatedPosts = allPosts
 
           <!-- Share / Back (Mobile only) -->
           <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 lg:hidden">
-             <a href="/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+             <a href="/es/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
                 <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
-                {t('common.back')}
+                Volver al Blog
              </a>
           </div>
 
@@ -198,7 +198,7 @@ const relatedPosts = allPosts
          <div class="container mx-auto px-4 max-w-6xl">
             <h2 class="text-3xl font-bold mb-10 text-on-surface dark:text-dark-on-surface text-center flex items-center justify-center gap-3">
                <span class="material-icons text-primary text-4xl" aria-hidden="true">style</span>
-               You might also be interested in
+               También te puede interesar
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                {relatedPosts.map((post) => (
@@ -244,4 +244,4 @@ const relatedPosts = allPosts
   }
 </style>
 
-<script src="../../scripts/blog.ts"></script>
+<script src="../../../scripts/blog.ts"></script>

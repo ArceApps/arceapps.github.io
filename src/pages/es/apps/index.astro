@@ -1,11 +1,11 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
+import Layout from "../../../layouts/Layout.astro";
+import ProjectCard from "../../../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
-import { useTranslations } from "../../i18n/utils";
+import { useTranslations } from "../../../i18n/utils";
 
-const t = useTranslations('en');
-const apps = (await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('en/'))).sort(
+const t = useTranslations('es');
+const apps = (await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('es/'))).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---

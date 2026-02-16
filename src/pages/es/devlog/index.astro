@@ -1,10 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import { useTranslations } from "../../i18n/utils";
+import { useTranslations } from "../../../i18n/utils";
 
-const t = useTranslations('en');
-const devlogs = (await getCollection("devlog", ({ data, id }) => !data.draft && id.startsWith('en/'))).sort(
+const t = useTranslations('es');
+const devlogs = (await getCollection("devlog", ({ data, id }) => !data.draft && id.startsWith('es/'))).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
@@ -42,7 +42,7 @@ const defaultImage = "/images/devlog-default.svg";
               <div class="aspect-video w-full overflow-hidden relative">
                  <img
                     src={log.data.heroImage || defaultImage}
-                    alt={`Cover for ${log.data.title}`}
+                    alt={`Portada de ${log.data.title}`}
                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
                     loading="lazy"
                     decoding="async"
@@ -53,12 +53,12 @@ const defaultImage = "/images/devlog-default.svg";
               <div class="p-6">
                 <div class="flex items-center justify-between mb-4">
                    <time datetime={log.data.pubDate.toISOString()} class="text-sm font-bold text-primary">
-                      {log.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      {log.data.pubDate.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
                    </time>
                 </div>
 
                 <h3 class="text-2xl font-bold mb-3 text-on-surface dark:text-dark-on-surface leading-tight">
-                   <a href={`/devlog/${slug}`} class="hover:text-primary transition-colors block focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+                   <a href={`/es/devlog/${slug}`} class="hover:text-primary transition-colors block focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
                       {log.data.title}
                    </a>
                 </h3>
@@ -67,7 +67,7 @@ const defaultImage = "/images/devlog-default.svg";
                    {log.data.description}
                 </p>
 
-                <a href={`/devlog/${slug}`} class="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors text-sm uppercase tracking-wide focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+                <a href={`/es/devlog/${slug}`} class="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors text-sm uppercase tracking-wide focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
                    {t('home.read_entry')} <span class="material-icons text-sm ml-1" aria-hidden="true">arrow_forward</span>
                 </a>
               </div>
@@ -78,7 +78,7 @@ const defaultImage = "/images/devlog-default.svg";
         {devlogs.length === 0 && (
           <div class="text-center py-12 bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800 z-10 relative">
             <span class="material-icons text-4xl text-on-surface-variant dark:text-dark-on-surface-variant mb-4">terminal</span>
-            <p class="text-on-surface-variant dark:text-dark-on-surface-variant">No devlog entries yet.</p>
+            <p class="text-on-surface-variant dark:text-dark-on-surface-variant">Aún no hay entradas en la bitácora.</p>
           </div>
         )}
 

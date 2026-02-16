@@ -1,20 +1,20 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import ContactForm from "../components/ContactForm.astro";
+import Layout from "../../layouts/Layout.astro";
+import ContactForm from "../../components/ContactForm.astro";
 import { Image } from "astro:assets";
-import brandIcon from "../assets/brand-icon.png";
+import brandIcon from "../../assets/brand-icon.png";
 
 const title = "About Me - ArceApps";
 const description =
-  "Learn more about ArceApps, my tech stack and my focus on Android development and Artificial Intelligence.";
+  "Conoce más sobre ArceApps, mi stack tecnológico y mi enfoque en el desarrollo Android y la Inteligencia Artificial.";
 
-// Tech Categories
+// Categorías de tecnologías
 const techStack = [
   {
-    title: "Android & Architecture",
+    title: "Android & Arquitectura",
     icon: "android",
     description:
-      "Modern native development focused on quality and scalability.",
+      "Desarrollo nativo moderno centrado en la calidad y la escalabilidad.",
     skills: [
       { name: "Kotlin", icon: "https://cdn.simpleicons.org/kotlin/7F52FF" },
       {
@@ -53,7 +53,7 @@ const techStack = [
     title: "Backend & Cloud",
     icon: "cloud",
     description:
-      "Robust and scalable infrastructure for connected applications.",
+      "Infraestructura robusta y escalable para aplicaciones conectadas.",
     skills: [
       { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase/FFCA28" },
       {
@@ -76,10 +76,10 @@ const techStack = [
     ],
   },
   {
-    title: "DevOps & Tools",
+    title: "DevOps & Herramientas",
     icon: "build",
     description:
-      "Automation and version control for an efficient workflow.",
+      "Automatización y control de versiones para un flujo de trabajo eficiente.",
     skills: [
       { name: "Git", icon: "https://cdn.simpleicons.org/git/F05032" },
       { name: "GitHub", icon: "https://cdn.simpleicons.org/github/181717" },
@@ -92,10 +92,10 @@ const techStack = [
     ],
   },
   {
-    title: "Artificial Intelligence",
+    title: "Inteligencia Artificial",
     icon: "psychology",
     description:
-      "Empowering development with the latest AI tools.",
+      "Potenciando el desarrollo con las últimas herramientas de IA.",
     skills: [
       {
         name: "Gemini",
@@ -163,7 +163,11 @@ const techStack = [
           <p
             class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed max-w-2xl mx-auto md:mx-0"
           >
-            I specialize in building high-performance native mobile apps and exploring the frontiers of Artificial Intelligence to optimize software development. My passion is transforming complex ideas into elegant, useful, and privacy-respecting user experiences.
+            Me especializo en crear aplicaciones móviles nativas de alto
+            rendimiento y en explorar las fronteras de la Inteligencia
+            Artificial para optimizar el desarrollo de software. Mi pasión es
+            transformar ideas complejas en experiencias de usuario elegantes,
+            útiles y respetuosas con la privacidad.
           </p>
         </div>
       </div>
@@ -182,7 +186,8 @@ const techStack = [
         <p
           class="text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto"
         >
-          Tools, languages, and technologies I use daily to build modern digital solutions.
+          Herramientas, lenguajes y tecnologías que utilizo día a día para
+          construir soluciones digitales modernas.
         </p>
       </div>
 
@@ -245,17 +250,23 @@ const techStack = [
               class="material-icons text-primary text-4xl"
               aria-hidden="true">rocket_launch</span
             >
-            My Mission
+            Mi Misión
           </h3>
           <p
             class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed mb-6 text-lg"
           >
-            Create software that not only works but delights. I firmly believe that apps should be <strong>fast</strong>, <strong>intuitive</strong>, and respectful of the user.
+            Crear software que no solo funcione, sino que deleite. Creo
+            firmemente que las aplicaciones deben ser <strong>rápidas</strong>, <strong
+              >intuitivas</strong
+            > y respetar al usuario.
           </p>
           <p
             class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed text-lg"
           >
-            That's why all my apps are designed with a <strong>"Privacy First"</strong> approach, minimizing data collection and maximizing transparency.
+            Por eso, todas mis apps están diseñadas con un enfoque <strong
+              >"Privacy First"</strong
+            >, minimizando la recolección de datos y maximizando la
+            transparencia.
           </p>
         </div>
         <div
@@ -268,7 +279,7 @@ const techStack = [
               <span class="material-icons text-green-500" aria-hidden="true"
                 >check_circle</span
               >
-              <span>Code Quality</span>
+              <span>Calidad de Código</span>
             </li>
             <li
               class="flex items-center gap-3 text-on-surface dark:text-dark-on-surface"
@@ -276,7 +287,7 @@ const techStack = [
               <span class="material-icons text-green-500" aria-hidden="true"
                 >check_circle</span
               >
-              <span>User Experience (UX)</span>
+              <span>Experiencia de Usuario (UX)</span>
             </li>
             <li
               class="flex items-center gap-3 text-on-surface dark:text-dark-on-surface"
@@ -284,7 +295,7 @@ const techStack = [
               <span class="material-icons text-green-500" aria-hidden="true"
                 >check_circle</span
               >
-              <span>Privacy & Security</span>
+              <span>Privacidad y Seguridad</span>
             </li>
             <li
               class="flex items-center gap-3 text-on-surface dark:text-dark-on-surface"
@@ -292,7 +303,7 @@ const techStack = [
               <span class="material-icons text-green-500" aria-hidden="true"
                 >check_circle</span
               >
-              <span>Continuous Innovation</span>
+              <span>Innovación Continua</span>
             </li>
           </ul>
         </div>
@@ -310,12 +321,13 @@ const techStack = [
           <span class="material-icons text-primary" aria-hidden="true"
             >email</span
           >
-          Contact
+          Contacto
         </h3>
         <p
           class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed"
         >
-          Have a question, suggestion, or just want to say hi? I'd love to hear from you.
+          ¿Tienes alguna pregunta, sugerencia o simplemente quieres saludar? Me
+          encantaría escucharte.
         </p>
       </div>
 

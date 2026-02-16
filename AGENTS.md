@@ -89,3 +89,24 @@ Para evitar inconsistencias temporales en el contenido y logs:
 - **Consistencia:**
   - Si se crean múltiples entradas simultáneas, usar fechas consecutivas que terminen en la fecha actual verificada.
   - Las entradas de Bitácora deben reflejar el día real de la ejecución de la tarea.
+
+## 9. Internacionalización (i18n)
+El sitio ahora soporta dos idiomas: **Inglés (predeterminado)** y **Español**. Todos los cambios y nuevo contenido deben respetar esta estructura.
+
+### Estructura de Contenido
+- **Inglés (Default):**
+  - Archivos de contenido en: `src/content/[colección]/en/`
+  - Rutas de página: `src/pages/` (raíz)
+- **Español:**
+  - Archivos de contenido en: `src/content/[colección]/es/`
+  - Rutas de página: `src/pages/es/`
+
+### Reglas para Agentes
+1. **Doble Implementación:** Al crear una nueva página o componente, asegúrate de que soporte ambos idiomas.
+   - Usa `getLangFromUrl` y `useTranslations` desde `src/i18n/utils.ts`.
+   - Si creas una página estática (ej. `/nueva-pagina`), crea también `/es/nueva-pagina`.
+2. **Contenido:**
+   - Si añades un post al blog, intenta crear versiones en ambos idiomas si es posible. Si no, colócalo en la carpeta del idioma correspondiente.
+   - Los listados filtran automáticamente por prefijo de carpeta (`en/` o `es/`).
+3. **Strings UI:**
+   - No hardcodees textos en la UI. Añade las cadenas a `src/i18n/ui.ts` y úsalas con `t('key')`.
