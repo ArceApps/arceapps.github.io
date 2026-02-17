@@ -4,6 +4,7 @@ description: "Test Driven Development (TDD) siempre fue difícil de adoptar. Des
 pubDate: 2025-10-31
 heroImage: "/images/placeholder-article-tdd-ia.svg"
 tags: ["IA", "TDD", "Testing", "Android", "Best Practices"]
+reference_id: "0ac2ca01-c1c4-42cc-b392-40461065750c"
 ---
 ## 🐢 La Paradoja del TDD
 

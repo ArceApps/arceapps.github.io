@@ -4,6 +4,7 @@ description: "Kotlin Multiplatform (KMP) ha dejado de ser una promesa para conve
 pubDate: 2025-02-10
 heroImage: "/images/placeholder-article-kmp-state.svg"
 tags: ["Kotlin", "KMP", "Multiplatform", "iOS", "Android", "Compose"]
+reference_id: "b0454438-8d0c-4998-abc2-3dd70aa5bf3d"
 ---
 
 ## 🌍 De Experimento a Estándar Industrial

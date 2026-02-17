@@ -4,6 +4,7 @@ description: "Domina el arte de proporcionar contexto efectivo a agentes de IA p
 pubDate: 2025-12-15
 heroImage: "/images/placeholder-article-ai-context.svg"
 tags: ["IA", "Android", "Prompt Engineering", "Contexto", "Productividad", "GitHub Copilot", "Gemini"]
+reference_id: "0f3f40cf-3a5d-481d-b211-b372ac4a2298"
 ---
 ## 🧠 ¿Por qué el Contexto es Rey?
 

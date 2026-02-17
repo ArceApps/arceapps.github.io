@@ -4,6 +4,7 @@ description: "Descubre cómo transformar tu asistente de IA generalista en un eq
 pubDate: 2025-05-24
 heroImage: "/images/agent-skills-gemini.svg"
 tags: ["IA", "Gemini", "GitHub Copilot", "Android", "Kotlin", "Productividad"]
+reference_id: "3754f165-251e-4411-a2fd-b6b2d5e4fc02"
 ---
 
 La inteligencia artificial en el desarrollo de software ha evolucionado rápidamente. Hemos pasado de simples prompts de "copia y pega" a contextos complejos gestionados por archivos como `AGENTS.md` o `GEMINI.md`. Sin embargo, a medida que nuestros proyectos crecen, también lo hace el contexto que necesitamos proporcionar. Aquí es donde entra en juego el siguiente gran salto: los **Agent Skills**.

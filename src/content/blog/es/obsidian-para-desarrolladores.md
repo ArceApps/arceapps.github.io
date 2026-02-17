@@ -4,6 +4,7 @@ description: "Transforma Obsidian en un IDE de conocimiento. Aprende a integrar 
 pubDate: 2025-05-27
 heroImage: "/images/obsidian-dev-hero.svg"
 tags: ["productividad", "workflow", "herramientas", "documentación"]
+reference_id: "5bcc1a10-55fd-4f2b-9285-f9b72f5fdcad"
 ---
 
 Si eres desarrollador, probablemente tu "sistema" de conocimiento actual se parece a esto: tres pestañas de Stack Overflow abiertas desde hace una semana, un archivo `TODO.txt` en el escritorio que no abres desde 2023, y un montón de comandos de terminal útiles guardados en tu historial de bash que rezas por no perder.

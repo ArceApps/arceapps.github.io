@@ -4,6 +4,7 @@ description: "Descubre cómo automatizar completamente el versionado de tu app A
 pubDate: 2025-12-10
 heroImage: "/images/placeholder-article-automated-versioning.svg"
 tags: ["Android", "GitHub Actions", "CI/CD", "Automatización", "Versionado", "DevOps"]
+reference_id: "f0d36318-91ed-4f7c-a447-f460ea56e7a0"
 ---
 ## 🧠 Teoría: La Matemática del Versionado
 

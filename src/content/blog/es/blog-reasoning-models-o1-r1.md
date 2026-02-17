@@ -4,6 +4,7 @@ description: "La llegada de OpenAI o1 y DeepSeek R1 marca el fin de la era del '
 pubDate: 2025-02-15
 heroImage: "/images/placeholder-article-reasoning-models.svg"
 tags: ["AI", "Reasoning", "Chain of Thought", "Prompt Engineering", "o1", "R1", "Productivity"]
+reference_id: "0ece5566-9f7e-40e6-8548-8b6163eba96d"
 ---
 
 ## 🧠 Sistema 1 vs. Sistema 2

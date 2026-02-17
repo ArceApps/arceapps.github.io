@@ -4,6 +4,7 @@ description: "Aprende a implementar la capa View en MVVM correctamente, ya sea c
 pubDate: 2025-10-03
 heroImage: "/images/placeholder-article-view-layer.svg"
 tags: ["Android", "MVVM", "UI", "Jetpack Compose", "XML"]
+reference_id: "0b7b5c3e-9982-4ee9-a47d-02edb4be618d"
 ---
 ## 🎭 Teoría: El Rol de la Vista
 

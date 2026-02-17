@@ -4,6 +4,7 @@ description: "Aprende a configurar un pipeline de Continuous Deployment robusto 
 pubDate: 2025-10-30
 heroImage: "/images/placeholder-article-github-actions-play-store.svg"
 tags: ["GitHub Actions", "Android", "Google Play Store", "CI/CD", "DevOps"]
+reference_id: "7fbdb277-a5a6-4e77-8436-8d6a6ccc4831"
 ---
 ## 🚀 El Santo Grial del Desarrollo Android
 

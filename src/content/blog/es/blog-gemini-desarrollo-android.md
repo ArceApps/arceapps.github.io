@@ -4,6 +4,7 @@ description: "Descubre cómo integrar Gemini (el modelo multimodal de Google) en
 pubDate: 2025-10-20
 heroImage: "/images/placeholder-article-gemini.svg"
 tags: ["IA", "Gemini", "Android", "Machine Learning", "Google Cloud"]
+reference_id: "4f64ccd2-e466-43b5-93df-f29d2de5eb91"
 ---
 ## 🌌 ¿Qué es Gemini?
 

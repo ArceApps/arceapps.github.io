@@ -4,6 +4,7 @@ description: "Pasa de nivel con Kotlin Flow. Domina operadores como combine, zip
 pubDate: 2025-10-15
 heroImage: "/images/placeholder-article-flow-advanced.svg"
 tags: ["Kotlin", "Flow", "Reactive Programming", "Android", "Coroutines"]
+reference_id: "bbab8f8a-8eba-4227-988a-15f5c7ec0ad4"
 ---
 ## 🌊 Más allá del `collect` básico
 

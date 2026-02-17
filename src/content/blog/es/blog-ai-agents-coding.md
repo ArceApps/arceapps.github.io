@@ -4,6 +4,7 @@ description: "El autocompletado es cosa del pasado. Descubre cómo los Agentes d
 pubDate: 2025-02-02
 heroImage: "/images/placeholder-article-ai-agents.svg"
 tags: ["AI", "Agents", "Cursor", "Cline", "Coding", "Productivity", "MCP"]
+reference_id: "5709cbd1-2213-462b-9ecd-43b7e9f6ef68"
 ---
 
 ## 🤖 La Evolución: De "Sugerir" a "Actuar"

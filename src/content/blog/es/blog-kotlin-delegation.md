@@ -4,6 +4,7 @@ description: "Escribe menos código y reutiliza lógica de forma elegante con lo
 pubDate: 2025-10-25
 heroImage: "/images/placeholder-article-delegation.svg"
 tags: ["Kotlin", "Delegation", "Design Patterns", "Clean Code", "Android"]
+reference_id: "f80704ef-54c1-481a-9d85-bd50b43cabc2"
 ---
 ## 🎭 ¿Qué es la Delegación?
 

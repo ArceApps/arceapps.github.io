@@ -4,6 +4,7 @@ description: "Casos reales de desarrollo Android donde delegar en agentes especi
 pubDate: 2025-05-22
 tags: ["IA", "Kotlin", "Workflow", "Casos de Uso", "Android"]
 heroImage: "/images/placeholder-article-ai-workflow.svg"
+reference_id: "0ce33761-8899-4d89-aff7-39579c3bca46"
 ---
 Ya tienes la [teoría](/blog/blog-agentes-ia-android-teoria) y tienes la [configuración](/blog/blog-configuracion-agentes-ia). Ahora vamos a ver la magia en acción. Vamos a simular tres escenarios de desarrollo Android reales y ver cómo **Sentinel**, **Bolt** y **Palette** resuelven problemas que un "chatbot" generalista probablemente ignoraría o solucionaría mal.
 

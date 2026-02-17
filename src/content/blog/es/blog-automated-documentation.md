@@ -4,6 +4,7 @@ description: "Domina las herramientas esenciales para documentar tu código Kotl
 pubDate: 2025-03-15
 heroImage: "/images/placeholder-article-kdoc-dokka.svg"
 tags: ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Desarrollo"]
+reference_id: "1299d2ab-5ddf-49e3-b1dc-6c4925f7f5fd"
 ---
 ## 🧠 Introducción Técnica
 

@@ -4,6 +4,7 @@ description: "Aprende a configurar agentes de IA para realizar revisiones de có
 pubDate: 2025-11-05
 heroImage: "/images/placeholder-article-code-review-ia.svg"
 tags: ["IA", "Code Review", "DevOps", "Quality Assurance", "GitHub Actions"]
+reference_id: "5b17aef6-0aca-453a-a030-06f848e5c51e"
 ---
 ## 🧐 El Problema del Code Review Humano
 

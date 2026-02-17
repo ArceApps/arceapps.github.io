@@ -4,6 +4,7 @@ description: "Descubre por qué agents.md se ha convertido en el estándar de fa
 pubDate: 2025-12-29
 heroImage: "/images/placeholder-article-agents-md.svg"
 tags: ["IA", "agents.md", "Android", "Desarrollo", "GitHub Copilot", "Gemini"]
+reference_id: "18f8fad7-3b63-4ea6-a8b2-bf9e057ed125"
 ---
 ## 🏗️ El Nacimiento de un Estándar
 

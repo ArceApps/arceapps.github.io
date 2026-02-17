@@ -4,6 +4,7 @@ description: "Descubre cómo aplicar los principios SOLID en tu app de puzzles A
 pubDate: 2025-06-15
 heroImage: "/images/placeholder-article-solid.svg"
 tags: ["Android", "SOLID", "Architecture", "Design Patterns", "Clean Code"]
+reference_id: "23245d12-f1a0-4c90-a479-5054040d07f3"
 ---
 ## 🏗️ Introducción a SOLID en Android
 

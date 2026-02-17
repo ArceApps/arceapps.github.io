@@ -4,6 +4,7 @@ description: "Aprende a instalar Clawdbot, conectarlo a Telegram y potenciarlo c
 pubDate: 2026-01-07
 tags: ["IA", "Clawdbot", "Telegram", "Gemini", "GitHub Copilot", "Productividad", "Android"]
 heroImage: "/images/clawdbot-telegram-gemini.svg"
+reference_id: "a799021c-02cb-427a-ae6e-cd63360b833b"
 ---
 
 ¿Alguna vez has deseado tener a ChatGPT o Claude "viviendo" en tu Telegram, pero con acceso real a tus herramientas locales y sin pagar suscripciones extras absurdas?

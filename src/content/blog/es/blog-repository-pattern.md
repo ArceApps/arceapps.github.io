@@ -4,6 +4,7 @@ description: "Por qué el Repository es el patrón más importante en Clean Arch
 pubDate: 2025-10-18
 heroImage: "/images/placeholder-article-repository.svg"
 tags: ["Architecture", "Design Patterns", "Android", "Data Layer"]
+reference_id: "e1498656-14e2-4b0b-9914-752ae17e6062"
 ---
 ## 🏛️ Teoría: El Guardián de los Datos
 

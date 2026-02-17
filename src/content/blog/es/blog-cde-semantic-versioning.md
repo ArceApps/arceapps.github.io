@@ -4,6 +4,7 @@ description: "Domina el versionado semántico en pipelines de CI/CD. Aprende a c
 pubDate: 2025-12-05
 heroImage: "/images/placeholder-article-cde-semver.svg"
 tags: ["DevOps", "CI/CD", "Semantic Versioning", "Android", "GitHub Actions"]
+reference_id: "0d37152d-08bf-43c6-8f5d-3372660e90a5"
 ---
 ## 📐 Teoría: El Contrato Social del Versionado
 
