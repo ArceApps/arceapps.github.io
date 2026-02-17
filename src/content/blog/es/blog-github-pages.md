@@ -4,6 +4,7 @@ description: "Aprende a desplegar este mismo blog, documentación de librerías 
 pubDate: 2025-11-15
 heroImage: "/images/placeholder-article-github-pages.svg"
 tags: ["GitHub Pages", "Web", "Portfolio", "Astro", "Personal Branding"]
+reference_id: "45210925-fcbf-46d8-a343-f68613cf8526"
 ---
 ## 🌍 ¿Por qué GitHub Pages?
 

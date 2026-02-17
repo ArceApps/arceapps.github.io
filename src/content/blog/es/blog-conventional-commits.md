@@ -4,6 +4,7 @@ description: "Descubre por qué Conventional Commits es el estándar de oro para
 pubDate: 2025-11-01
 heroImage: "/images/placeholder-article-commits.svg"
 tags: ["Git", "Best Practices", "DevOps", "Conventional Commits", "Communication"]
+reference_id: "c81d684b-4edf-4881-afb5-722e474a8980"
 ---
 ## 🗣️ El Problema de la Comunicación en Git
 

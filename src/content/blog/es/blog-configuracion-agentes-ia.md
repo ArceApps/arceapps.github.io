@@ -4,6 +4,7 @@ description: "Guía práctica paso a paso para implementar una arquitectura de a
 pubDate: 2025-05-21
 tags: ["IA", "Tutorial", "Configuración", "Android", "Agentes"]
 heroImage: "/images/placeholder-article-ai-setup.svg"
+reference_id: "b0624ec0-08af-4dad-bc3f-7dce6d88c8ea"
 ---
 En el [artículo anterior](/blog/blog-agentes-ia-android-teoria), exploramos por qué necesitamos agentes especializados en lugar de chats genéricos. Hoy, vamos a ensuciarnos las manos. Vamos a construir la infraestructura necesaria para que **Sentinel**, **Bolt** y **Palette** vivan en tu repositorio Android.
 

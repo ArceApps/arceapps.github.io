@@ -4,6 +4,7 @@ description: "Profundiza en el componente ViewModel: Gestión de estado, ciclo d
 pubDate: 2025-10-04
 heroImage: "/images/placeholder-article-viewmodel.svg"
 tags: ["Android", "MVVM", "ViewModel", "StateFlow", "Coroutines"]
+reference_id: "b1b0835b-d0cc-4efd-bbd4-853257664f56"
 ---
 ## 🧠 Teoría: ¿Qué hace a un ViewModel un ViewModel?
 

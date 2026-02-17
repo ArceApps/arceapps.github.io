@@ -4,6 +4,7 @@ description: "Guía técnica para compilar la app nativa de Clawdbot para Androi
 pubDate: 2026-01-07
 tags: ["Android", "Clawdbot", "Kotlin", "Build", "Gradle", "IA"]
 heroImage: "/images/clawdbot-android-node.svg"
+reference_id: "3eb5c086-8be4-48c6-a348-5973806f84e9"
 ---
 
 En el [artículo anterior](/blog/clawdbot-asistente-ia-telegram), configuramos el "cerebro" de Clawdbot (Gateway) y su interfaz de chat (Telegram). Pero Clawdbot brilla realmente cuando tiene "cuerpo".

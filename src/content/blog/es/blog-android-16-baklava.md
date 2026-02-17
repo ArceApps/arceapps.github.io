@@ -4,6 +4,7 @@ description: "Android 16 rompe el ciclo tradicional con un lanzamiento anticipad
 pubDate: 2025-01-20
 heroImage: "/images/placeholder-article-android-16.svg"
 tags: ["Android", "Android 16", "Baklava", "Privacy", "Health Connect", "News"]
+reference_id: "be5f8f27-9428-4735-a643-d081c334aeee"
 ---
 
 ## 🚀 Un Cambio de Paradigma: Trunk Stable Project

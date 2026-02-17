@@ -4,6 +4,7 @@ description: "Entiende profundamente el sistema de tipos de Kotlin, cómo elimin
 pubDate: 2025-09-10
 heroImage: "/images/placeholder-article-null-safety.svg"
 tags: ["Kotlin", "Null Safety", "Best Practices", "Clean Code", "Java Interop"]
+reference_id: "5765a71d-efe1-414d-af77-a67913131024"
 ---
 ## 💥 Teoría: El Error de los Mil Millones de Dólares
 

@@ -4,6 +4,7 @@ description: "Deja de usar LiveData. Entiende las diferencias profundas entre St
 pubDate: 2025-09-30
 heroImage: "/images/placeholder-article-stateflow-sharedflow.svg"
 tags: ["Kotlin", "Coroutines", "Flow", "Android", "State Management"]
+reference_id: "4f809146-8583-4075-ade0-d55d8523f8d9"
 ---
 ## 🌊 Teoría: Hot Flows
 

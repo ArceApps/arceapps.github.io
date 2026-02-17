@@ -4,6 +4,7 @@ description: "Maximiza tu productividad en Android Studio con GitHub Copilot. T�
 pubDate: 2025-10-10
 heroImage: "/images/placeholder-article-copilot-android.svg"
 tags: ["IA", "GitHub Copilot", "Android", "Productividad", "IDE"]
+reference_id: "f43f93b9-d757-4cd9-a01d-0662a05e1b55"
 ---
 ## 🤖 ¿Qué es realmente GitHub Copilot?
 

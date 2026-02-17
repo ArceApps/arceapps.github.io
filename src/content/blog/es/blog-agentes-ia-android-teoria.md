@@ -4,6 +4,7 @@ description: "Descubre cómo pasar de simples prompts a un equipo de agentes de 
 pubDate: 2025-05-20
 tags: ["IA", "Productividad", "Android", "Agentes", "Workflow"]
 heroImage: "/images/placeholder-article-ai-evolution.svg"
+reference_id: "fbbc92f4-c19e-4618-b57c-697983574014"
 ---
 Seguramente te ha pasado. Estás trabajando en una refactorización compleja de un `ViewModel` en Kotlin, te encuentras con un error oscuro de corrutinas y decides pedir ayuda a ChatGPT o Claude. Copias el error, pegas el código, y la IA te da una solución genérica que no tiene en cuenta tu arquitectura Clean, ni que usas Hilt para inyección de dependencias, ni tus reglas de estilo.
 

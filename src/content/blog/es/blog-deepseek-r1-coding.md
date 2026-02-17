@@ -4,6 +4,7 @@ description: "DeepSeek ha lanzado R1, un modelo de razonamiento open source que 
 pubDate: 2025-01-25
 heroImage: "/images/placeholder-article-deepseek-r1.svg"
 tags: ["AI", "DeepSeek", "LLM", "Open Source", "Reasoning", "R1", "Coding"]
+reference_id: "c26054d9-7de7-4f6f-849a-25f376da73a4"
 ---
 
 ## 🐋 El Elefante (o Ballena) en la Habitación

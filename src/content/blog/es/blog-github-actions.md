@@ -4,6 +4,7 @@ description: "Aprende los fundamentos de GitHub Actions para automatizar tus flu
 pubDate: 2025-10-25
 heroImage: "/images/placeholder-article-github-actions.svg"
 tags: ["GitHub Actions", "CI/CD", "DevOps", "Automatización", "Workflow"]
+reference_id: "944bdacb-c6dc-4b89-b7de-0a6633738244"
 ---
 ## 🏗️ Anatomía de un Workflow
 

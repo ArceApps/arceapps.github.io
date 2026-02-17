@@ -4,6 +4,7 @@ description: "Descubre cómo los AI Skills transforman el desarrollo moderno, au
 pubDate: 2025-12-29
 heroImage: "/images/placeholder-article-ai-skills.svg"
 tags: ["IA", "Android", "Desarrollo", "Skills", "Gemini", "GitHub Copilot"]
+reference_id: "f6063ef7-ac6b-4ff3-88cf-55681f3eb150"
 ---
 ## 🧠 ¿Qué son los AI Skills? Teoría y Conceptos
 

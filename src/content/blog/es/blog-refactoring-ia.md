@@ -4,6 +4,7 @@ description: "Aprende estrategias seguras para modernizar bases de código antig
 pubDate: 2025-11-25
 heroImage: "/images/placeholder-article-refactoring-ia.svg"
 tags: ["IA", "Refactoring", "Clean Code", "Legacy Code", "Android"]
+reference_id: "e61a0a9d-7846-43f0-a99a-932ed9a26d43"
 ---
 ## 🏚️ El Desafío del Legacy Code
 

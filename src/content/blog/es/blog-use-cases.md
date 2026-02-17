@@ -4,6 +4,7 @@ description: "Por qué los Use Cases (Interactors) son el componente secreto de 
 pubDate: 2025-10-10
 heroImage: "/images/placeholder-article-use-cases.svg"
 tags: ["Architecture", "Clean Architecture", "Android", "Best Practices"]
+reference_id: "2eddc21e-4c8f-4f39-859d-e4c1fc1066bc"
 ---
 ## 🏛️ Teoría: Single Responsibility a Nivel de Clase
 

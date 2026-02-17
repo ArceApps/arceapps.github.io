@@ -4,6 +4,7 @@ description: "Pasa de reactivo a proactivo. Configura Firebase Crashlytics para 
 pubDate: 2025-09-25
 heroImage: "/images/placeholder-article-firebase.svg"
 tags: ["Firebase", "Crashlytics", "Monitoring", "DevOps", "Quality"]
+reference_id: "d50cb3e0-09c6-48eb-a2e9-cb9758d2f149"
 ---
 ## 🚨 Teoría: La Pirámide de la Observabilidad
 

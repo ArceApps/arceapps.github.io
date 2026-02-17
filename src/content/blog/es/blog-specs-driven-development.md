@@ -4,6 +4,7 @@ description: "Cómo transformar requisitos vagos en especificaciones técnicas p
 pubDate: 2025-10-28
 heroImage: "/images/placeholder-article-specs-driven.svg"
 tags: ["Development Process", "Specs", "IA", "Planning", "Productividad"]
+reference_id: "d8152217-0875-4637-84fc-c004f535fb93"
 ---
 ## 📝 Teoría: El Problema de la Ambigüedad
 

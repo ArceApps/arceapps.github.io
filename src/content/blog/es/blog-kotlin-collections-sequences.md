@@ -4,6 +4,7 @@ description: "¿Map o Sequence? Aprende a optimizar tus listas en Kotlin para An
 pubDate: 2025-10-05
 heroImage: "/images/placeholder-article-collections.svg"
 tags: ["Kotlin", "Performance", "Collections", "Functional Programming", "Android"]
+reference_id: "ec02d167-8e20-4ac3-8964-25d5c7be83cd"
 ---
 ## 🧐 El Dilema del Rendimiento en Listas
 

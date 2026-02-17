@@ -4,6 +4,7 @@ description: "Optimiza el rendimiento de tu IA adoptando Agent Skills. Aprende a
 pubDate: 2026-01-07
 heroImage: "/images/agent-skills-context.svg"
 tags: ["IA", "Productividad", "Workflow", "Agent-Skills", "Android", "Skills"]
+reference_id: "c8b07a57-31a7-459e-94af-fc4d60d827e7"
 ---
 
 > **Nota:** Este artículo es una evolución directa de conceptos que hemos tratado previamente. Si eres nuevo aquí, te recomiendo leer primero sobre [cómo estandarizar el contexto con AGENTS.md](/blog/blog-agents-md-estandar) y [cómo configurar tus primeros agentes](/blog/blog-configuracion-agentes-ia). Hoy vamos un paso más allá para solucionar los problemas de escalabilidad de ese modelo.

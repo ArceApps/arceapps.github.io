@@ -4,6 +4,7 @@ description: "let, run, with, apply, also... ¿Cuál usar y por qué? Una inmers
 pubDate: 2025-09-15
 heroImage: "/images/placeholder-article-kotlin-let.svg"
 tags: ["Kotlin", "Best Practices", "Language Design", "Refactoring", "Clean Code"]
+reference_id: "6e4f7984-b5f6-41f8-b34c-46e8b41076c5"
 ---
 ## 🧐 El Problema que Resuelven (Teoría de Diseño de Lenguajes)
 

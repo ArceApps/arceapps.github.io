@@ -4,6 +4,7 @@ description: "El 'Model' en MVVM es mucho más que clases de datos. Aprende a di
 pubDate: 2025-10-02
 heroImage: "/images/placeholder-article-model-layer.svg"
 tags: ["Android", "MVVM", "Architecture", "Data Layer", "Clean Code"]
+reference_id: "83cba2ba-03c4-4134-9fd0-9325d395ea17"
 ---
 ## 🏗️ Teoría: ¿Qué es el "Model" realmente?
 

@@ -4,6 +4,7 @@ description: "Desmitificando Clean Architecture: Una inmersión profunda en capa
 pubDate: 2025-10-15
 heroImage: "/images/placeholder-article-clean-architecture.svg"
 tags: ["Architecture", "Android", "Clean Architecture", "Kotlin", "Best Practices"]
+reference_id: "0564583c-c60b-45b0-ba43-1e6337ce476d"
 ---
 ## 🏛️ Filosofía: ¿Qué es realmente "Clean"?
 

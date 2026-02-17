@@ -4,6 +4,7 @@ description: "Domina el patrón Model-View-ViewModel desde los conceptos básico
 pubDate: 2025-10-01
 heroImage: "/images/placeholder-article-mvvm.svg"
 tags: ["Android", "MVVM", "Architecture", "Kotlin", "Best Practices"]
+reference_id: "4a17203c-115d-4548-bad9-4c67698de707"
 ---
 ## 🏛️ Teoría: La Evolución de las Arquitecturas de UI
 

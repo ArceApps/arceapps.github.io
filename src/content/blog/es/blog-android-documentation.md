@@ -4,6 +4,7 @@ description: "Domina las herramientas esenciales para documentar tu código Kotl
 pubDate: 2025-03-10
 heroImage: "/images/placeholder-article-android-documentation.svg"
 tags: ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Workflow", "GitHub Actions", "Best Practices", "Productividad"]
+reference_id: "3cb651cb-7e90-47b2-aff0-77bc2cf41808"
 ---
 La documentación no es un "extra" opcional; es la diferencia entre un proyecto mantenible a largo plazo y una deuda técnica impagable. En el desarrollo Android profesional, a menudo nos centramos en la arquitectura limpia y los tests, pero olvidamos que **el código es un medio de comunicación entre humanos**, no solo instrucciones para una máquina.
 
