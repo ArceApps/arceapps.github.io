@@ -65,7 +65,7 @@ const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
         <div class="absolute top-4 right-4 w-16 h-16 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 backdrop-blur-sm z-10">
           <img
             src={optimizeGooglePlayImage(realIconUrl, 128, "square")}
-            alt={`Icono de ${title}`}
+            alt={`${t('apps.icon_alt')} ${title}`}
             loading="lazy"
             decoding="async"
             width="64"
