@@ -4,7 +4,7 @@ description: "Kotlin 2.1 arrives to consolidate the K2 compiler revolution. We a
 pubDate: 2025-01-28
 heroImage: "/images/placeholder-article-kotlin-2-1.svg"
 tags: ["Kotlin", "K2", "Compiler", "Performance", "Language Features", "Updates"]
-reference_id: "210cbffa-33f9-4381-806d-628aeccb5b24"
+reference_id: "3c516e3b-a58e-440b-b7b5-6b0446996231"
 ---
 
 ## ⚡ The Post-K2 Era

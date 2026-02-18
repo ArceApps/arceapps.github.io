@@ -1,89 +1,96 @@
 ---
-title: "Clawdbot: Your Personal AI Assistant on Telegram"
-description: "Why pay for ChatGPT Plus? Learn how to deploy your own customized AI assistant on Telegram using Clawdbot, Node.js, and free providers."
-pubDate: 2025-05-25
-heroImage: "/images/clawdbot-telegram-hero.svg"
-tags: ["AI", "Telegram", "Bot", "Node.js", "Self-hosting"]
-reference_id: "ef1fe9be-2c97-42f0-9128-490333333333"
+title: "Clawdbot: AI Assistant on Telegram"
+description: "Connecting your self-hosted Clawdbot to Telegram. How to build a private, smart bot that lives in your chat app."
+pubDate: 2025-10-31
+heroImage: "/images/placeholder-article-clawdbot-telegram.svg"
+tags: ["AI", "Telegram", "Bot", "Node.js", "Self-hosting", "Clawdbot", "Productivity"]
+reference_id: "a799021c-02cb-427a-ae6e-cd63360b833b"
 ---
+## 🤖 Why Telegram?
 
-We all love ChatGPT, but the interface is... a web page.
-What if you could have your AI on **WhatsApp** or **Telegram**? And not just a text bot, but one that can "see" (via camera), "hear" (via voice notes), and execute actions on your PC?
+Telegram is arguably the best platform for bots. Its API is robust, fast, and free. By connecting your self-hosted LLM (Clawdbot) to Telegram, you get:
+1.  **Access Everywhere**: Chat with your AI from any device.
+2.  **Voice Messages**: Send audio, get text back (Speech-to-Text).
+3.  **Media**: Send images for analysis (Multi-modal models).
 
-That is **Clawdbot**. An open-source project to create decentralized assistants.
+## 🏗️ Architecture
 
-## 🧠 The Architecture
+1.  **Telegram Bot API**: Webhook or Long Polling.
+2.  **Middleware (Node.js)**: Receives message -> Sends to LLM -> Formats response -> Sends back to Telegram.
+3.  **LLM Backend**: Ollama / LocalAI running Llama 3.
 
-Clawdbot is not a monolith. It has two parts:
-1.  **Gateway (Server)**: The brain. Connects to Telegram and LLM APIs (OpenAI, Anthropic, Gemini).
-2.  **Nodes (Clients)**: The body. Can be your PC, an Android phone, or a Raspberry Pi.
+## 🛠️ Step-by-Step Guide
 
-Today we will configure the **Gateway**.
+### 1. Create a Bot
+Talk to `@BotFather` on Telegram.
+- `/newbot` -> Name: `MyPrivateAI` -> Username: `MyPrivateAI_bot`.
+- Copy the **API Token**.
 
-## 🛠️ Installation
-
-Requirements: Node.js 20+ and a Telegram Bot Token (from @BotFather).
-
-```bash
-git clone https://github.com/clawdbot/clawdbot-gateway.git
-cd clawdbot-gateway
-pnpm install
-```
-
-## ⚙️ Configuration
-
-Copy `.env.example` to `.env`.
-
-```env
-TELEGRAM_TOKEN=123456:ABC-DEF...
-OPENAI_API_KEY=sk-... (or ANTHROPIC_KEY)
-# Optional: Use a free local model
-# LLM_PROVIDER=ollama
-```
-
-### Config.json
-
-Here you define your bot's personality.
-
-```json
-{
-  "systemPrompt": "You are JARVIS. Concise, sarcastic, helpful.",
-  "telegram": {
-    "botToken": "YOUR_TELEGRAM_BOT_TOKEN",
-    "allowFrom": ["your_telegram_username"]
-  }
-}
-```
-*Important: `allowFrom` is crucial for security. Only your user should be able to talk to your assistant.*
-
-## Starting the Bot
-
-Back to the terminal and start the Gateway:
+### 2. Set Up Node.js Project
 
 ```bash
-pnpm clawdbot gateway
+mkdir clawdbot-telegram
+cd clawdbot-telegram
+npm init -y
+npm install telegraf axios dotenv
 ```
 
-Done! Open your chat in Telegram and say "Hello". Your personal assistant, powered by Gemini or Copilot, will respond.
+### 3. Write the Bot Logic (`index.js`)
 
-## Use Cases for Android Developers
+```javascript
+require('dotenv').config();
+const { Telegraf } = require('telegraf');
+const axios = require('axios');
 
-Now that you have it in your pocket, what is it for?
+const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 
-### 1. "Rubber Ducking" on the Bus
-You are going home and you have an idea to fix that concurrency bug.
-*   **You (Audio):** *"Hey, I'm thinking of migrating from LiveData to StateFlow, but I'm worried about handling one-off events, like Toasts. What do you think?"*
-*   **Clawdbot (Gemini):** Will reply with a pros and cons analysis, suggesting patterns like `Channel` or third-party libraries, and give you a code example.
+bot.start((ctx) => ctx.reply('Hello! I am your private AI.'));
 
-### 2. Boilerplate Generation
-*   **You:** *"I need an Adapter for a RecyclerView showing a list of `User` with DiffUtil. Do it in Kotlin and use ViewBinding."*
-*   **Clawdbot:** Generates the complete code ready to copy and paste when you get to the PC.
+bot.on('text', async (ctx) => {
+    const userMessage = ctx.message.text;
+    ctx.sendChatAction('typing'); // Show "typing..." status
 
-### 3. Concept Explanation
-*   **You:** *"Explain the difference between `LaunchedEffect` and `DisposableEffect` in Compose like I'm 5."*
+    try {
+        // Call local LLM (Ollama)
+        const response = await axios.post('http://localhost:11434/api/generate', {
+            model: 'llama3',
+            prompt: userMessage,
+            stream: false
+        });
 
-## Next Steps
+        ctx.reply(response.data.response);
+    } catch (error) {
+        console.error(error);
+        ctx.reply('Error talking to the brain 🧠');
+    }
+});
 
-This is just the beginning. Clawdbot has a "killer" feature: **Nodes**. In the next article, we will see how to compile and install the native Clawdbot Android application to give your assistant real eyes and ears (camera, location, and more).
+bot.launch();
+console.log('Bot is running...');
+```
 
-👉 [Read Part 2: Clawdbot on Android - Building the Native Node](/blog/clawdbot-android-node-build)
+### 4. Run It
+```bash
+node index.js
+```
+
+## 🧠 Advanced Features
+
+### Maintaining Context
+The simple example above has no memory. To fix this:
+1.  Store `chat_id` and message history in a simple array or Redis.
+2.  Send the last N messages as context to Ollama.
+
+### Voice Notes (Whisper)
+Telegram sends audio as `.ogg`.
+1.  Download file.
+2.  Convert to `.wav` (ffmpeg).
+3.  Send to OpenAI Whisper (or local Faster-Whisper).
+4.  Feed text to LLM.
+
+## 🚀 Deployment
+Run this Node.js script on a Raspberry Pi, a spare laptop, or a cheap VPS (if you expose your Ollama port via tunnel like Ngrok).
+
+## 🏁 Conclusion
+
+Building a Telegram bot for your AI is a weekend project with massive utility. It democratizes access to your personal intelligence stack.

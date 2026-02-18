@@ -4,7 +4,7 @@ description: "The 'Model' in MVVM is much more than data classes. Learn to desig
 pubDate: 2025-10-02
 heroImage: "/images/placeholder-article-model-layer.svg"
 tags: ["Android", "MVVM", "Architecture", "Data Layer", "Clean Code"]
-reference_id: "2dbaca07-f47a-416e-ab59-9c631e3645f1"
+reference_id: "83cba2ba-03c4-4134-9fd0-9325d395ea17"
 ---
 ## 🏗️ Theory: What is the "Model" really?
 

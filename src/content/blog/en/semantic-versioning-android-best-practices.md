@@ -1,143 +1,49 @@
 ---
-title: "Semantic Versioning in Android: Best Practices for Developers"
-description: "A comprehensive guide on implementing semantic versioning in Android apps, from versionCode to Google Play Store."
-pubDate: 2025-08-25
-heroImage: "/images/placeholder-article-versioning.svg"
-tags: ["Android", "Versioning", "Gradle", "CI/CD"]
-reference_id: "265ec237-e59c-4ad6-ae9e-dc28c1fdf199"
+title: "Semantic Versioning in Android: Best Practices"
+description: "How to apply Semantic Versioning (SemVer) to Android. Managing `versionName` and `versionCode` for predictable releases."
+pubDate: 2025-10-18
+heroImage: "/images/placeholder-article-semantic-versioning.svg"
+tags: ["Semantic Versioning", "Android", "Best Practices", "Versioning", "Release Management"]
+reference_id: "ec7574e0-504b-474c-902b-fb10c1fde1d3"
 ---
+## 🏷️ What is Semantic Versioning?
 
-## Introduction to Semantic Versioning
+Semantic Versioning (SemVer) is a versioning scheme for software that conveys meaning about the underlying changes.
+Format: `MAJOR.MINOR.PATCH` (e.g., `1.2.3`).
 
-Semantic Versioning (SemVer) is a versioning system that uses a three-number format: MAJOR.MINOR.PATCH. In the context of Android, this system is especially important due to the particularities of the mobile ecosystem and Google Play Store policies.
+### 1. MAJOR version
+When you make incompatible API changes.
+- **Android**: Removing support for an old API level, changing deep links structure.
+- **Example**: `2.0.0` (Major UI overhaul).
 
-### Why is it important in Android?
-Android handles two different types of versions:
-- **versionName**: The version users see (e.g., "1.2.3")
-- **versionCode**: An internal integer that Google Play uses to determine updates
+### 2. MINOR version
+When you add functionality in a backward-compatible manner.
+- **Android**: Adding a new feature, screen, or capability.
+- **Example**: `1.3.0` (Added Dark Mode).
 
-## Configuration in build.gradle
+### 3. PATCH version
+When you make backward-compatible bug fixes.
+- **Android**: Fixing a crash, correcting a typo.
+- **Example**: `1.2.1` (Fixed NPE in Login).
 
-```gradle
-android {
-    compileSdk 34
+## 📱 Android Versioning: `versionName` vs. `versionCode`
 
-    defaultConfig {
-        applicationId "com.arceapps.myapp"
-        minSdk 24
-        targetSdk 34
-        versionCode 10203  // Format: MMmmpp
-        versionName "1.2.3"
-    }
-}
-```
+### `versionName` (String)
+Visible to users on Play Store (e.g., "v1.2.3"). Use SemVer here.
 
-### versionCode Strategies
-An effective strategy is to use the MMmmpp format where:
-- **MM**: Major version (01-99)
-- **mm**: Minor version (00-99)
-- **pp**: Patch version (00-99)
+### `versionCode` (Integer)
+Used internally by Play Store to track updates. Must always increase.
+- **Best Practice**: Derive from SemVer.
+- **Formula**: `Major * 10000 + Minor * 100 + Patch`.
+- **Example**: `1.2.3` -> `10203`.
 
-## Automation with Gradle
+## 🚀 Automating SemVer
 
-We can automate versioning using Gradle properties:
+Don't guess the version. Use tools like `semantic-release` or Conventional Commits to calculate it automatically based on your git history.
+- `fix:` -> Patch bump.
+- `feat:` -> Minor bump.
+- `BREAKING CHANGE:` -> Major bump.
 
-```gradle
-// version.properties
-VERSION_MAJOR=1
-VERSION_MINOR=2
-VERSION_PATCH=3
+## 🏁 Conclusion
 
-// build.gradle
-def versionPropsFile = file('version.properties')
-def versionProps = new Properties()
-versionProps.load(new FileInputStream(versionPropsFile))
-
-def vMajor = versionProps['VERSION_MAJOR'].toInteger()
-def vMinor = versionProps['VERSION_MINOR'].toInteger()
-def vPatch = versionProps['VERSION_PATCH'].toInteger()
-
-android {
-    defaultConfig {
-        versionCode vMajor * 10000 + vMinor * 100 + vPatch
-        versionName "${vMajor}.${vMinor}.${vPatch}"
-    }
-}
-```
-
-## Google Play Considerations
-
-Google Play Store has specific requirements:
-
-### App Bundle vs APK
-With Android App Bundle, Google generates multiple optimized APKs. Each must have the same versionCode, but Google manages specific codes internally.
-
-### Distribution Channels
-- **Internal**: For internal team testing
-- **Alpha**: For closed testing
-- **Beta**: For open testing
-- **Production**: For end users
-
-## CI/CD Integration
-
-In a continuous integration flow, we can automate versioning:
-
-```yaml
-# GitHub Actions example
-name: Build and Deploy
-on:
-  push:
-    tags:
-      - 'v*'
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Extract version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
-
-      - name: Update version
-        run: |
-          ./gradlew updateVersion -PnewVersion=$VERSION
-```
-
-## Best Practices
-
-### 1. Team Consistency
-Establish clear rules on when to increment each number:
-- **MAJOR**: Incompatible changes or complete redesigns
-- **MINOR**: New compatible features
-- **PATCH**: Bug fixes
-
-### 2. Automatic Documentation
-Generate changelogs automatically based on commits and PRs:
-
-```markdown
-## [1.2.3] - 2025-08-25
-### Added
-- New push notification feature
-- Dark mode support
-
-### Fixed
-- Fixed crash on screen rotation
-- Improved data synchronization
-```
-
-### 3. Version Testing
-Implement tests that verify compatibility between versions, especially for:
-- Database migration
-- Saved preferences format
-- Changed internal APIs
-
-## Recommended Tools
-
-- **Gradle Version Plugin**: Automates version incrementing from command line
-- **Fastlane**: Complete deployment pipeline automation
-- **Semantic Release**: Automatic versioning based on conventional commits
-
-## Conclusion
-
-Semantic versioning in Android requires a hybrid approach combining SemVer best practices with platform particularities. The key lies in automation and consistency within the development team.
-
-Implementing these practices from the start saves time and reduces errors in the future, especially when the application grows in complexity and user base.
+Adopting SemVer brings discipline to your release process. It communicates the scope of changes clearly to your users (and your QA team).

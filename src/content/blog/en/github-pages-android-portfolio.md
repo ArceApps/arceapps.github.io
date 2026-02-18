@@ -4,7 +4,7 @@ description: "Learn how to deploy this very blog, library documentation, or app 
 pubDate: 2025-11-15
 heroImage: "/images/placeholder-article-github-pages.svg"
 tags: ["GitHub Pages", "Web", "Portfolio", "Astro", "Personal Branding"]
-reference_id: "8d7f361a-c534-4dce-b78b-1a5021236bf5"
+reference_id: "45210925-fcbf-46d8-a343-f68613cf8526"
 ---
 ## 🌍 Why GitHub Pages?
 

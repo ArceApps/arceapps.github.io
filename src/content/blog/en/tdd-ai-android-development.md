@@ -1,65 +1,44 @@
 ---
-title: "TDD in the Era of AI: Red, Green, Refactor, Prompt"
-description: "Test Driven Development is not dead. In fact, with AI, it's more powerful than ever. Learn the new workflow: Red, Green, Refactor, Prompt."
-pubDate: 2025-11-25
-heroImage: "/images/placeholder-article-tdd-ia.svg"
-tags: ["TDD", "AI", "Testing", "Android", "Workflow"]
-reference_id: "90950ef3-af51-4b8a-a1e5-b44351692cf0"
+title: "TDD and AI in Android Development"
+description: "How Test-Driven Development (TDD) pairs with AI coding assistants. Writing tests first to guide LLM code generation."
+pubDate: 2025-10-21
+heroImage: "/images/placeholder-article-tdd-ai.svg"
+tags: ["TDD", "AI", "Testing", "Android", "Productivity", "GitHub Copilot"]
+reference_id: "0ac2ca01-c1c4-42cc-b392-40461065750c"
 ---
-## 🧪 Is TDD Dead?
+## 🧪 TDD: The AI Whisperer
 
-Some say that with AI writing code, we don't need tests. **They are wrong.**
-If AI writes the code, **you** must verify it. And the only way to verify logic at scale is with automated tests.
+Test-Driven Development (TDD) is a discipline where you write a failing test before writing any production code.
+- **Red**: Write a failing test.
+- **Green**: Make it pass.
+- **Refactor**: Clean up the code.
 
-TDD (Test Driven Development) is the perfect safety net for AI-generated code.
+### Why TDD + AI works
 
-## 🔄 The New Cycle: Red, Green, Prompt, Refactor
+AI (LLMs) are great at implementation but terrible at requirements. TDD forces you to specify *requirements* as executable code (tests).
+- **Prompt**: "Make this test pass."
+- **Result**: Code that exactly satisfies the requirement, nothing more.
 
-The classic cycle was:
-1.  **Red**: Write a failing test.
-2.  **Green**: Write minimum code to pass.
-3.  **Refactor**: Clean up.
+## 🚀 Workflow: AI-Driven TDD
 
-The **AI-Enhanced Cycle** is:
-1.  **Red (Human)**: You write the test (The Specification). This defines "Done".
-2.  **Green (AI)**: You ask Copilot/Gemini: "Implement the function to pass this test."
-3.  **Refactor (AI + Human)**: "Optimize this solution."
-
-## 📝 Example: Validation
-
-**Step 1: The Test (Human)**
-```kotlin
-@Test
-fun `should return error when password lacks uppercase`() {
-    val validator = PasswordValidator()
-    val result = validator.validate("password123")
-    assert(result is ValidationResult.Error)
-}
-```
-
-**Step 2: The Prompt (Human)**
-"Generate `PasswordValidator` that passes this test."
-
-**Step 3: The Code (AI)**
-```kotlin
-class PasswordValidator {
-    fun validate(input: String): ValidationResult {
-        if (!input.any { it.isUpperCase() }) {
-            return ValidationResult.Error("Must contain uppercase")
-        }
-        return ValidationResult.Success
+1.  **Write Test (Human)**: Define the behavior.
+    ```kotlin
+    @Test
+    fun `should return error when email is invalid`() {
+        val result = validateEmail("invalid-email")
+        assertTrue(result is ValidationResult.Error)
     }
-}
-```
+    ```
+2.  **Generate Code (AI)**: "Implement `validateEmail` to satisfy this test."
+3.  **Run Test**: Verify.
+4.  **Refactor (AI)**: "Optimize this implementation."
 
-## 🚀 Why this is faster
+## 🧠 Benefits
 
-*   You don't think about implementation details ("how do I check uppercase in regex?").
-*   You only think about **Behavior** and **Edge Cases**.
-*   The AI guarantees the syntax is correct.
-*   The Test guarantees the logic is correct.
+1.  **Safety Net**: You can refactor AI-generated code fearlessly because you have tests.
+2.  **Less Prompt Engineering**: The test IS the prompt.
+3.  **Documentation**: Tests document edge cases that AI might miss.
 
-## 🎯 Conclusion
+## 🏁 Conclusion
 
-Don't let AI write code without a spec. **The Test is the Spec.**
-Write the test first, and you will become the Architect of the AI, not just its reviewer.
+TDD is the perfect companion for AI coding. It constrains the LLM's creativity to produce correct, verifiable code.

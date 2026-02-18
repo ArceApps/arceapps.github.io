@@ -1,62 +1,71 @@
 ---
-title: "StateFlow vs SharedFlow: The Definitive Guide"
-description: "Stop using LiveData. Understand the difference between StateFlow (state) and SharedFlow (events) and when to use Channels."
-pubDate: 2025-09-28
+title: "StateFlow vs. SharedFlow: A Practical Guide"
+description: "When to use which? Hot streams in Kotlin Coroutines. How to prevent event loss and ensure UI consistency."
+pubDate: 2025-10-15
 heroImage: "/images/placeholder-article-stateflow.svg"
-tags: ["Kotlin", "Flow", "Android", "State Management", "Coroutines"]
-reference_id: "ac516e4a-e9c1-41ed-8b1a-9c71e4b03d28"
+tags: ["Kotlin", "Coroutines", "Flow", "Android", "StateFlow", "SharedFlow"]
+reference_id: "4f809146-8583-4075-ade0-d55d8523f8d9"
 ---
-## 📉 The Fall of LiveData
+## 🌊 The Hot Flow Confusion
 
-LiveData was great in 2017. It was lifecycle-aware. But it had problems:
--   It was tied to Android (hard to test in pure Kotlin).
--   It operated on the Main Thread (performance bottlenecks).
--   It didn't support powerful operators (map, filter, etc).
+In Kotlin Coroutines, we have `Flow` (cold) and two types of Hot Flows: `StateFlow` and `SharedFlow`. Knowing the difference is critical for Android UI development.
 
-Enter **Flow**.
+### Cold Flow
+- Starts only when collected.
+- Each collector gets a fresh stream.
+- Example: Room query, Retrofit call.
 
-## 📊 StateFlow: The State Holder
+### Hot Flow
+- Always active (depending on scope).
+- Multicast (multiple collectors get same updates).
+- Example: UI State, Events.
 
-**StateFlow** is a "Hot Flow" that always holds a value. It is the perfect replacement for `LiveData`.
+## 💾 StateFlow: The State Holder
 
-*   **Initial Value**: Required.
-*   **Replay**: 1 (New subscribers get the last value instantly).
-*   **Usage**: UI State (Loading, Success, Error).
+Designed to replace `LiveData`. It always has a value.
+
+### Characteristics
+1.  **Initial Value**: Mandatory.
+2.  **Replay Cache**: size = 1 (always emits last value to new subscribers).
+3.  **Equality Check**: Only emits if value changes (`distinctUntilChanged`).
+
+### Use Case: UI State
+Perfect for holding the current state of a screen (Loading, Content, Error).
 
 ```kotlin
 private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
-val uiState = _uiState.asStateFlow()
+val uiState: StateFlow<UiState> = _uiState.asStateFlow()
 ```
 
-## 📡 SharedFlow: The Event Stream
+## 📡 SharedFlow: The Event Emitter
 
-**SharedFlow** is for events. It doesn't necessarily hold a value.
+Designed for one-time events or streams without initial state.
 
-*   **Initial Value**: None.
-*   **Configurable Replay**: Can be 0 (fire and forget) or more.
-*   **Usage**: Navigation events, Toasts, Analytics ticks.
+### Characteristics
+1.  **No Initial Value**: Starts empty.
+2.  **Configurable Replay**: Can replay 0, 1, or N previous values.
+3.  **Buffer Overflow**: Can drop oldest or suspend.
+
+### Use Case: Navigation, Toasts
+Perfect for "fire and forget" events.
 
 ```kotlin
-private val _events = MutableSharedFlow<Event>()
-val events = _events.asSharedFlow()
+private val _events = MutableSharedFlow<UiEvent>()
+val events: SharedFlow<UiEvent> = _events.asSharedFlow()
 
-suspend fun showToast() {
-    _events.emit(Event.ShowToast)
-}
+// Emitting
+_events.emit(UiEvent.ShowToast("Hello"))
 ```
 
-## ⚠️ The SharedFlow Pitfall (Lost Events)
+## ⚠️ The Trap: SharedFlow for State
 
-If you emit to a SharedFlow while the View is stopped (e.g., app in background), the View might miss the event.
-For "Single Shot Events" that MUST be delivered (like Navigation), consider using **Channels** or `SharedFlow` with `extraBufferCapacity` and `tryEmit`.
+Don't use `SharedFlow` for UI state. If the UI collects it *after* emission (e.g., rotation), the state is lost unless you configure replay. Just use `StateFlow`.
 
-## 🎯 Summary
+## ⚠️ The Trap: StateFlow for Events
 
-| Feature | StateFlow | SharedFlow | LiveData |
-| :--- | :--- | :--- | :--- |
-| **Has Initial Value?** | Yes | No | Optional |
-| **Lifecycle Aware?** | No (Use `repeatOnLifecycle`) | No | Yes |
-| **Thread** | Any | Any | Main |
-| **Use Case** | UI State | Events | Legacy |
+Don't use `StateFlow` for events like "Show Toast". If you emit the same event twice, `StateFlow` will ignore the second one (because value didn't change). And if you rotate the screen, the event re-triggers (because it replays).
 
-Switch to Flow. It's the standard.
+## 🏁 Conclusion
+
+- **StateFlow**: For State (What to show). Replaces LiveData.
+- **SharedFlow**: For Events (What to do). Replaces SingleLiveEvent.

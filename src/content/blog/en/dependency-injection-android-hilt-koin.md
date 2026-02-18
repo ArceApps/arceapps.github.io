@@ -1,61 +1,66 @@
 ---
-title: "Dependency Injection in Android: Hilt, Koin, and Manual DI"
-description: "Confused about DI in Android? We compare Hilt (Dagger), Koin, and Manual Dependency Injection. Which one should you choose for your 2025 project?"
-pubDate: 2025-09-01
-heroImage: "/images/placeholder-article-di.svg"
-tags: ["Dependency Injection", "Hilt", "Koin", "Android", "Architecture"]
-reference_id: "2cc50128-7f43-419d-9c29-864115ddb76a"
+title: "Dependency Injection in Android: Hilt vs. Koin"
+description: "Choosing the right DI framework. Performance, compile time, and ease of use in 2025. Hilt vs. Koin for Android apps."
+pubDate: 2025-06-21
+heroImage: "/images/placeholder-article-di-android.svg"
+tags: ["Dependency Injection", "Hilt", "Koin", "Android", "Architecture", "Dagger"]
+reference_id: "7d7872d5-d5a9-46b7-a078-648ffda0ae6b"
 ---
+## 💉 The DI Landscape
 
-Dependency Injection (DI) is one of the most intimidating topics for junior Android developers. "Annotations everywhere", "Magic code generation", "Service Locator vs DI"... let's simplify it.
+Dependency Injection (DI) is non-negotiable for scalable Android apps. But the battle between Hilt (Google's official wrapper around Dagger) and Koin (Kotlin-first Service Locator) continues.
 
-## 💉 What is DI?
+## 🏛️ Hilt (Dagger)
 
-Simply put: **Don't create your dependencies inside your class. Ask for them.**
+The giant. Built on compile-time code generation (KAPT / KSP).
 
-**Bad (Tight Coupling):**
-```kotlin
-class Car {
-    private val engine = V8Engine() // Car creates Engine
-}
-```
+### Pros
+- **Compile-time safety**: Fails fast if a dependency is missing.
+- **Performance**: Zero reflection. Ideal for large apps.
+- **Integration**: Deep support for Android components (Activity, Fragment, ViewModel, Compose).
+- **Testing**: Makes swapping modules for tests straightforward.
 
-**Good (Inversion of Control):**
-```kotlin
-class Car(private val engine: Engine) { // Car asks for Engine
-}
-```
+### Cons
+- **Build Time**: Annotation processing slows down builds.
+- **Boilerplate**: `@Module`, `@InstallIn`, `@Provides`.
+- **Complexity**: Debugging generated Dagger code is a nightmare.
 
-Now `Car` works with `V8Engine`, `ElectricEngine`, or `FakeTestEngine`.
+## 🦄 Koin
 
-## ⚔️ The Battle: Hilt vs Koin
+The pragmatic choice. Pure Kotlin. No code generation.
 
-### 1. Hilt (Google's Recommended)
-Built on top of Dagger. It uses **Compile-time** generation.
-*   **Pros**: Catch errors at compile time (if a dependency is missing, the app won't build). Standard for large teams. Excellent integration with Jetpack (ViewModel, WorkManager).
-*   **Cons**: Slow build times (kapt/ksp). Verbose setup (`@Module`, `@InstallIn`, `@Provides`). Steep learning curve.
-*   **Verdict**: Use it for serious, long-term, scalable apps.
+### Pros
+- **Simplicity**: Just a DSL. `module { single { ... } }`.
+- **Build Speed**: No annotation processing.
+- **Kotlin Features**: Reified types, DSLs.
+- **Multiplatform**: Koin works seamlessly in KMP (iOS, Desktop).
 
-### 2. Koin (The Kotlin Way)
-A "Service Locator" DSL. It uses **Runtime** resolution.
-*   **Pros**: Pure Kotlin (no code generation). Extremely fast build times. Very easy to read and write.
-*   **Cons**: Runtime crashes (if you forget a definition, the app crashes when you open the screen). Slightly slower startup time (reflection-like behavior).
-*   **Verdict**: Perfect for smaller apps, rapid prototyping, KMP (Kotlin Multiplatform), or if you hate annotation processing.
+### Cons
+- **Runtime Safety**: Crashes at runtime if dependency is missing (though `verify()` checks exist).
+- **Performance**: Slight startup overhead due to graph resolution at runtime (negligible in modern devices).
 
-### 3. Manual DI
-Just passing objects in constructors.
-*   **Pros**: Zero magic. You understand exactly what is happening.
-*   **Cons**: Lots of boilerplate. Managing scopes (Singleton vs ActivityRetained) manually is hard.
-*   **Verdict**: Only if:
-    *   You are learning how DI works (educational purposes).
-    *   Your app is extremely tiny (a calculator).
+## 🆚 Benchmark 2025
 
-## 🧠 Clean Architecture & DI
+| Feature | Hilt | Koin |
+| :--- | :--- | :--- |
+| **Startup** | Instant | Fast (~10ms) |
+| **Build Time** | Slow | Fast |
+| **Learning Curve** | High | Low |
+| **Safety** | Compile-time | Runtime (mostly) |
+| **KMP Support** | No (Dagger) | Yes (Native) |
 
-Regardless of the tool, your **Domain** layer should not know about it.
-*   Don't put Dagger `@Inject` annotations on your Domain Entities (if you want to be a purist).
-*   Don't use `KoinComponent` inside your Use Cases.
+## 🚀 When to Choose What
 
-DI should be configured in the "Framework" layer (or `app` module), injecting Data implementations into Use Cases, and Use Cases into ViewModels.
+### Choose Hilt if:
+- You are building a massive enterprise app with 100+ modules.
+- You need absolute compile-time guarantees.
+- You rely heavily on Google's opinionated stack (Jetpack).
 
-**Golden Rule**: The DI tool is an implementation detail. Your business logic should not marry it.
+### Choose Koin if:
+- You are building a startup MVP or mid-sized app.
+- You want fast iteration cycles.
+- You are targeting Kotlin Multiplatform (KMP).
+
+## 🏁 Conclusion
+
+Both are excellent. In 2025, Koin's simplicity and KMP support make it the winner for most new projects. Hilt remains the standard for legacy/large teams.

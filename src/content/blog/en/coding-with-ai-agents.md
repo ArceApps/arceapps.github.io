@@ -4,7 +4,7 @@ description: "Autocomplete is a thing of the past. Discover how AI Agents like C
 pubDate: 2025-02-02
 heroImage: "/images/placeholder-article-ai-agents.svg"
 tags: ["AI", "Agents", "Cursor", "Cline", "Coding", "Productivity", "MCP"]
-reference_id: "975295b7-b15b-43ed-8a76-0438bcaba030"
+reference_id: "5709cbd1-2213-462b-9ecd-43b7e9f6ef68"
 ---
 
 ## 🤖 The Evolution: From "Suggesting" to "Acting"

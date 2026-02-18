@@ -4,7 +4,7 @@ description: "Learn how to configure AI agents to perform automated code reviews
 pubDate: 2025-11-05
 heroImage: "/images/placeholder-article-code-review-ia.svg"
 tags: ["AI", "Code Review", "DevOps", "Quality Assurance", "GitHub Actions"]
-reference_id: "82228434-3292-4f82-a48e-dcc3d9455e64"
+reference_id: "5b17aef6-0aca-453a-a030-06f848e5c51e"
 ---
 ## 🧐 The Problem with Human Code Review
 

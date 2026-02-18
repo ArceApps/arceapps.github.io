@@ -1,40 +1,66 @@
 ---
-title: "Automated Documentation with CI/CD"
-description: "How to integrate documentation generation into your CI/CD pipeline for always up-to-date docs. Automate Javadoc/KDoc deployment with GitHub Actions."
-pubDate: 2025-08-10
-heroImage: "/images/placeholder-article-auto-docs.svg"
-tags: ["Documentation", "CI/CD", "Dokka", "GitHub Actions", "Android"]
-reference_id: "f57a2568-83ab-46ee-a0b4-aafb684b8d38"
+title: "Automated Documentation: CI/CD with Dokka and MkDocs"
+description: "Generate and deploy your Android documentation automatically. How to set up GitHub Actions to publish KDoc and MkDocs to GitHub Pages."
+pubDate: 2025-10-18
+heroImage: "/images/placeholder-article-automated-docs.svg"
+tags: ["Documentation", "CI/CD", "Dokka", "GitHub Actions", "Android", "MkDocs"]
+reference_id: "1299d2ab-5ddf-49e3-b1dc-6c4925f7f5fd"
 ---
+## 📝 The Documentation Gap
 
-The only thing worse than no documentation is **outdated documentation**. If you have to remember to run a command to generate docs, you will forget.
+Manual documentation gets stale. Automated documentation (from code) is always accurate.
 
-In this guide, we will set up a GitHub Actions workflow that automatically builds your project's documentation and deploys it to GitHub Pages on every merge to `main`.
+### Tools
+1.  **Dokka**: For API reference (KDoc).
+2.  **MkDocs**: For guides and tutorials.
+3.  **GitHub Actions**: For deployment.
 
-## 🛠️ The Goal
+## 🛠️ Step 1: Configure Dokka
 
-1.  **Code Change**: Developer pushes code with KDoc comments.
-2.  **Build**: CI runs `./gradlew dokkaHtml`.
-3.  **Deploy**: CI pushes the generated HTML to the `gh-pages` branch.
-4.  **Result**: Your documentation site (e.g., `your-org.github.io/repo`) is instantly updated.
+Add to `build.gradle.kts`:
 
-## 📦 Setting up GitHub Actions
+```kotlin
+plugins {
+    id("org.jetbrains.dokka") version "1.9.20"
+}
+
+tasks.dokkaHtml.configure {
+    outputDirectory.set(file("build/dokka/html"))
+}
+```
+
+Run `./gradlew dokkaHtml`. You now have HTML files in `build/dokka`.
+
+## 🛠️ Step 2: Configure MkDocs
+
+Install MkDocs (Python tool).
+
+```yaml
+# mkdocs.yml
+site_name: My Android Project
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Architecture: architecture.md
+  - API Reference: api/index.html # Link to Dokka output
+```
+
+## 🚀 Step 3: GitHub Actions Workflow
 
 Create `.github/workflows/docs.yml`:
 
 ```yaml
 name: Deploy Docs
-
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Needed to push to gh-pages branch
-
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -44,28 +70,32 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Generate Dokka Docs
+      - name: Build Dokka
         run: ./gradlew dokkaHtml
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/dokka/html
+          python-version: 3.x
+
+      - name: Install MkDocs
+        run: pip install mkdocs-material
+
+      - name: Move Dokka to MkDocs
+        run: |
+          mkdir -p docs/api
+          cp -r build/dokka/html/* docs/api/
+
+      - name: Build & Deploy
+        run: mkdocs gh-deploy --force
 ```
 
-## 🧠 Why automate this?
+## 🧠 Why This Matters
 
-1.  **Source of Truth**: The code IS the documentation. If the code changes, the docs change.
-2.  **Onboarding**: New developers can always find the latest API reference without asking "is this wiki page current?".
-3.  **Review Process**: You can even run this on PRs to verify that documentation builds correctly, failing the PR if KDoc is invalid (using Dokka's strict mode).
-
-## ⚠️ Common Pitfalls
-
-*   **Permissions**: Ensure your GITHUB_TOKEN has write permissions in the repo settings.
-*   **Java Version**: Match the JDK version used in your project (usually 11 or 17 for modern Android).
-*   **Gradle Caching**: Enable Gradle build caching to speed up the process if your project is large.
+1.  **Single Source of Truth**: Code comments = Documentation.
+2.  **Versioning**: Docs are versioned with git.
+3.  **Accessibility**: Easy for new devs to browse API.
 
 ## 🏁 Conclusion
 
-Automating documentation is a low-effort, high-reward investment. It turns documentation from a chore into a reliable artifact of your engineering process.
+Invest 30 minutes setting this up once, and never worry about stale docs again. Your team will have a professional documentation site updated on every commit.

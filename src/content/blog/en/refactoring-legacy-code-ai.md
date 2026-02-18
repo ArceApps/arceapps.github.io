@@ -4,7 +4,7 @@ description: "Strategies for tackling legacy code (Java, Spaghetti) using AI too
 pubDate: 2025-11-10
 heroImage: "/images/placeholder-article-refactoring-ia.svg"
 tags: ["AI", "Refactoring", "Legacy Code", "Kotlin Migration", "Strategy"]
-reference_id: "412f01cf-02d9-4074-93cd-5b357e021963"
+reference_id: "e61a0a9d-7846-43f0-a99a-932ed9a26d43"
 ---
 ## 🧟 The Legacy Monster
 

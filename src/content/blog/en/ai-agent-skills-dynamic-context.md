@@ -1,87 +1,60 @@
 ---
-title: "AI Agent Skills: Dynamic Context and Memory"
-description: "Learn how to implement dynamic context in AI agents to improve memory and relevance. Practical tips for Android and beyond."
-pubDate: 2025-05-24
-heroImage: "/images/agent-skills-context.svg"
-tags: ["AI", "Context", "Agents", "Memory", "LLM"]
-reference_id: "791beb65-8337-4519-a0c9-916950056683"
+title: "AI Agent Skills: Dynamic Context Injection"
+description: "How to inject dynamic context into AI agent prompts. Techniques for providing memory, skills, and tools on-the-fly."
+pubDate: 2025-10-25
+heroImage: "/images/placeholder-article-ai-skills.svg"
+tags: ["AI", "Context", "Agents", "Memory", "LLM", "Prompt Engineering"]
+reference_id: "c8b07a57-31a7-459e-94af-fc4d60d827e7"
 ---
+## 🧠 The Context Limit Problem
 
-The biggest limitation of AI Agents today is not "reasoning" (they reason quite well), but **Memory** and **Context**.
+LLMs have a fixed context window (e.g., 32k, 128k tokens). You cannot feed them your entire codebase, your user's history, and every possible API doc on every request. It's slow and expensive.
 
-A "Skill" (like checking your GitHub issues or reading your code) is only useful if the agent knows *when* and *how* to use it. This requires giving the agent the right context at the right time.
+## 💉 Dynamic Injection Strategy
 
-## 🧠 The Context Problem
+Instead of a static system prompt, we build the prompt dynamically based on the user's current query. This is **Retrieval-Augmented Generation (RAG)** applied to instructions, not just documents.
 
-Imagine you tell an AI: "Fix the bug in the login screen."
+### 1. Intent Classification
+First, determine what the user wants.
+- User: "Book a flight to Paris."
+- Classifier: Intent = `TRAVEL_BOOKING`.
 
-Without context, the AI might hallucinate:
-*   "Which login screen?"
-*   "What bug?"
-*   "Are you using XML or Compose?"
+### 2. Skill Retrieval
+Fetch the relevant instructions (skills) for that intent.
+- Skill: `FlightBookingService.yaml` (API schema).
+- Memory: User prefers aisle seats (from User Profile).
 
-The standard solution is RAG (Retrieval-Augmented Generation), where we fetch relevant code chunks. But for **Skills**, we need something smarter. We need **Dynamic Context**.
+### 3. Prompt Assembly
+Combine these into the final prompt sent to the LLM.
 
-## 🔄 Dynamic Context Injection
+```
+SYSTEM: You are a travel assistant.
+CONTEXT: User prefers aisle seats.
+TOOLS:
+- search_flights(origin, dest, date)
+- book_flight(flight_id)
 
-Instead of stuffing everything into the prompt (Context Window overflow!), we want the Skill itself to *declare* what context it needs.
-
-### Example: The "Android Expert" Skill
-
-If I activate the `android-expert` skill, it shouldn't just be a prompt saying "You are an Android expert." It should dynamically inject:
-1.  **Project Structure**: `tree -L 2 src/` (output of command).
-2.  **Dependencies**: Content of `libs.versions.toml`.
-3.  **Recent Changes**: `git diff HEAD~1`.
-
-By injecting this context *only when the skill is active*, we keep the main prompt clean and the agent focused.
-
-## 🛠️ Implementing Dynamic Context
-
-In a tool like **Cline** or **Cursor**, we can use `@` symbols to reference context.
-*   `@Codebase`: Indexes your files with embeddings.
-*   `@File`: Reads a specific file.
-
-But for custom agents (e.g., using LangChain or simple API calls), we can structure our skills like this:
-
-```kotlin
-interface Skill {
-    val name: String
-    val description: String
-
-    // The "magic" part: dynamic context
-    suspend fun getContext(query: String): String
-}
-
-class GitSkill : Skill {
-    override val name = "Git Expert"
-    override val description = "Handles git operations and context."
-
-    override suspend fun getContext(query: String): String {
-        // Only inject diff if the user asks about "changes" or "commit"
-        if (query.contains("change") || query.contains("commit")) {
-            return "Current diff:\n" + runCommand("git diff --staged")
-        }
-        return ""
-    }
-}
+USER: Book a flight to Paris tomorrow.
 ```
 
-## 🧩 Context Routing
+## 🛠️ Implementation: Vector Search for Skills
 
-An advanced pattern is **Context Routing**. An "Orchestrator" LLM decides which skills (and thus which context) are relevant for the query.
+Store your agent's skills as embeddings in a vector database (Chroma, Pinecone). When a query comes in:
+1.  Embed the query.
+2.  Search for similar skills.
+3.  Inject the top 3 matches into the prompt context.
 
-1.  **User**: "Why is the build failing?"
-2.  **Orchestrator**: "I need the `BuildSkill` and `LogAnalysisSkill`."
-3.  **BuildSkill Context**: Loads `build.gradle.kts`.
-4.  **LogAnalysisSkill Context**: Loads the last 50 lines of `build.log`.
-5.  **Agent**: "The build failed because of dependency conflict in `build.gradle.kts` (line 45)..."
+### Example: Code Assistant
+- User: "Fix the bug in the login screen."
+- Search: Finds `LoginScreen.kt`, `AuthRepository.kt`, and `LoginViewModel.kt` content.
+- Result: Highly relevant context without loading the whole project.
 
-## 🏁 Key Takeaway
+## 🚀 Optimization: Summarization
 
-Static prompts are dead. To build truly intelligent agents, we must move to **Dynamic Context**.
+If context is still too large, use an LLM to summarize previous turns or documents before injection.
+- **Map-Reduce**: Summarize chunks in parallel.
+- **Refine**: Iteratively improve the summary.
 
-*   Don't dump your whole wiki into the prompt.
-*   Let each Skill define its own "mini-context".
-*   Inject that context only when relevant.
+## 🏁 Conclusion
 
-This approach saves tokens, reduces hallucinations, and makes your agents feel much smarter.
+Dynamic context injection is the key to building scalable, smart agents. It turns a generic LLM into a specialized expert that knows exactly what it needs to know, exactly when it needs to know it.

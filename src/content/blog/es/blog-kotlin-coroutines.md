@@ -4,6 +4,7 @@ description: "Domina las corrutinas de Kotlin para crear aplicaciones Android m�
 pubDate: 2025-09-20
 heroImage: "/images/placeholder-article-coroutines.svg"
 tags: ["Android", "Kotlin", "Coroutines", "MVVM", "Clean Architecture", "Async Programming", "Flow", "Testing"]
+reference_id: "68c16e5f-eccc-4903-bd42-f5c5dd0d19f6"
 ---
 
 ## ⚡ Introducción a las Corrutinas de Kotlin

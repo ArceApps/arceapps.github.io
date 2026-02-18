@@ -1,28 +1,78 @@
 ---
-title: "agents.md: The New Standard for AI Development"
-description: "Discover why agents.md has become the de facto standard for configuring AI agents and how to effectively implement it in Android projects."
-pubDate: 2025-12-29
+title: "Agents.md Standard: Blueprint for AI-Ready Projects"
+description: "Introducing the Agents.md standard. A file convention to context-load AI agents with project architecture, coding rules, and domain knowledge."
+pubDate: 2025-05-15
 heroImage: "/images/placeholder-article-agents-md.svg"
-tags: ["AI", "agents.md", "Android", "Development", "GitHub Copilot", "Gemini"]
+tags: ["AI", "Standard", "Agents", "Documentation", "Productivity", "Workflow"]
+reference_id: "18f8fad7-3b63-4ea6-a8b2-bf9e057ed125"
 ---
-## 🏗️ The Birth of a Standard
+## 📜 The Problem: Context Amnesia
 
-In recent months, we have seen a new standard emerge in AI-assisted development: the **agents.md** file. Similar to how `README.md` became the universal standard for documenting projects for humans, `agents.md` is establishing itself as the definitive entry point for defining how AI agents should interact with, understand, and generate code in your project.
+Every time you start a new chat with an AI (Copilot, ChatGPT, Claude), it knows **nothing** about your project's specific rules.
+- "Use Hilt, not Koin."
+- "All ViewModels must extend `BaseViewModel`."
+- "Target SDK is 34."
 
-### Historical Context: The Evolution of Documentation
-To understand why `agents.md` is necessary, we must look at the evolution of documentation in software engineering:
+You repeat these instructions ad nauseam. This is inefficient and error-prone.
 
-1.  **Pre-Git Era**: Documentation in Word documents or external wikis, disconnected from the code.
-2.  **GitHub Era (README.md)**: Documentation lives with the code. The `README.md` is the cover page for humans.
-3.  **Open Source Era (CONTRIBUTING.md)**: Specific rules for human collaborators who want to contribute.
-4.  **AI Era (agents.md)**: Specific rules for "synthetic collaborators" (AIs) that generate code.
+## 💡 The Solution: `AGENTS.md`
 
-**Why did this standard emerge?** Development teams realized that while LLMs (Large Language Models) are powerful, they suffer from "hallucinations" or inconsistencies when lacking context. What started as an informal practice of copying and pasting rules into every prompt naturally converged into a single, standardized file: `agents.md`.
+We propose a standard file, `AGENTS.md`, placed at the root of your repository. This file is written **specifically for AI agents**, not humans (though humans benefit too).
 
-## 🧠 Theory: Why Does agents.md Work?
+It serves as a "System Prompt Injection" for your codebase.
 
-The effectiveness of `agents.md` is not magic; it relies on fundamental principles of how current LLMs work.
+### Structure of `AGENTS.md`
 
-### 1. Context Window Management
-LLMs have a limited memory (context window). They cannot "read" your entire repository at once in every interaction without incurring massive costs or loss of accuracy.
-`agents.md` acts as a **high-density compression** of your project's tribal knowledge. By placing this file in the root and referencing it, you are injecting the "rules of the game" into the AI's active memory with a very low token cost, but with a very high impact on code quality.
+1.  **Project Overview**: High-level summary.
+2.  **Architecture**: Layering, patterns (MVVM/MVI), directory structure.
+3.  **Tech Stack**: Libraries, versions, constraints.
+4.  **Coding Conventions**: Naming, formatting, prohibited patterns.
+5.  **Testing Strategy**: Libraries, coverage goals.
+6.  **Common Tasks**: "Few-shot" examples of how to implement common features.
+
+## 📱 Example: Android Project
+
+```markdown
+# Android Project - Agents Guide
+
+## Overview
+A modern task management app built with Jetpack Compose.
+
+## Architecture
+- **Clean Architecture**: `data` -> `domain` -> `presentation`.
+- **UI**: Single Activity, Compose Navigation.
+- **State**: `StateFlow` + `UiState` sealed hierarchy.
+
+## Tech Stack
+- **DI**: Hilt
+- **Async**: Coroutines + Flow
+- **Network**: Retrofit
+- **DB**: Room
+
+## Coding Rules
+- Use `val` by default.
+- ViewModels expose `StateFlow<UiState>`.
+- Composables: Accept `modifier: Modifier` as the first optional param.
+- **NO**: `LiveData`, `AsyncTask`, `Synthetics`.
+
+## Testing
+- Unit: JUnit5 + Mockk
+- UI: Compose Test Rule
+```
+
+## 🚀 How to Use It
+
+1.  **Create the File**: Add `AGENTS.md` to your root.
+2.  **Reference It**: When asking an AI to generate code, say:
+    > "Generate a Login Screen following the guidelines in AGENTS.md."
+3.  **Automate It**: Configure tools like Cursor or Copilot to always index this file.
+
+## 📈 Benefits
+
+- **Consistency**: AI generates code that looks like *your* code.
+- **Speed**: No need to prompt-engineer every request.
+- **Onboarding**: New devs (humans) can read it to understand the "soul" of the project.
+
+## 🔮 The Future
+
+We envision IDEs automatically detecting `AGENTS.md` and pre-loading it into the context window of every AI interaction. It's a small file that makes a massive difference in AI-assisted development.

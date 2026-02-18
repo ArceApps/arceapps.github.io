@@ -1,41 +1,59 @@
 ---
-title: "Android 16 'Baklava': What's New and What to Expect"
-description: "Analysis of the Android 16 roadmap, the Baklava codename, and the new features coming to the ecosystem."
-pubDate: 2025-06-15
+title: "Android 16 Baklava: Features and Privacy"
+description: "Everything developers need to know about Android 16 (Baklava). Privacy updates, Health Connect, and roadmap for API adoption."
+pubDate: 2025-06-21
 heroImage: "/images/placeholder-article-baklava.svg"
-tags: ["Android", "Android 16", "Baklava", "Roadmap", "Features"]
-reference_id: "1139c45d-8227-4508-af54-d5341020755b"
+tags: ["Android", "Android 16", "Baklava", "Features", "Roadmap", "Privacy", "Health Connect"]
+reference_id: "be5f8f27-9428-4735-a643-d081c334aeee"
 ---
+## 🥧 What's New in Android 16 (Baklava)?
 
-The Android development cycle never stops. While we are still adapting to Android 15, Google is already paving the way for the next major version: **Android 16**. And keeping with the dessert tradition (internally at least), the code name is **Baklava**.
+Android 16, code-named "Baklava," continues Google's trend of focusing on privacy, security, and incremental refinement. While not as disruptive as Android 12 (Material You), it introduces several key APIs and behavioral changes developers must address.
 
-## 📅 The New Roadmap
+## 🔒 Privacy & Permissions
 
-Google has surprised us by accelerating the release cycle.
-*   **Q2 2025**: First Developer Previews.
-*   **Q3 2025**: Platform Stability.
-*   **Q4 2025**: Final Release.
+### Photo Picker Enhancements
+The Photo Picker is now mandatory for accessing media. `READ_EXTERNAL_STORAGE` is officially deprecated for most use cases.
+- **Why**: User privacy. Apps no longer need broad storage access.
+- **Action**: Migrate to `PickVisualMedia` contract.
 
-This shift aims to align Android releases closer to hardware launches (Pixel devices) and ensure OEMs have more time to adapt.
+### Health Connect Integration
+Health Connect is now a core system service in Android 16, pre-installed on all devices.
+- **API**: Unified read/write permissions for health data (steps, heart rate, sleep).
+- **Migration**: Apps using Google Fit must migrate to Health Connect.
 
-## 🍰 What to Expect from 'Baklava'
+## 🛠️ Developer Productivity
 
-While it's early for definitive features, the leaks and AOSP commits point to several key areas:
+### Predictive Back Gesture
+Predictive Back is enabled by default. Apps must handle back navigation correctly.
+- **Action**: Use `OnBackPressedDispatcher`.
+- **UI**: Ensure custom transitions look good with the "peek" animation.
 
-### 1. Desktop Mode Revamp
-Android has had a hidden desktop mode for years. Android 16 seems to be the version where this becomes a user-facing feature, competing directly with Samsung DeX. Expect better window management and multi-monitor support.
+### Background Work Optimization
+New restrictions on exact alarms and foreground services to save battery.
+- **WorkManager**: Continues to be the recommended solution for deferrable background tasks.
+- **Foreground Service Types**: All foreground services must declare a specific type in the manifest.
 
-### 2. Lock Screen Widgets Return
-Inspired by iOS (and looking back at Android 4.2), widgets on the lock screen are making a comeback. But this time, they are built with **Jetpack Glance**, ensuring they are battery-efficient and secure.
+## 📅 Roadmap to Target SDK 35
 
-### 3. AI Core Integration
-Android 16 will likely bake **Gemini Nano** deeper into the OS. We expect new APIs for "System Intents" that allow apps to hand off complex tasks to the on-device AI model without needing cloud access.
+1.  **Preview**: Available now for Pixel.
+2.  **Beta**: Expected in April 2025.
+3.  **Platform Stability**: June 2025.
+4.  **Final Release**: August/September 2025.
 
-## 🛠️ Preparing Your Apps
+## ⚠️ Breaking Changes
 
-As developers, what should we do?
-1.  **Edge-to-Edge by Default**: If you haven't adopted it yet, Android 16 might enforce it strictly.
-2.  **Predictive Back**: Ensure your app supports the predictive back gesture animation, as it will be standard.
-3.  **Scoped Storage**: Restrictions on file access will likely get tighter. Move to Photo Picker if you haven't already.
+- **Broadcast Receivers**: Strict limitations on implicit broadcasts.
+- **Non-SDK Interfaces**: More restricted greylist APIs moved to blacklist.
+- **Theme**: Subtle changes to dynamic color algorithms.
 
-Android 16 'Baklava' promises to be a refined, polished release that cements the AI-first future of the platform.
+## 🚀 Preparing Your App
+
+1.  **Audit Permissions**: Remove unused permissions.
+2.  **Test Predictive Back**: Enable developer option and test navigation flows.
+3.  **Update Dependencies**: Bump AGP, Kotlin, and Jetpack libraries.
+4.  **Target SDK**: Update `targetSdk` to 35 and fix compilation errors.
+
+## 🏁 Conclusion
+
+Android 16 Baklava is a refinement release. Focus on privacy (Photo Picker, Health Connect) and modern navigation (Predictive Back). Start testing early to avoid surprises.

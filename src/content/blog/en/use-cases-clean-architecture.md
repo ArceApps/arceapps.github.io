@@ -1,56 +1,59 @@
 ---
-title: "Use Cases in Clean Architecture: More than wrappers?"
-description: "Are your Use Cases just calling the repository? Learn the true value of the Domain layer and how to avoid 'Pass-Through' anti-patterns."
-pubDate: 2025-10-14
-heroImage: "/images/placeholder-article-usecases.svg"
+title: "Clean Architecture: Use Cases in Android"
+description: "Why Use Cases matter in Clean Architecture. How to implement them effectively in Kotlin to decouple business logic from UI."
+pubDate: 2025-06-21
+heroImage: "/images/placeholder-article-use-cases.svg"
 tags: ["Architecture", "Clean Code", "Use Cases", "Android", "Domain"]
-reference_id: "770fa324-4f0e-4395-829d-47677943d038"
+reference_id: "2eddc21e-4c8f-4f39-859d-e4c1fc1066bc"
 ---
-## ❓ The Controversy
+## 🎯 The Role of the Use Case
 
-Many developers ask: "Why do I need a Use Case if it just does `repository.getData()`?".
-It's a valid question. In simple CRUD apps, Use Cases can feel like boilerplate.
+In Clean Architecture, the **Use Case** (Interactor) encapsulates a single, specific business rule. It sits between the ViewModel (Presentation) and the Repository (Data).
 
-## 🛡️ The Defense: Why you need them
+### Why Do We Need It?
+1.  **Reusability**: `GetUserProfile` can be called from `ProfileViewModel`, `SettingsViewModel`, and `OrderViewModel`.
+2.  **Testability**: Testing pure business logic without mocking ViewModels or Repositories.
+3.  **Encapsulation**: Hides complex data fetching logic (e.g., fetch from API, save to DB, transform data) from the UI.
 
-### 1. Reusability
-If you put logic in `LoginViewModel`, you can't reuse it in `RegisterViewModel`.
-A `ValidateEmailUseCase` can be injected anywhere.
+## 🏗️ Implementation Structure
 
-### 2. Composition
-A Use Case can combine multiple repositories.
-`GetDashboardDataUseCase` might call `UserRepo`, `SalesRepo`, and `NotificationsRepo` and return a combined model. The ViewModel doesn't need to know this complexity.
+A Use Case should do one thing and do it well.
 
-### 3. Independence
-Use Cases are pure Kotlin/Java. They don't know about `ViewModel`, `LiveData`, or `Context`. This makes them:
--   Incredibly fast to test.
--   Portable (share code between Android and Backend/Desktop).
-
-### 4. Semantic Screaming Architecture
-When you open your `domain/usecase` folder, the file names should scream what the app does:
--   `TransferMoneyUseCase`
--   `ApplyDiscountUseCase`
--   `LogoutUseCase`
-
-This is "Screaming Architecture". You understand the features without reading code.
-
-## 🛠️ Implementation Tips
-
-### The `invoke` Operator
-Make Use Cases feel like functions.
+### 1. Functional Interface (Invoke Operator)
+By overriding `operator fun invoke`, the Use Case can be called like a function.
 
 ```kotlin
-class GetUserUseCase @Inject constructor(repo: UserRepository) {
-    suspend operator fun invoke(id: String): User = repo.getUser(id)
+class GetUserUseCase @Inject constructor(
+    private val userRepository: UserRepository
+) {
+    operator fun invoke(userId: String): Flow<Result<User>> {
+        return userRepository.getUser(userId)
+            .map { ... } // Transform data for UI if needed
+    }
 }
-
-// Usage
-val user = getUserUseCase("123") // Looks like a function call!
 ```
 
-### Single Public Method
-A Use Case should do **one thing**. Avoid `UserUseCase` with methods `get`, `save`, `delete`. Split them.
+### 2. ViewModel Usage
+The ViewModel injects the Use Case, not the Repository.
 
-## 🎯 Conclusion
+```kotlin
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
+    private val getUserUseCase: GetUserUseCase
+) : ViewModel() {
 
-Yes, sometimes they are wrappers. But they are wrappers that protect your architecture. They are the boundary where "Application Logic" lives, separate from "Presentation Logic" (ViewModel) and "Data Logic" (Repository).
+    fun loadProfile() {
+        getUserUseCase("123").collect { ... }
+    }
+}
+```
+
+## ⚠️ Common Pitfalls
+
+1.  **Anemic Use Cases**: A Use Case that just forwards the call to Repository.
+    - *Is it bad?* Not necessarily. It maintains consistency. But if 90% are anemic, consider skipping Use Cases for simple CRUD.
+2.  **God Use Cases**: `UserManagerUseCase` handling login, logout, profile, settings. Split it up!
+
+## 🏁 Conclusion
+
+Use Cases are the "verbs" of your application (`Login`, `GetProfile`, `BuyItem`). They define *what* your app does, independent of *how* it shows it or *where* it stores data.

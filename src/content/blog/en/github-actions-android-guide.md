@@ -4,7 +4,7 @@ description: "Learn the fundamentals of GitHub Actions to automate your workflow
 pubDate: 2025-10-25
 heroImage: "/images/placeholder-article-github-actions.svg"
 tags: ["GitHub Actions", "CI/CD", "DevOps", "Automation", "Workflow"]
-reference_id: "0cd493b0-ccaf-4791-8c0b-307f39c44b6d"
+reference_id: "944bdacb-c6dc-4b89-b7de-0a6633738244"
 ---
 ## 🏗️ Anatomy of a Workflow
 

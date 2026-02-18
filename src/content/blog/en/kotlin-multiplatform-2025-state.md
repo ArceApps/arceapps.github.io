@@ -4,7 +4,7 @@ description: "KMP has moved from a promise to the de facto standard. We analyze 
 pubDate: 2025-02-10
 heroImage: "/images/placeholder-article-kmp-state.svg"
 tags: ["Kotlin", "KMP", "Multiplatform", "iOS", "Android", "Compose"]
-reference_id: "3391fa7d-1654-4845-8820-e55837ae4e68"
+reference_id: "b0454438-8d0c-4998-abc2-3dd70aa5bf3d"
 ---
 
 ## 🌍 From Experiment to Industry Standard

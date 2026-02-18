@@ -4,7 +4,7 @@ description: "Real Android development cases where delegating to specialized age
 pubDate: 2025-05-22
 tags: ["AI", "Kotlin", "Workflow", "Use Cases", "Android"]
 heroImage: "/images/placeholder-article-ai-workflow.svg"
-reference_id: "69fa58d6-cdb0-4b6c-b299-30a4f305b816"
+reference_id: "0ce33761-8899-4d89-aff7-39579c3bca46"
 ---
 You already have the [theory](/blog/ai-agents-android-theory) and you have the [configuration](/blog/configuring-ai-agents). Now let's see the magic in action. We are going to simulate three real Android development scenarios and see how **Sentinel**, **Bolt**, and **Palette** solve problems that a generalist "chatbot" would likely ignore or solve poorly.
 

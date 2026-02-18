@@ -4,7 +4,7 @@ description: "Deep dive into the ViewModel component: State management, lifecycl
 pubDate: 2025-10-04
 heroImage: "/images/placeholder-article-viewmodel.svg"
 tags: ["Android", "MVVM", "ViewModel", "StateFlow", "Coroutines"]
-reference_id: "6aaed0da-0904-4185-baef-5ae0fec96734"
+reference_id: "b1b0835b-d0cc-4efd-bbd4-853257664f56"
 ---
 ## 🧠 Theory: What makes a ViewModel a ViewModel?
 
