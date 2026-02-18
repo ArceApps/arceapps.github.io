@@ -1,0 +1,23 @@
+
+> arceapps-astro-site@0.0.1 dev /app
+> astro dev
+
+19:40:00 [types] Generated 1ms
+19:40:00 [content] Syncing content
+19:40:01 [content] Synced content
+
+ astro  v5.16.14 ready in 1142 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+19:40:01 watching for file changes...
+19:40:09 [200] /blog/android-documentation-best-practices 393ms
+19:40:09 [404] /images/placeholder-article-documentation.svg 11ms
+19:40:10 [200] /_image 159ms
+19:40:10 [200] / 23ms
+19:40:10 [404] /images/placeholder-article-documentation.svg 10ms
+19:40:11 [200] /_image 110ms
+19:40:13 [200] /devlog/2025-w40-first-pixel 10ms
+19:41:06 [watch] verification/verify_typography.py
+19:41:06 [watch] verification/verify_typography.py

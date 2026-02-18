@@ -16,6 +16,7 @@
     "@astrojs/sitemap": "^3.6.0",
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource/material-icons": "^5.2.7",
+    "@fontsource/merriweather": "^5.2.11",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.14",
     "fuse.js": "^7.1.0",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
     "@playwright/test": "^1.57.0",
+    "@tailwindcss/typography": "^0.5.19",
     "jsdom": "^27.4.0",
     "playwright": "^1.57.0",
     "rehype-external-links": "^3.0.0",
