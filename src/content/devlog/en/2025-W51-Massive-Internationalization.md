@@ -29,7 +29,7 @@ In total, we moved hundreds of lines of text from Kotlin `(.kt)` files to our `s
 
 It might seem like boring "copy and paste" work, but the impact on code quality is huge:
 
-1.  **Zero Magic Texts**: Now, `R.string.hitori_stats_best_time` is the single source of truth. If we want to change "Best time" to "Record", we do it in one place.
+1.  **Zero Magic Strings**: Now, `R.string.hitori_stats_best_time` is the single source of truth. If we want to change "Best time" to "Record", we do it in one place.
 2.  **Real Multi-language Support**: Now the app magically changes from English to Spanish (and in the future to French, German, Japanese...) respecting the user's phone settings.
 3.  **Cleaner Code**: Separating logic from presentation is the ABC of software engineering, and our UI screens are now pure, with no text strings cluttering the component hierarchy.
 

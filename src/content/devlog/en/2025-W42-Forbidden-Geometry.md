@@ -20,7 +20,7 @@ Our simple touch detection system `(coordinate / cell_size)` broke immediately.
 ## The Ghost Touch Problem
 
 Imagine trying to touch a 1-pixel thick line with a finger that covers almost a square centimeter of screen space. It's impossible to hit accurately.
-If we ask the user for surgical precision, they'll throw the phone out the window.
+If we demand surgical precision from the user, they'll throw the phone out the window.
 
 For Slitherlink, we had to trash our simple click detection and implement a **"Hit Testing" system with zones of influence**.
 We no longer check if "you touched the line". We check "which line is the center of your pressure closest to?".

@@ -1,0 +1,237 @@
+<!DOCTYPE html><script type="module" src="/@vite/client"></script>
+<script type="module" src="/@fs/app/node_modules/.pnpm/astro@5.16.14_@types+node@25.0.3_jiti@2.6.1_lightningcss@1.30.2_rollup@4.54.0_terser@5.46.0_typescript@5.9.3_yaml@2.8.2/node_modules/astro/dist/runtime/client/dev-toolbar/entrypoint.js?v=aa4e6e98"></script>
+<script>window.__astro_dev_toolbar__ = {"root":"/app/","version":"5.16.14","latestAstroVersion":"5.17.2","debugInfo":"Astro                    v5.16.14\nNode                     v22.22.0\nSystem                   Linux (x64)\nPackage Manager          pnpm\nOutput                   static\nAdapter                  none\nIntegrations             @astrojs/sitemap\n                         @astrojs/partytown"}</script>
+<script>!(function(w,p,f,c){if(!window.crossOriginIsolated && !navigator.serviceWorker) return;c=w[p]=Object.assign(w[p]||{},{"lib":"/~partytown/","debug":true});c[f]=(c[f]||[]).concat(["dataLayer.push"])})(window,'partytown','forward');/* Partytown 0.11.2 - MIT QwikDev */
+const t={preserveBehavior:!1},e=e=>{if("string"==typeof e)return[e,t];const[n,r=t]=e;return[n,{...t,...r}]},n=Object.freeze((t=>{const e=new Set;let n=[];do{Object.getOwnPropertyNames(n).forEach((t=>{"function"==typeof n[t]&&e.add(t)}))}while((n=Object.getPrototypeOf(n))!==Object.prototype);return Array.from(e)})());!function(t,r,o,i,a,s,c,l,d,p,u=t,f){function h(){f||(f=1,"/"==(c=(s.lib||"/~partytown/")+(s.debug?"debug/":""))[0]&&(d=r.querySelectorAll('script[type="text/partytown"]'),i!=t?i.dispatchEvent(new CustomEvent("pt1",{detail:t})):(l=setTimeout(v,(null==s?void 0:s.fallbackTimeout)||1e4),r.addEventListener("pt0",w),a?y(1):o.serviceWorker?o.serviceWorker.register(c+(s.swPath||"partytown-sw.js"),{scope:c}).then((function(t){t.active?y():t.installing&&t.installing.addEventListener("statechange",(function(t){"activated"==t.target.state&&y()}))}),console.error):v())))}function y(e){p=r.createElement(e?"script":"iframe"),t._pttab=Date.now(),e||(p.style.display="block",p.style.width="0",p.style.height="0",p.style.border="0",p.style.visibility="hidden",p.setAttribute("aria-hidden",!0)),p.src=c+"partytown-"+(e?"atomics.js?v=0.11.2":"sandbox-sw.html?"+t._pttab),r.querySelector(s.sandboxParent||"body").appendChild(p)}function v(n,o){for(w(),i==t&&(s.forward||[]).map((function(n){const[r]=e(n);delete t[r.split(".")[0]]})),n=0;n<d.length;n++)(o=r.createElement("script")).innerHTML=d[n].innerHTML,o.nonce=s.nonce,r.head.appendChild(o);p&&p.parentNode.removeChild(p)}function w(){clearTimeout(l)}s=t.partytown||{},i==t&&(s.forward||[]).map((function(r){const[o,{preserveBehavior:i}]=e(r);u=t,o.split(".").map((function(e,r,o){var a;u=u[o[r]]=r+1<o.length?u[o[r]]||(a=o[r+1],n.includes(a)?[]:{}):(()=>{let e=null;if(i){const{methodOrProperty:n,thisObject:r}=((t,e)=>{let n=t;for(let t=0;t<e.length-1;t+=1)n=n[e[t]];return{thisObject:n,methodOrProperty:e.length>0?n[e[e.length-1]]:void 0}})(t,o);"function"==typeof n&&(e=(...t)=>n.apply(r,...t))}return function(){let n;return e&&(n=e(arguments)),(t._ptf=t._ptf||[]).push(o,arguments),n}})()}))})),"complete"==r.readyState?h():(t.addEventListener("DOMContentLoaded",h),t.addEventListener("load",h))}(window,document,navigator,top,window.crossOriginIsolated);;(e=>{e.addEventListener("astro:before-swap",e=>{let r=document.body.querySelector("iframe[src*='/~partytown/']");if(r)e.newDocument.body.append(r)})})(document);</script>
+<script type="module" src="/@id/astro:scripts/page.js"></script><pre data-astro-source-file="/app/src/pages/debug-slugs.astro" data-astro-source-loc="10:6">[
+  {
+    &quot;id&quot;: &quot;en/2025-W43-Cambrian-Explosion.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w43-cambrian-explosion&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W48-Invisible-Foundations.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w48-invisible-foundations&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W49-Achievements-Unlocked.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w49-achievements-unlocked&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W50-Perfecting-The-End.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w50-perfecting-the-end&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W51-Massive-Internationalization.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w51-massive-internationalization&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W40-First-Pixel.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w40-first-pixel&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W41-Multiply-By-Three.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w41-multiply-by-three&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W42-Forbidden-Geometry.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w42-forbidden-geometry&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W44-Dominosa-Genesis.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w44-dominosa-genesis&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W45-Dominosa-Completed.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w45-dominosa-completed&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W46-Great-Standardization.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w46-great-standardization&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W52-BaseGameState-Standardization.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w52-basegamestate-standardization&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W47-User-Experience.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w47-user-experience&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2025-W53-Difficulty-Standardization-and-Closing.md&quot;,
+    &quot;slug&quot;: &quot;en/2025-w53-difficulty-standardization-and-closing&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2026-W01-Hitori-Kakuro-Refactoring.md&quot;,
+    &quot;slug&quot;: &quot;en/2026-w01-hitori-kakuro-refactoring&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2026-W03-Undo-Redo-Safety-Net.md&quot;,
+    &quot;slug&quot;: &quot;en/2026-w03-undo-redo-safety-net&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2026-W04-Silent-Referee.md&quot;,
+    &quot;slug&quot;: &quot;en/2026-w04-silent-referee&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2026-W05-New-Challengers.md&quot;,
+    &quot;slug&quot;: &quot;en/2026-w05-new-challengers&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2026-W07-The-Assembly-Line.md&quot;,
+    &quot;slug&quot;: &quot;en/2026-w07-the-assembly-line&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/clawdbot-research.md&quot;,
+    &quot;slug&quot;: &quot;en/clawdbot-research&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2026-W06-Teacher-Mode.md&quot;,
+    &quot;slug&quot;: &quot;en/2026-w06-teacher-mode&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/refining-the-experience.md&quot;,
+    &quot;slug&quot;: &quot;en/refining-the-experience&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W40-Primer-Pixel.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w40-primer-pixel&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;en/2026-W02-Repository-Patterns-Canvas.md&quot;,
+    &quot;slug&quot;: &quot;en/2026-w02-repository-patterns-canvas&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W41-Multiplicar-Por-Tres.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w41-multiplicar-por-tres&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W42-Geometria-Prohibida.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w42-geometria-prohibida&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W43-Explosion-Cambrica.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w43-explosion-cambrica&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W44-Genesis-Dominosa.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w44-genesis-dominosa&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W45-Dominosa-Completado.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w45-dominosa-completado&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W46-Gran-Estandarizacion.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w46-gran-estandarizacion&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W47-Experiencia-Usuario.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w47-experiencia-usuario&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W48-Cimientos-Invisibles.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w48-cimientos-invisibles&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W49-Logros-Desbloqueados.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w49-logros-desbloqueados&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W50-Perfeccionando-El-Final.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w50-perfeccionando-el-final&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W51-Internacionalizacion-Masiva.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w51-internacionalizacion-masiva&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W52-Estandarizacion-BaseGameState.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w52-estandarizacion-basegamestate&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2025-W53-Estandarizacion-Dificultad-y-Cierre.md&quot;,
+    &quot;slug&quot;: &quot;es/2025-w53-estandarizacion-dificultad-y-cierre&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2026-W01-Hitori-Kakuro-Refactoring.md&quot;,
+    &quot;slug&quot;: &quot;es/2026-w01-hitori-kakuro-refactoring&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2026-W03-Undo-Redo-Safety-Net.md&quot;,
+    &quot;slug&quot;: &quot;es/2026-w03-undo-redo-safety-net&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2026-W04-Silent-Referee.md&quot;,
+    &quot;slug&quot;: &quot;es/2026-w04-silent-referee&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2026-W02-Repository-Patterns-Canvas.md&quot;,
+    &quot;slug&quot;: &quot;es/2026-w02-repository-patterns-canvas&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2026-W05-New-Challengers.md&quot;,
+    &quot;slug&quot;: &quot;es/2026-w05-new-challengers&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2026-W06-Teacher-Mode.md&quot;,
+    &quot;slug&quot;: &quot;es/2026-w06-teacher-mode&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/2026-W07-The-Assembly-Line.md&quot;,
+    &quot;slug&quot;: &quot;es/2026-w07-the-assembly-line&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/investigacion-clawdbot.md&quot;,
+    &quot;slug&quot;: &quot;es/investigacion-clawdbot&quot;,
+    &quot;draft&quot;: false
+  },
+  {
+    &quot;id&quot;: &quot;es/refinando-la-experiencia.md&quot;,
+    &quot;slug&quot;: &quot;es/refinando-la-experiencia&quot;,
+    &quot;draft&quot;: false
+  }
+]</pre>

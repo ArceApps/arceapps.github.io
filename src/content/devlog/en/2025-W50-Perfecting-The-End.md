@@ -6,7 +6,7 @@ tags: ["devlog", "ux", "ui", "quality"]
 heroImage: "/images/devlog-w50-polishing.svg"
 ---
 
-Completing a difficult puzzle is a moment of satisfaction. It's that instant of dopamine when you place the last piece and everything fits. This week we realized that our interface was... well, interrupting that moment.
+Completing a difficult puzzle is a moment of satisfaction. It is that dopamine rush when you place the last piece and everything fits. This week we realized that our interface was... well, interrupting that moment.
 
 In week 50, we dedicated ourselves to redesigning the "Game Completed" experience.
 
@@ -28,4 +28,4 @@ We redesigned the `PuzzleDialog` component and rolled it out across all 10 games
 
 We took the opportunity to refactor how we listen for the "completed" event in our ViewModels. We replaced several "ad-hoc" `AlertDialog`s with our reusable component, eliminating duplicate code and ensuring that if we improve the design in the future, all 10 games will benefit automatically.
 
-It's a week of visually small changes, but ones that respect the player's effort much more. Because after spending 20 minutes solving an Expert *Kakuro*, you deserve a moment to contemplate your victory.
+It is a week of visually small changes, but ones that respect the player's effort much more. Because after spending 20 minutes solving an Expert *Kakuro*, you deserve a moment to contemplate your victory.

@@ -102,7 +102,7 @@ Closing this week, however, not everything is a celebration. When implementing D
 
 Now we have 9 files called `GameCompletionDialog` (or variants) scattered around the project. 9 places to maintain. 9 places to introduce bugs. 9 places to change if we decide to refresh the design.
 
-We have gone fast, yes. We have delivered value, yes. But we have muddied the kitchen.
+We have gone fast, yes. We have delivered value, yes. But we have made a mess in the kitchen.
 
 Next week there will be no new games. No shiny features. Next week it's time to put on the rubber gloves and bleach. We are going to standardize. We are going to eliminate duplicates. We are going to pay the technical debt before the interest eats us alive.
 

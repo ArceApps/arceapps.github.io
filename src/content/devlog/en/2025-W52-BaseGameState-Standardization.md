@@ -8,7 +8,7 @@ heroImage: "/images/devlog-w52-state.svg"
 
 As 2025 comes to an end, at ArceApps we decided that the best way to welcome the new year wasn't by frantically adding more features, but by making sure our house was in order. This week, the second to last of the year, we rolled up our sleeves to pay off a technical debt that had been haunting us: the inconsistency in how our 10 games handled their internal states.
 
-It's the kind of work that doesn't always shine in screenshots, but makes the engine purr much more smoothly.
+It is the kind of work that doesn't always shine in screenshots, but makes the engine purr much more smoothly.
 
 ## 🏗️ The Great Unification: BaseGameState
 
@@ -46,7 +46,7 @@ The change is subtle but noticeable; the game feels more responsive and less tir
 
 ## 🌐 Speaking Your Language
 
-We also took advantage of this week to polish internationalization. The stats screens for *Minesweeper* and *Kakuro*, which had some texts "burned in" in Spanish or English, are now first-class citizens in our localization system.
+We also took advantage of this week to polish internationalization. The stats screens for *Minesweeper* and *Kakuro*, which had some texts "hardcoded" in Spanish or English, are now first-class citizens in our localization system.
 
 The most interesting thing was discovering (and eliminating) an absurd duplication of difficulty definitions (`Easy`, `Medium`...) that lived triplicated in our resource files. Now we have a single source of truth for these terms throughout the app.
 

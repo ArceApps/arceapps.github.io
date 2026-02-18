@@ -7,13 +7,13 @@ heroImage: "/images/devlog/2025-w41-cover.png"
 ---
 
 They say if you do something once, it's a fluke. If you do it twice, it's a coincidence. If you do it three times, it's a pattern.
-In Week 41 (October 6th to 12th), we set out to turn our lonely *Shikaku* prototype into a serial game factory.
+In Week 41 (October 6th to 12th), we set out to turn our solitary *Shikaku* prototype into a serial game factory.
 
 On Monday morning, we looked at the code. Shikaku worked well.
 But the weekly goal was aggressive: add **Hitori** and **Fillomino** before Sunday.
 Three games in total.
 
-The devil's temptation (and every programmer in a hurry) appeared: *"Copy the Shikaku folder. Paste it. Rename it to Hitori. Change the rules. Done."*
+The temptation of the devil (and of every programmer in a rush) appeared: *"Copy the Shikaku folder. Paste it. Rename it to Hitori. Change the rules. Done."*
 If we had done that, we would have finished by Tuesday noon. But we would have sown the seeds of our own destruction. We would have three copies of the "Draw Board" code, three copies of the "Timer", three copies of the "Database".
 Maintaining that is hell. If you want to change the background color in the future, you have to do it three times.
 
@@ -38,12 +38,12 @@ class Grid<T>(val width: Int, val height: Int, init: (Int, Int) -> T) {
 }
 ```
 
-It seems trivial, but by centralizing this, we achieved a silent performance victory. Internally, we went from using a `List<List<T>>` (which is memory inefficient) to a flat one-dimensional `Array`. Thanks to encapsulation, none of the games had to change their logic. They just got faster for free.
+It seems trivial, but by centralizing this, we achieved a silent victory in performance. Internally, we went from using a `List<List<T>>` (which is memory inefficient) to a flat one-dimensional `Array`. Thanks to encapsulation, none of the games had to change their logic. They just got faster for free.
 
 ## The Challenge of Hitori: Flood Algorithms
 
 Implementing **Hitori** was very different from Shikaku.
-In Shikaku you draw rectangles.
+In Shikaku, you draw rectangles.
 In Hitori, your mission is to shade cells to eliminate duplicate numbers, but with a critical rule: **The remaining white area must be continuous**. You cannot leave isolated "islands".
 
 Validating this rule is not trivial. It requires analyzing the connectivity of the entire graph.

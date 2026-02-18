@@ -1,79 +1,79 @@
 ---
-title: "2026 W06: Teacher Mode (How to reduce 25,000 lines of code to 1,000 and teach how to play)"
-description: "From a monolithic script of 2000 lines to a Modular Education Engine. A story about technical debt, interactive pedagogy, and why we decided to give virtual diplomas with spring physics."
+title: "2026 W06: Teacher Mode (Or how we taught users to think like the machine)"
+description: "We redesigned the onboarding system. No more static texts. We implemented an interactive 'Teacher Mode' that guides you step by step, detects your confusion, and celebrates your small victories."
 pubDate: 2026-02-08
-tags: ["devlog", "refactoring", "software-architecture", "ux-design", "jetpack-compose", "education"]
+tags: ["devlog", "ux", "onboarding", "tutorial", "education", "design"]
 heroImage: "/images/devlog-default.svg"
 ---
 
 This week, **PuzzleHub** has graduated.
-And I don't mean we left beta, or got a thousand downloads.
-I mean, finally, we taught our application to **teach**.
+And I don't mean we've left beta, or that we reached a thousand downloads.
+I mean that, finally, we have taught our application to **teach**.
 
 We have 12 fantastic logic games. Some, like *Minesweeper* or *Sudoku*, are heritage of humanity (thanks, Windows 95 and Sunday papers). Everyone knows how to play them.
 But how many people really know how to play *Hashi* (Bridges)? Or *Dominosa*? Or *Slitherlink*?
-They are wonderful games, but have a brutal entry barrier.
+They are wonderful games, but they have a brutal barrier to entry.
 
-Until now, our "Onboarding" strategy was... optimistic, not to say naive.
-We had an "Information" screen accessible from menu. Wall of static text with passive diagrams.
-*"Bridges connect islands with indicated number. Bridges can be double..."*.
-Result was predictable and bleak.
-**First Law of Mobile UX** says: **"No one reads manuals"**.
-Our retention metrics on "niche" games were abysmal. People opened *Hashi*, saw bunch of circles with numbers, tapped screen randomly for 20 seconds, nothing interesting happened, frustrated, closed app forever.
+Until now, our "Onboarding" strategy was... optimistic, if not naive.
+We had an "Info" screen accessible from the menu. A wall of static text with passive diagrams.
+*"Bridges connect islands with the indicated number. Bridges can be double..."*.
+The result was predictable and bleak.
+The **First Law of Mobile UX** says: **"Nobody reads manuals"**.
+Our retention metrics in "niche" games were abysmal. People opened *Hashi*, saw a bunch of circles with numbers, tapped the screen randomly for 20 seconds, nothing interesting happened, got frustrated, and closed the app forever.
 
-Knew we had to fix it. Needed **Interactive Tutorial**. "Teacher Mode" grabbing hand saying: *"Touch here. See that? That's a bridge. Very good"*.
-What started as simple script to guide user became software architecture odyssey and one of most aggressive refactorings done in months.
+We knew we had to fix it. We needed an **Interactive Tutorial**. A "Teacher Mode" that took you by the hand and said: *"Touch here. See that? That's a bridge. Very good"*.
+What started as a simple script to guide the user became a software architecture odyssey and one of the most aggressive refactorings we've done in months.
 
-## Original Sin: Hashi Monolith
+## The Original Sin: The Hashi Monolith
 
-Chose *Hashi* as guinea pig. Perfect game for this: visual rules, strict logic, but anti-intuitive for newbie.
+We chose *Hashi* as our guinea pig. It's a perfect game for this: very visual rules, strict logic, but anti-intuitive for the novice.
 
-Monday started coding with fury of convert (`TASK-2026-097`).
-Wrote file called `HashiInteractiveTutorial.kt`.
-By Tuesday afternoon, worked wonderfully. Had animated hand pointing where to press. Dialogs reacting to errors. Confetti.
-Felt like geniuses.
+On Monday we started writing code with the zeal of a convert (`TASK-2026-097`).
+We wrote a file called `HashiInteractiveTutorial.kt`.
+By Tuesday afternoon, it worked wonderfully. It had an animated hand pointing where to tap. It had dialogs reacting to your mistakes. It had confetti.
+We felt like geniuses.
 
-Then looked at file size.
+Then we looked at the file size.
 **2,099 lines of code.**
 
-Heart sank.
-Committed rookie error (or rushing, same thing). Created **Monolith**. Fierce coupling everywhere.
-In single gigantic file lived, in orgy of messy code:
-1.  Tutorial state machine logic (`var currentStep = 3`).
-2.  Visual UI definition (`Box`, `Column`, `Text`...).
+Our hearts sank.
+We had made the beginner's mistake (or the rush mistake, which is the same). We had created a **Monolith**. Tight coupling everywhere.
+In that single gigantic file coexisted, in an orgy of messy code:
+1.  The tutorial state machine logic (`var currentStep = 3`).
+2.  The visual UI definition (`Box`, `Column`, `Text`...).
 3.  Complex Lottie animations.
-4.  Specific Hashi game logic (validate if bridge legal).
-5.  Styles, colors, borders, paddings.
+4.  Specific Hashi game logic (validating if a bridge is legal).
+5.  Styles, colors, borders, and paddings.
 
-Did quick multiplication and panic took over.
-Have 12 games.
-If copy-pasted pattern for other 11...
+We did a quick multiplication and panic took over.
+We have 12 games.
+If we copied and pasted this pattern for the other 11...
 2,100 lines x 12 games = **25,200 lines of boilerplate code**.
 
 Maintaining that would be suicide.
-Imagine in month decide to change "Next" button color blue to green, or texts bigger. Edit manually 12 files of 2,000 lines each. Technical debt eat us alive before launching version 2.0.
+Imagine in a month we decide to change the "Next" button color from blue to green, or decide texts should be slightly larger. We would have to manually edit 12 files of 2,000 lines each. Technical debt would eat us alive before launching version 2.0.
 
-## Great Extraction: "Education Engine" Born
+## The Great Extraction: "Education Engine" is Born
 
-Wednesday morning, Daily, took difficult decision: **Stop production**.
-"Can't go on like this. Must refactor before creating single new tutorial".
-Took digital scalpel started dissecting Hashi monster.
-Goal: Extract everything NOT specific to *Hashi* move to shared library. Wanted to create "Education Engine".
+Wednesday morning, at the Daily, we made the hard decision: **Stop production**.
+"We can't go on like this. We have to refactor before creating a single tutorial more".
+We took out the digital scalpel and started dissecting the Hashi monster.
+Our goal: Extract everything NOT specific to *Hashi* and move it to a shared library. We wanted to create an "Education Engine".
 
-Created new package structure `presentation/component/tutorial/` started moving pieces:
+We created a new package structure in `presentation/component/tutorial/` and started moving pieces:
 
-### 1. The Stage
-First, extracted infrastructure. `TutorialHeader` and `TutorialFooter`.
-Seems trivial, but standardizing navigation (top progress bar, cancel button, step counter "3/5") guarantees *Sudoku* and *Minesweeper* feel part of same coherent app. Don't want every game distinct tutorial interface.
+### 1. The Shell (The Stage)
+First, we extracted the infrastructure. `TutorialHeader` and `TutorialFooter`.
+It seems trivial, but standardizing navigation (top progress bar, cancel button, "3/5" step counter) guarantees that *Sudoku* and *Minesweeper* feel part of the same coherent application. You don't want each game to have a different tutorial interface.
 
-### 2. Content Cards (The Bricks)
-Here interesting. Analyzing Hashi script, realized all logic game tutorials follow identical narrative patterns. Always doing one of four things:
-*   Explain Rule -> Created `RuleItem` (Icon + Bold Text).
-*   Give strategy tip -> Created `StrategyTip` (Soft gradient background + Bulb Icon).
-*   Show Valid vs Invalid example -> Created `RestrictionCard` (Green/Red boxes).
-*   Sell mental benefits -> Created `BenefitCard` (Animation + "Improves spatial memory").
+### 2. Content "Cards" (The Bricks)
+Here's where things got interesting. Analyzing the Hashi script, we realized all logic game tutorials follow identical narrative patterns. You are always doing one of these four things:
+*   Explain a Rule -> We created `RuleItem` (Icon + Bold Text).
+*   Give a strategic tip -> We created `StrategyTip` (Soft gradient background + Bulb Icon).
+*   Show Valid vs Invalid example -> We created `RestrictionCard` (Green and red boxes).
+*   Sell mental benefits of the game -> We created `BenefitCard` (Animation + "Improves spatial memory").
 
-Creating generic Composable Components, Hashi tutorial code went from unreadable spaghetti `Box`, `Column`, `Row`, `Text`, `Spacer`... to beautiful semantic script:
+By creating these generic Composable Components, the Hashi tutorial code went from being an unreadable spaghetti of `Box`, `Column`, `Row`, `Text`, `Spacer`... to being a beautiful semantic script:
 
 ```kotlin
 // Before (The Horror)
@@ -82,9 +82,9 @@ Column {
     Spacer(modifier = Modifier.height(8.dp))
     Row {
         Icon(Icons.Default.Close, tint = Color.Red)
-        Text("Cannot cross or go diagonal")
+        Text("They cannot cross or go diagonally")
     }
-    // ... 50 more style lines ...
+    // ... 50 more lines of style ...
 }
 
 // Now (Semantic, Clean, Readable)
@@ -98,94 +98,94 @@ TutorialStepContainer(title = "Basic Rules") {
 }
 ```
 
-Like reading book. Code describes *intent*, not implementation.
+It's like reading a book. The code describes the *intent*, not the implementation.
 
-### 3. Numeric Result
+### 3. The Numerical Result
 
-After Thursday final refactoring, specific `HashiInteractiveTutorial.kt` dropped **2,099 lines to 1,280 lines**.
-**40%** reduction.
-But most important not what deleted, what gained. 1,000 lines UI logic now live in shared library, tested polished.
-Next week, implementing *Akari* tutorial, those 1,000 lines come "free".
-Estimate producing new tutorials pace **one every two days** instead one per week. Difference between slow craft and industrial production.
+After the final refactor on Thursday, the specific `HashiInteractiveTutorial.kt` file dropped from **2,099 lines to 1,280 lines**.
+A **40%** reduction.
+But most important isn't what we deleted, but what we gained. Those 1,000 lines of UI logic now live in a shared, tested, and polished library.
+Next week, when we implement the *Akari* tutorial, those 1,000 lines come "free".
+We estimate we can produce new tutorials at a rate of **one every two days** instead of one per week. It is the difference between slow craftsmanship and industrial production.
 
-## UX Psychology: Graduation Ceremony
+## UX Psychology: The Graduation Ceremony
 
-Reducing code lines satisfying for engineer (love deleting code), but end user doesn't care architecture.
-User wants to feel good. Ready.
+Reducing lines of code is very satisfying for the engineer (we love deleting code), but the end user doesn't care about our architecture.
+The user wants to feel good. Wants to feel ready.
 
-During Thursday user tests (`TASK-2026-092`), detected emotional problem called "The Anti-climax".
-User completed tutorial, sweated solving interactive exercises... finished, app simply closed tutorial sent to main menu.
-Tester reaction unanimous: *"That's it? Okay. I'll play."*
-Missing dopamine closure. Missing effort recognition. Learned new skill, no one patted back.
+During user tests on Thursday (`TASK-2026-092`), we detected an emotional problem we called "The Anti-climax".
+User completed the tutorial, sweated bullets to solve the interactive practice exercises... and when finished, the app simply closed the tutorial and sent them to the main menu.
+Tester reaction was unanimous: *"That's it? Okay. I guess I'll play."*
+The dopamine closure was missing. Recognition of effort was missing. They had learned a new skill, and no one had patted them on the back.
 
-Introduced **Graduation Ceremony** concept.
-Special screen end tutorial. No new content. Only function celebrate user success validate competence.
+We introduced the concept of **Graduation Ceremony**.
+It's a special screen at the end of the tutorial. It has no new content. Its only function is to celebrate user success and validate their competence.
 
-### Celebration Engineering
-Didn't want simple text "Well done!". Wanted feel physical. Tangible.
-Designed three key elements:
+### Engineering Celebration
+We didn't want a simple "Well done!" text. We wanted it to feel physical. Tangible.
+We designed three key elements:
 
-**1. Physical Badge**
-Created vector diploma/medal 120dp. Not static.
-Used Compose `Animatable` API spring physics (`Spring.DampingRatioHighBouncy`).
-Badge doesn't "appear". Badge *falls* from top, hits center, bounces elastically settles. Has weight. Inertia. Feels like real medal hung.
+**1. The Physical Badge**
+We created a 120dp diploma/medal vector. But we didn't show it statically.
+We used Compose's `Animatable` API with spring physics (`Spring.DampingRatioHighBouncy`).
+The badge doesn't "appear". The badge *falls* from the top of the screen, crashes into the center, bounces elastically, and settles. It has weight. It has inertia. It feels like someone hung a real medal on you.
 
 **2. Competence Summary**
-Below badge, listed what learned, sequentially animated checks:
+Below the badge, we list what the user has learned, with sequentially animated checks:
 *   ✅ Connect Islands
 *   ✅ Avoid Crossings
 *   ✅ Corner Strategy
 
-Reinforces competence feeling (Self-Efficacy). Subconscious message: *"Not just played. Acquired tools. Ready to win"*.
+This reinforces the feeling of competence (Self-Efficacy). The subconscious message is: *"You haven't just played. You have acquired tools. You are ready to win"*.
 
 **3. Confetti (Particle System)**
-Yes, cliché. Works. Launched simple particle system over badge.
+Yes, it's a cliché. But it works. We launched a simple particle system over the badge.
 
-Result A/B tests dramatic. Users seeing "Graduation" **30% more likely** play full game immediately after. Felt empowered.
+The result in A/B tests was dramatic. Users who saw "Graduation" were **30% more likely** to play a full game immediately after the tutorial. They felt empowered.
 
-## "Ghost Teacher" Architecture
+## The "Ghost Teacher" Architecture
 
-Finally, touch technically complex part, called "Ghost in Machine": **Interactive Overlay**.
+Finally, I want to briefly touch on the most technically complex part, which we call the "Ghost in the Machine": The **Interactive Overlay**.
 
-Challenge: How tutorial guides user *inside* real game, without rewriting game for tutorial?
-Created "Fake Hashi" screen only tutorial, maintain two parallel game engines. Bug hell.
+The challenge was: How do you get a tutorial to guide the user *inside* the real game, without having to rewrite the game for the tutorial?
+If we had created a "Fake Hashi" screen just for the tutorial, we would have to maintain two parallel game engines. A hell of duplicate bugs.
 
-Solution use real Hashi engine (`HashiGameScreen`), but "hijack" user inputs from above.
-Created `InteractiveTutorialOverlay` sits Z-axis above game board, invisible glass.
+The solution was to use the real Hashi engine (`HashiGameScreen`), but "hijack" user inputs from above.
+We created an `InteractiveTutorialOverlay` placed on the Z-axis above the game board, like an invisible glass.
 
-Implemented **Event Interceptor** pattern:
-Overlay transparent mask captures ALL screen touches.
-Before click reaches game, Overlay asks tutorial logic:
-*"User touched coordinate (3, 4). Step 2 tutorial. Is this expected?"*
+We implemented an **Event Interceptor** pattern:
+The Overlay has a transparent mask capturing ALL touches on screen.
+Before the click reaches the game, the Overlay consults the tutorial logic:
+*"User tapped at coordinate (3, 4). We are at Step 2 of tutorial. Is this what we expected?"*
 
-*   **YES (Hit)**: Overlay steps aside. Pass-through event lower game board. Real game processes click, draws bridge, plays "clack" sound, updates state. Tutorial celebrates ("Good!") advances Step 3.
-*   **NO (Error)**: Overlay **consumes** event. Game board doesn't know touch happened. Overlay shows error message ("No! Touch flashing island") shakes pointer hand.
+*   **YES (Hit)**: Overlay steps aside. Passes event (Pass-through) to underlying game board. Real game processes click, draws bridge, plays "clack" sound, and updates state. Tutorial celebrates ("Good!") and advances to Step 3.
+*   **NO (Miss)**: Overlay **consumes** event. Game board doesn't even know there was a touch. Overlay shows error message ("No! You have to touch the flashing island") and waves indicator hand.
 
-Separation powers (Game plays, Tutorial supervises) allows scale. Put Overlay atop *Sudoku*, *Minesweeper*, *Kakuro* minimal changes, tutorial doesn't need know game internals, only valid target cells.
+This separation of powers (Game plays, Tutorial supervises) is what allows us to scale. We can put this Overlay on top of *Sudoku*, *Minesweeper*, or *Kakuro* with minimal changes, because the tutorial doesn't need to know how the game works inside, only needs to know which cells are valid targets.
 
 ## Philosophy: Suggestion vs Prison
 
-Last note UX/Philosophy. Intense debate team force user finish practice.
-*"If let skip, won't learn. Frustrated later uninstall"*, argued brain part.
-Implemented hard block. Back button disabled until finish.
+One last note on UX/Philosophy. We had an intense debate in the team about whether we should **force** the user to finish practice.
+*"If we let them skip it, they won't learn. They'll get frustrated later and uninstall"*, argued one part of my brain.
+We implemented a hard block. "Back" button was disabled until you finished.
 
-Mistake.
-Advanced users (knew game wanted see UI) trapped. "Know Hashi, leave alone".
-Changed **Strong Suggestion** model.
-Now, exit anytime.
-But if before graduating, show Dialog (Modal) thoughtful copy:
-*"Sure leave? Skipping practice usually ends tears Game Overs Hard levels. Up to you."*
+It was a mistake.
+Advanced users (who already knew the game and just wanted to see UI) felt trapped. "I know how to play Hashi, leave me alone".
+We switched to a **Strong Suggestion** model.
+Now, you can try to exit at any time.
+But if you do before graduating, we show a Dialog (Modal) with very thoughtful copy:
+*"Are you sure you want to leave? Skipping practice usually ends in tears and sad Game Overs on Hard levels. Your call."*
 
-"Leave anyway" button there. Enabled.
-Respect adult autonomy, clearly inform risk. Treat user smart partner, not child.
+"Exit anyway" button is there. Enabled.
+We respect adult autonomy, but clearly inform of risk. We treat user as intelligent partner, not child.
 
 ## Conclusion
 
-Week 06 not about adding games. Adding **players**.
-Game without players understanding rules not game, confusing hostile screensaver.
-New Modular Tutorial Engine Graduation Ceremony, ready open doors complex games (*Akari*, *Fillomino*) mass audience.
+Week 06 hasn't been about adding games. It's been about adding **players**.
+Because a game without players who understand the rules isn't a game, it's a confusing and hostile interactive screensaver.
+With new Modular Tutorial Engine and Graduation Ceremony, we are ready to open doors of our most complex games (*Akari*, *Fillomino*) to general public.
 
-Next week: Massive scaling. Factory ready, produce. 11 tutorials 7 days. Wish luck (coffee).
+Next week: Massive scaling. Factory ready, time to produce. 11 tutorials in 7 days. Wish us luck (and lots of coffee).
 
 ---
 *End of weekly report.*

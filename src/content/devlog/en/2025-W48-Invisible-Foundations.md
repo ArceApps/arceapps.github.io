@@ -10,9 +10,9 @@ We reached the end of November. Week 48 (November 24th to 30th) has been, visual
 
 But if you could see the database schemas with X-rays, you would see a massive construction site.
 
-Our goal for December is ambitious: **Total Parity**. We want all games to have Statistics, History Achievements, and Tutorials. Currently, two of our most popular games, *Minesweeper* and *Galaxies*, are second-class citizens. They don't remember your best times. They don't celebrate your streaks. They just let you play and forget.
+Our goal for December is ambitious: **Total Parity**. We want all games to have Statistics, History, Achievements, and Tutorials. Currently, two of our most popular games, *Minesweeper* and *Galaxies*, are second-class citizens. They don't remember your best times. They don't celebrate your streaks. They just let you play and forget.
 
-This week we put on the hard hat and went down to the code basement: the `Data Layer`.
+This week we put on the hard hat and descended into the code basement: the `Data Layer`.
 
 ## The Challenge of Minesweeper
 
@@ -68,6 +68,6 @@ We close the book of November exhausted but satisfied.
 *   And now, we have poured the concrete for the skyscrapers of statistics we will build in December.
 
 The codebase is 40% larger than a month ago, but it feels lighter. More ordered.
-December will be the month of "Sparkle". Charts, medals, celebrations. But none of that would be possible without the dirty, dark, and silent work of this week 48.
+December will be the month of "Shine". Charts, medals, celebrations. But none of that would be possible without the dirty, dark, and silent work of this week 48.
 
 See you in December.

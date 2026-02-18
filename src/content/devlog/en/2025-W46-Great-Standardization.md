@@ -6,7 +6,7 @@ tags: ["devlog", "refactoring", "bugfix", "ui", "clean-code"]
 heroImage: "/images/devlog-w46-broken-window.svg"
 ---
 
-There is a criminological theory called "The Broken Window". It says that if you leave a broken window in a building, soon all the other windows will be smashed. Disorder invites disorder. Visible neglect indicates that "no one cares", and that lowers everyone's standards.
+There is a criminological theory called "The Broken Window". It states that if you leave a broken window in a building, soon all the other windows will be smashed. Disorder invites disorder. Visible neglect indicates that "no one cares", and that lowers everyone's standards.
 
 In software development, this is an absolute truth. If you have a screen with a misaligned title, soon you will have functions with inconsistent names, then ignored logic bugs, and finally, an unmaintainable product.
 

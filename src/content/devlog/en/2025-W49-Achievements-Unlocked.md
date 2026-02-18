@@ -1,6 +1,6 @@
 ---
 title: "2025 W49: Achievements Unlocked"
-description: "Minesweeper and Galaxies join the party completing the achievement system for all 10 games."
+description: "Minesweeper and Galaxies join the party, completing the achievement system for all 10 games."
 pubDate: 2025-12-07
 tags: ["devlog", "gamification", "minesweeper", "galaxies"]
 heroImage: "/images/devlog-w49-achievements.svg"
@@ -12,7 +12,7 @@ In week 49, we corrected that historical injustice.
 
 ## 🏆 Feature Parity
 
-The goal was clear: that no game felt less complete than the others. We dove into the codebase to implement:
+The goal was clear: ensure no game felt less complete than the others. We dove into the codebase to implement:
 
 1.  **Complete Statistics Systems**:
     *   For **Minesweeper**: We track "Win Rate", "Best Times" by difficulty, and specific actions like "Flags placed".
@@ -27,7 +27,7 @@ The goal was clear: that no game felt less complete than the others. We dove int
 
 What the user sees are shiny medals, but what we see are **Database Migrations**.
 
-Implementing this required touching the sensitive fibers of our data persistence (Room). We had to create new tables `minesweeper_stats` and `galaxies_achievements` making sure not to lose a single byte of our existing users' saved games. It's that kind of open-heart surgery that is scary, but went perfectly.
+Implementing this required touching the sensitive core of our data persistence (Room). We had to create new tables `minesweeper_stats` and `galaxies_achievements` making sure not to lose a single byte of our existing users' saved games. It is the kind of open-heart surgery that is terrifying, but went perfectly.
 
 ## 🎯 10 out of 10
 

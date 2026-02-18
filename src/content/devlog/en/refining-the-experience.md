@@ -6,58 +6,58 @@ heroImage: "/images/performance-hero.svg"
 tags: ["performance", "ux", "astro", "optimization"]
 ---
 
-You know that feeling when you finish a feature and it works, but something "feels wrong"? No console errors, Lighthouse 100, but navigating you notice micro-friction.
+You know that feeling when you finish a feature and it works, but something "feels wrong"? No console errors, Lighthouse gives 100, but while navigating you notice a micro-friction.
 
-This week at **ArceApps** haven't added big features. Instead, dedicated fighting invisible details separating demo from real product. Honestly, harder than creating original features.
+This week at **ArceApps** I haven't added big features. Instead, I dedicated myself to fighting those invisible details that separate a demo from a real product. And honestly, it has been harder than creating the original features.
 
-Battle diary here.
+Here is my battle diary.
 
-## 1. `z-index` Nightmare (How to Click Everything)
+## 1. The `z-index` Nightmare (or How to Click Everything)
 
-Blog card design Figma simple: "Whole card link, except tags". Easy, right?
+The blog card design in Figma seemed simple: "The whole card is a link, except the tags". Easy, right?
 
-Reality frustrating. Placing `<a>` link covering card (`absolute inset-0`) instantly killed tag buttons interactivity underneath. Unreachable.
+The reality was frustrating. By placing an `<a>` link covering the whole card (`absolute inset-0`), I instantly killed the interactivity of the "tags" buttons underneath. They were unreachable.
 
-Tried raising tag `z-index`. Nothing. Link captured event.
-Hour reading `pointer-events`. Solution counter-intuitive elegant:
+I tried raising the `z-index` of the tags. Nothing. The link kept capturing the event.
+I spent an hour reading about `pointer-events`. In the end, the solution was counter-intuitive but elegant:
 
-1.  "Invisible" link covering everything `z-index: 10`.
-2.  Text content (title, description) `z-index: 20` BUT `pointer-events-none`. Clicks "pass through" text hit link below.
-3.  Tags `z-index: 30` `pointer-events-auto`.
+1.  The "invisible" link covering everything has `z-index: 10`.
+2.  The text content (title, description) has `z-index: 20` BUT `pointer-events-none`. This means clicks "pass through" the text and hit the link below.
+3.  The tags have `z-index: 30` and `pointer-events-auto`.
 
-"Eureka" moment mixed "Why CSS like this?". UX liquid: click carelessly card read, aim precisely tag.
+It was one of those "Eureka" moments mixed with "Why is CSS like this?". But now the UX is liquid: you can carelessly click the card to read, or aim precisely at a tag.
 
-## 2. Search Diet
+## 2. Putting Search on a Diet
 
-Use **Fuse.js** search. Marvel, weighs ~20kb. Not much, loading 20kb JavaScript main thread before user thinks search waste.
+We use **Fuse.js** for the search engine. It is a marvel, but it weighs ~20kb. It might not seem like much, but loading 20kb of JavaScript on the main thread before the user even thinks about searching seemed like a waste to me.
 
-Decided implement **Lazy Loading**. Logic:
-*   Page loads. Fuse.js DOES NOT exist.
-*   User clicks magnifier 🔍.
-*   *That millisecond*, download library search index parallel (`Promise.all`).
+I decided to implement **Lazy Loading**. The logic now is:
+*   The page loads. Fuse.js DOES NOT exist.
+*   The user clicks on the magnifier icon 🔍.
+*   *In that millisecond*, I download the library and the search index in parallel (`Promise.all`).
 
-Result: lighter initial page, search feels instant. Felt surgeon removing dead weight.
+The result: the initial page is lighter and search still feels instant. I felt like a surgeon removing dead weight.
 
-## 3. Image Dance (CLS)
+## 3. The Dance of the Images (CLS)
 
-Nothing bothers more reading article text jumps image loaded above. Cumulative Layout Shift (CLS) Google penalizes.
+Nothing bothers me more than reading an article and having the text jump because an image loaded above. That is Cumulative Layout Shift (CLS) and Google penalizes you for it.
 
-Realized `AppCard` components guilty. No height defined image loaded.
-Solution strict: `aspect-ratio` everything. Reserve DOM space before first image pixel arrives. Added `loading="lazy"` `decoding="async"` tell browser: "Take time, prioritize text".
+I realized that my `AppCard` components were guilty. They didn't have a defined height until the image loaded.
+The solution was strict: `aspect-ratio` on everything. Reserve space in the DOM before the first pixel of the image arrives. Also, I added `loading="lazy"` and `decoding="async"` to tell the browser: "Take your time with this, prioritize the text".
 
-## 4. Efficient Scroll: Stop Listening Everything
+## 4. Efficient Scroll: Stop Listening to Everything
 
-Had "Back to top" button listening window `scroll` event.
-Every mouse wheel millimeter, code executed function. Thousands times. Silent performance disaster.
+I had a "Back to top" button that listened to the window `scroll` event.
+Basically, every time you moved the mouse wheel a millimeter, my code executed a function. Thousands of times. A silent performance disaster.
 
-Refactored **Intersection Observer**. Instead asking "where am I?" constantly, place invisible element ("sentinel") page start tell browser: "Notify when element leaves view".
+I refactored it using **Intersection Observer**. Instead of asking "where am I?" constantly, now I place an invisible element (a "sentinel") at the start of the page and tell the browser: "Notify me when this element leaves the view".
 
-Code went frenetic loop zen wait. Processor thanks.
+The code went from a frenetic loop to a zen-like wait. The processor appreciates it.
 
 ## Reflection
 
-Developers obsess "What" (new features) forget "How" (usage feeling). Week shipped nothing visibly "new", web feels solid, *professional*.
+Sometimes, as developers, we obsess over the "What" (new features) and forget the "How" (the feeling of usage). This week I haven't shipped anything "new" visibly, but the web feels more solid, more *professional*.
 
-Special satisfaction knowing, under hood, geared perfectly.
+And there is a special satisfaction in knowing that, under the hood, everything is geared perfectly.
 
-*Keep coding.*
+*We keep coding.*

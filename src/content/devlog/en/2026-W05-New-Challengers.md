@@ -7,9 +7,9 @@ heroImage: "/images/devlog-default.svg"
 ---
 
 This week was supposed to be quiet. I swear.
-The plan at Monday's *Daily* was insultingly simple: "PuzzleHub engine is stable. This week is content time. Two new games: *Akari* and *Math Crossword*. Static grids, simple logic. We're out by Thursday".
+The plan at Monday's *Daily* was insultingly simple: "PuzzleHub engine is stable. This week is content time. Two new games: *Akari* and *Math Crossword*. Static grids, simple logic. We'll be done by Thursday".
 
-Narrator: *They were not out by Thursday.*
+Narrator: *They were not done by Thursday.*
 
 What followed was one of the most intense, frustrating, and technically demanding weeks of the entire project. We went from designing pretty interfaces in Jetpack Compose to reading obscure academic papers on boolean satisfiability at 3 AM, and debugging backtracking algorithms performing half a million operations per second just to try and place a simple plus sign (`+`) without breaking fundamental laws of the universe.
 
@@ -61,7 +61,7 @@ Laptop fan started sounding like Boeing 747 trying to take off from desk.
 Checked logs: `Recursion depth: 225`.
 10 seconds passed. 20 seconds. 30 seconds. **Timeout**.
 
-Realized with horror where I'd gotten myself.
+Realized with horror what I had gotten myself into.
 *Akari* is **NP-Complete** problem. Search space grows exponentially with each cell (`2^N`). On 15x15 board there are 225 cells. `2^225` is number with more zeros than atoms in observable universe.
 Was trying to count to infinity one by one.
 Couldn't use brute force. Needed science.
@@ -118,7 +118,7 @@ Good. Now have `8` and `10` fixed in other positions.
 Those numbers force creation of new horizontal rows...
 Explosive chain reaction. And if mistake in step 1, error propagates like wave to opposite corner of board, making it impossible to fill.
 
-But true villain of story wasn't recursion. It was simple symbol: **Division (/)**.
+But the true villain of story wasn't recursion. It was simple symbol: **Division (/)**.
 
 If only used addition and subtraction, problem trivial. Any number can be added or subtracted.
 But wanted 4 operations. And division is **toxic**.
@@ -139,7 +139,7 @@ Often, magic number didn't exist. Generator died.
 
 Since couldn't use SAT Solver (too many numeric variables with infinite domains), went back to **Backtracking**, but armed with **Aggressive Retry Strategy**.
 
-Algorithm now works like stubborn tireless builder:
+Algorithm now works like stubborn, tireless builder:
 Pick slot. Try generating valid equation. Fail because division not exact? Try another operator (`+`). Fail too? Try `-`.
 Fail 10 times in row? Perform **Local Backtrack**. Delete *previous* equation (forcing this number here) and try regenerating to give different number at intersection.
 
@@ -182,7 +182,7 @@ Made numbers come alive.
 *   If exceeded (have 3 bulbs around "2"), number turns **Alarm Red**.
 *   If condition perfectly satisfied, number glows bright **Amber Orange**.
 
-Effect on gameplay immediate. Now scan board with quick glance, reptilian brain detects color patterns without conscious arithmetic. *"Orange is good. White needs attention"*.
+Effect on gameplay immediate. Now scan board with quick glance, your lizard brain detects color patterns without conscious arithmetic. *"Orange is good. White needs attention"*.
 Game flows. Friction disappears.
 
 ## Conclusion
