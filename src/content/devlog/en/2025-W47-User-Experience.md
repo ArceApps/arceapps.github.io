@@ -12,7 +12,7 @@ For months, the `HomeScreen` of *PuzzleSuite* has been... utilitarian. A vertica
 
 Week 47 (November 17th to 23rd) began with an aesthetic mission: give *PuzzleSuite* the face it deserves. But it ended with an ethical mission: correct an error that was silently corrupting our players' data.
 
-## The Art of Welcome
+## The Art of the Welcome
 
 The redesign of the home screen wasn't just "putting pretty colors". It was an exercise in information architecture.
 With 9 games (and counting), a simple list no longer scales. The user suffers from "choice paralysis".
@@ -26,7 +26,7 @@ Each card is not just a button. It is a miniature dashboard:
 Technically, this involved changing how we query the database. Before, the Home didn't ask for data. Now, it needs to query the status of 9 different tables (`MinesweeperDao`, `HashiDao`, etc.) in real-time without blocking the UI.
 We implemented a `HomeViewModel` that uses `Kotlin Flows` to combine (`combine`) all these data streams into a single `HomeUiState` object. The screen reacts instantly: if you finish a puzzle and go back, the card is already updated. It feels alive.
 
-We also renewed the **Onboarding**. Before, when opening the app for the first time, we dropped you into the menu without a map or compass. Now, a sequence of clean slides explains what the app is, how difficulties work, and promises that we don't collect your private data. It's a digital handshake before starting to play.
+We also renewed the **Onboarding**. Before, when opening the app for the first time, we dropped you into the menu without a map or compass. Now, a sequence of clean slides explains what the app is, how difficulties work, and promises that we don't collect your private data. It is a digital handshake before starting to play.
 
 ## The Bug of the "Empty Victory"
 

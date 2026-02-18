@@ -6,13 +6,13 @@ tags: ["devlog", "refactoring", "ui-ux", "difficulty-systems", "2025-closing"]
 heroImage: "/images/devlog-w53-difficulty.svg"
 ---
 
-There is something deeply satisfying about closing the year with a clean house. In software development, "cleaning the house" often means paying technical debt, standardizing components, and making sure all systems speak the same language. This last week of 2025, between the festivities and the New Year's toast, we set ourselves a mission: **Absolute Standardization**.
+There is something deeply satisfying about closing the year with a clean house. In software development, "cleaning house" often means paying technical debt, standardizing components, and making sure all systems speak the same language. This last week of 2025, between the festivities and the New Year's toast, we set ourselves a mission: **Absolute Standardization**.
 
 ## The Chaos of Divergence
 
-Until a few days ago, our games suffered from a subtle but annoying inconsistency. Hitori had a rudimentary difficulty selector; Galaxies used its own `GalaxiesDifficulty` system (which only went up to 3 levels); and Dominosa... well, Dominosa was fine, but I knew it could do more.
+Until a few days ago, our games suffered from a subtle but annoying inconsistency. Hitori had a rudimentary difficulty selector; Galaxies used its own `GalaxiesDifficulty` system (which only went up to 3 levels); and Dominosa... well, Dominosa was fine, but I knew it was capable of more.
 
-The problem wasn't that they didn't work. The problem was that each solved the same problem differently. And if there is one thing we like at ArceApps, it is the elegance of shared patterns.
+The problem wasn't that they didn't work. The problem was that each one solved the same problem differently. And if there is one thing we like at ArceApps, it is the elegance of shared patterns.
 
 ## The Great Unification
 
@@ -40,7 +40,7 @@ val difficultyModifier = when (difficulty) {
 
 ## Welcome, Expert Mode
 
-The jewel of this update is the introduction of the **EXPERT** level in Galaxies, Dominosa, Hitori, and Slitherlink.
+The crown jewel of this update is the introduction of the **EXPERT** level in Galaxies, Dominosa, Hitori, and Slitherlink.
 
 For **Galaxies**, this was an interesting design challenge. How do you make a symmetry game harder? The answer wasn't bigger boards, but *smaller galaxies*. We fragmented the space into tiny, irregular pieces, forcing the player to look for centers of symmetry in places where intuition fails.
 

@@ -242,9 +242,9 @@ Elementary school math, yes, but get it wrong by one pixel and your whole design
 
 It seems tedious, and it is. It's painful. But when you compile and run it...
 
-### Pure Butter: The Results
+### Buttery Smoothness: The Results
 
-The result was, without exaggeration, **pure butter**. An epiphany.
+The result was, without exaggeration, **buttery smooth**. An epiphany.
 
 We did comparative measurements (documented in TASK-2026-023 and TASK-2026-019) and the numbers don't lie:
 

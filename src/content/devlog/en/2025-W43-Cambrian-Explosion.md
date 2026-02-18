@@ -14,7 +14,7 @@ We entered Monday with 4 stable games (Shikaku, Hitori, Fillomino, Slitherlink).
 We left Sunday, exhausted but euphoric, with **8 functional games**.
 We added **Kenken** (Calcudoku), **Kakuro**, **Hashi**, and the classic grandfather of the genre: **Minesweeper**.
 
-How is it possible to double the catalog in 7 days without dying in the attempt?
+How is it possible to double the catalog in 7 days without dying trying?
 The short answer is: Copy and Paste with style.
 The long answer is that our investment in modular architecture finally paid dividends... but we are also starting to see the small print of the contract.
 

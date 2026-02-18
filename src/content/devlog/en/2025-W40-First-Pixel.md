@@ -6,31 +6,31 @@ tags: ["devlog", "architecture", "canvas", "clean-code", "jetpack-compose"]
 heroImage: "/images/devlog/2025-w40-cover.png"
 ---
 
-Every big project starts with a `File > New Project`. It's a moment of pure optimism, but also of paralyzing terror. The terror of the "blank page".
+Every major project begins with a `File > New Project`. It is a moment of pure optimism, but also one of paralyzing terror. The terror of the "blank canvas".
 
 Week 40 (October 1st to 5th, 2025) marks the official birth of **PuzzleHub**.
 
-The idea on paper is simple yet ambitious: to create the definitive collection of logic puzzles for Android. We don't want to be another Sudoku clone full of intrusive ads and questionable aesthetics. We want to be the "Bible" of puzzles. A clean interface, no distractions, a free "premium" experience, and above all, a technical depth that respects the player's intelligence.
+The idea on paper is simple yet ambitious: to create the definitive collection of logic puzzles for Android. We don't want to be just another Sudoku clone filled with intrusive ads and questionable aesthetics. We want to be the "Bible" of puzzles. A clean interface, no distractions, a free "premium" experience, and above all, a technical depth that respects the player's intelligence.
 
-But before the first pixel was born on the screen, we had to make decisions that will define the next years of development. Decisions that, if wrong, will condemn us to rewrite everything by Christmas.
+But before the first pixel could be born on screen, we had to make decisions that would define the next few years of development. Decisions that, if wrong, would condemn us to rewrite everything by Christmas.
 
 ## The Tyranny of Architecture
 
 We could have started by throwing code into the `MainActivity`. A couple of `Buttons`, a quick `Canvas`, and done. We would have had a functional prototype of *Shikaku* by Tuesday afternoon.
-But *PuzzleHub* won't have one game. It will have ten. Maybe twenty.
+But *PuzzleHub* won't have just one game. It will have ten. Maybe twenty.
 
 If we don't separate concerns now, in November we'll be drowning in a plate of unmanageable spaghetti code. Imagine having to fix a bug in the timer and having to edit 15 different files. That is the death of the project.
 
 We decided to adopt **Clean Architecture** (the variant recommended by Google, but applied strictly).
 Each game will be a logical module (or at least a fully isolated package) with its own waterproof layers:
-1.  **Domain**: Pure rules. Is this move valid? Here Android does not exist. No Context. No UI. Only pure Kotlin.
+1.  **Domain**: Pure rules. Is this move valid? Here, Android does not exist. No Context. No UI. Only pure Kotlin.
 2.  **Data**: Persistence. How do we save the game? Room, DataStore, JSON.
 3.  **Presentation**: UI. Jetpack Compose. ViewModels.
 
 This decision has an immediate cost: **Boilerplate**.
 To make a simple "Hello World" in this system, you need to create at least 5 files: `GameEntity`, `GameDao`, `GameRepository`, `GameUseCase`, `GameViewModel`.
 
-During the first three days (Monday, Tuesday, and Wednesday), the feeling was like walking in molasses. We were writing hundreds of lines of infrastructure code that did *nothing* visible on the screen.
+During the first three days (Monday, Tuesday, and Wednesday), the feeling was like walking through molasses. We were writing hundreds of lines of infrastructure code that did *nothing* visible on screen.
 
 > *"Are we over-engineering this? Is a UseCase necessary just to save the score?"*
 
@@ -55,7 +55,7 @@ The temptation to use this for the board was strong.
 For a 5x5 board, it works wonderfully.
 But what about a 20x20 board? That's 400 cells.
 
-We did a proof of concept ("Stress Test"). Rendering 400 cells using individual composables destroyed performance. The *frame rate* dropped to 22fps when scrolling or zooming. The overhead of creating so many View/Node objects, measuring their sizes, and drawing them individually is too much for a mid-range mobile.
+We did a proof of concept ("Stress Test"). Rendering 400 cells using individual composables destroyed performance. The *frame rate* dropped to 22fps when scrolling or zooming. The overhead of creating so many View/Node objects, measuring their sizes, and drawing them individually is too much for a mid-range mobile device.
 
 The solution was radical: **Canvas**.
 We draw the entire board on a single giant `Canvas`. It's like going back to programming video games in the 90s. We control every line, every circle, every pixel of text.

@@ -36,9 +36,9 @@ Practical examples that looked beautiful and compact on phone rendered as grotes
 Light bulbs were size of melons (400dp height). Help texts floated lost in sea of negative space.
 Interface screamed "Hastily Ported Software".
 
-Bath of humility. Industrialization has risks: if mold has millimeter defect, manufacture thousand defective copies per minute.
+A humbling experience. Industrialization has risks: if mold has millimeter defect, manufacture thousand defective copies per minute.
 
-Had to stop assembly line (Stop the Line!) recalibrate machinery.
+We had to stop the assembly line (Stop the Line!) and recalibrate machinery.
 Learned valuable lesson **Responsive Visual Hierarchy**. Cannot simply use `Modifier.fillMaxSize()`.
 Had to introduce maximum size constraints (`widthIn`) avoid components "exploding" large screens.
 
@@ -112,7 +112,7 @@ Canvas(...) {
 ```
 
 Used `FastOutSlowIn` interpolation spin "weight". Inertia.
-Seeing piece fit self 180 degrees produces instant mental *"Click"* user.
+Seeing piece fit self 180 degrees produces instant mental *click* in user.
 *"Ah! Like windmill. Not mirror, spin"*.
 
 Didn't write single text line explaining degrees rotations.
@@ -128,14 +128,14 @@ Tablet problems solved animation tools ready, machinery perfectly oiled.
 
 Almost hypnotic.
 Copy structure. Define specific rules `TutorialStepContainer`. Adjust validators. Compile.
-Month ago took two weeks spaghetti code fix state bugs, now flowed like water.
+Month ago took two weeks churn out spaghetti code fix state bugs, now flowed like water.
 Code clean, predictable, robust.
 Each tutorial shared 90% DNA (navigation, styles, animations) varied 10% essential (game rules).
 
 Empirical demonstration power **Infrastructure Investment** and **Composable Architecture**.
 Lost whole last week (W06) building engine. Seemed not advancing. Wasting time "pretty code".
 Investment allowed travel light speed this week.
-Sometimes, go fast, stop sharpen axe.
+Sometimes, go fast, stop sharpen the axe.
 
 ## Saturday: The Great Purge
 
@@ -152,7 +152,7 @@ Searched references static PNG images used before. **Delete**.
 
 Deleted almost 3,000 lines code morning.
 Seeing project line counter drop vertically functionality quality app increased physical lightness sensation.
-Like throwing old cables box closet "just in case". Know don't need, scary throw.
+Like throwing away that box of old cables in the closet "just in case". Know don't need, scary throw.
 Do it, house (codebase) breathes better. Less noise. Less cognitive load.
 
 ## Sunday: Reflection from the Peak

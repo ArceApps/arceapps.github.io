@@ -9,7 +9,7 @@ heroImage: "/images/devlog-w47-ux-design.svg"
 Last week, we have to admit, we got carried away.
 We had successfully implemented the "Undo and Redo" system in the simplest **PuzzleHub** games. *Hitori*, *Sudoku*, *Kakuro*... all had fallen to our powerful Command pattern and Thread-Safe History Manager.
 On Friday afternoon I closed my laptop with that dangerous, almost pathological arrogance that always precedes the most humiliating bugs of our career.
-*"This is a piece of cake"*, I thought, with a satisfied smile that now, looking back, makes me want to slap myself. *"The architecture is solid. Logic is perfect. Next week will be just a matter of Copy-Paste for the rest of the games. I'll be free on Thursday."*
+*"This is a piece of cake"*, I thought, with a satisfied smile that now, looking back, makes me want to slap myself. *"The architecture is solid. Logic is perfect. Next week will be just a matter of Copy-Paste for the rest of the games. I'll be done on Thursday."*
 
 How wrong I was.
 How young, naive, and stupidly optimistic was that "me" from just seven days ago.
@@ -31,7 +31,7 @@ In our implementation for touch screens, we decided that an edge couldn't be jus
 Thus was born the **Edge Trilemma**:
 1.  **LINE**: "The loop passes here. I'm sure". (A solid colored stroke is drawn).
 2.  **CROSS (X)**: "Nothing passes here for sure. It's an invisible wall". (A small gray cross is drawn).
-3.  **EMPTY**: "No idea, buddy. I haven't thought about it yet". (Transparent).
+3.  **EMPTY**: "No idea yet. I haven't thought about it". (Transparent).
 
 ### The Naive "Toggle" Bug
 
@@ -66,7 +66,7 @@ When undoing in a "dirty" context (modified by other actors), the command simply
 The user watched their line turn into an X instead of disappearing.
 Game state was irrecoverably corrupted.
 
-Learning by hard knocks: **Undo commands must be Idempotent and Absolute**.
+Learning the hard way: **Undo commands must be Idempotent and Absolute**.
 A command shouldn't say "subtract 1". It should say "Value WAS 5, so put a 5, I don't care what's there now".
 We had to rewrite all logic to capture surgical "Snapshots" of state.
 
@@ -145,7 +145,7 @@ If we run this heavy algorithm EVERY TIME the user touches the screen (and exper
 
 We designed a "Funnel" validation strategy (`TASK-2026-045`) to filter heavy work:
 
-**Phase 1: The Doorman (Checks O(1))**
+**Phase 1: The Gatekeeper (Checks O(1))**
 Before launching anything heavy, we check the obvious. We keep incremental counters in memory.
 Are there "loose ends" (vertices with odd degree)?
 We keep a `looseEndsCount` variable that updates with every move (+1 or -1).
@@ -153,7 +153,7 @@ We keep a `looseEndsCount` variable that updates with every move (+1 or -1).
 If there is a single loose end, it is mathematically impossible to have a perfect closed loop. So we abort validation immediately. Cost: 0 nanoseconds.
 
 **Phase 2: Asynchronous Validation with Debounce**
-If it passes the doorman filter, we launch heavy validation (traverse graph).
+If it passes the gatekeeper filter, we launch heavy validation (traverse graph).
 BUT never on the main thread (`Main`).
 And never immediately.
 We use the goodness of **Kotlin Coroutines** to do it "delayed".
@@ -217,7 +217,7 @@ We manually calculate X/Y coordinates of every line, number, and note, and tell 
 Result was brutal:
 -   Initial level load time: **-80%**.
 -   RAM usage: **-60%**.
--   Scroll and zoom smoothness: Pure butter.
+-   Scroll and zoom smoothness: Buttery smooth.
 
 Yes, drawing pixels by hand is harder to maintain than using high-level components. You have to handle clicks, animations, and layout yourself. But for the core game component, where user spends 100% of time, it's worth every hour of engineering invested.
 
