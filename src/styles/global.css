@@ -92,40 +92,121 @@ h1, h2, h3, h4, h5, h6 {
 /* Prose Customization */
 @layer components {
   .prose {
-    /* Base Color */
-    @apply text-on-surface-variant dark:text-dark-on-surface-variant;
+    /* Base Color & Typography */
+    @apply text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed;
 
-    /* Headings */
-    @apply prose-headings:font-heading prose-headings:text-on-surface dark:prose-headings:text-dark-on-surface;
-
-    /* Links */
-    @apply prose-a:text-primary hover:prose-a:text-secondary prose-a:no-underline hover:prose-a:underline prose-a:transition-colors;
-
-    /* Strong */
-    @apply prose-strong:text-on-surface dark:prose-strong:text-dark-on-surface;
-
-    /* Code */
-    @apply prose-code:text-primary prose-code:bg-surface-variant dark:prose-code:bg-dark-surface-variant prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-mono prose-code:before:content-none prose-code:after:content-none;
-
-    /* Pre */
-    @apply prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-xl prose-pre:shadow-lg prose-pre:border prose-pre:border-gray-800;
+    /* Global Heading Styles */
+    @apply prose-headings:font-heading prose-headings:text-primary dark:prose-headings:text-primary prose-headings:font-bold prose-headings:tracking-tight;
   }
 
-  /* Force Pre Styles to override Shiki/Defaults */
+  /* Specific Heading Sizes & Spacing */
+  .prose h1 {
+    @apply text-4xl mb-8 mt-12;
+  }
+  .prose h2 {
+    @apply text-3xl mb-6 mt-10;
+  }
+  .prose h3 {
+    @apply text-2xl mb-4 mt-8;
+  }
+  .prose h4 {
+    @apply text-xl mb-4 mt-6;
+  }
+
+  /* Paragraphs */
+  .prose p {
+    @apply my-6 text-lg leading-8;
+  }
+
+  /* Links */
+  .prose a {
+    @apply text-primary font-semibold no-underline transition-colors;
+  }
+  .prose a:hover {
+    @apply text-secondary underline;
+  }
+
+  /* Strong */
+  .prose strong {
+    @apply text-on-surface dark:text-dark-on-surface font-bold;
+  }
+
+  /* Code (Inline) */
+  .prose code {
+    @apply text-secondary dark:text-secondary bg-surface-variant dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono text-sm;
+  }
+  .prose code::before, .prose code::after {
+    content: none;
+  }
+
+  /* Pre (Code Blocks) */
   .prose pre {
-    @apply !rounded-xl !shadow-lg !border !border-gray-800;
-    background-color: #111827 !important;
+    @apply bg-[#1e1e1e] text-gray-100 rounded-2xl shadow-xl border border-gray-700/50 p-6 my-8 overflow-x-auto;
+    position: relative; /* For copy button */
   }
 
-  .prose {
-    /* Blockquotes */
-    @apply prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-surface-variant/30 dark:prose-blockquote:bg-dark-surface-variant/30 prose-blockquote:py-2 prose-blockquote:pr-4 prose-blockquote:rounded-r-lg prose-blockquote:not-italic prose-blockquote:font-serif;
+  /* Blockquotes */
+  .prose blockquote {
+    @apply border-l-4 border-primary bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-4 pl-6 pr-4 my-8 rounded-r-xl not-italic font-serif text-lg text-on-surface dark:text-dark-on-surface;
+  }
 
-    /* Images */
-    @apply prose-img:rounded-xl prose-img:shadow-md;
+  /* Images */
+  .prose img {
+    @apply rounded-2xl shadow-lg my-10;
+  }
 
-    /* Lists */
-    @apply prose-li:marker:text-primary;
+  /* Lists */
+  .prose ul, .prose ol {
+    @apply my-6;
+  }
+  .prose li {
+    @apply my-2;
+  }
+  .prose li::marker {
+    @apply text-primary;
+  }
+
+  /* HR */
+  .prose hr {
+    @apply border-gray-200 dark:border-gray-800 my-12;
+  }
+
+  /* Copy Button Styles */
+  .copy-code-btn {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.35rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    color: #e5e7eb;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Hidden by default */
+  }
+
+  /* Show copy button on hover */
+  .prose pre:hover .copy-code-btn,
+  .copy-code-btn:focus-visible {
+    opacity: 1;
+  }
+
+  .copy-code-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: scale(1.05);
+  }
+
+  .copy-code-btn:active {
+    transform: scale(0.95);
+  }
+
+  .copy-code-btn .material-icons {
+    font-size: 1.25rem;
   }
 }
 

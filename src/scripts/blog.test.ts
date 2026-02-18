@@ -6,15 +6,6 @@ describe('Blog Script', () => {
   beforeEach(async () => {
     vi.resetModules();
 
-    // Mock navigator.clipboard
-    Object.defineProperty(navigator, 'clipboard', {
-        value: {
-            writeText: vi.fn().mockResolvedValue(undefined),
-        },
-        writable: true,
-        configurable: true // Important to allow re-definition if needed
-    });
-
     // Mock requestAnimationFrame to execute immediately
     vi.stubGlobal('requestAnimationFrame', (fn: FrameRequestCallback) => {
         fn(0);
@@ -23,31 +14,6 @@ describe('Blog Script', () => {
 
     // Import
     blogModule = await import('./blog');
-  });
-
-  describe('setupCopyButtons', () => {
-    it('should add copy buttons to pre tags', () => {
-        document.body.innerHTML = '<pre><code>const a = 1;</code></pre>';
-        blogModule.setupCopyButtons();
-        const btn = document.querySelector('.copy-code-btn');
-        expect(btn).not.toBeNull();
-    });
-
-    it('should copy text on click', async () => {
-        document.body.innerHTML = '<pre><code>test code</code></pre>';
-        blogModule.setupCopyButtons();
-        const btn = document.querySelector('.copy-code-btn') as HTMLButtonElement;
-
-        btn.click();
-
-        expect(navigator.clipboard.writeText).toHaveBeenCalledWith('test code');
-
-        // Check visual feedback (async)
-        await new Promise(resolve => setTimeout(resolve, 0));
-        expect(btn.classList.contains('text-green-400')).toBe(true);
-        expect(btn.getAttribute('aria-label')).toBe('¡Copiado!');
-        expect(btn.title).toBe('¡Copiado!');
-    });
   });
 
   describe('setupProgressBar', () => {

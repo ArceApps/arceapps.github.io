@@ -1,7 +1,12 @@
+import { setupCopyButtons } from "./code-copy";
+
 let scrollObserver: IntersectionObserver | undefined;
 let fadeObserver: IntersectionObserver | undefined;
 
 export function initLayout() {
+  // Initialize code copy buttons globally
+  setupCopyButtons();
+
   // Clean up previous observers
   if (scrollObserver) {
     scrollObserver.disconnect();
