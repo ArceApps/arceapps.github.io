@@ -1,7 +1,20 @@
 ---
+import { useTranslations } from "../i18n/utils";
+
+interface Props {
+  lang?: 'es' | 'en';
+}
+
+const { lang = 'es' } = Astro.props;
+const t = useTranslations(lang);
+
 // Security: Use environment variable for email to prevent hardcoding secrets in repo
 const contactEmail =
   import.meta.env.PUBLIC_CONTACT_EMAIL || "arce.com.apps@gmail.com";
+
+const nextUrl = lang === 'es'
+  ? "https://arceapps.github.io/es/about-me"
+  : "https://arceapps.github.io/about-me";
 ---
 
 <form
@@ -9,19 +22,20 @@ const contactEmail =
   action={`https://formsubmit.co/${contactEmail}`}
   method="POST"
   class="bg-surface dark:bg-dark-surface p-6 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm"
+  data-sending-text={t('contact.sending')}
 >
   <!-- FormSubmit Configuration -->
   <input
     type="hidden"
     name="_subject"
-    value="Nuevo mensaje de contacto - ArceApps"
+    value={t('contact.subject')}
   />
   <input type="hidden" name="_template" value="table" />
   <input type="hidden" name="_captcha" value="false" />
   <input
     type="hidden"
     name="_next"
-    value="https://arceapps.github.io/about-me"
+    value={nextUrl}
   />
   <!-- Honeypot for spam protection -->
   <input type="text" name="_honey" class="hidden" />
@@ -31,7 +45,7 @@ const contactEmail =
       for="name"
       class="block text-sm font-medium text-on-surface dark:text-dark-on-surface mb-1 group-focus-within:text-primary transition-colors"
     >
-      Nombre <span class="text-red-500">*</span>
+      {t('contact.name')} <span class="text-red-500">*</span>
     </label>
     <input
       type="text"
@@ -41,7 +55,7 @@ const contactEmail =
       required
       maxlength="100"
       class="w-full px-4 py-2 rounded-lg bg-surface-variant/30 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-on-surface dark:text-dark-on-surface invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-600"
-      placeholder="Tu nombre"
+      placeholder={t('contact.name_placeholder')}
     />
   </div>
 
@@ -50,7 +64,7 @@ const contactEmail =
       for="email"
       class="block text-sm font-medium text-on-surface dark:text-dark-on-surface mb-1 group-focus-within:text-primary transition-colors"
     >
-      Correo electrónico <span class="text-red-500">*</span>
+      {t('contact.email')} <span class="text-red-500">*</span>
     </label>
     <input
       type="email"
@@ -60,7 +74,7 @@ const contactEmail =
       required
       maxlength="254"
       class="w-full px-4 py-2 rounded-lg bg-surface-variant/30 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-on-surface dark:text-dark-on-surface invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-600"
-      placeholder="tu@email.com"
+      placeholder={t('contact.email_placeholder')}
     />
   </div>
 
@@ -69,7 +83,7 @@ const contactEmail =
       for="message"
       class="block text-sm font-medium text-on-surface dark:text-dark-on-surface mb-1 group-focus-within:text-primary transition-colors"
     >
-      Mensaje <span class="text-red-500">*</span>
+      {t('contact.message')} <span class="text-red-500">*</span>
     </label>
     <textarea
       name="message"
@@ -78,7 +92,7 @@ const contactEmail =
       required
       maxlength="5000"
       class="w-full px-4 py-2 rounded-lg bg-surface-variant/30 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all text-on-surface dark:text-dark-on-surface resize-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500 invalid:[&:not(:placeholder-shown):not(:focus)]:text-red-600"
-      placeholder="¿En qué podemos ayudarte?"></textarea>
+      placeholder={t('contact.message_placeholder')}></textarea>
   </div>
 
   <button
@@ -87,14 +101,13 @@ const contactEmail =
     class="w-full py-3 px-6 rounded-lg bg-primary text-white font-bold shadow-md hover:shadow-lg hover:bg-primary/90 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-75 disabled:cursor-not-allowed motion-safe:transition-all"
   >
     <span class="material-icons" id="btn-icon" aria-hidden="true">send</span>
-    <span id="btn-text">Enviar Mensaje</span>
+    <span id="btn-text">{t('contact.send')}</span>
   </button>
 
   <p
     class="mt-4 text-xs text-center text-on-surface-variant/60 dark:text-dark-on-surface-variant/60"
   >
-    Al enviar este mensaje, aceptas ser contactado en respuesta a tu consulta.
-    Tu correo se mantendrá confidencial.
+    {t('contact.disclaimer')}
   </p>
 </form>
 
@@ -108,6 +121,9 @@ const contactEmail =
     const btnText = document.getElementById("btn-text");
 
     if (form && btn && btnIcon && btnText) {
+      // Get the translated text from data attribute
+      const sendingText = form.getAttribute('data-sending-text') || 'Sending...';
+
       // Remove any existing listener to avoid duplicates if called multiple times (though page-load usually cleans up DOM)
       // Actually, since the DOM element 'form' is new on navigation, we don't need to remove old listeners on it.
 
@@ -120,7 +136,7 @@ const contactEmail =
         btnIcon.classList.add("animate-spin", "motion-reduce:animate-none");
 
         // Change text
-        btnText.textContent = "Enviando...";
+        btnText.textContent = sendingText;
       });
     }
   }
