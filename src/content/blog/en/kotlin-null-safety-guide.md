@@ -4,7 +4,7 @@ description: "Deeply understand Kotlin's type system, how it eliminates NullPoin
 pubDate: 2025-09-10
 heroImage: "/images/placeholder-article-null-safety.svg"
 tags: ["Kotlin", "Null Safety", "Best Practices", "Clean Code", "Java Interop"]
-reference_id: "a6862a1f-934e-46ee-b507-b0821a0ef458"
+reference_id: "5765a71d-efe1-414d-af77-a67913131024"
 ---
 ## 💥 Theory: The Billion Dollar Mistake
 

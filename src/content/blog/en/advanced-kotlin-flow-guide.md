@@ -4,7 +4,7 @@ description: "Level up with Kotlin Flow. Master operators like combine, zip, fla
 pubDate: 2025-10-15
 heroImage: "/images/placeholder-article-flow-advanced.svg"
 tags: ["Kotlin", "Flow", "Reactive Programming", "Android", "Coroutines"]
-reference_id: "30d4229b-1702-40f3-9388-8acde5a5c6cb"
+reference_id: "bbab8f8a-8eba-4227-988a-15f5c7ec0ad4"
 ---
 ## 🌊 Beyond basic `collect`
 

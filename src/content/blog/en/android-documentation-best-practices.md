@@ -1,83 +1,104 @@
 ---
-title: "Android Documentation: Beyond Javadoc"
-description: "Learn how to document your Android project effectively using modern tools like Dokka and MkDocs. Create documentation that developers actually want to read."
-pubDate: 2025-07-20
-heroImage: "/images/placeholder-article-docs.svg"
-tags: ["Documentation", "Android", "Dokka", "MkDocs", "Best Practices"]
-reference_id: "7c6591cf-758f-4852-aa83-610882da6a67"
+title: "Android Documentation: Best Practices for Developers"
+description: "Master the art of documenting Android projects. From KDoc to GitHub Actions, ensure your code is maintainable and scalable."
+pubDate: 2025-10-14
+heroImage: "/images/placeholder-article-documentation.svg"
+tags: ["Documentation", "Android", "Dokka", "MkDocs", "Best Practices", "KDoc", "Kotlin", "Workflow", "GitHub Actions"]
+reference_id: "3cb651cb-7e90-47b2-aff0-77bc2cf41808"
 ---
+## 📝 Why Documentation Matters in Android
 
-Documentation is the most neglected part of software development, yet it's the one thing that separates a maintainable project from legacy spaghetti code. In the Android ecosystem, we often stop at Javadoc/KDoc, but that's just the tip of the iceberg.
+In the fast-paced world of Android development, documentation often takes a back seat. We prioritize shipping features over writing docs. However, as projects grow and teams scale, the lack of proper documentation becomes a bottleneck.
 
-## 📜 KDoc: The Foundation
+Documentation is not just about writing comments; it's about creating a knowledge base that empowers your team (and your future self) to understand the **why** and **how** behind the code.
 
-Every public class, function, and property should have KDoc. Not just "what" it does, but "why" and "how".
+## 📚 Types of Documentation
+
+### 1. Code Documentation (KDoc)
+This lives right in your code. It explains classes, functions, and parameters.
+- **Tools**: KDoc (Kotlin's Javadoc equivalent).
+- **Best Practice**: Document public APIs, complex logic, and edge cases. Don't document trivial getters/setters.
 
 ```kotlin
 /**
- * Calculates the total price of the cart.
+ * Repository for managing user data.
  *
- * @param items List of products in the cart.
- * @return Total price including tax.
- * @throws IllegalArgumentException if the cart is empty.
+ * @param localDataSource Source for local database operations.
+ * @param remoteDataSource Source for network API calls.
  */
-fun calculateTotal(items: List<Product>): BigDecimal
+class UserRepository(
+    private val localDataSource: UserLocalDataSource,
+    private val remoteDataSource: UserRemoteDataSource
+) { ... }
 ```
 
-This is good for IDE support, but it's not enough for architecture overview.
+### 2. Architecture Documentation (ADRs)
+Architecture Decision Records (ADRs) capture significant architectural decisions.
+- **Format**: Markdown files in the repo (e.g., `docs/adr/001-use-hilt.md`).
+- **Content**: Status, Context, Decision, Consequences.
 
-## 📚 Dokka: Generating API References
+### 3. Project Documentation (README & Wiki)
+The entry point for any developer.
+- **README.md**: Setup instructions, architecture overview, contribution guidelines.
+- **Wiki/MkDocs**: Detailed guides, onboarding, style guides.
 
-**Dokka** is the documentation engine for Kotlin, performing the same function as Javadoc for Java. It generates HTML pages from your KDoc comments.
+## 🛠️ Tools of the Trade
 
-To set it up in your `build.gradle.kts`:
+### Dokka
+The official documentation engine for Kotlin. It generates static sites (HTML) from your KDoc comments.
+- **Integration**: Gradle plugin.
+- **Output**: Beautiful, searchable API reference.
 
-```kotlin
-plugins {
-    id("org.jetbrains.dokka") version "1.9.20"
-}
+### MkDocs & Material for MkDocs
+For creating project websites. It takes Markdown files and builds a static site.
+- **Theme**: Material for MkDocs is the gold standard.
+- **Features**: Search, dark mode, versioning.
 
-tasks.dokkaHtml {
-    outputDirectory.set(buildDir.resolve("dokka"))
-}
-```
-
-Running `./gradlew dokkaHtml` gives you a browsable site of your entire API surface.
-
-## 📖 MkDocs: The "Human" Documentation
-
-API references are great for looking up specific methods, but they don't explain **concepts**. For guides, tutorials, and architecture diagrams, you need a static site generator.
-
-**MkDocs** (specifically with the `Material for MkDocs` theme) is the gold standard. It allows you to write Markdown files and turn them into a beautiful website.
-
-### Structure
-```
-docs/
-  architecture/
-    mvvm.md
-    clean-architecture.md
-  guides/
-    setup.md
-    coding-standards.md
-mkdocs.yml
-```
-
-### Integration with Code
-You can even embed code snippets directly from your source files using plugins like `pymdownx.snippets`, ensuring your examples never go out of date.
-
-## 🚀 Diagrams as Code (Mermaid)
-
-Stop using Visio or Lucidchart for architecture diagrams that rot in Confluence. Use **Mermaid.js** inside your Markdown.
+### Mermaid.js
+For diagrams as code. Embed flowcharts, sequence diagrams, and class diagrams directly in your Markdown.
 
 ```mermaid
 graph TD;
-    A[Activity] --> B[ViewModel];
-    B --> C[UseCase];
-    C --> D[Repository];
+    A[User] -->|Clicks Login| B(LoginViewModel)
+    B -->|Request| C{Repository}
+    C -->|Success| D[Navigate Home]
+    C -->|Error| E[Show Toast]
 ```
 
-This renders a flowchart directly in your documentation site. If the architecture changes, you update the text file, not a PNG.
+## 🚀 Automating Documentation with GitHub Actions
 
-## 🏁 Conclusion
+Manual documentation gets outdated. Automate it!
 
-Good documentation is a force multiplier. By combining KDoc for API reference (generated by Dokka) and Markdown for conceptual guides (rendered by MkDocs), you create a **Knowledge Base** that lives with your code and evolves with it.
+### Workflow: Build & Deploy Docs
+Create a GitHub Action that runs on every push to `main`:
+1.  **Build Code Docs**: Run `./gradlew dokkaHtml`.
+2.  **Build Project Docs**: Run `mkdocs build`.
+3.  **Deploy**: Push the generated static files to `gh-pages` branch.
+
+```yaml
+name: Deploy Docs
+on:
+  push:
+    branches: [ main ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - name: Build Dokka
+        run: ./gradlew dokkaHtml
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/dokka/html
+```
+
+## 🧠 Conclusion
+
+Good documentation is a superpower. It reduces onboarding time, prevents knowledge silos, and improves code quality. Start small: add meaningful KDoc, write a solid README, and automate the rest. Your team will thank you.

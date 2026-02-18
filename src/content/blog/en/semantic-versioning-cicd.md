@@ -4,7 +4,7 @@ description: "Master semantic versioning in CI/CD pipelines. Learn to calculate 
 pubDate: 2025-12-05
 heroImage: "/images/placeholder-article-cde-semver.svg"
 tags: ["DevOps", "CI/CD", "Semantic Versioning", "Android", "GitHub Actions"]
-reference_id: "af50d6b9-8203-4f52-9953-e78700adf615"
+reference_id: "0d37152d-08bf-43c6-8f5d-3372660e90a5"
 ---
 ## 📐 Theory: The Social Contract of Versioning
 

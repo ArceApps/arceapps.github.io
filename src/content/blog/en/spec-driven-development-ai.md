@@ -4,7 +4,7 @@ description: "How to use Markdown specifications to guide AI in generating entir
 pubDate: 2025-11-01
 heroImage: "/images/placeholder-article-spec-driven.svg"
 tags: ["AI", "Workflow", "Documentation", "Productivity"]
-reference_id: "729013c7-3c07-4e0b-8f3b-826068307223"
+reference_id: "d8152217-0875-4637-84fc-c004f535fb93"
 ---
 ## 📝 The Problem with Chat
 

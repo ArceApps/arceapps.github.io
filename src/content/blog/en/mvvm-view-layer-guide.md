@@ -1,75 +1,85 @@
 ---
-title: "MVVM View: The Dumbest Component (And Why That's Good)"
-description: "The 'View' in MVVM (Activities, Fragments, Composables) should be dumb. Learn how to keep logic out of your UI to ensure testability and stability."
-pubDate: 2025-10-03
-heroImage: "/images/placeholder-article-view-layer.svg"
-tags: ["Android", "MVVM", "Architecture", "UI Layer", "Clean Code"]
-reference_id: "5818f331-41ee-42ad-8f7d-6e6f9f8fd5af"
+title: "MVVM: The View Layer Guide"
+description: "How to implement the View layer in MVVM with Jetpack Compose. State collection, error handling, and separation of concerns."
+pubDate: 2025-10-15
+heroImage: "/images/placeholder-article-mvvm-view.svg"
+tags: ["MVVM", "View", "Android", "Jetpack Compose", "Architecture", "Clean Code"]
+reference_id: "0b7b5c3e-9982-4ee9-a47d-02edb4be618d"
 ---
-## 🎭 The Role of the View
+## 🖼️ The Role of the View
 
-In MVVM, the View (Activity, Fragment, or Composable) has a single responsibility: **Render the State**.
+In MVVM, the View (Activity, Fragment, or Composable) is responsible **only** for rendering the UI and capturing user interactions. It should contain **zero** business logic.
 
-The View should contain **zero business logic**.
--   ❌ "If the user is admin, show button." (Logic)
--   ✅ "Show button if `state.isAdminButtonVisible` is true." (Rendering)
+### Responsibilities
+1.  **Render State**: Display data from the ViewModel.
+2.  **Capture Events**: Click listeners, text input.
+3.  **Navigate**: Handle navigation actions (though logic often resides in ViewModel).
 
-### Why "Dumb" is Better?
-1.  **Testability**: Testing UI is slow and flaky (Espresso). Testing Logic in ViewModel is fast (JUnit). The less logic in the UI, the less you need Espresso.
-2.  **Scalability**: Logic mixed with layout code creates spaghetti that breaks when you change the design.
-3.  **Portability**: If your logic is in the View, you can't easily migrate from XML to Compose.
+## ⚡ The Pattern: Unidirectional Data Flow (UDF)
 
-## 🎨 View in Jetpack Compose
+1.  **State flows down**: ViewModel -> View.
+2.  **Events flow up**: View -> ViewModel.
 
-Compose forces you to think in terms of "State -> UI", which is perfect for MVVM.
+### Example: Collecting State in Compose
 
 ```kotlin
 @Composable
-fun UserScreen(viewModel: UserViewModel = hiltViewModel()) {
-    // 1. Observe State
-    val state by viewModel.uiState.collectAsStateWithLifecycle()
+fun UserScreen(
+    viewModel: UserViewModel = hiltViewModel()
+) {
+    // Collect state safely with lifecycle awareness
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    // 2. Pass State Down
-    UserContent(
-        state = state,
-        // 3. Pass Events Up
-        onRefresh = { viewModel.onRefresh() }
-    )
+    when (val state = uiState) {
+        is UserUiState.Loading -> LoadingScreen()
+        is UserUiState.Success -> UserList(state.users)
+        is UserUiState.Error -> ErrorScreen(state.message)
+    }
 }
 ```
 
-The `UserScreen` acts as a connector. `UserContent` is a pure, stateless component that just renders data.
+## ⚠️ Common Anti-Patterns
 
-## ⚠️ Common "Smart View" Mistakes
+### 1. Logic in UI
+**Wrong**: Calculating list filters inside `lazyColumn`.
+**Right**: Filter in ViewModel, expose the filtered list.
 
-### 1. Formatting Data
-**Bad:**
+### 2. State Hoisting Failures
+**Wrong**: Passing `UserViewModel` deep down the widget tree.
+**Right**: Pass only data (`List<User>`) and lambdas (`onUserClick: (String) -> Unit`) to child composables. This makes them reusable and testable.
+
 ```kotlin
-// In Composable
-Text(text = "Price: ${product.price * 1.21}")
+// Reusable Component - Knows nothing about ViewModel
+@Composable
+fun UserList(
+    users: List<User>,
+    onUserClick: (String) -> Unit
+) { ... }
 ```
-**Good:**
-The ViewModel should expose `displayPrice` formatted string. The View just shows strings.
 
-### 2. Handling Navigation Logic
-**Bad:**
+### 3. Ignoring Lifecycle
+**Wrong**: Launching coroutines in `LaunchedEffect(Unit)` without considering screen rotation or backgrounding.
+**Right**: Rely on ViewModel's scope or `lifecycleScope`.
+
+## 🔄 Handling One-Time Events (Navigation, Toasts)
+
+This is tricky in Compose. The recommended approach is to model events as part of the state or use a separate `SharedFlow` / `Channel`.
+
+### Using Effect
 ```kotlin
-onClick = {
-    if (user.isLoggedIn) navController.navigate("home")
-    else navController.navigate("login")
+val event = viewModel.eventFlow.collectAsStateWithLifecycle(initialValue = null)
+
+LaunchedEffect(event.value) {
+    event.value?.let { e ->
+        when(e) {
+            is UiEvent.ShowToast -> context.toast(e.message)
+            is UiEvent.Navigate -> navController.navigate(e.route)
+        }
+        viewModel.onEventConsumed() // Clear event to avoid re-trigger on rotation
+    }
 }
 ```
-**Good:**
-The ViewModel decides where to go. The View just listens to a "Navigation Event".
 
-### 3. Managing Resources Conditionals
-**Bad:**
-```kotlin
-val color = if (state.isError) Color.Red else Color.Green
-```
-**Good:**
-This is borderline. UI logic (colors, animations) belongs in the View. Business logic (is this an error?) belongs in the ViewModel. This example is actually acceptable, but could also be `state.statusColor`.
+## 🏁 Conclusion
 
-## 🎯 Conclusion
-
-Make your Views dumb. Keep them passive. Their only job is to reflect what the ViewModel tells them. If you find yourself writing `if` statements in your Fragment/Composable regarding data rules, move it to the ViewModel.
+A clean View layer is dumb. It blindly reflects the state provided by the ViewModel. This makes UI tests trivial and ensures consistency.

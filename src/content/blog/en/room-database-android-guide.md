@@ -4,7 +4,7 @@ description: "Complete guide to Room: from entities and DAOs to complex migratio
 pubDate: 2025-10-12
 heroImage: "/images/placeholder-article-room.svg"
 tags: ["Android", "Room", "Database", "SQL", "Persistence"]
-reference_id: "11aef199-1723-4b13-b542-bcfba8e06c50"
+reference_id: "33bf7911-98a8-491c-b685-eb741eda08b5"
 ---
 ## 🏛️ Theory: Why Room and not pure SQLite?
 

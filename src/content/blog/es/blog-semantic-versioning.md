@@ -4,6 +4,7 @@ description: "Una guía completa sobre cómo implementar versionado semántico e
 pubDate: 2025-08-25
 heroImage: "/images/placeholder-article-versioning.svg"
 tags: ["Android", "Versionado", "Gradle", "CI/CD"]
+reference_id: "ec7574e0-504b-474c-902b-fb10c1fde1d3"
 ---
 
 ## Introducción al Versionado Semántico

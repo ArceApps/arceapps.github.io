@@ -4,7 +4,7 @@ description: "Discover how to transform your generalist AI assistant into a team
 pubDate: 2025-05-24
 heroImage: "/images/agent-skills-gemini.svg"
 tags: ["AI", "Gemini", "GitHub Copilot", "Android", "Kotlin", "Productivity"]
-reference_id: "42909a97-16db-483c-97dd-4c63fa42ee3c"
+reference_id: "3754f165-251e-4411-a2fd-b6b2d5e4fc02"
 ---
 
 Artificial Intelligence in software development has evolved rapidly. We have moved from simple "copy and paste" prompts to complex contexts managed by files like `AGENTS.md` or `GEMINI.md`. However, as our projects grow, so does the context we need to provide. This is where the next big leap comes in: **Agent Skills**.

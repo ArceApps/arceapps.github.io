@@ -4,7 +4,7 @@ description: "Why is 'null' so dangerous? Discover how Kotlin solves the NullPoi
 pubDate: 2025-09-10
 heroImage: "/images/placeholder-article-null-safety.svg"
 tags: ["Kotlin", "Java", "Null Safety", "Language Design", "Clean Code"]
-reference_id: "a6862a1f-934e-46ee-b507-b0821a0ef458"
+reference_id: "77f7f9fe-81a6-4367-93d9-8d52830301d9"
 ---
 ## 💥 Tony Hoare's Confession
 

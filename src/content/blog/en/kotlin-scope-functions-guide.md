@@ -4,7 +4,7 @@ description: "let, run, with, apply, also... Which one to use and why? A deep di
 pubDate: 2025-09-15
 heroImage: "/images/placeholder-article-kotlin-let.svg"
 tags: ["Kotlin", "Best Practices", "Language Design", "Refactoring", "Clean Code"]
-reference_id: "eb314420-07ab-411b-924e-ae494316b5a5"
+reference_id: "6e4f7984-b5f6-41f8-b34c-46e8b41076c5"
 ---
 ## 🧐 The Problem They Solve (Language Design Theory)
 

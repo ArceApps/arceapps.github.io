@@ -4,7 +4,7 @@ description: "Practical step-by-step guide to implementing an agent architecture
 pubDate: 2025-05-21
 heroImage: "/images/placeholder-article-ai-setup.svg"
 tags: ["AI", "Tutorial", "Configuration", "Android", "Agents"]
-reference_id: "dcad3cfe-1257-4c79-95a0-8b362aa3492d"
+reference_id: "b0624ec0-08af-4dad-bc3f-7dce6d88c8ea"
 ---
 
 In the [previous article](/blog/ai-agents-android-theory), we explored why we need specialized agents instead of generic chats. Today, we are going to get our hands dirty. We are going to build the necessary infrastructure for **Sentinel**, **Bolt**, and **Palette** to live in your Android repository.

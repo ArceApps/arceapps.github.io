@@ -4,7 +4,7 @@ description: "Discover how Artificial Intelligence and Clean Architecture empowe
 pubDate: 2025-11-20
 heroImage: "/images/placeholder-article-clean-arch-ia.svg"
 tags: ["AI", "Clean Architecture", "Android", "Productivity", "GitHub Copilot"]
-reference_id: "c5f11803-1742-42ff-86d4-7c3d002c3b3a"
+reference_id: "c9acb2b0-8aaf-44b4-aae3-8c2c810df46c"
 ---
 ## 🤝 The Perfect Synergy
 

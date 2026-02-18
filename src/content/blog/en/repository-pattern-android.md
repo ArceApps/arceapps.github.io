@@ -4,7 +4,7 @@ description: "Why the Repository is the most important pattern in Clean Architec
 pubDate: 2025-10-18
 heroImage: "/images/placeholder-article-repository.svg"
 tags: ["Architecture", "Design Patterns", "Android", "Data Layer"]
-reference_id: "76b87b5a-7243-486c-82e4-465e663b6570"
+reference_id: "e1498656-14e2-4b0b-9914-752ae17e6062"
 ---
 ## 🏛️ Theory: The Guardian of Data
 

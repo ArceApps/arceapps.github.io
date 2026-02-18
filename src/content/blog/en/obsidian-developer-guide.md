@@ -4,7 +4,7 @@ description: "Transform Obsidian into a Knowledge IDE. Learn to integrate Git, D
 pubDate: 2025-05-27
 heroImage: "/images/obsidian-dev-hero.svg"
 tags: ["productivity", "workflow", "tools", "documentation"]
-reference_id: "770c3272-4d0e-4395-829d-47677943d038"
+reference_id: "5bcc1a10-55fd-4f2b-9285-f9b72f5fdcad"
 ---
 
 If you are a developer, your current knowledge "system" probably looks like this: three Stack Overflow tabs open for a week, a `TODO.txt` on the desktop you haven't opened since 2023, and a bunch of useful terminal commands saved in your bash history that you pray not to lose.

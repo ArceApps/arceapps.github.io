@@ -1,252 +1,71 @@
 ---
-title: "Effective Context: Feeding Your AI Agent"
-description: "Learn strategies to provide the right context to your AI agents, from prompt files to dynamic context injection. Stop getting generic answers."
-pubDate: 2025-06-05
-heroImage: "/images/placeholder-article-context.svg"
-tags: ["AI", "Prompt Engineering", "Context", "Productivity"]
-reference_id: "4979c901-cec6-4aaa-ac52-ef833b0a0a1e"
+title: "Effective Context for AI: Prompt Engineering"
+description: "How to craft prompts that work. From simple instructions to complex multi-step reasoning. Optimizing context windows."
+pubDate: 2025-10-25
+heroImage: "/images/placeholder-article-prompt-context.svg"
+tags: ["AI", "Prompt Engineering", "Context", "Productivity", "GitHub Copilot", "Gemini", "Android"]
+reference_id: "0f3f40cf-3a5d-481d-b211-b372ac4a2298"
 ---
+## 🧠 Context is King
 
-The difference between a mediocre AI response and a brilliant one is almost always **Context**.
-If you tell a Junior: "Make a login", they will ask "How? Which library? What design?".
-If you tell an AI: "Make a login", it will guess. And it will probably guess wrong for your project.
+The single biggest factor in the quality of AI output is the quality of the input (context). An LLM is a completion engine. If you give it vague context, it hallucinates. If you give it specific context, it reasons.
 
-## Strategy 1: The Global File (`AGENTS.md`)
+### The 4 C's of Context
 
-As we saw in [Configuring Agents](configuring-ai-agents), having a central file with the "Rules of the Game" is essential. This is your static context.
+1.  **Capacity**: The role (Act as a Senior Android Engineer).
+2.  **Context**: The background (Project is MVVM, Hilt, Room).
+3.  **Constraints**: The rules (Use Kotlin, no Java, handle errors with Result).
+4.  **Chain of Thought**: The process (Think step-by-step).
 
-### Strategy 2: Code Context (Semantic KDoc)
+## 📝 Example: The Bad Prompt
 
-Document your base classes and key interfaces. Agents read comments to understand intent.
+> "Create a login screen."
 
-```kotlin
-/**
- * Base Repository interface defining standard CRUD operations.
- * All repositories must implement this pattern.
- * Uses Result<T> wrapper for error handling.
- */
-interface BaseRepository<T> {
-    fun getAll(): Flow<Result<List<T>>>
-    suspend fun getById(id: String): Result<T>
-}
+**Result**: A generic XML layout, probably using `RelativeLayout` or `LinearLayout`, maybe in Java.
 
-// Prompt: "Implement UserRepository following the BaseRepository pattern"
-```
+## 🚀 Example: The Good Prompt
 
-### Strategy 3: Dynamic Context with Promptfiles
+> "Act as a Senior Android Developer. Create a Login Screen using Jetpack Compose (Material 3).
+>
+> **Context**:
+> - Use Hilt for DI.
+> - ViewModel should expose `StateFlow<LoginUiState>`.
+> - Handle loading, success, and error states.
+>
+> **Constraints**:
+> - Use `OutlinedTextField` for inputs.
+> - Validate email format.
+> - Do NOT use LiveData.
+>
+> **Steps**:
+> 1. Define `LoginUiState`.
+> 2. Create `LoginViewModel`.
+> 3. Implement `LoginScreen` composable."
 
-Create `.prompt` files with reusable context:
+**Result**: Production-ready code that fits your architecture.
 
-```markdown
-<!-- prompts/create-viewmodel.prompt -->
+## 🛠️ Optimizing Context Windows
 
-# Create ViewModel Template
+Don't paste 50 files. Be selective.
+- **Relevant Files Only**: Paste the ViewModel and the Repository interface, not the whole `data` layer.
+- **Summarize**: Instead of pasting a 2000-line file, say "User model has id, name, email."
 
-## Context
-Project: Android MVVM with Clean Architecture
-Tech Stack: Kotlin, Hilt, Compose, Coroutines, StateFlow
+## 🤖 Advanced Technique: Few-Shot Prompting
 
-## Instructions
-Create a new ViewModel following project conventions:
+Show, don't just tell. Give examples of desired output.
 
-### Structure
-```kotlin
-@HiltViewModel
-class [Feature]ViewModel @Inject constructor(
-    private val [useCases]: UseCases,
-    private val savedStateHandle: SavedStateHandle
-) : ViewModel() {
+> "Convert this JSON to a Kotlin Data Class.
+>
+> Example:
+> Input: `{"id": 1, "name": "John"}`
+> Output:
+> ```kotlin
+> @Serializable
+> data class User(val id: Int, val name: String)
+> ```
+>
+> Now convert this: ..."
 
-    private val _uiState = MutableStateFlow<[Feature]UiState>([Feature]UiState.Loading)
-    val uiState: StateFlow<[Feature]UiState> = _uiState.asStateFlow()
+## 🏁 Conclusion
 
-    init {
-        // Initial load
-    }
-}
-```
-
-### UI State Pattern
-```kotlin
-sealed interface [Feature]UiState {
-    object Loading : [Feature]UiState
-    data class Success(val data: T) : [Feature]UiState
-    data class Error(val message: String) : [Feature]UiState
-}
-```
-
-### Requirements
-- [ ] Use @HiltViewModel annotation
-- [ ] Expose StateFlow (not MutableStateFlow)
-- [ ] Use use cases (not repositories directly)
-- [ ] Handle errors with sealed interface states
-- [ ] Use viewModelScope for coroutines
-- [ ] Include KDoc documentation
-- [ ] Follow naming conventions
-- [ ] Include example usage in KDoc
-
-## Examples
-See: ProfileViewModel.kt, SettingsViewModel.kt for reference
-```
-
-### Strategy 4: Context with Tests as Specification
-
-Tests are executable specifications:
-
-```kotlin
-/**
- * AI PROMPT:
- * Implement UserViewModel so these tests pass.
- * The tests describe EXACTLY the expected behavior.
- */
-@ExperimentalCoroutinesApi
-class UserViewModelTest {
-
-    @Test
-    fun `should load users on init`() = runTest {
-        // Arrange
-        val expectedUsers = listOf(User("1", "John"), User("2", "Jane"))
-        coEvery { getUsersUseCase() } returns flowOf(Result.success(expectedUsers))
-
-        // Act
-        val viewModel = UserViewModel(getUsersUseCase, SavedStateHandle())
-
-        // Assert
-        viewModel.uiState.test {
-            assertThat(awaitItem()).isInstanceOf<UserUiState.Loading>()
-            val success = awaitItem() as UserUiState.Success
-            assertThat(success.users).isEqualTo(expectedUsers)
-        }
-    }
-}
-```
-
-## Best Practices by Tool
-
-### GitHub Copilot
-
-```kotlin
-// Copilot benefits from:
-// 1. Descriptive comments BEFORE the code
-// 2. Examples in the same file
-// 3. Descriptive names
-
-// Generate a ViewModel for users that:
-// - Uses @HiltViewModel for DI
-// - Exposes StateFlow<UserUiState>
-// - Loads users with GetUsersUseCase
-// - Allows searching by name
-// - Handles Loading, Success, Error states
-
-@HiltViewModel
-class UserViewModel @Inject constructor(
-    // Copilot will autocomplete following the pattern
-```
-
-### Gemini Code Assist
-
-```kotlin
-/*
-Gemini Code Assist Prompt:
-
-Project Context:
-- Native Android App in Kotlin
-- Architecture: Clean Architecture + MVVM
-- DI: Hilt
-- UI: Jetpack Compose
-- Async: Coroutines + Flow
-- State: StateFlow (no LiveData)
-
-Task:
-Create complete UserViewModel that:
-
-1. Dependencies:
-   - GetUsersUseCase
-   - SearchUsersUseCase
-   - SavedStateHandle
-
-2. UI State:
-   sealed interface UserUiState {
-       object Loading
-       data class Success(users: List<User>, searchQuery: String = "")
-       data class Error(message: String)
-   }
-
-3. Public functions:
-   - refresh(): Reloads users
-   - search(query: String): Filters users by name
-   - clearSearch(): Clears search and shows all
-
-4. Behavior:
-   - Initial automatic load in init
-   - Search with 300ms debounce
-   - User-friendly error handling
-   - Appropriate Loading states
-
-5. Testing:
-   - Generate tests with JUnit5, MockK, Turbine
-   - Cases: initial load, refresh, search, errors
-   - Coverage > 90%
-
-Reference examples:
-- ProfileViewModel.kt (state pattern)
-- SettingsViewModel.kt (error handling)
-
-Generate code with complete KDoc documentation.
-*/
-```
-
-## Context Anti-Patterns
-
-### ❌ Vague Context
-```
-"Create a login system"
-```
-Problem: Too broad, no specs.
-
-### ❌ Contradictory Context
-```
-"Use MVVM but put business logic in the ViewModel.
-Also use Clean Architecture."
-```
-Problem: Contradictory instructions confuse the agent.
-
-### ❌ Obsolete Context
-```
-"Follow the pattern we used before with LiveData"
-```
-Problem: Outdated context generates legacy code.
-
-## Perfect Context: Checklist
-
-Before asking an AI agent for code, verify that you have provided:
-
-- [ ] **Architecture**: MVVM? Clean? MVI?
-- [ ] **Tech Stack**: Key libraries used
-- [ ] **Naming Conventions**: How to name classes, functions, variables
-- [ ] **Code Patterns**: Examples of similar existing code
-- [ ] **State Management**: How you structure UI states
-- [ ] **Error Handling**: How you handle and present errors
-- [ ] **Testing Strategy**: Frameworks and testing patterns
-- [ ] **Documentation**: Level and style of expected documentation
-- [ ] **Concrete Examples**: Reference code from the project
-- [ ] **Edge Cases**: Special situations to consider
-
-## Conclusion
-
-Providing effective context to AI agents is a **critical skill** in modern development. It is not just about writing good prompts, it is about:
-
-1. **Structuring your project** so context is discoverable
-2. **Documenting conventions** in agents.md and code
-3. **Maintaining examples** of quality code as reference
-4. **Iterating and refining** based on results
-5. **Training the agent** with continuous feedback
-
-The time invested in establishing good context pays off exponentially:
-- More precise generated code
-- Fewer iterations needed
-- Greater consistency
-- Better overall quality
-
-**Your next step:**
-Review your next prompt for an AI agent and apply these techniques. Transform "Create a ViewModel" into a full-context prompt and see the difference in code quality.
+Prompt Engineering is the new coding. Writing effective prompts is a skill that separates average developers from 10x AI-augmented engineers.

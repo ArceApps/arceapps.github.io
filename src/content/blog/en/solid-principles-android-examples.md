@@ -1,70 +1,55 @@
 ---
-title: "SOLID Principles in Android: Not Just Theory"
-description: "How to apply S.O.L.I.D. principles in real Kotlin code for Android. Examples with UseCases, Repositories, and UI."
-pubDate: 2025-10-08
-heroImage: "/images/placeholder-article-solid.svg"
-tags: ["Architecture", "SOLID", "Clean Code", "Kotlin", "Android"]
-reference_id: "97184284-4820-4389-a292-07447230492e"
+title: "SOLID Principles: Android Examples"
+description: "Understanding SOLID principles in modern Android. Examples using Kotlin, Hilt, and MVVM."
+pubDate: 2025-06-21
+heroImage: "/images/placeholder-article-solid-android.svg"
+tags: ["SOLID", "Principles", "Android", "Kotlin", "Clean Code", "Architecture"]
+reference_id: "23245d12-f1a0-4c90-a479-5054040d07f3"
 ---
-## 🏛️ Why SOLID matters in 2025?
+## 📏 SOLID Principles in Android
 
-With Jetpack Compose and Coroutines, do principles from the 2000s still matter? **Yes.**
-Frameworks change, but coupling problems remain. SOLID is the antidote to spaghetti code.
+SOLID is a set of 5 principles for writing maintainable OOP code.
 
-## 1. Single Responsibility Principle (SRP)
+### 1. Single Responsibility (SRP)
+A class should have one reason to change.
+- **Bad**: `UserActivity` handling UI, Network, and Database.
+- **Good**: `UserActivity` (UI) -> `UserViewModel` (State) -> `UserRepository` (Data) -> `UserRemoteSource` (Network).
 
-> "A class should have one, and only one, reason to change."
+### 2. Open/Closed (OCP)
+Open for extension, closed for modification.
+- **Bad**: `if (type == A) ... else if (type == B) ...`
+- **Good**: Use interfaces and polymorphism.
+  ```kotlin
+  interface Payment {
+      fun pay()
+  }
 
-**Bad:**
-A `UserViewModel` that validates email format, calls the API, and saves to SharedPreferences.
+  class CreditCard : Payment { ... }
+  class PayPal : Payment { ... }
+  ```
 
-**Good:**
-*   `EmailValidator` (Validates).
-*   `UserRepository` (Handles data).
-*   `UserViewModel` (Manages UI state).
+### 3. Liskov Substitution (LSP)
+Subtypes must be substitutable for their base types.
+- **Bad**: `Square` inheriting `Rectangle` and changing `setHeight`.
+- **Good**: Use composition or separate interfaces.
 
-## 2. Open/Closed Principle (OCP)
+### 4. Interface Segregation (ISP)
+Clients shouldn't depend on methods they don't use.
+- **Bad**: `interface Worker { work(); eat(); }` -> Robot doesn't eat.
+- **Good**: `interface Workable { work(); }`, `interface Eatable { eat(); }`.
 
-> "Entities should be open for extension, but closed for modification."
+### 5. Dependency Inversion (DIP)
+High-level modules shouldn't depend on low-level modules. Both should depend on abstractions.
+- **Bad**: `ViewModel` depends on `RetrofitUserApi` directly.
+- **Good**: `ViewModel` depends on `UserRepository` interface. `UserRepositoryImpl` depends on `RetrofitUserApi`.
 
-**Example:**
-If you have a `PaymentManager` with a `switch` for `Paypal` and `CreditCard`, adding `Bitcoin` requires modifying the class (violating OCP).
+## 🧠 Why It Matters in Android
 
-**Solution:**
-Define a `PaymentMethod` interface. `PaymentManager` accepts any implementation. To add Bitcoin, create `BitcoinPayment` implementing the interface. You don't touch `PaymentManager`.
+SOLID prevents "God Activities" and tightly coupled code that breaks when you update libraries (e.g., migrating from Gson to Moshi).
+- **SRP** makes ViewModels testable.
+- **DIP** (via Hilt) allows easy mocking.
+- **ISP** keeps interfaces clean.
 
-## 3. Liskov Substitution Principle (LSP)
+## 🏁 Conclusion
 
-> "Objects of a superclass shall be replaceable with objects of its subclasses without breaking the application."
-
-**The Classic Error:**
-Class `Square` inherits from `Rectangle`.
-If you set `square.width = 5`, the height also changes. A generic code expecting a `Rectangle` (where width and height are independent) will fail.
-
-**In Android:**
-Don't inherit from `ArrayList` just to override one method if you break the contract of the List. Use Composition/Delegation.
-
-## 4. Interface Segregation Principle (ISP)
-
-> "Many client-specific interfaces are better than one general-purpose interface."
-
-**Bad:**
-One giant `View` interface with `showLoading()`, `showError()`, `showUser()`, `playAnimation()`.
-A simple fragment might only need `showLoading`.
-
-**Good:**
-Split into `LoadableView`, `ErrorView`, `UserView`.
-
-## 5. Dependency Inversion Principle (DIP)
-
-> "Depend on abstractions, not on concretions."
-
-This is the core of Clean Architecture.
-The `UseCase` should not import `RetrofitUserApi` (Concretion).
-It should import `UserRepository` (Abstraction/Interface).
-
-This allows swapping Retrofit for GraphQL or Firebase without touching the UseCase.
-
-## 🎯 Conclusion
-
-SOLID requires more files and more thought upfront. But it prevents the code from rotting. It is the difference between a project that gets harder to maintain over time and one that remains agile.
+Applying SOLID principles (especially SRP and DIP) is the foundation of Clean Architecture.

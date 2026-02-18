@@ -4,7 +4,7 @@ description: "Master the Model-View-ViewModel pattern from basic concepts to adv
 pubDate: 2025-10-01
 heroImage: "/images/placeholder-article-mvvm.svg"
 tags: ["Android", "MVVM", "Architecture", "Kotlin", "Best Practices"]
-reference_id: "ac516e4a-e9c1-41ed-8b1a-9c71e4b03d28"
+reference_id: "4a17203c-115d-4548-bad9-4c67698de707"
 ---
 ## 🏛️ Theory: The Evolution of UI Architectures
 
