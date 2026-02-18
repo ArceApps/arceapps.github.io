@@ -1,0 +1,54 @@
+---
+interface Props {
+  url: string;
+  title: string;
+}
+
+const { url, title } = Astro.props;
+
+// Encode for sharing
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+
+const shareLinks = [
+  {
+    name: 'Twitter (X)',
+    url: `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`,
+    icon: 'x',
+    color: 'bg-black hover:bg-gray-800'
+  },
+  {
+    name: 'LinkedIn',
+    url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    icon: 'linkedin',
+    color: 'bg-[#0077b5] hover:bg-[#005582]'
+  },
+  {
+    name: 'WhatsApp',
+    url: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
+    icon: 'whatsapp',
+    color: 'bg-[#25D366] hover:bg-[#128C7E]'
+  }
+];
+---
+
+<div class="flex flex-col sm:flex-row items-center gap-4 my-8 p-4 bg-surface-variant/30 dark:bg-dark-surface-variant/30 rounded-xl border border-gray-200 dark:border-gray-800">
+  <span class="font-bold text-on-surface dark:text-dark-on-surface mr-2 flex items-center gap-2">
+    <span class="material-icons text-primary" aria-hidden="true">share</span>
+    Share this post:
+  </span>
+  <div class="flex flex-wrap gap-2">
+    {shareLinks.map((link) => (
+      <a
+        href={link.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={`flex items-center gap-2 px-4 py-2 rounded-lg text-white font-medium transition-all transform hover:scale-105 shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${link.color}`}
+        aria-label={`Share on ${link.name}`}
+      >
+        <img src={`https://cdn.simpleicons.org/${link.icon}/white`} alt="" width="20" height="20" aria-hidden="true" />
+        <span class="text-sm">{link.name}</span>
+      </a>
+    ))}
+  </div>
+</div>

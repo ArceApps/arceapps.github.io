@@ -2,6 +2,9 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import BlogCard from '../../components/BlogCard.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SocialShare from '../../components/SocialShare.astro';
+import PostNavigation from '../../components/PostNavigation.astro';
 import { slugify } from '../../utils/slugs';
 import { useTranslations } from '../../i18n/utils';
 
@@ -9,13 +12,34 @@ const t = useTranslations('en');
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('en/'));
-  return posts.map((post) => ({
-    params: { slug: post.slug.split('/').pop() },
-    props: post,
-  }));
+  // Sort posts by date to ensure correct next/prev logic
+  const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return sortedPosts.map((post, index) => {
+    // Note: posts are sorted descending (newest first).
+    // So "next" post (chronologically newer) is at index - 1.
+    // "Previous" post (chronologically older) is at index + 1.
+    const nextPost = index > 0 ? sortedPosts[index - 1] : undefined;
+    const prevPost = index < sortedPosts.length - 1 ? sortedPosts[index + 1] : undefined;
+
+    return {
+      params: { slug: post.slug.split('/').pop() },
+      props: {
+        post,
+        prevPost: prevPost ? {
+          slug: prevPost.slug.split('/').pop()!,
+          title: prevPost.data.title
+        } : undefined,
+        nextPost: nextPost ? {
+          slug: nextPost.slug.split('/').pop()!,
+          title: nextPost.data.title
+        } : undefined
+      },
+    };
+  });
 }
 
-const post = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 const { Content, headings } = await post.render();
 
 const wordCount = post.body.split(/\s+/g).length;
@@ -45,6 +69,12 @@ const relatedPosts = allPosts
     return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
   })
   .slice(0, 3);
+
+const breadcrumbItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  { label: post.data.title, href: Astro.url.pathname }
+];
 ---
 
 <Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description}>
@@ -55,30 +85,36 @@ const relatedPosts = allPosts
 
   <article class="pt-24 pb-20">
     <!-- Header -->
-    <header class="container mx-auto px-4 mb-12 max-w-4xl text-center">
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
-        {post.data.tags && post.data.tags.map((tag: string) => (
-           <a 
-             href={`/blog/tag/${slugify(tag)}/`}
-             class="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-           >
-             #{tag}
-           </a>
-        ))}
+    <header class="container mx-auto px-4 mb-12 max-w-4xl">
+      <div class="mb-8 flex justify-center">
+        <Breadcrumbs items={breadcrumbItems} />
       </div>
 
-      <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-on-surface dark:text-dark-on-surface leading-tight">
-        {post.data.title}
-      </h1>
-
-      <div class="flex items-center justify-center gap-6 text-on-surface-variant dark:text-dark-on-surface-variant text-lg">
-        <div class="flex items-center">
-          <span class="material-icons mr-2 text-primary" aria-hidden="true">calendar_today</span>
-          <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
+      <div class="text-center">
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+          {post.data.tags && post.data.tags.map((tag: string) => (
+             <a
+               href={`/blog/tag/${slugify(tag)}/`}
+               class="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+             >
+               #{tag}
+             </a>
+          ))}
         </div>
-        <div class="flex items-center">
-          <span class="material-icons mr-2 text-primary" aria-hidden="true">schedule</span>
-          <span>⏱️ {readingTime} min read</span>
+
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-on-surface dark:text-dark-on-surface leading-tight">
+          {post.data.title}
+        </h1>
+
+        <div class="flex items-center justify-center gap-6 text-on-surface-variant dark:text-dark-on-surface-variant text-lg">
+          <div class="flex items-center">
+            <span class="material-icons mr-2 text-primary" aria-hidden="true">calendar_today</span>
+            <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
+          </div>
+          <div class="flex items-center">
+            <span class="material-icons mr-2 text-primary" aria-hidden="true">schedule</span>
+            <span>⏱️ {readingTime} min read</span>
+          </div>
         </div>
       </div>
     </header>
@@ -180,8 +216,12 @@ const relatedPosts = allPosts
             <Content />
           </div>
 
+          <SocialShare url={Astro.url.href} title={post.data.title} />
+
+          <PostNavigation prevPost={prevPost} nextPost={nextPost} lang="en" />
+
           <!-- Share / Back (Mobile only) -->
-          <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800 lg:hidden">
+          <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 lg:hidden">
              <a href="/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
                 <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
                 {t('common.back')}

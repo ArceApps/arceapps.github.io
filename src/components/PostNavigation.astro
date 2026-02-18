@@ -1,0 +1,79 @@
+---
+interface Props {
+  prevPost?: {
+    slug: string;
+    title: string;
+  };
+  nextPost?: {
+    slug: string;
+    title: string;
+  };
+  lang: 'en' | 'es';
+}
+
+const { prevPost, nextPost, lang } = Astro.props;
+
+const labels = {
+  en: {
+    prev: "Previous Post",
+    next: "Next Post",
+    ariaPrev: "Go to previous post",
+    ariaNext: "Go to next post"
+  },
+  es: {
+    prev: "Artículo Anterior",
+    next: "Siguiente Artículo",
+    ariaPrev: "Ir al artículo anterior",
+    ariaNext: "Ir al siguiente artículo"
+  }
+};
+
+const t = labels[lang];
+const prefix = lang === 'es' ? '/es/blog' : '/blog';
+---
+
+{(prevPost || nextPost) && (
+  <nav class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 mb-12 border-t border-b border-gray-200 dark:border-gray-800 py-8" aria-label="Post navigation">
+    {/* Previous Post */}
+    <div class="flex flex-col items-start justify-center">
+      {prevPost ? (
+        <a
+          href={`${prefix}/${prevPost.slug}`}
+          class="group flex flex-col items-start p-4 w-full h-full rounded-xl hover:bg-surface-variant/30 dark:hover:bg-dark-surface-variant/30 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+          aria-label={`${t.ariaPrev}: ${prevPost.title}`}
+        >
+          <span class="flex items-center text-sm font-bold text-on-surface-variant dark:text-dark-on-surface-variant mb-2 group-hover:text-primary transition-colors">
+            <span class="material-icons text-lg mr-1 group-hover:-translate-x-1 transition-transform" aria-hidden="true">arrow_back</span>
+            {t.prev}
+          </span>
+          <span class="text-lg font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors line-clamp-2">
+            {prevPost.title}
+          </span>
+        </a>
+      ) : (
+        <div class="hidden md:block" aria-hidden="true"></div>
+      )}
+    </div>
+
+    {/* Next Post */}
+    <div class="flex flex-col items-end justify-center text-right">
+      {nextPost ? (
+        <a
+          href={`${prefix}/${nextPost.slug}`}
+          class="group flex flex-col items-end p-4 w-full h-full rounded-xl hover:bg-surface-variant/30 dark:hover:bg-dark-surface-variant/30 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+          aria-label={`${t.ariaNext}: ${nextPost.title}`}
+        >
+          <span class="flex items-center text-sm font-bold text-on-surface-variant dark:text-dark-on-surface-variant mb-2 group-hover:text-primary transition-colors">
+            {t.next}
+            <span class="material-icons text-lg ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+          </span>
+          <span class="text-lg font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors line-clamp-2">
+            {nextPost.title}
+          </span>
+        </a>
+      ) : (
+        <div class="hidden md:block" aria-hidden="true"></div>
+      )}
+    </div>
+  </nav>
+)}
