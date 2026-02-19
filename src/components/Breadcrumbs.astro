@@ -10,7 +10,7 @@ const { items } = Astro.props;
 ---
 
 <nav aria-label="Breadcrumb" class="mb-4">
-  <ol class="flex items-center space-x-2 text-sm text-on-surface-variant dark:text-dark-on-surface-variant" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ol class="flex items-center space-x-2 text-sm text-on-surface-variant dark:text-gray-300" itemscope itemtype="https://schema.org/BreadcrumbList">
     {items.map((item, index) => (
       <li class="flex items-center" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         {index > 0 && <span class="material-icons text-base mx-1" aria-hidden="true">chevron_right</span>}
