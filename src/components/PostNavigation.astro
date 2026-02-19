@@ -42,11 +42,11 @@ const prefix = lang === 'es' ? '/es/blog' : '/blog';
           class="group flex flex-col items-start p-4 w-full h-full rounded-xl hover:bg-surface-variant/30 dark:hover:bg-dark-surface-variant/30 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
           aria-label={`${t.ariaPrev}: ${prevPost.title}`}
         >
-          <span class="flex items-center text-sm font-bold text-on-surface-variant dark:text-dark-on-surface-variant mb-2 group-hover:text-primary transition-colors">
+          <span class="flex items-center text-sm font-bold text-on-surface-variant dark:text-gray-300 mb-2 group-hover:text-primary transition-colors">
             <span class="material-icons text-lg mr-1 group-hover:-translate-x-1 transition-transform" aria-hidden="true">arrow_back</span>
             {t.prev}
           </span>
-          <span class="text-lg font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors line-clamp-2">
+          <span class="text-lg font-bold text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors line-clamp-2">
             {prevPost.title}
           </span>
         </a>
@@ -63,11 +63,11 @@ const prefix = lang === 'es' ? '/es/blog' : '/blog';
           class="group flex flex-col items-end p-4 w-full h-full rounded-xl hover:bg-surface-variant/30 dark:hover:bg-dark-surface-variant/30 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
           aria-label={`${t.ariaNext}: ${nextPost.title}`}
         >
-          <span class="flex items-center text-sm font-bold text-on-surface-variant dark:text-dark-on-surface-variant mb-2 group-hover:text-primary transition-colors">
+          <span class="flex items-center text-sm font-bold text-on-surface-variant dark:text-gray-300 mb-2 group-hover:text-primary transition-colors">
             {t.next}
             <span class="material-icons text-lg ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
           </span>
-          <span class="text-lg font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors line-clamp-2">
+          <span class="text-lg font-bold text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors line-clamp-2">
             {nextPost.title}
           </span>
         </a>
