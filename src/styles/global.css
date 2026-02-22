@@ -22,7 +22,7 @@
 
   /* Fonts */
   --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
-  --font-heading: 'Merriweather', 'Inter Variable', 'Inter', system-ui, serif;
+  --font-heading: 'Inter Variable', 'Inter', system-ui, sans-serif;
 }
 
 /* Material Design 3 Utilities */
@@ -70,8 +70,22 @@
 }
 
 /* Base Styles */
-html {
-  @apply scroll-smooth;
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-surface dark:bg-dark-surface text-on-surface dark:text-dark-on-surface antialiased transition-colors duration-300;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-medium tracking-tight;
+    /* Default weight for headings is Medium (500) */
+    font-variation-settings: 'wght' 500;
+    transition: font-variation-settings 0.3s ease-out;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -80,13 +94,46 @@ html {
   }
 }
 
-body {
-  @apply bg-surface dark:bg-dark-surface text-on-surface dark:text-dark-on-surface antialiased transition-colors duration-300;
+@media (hover: hover) {
+  h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
+    font-variation-settings: 'wght' 650;
+  }
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  @apply font-heading font-medium tracking-tight;
+/*
+   Variable Font Weight Overrides
+   Ensures Tailwind weight utilities work with font-variation-settings
+   and provide appropriate hover animations.
+*/
+
+/* Semibold (600) -> Hover 700 */
+.font-semibold {
+  font-variation-settings: 'wght' 600 !important;
+}
+@media (hover: hover) {
+  .font-semibold:hover {
+    font-variation-settings: 'wght' 700 !important;
+  }
+}
+
+/* Bold (700) -> Hover 800 */
+.font-bold {
+  font-variation-settings: 'wght' 700 !important;
+}
+@media (hover: hover) {
+  .font-bold:hover {
+    font-variation-settings: 'wght' 800 !important;
+  }
+}
+
+/* Extra Bold (800) -> Hover 900 */
+.font-extrabold {
+  font-variation-settings: 'wght' 800 !important;
+}
+@media (hover: hover) {
+  .font-extrabold:hover {
+    font-variation-settings: 'wght' 900 !important;
+  }
 }
 
 /* Prose Customization */
@@ -97,6 +144,18 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Global Heading Styles */
     @apply prose-headings:font-heading prose-headings:text-primary dark:prose-headings:text-gray-50 prose-headings:font-bold prose-headings:tracking-tight;
+  }
+
+  /* Ensure prose headings also support variable weight animation */
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+      font-variation-settings: 'wght' 700; /* Start bold as per prose-headings:font-bold */
+      transition: font-variation-settings 0.3s ease-out;
+  }
+
+  @media (hover: hover) {
+      .prose h1:hover, .prose h2:hover, .prose h3:hover, .prose h4:hover, .prose h5:hover, .prose h6:hover {
+          font-variation-settings: 'wght' 800; /* Extra Bold on hover */
+      }
   }
 
   /* Specific Heading Sizes & Spacing */
