@@ -77,7 +77,7 @@ const breadcrumbItems = [
 <Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description}>
   <!-- Progress Bar -->
   <div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-[100] bg-transparent">
-    <div id="progress-bar" class="h-full bg-secondary w-0 transition-all duration-100 ease-out"></div>
+    <div id="progress-bar" class="scroll-progress-bar h-full bg-secondary w-full origin-left"></div>
   </div>
 
   <article class="pt-24 pb-20">
@@ -281,4 +281,3 @@ const breadcrumbItems = [
   }
 </style>
 
-<script src="../../../scripts/blog.ts"></script>

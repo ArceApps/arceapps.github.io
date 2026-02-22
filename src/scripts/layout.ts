@@ -1,7 +1,6 @@
 import { setupCopyButtons } from "./code-copy";
 
 let scrollObserver: IntersectionObserver | undefined;
-let fadeObserver: IntersectionObserver | undefined;
 
 export function initLayout() {
   // Initialize code copy buttons globally
@@ -11,10 +10,6 @@ export function initLayout() {
   if (scrollObserver) {
     scrollObserver.disconnect();
     scrollObserver = undefined;
-  }
-  if (fadeObserver) {
-    fadeObserver.disconnect();
-    fadeObserver = undefined;
   }
 
   // Scroll to Top Logic
@@ -68,36 +63,6 @@ export function initLayout() {
         behavior: prefersReducedMotion ? "auto" : "smooth",
       });
     });
-  }
-
-  // Intersection Observer for Fade-in Animations
-  const fadeElements = document.querySelectorAll(".fade-in-section");
-
-  if (fadeElements.length > 0) {
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      fadeElements.forEach((el) => el.classList.add("is-visible"));
-    } else {
-      const observerOptions = {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.1,
-      };
-
-      fadeObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      fadeElements.forEach((el) => fadeObserver!.observe(el));
-    }
   }
 }
 
