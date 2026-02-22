@@ -1,3 +1,5 @@
+import { triggerHapticFeedback } from "./haptics";
+
 export function setupCopyButtons() {
   const preTags = document.querySelectorAll("pre");
   preTags.forEach((pre) => {
@@ -24,6 +26,9 @@ export function setupCopyButtons() {
       navigator.clipboard
         .writeText(text)
         .then(() => {
+          // Haptic feedback
+          triggerHapticFeedback();
+
           // Visual feedback
           button.innerHTML =
             '<span class="material-icons" aria-hidden="true">check</span>';
