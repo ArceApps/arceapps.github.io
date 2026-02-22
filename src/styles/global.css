@@ -211,29 +211,38 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Animations */
-@media (prefers-reduced-motion: no-preference) {
-  .fade-in {
-    animation: fadeIn 0.5s ease-out forwards;
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.fade-in-section {
-  opacity: 0;
-  transform: translateY(20px);
+@keyframes scale-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.scroll-progress-bar {
+  transform: scaleX(0);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .fade-in-section {
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  .fade-in {
+    animation: fade-in-up 0.5s ease-out forwards;
   }
-}
 
-.fade-in-section.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  /* Scroll-Driven Animations */
+  @supports (animation-timeline: view()) {
+    .fade-in-section {
+      animation: fade-in-up linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .scroll-progress-bar {
+      animation: scale-progress linear;
+      animation-timeline: scroll();
+    }
+  }
 }
