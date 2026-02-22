@@ -208,6 +208,48 @@ h1, h2, h3, h4, h5, h6 {
   .copy-code-btn .material-icons {
     font-size: 1.25rem;
   }
+
+  /* Spatial (Glassmorphism 2.0) Card Styles */
+  .spatial-card {
+    @apply relative overflow-hidden transition-all duration-300;
+    /* Light Mode: Clean, slightly translucent, subtle border */
+    @apply bg-surface/90 border border-gray-200/60 backdrop-blur-md;
+
+    /* Dark Mode: Deep glassmorphism, transparent border (handled by pseudo), stronger blur */
+    @apply dark:bg-[#1e1e1e]/60 dark:border-transparent dark:backdrop-blur-xl;
+  }
+
+  /* Gradient Border for Dark Mode */
+  .spatial-card::before {
+    content: "";
+    @apply absolute -inset-[1px] z-10 rounded-[inherit] pointer-events-none opacity-0 transition-opacity duration-300;
+    padding: 1px; /* Border width */
+    background: linear-gradient(135deg, rgba(1, 135, 134, 0.5), rgba(255, 152, 0, 0.5));
+    -webkit-mask:
+       linear-gradient(#fff 0 0) content-box,
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+  }
+
+  .dark .spatial-card::before {
+    @apply opacity-100;
+  }
+
+  /* Inner Glow/Highlight for depth */
+  .spatial-card::after {
+    content: "";
+    @apply absolute inset-0 z-10 rounded-[inherit] pointer-events-none opacity-0 transition-opacity duration-300;
+    background: linear-gradient(
+      105deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0) 40%
+    );
+  }
+
+  .dark .spatial-card::after {
+    @apply opacity-100;
+  }
 }
 
 /* Animations */
