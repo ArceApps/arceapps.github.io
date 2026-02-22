@@ -140,16 +140,21 @@
 @layer components {
   .prose {
     /* Base Color & Typography */
-    @apply text-on-surface-variant dark:text-gray-100 leading-relaxed;
+    @apply text-on-surface-variant dark:text-dark-on-surface leading-relaxed;
 
     /* Global Heading Styles */
-    @apply prose-headings:font-heading prose-headings:text-primary dark:prose-headings:text-teal-200 prose-headings:font-bold prose-headings:tracking-tight;
+    @apply prose-headings:font-heading prose-headings:text-primary dark:prose-headings:text-dark-on-surface prose-headings:font-bold prose-headings:tracking-tight;
   }
 
   /* Ensure prose headings also support variable weight animation */
   .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
       font-variation-settings: 'wght' 700; /* Start bold as per prose-headings:font-bold */
       transition: font-variation-settings 0.3s ease-out;
+  }
+
+  /* Force dark mode color for headings to ensure high contrast */
+  :is(.dark .prose) :is(h1, h2, h3, h4, h5, h6) {
+      color: var(--color-dark-on-surface) !important;
   }
 
   @media (hover: hover) {
@@ -174,12 +179,12 @@
 
   /* Paragraphs */
   .prose p {
-    @apply my-6 text-lg leading-8;
+    @apply my-6 text-lg leading-8 dark:text-dark-on-surface;
   }
 
   /* Links */
   .prose a {
-    @apply text-primary dark:text-teal-300 font-semibold no-underline transition-colors;
+    @apply text-primary dark:text-teal-200 font-semibold no-underline transition-colors;
   }
   .prose a:hover {
     @apply text-secondary underline;
@@ -187,7 +192,7 @@
 
   /* Strong */
   .prose strong {
-    @apply text-on-surface dark:text-gray-100 font-bold;
+    @apply text-on-surface dark:text-dark-on-surface font-bold;
   }
 
   /* Code (Inline) */
@@ -219,7 +224,7 @@
     @apply my-6;
   }
   .prose li {
-    @apply my-2;
+    @apply my-2 dark:text-dark-on-surface;
   }
   .prose li::marker {
     @apply text-primary;
