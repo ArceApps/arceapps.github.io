@@ -99,11 +99,11 @@ const breadcrumbItems = [
           ))}
         </div>
 
-        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-on-surface dark:text-gray-50 leading-tight">
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-on-surface dark:text-teal-200 leading-tight">
           {post.data.title}
         </h1>
 
-        <div class="flex items-center justify-center gap-6 text-on-surface-variant dark:text-gray-300 text-lg">
+        <div class="flex items-center justify-center gap-6 text-on-surface-variant dark:text-gray-200 text-lg">
           <div class="flex items-center">
             <span class="material-icons mr-2 text-primary" aria-hidden="true">calendar_today</span>
             <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
@@ -249,35 +249,4 @@ const breadcrumbItems = [
   </article>
 </Layout>
 
-<style is:global>
-  /* Copy Button Styles */
-  .copy-code-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.25rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0.375rem;
-    color: #e5e7eb;
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .copy-code-btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-  }
-
-  .copy-code-btn .material-icons {
-    font-size: 1.25rem;
-  }
-
-  .prose pre {
-    position: relative;
-  }
-</style>
 
