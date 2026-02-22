@@ -17,8 +17,8 @@
   /* Dark Mode Colors */
   --color-dark-surface: #121212;
   --color-dark-surface-variant: #1C1C1E;
-  --color-dark-on-surface: #E6E1E5;
-  --color-dark-on-surface-variant: #CAC4D0;
+  --color-dark-on-surface: #F5F5F5;
+  --color-dark-on-surface-variant: #E0E0E0;
 
   /* Fonts */
   --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
@@ -140,10 +140,10 @@
 @layer components {
   .prose {
     /* Base Color & Typography */
-    @apply text-on-surface-variant dark:text-gray-200 leading-relaxed;
+    @apply text-on-surface-variant dark:text-gray-100 leading-relaxed;
 
     /* Global Heading Styles */
-    @apply prose-headings:font-heading prose-headings:text-primary dark:prose-headings:text-gray-50 prose-headings:font-bold prose-headings:tracking-tight;
+    @apply prose-headings:font-heading prose-headings:text-primary dark:prose-headings:text-teal-200 prose-headings:font-bold prose-headings:tracking-tight;
   }
 
   /* Ensure prose headings also support variable weight animation */
@@ -187,7 +187,7 @@
 
   /* Strong */
   .prose strong {
-    @apply text-on-surface dark:text-gray-50 font-bold;
+    @apply text-on-surface dark:text-gray-100 font-bold;
   }
 
   /* Code (Inline) */
