@@ -7,6 +7,12 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+interface Props {
+  translatedPath?: string;
+}
+
+const { translatedPath } = Astro.props;
+
 const navItems = [
   { label: t('nav.home'), href: lang === 'es' ? '/es' : '/' },
   { label: t('nav.apps'), href: lang === 'es' ? '/es/apps' : '/apps' },
@@ -29,18 +35,22 @@ const currentLang = lang;
 const nextLang = currentLang === 'es' ? 'en' : 'es';
 const nextLangLabel = currentLang === 'es' ? 'EN' : 'ES';
 
-// Simple path replacement for language switching
-// Note: This works perfectly for structural pages. For content with different slugs (blog posts),
-// it might lead to 404s if slugs don't match.
-// Ideally, we would map exact content paths, but for now this covers the main navigation.
-let nextPath = pathname;
-if (currentLang === 'es') {
-  nextPath = pathname.replace(/^\/es/, '') || '/';
-} else {
-  nextPath = '/es' + pathname;
+// Use translatedPath if provided, otherwise fallback to simple path replacement
+let nextPath = translatedPath;
+
+if (!nextPath) {
+  // Simple path replacement for language switching
+  // Note: This works perfectly for structural pages. For content with different slugs (blog posts),
+  // it might lead to 404s if slugs don't match.
+  // Ideally, we would map exact content paths, but for now this covers the main navigation.
+  if (currentLang === 'es') {
+    nextPath = pathname.replace(/^\/es/, '') || '/';
+  } else {
+    nextPath = '/es' + pathname;
+  }
+  // Fix double slashes just in case
+  nextPath = nextPath.replace(/\/\//g, '/');
 }
-// Fix double slashes just in case
-nextPath = nextPath.replace(/\/\//g, '/');
 ---
 
 <header

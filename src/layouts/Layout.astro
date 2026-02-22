@@ -16,6 +16,7 @@ interface Props {
   publishDate?: Date;
   author?: string;
   lang?: string;
+  translatedPath?: string;
 }
 
 const lang = Astro.props.lang || getLangFromUrl(Astro.url);
@@ -27,6 +28,7 @@ const {
   type = "website",
   publishDate,
   author = "ArceApps",
+  translatedPath,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -197,7 +199,7 @@ const socialImageURL = new URL(image, Astro.url);
     >
       Skip to content
     </a>
-    <Header />
+    <Header translatedPath={translatedPath} />
     <main id="main-content" class="flex-grow">
       <slot />
     </main>

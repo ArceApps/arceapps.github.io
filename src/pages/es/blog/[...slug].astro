@@ -6,18 +6,25 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import SocialShare from '../../../components/SocialShare.astro';
 import PostNavigation from '../../../components/PostNavigation.astro';
 import { slugify } from '../../../utils/slugs';
-import { useTranslations } from '../../../i18n/utils';
-
-const t = useTranslations('es');
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('es/'));
+  const enPosts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('en/'));
   // Sort posts by date to ensure correct next/prev logic
   const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
   return sortedPosts.map((post, index) => {
     const nextPost = index > 0 ? sortedPosts[index - 1] : undefined;
     const prevPost = index < sortedPosts.length - 1 ? sortedPosts[index + 1] : undefined;
+
+    // Find translated post
+    let translatedPath = undefined;
+    if (post.data.reference_id) {
+       const enPost = enPosts.find(p => p.data.reference_id === post.data.reference_id);
+       if (enPost) {
+         translatedPath = `/blog/${enPost.slug.split('/').pop()}`;
+       }
+    }
 
     return {
       params: { slug: post.slug.split('/').pop() },
@@ -30,13 +37,14 @@ export async function getStaticPaths() {
         nextPost: nextPost ? {
           slug: nextPost.slug.split('/').pop()!,
           title: nextPost.data.title
-        } : undefined
+        } : undefined,
+        translatedPath,
       },
     };
   });
 }
 
-const { post, prevPost, nextPost } = Astro.props;
+const { post, prevPost, nextPost, translatedPath } = Astro.props;
 const { Content, headings } = await post.render();
 
 const wordCount = post.body.split(/\s+/g).length;
@@ -74,7 +82,7 @@ const breadcrumbItems = [
 ];
 ---
 
-<Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description}>
+<Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description} translatedPath={translatedPath}>
   <!-- Progress Bar -->
   <div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-[100] bg-transparent">
     <div id="progress-bar" class="scroll-progress-bar h-full bg-secondary w-full origin-left"></div>
