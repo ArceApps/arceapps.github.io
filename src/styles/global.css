@@ -197,7 +197,7 @@
 
   /* Code (Inline) */
   .prose code {
-    @apply text-secondary dark:text-secondary bg-surface-variant dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono text-sm;
+    @apply text-secondary! dark:text-teal-200! bg-surface-variant dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono text-sm;
   }
   .prose code::before, .prose code::after {
     content: none;
