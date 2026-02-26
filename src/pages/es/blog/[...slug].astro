@@ -1,0 +1,260 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import SocialShare from '../../../components/SocialShare.astro';
+import PostNavigation from '../../../components/PostNavigation.astro';
+import { slugify } from '../../../utils/slugs';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('es/'));
+  const enPosts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('en/'));
+  // Sort posts by date to ensure correct next/prev logic
+  const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  return sortedPosts.map((post, index) => {
+    const nextPost = index > 0 ? sortedPosts[index - 1] : undefined;
+    const prevPost = index < sortedPosts.length - 1 ? sortedPosts[index + 1] : undefined;
+
+    // Find translated post
+    let translatedPath = undefined;
+    if (post.data.reference_id) {
+       const enPost = enPosts.find(p => p.data.reference_id === post.data.reference_id);
+       if (enPost) {
+         translatedPath = `/blog/${enPost.slug.split('/').pop()}`;
+       }
+    }
+
+    return {
+      params: { slug: post.slug.split('/').pop() },
+      props: {
+        post,
+        prevPost: prevPost ? {
+          slug: prevPost.slug.split('/').pop()!,
+          title: prevPost.data.title
+        } : undefined,
+        nextPost: nextPost ? {
+          slug: nextPost.slug.split('/').pop()!,
+          title: nextPost.data.title
+        } : undefined,
+        translatedPath,
+      },
+    };
+  });
+}
+
+const { post, prevPost, nextPost, translatedPath } = Astro.props;
+const { Content, headings } = await post.render();
+
+const wordCount = post.body.split(/\s+/g).length;
+const readingTime = Math.ceil(wordCount / 200);
+
+const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+// Filter headings for TOC (H2 and H3 only)
+const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
+
+// Related posts logic
+const allPosts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('es/'));
+const currentTags = post.data.tags || [];
+const relatedPosts = allPosts
+  .filter(p => p.slug !== post.slug)
+  .map(p => {
+    const commonTags = (p.data.tags || []).filter(t => currentTags.includes(t)).length;
+    return { ...p, commonTags };
+  })
+  .sort((a, b) => {
+    if (b.commonTags !== a.commonTags) return b.commonTags - a.commonTags;
+    return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+  })
+  .slice(0, 3);
+
+const breadcrumbItems = [
+  { label: 'Inicio', href: '/es' },
+  { label: 'Blog', href: '/es/blog' },
+  { label: post.data.title, href: Astro.url.pathname }
+];
+---
+
+<Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description} translatedPath={translatedPath}>
+  <!-- Progress Bar -->
+  <div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-[100] bg-transparent">
+    <div id="progress-bar" class="scroll-progress-bar h-full bg-secondary w-full origin-left"></div>
+  </div>
+
+  <article class="pt-24 pb-20">
+    <!-- Header -->
+    <header class="container mx-auto px-4 mb-12 max-w-4xl">
+      <div class="mb-8 flex justify-center">
+        <Breadcrumbs items={breadcrumbItems} />
+      </div>
+
+      <div class="text-center">
+        <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+          {post.data.tags && post.data.tags.map((tag: string) => (
+             <a
+               href={`/es/blog/tag/${slugify(tag)}/`}
+               class="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+             >
+               #{tag}
+             </a>
+          ))}
+        </div>
+
+        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-on-surface dark:text-teal-200 leading-tight">
+          {post.data.title}
+        </h1>
+
+        <div class="flex items-center justify-center gap-6 text-on-surface-variant dark:text-gray-200 text-lg">
+          <div class="flex items-center">
+            <span class="material-icons mr-2 text-primary" aria-hidden="true">calendar_today</span>
+            <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
+          </div>
+          <div class="flex items-center">
+            <span class="material-icons mr-2 text-primary" aria-hidden="true">schedule</span>
+            <span>⏱️ {readingTime} min de lectura</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Image -->
+    {post.data.heroImage && (
+      <div class="container mx-auto px-4 mb-16 max-w-5xl">
+        <div class="aspect-video rounded-2xl overflow-hidden shadow-xl elevation-2">
+          <img
+            src={post.data.heroImage}
+            alt={post.data.title}
+            class="w-full h-full object-cover"
+            loading="eager"
+            fetchpriority="high"
+            width="1280"
+            height="720"
+          />
+        </div>
+      </div>
+    )}
+
+    <!-- Main Grid Layout -->
+    <div class="container mx-auto px-4 max-w-6xl">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+        <!-- Sidebar (Desktop TOC) -->
+        <aside class="hidden lg:block lg:col-span-1">
+          <div class="sticky top-24">
+            {tocHeadings.length > 0 && (
+              <nav class="p-4 bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800">
+                <h2 class="text-lg font-bold mb-4 text-on-surface dark:text-gray-100 flex items-center">
+                  <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
+                  Índice
+                </h2>
+                <ul class="space-y-2 text-sm">
+                  {tocHeadings.map(heading => (
+                    <li>
+                      <a
+                        href={`#${heading.slug}`}
+                        class:list={[
+                          "text-on-surface-variant dark:text-gray-300 hover:text-primary transition-colors block py-1 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded",
+                          { "pl-0": heading.depth === 2, "pl-3": heading.depth === 3 }
+                        ]}
+                      >
+                        {heading.text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
+
+            <div class="mt-8">
+               <a href="/es/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-gray-300 hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+                  <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
+                  Volver al Blog
+               </a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Content Column -->
+        <div class="lg:col-span-3">
+
+          <!-- Mobile TOC -->
+          <div class="lg:hidden mb-8">
+             {tocHeadings.length > 0 && (
+                <details class="bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden group">
+                   <summary class="p-4 flex items-center justify-between cursor-pointer font-bold text-on-surface dark:text-gray-100 list-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-xl">
+                      <div class="flex items-center">
+                         <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
+                         Índice de contenidos
+                      </div>
+                      <span class="material-icons group-open:rotate-180 transition-transform" aria-hidden="true">expand_more</span>
+                   </summary>
+                   <nav class="px-4 pb-4">
+                      <ul class="space-y-2 text-sm pt-2 border-t border-gray-100 dark:border-gray-700">
+                         {tocHeadings.map(heading => (
+                            <li>
+                               <a
+                                  href={`#${heading.slug}`}
+                                  class:list={[
+                                    "text-on-surface-variant dark:text-gray-300 hover:text-primary transition-colors block py-1 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded",
+                                    { "pl-0": heading.depth === 2, "pl-4": heading.depth === 3 }
+                                  ]}
+                               >
+                                  {heading.text}
+                               </a>
+                            </li>
+                         ))}
+                      </ul>
+                   </nav>
+                </details>
+             )}
+          </div>
+
+          <!-- Article Content -->
+          <div class="prose md:prose-lg max-w-none">
+            <Content />
+          </div>
+
+          <SocialShare url={Astro.url.href} title={post.data.title} />
+
+          <PostNavigation prevPost={prevPost} nextPost={nextPost} lang="es" />
+
+          <!-- Share / Back (Mobile only) -->
+          <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 lg:hidden">
+             <a href="/es/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-gray-300 hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+                <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
+                Volver al Blog
+             </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Articles -->
+    {relatedPosts.length > 0 && (
+      <div class="mt-20 py-16 bg-surface-variant/30 dark:bg-dark-surface-variant/30 fade-in-section">
+         <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="text-3xl font-bold mb-10 text-on-surface dark:text-gray-100 text-center flex items-center justify-center gap-3">
+               <span class="material-icons text-primary text-4xl" aria-hidden="true">style</span>
+               También te puede interesar
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+               {relatedPosts.map((post) => (
+                  <BlogCard post={post} />
+               ))}
+            </div>
+         </div>
+      </div>
+    )}
+
+  </article>
+</Layout>
+
+

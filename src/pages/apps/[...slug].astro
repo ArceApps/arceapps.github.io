@@ -2,11 +2,14 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { optimizeGooglePlayImage } from "../../utils/image-optimization";
+import { useTranslations } from "../../i18n/utils";
+
+const t = useTranslations('en');
 
 export async function getStaticPaths() {
-  const apps = await getCollection("apps", ({ data }) => !data.draft);
+  const apps = await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('en/'));
   return apps.map((app) => ({
-    params: { slug: app.slug },
+    params: { slug: app.slug.split('/').pop() },
     props: { app },
   }));
 }
@@ -42,12 +45,12 @@ const { Content } = await app.render();
             {app.data.realIconUrl && (
               <img src={optimizeGooglePlayImage(app.data.realIconUrl, 128, 'square')} alt={`${app.data.title} icon`} class="w-16 h-16 rounded-2xl shadow-md" />
             )}
-            <h1 class="text-5xl md:text-6xl font-black text-on-surface dark:text-dark-on-surface leading-tight">
+            <h1 class="text-5xl md:text-6xl font-black text-on-surface dark:text-teal-200 leading-tight">
               {app.data.title}
             </h1>
           </div>
 
-          <div class="flex flex-wrap items-center gap-4 mb-8 text-on-surface-variant dark:text-dark-on-surface-variant">
+          <div class="flex flex-wrap items-center gap-4 mb-8 text-on-surface-variant dark:text-gray-200">
             {app.data.rating && (
               <div class="flex items-center gap-1 bg-surface-variant/30 dark:bg-dark-surface-variant/30 px-3 py-1 rounded-lg">
                 <span class="text-lg font-bold">{app.data.rating}</span>
@@ -62,12 +65,12 @@ const { Content } = await app.render();
             {app.data.lastUpdated && (
               <div class="flex items-center gap-2 px-3 py-1 rounded-lg bg-surface-variant/30 dark:bg-dark-surface-variant/30">
                 <span class="material-icons text-sm" aria-hidden="true">update</span>
-                <span class="text-sm">Actualizado: {app.data.lastUpdated}</span>
+                <span class="text-sm">Updated: {app.data.lastUpdated}</span>
               </div>
             )}
           </div>
 
-          <p class="text-xl text-on-surface-variant dark:text-dark-on-surface-variant mb-10 leading-relaxed">
+          <p class="text-xl text-on-surface-variant dark:text-gray-100 mb-10 leading-relaxed">
             {app.data.description}
           </p>
 
@@ -104,7 +107,7 @@ const { Content } = await app.render();
                 class="flex items-center gap-3 text-on-surface-variant dark:text-dark-on-surface-variant px-6 py-4 font-bold text-lg hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg"
               >
                 <span class="material-icons" aria-hidden="true">code</span>
-                Código
+                Code
               </a>
             )}
           </div>
@@ -144,12 +147,12 @@ const { Content } = await app.render();
         <div class="mb-12">
           <h2 class="text-2xl font-bold mb-6 text-on-surface dark:text-dark-on-surface flex items-center gap-2">
             <span class="material-icons text-primary" aria-hidden="true">collections</span>
-            Galería
+            Gallery
           </h2>
           <div
             class="flex overflow-x-auto gap-4 pb-4 snap-x snap-mandatory scrollbar-hide focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-xl"
             tabindex="0"
-            aria-label="Galería de capturas de pantalla"
+            aria-label="Screenshots gallery"
           >
             {app.data.screenshots.map((screenshot, index) => (
               <img
@@ -163,7 +166,7 @@ const { Content } = await app.render();
         </div>
       )}
 
-      <div class="prose prose-lg dark:prose-invert prose-headings:font-bold prose-headings:text-on-surface dark:prose-headings:text-dark-on-surface prose-p:text-on-surface-variant dark:prose-p:text-dark-on-surface-variant prose-a:text-primary hover:prose-a:text-secondary max-w-none bg-surface dark:bg-dark-surface p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800">
+      <div class="prose prose-lg max-w-none bg-surface dark:bg-dark-surface p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800">
         <Content />
       </div>
 
@@ -171,7 +174,7 @@ const { Content } = await app.render();
       <div class="mt-12 flex justify-between items-center">
         <a href="/apps" class="flex items-center gap-2 text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
           <span class="material-icons" aria-hidden="true">arrow_back</span>
-          Volver al Portfolio
+          {t('common.back')}
         </a>
       </div>
     </div>

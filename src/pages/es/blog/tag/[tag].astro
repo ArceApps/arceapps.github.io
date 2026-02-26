@@ -1,0 +1,93 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import BlogCard from "../../../../components/BlogCard.astro";
+import { getCollection } from "astro:content";
+import { slugify } from "../../../../utils/slugs";
+import { useTranslations } from "../../../../i18n/utils";
+
+const t = useTranslations('es');
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("blog", ({ data, id }) => !data.draft && id.startsWith('es/'));
+
+  // Group posts by slugified tag
+  const tagGroups = new Map();
+
+  allPosts.forEach(post => {
+    const tags = post.data.tags || [];
+    tags.forEach(tag => {
+      const slug = slugify(tag);
+      if (!tagGroups.has(slug)) {
+        tagGroups.set(slug, {
+          posts: new Set(),
+          displayNames: new Map() // Count occurrences of each display name
+        });
+      }
+
+      // Explicitly type the retrieved group
+      const group = tagGroups.get(slug) as { posts: Set<any>; displayNames: Map<string, number> };
+      group.posts.add(post);
+
+      const count = group.displayNames.get(tag) || 0;
+      group.displayNames.set(tag, count + 1);
+    });
+  });
+
+  return Array.from(tagGroups.entries()).map(([slug, data]: [string, any]) => {
+    // Find the most frequent display name for this slug
+    let bestDisplayName = "";
+    let maxCount = -1;
+
+    for (const [name, count] of data.displayNames.entries()) {
+      if (count > maxCount) {
+        maxCount = count;
+        bestDisplayName = name;
+      }
+    }
+
+    const filteredPosts = Array.from(data.posts as Set<any>).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+    return {
+      params: { tag: slug },
+      props: { posts: filteredPosts, tagName: bestDisplayName },
+    };
+  });
+}
+
+const { posts, tagName } = Astro.props;
+---
+
+<Layout title={`Tag: ${tagName} - Blog ArceApps`}>
+  <div class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16 md:py-24">
+    <div class="container mx-auto px-4 text-center">
+      <a href="/es/blog" class="inline-flex items-center text-primary hover:text-primary/80 transition-colors mb-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+        <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
+        {t('common.back')}
+      </a>
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-on-surface dark:text-dark-on-surface">
+        Artículos con la etiqueta: <span class="text-primary">{tagName}</span>
+      </h1>
+      <p class="text-xl text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto">
+        {posts.length} {posts.length === 1 ? 'artículo encontrado' : 'artículos encontrados'}
+      </p>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4">
+      {posts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post: any) => (
+            <BlogCard post={post} />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-xl text-on-surface-variant dark:text-dark-on-surface-variant">
+            No se encontraron artículos con esta etiqueta.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>

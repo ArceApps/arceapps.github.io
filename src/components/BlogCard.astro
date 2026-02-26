@@ -1,29 +1,35 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { slugify } from "../utils/slugs";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 interface Props {
   post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 // Format date
-const formattedDate = post.data.pubDate.toLocaleDateString("es-ES", {
+const formattedDate = post.data.pubDate.toLocaleDateString(lang === 'es' ? "es-ES" : "en-US", {
   year: "numeric",
   month: "long",
   day: "numeric",
 });
+
+const slug = post.slug.split('/').pop();
+const href = lang === 'es' ? `/es/blog/${slug}/` : `/blog/${slug}/`;
 ---
 
 <article
-  class="h-full material-card overflow-hidden flex flex-col hover:shadow-xl hover:scale-[1.02] motion-reduce:transform-none transition-all duration-300 relative group transform-gpu"
+  class="h-full spatial-card rounded-xl flex flex-col hover:shadow-xl hover:scale-[1.02] motion-reduce:transform-none group transform-gpu"
 >
   <a
-    href={`/blog/${post.slug}/`}
+    href={href}
     data-astro-prefetch
     class="absolute inset-0 z-10 rounded-xl focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none transition-shadow"
-    aria-label={`Leer ${post.data.title}`}></a>
+    aria-label={`${t('common.read_more')} ${post.data.title}`}></a>
 
   {
     post.data.heroImage && (
@@ -47,7 +53,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-ES", {
         post.data.tags &&
           post.data.tags.slice(0, 1).map((tag: string) => (
             <a
-              href={`/blog/tag/${slugify(tag)}/`}
+              href={lang === 'es' ? `/es/blog/tag/${slugify(tag)}/` : `/blog/tag/${slugify(tag)}/`}
               data-astro-prefetch
               class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
             >
@@ -63,13 +69,13 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-ES", {
     </div>
 
     <h3
-      class="text-xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors line-clamp-2 pointer-events-none"
+      class="text-xl font-bold mb-3 text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors line-clamp-2 pointer-events-none"
     >
       {post.data.title}
     </h3>
 
     <p
-      class="text-on-surface-variant dark:text-dark-on-surface-variant text-sm line-clamp-3 mb-4 flex-grow leading-relaxed pointer-events-none"
+      class="text-on-surface-variant dark:text-gray-300 text-sm line-clamp-3 mb-4 flex-grow leading-relaxed pointer-events-none"
     >
       {post.data.description}
     </p>
@@ -77,7 +83,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString("es-ES", {
     <div
       class="flex items-center text-primary font-medium text-sm mt-auto pointer-events-none"
     >
-      Leer artículo
+      {t('common.read_more')}
       <span
         class="material-icons text-base ml-1 group-hover:translate-x-1 motion-reduce:transform-none transition-transform"
         aria-hidden="true">arrow_forward</span

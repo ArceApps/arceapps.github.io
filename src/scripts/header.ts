@@ -1,3 +1,5 @@
+import { triggerHapticFeedback } from "./haptics";
+
 let cleanup: (() => void) | undefined;
 
 export function initHeader() {
@@ -12,6 +14,9 @@ export function initHeader() {
 
     const isDark = element.classList.contains("dark");
     localStorage.setItem("theme", isDark ? "dark" : "light");
+
+    // Haptic feedback
+    triggerHapticFeedback();
   };
 
   themeToggle?.addEventListener("click", handleThemeToggle);
@@ -71,6 +76,7 @@ export function initHeader() {
 
     toggleMenu = (e: Event) => {
       e.stopPropagation();
+      triggerHapticFeedback();
       const isHidden = mobileMenu.classList.contains("hidden");
       if (isHidden) openMenu();
       else closeMenu();

@@ -24,6 +24,14 @@ export default defineConfig({
 
   prefetch: true,
 
+  i18n: {
+    defaultLocale: "en",
+    locales: ["en", "es"],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
+
   integrations: [
     sitemap(),
     partytown({

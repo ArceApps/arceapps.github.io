@@ -1,5 +1,6 @@
 ---
 import { optimizeGooglePlayImage } from "../utils/image-optimization";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
 
 interface Props {
   title: string;
@@ -20,12 +21,16 @@ const {
   pubDate,
   slug,
 } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
 ---
 
 <a
-  href={`/apps/${slug}`}
+  href={href}
   data-astro-prefetch
-  class="group relative flex flex-col h-full bg-surface dark:bg-dark-surface rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:scale-[1.02] motion-reduce:transform-none transition-all duration-300 border border-gray-100 dark:border-gray-800 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transform-gpu"
+  class="group h-full spatial-card rounded-3xl flex flex-col shadow-sm hover:shadow-2xl hover:scale-[1.02] motion-reduce:transform-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transform-gpu"
 >
   <!-- Image Area -->
   <div class="relative h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -60,7 +65,7 @@ const {
         <div class="absolute top-4 right-4 w-16 h-16 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 backdrop-blur-sm z-10">
           <img
             src={optimizeGooglePlayImage(realIconUrl, 128, "square")}
-            alt={`Icono de ${title}`}
+            alt={`${t('apps.icon_alt')} ${title}`}
             loading="lazy"
             decoding="async"
             width="64"
@@ -95,12 +100,12 @@ const {
     </div>
 
     <h2
-      class="text-2xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary group-focus-visible:text-primary transition-colors"
+      class="text-2xl font-bold mb-3 text-on-surface dark:text-gray-100 group-hover:text-primary group-focus-visible:text-primary transition-colors"
     >
       {title}
     </h2>
     <p
-      class="text-on-surface-variant dark:text-dark-on-surface-variant mb-6 line-clamp-3 leading-relaxed flex-grow"
+      class="text-on-surface-variant dark:text-gray-300 mb-6 line-clamp-3 leading-relaxed flex-grow"
     >
       {description}
     </p>
@@ -111,12 +116,12 @@ const {
       <span
         class="text-sm font-medium text-on-surface-variant/70 dark:text-dark-on-surface-variant/70"
       >
-        {pubDate.toLocaleDateString()}
+        {pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US')}
       </span>
       <span
         class="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none transition-transform"
       >
-        Ver Detalles
+        {t('common.read_more')}
         <span class="material-icons ml-1 text-base" aria-hidden="true"
           >arrow_forward</span
         >

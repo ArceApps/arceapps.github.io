@@ -1,20 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ContactForm from "../components/ContactForm.astro";
+import PhilosophyCard from "../components/PhilosophyCard.astro";
 import { Image } from "astro:assets";
 import brandIcon from "../assets/brand-icon.png";
 
 const title = "About Me - ArceApps";
 const description =
-  "Conoce más sobre ArceApps, mi stack tecnológico y mi enfoque en el desarrollo Android y la Inteligencia Artificial.";
+  "Learn more about ArceApps, my tech stack and my focus on Android development and Artificial Intelligence.";
 
-// Categorías de tecnologías
+// Tech Categories
 const techStack = [
   {
-    title: "Android & Arquitectura",
+    title: "Android & Architecture",
     icon: "android",
     description:
-      "Desarrollo nativo moderno centrado en la calidad y la escalabilidad.",
+      "Modern native development focused on quality and scalability.",
     skills: [
       { name: "Kotlin", icon: "https://cdn.simpleicons.org/kotlin/7F52FF" },
       {
@@ -53,7 +54,7 @@ const techStack = [
     title: "Backend & Cloud",
     icon: "cloud",
     description:
-      "Infraestructura robusta y escalable para aplicaciones conectadas.",
+      "Robust and scalable infrastructure for connected applications.",
     skills: [
       { name: "Firebase", icon: "https://cdn.simpleicons.org/firebase/FFCA28" },
       {
@@ -62,6 +63,14 @@ const techStack = [
       },
       {
         name: "Crashlytics",
+        icon: "https://cdn.simpleicons.org/firebase/FFCA28",
+      },
+      {
+        name: "Remote Config",
+        icon: "https://cdn.simpleicons.org/firebase/FFCA28",
+      },
+      {
+        name: "Cloud Messaging",
         icon: "https://cdn.simpleicons.org/firebase/FFCA28",
       },
       {
@@ -76,36 +85,63 @@ const techStack = [
     ],
   },
   {
-    title: "DevOps & Herramientas",
+    title: "DevOps & Tools",
     icon: "build",
     description:
-      "Automatización y control de versiones para un flujo de trabajo eficiente.",
+      "Automation and version control for an efficient workflow.",
     skills: [
       { name: "Git", icon: "https://cdn.simpleicons.org/git/F05032" },
+      { name: "Git Flow", icon: "https://cdn.simpleicons.org/git/F05032" },
       { name: "GitHub", icon: "https://cdn.simpleicons.org/github/181717" },
       {
         name: "GitHub Actions",
         icon: "https://cdn.simpleicons.org/githubactions/2088FF",
       },
+      { name: "Jenkins", icon: "https://cdn.simpleicons.org/jenkins/D24939" },
+      { name: "Jira", icon: "https://cdn.simpleicons.org/jira/0052CC" },
       { name: "Gradle", icon: "https://cdn.simpleicons.org/gradle/02303A" },
       { name: "CI/CD", icon: "https://cdn.simpleicons.org/circleci/343434" }, // Generic CI
     ],
   },
   {
-    title: "Inteligencia Artificial",
+    title: "Artificial Intelligence",
     icon: "psychology",
     description:
-      "Potenciando el desarrollo con las últimas herramientas de IA.",
+      "Empowering development with the latest AI tools.",
     skills: [
       {
         name: "Gemini",
         icon: "https://cdn.simpleicons.org/googlegemini/8E75B2",
       },
       {
+        name: "DeepSeek R1",
+        icon: "https://cdn.simpleicons.org/huggingface/FFD21E",
+      },
+      {
+        name: "Reasoning Models",
+        icon: "https://cdn.simpleicons.org/openai/000000",
+      },
+      {
         name: "GitHub Copilot",
         icon: "https://cdn.simpleicons.org/githubcopilot/000000",
       },
       { name: "ChatGPT", icon: "https://cdn.simpleicons.org/chatgpt/74aa9c" },
+      {
+        name: "Spec-Driven Dev",
+        icon: "https://cdn.simpleicons.org/markdown/000000",
+      },
+      {
+        name: "AI-Assisted TDD",
+        icon: "https://cdn.simpleicons.org/junit5/25A162",
+      },
+      {
+        name: "Context Management",
+        icon: "https://cdn.simpleicons.org/obsidian/483699",
+      },
+      {
+        name: "AI Refactoring",
+        icon: "https://cdn.simpleicons.org/intellijidea/000000",
+      },
       {
         name: "Jules (Agent)",
         icon: "https://cdn.simpleicons.org/robotframework/000000",
@@ -163,15 +199,16 @@ const techStack = [
           <p
             class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed max-w-2xl mx-auto md:mx-0"
           >
-            Me especializo en crear aplicaciones móviles nativas de alto
-            rendimiento y en explorar las fronteras de la Inteligencia
-            Artificial para optimizar el desarrollo de software. Mi pasión es
-            transformar ideas complejas en experiencias de usuario elegantes,
-            útiles y respetuosas con la privacidad.
+            I specialize in building high-performance native mobile apps and exploring the frontiers of Artificial Intelligence to optimize software development. My passion is transforming complex ideas into elegant, useful, and privacy-respecting user experiences.
           </p>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Philosophy Section -->
+  <div class="container mx-auto px-4 mt-20">
+    <PhilosophyCard />
   </div>
 
   <!-- Tech Stack Section -->
@@ -186,8 +223,7 @@ const techStack = [
         <p
           class="text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto"
         >
-          Herramientas, lenguajes y tecnologías que utilizo día a día para
-          construir soluciones digitales modernas.
+          Tools, languages, and technologies I use daily to build modern digital solutions.
         </p>
       </div>
 
@@ -250,23 +286,17 @@ const techStack = [
               class="material-icons text-primary text-4xl"
               aria-hidden="true">rocket_launch</span
             >
-            Mi Misión
+            My Mission
           </h3>
           <p
             class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed mb-6 text-lg"
           >
-            Crear software que no solo funcione, sino que deleite. Creo
-            firmemente que las aplicaciones deben ser <strong>rápidas</strong>, <strong
-              >intuitivas</strong
-            > y respetar al usuario.
+            Create software that not only works but delights. I firmly believe that apps should be <strong>fast</strong>, <strong>intuitive</strong>, and respectful of the user.
           </p>
           <p
             class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed text-lg"
           >
-            Por eso, todas mis apps están diseñadas con un enfoque <strong
-              >"Privacy First"</strong
-            >, minimizando la recolección de datos y maximizando la
-            transparencia.
+            That's why all my apps are designed with a <strong>"Privacy First"</strong> approach, minimizing data collection and maximizing transparency.
           </p>
         </div>
         <div
@@ -279,7 +309,7 @@ const techStack = [
               <span class="material-icons text-green-500" aria-hidden="true"
                 >check_circle</span
               >
-              <span>Calidad de Código</span>
+              <span>Code Quality</span>
             </li>
             <li
               class="flex items-center gap-3 text-on-surface dark:text-dark-on-surface"
@@ -287,7 +317,7 @@ const techStack = [
               <span class="material-icons text-green-500" aria-hidden="true"
                 >check_circle</span
               >
-              <span>Experiencia de Usuario (UX)</span>
+              <span>User Experience (UX)</span>
             </li>
             <li
               class="flex items-center gap-3 text-on-surface dark:text-dark-on-surface"
@@ -295,7 +325,7 @@ const techStack = [
               <span class="material-icons text-green-500" aria-hidden="true"
                 >check_circle</span
               >
-              <span>Privacidad y Seguridad</span>
+              <span>Privacy & Security</span>
             </li>
             <li
               class="flex items-center gap-3 text-on-surface dark:text-dark-on-surface"
@@ -303,7 +333,7 @@ const techStack = [
               <span class="material-icons text-green-500" aria-hidden="true"
                 >check_circle</span
               >
-              <span>Innovación Continua</span>
+              <span>Continuous Innovation</span>
             </li>
           </ul>
         </div>
@@ -321,18 +351,17 @@ const techStack = [
           <span class="material-icons text-primary" aria-hidden="true"
             >email</span
           >
-          Contacto
+          Contact
         </h3>
         <p
           class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed"
         >
-          ¿Tienes alguna pregunta, sugerencia o simplemente quieres saludar? Me
-          encantaría escucharte.
+          Have a question, suggestion, or just want to say hi? I'd love to hear from you.
         </p>
       </div>
 
       <div class="fade-in-section">
-        <ContactForm />
+        <ContactForm lang="en" />
       </div>
     </div>
   </section>

@@ -1,0 +1,106 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+  lang: 'en' | 'es';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const devlogs = (await getCollection("devlog", ({ data, id }) => !data.draft && id.startsWith(`${lang}/`))).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const defaultImage = "/images/devlog-default.svg";
+
+// Helper for date formatting
+const localeString = lang === 'es' ? 'es-ES' : 'en-US';
+
+// Helper for alt text
+const getCoverAlt = (title: string) => lang === 'es' ? `Portada de ${title}` : `Cover for ${title}`;
+
+// Helper for empty state
+const emptyStateText = lang === 'es' ? 'Aún no hay entradas en la bitácora.' : 'No devlog entries yet.';
+
+// Helper for link prefix
+const linkPrefix = lang === 'es' ? '/es/devlog' : '/devlog';
+---
+
+<Layout title={`${t('devlog.title')} - ArceApps`}>
+  <div class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16 md:py-24 fade-in-section">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-on-surface dark:text-gray-100">{t('devlog.title')}</h1>
+      <p class="text-xl text-on-surface-variant dark:text-gray-300 max-w-2xl mx-auto">
+        {t('devlog.subtitle')}
+      </p>
+    </div>
+  </div>
+
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-300 before:to-transparent dark:before:via-gray-700">
+
+        {devlogs.map((log, index) => {
+          const slug = log.slug.split('/').pop();
+          return (
+          <div class="relative flex flex-col md:flex-row items-center md:items-start justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+
+            <!-- Icon / Dot -->
+            <div class="absolute left-0 md:left-1/2 -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full border border-surface dark:border-dark-surface bg-surface dark:bg-[#1e1e1e] shadow shrink-0 z-10 top-0 mt-6 md:mt-0">
+               <span class="material-icons text-primary" aria-hidden="true">code</span>
+            </div>
+
+            <!-- Card -->
+            <div class="w-[calc(100%-4rem)] ml-16 md:ml-0 md:w-[calc(50%-2.5rem)] bg-surface dark:bg-[#1e1e1e] rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 hover:shadow-xl focus-within:shadow-xl transition-all duration-300 hover:-translate-y-1 focus-within:-translate-y-1 motion-reduce:transform-none overflow-hidden">
+
+              <!-- Hero Image -->
+              <div class="aspect-video w-full overflow-hidden relative">
+                 <img
+                    src={log.data.heroImage || defaultImage}
+                    alt={getCoverAlt(log.data.title)}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
+                    loading="lazy"
+                    decoding="async"
+                 />
+                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                   <time datetime={log.data.pubDate.toISOString()} class="text-sm font-bold text-primary">
+                      {log.data.pubDate.toLocaleDateString(localeString, { year: 'numeric', month: 'long', day: 'numeric' })}
+                   </time>
+                </div>
+
+                <h3 class="text-2xl font-bold mb-3 text-on-surface dark:text-gray-100 leading-tight">
+                   <a href={`${linkPrefix}/${slug}`} class="hover:text-primary transition-colors block focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+                      {log.data.title}
+                   </a>
+                </h3>
+
+                <p class="text-on-surface-variant dark:text-gray-300 mb-4 line-clamp-3 text-sm">
+                   {log.data.description}
+                </p>
+
+                <a href={`${linkPrefix}/${slug}`} class="inline-flex items-center text-primary font-medium hover:text-primary-dark transition-colors text-sm uppercase tracking-wide focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+                   {t('home.read_entry')} <span class="material-icons text-sm ml-1" aria-hidden="true">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        )})}
+
+        {devlogs.length === 0 && (
+          <div class="text-center py-12 bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800 z-10 relative">
+            <span class="material-icons text-4xl text-on-surface-variant dark:text-dark-on-surface-variant mb-4">terminal</span>
+            <p class="text-on-surface-variant dark:text-dark-on-surface-variant">{emptyStateText}</p>
+          </div>
+        )}
+
+      </div>
+    </div>
+  </section>
+</Layout>
