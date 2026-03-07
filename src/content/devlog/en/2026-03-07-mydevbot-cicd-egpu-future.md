@@ -67,7 +67,7 @@ It's the magic of DevOps applied to my personal life. There is no more friction.
 
 At this point, the software architecture was solid. But I want to talk about hardware again. About that OCuLink port I mentioned in the first article and which was the decisive factor for buying the Minisforum UM890 Pro instead of cheaper alternatives.
 
-Currently, *mydevbot* uses the Gemini 1.5 Flash API. It is fast, it is almost free, and it is brilliant for programming. But it is still "The Cloud". If tomorrow I lose internet access (and the fiber optic network in my area has occasional outages), or if Google decides to radically change its API pricing, my automated brain will stop working.
+Currently, *mydevbot* uses the Gemini 3.1 Flash-Lite API. It is fast, it is almost free, and it is brilliant for programming. But it is still "The Cloud". If tomorrow I lose internet access (and the fiber optic network in my area has occasional outages), or if Google decides to radically change its API pricing, my automated brain will stop working.
 
 The true sovereignty I spoke of at the beginning is only achieved when the Language Model runs physically in your home.
 

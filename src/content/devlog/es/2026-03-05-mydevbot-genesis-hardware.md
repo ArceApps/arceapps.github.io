@@ -80,7 +80,7 @@ El enfoque basado en CLI tiene varios problemas graves cuando intentas construir
 
 La decisión fue obvia: debía utilizar el **SDK oficial de Google GenAI para Python** (`google-genai`).
 
-Al integrar el SDK directamente en el código de mi bot, obtenía un control absoluto. Podía inicializar una instancia del modelo **Gemini 1.5 Flash** (elegí Flash por su extrema velocidad y bajísimo coste/gratuidad en el nivel básico, ideal para un asistente rápido). El SDK permite manejar sesiones de chat con estado persistente. Solo tengo que instanciar un objeto `ChatSession`, pasarle el nuevo mensaje del usuario, y el SDK se encarga de enviar todo el contexto previo a la API y devolver la respuesta.
+Al integrar el SDK directamente en el código de mi bot, obtenía un control absoluto. Podía inicializar una instancia del modelo **Gemini 3.1 Flash-Lite** (elegí la versión 3.1 Flash-Lite por ser el modelo más rápido y eficiente en costes de la serie 3, diseñado para escalar y perfecto para un asistente rápido). El SDK permite manejar sesiones de chat con estado persistente. Solo tengo que instanciar un objeto `ChatSession`, pasarle el nuevo mensaje del usuario, y el SDK se encarga de enviar todo el contexto previo a la API y devolver la respuesta.
 
 El código se simplificaba enormemente:
 
@@ -89,7 +89,7 @@ import google.generativeai as genai
 
 # Configuración inicial
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel('gemini-3.1-flash-lite')
 chat_session = model.start_chat(history=[])
 
 def handle_message(update, context):
