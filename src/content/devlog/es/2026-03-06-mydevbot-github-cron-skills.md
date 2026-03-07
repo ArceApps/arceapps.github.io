@@ -11,19 +11,19 @@ Ayer dejé la historia en un punto dulce. Tenía a **mydevbot** funcionando en s
 
 Pero seamos sinceros: un bot que solo sirve para charlar, por muy rápido que sea, no es más que un ChatGPT glorificado con otra interfaz. Para que *mydevbot* se ganara su nombre y realmente revolucionara mi flujo de trabajo, necesitaba darle manos. Necesitaba que pudiera tocar mis repositorios, leer mi código, gestionar mis problemas y mantener un ojo en mi infraestructura mientras yo estaba ocupado en otras cosas.
 
-El objetivo de esta segunda fase de desarrollo era doble:
-1.  **Integración profunda con GitHub:** Lograr que el bot pudiera gestionar repositorios enteros, crear issues, revisar Pull Requests e incluso sugerir código, todo desde la interfaz de chat de Telegram.
-2.  **Proactividad mediante tareas Cron:** Que el bot dejara de ser puramente reactivo. Quería que me despertara por la mañana con un resumen de los errores de los servidores o los issues pendientes, sin que yo tuviera que pedírselo.
+El objetivo de esta segunda fase de desarrollo era doble, y muy centrado en el pragmatismo:
+1.  **Integración profunda con GitHub:** Lograr que el bot pudiera gestionar repositorios enteros, crear issues y revisar Pull Requests, replicando funcionalidades que ya ofrecen herramientas comerciales como Clawbot, pero sin pagar suscripciones ni comprometer la privacidad del código.
+2.  **Proactividad mediante tareas Cron:** Que el bot dejara de ser puramente reactivo. Quería que me despertara por la mañana con un resumen de los issues pendientes, automatizando una parte aburrida de la gestión de proyectos.
 
-Esta es la crónica de cómo *mydevbot* pasó de ser un loro conversacional a convertirse en mi ingeniero DevOps personal.
+Esta es la crónica de cómo ensamblé piezas estándar de software para que *mydevbot* pasara de ser un simple loro conversacional a un asistente de gestión útil y práctico.
 
-### El arte de las Skills: Function Calling con Gemini
+### Implementando Skills: Function Calling con Gemini
 
-En el mundo de los Modelos de Lenguaje Grande (LLMs), hay un antes y un después del "Function Calling" (o invocación de herramientas/skills). Antes, si querías que una IA interactuara con un sistema externo, tenías que hacer malabares con prompts. Le decías a la IA: *"Si el usuario te pide la temperatura de Madrid, responde exactamente con la palabra CLIMA_MADRID y nada más"*. Luego, tu código parseaba esa respuesta exacta, llamaba a la API del clima, y le devolvías los datos a la IA para que redactara la respuesta final. Era un proceso frágil, propenso a errores y limitadísimo en complejidad.
+En el mundo de los Modelos de Lenguaje Grande (LLMs), el "Function Calling" (o invocación de herramientas/skills) ya es un estándar consolidado. Hay miles de ejemplos en GitHub y la documentación de Google o OpenAI es muy clara al respecto. Básicamente, en lugar de intentar engañar a la IA con prompts complejos para que te devuelva un JSON o una palabra clave, le das un manual de instrucciones explícito sobre qué herramientas (funciones de Python) tiene a su disposición.
 
-El Function Calling cambió las reglas del juego. Ahora, en lugar de intentar engañar a la IA, le das un manual de instrucciones explícito sobre qué herramientas (funciones de Python) tiene a su disposición, qué parámetros aceptan esas funciones y qué devuelven. La IA, de forma nativa, decide cuándo es apropiado usar una herramienta basándose en la petición del usuario.
+La IA, de forma nativa, decide cuándo es apropiado usar una herramienta basándose en la petición del usuario.
 
-Para *mydevbot*, esto significaba que no tenía que escribir un complejo árbol de `if/else` para analizar si el usuario decía "crea un issue" o "revisa este repo". Simplemente le daba a Gemini la herramienta y él se encargaba de la semántica.
+Para *mydevbot*, esto significaba que podía ahorrar muchísimo tiempo en programación. No tenía que escribir un complejo árbol de `if/else` para analizar si el usuario decía "crea un issue" o "revisa este repo". Simplemente le daba a Gemini la herramienta y él se encargaba de la semántica.
 
 El primer paso fue integrar la API de GitHub. Utilicé la librería **PyGithub**, un wrapper excelente y robusto para interactuar con la API REST v3 de GitHub en Python. El reto principal aquí era la seguridad. Bajo ningún concepto iba a quemar mis credenciales directamente en el código. Generé un **Personal Access Token (PAT)** en GitHub con permisos estrictamente limitados (lectura de repositorios y escritura de issues/PRs, pero sin permisos para borrar repositorios). Este token se cargaría como variable de entorno segura en el contenedor Docker.
 

@@ -11,19 +11,19 @@ Yesterday I left the story at a sweet spot. I had **mydevbot** running in its br
 
 But let's be honest: a bot that is only good for chatting, no matter how fast it is, is nothing more than a glorified ChatGPT with a different interface. For *mydevbot* to earn its name and truly revolutionize my workflow, I needed to give it hands. I needed it to be able to touch my repositories, read my code, manage my issues, and keep an eye on my infrastructure while I was busy with other things.
 
-The goal of this second development phase was twofold:
-1.  **Deep integration with GitHub:** Make the bot able to manage entire repositories, create issues, review Pull Requests, and even suggest code, all from the Telegram chat interface.
-2.  **Proactivity through Cron tasks:** Stop the bot from being purely reactive. I wanted it to wake me up in the morning with a summary of server errors or pending issues, without me having to ask.
+The objective of this second phase of development was twofold, and highly focused on pragmatism:
+1.  **Deep integration with GitHub:** Achieve that the bot could manage entire repositories, create issues, and review Pull Requests, replicating features already offered by commercial tools like Clawbot, but without paying subscriptions or compromising code privacy.
+2.  **Proactivity through Cron tasks:** That the bot stop being purely reactive. I wanted it to wake me up in the morning with a summary of pending issues, automating a boring part of project management.
 
-This is the chronicle of how *mydevbot* went from being a conversational parrot to becoming my personal DevOps engineer.
+This is the chronicle of how I assembled standard software pieces so that *mydevbot* went from being a conversational parrot to becoming a useful and practical management assistant.
 
-### The Art of Skills: Function Calling with Gemini
+### Implementing Skills: Function Calling with Gemini
 
-In the world of Large Language Models (LLMs), there is a before and an after "Function Calling" (or tool/skill invocation). Before, if you wanted an AI to interact with an external system, you had to juggle prompts. You would tell the AI: *"If the user asks you for the temperature in Madrid, reply exactly with the word WEATHER_MADRID and nothing else"*. Then, your code would parse that exact response, call the weather API, and return the data to the AI so it could draft the final answer. It was a fragile, error-prone process, severely limited in complexity.
+In the world of Large Language Models (LLMs), "Function Calling" (or tool/skill invocation) is already a consolidated standard. There are thousands of examples on GitHub and the documentation from Google or OpenAI is very clear about it. Basically, instead of trying to trick the AI with complex prompts to return a JSON or a keyword, you give it an explicit instruction manual about what tools (Python functions) it has at its disposal.
 
-Function Calling changed the rules of the game. Now, instead of trying to trick the AI, you give it an explicit instruction manual on what tools (Python functions) it has at its disposal, what parameters those functions accept, and what they return. The AI natively decides when it is appropriate to use a tool based on the user's request.
+The AI natively decides when it is appropriate to use a tool based on the user's request.
 
-For *mydevbot*, this meant I didn't have to write a complex `if/else` tree to parse whether the user said "create an issue" or "review this repo". I simply gave Gemini the tool, and it took care of the semantics.
+For *mydevbot*, this meant I could save a lot of programming time. I didn't have to write a complex `if/else` tree to parse whether the user said "create an issue" or "review this repo". I simply gave Gemini the tool and it handled the semantics.
 
 The first step was to integrate the GitHub API. I used the **PyGithub** library, an excellent and robust wrapper for interacting with the GitHub REST v3 API in Python. The main challenge here was security. Under no circumstances was I going to hardcode my credentials directly into the code. I generated a **Personal Access Token (PAT)** on GitHub with strictly limited permissions (read repositories and write issues/PRs, but no permissions to delete repositories). This token would be loaded as a secure environment variable in the Docker container.
 
