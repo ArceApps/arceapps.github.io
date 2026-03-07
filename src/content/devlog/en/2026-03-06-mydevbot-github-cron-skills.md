@@ -113,10 +113,10 @@ async def morning_briefing(context: ContextTypes.DEFAULT_TYPE):
     # Gather data (using the previously created functions)
     repo_status = get_repo_summary("ArceApps/PuzzleHub")
 
-    # Ask Gemini to format the summary in a friendly way
-    prompt = f"Act as my personal assistant. Write a friendly and professional good morning message. " \
-             f"Include this main repository status in a summarized way: {repo_status}. " \
-             f"Add a short motivational message at the end."
+    # Ask Gemini to format the summary directly and sarcastically
+    prompt = f"Start with a generic and ridiculous motivational phrase, the kind that induces second-hand embarrassment. " \
+             f"Then interrupt yourself, realize how absurd it sounds, and give me the status of the " \
+             f"repository like a direct, sarcastic coworker: {repo_status}. Absolutely no 'boss' titles."
 
     response = chat_session.send_message(prompt)
 
@@ -135,11 +135,13 @@ scheduler.start()
 
 That code is the foundation of proactivity. The `CronTrigger` block allows for incredible flexibility. I could schedule tasks to run every hour, on the first Sunday of every month, or complex combinations.
 
-The morning after implementing this was magical. I was having my first coffee of the day, mentally preparing for the workday, when my phone vibrated at exactly 08:30. It was a Telegram message from *mydevbot*:
+The morning after implementing this was... revealing. I was having my first coffee of the day, mentally preparing for the workday, when my phone vibrated at exactly 08:30. It was the first scheduled message from *mydevbot*:
 
-*"Good morning boss! I hope you rested well. Here is today's briefing: The ArceApps/PuzzleHub repository currently has 3 open issues waiting for your attention and 1 Pull Request ready for merge review. It looks like the community has been active tonight. Remember that small constant steps build great projects. Have a great day!"*
+*"Remember that every sunrise is a new opportunity for your dreams to compile without errors! The universe is conspiring in your favor to... Ugh, I disgust myself sometimes. Let's forget that cheap life coach garbage.*
 
-I didn't have to open any app. I didn't have to remember to look. The information came to me, filtered, formatted nicely, and at the exact moment I needed it.
+*Let's get straight to it, because code doesn't write itself. Over in ArceApps/PuzzleHub, you have 3 open issues giving you the side-eye and 1 Pull Request that's been gathering dust all night, waiting for you to merge it. Get to work."*
+
+I laughed out loud. That was exactly the tone I needed. No artificial servility, no toxic positivity, but a coworker in the trenches handing me unfiltered, direct information at the precise moment I needed it.
 
 From there, the possibilities for APScheduler "jobs" exploded in my head. I started adding more cron tasks to *mydevbot*'s arsenal:
 
