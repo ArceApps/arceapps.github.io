@@ -67,7 +67,7 @@ Es la magia del DevOps aplicada a mi vida personal. Ya no hay fricción. Si el b
 
 Llegados a este punto, la arquitectura de software era sólida. Pero quiero hablar de hardware otra vez. De ese puerto OCuLink del que hablé en el primer artículo y que fue el factor decisivo para comprar el Minisforum UM890 Pro en lugar de alternativas más baratas.
 
-Actualmente, *mydevbot* usa la API de Gemini 1.5 Flash. Es rápida, es casi gratuita, y es brillante para programación. Pero sigue siendo "La Nube". Si mañana me quedo sin internet (y la red de fibra óptica de mi zona tiene cortes ocasionales), o si Google decide cambiar radicalmente los precios de su API, mi cerebro automatizado dejará de funcionar.
+Actualmente, *mydevbot* usa la API de Gemini 3.1 Flash-Lite. Es rápida, es casi gratuita, y es brillante para programación. Pero sigue siendo "La Nube". Si mañana me quedo sin internet (y la red de fibra óptica de mi zona tiene cortes ocasionales), o si Google decide cambiar radicalmente los precios de su API, mi cerebro automatizado dejará de funcionar.
 
 La verdadera soberanía de la que hablaba al principio solo se consigue cuando el Modelo de Lenguaje corre físicamente en tu casa.
 

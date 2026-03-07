@@ -7,7 +7,7 @@ heroImage: "/images/mydevbot-skills-cron-hero.svg"
 reference_id: "0463727d-8058-4f3a-b565-1baec56b3470"
 ---
 
-Ayer dejé la historia en un punto dulce. Tenía a **mydevbot** funcionando en su nueva y flamante casa: un Mini PC Minisforum UM890 Pro con un consumo irrisorio y potencia de sobra. El bot podía responder mensajes en Telegram en milisegundos gracias al uso del SDK nativo de Google Gemini (específicamente, Gemini 1.5 Flash). Era rápido, eficiente y privado.
+Ayer dejé la historia en un punto dulce. Tenía a **mydevbot** funcionando en su nueva y flamante casa: un Mini PC Minisforum UM890 Pro con un consumo irrisorio y potencia de sobra. El bot podía responder mensajes en Telegram en milisegundos gracias al uso del SDK nativo de Google Gemini (específicamente, Gemini 3.1 Flash-Lite). Era rápido, eficiente y privado.
 
 Pero seamos sinceros: un bot que solo sirve para charlar, por muy rápido que sea, no es más que un ChatGPT glorificado con otra interfaz. Para que *mydevbot* se ganara su nombre y realmente revolucionara mi flujo de trabajo, necesitaba darle manos. Necesitaba que pudiera tocar mis repositorios, leer mi código, gestionar mis problemas y mantener un ojo en mi infraestructura mientras yo estaba ocupado en otras cosas.
 
@@ -72,7 +72,7 @@ Leer datos está bien, pero el verdadero poder reside en actuar. La siguiente fa
 Creé una suite completa de herramientas para GitHub. Algunas de las más útiles que implementé esa misma tarde fueron:
 
 *   `create_github_issue(repo_name: str, title: str, body: str, labels: list)`: Para reportar bugs sobre la marcha. Si estoy probando una de mis apps en el móvil y encuentro un error de UI, ya no tengo que abrir el portátil. Simplemente voy a Telegram y le digo a mydevbot: *"Crea un issue en el repo de la web indicando que el botón de contacto en modo oscuro no tiene suficiente contraste. Etiquétalo como bug y ui"*. El bot extrae los parámetros perfectamente y crea el ticket.
-*   `get_latest_pr_diff(repo_name: str)`: Esta fue una de mis favoritas. Le permite al bot leer el diff (los cambios de código) de la última Pull Request abierta. Y como Gemini tiene una ventana de contexto enorme (especialmente la versión 1.5 Pro, aunque en Flash también funciona muy bien para diffs medianos), puede analizar ese código y buscar errores.
+*   `get_latest_pr_diff(repo_name: str)`: Esta fue una de mis favoritas. Le permite al bot leer el diff (los cambios de código) de la última Pull Request abierta. Y como Gemini tiene una ventana de contexto enorme (especialmente la versión 3.1 Pro, aunque en Flash-Lite también funciona muy bien para diffs medianos), puede analizar ese código y buscar errores.
 *   `comment_on_pr(repo_name: str, pr_number: int, comment: str)`: El complemento lógico de la anterior. Después de que el bot lee el diff, puede publicar un comentario directamente en GitHub.
 
 Recuerdo la primera vez que probé el flujo completo. Había subido un pequeño parche desde el portátil, pero no estaba seguro de si había introducido un posible problema de concurrencia. Me fui al sofá, abrí Telegram y le pedí a mydevbot que revisara el PR.
