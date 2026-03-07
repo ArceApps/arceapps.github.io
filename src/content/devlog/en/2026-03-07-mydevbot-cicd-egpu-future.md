@@ -7,7 +7,7 @@ heroImage: "/images/mydevbot-cicd-future-hero.svg"
 reference_id: "83523401-9392-426f-b039-f3ae73132d40"
 ---
 
-We have reached the last entry of this trilogy about **mydevbot**. If in the [first article](2026-03-05-mydevbot-genesis-hardware) I talked about the odyssey to find the perfect hardware (the Minisforum UM890 Pro) and in the [second](2026-03-06-mydevbot-github-cron-skills) I detailed how I taught it to use the GitHub API and wake me up with daily summaries, today it's time to talk about scalability, automation, and the real development experience.
+We have reached the last entry of this trilogy about **mydevbot**. If in the [first article](./2026-03-05-mydevbot-genesis-hardware) I talked about the odyssey to find the perfect hardware (the Minisforum UM890 Pro) and in the [second](./2026-03-06-mydevbot-github-cron-skills) I detailed how I taught it to use the GitHub API and wake me up with daily summaries, today it's time to talk about scalability, automation, and the real development experience.
 
 Because here is a fascinating paradox: I have built a Telegram bot to manage my software development while I am away from home... but what happens when I want to develop or improve *the bot itself* while I am away from home?
 
@@ -67,7 +67,7 @@ It's the magic of DevOps applied to my personal life. There is no more friction.
 
 At this point, the software architecture was solid. But I want to talk about hardware again. About that OCuLink port I mentioned in the first article and which was the decisive factor for buying the Minisforum UM890 Pro instead of cheaper alternatives.
 
-Currently, *mydevbot* uses the Gemini 3.1 Flash-Lite API. It is fast, it is almost free, and it is brilliant for programming. But it is still "The Cloud". If tomorrow I lose internet access (and the fiber optic network in my area has occasional outages), or if Google decides to radically change its API pricing, my automated brain will stop working.
+Currently, *mydevbot* uses the Gemini 3.1 API. It is fast, it is almost free, and it is brilliant for programming. But it is still "The Cloud". If tomorrow I lose internet access (and the fiber optic network in my area has occasional outages), or if Google decides to radically change its API pricing, my automated brain will stop working.
 
 The true sovereignty I spoke of at the beginning is only achieved when the Language Model runs physically in your home.
 

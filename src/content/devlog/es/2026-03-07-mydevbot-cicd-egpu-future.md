@@ -7,7 +7,7 @@ heroImage: "/images/mydevbot-cicd-future-hero.svg"
 reference_id: "83523401-9392-426f-b039-f3ae73132d40"
 ---
 
-Llegamos a la última entrada de esta trilogía sobre **mydevbot**. Si en el [primer artículo](2026-03-05-mydevbot-genesis-hardware) hablé de la odisea para encontrar el hardware perfecto (el Minisforum UM890 Pro) y en el [segundo](2026-03-06-mydevbot-github-cron-skills) detallé cómo le enseñé a usar la API de GitHub y a despertarme con resúmenes diarios, hoy toca hablar de escalabilidad, automatización y de la experiencia real de desarrollo.
+Llegamos a la última entrada de esta trilogía sobre **mydevbot**. Si en el [primer artículo](./2026-03-05-mydevbot-genesis-hardware) hablé de la odisea para encontrar el hardware perfecto (el Minisforum UM890 Pro) y en el [segundo](./2026-03-06-mydevbot-github-cron-skills) detallé cómo le enseñé a usar la API de GitHub y a despertarme con resúmenes diarios, hoy toca hablar de escalabilidad, automatización y de la experiencia real de desarrollo.
 
 Porque aquí hay una paradoja fascinante: he construido un bot de Telegram para gestionar mi desarrollo de software mientras estoy fuera de casa... pero ¿qué pasa cuando quiero desarrollar o mejorar *el propio bot* mientras estoy fuera de casa?
 
@@ -67,7 +67,7 @@ Es la magia del DevOps aplicada a mi vida personal. Ya no hay fricción. Si el b
 
 Llegados a este punto, la arquitectura de software era sólida. Pero quiero hablar de hardware otra vez. De ese puerto OCuLink del que hablé en el primer artículo y que fue el factor decisivo para comprar el Minisforum UM890 Pro en lugar de alternativas más baratas.
 
-Actualmente, *mydevbot* usa la API de Gemini 3.1 Flash-Lite. Es rápida, es casi gratuita, y es brillante para programación. Pero sigue siendo "La Nube". Si mañana me quedo sin internet (y la red de fibra óptica de mi zona tiene cortes ocasionales), o si Google decide cambiar radicalmente los precios de su API, mi cerebro automatizado dejará de funcionar.
+Actualmente, *mydevbot* usa la API de Gemini 3.1. Es rápida, es casi gratuita, y es brillante para programación. Pero sigue siendo "La Nube". Si mañana me quedo sin internet (y la red de fibra óptica de mi zona tiene cortes ocasionales), o si Google decide cambiar radicalmente los precios de su API, mi cerebro automatizado dejará de funcionar.
 
 La verdadera soberanía de la que hablaba al principio solo se consigue cuando el Modelo de Lenguaje corre físicamente en tu casa.
 
