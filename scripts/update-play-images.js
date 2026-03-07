@@ -73,6 +73,10 @@ async function processFile(filePath) {
         data.rating = roundedScore;
         updated = true;
       }
+    } else if (data.rating !== undefined) {
+      // If there's no score in the store but we have a rating, remove it
+      delete data.rating;
+      updated = true;
     }
 
     // Update version

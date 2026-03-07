@@ -31,7 +31,6 @@ screenshots:
     https://play-lh.googleusercontent.com/cTQdMk8LHjYcyh5B7--W8lXIv4hxtIHvwi1bMErdWsAXnDIhZ8lekvwhp2ZnevelDw
   - >-
     https://play-lh.googleusercontent.com/F4EW0OQhMe91otWS8a9aBl0_8tHEDi8YY24Z4BR6W5s2UBKbDBxsVNgwMBSpGRHmN7rm
-rating: 4.8
 lastUpdated: 23 jul 2025
 version: 2.1.1
 ---

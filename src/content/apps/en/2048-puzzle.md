@@ -29,9 +29,9 @@ screenshots:
     https://play-lh.googleusercontent.com/KrmYU2OSeU0unIo9ucuOM6sG6NRWhYf9QgTdycTg0BQjzc-Q8WCBwNaSqT1hzuoe8Ic
   - >-
     https://play-lh.googleusercontent.com/6W6dRSV0OmsGEpVnVTT2LYui-RGxwOwF3d8pwVHMMAGPDyy1bwIiFY95B0BliOKNYIpt
-rating: 4.5
 lastUpdated: 'Jul 23, 2025'
 version: 4.2.3
+rating: 4.5
 ---
 
 Welcome to the ultimate brain-teasing adventure of 2048!
