@@ -184,10 +184,16 @@
 
   /* Links */
   .prose a {
-    @apply text-primary dark:text-teal-200 font-semibold no-underline transition-colors;
+    @apply text-primary font-semibold no-underline transition-colors;
   }
   .prose a:hover {
     @apply text-secondary underline;
+  }
+  :is(.dark .prose) a {
+    color: var(--color-secondary) !important;
+  }
+  :is(.dark .prose) a:hover {
+    color: var(--color-primary) !important;
   }
 
   /* Strong */
