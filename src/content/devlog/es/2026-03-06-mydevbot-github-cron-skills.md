@@ -113,10 +113,10 @@ async def morning_briefing(context: ContextTypes.DEFAULT_TYPE):
     # Recopilar datos (usando las funciones ya creadas)
     repo_status = get_repo_summary("ArceApps/PuzzleHub")
 
-    # Pedirle a Gemini que formatee el resumen de forma amigable
-    prompt = f"Actúa como mi asistente personal. Redacta un mensaje de buenos días amable y profesional. " \
-             f"Incluye este estado del repositorio principal de forma resumida: {repo_status}. " \
-             f"Añade un mensaje motivacional corto al final."
+    # Pedirle a Gemini que formatee el resumen de forma directa pero sarcástica
+    prompt = f"Empieza con una frase motivacional genérica y ridícula, de esas que dan vergüenza ajena. " \
+             f"Luego córtate a ti mismo, date cuenta de lo absurdo que suena, y dame el estado del " \
+             f"repositorio como un compañero de trabajo directo y sarcástico: {repo_status}. Cero apelativos de 'jefe'."
 
     response = chat_session.send_message(prompt)
 
@@ -135,11 +135,13 @@ scheduler.start()
 
 Ese código es la base de la proactividad. El bloque `CronTrigger` permite una flexibilidad increíble. Podía programar tareas para que se ejecutaran cada hora, el primer domingo de cada mes, o combinaciones complejas.
 
-La mañana siguiente a implementar esto fue mágica. Estaba tomando el primer café del día, preparándome mentalmente para la jornada laboral, cuando el móvil vibró a las 08:30 en punto. Era un mensaje de Telegram de *mydevbot*:
+La mañana siguiente a implementar esto fue... reveladora. Estaba tomando el primer café del día, preparándome mentalmente para la jornada laboral, cuando el móvil vibró a las 08:30 en punto. Era el primer mensaje programado de *mydevbot*:
 
-*"¡Buenos días jefe! Espero que hayas descansado. Aquí tienes el briefing de hoy: El repositorio ArceApps/PuzzleHub tiene actualmente 3 issues abiertos esperando tu atención y 1 Pull Request lista para revisión de merge. Parece que la comunidad ha estado activa esta noche. Recuerda que pequeños avances constantes construyen grandes proyectos. ¡A por el día!"*
+*"¡Recuerda que cada amanecer es una nueva oportunidad para que tus sueños compilen sin errores! El universo conspira a tu favor para... Uf, qué asco me doy a veces. Olvida esa basura de coach de saldo.*
 
-No tuve que abrir ninguna app. No tuve que acordarme de mirar. La información vino a mí, filtrada, formateada de manera agradable y en el momento exacto en que la necesitaba.
+*Vamos al grano, que el código no se escribe solo. En ArceApps/PuzzleHub tienes 3 issues abiertos mirándote mal y 1 Pull Request que lleva toda la noche acumulando polvo, esperando a que te dignes a darle merge. A trabajar."*
+
+Me reí en voz alta. Ese era exactamente el tono que necesitaba. Nada de servilismo artificial ni motivación tóxica, sino un compañero de trinchera que me daba la información filtrada y directa en el momento exacto en que la necesitaba.
 
 A partir de ahí, las posibilidades de los "jobs" de APScheduler explotaron en mi cabeza. Empecé a añadir más tareas cron al arsenal de *mydevbot*:
 
