@@ -1,23 +1,39 @@
 ---
-title: "4Line for Color lines"
-description: "Un juego de lógica y rompecabezas colorido. Forma líneas de 4 o más fichas del mismo color para limpiar el tablero y obtener puntos."
-pubDate: "2023-11-15"
-heroImage: "https://play-lh.googleusercontent.com/ScAmhEgQkkBvx9FiLQrj_f4B_l6wUiBE8XhKoHS9aR7uvXB2siHbznTRDqRYNKP61t4=w1200"
-icon: "linear_scale"
-tags: ["Puzzle", "Strategy", "Brain Training"]
-googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.a4line"
-realIconUrl: "https://play-lh.googleusercontent.com/6rGaNE9lQxno4idyUqPCu5XkCDxz3mkS6HxUX-E9U4oXxGzzB2YooGgeJe96m7g8mQ=s512"
+title: 4Line for Color lines
+description: >-
+  Un juego de lógica y rompecabezas colorido. Forma líneas de 4 o más fichas del
+  mismo color para limpiar el tablero y obtener puntos.
+pubDate: '2023-11-15'
+heroImage: >-
+  https://play-lh.googleusercontent.com/9XaK3yLLNuHGQPETIzTqi0Hf3HtG5gXx73_MGVATC3w0JZJ-ARQ2zy-WWoYVQmvB9zI
+icon: linear_scale
+tags:
+  - Puzzle
+  - Strategy
+  - Brain Training
+googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.a4line'
+realIconUrl: >-
+  https://play-lh.googleusercontent.com/6rGaNE9lQxno4idyUqPCu5XkCDxz3mkS6HxUX-E9U4oXxGzzB2YooGgeJe96m7g8mQ
 screenshots:
-  - "https://play-lh.googleusercontent.com/ScAmhEgQkkBvx9FiLQrj_f4B_l6wUiBE8XhKoHS9aR7uvXB2siHbznTRDqRYNKP61t4=w526-h296"
-  - "https://play-lh.googleusercontent.com/RBiMrDK9QMLJADQ2Ob7X3mZYPC1-eZzhDMMTKos7Nc_fVfpMM4-yENJOqknZOZDk9Tg=w526-h296"
-  - "https://play-lh.googleusercontent.com/nvGPbjyDDl0hCvofM4e5vLQbYbmhn3pdDX_a55udHI63c6Wx1gqAU5OxSP2b7Wr1XlU=w526-h296"
-  - "https://play-lh.googleusercontent.com/X848myaxFxKQmQ6Ui8xT-KsH1HYa9DIi6gPqPgNf5u8zG8kaJBU8KtlH0w1yg-zLcLg=w526-h296"
-  - "https://play-lh.googleusercontent.com/eRUYQfIyPW3NgGU-X0km10LpSuaCJ4bU4kjdLCn4IIapMQ1JP1tbKTV6a1Z3GA66TIO9=w526-h296"
-  - "https://play-lh.googleusercontent.com/snB8ZKP54-e4O_HvT47L5aFadoTTsfwAM2WyA00ZOedeXrxATySNLFfHcJSY1kh4mw=w526-h296"
-  - "https://play-lh.googleusercontent.com/Vfjp6vkCmYEb8U91U6goSl_5LlQ2heL6herjW3uyUuJdJVOVO7yK94PUN87Iwn9tq7k=w526-h296"
-  - "https://play-lh.googleusercontent.com/M5wICC6b3Iq7qP3HY-c_WIEv78orgwH2tVDS20nOuPUvSgzi-4xnMXzNsjqr4CYhgg=w526-h296"
+  - >-
+    https://play-lh.googleusercontent.com/smUlGuT6b-N8Qfte42dflh6ezjgPpCh9fgVrh0uKueiqTKj4F4qjqNJIhzvKhzUMeN0O
+  - >-
+    https://play-lh.googleusercontent.com/FhhE_eLqrMc3nt7zEdVQCPXvRuxVMllNaTN88JHnr1PN80gc6fndh15LyyU-Z5FQ6SYM
+  - >-
+    https://play-lh.googleusercontent.com/nG_nUaa1o9O69Rk2HqZ16-tmPmo4ND0NIIj2_YewdqT-0fNMtETzaB9u2nBVXoiuGWg
+  - >-
+    https://play-lh.googleusercontent.com/l25PD4gQT2bmItWaRZmyW4Pq9E8BfuwZCgskfs5TenJDaslAX23qIdzkG7cYnaUYCQ
+  - >-
+    https://play-lh.googleusercontent.com/DKB5ex47aZYnvsVi_IcvqOu4wOukjEI-AVqPrCrMdwEKiQv56lMjixVYXW6YtmXC6hc
+  - >-
+    https://play-lh.googleusercontent.com/8VByb-2LEWLycI7VP2VFWzbw9f65OIKcyHh6FZEbjzEwrpHocyMVaGg2OpDmeahNR7g
+  - >-
+    https://play-lh.googleusercontent.com/cTQdMk8LHjYcyh5B7--W8lXIv4hxtIHvwi1bMErdWsAXnDIhZ8lekvwhp2ZnevelDw
+  - >-
+    https://play-lh.googleusercontent.com/F4EW0OQhMe91otWS8a9aBl0_8tHEDi8YY24Z4BR6W5s2UBKbDBxsVNgwMBSpGRHmN7rm
 rating: 4.8
-lastUpdated: "Jul 23, 2025"
+lastUpdated: 23 jul 2025
+version: 2.1.1
 ---
 
 **4Line for Color line** is a totally free game of logic, puzzle and brain teaser design for Android.

@@ -1,20 +1,38 @@
 ---
-title: "PuzzleHub"
-description: "The ultimate brain training collection with 10 classic and modern logic games in a single app."
-pubDate: "2023-12-01"
-heroImage: "https://play-lh.googleusercontent.com/Ecmezz2ngY8ohJgQe5fkCi6JzOV9gfuB-95VNEQf7PIgzE3yxVPdYyrvC92vx8j96ZHclhl0k6tLKMsSR4dOqQ=w1200"
-icon: "category"
-tags: ["Puzzle", "Collection", "Logic"]
-googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.puzzlesuite"
-realIconUrl: "https://play-lh.googleusercontent.com/x7fgE7nKdp2LoyMdHSEIzEWTfRrhqlYky6K_TEmeAhqPWZb7v-qD-y8_NK4w0poOIWYsXMv1j7u-womc_fmCFg=s512"
+title: PuzzleHub
+description: >-
+  The ultimate brain training collection with 10 classic and modern logic games
+  in a single app.
+pubDate: '2023-12-01'
+heroImage: >-
+  https://play-lh.googleusercontent.com/yZNEvTcnDEvDP44BjH_4o3gjrZDwBgjvP0MytB6np-63MHpyBm4JqfFPZrJ6pECFb6uvGP8dh5MIL9jGe-Nn
+icon: category
+tags:
+  - Puzzle
+  - Collection
+  - Logic
+googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.puzzlesuite'
+realIconUrl: >-
+  https://play-lh.googleusercontent.com/x7fgE7nKdp2LoyMdHSEIzEWTfRrhqlYky6K_TEmeAhqPWZb7v-qD-y8_NK4w0poOIWYsXMv1j7u-womc_fmCFg
 screenshots:
-  - "https://play-lh.googleusercontent.com/ck8ICfBirIAyNEhzGuNz0vpn7JqbP3vm77BB5xd0C4Q5NuTadMuwfTHnxcwMPfbRxI4kdadpuz2AdqP6hNvQ6A=w526-h296"
-  - "https://play-lh.googleusercontent.com/u75Tn-oTWp3yCsKgbi7dg6-ZpVekJBkAP6sLNEiK0xXDxZAQkjaHS9n-4FzRSQYPJCp45K8JHjNbM3H4vrkayDM=w526-h296"
-  - "https://play-lh.googleusercontent.com/-KaBgncu93ujpzwcepnyHdQ2QPCl-dHOCnzu0CPyACUrHjbz142BJ1ujMuCkCMoGIbDad4K2x2aUl3g37mwV=w526-h296"
-  - "https://play-lh.googleusercontent.com/WEvSAzcPg3xTdyOUie8MRkYmpOWjt5zKcuzSvP-icSwdV---IIAvi7tkJ1UitoXSyOCXKkDJtbK1WQaEZvZkMg=w526-h296"
-  - "https://play-lh.googleusercontent.com/jGCiHlaLFLEVjgCDUuOCrGF55IdldlExukvuhaR_ocF2E1bBF8maPy1vN5lwF8MxMR9uiSXMXMdGxL1_H9SPqQ=w526-h296"
-  - "https://play-lh.googleusercontent.com/vltlMrh-n_rqYRJhvx0RLdf2E3-DTDaOzRBbXrFaf09d14jRGNhWQgQYxEoiIQqTtsGfDl2HmoR_EFTX6-vA=w526-h296"
-lastUpdated: "Oct 16, 2025"
+  - >-
+    https://play-lh.googleusercontent.com/Ecmezz2ngY8ohJgQe5fkCi6JzOV9gfuB-95VNEQf7PIgzE3yxVPdYyrvC92vx8j96ZHclhl0k6tLKMsSR4dOqQ
+  - >-
+    https://play-lh.googleusercontent.com/CjlsJv-QauPwAxsRvGvr4AUHAy1GQSLij2KGXKHP46C5w_7CMcyw-BG1utOag6FxD3VK9fh-xo95ZqaFzosWIA
+  - >-
+    https://play-lh.googleusercontent.com/T9gpb9mgK1zim5aO9418qWW1BRF1PjD6ZnR1ZhvyOVDGgrpZjM36b6MbNM0HQbIMhiMrCdlFoX3zyw49LqFF
+  - >-
+    https://play-lh.googleusercontent.com/Mv2CWqrZmPtv3IjlXwp8x6WcR_UdsjGMRLGWKUMZS1pUh9fw2eAbRcBGyPV9_-vb-36cuv2O3EctDuIM4SDRDXA
+  - >-
+    https://play-lh.googleusercontent.com/k18V5kIWa0YdSj-kxA1NI6q9ks_9i1iMswQek3EMQXOoKrOh0RBmzCeG6PuEiTa1mXPgPm7JLPP8zLQiLOs6oA
+  - >-
+    https://play-lh.googleusercontent.com/P5aC92LG0CpUVHc0sznfrVET9QZJtHcVSpc0bAiijBIOVDXdmdgCJNIOeOu-khOh_Zz0XRcmmBD0XweQIiFp
+  - >-
+    https://play-lh.googleusercontent.com/nFp_ooybUal9dQM229KFj4thrlPu9-MPpLyNsCNoC7W9mlCB0z3GtzBTSnwUrkHUumCEVmDIPI812S6zKDmaEA
+  - >-
+    https://play-lh.googleusercontent.com/r_u7BlWul7wgzAjTw2HzW5ao_zrlDSmqGCoIsm6v0-jfw6G6iyDN_a36hq0RdDYtBCe5LvX5at8xc7vzvy90Fw
+lastUpdated: 'Feb 28, 2026'
+version: 2.6.1
 ---
 
 **Enjoy PuzzleHub**, the ultimate brain training collection featuring 10 classic and modern logic puzzles, all in one app. Perfect for all skill levels, PuzzleHub offers thousands of procedurally generated puzzles to sharpen your logical reasoning and mental speed. Play anytime, anywhere, even offline.

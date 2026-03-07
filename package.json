@@ -4,10 +4,11 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "pnpm run apps:update && astro build",
     "preview": "astro preview",
     "astro": "astro",
     "news:fetch": "node scripts/fetch-rss.js",
+    "apps:update": "node scripts/update-play-images.js",
     "test": "vitest run"
   },
   "dependencies": {
@@ -27,6 +28,8 @@
     "@astrojs/check": "^0.9.6",
     "@playwright/test": "^1.57.0",
     "@tailwindcss/typography": "^0.5.19",
+    "google-play-scraper": "^10.1.2",
+    "gray-matter": "^4.0.3",
     "jsdom": "^27.4.0",
     "playwright": "^1.57.0",
     "rehype-external-links": "^3.0.0",

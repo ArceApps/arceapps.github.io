@@ -1,22 +1,38 @@
 ---
-title: "Sudoku+"
-description: "La experiencia de Sudoku definitiva. Niveles equilibrados, tutoriales completos y un diseño elegante para principiantes y expertos."
-pubDate: "2023-10-15"
-heroImage: "https://play-lh.googleusercontent.com/HyVC5vsXRT80DeTTXN_frseubKnyNy7PRo-CR-DfCTe7k3lsjPAljqWVOfk12IM9KQ=w1200"
-icon: "grid_on"
-tags: ["Puzzle", "Logic", "Classic"]
-googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.sudoku"
-realIconUrl: "https://play-lh.googleusercontent.com/8FjSJhtdP7JNPM8v2gmn7G7TdMM5BX4KNSZ9PTZKxzaeAQ6coTqss8--s6lXai2weULf=s512"
+title: Sudoku+
+description: >-
+  La experiencia de Sudoku definitiva. Niveles equilibrados, tutoriales
+  completos y un diseño elegante para principiantes y expertos.
+pubDate: '2023-10-15'
+heroImage: >-
+  https://play-lh.googleusercontent.com/sSfWI7eFs_qH-pwye236lpimA8o6zngeIECRVNfzQ9fBCZ6Gxsfcg3sZ909EwGiTNg
+icon: grid_on
+tags:
+  - Puzzle
+  - Logic
+  - Classic
+googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.sudoku'
+realIconUrl: >-
+  https://play-lh.googleusercontent.com/P7oN8lIV9cP_B6nZkhtDILrZ2wZ2n8nCmarLRSm2Ed-7jpRb_LUgZkNFad6J_W9BHhPrxs_MQQGzfvFTQwIjjw
 screenshots:
-  - "https://play-lh.googleusercontent.com/HyVC5vsXRT80DeTTXN_frseubKnyNy7PRo-CR-DfCTe7k3lsjPAljqWVOfk12IM9KQ=w526-h296"
-  - "https://play-lh.googleusercontent.com/mq4-hc1iAyQxfH49spPXc3Y1gxUehaBcQar8N0FjSbDhJL6BV5u2SWoT5qdbMRge0Q=w526-h296"
-  - "https://play-lh.googleusercontent.com/bhahFzBOuGbfNAuxpFd9J62KL4hLV8b8Jm8iNCnN3sqs4ToTY-BknGUKO9DnL1BST8o=w526-h296"
-  - "https://play-lh.googleusercontent.com/ULODGAuGwGP2gDWMUINvIBTJyDE-5EYG-Q5MrHwv7b_McBEMYFbpQ7sioddSxlJvRAc=w526-h296"
-  - "https://play-lh.googleusercontent.com/P5lK4eRWTAPDK0QF3qPoLUx_O-2TUCmenLBJm0K7Dao7HA1yH3PU02hyUKq5BHcC1EY=w526-h296"
-  - "https://play-lh.googleusercontent.com/nkCyFJIg6hGZnCLpVcfOgEKeGxU_ZoJYbGMx79zpU1LiBmtTVR5hfmim6G3P57be7M8=w526-h296"
-  - "https://play-lh.googleusercontent.com/dhN0G90jUMzQ5CNNheu-dFWFzyiN04iiNKeDe5vbmMc_yNlCB6uvh7og6gRePhqdXQ=w526-h296"
-  - "https://play-lh.googleusercontent.com/zu-qxDPN2YXjvARz7hrCllEFHvi14lXkHnQ54lTt2MIu12NpfrSCUDAr__u7Qj_8qw=w526-h296"
-lastUpdated: "Jul 23, 2025"
+  - >-
+    https://play-lh.googleusercontent.com/NKyoSmufqLGbWeyKd-6lfXufL8VagoVpd5_xkccnC-gv3fw9lLouN2pmZSUEhqa90qY
+  - >-
+    https://play-lh.googleusercontent.com/_qmvk0sKHJlQeywxQ0LuyvBVLidM3Kw71AiTAx2kTjBccrzQkS_nm_J2g4fCJ1slcqc
+  - >-
+    https://play-lh.googleusercontent.com/MXHjyOqT-J_Kc-eiIZwnH2t1BiLQqj3V_b9M82RQN6nEFSFjWHwreEw9J5jVlU_wUwno
+  - >-
+    https://play-lh.googleusercontent.com/B5ygW8Xfs4TYZ6vRtQnFcK74aqW_Ajkn_A44a3rOQ9qFNgXA2IbmJLmFheh4HZvXQg
+  - >-
+    https://play-lh.googleusercontent.com/51902ceXpB-VBem4cqYAdm0oaNRF1iN7-F29Tu6HWIwNEfvsrbV02Srg37gVAT1qMdk
+  - >-
+    https://play-lh.googleusercontent.com/nGXpl5dmquRKzCpdAx8Ix2NupGTBRWDGRWROTDPclhnNRv6abwK2WxwyS8N5I7Qo5ao
+  - >-
+    https://play-lh.googleusercontent.com/9GB5C2TwQVpAnb8KL9FKazFno71E18opZDtYdnoKtNRFsvjYWMfAJXb55KdR92eMYYQ
+  - >-
+    https://play-lh.googleusercontent.com/BWmoU85NrXYpkgWC4ef545xzMw-e_HVhJEnknt8iBjzDScF-WLn-cFd9mMbV7imrRQc
+lastUpdated: 13 feb 2026
+version: 1.1.1
 ---
 
 Challenge your brain with **Sudoku+** anywhere and anytime!
