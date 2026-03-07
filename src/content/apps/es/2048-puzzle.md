@@ -1,22 +1,37 @@
 ---
-title: "2048 Puzzle Challenge"
-description: "El clásico juego de rompecabezas numérico reinventado. Desliza, combina y alcanza la meta 2048 en esta experiencia adictiva y desafiante."
-pubDate: "2023-10-27"
-heroImage: "https://play-lh.googleusercontent.com/OCydhTOqatjYNKvtjlNu9UXX2JVtaQ2RhG49Wzu21_TOrgD6aKkwh9IvgI9zjhCJfUE=w1200"
-icon: "view_module"
-tags: ["Puzzle", "Logic", "Casual"]
-googlePlayUrl: "https://play.google.com/store/apps/details?id=com.arceapps.a2048"
-realIconUrl: "https://play-lh.googleusercontent.com/Hp8a3SgsuK8CObY9Q5_VPhaSBpRGiE38lVWaoFIi-4Kf6Phznl78VNyEtfLVSXyTkQ=s512"
+title: 2048 Puzzle Challenge
+description: >-
+  El clásico juego de rompecabezas numérico reinventado. Desliza, combina y
+  alcanza la meta 2048 en esta experiencia adictiva y desafiante.
+pubDate: '2023-10-27'
+heroImage: >-
+  https://play-lh.googleusercontent.com/Sfy5jSf_stL9tifdNy-m5SZ8gB1OVL6Oe1lwhWmysJvuwSjQu0_O32xeqs6CJnE8Rf8
+icon: view_module
+tags:
+  - Puzzle
+  - Logic
+  - Casual
+googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.a2048'
+realIconUrl: >-
+  https://play-lh.googleusercontent.com/CaXdmOtkyjP1M7D14Vvak7Jc7HqSA2zkwrvh0ckmXs-FlJ_0YoQjki0DGf3E_qPkwQ
 screenshots:
-  - "https://play-lh.googleusercontent.com/OCydhTOqatjYNKvtjlNu9UXX2JVtaQ2RhG49Wzu21_TOrgD6aKkwh9IvgI9zjhCJfUE=w526-h296"
-  - "https://play-lh.googleusercontent.com/NNV8TxRpj89B7-1GODUHV2dENBbyF_sajVqXm0GcVz1abv5_nzN-on6wnYazM6oFRw=w526-h296"
-  - "https://play-lh.googleusercontent.com/G8dmq2d01BR0_7REb02wtoWzuMTizNpBERyGProgYkMLphhd-hSxO6HPfjFLAIG4CA=w526-h296"
-  - "https://play-lh.googleusercontent.com/mHvRKH-YDLtvx12ljIxA3rtMN76S64Gkq4AInjsA1US-SkCeRK9l6uzo3nSwDq2Bn_RS=w526-h296"
-  - "https://play-lh.googleusercontent.com/d_MUXW_E3PNNX8n5_nZLx5jQzpIl_Oj6AMLXWnjNfFN4CuY-DSabggYXz9ka5xpxCg=w526-h296"
-  - "https://play-lh.googleusercontent.com/KrmYU2OSeU0unIo9ucuOM6sG6NRWhYf9QgTdycTg0BQjzc-Q8WCBwNaSqT1hzuoe8Ic=w526-h296"
-  - "https://play-lh.googleusercontent.com/6W6dRSV0OmsGEpVnVTT2LYui-RGxwOwF3d8pwVHMMAGPDyy1bwIiFY95B0BliOKNYIpt=w526-h296"
-rating: 4.2
-lastUpdated: "Jul 23, 2025"
+  - >-
+    https://play-lh.googleusercontent.com/rj72zJvHbXkcSrKlzJI4OlKk-VTwAne71VYQPwTN96SxmuZVnIA4Ak8YnKgkPI_kr_s
+  - >-
+    https://play-lh.googleusercontent.com/L4qorI2Rsf_e45XySV0htjrT2sI3b24SRJ8dUZyiwDESkrIDcgPD-OI6BEI7cu2KiSNx
+  - >-
+    https://play-lh.googleusercontent.com/I8lSVIihzSN5pX6mCkWfszupChFeAXVXpI9_aY4jaOdUbXi2G8TcOEAy3xKs1k06C2s
+  - >-
+    https://play-lh.googleusercontent.com/VC2kEZsPqlG7quQ7w82CS6Mk6odD_qjFSOiUrj83VoNRgSvcqw7pKKN_3BdvEkqfHQ
+  - >-
+    https://play-lh.googleusercontent.com/prdYK8Nhmi8m8MH9SAEJHQIIPURrFHqzdkC-dpjuqdb6m5OWcc3fMQnP2VAKQInjNQ
+  - >-
+    https://play-lh.googleusercontent.com/-0meaaW-4C7fk7twCZXne_bL7udjilbPolCpwUZzqExK-_usCxJq3iNvLZNfKdgDp3Y
+  - >-
+    https://play-lh.googleusercontent.com/HKVxdNptNOMz7ky5-hXoN1ZRbzgaVs-SYGvmgx6UXXjiPB3UqJX0W4pSwYkXvB997A51
+rating: 4.5
+lastUpdated: 23 jul 2025
+version: 4.2.3
 ---
 
 Welcome to the ultimate brain-teasing adventure of 2048!
