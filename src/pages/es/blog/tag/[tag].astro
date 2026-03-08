@@ -1,17 +1,22 @@
 ---
 import Layout from "../../../../layouts/Layout.astro";
 import BlogCard from "../../../../components/BlogCard.astro";
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import { slugify } from "../../../../utils/slugs";
 import { useTranslations } from "../../../../i18n/utils";
 
 const t = useTranslations('es');
 
+interface TagGroup {
+  posts: Set<CollectionEntry<'blog'>>;
+  displayNames: Map<string, number>;
+}
+
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog", ({ data, id }) => !data.draft && id.startsWith('es/'));
 
   // Group posts by slugified tag
-  const tagGroups = new Map();
+  const tagGroups = new Map<string, TagGroup>();
 
   allPosts.forEach(post => {
     const tags = post.data.tags || [];
@@ -25,7 +30,7 @@ export async function getStaticPaths() {
       }
 
       // Explicitly type the retrieved group
-      const group = tagGroups.get(slug) as { posts: Set<any>; displayNames: Map<string, number> };
+      const group = tagGroups.get(slug)!;
       group.posts.add(post);
 
       const count = group.displayNames.get(tag) || 0;
@@ -33,7 +38,7 @@ export async function getStaticPaths() {
     });
   });
 
-  return Array.from(tagGroups.entries()).map(([slug, data]: [string, any]) => {
+  return Array.from(tagGroups.entries()).map(([slug, data]) => {
     // Find the most frequent display name for this slug
     let bestDisplayName = "";
     let maxCount = -1;
@@ -45,7 +50,7 @@ export async function getStaticPaths() {
       }
     }
 
-    const filteredPosts = Array.from(data.posts as Set<any>).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+    const filteredPosts = Array.from(data.posts).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
     return {
       params: { tag: slug },
@@ -77,7 +82,7 @@ const { posts, tagName } = Astro.props;
     <div class="container mx-auto px-4">
       {posts.length > 0 ? (
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post: any) => (
+          {posts.map((post: CollectionEntry<'blog'>) => (
             <BlogCard post={post} />
           ))}
         </div>
