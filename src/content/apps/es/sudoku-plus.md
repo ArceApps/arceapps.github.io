@@ -47,42 +47,8 @@ Empecé Sudoku+ porque quería una app de Sudoku que realmente me apeteciera usa
 
 <!-- STORE_DESCRIPTION_START -->
 
-✔ Completísimo tutorial que te muestra todos los trucos para resolver sudokus, válido tanto para jugadores principiantes como expertos.
-
-✔ Cinco niveles de dificultad perfectamente equilibrados.
-
-✔ Mas de 5000 Sudokus para resolver.
-
-✔ Un montón de diseños diferentes, elige tu preferido.
-
-✔ Posibilidad de deshacer y rehacer movimientos sin límite.
-
-✔ Opción de autorrelleno de anotaciones.
-
-✔ Opción de autoborrado de anotaciones.
-
-✔ Anotaciones y opciones de juego avanzadas.
-
-✔ Totalmente gratuito y con muy pocos anuncios.
-
-. Resaltado de  duplicados: para evitar la repetición de números en una fila, columna y región.
-
-✔ 5 niveles de dificultad perfectamente equilibrados: Muy fácil, normal, difícil y muy difícil y extremo.
-
-✔ Diseño sencillo e intuitivo.
-
-✔ Sin permisos abusivos
-
-✔ Sudoku + free contiene anuncios, lo que nos permite poder ofrecerte este juego gratis y en español. La aplicación se puede utilizar offline (sin conexión a Internet).
-
-------------------------------------------------------------
-👍 ¡Entrena tu cerebro con la aplicación de Sudoku en cualquier lugar y momento!
-------------------------------------------------------------
-
-Si deseas ayudarnos en la traducción de  nuestras apps a otros idiomas contacta con nosotros.
-
-------------------------------------------------------------
-Traducciones: María Llorens Ribes.   Enviar un E-mail
+¡Desafía tu cerebro con **Sudoku+** en cualquier lugar y en cualquier momento!
+El juego completo es gratuito, con muy pocos anuncios. ¡La propia app se puede usar sin conexión a internet!
 
 <!-- STORE_DESCRIPTION_END -->
 

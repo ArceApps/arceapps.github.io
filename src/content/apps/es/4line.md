@@ -47,42 +47,9 @@ La puntuación por líneas diagonales es un detalle del que estoy especialmente 
 
 <!-- STORE_DESCRIPTION_START -->
 
-✔ 4Line for Color line es un juego totalmente gratuito de lógica y rompecabezas diseñado para Android.
-
-✔ 4Line for Color line, es sencillo, intuitivo y adictivo.
-
-✔ Haz una pausa estimulante. Disfruta manteniendo tu mente activa y hazlo de un modo agradable.
-
-✔ 4Line for Color line es gratis.
-
-✔ ¡Desafía a tu mente!
-
-✔ ¡Estás listo para afrontar un nuevo reto!
-
-
-Tutorial del juego:
-
-✔ El juego 4Line for Color line consiste en ir moviendo unas casillas de color por todo el tablero formando líneas con al menos cuatro casillas del mismo color.
-
-✔ Cada vez que movemos una casilla, salen otras tres de diferentes colores y se colocan de forma aleatoria a lo largo de todo el tablero de juego.
-
-✔ Las casillas pueden colocarse tanto en horizontal, como en vertical o en diagonal. T ambién puedes combinar diferentes formas, consigue tantas como seas capaz.
-
-✔ Cuántas más casillas consigas hacer desaparecer a la vez, más puntos obtendrás.
-
-✔ El juego termina cuando ya no queden casillas vacías ni movimientos posibles sobre el tablero de juego.
-
-✔ El juego es similar al juego clásico 4 en línea, color lines y similares para un solo jugador.
-
-✔ Verifique diariamente las puntuaciones más altas de los usuarios en la tabla de posiciones.
-
-✔ ¡Prepárate para enfrentarte a un nuevo desafío!
-
-✔ Juego de puzzles.
-
-✔ Mejoras frecuentes del juego basadas en tus comentarios
-
-¡Disfruta el juego!
+**4Line para líneas de colores** es un juego de lógica, puzzle y ejercicio mental totalmente gratuito para Android.
+Es fácil, intuitivo y adictivo. Date un descanso estimulante. Disfruta manteniendo tu mente activa de una forma agradable.
+¡Desafía tu mente! ¡Estás listo para un nuevo reto!
 
 <!-- STORE_DESCRIPTION_END -->
 
