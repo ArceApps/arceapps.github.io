@@ -9,8 +9,11 @@ const { lang = 'es' } = Astro.props;
 const t = useTranslations(lang);
 
 // Security: Use environment variable for email to prevent hardcoding secrets in repo
-const contactEmail =
-  import.meta.env.PUBLIC_CONTACT_EMAIL || "arce.com.apps@gmail.com";
+const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL;
+
+if (!contactEmail && import.meta.env.PROD) {
+  throw new Error("PUBLIC_CONTACT_EMAIL environment variable is not defined. Contact form will not work in production.");
+}
 
 const nextUrl = lang === 'es'
   ? "https://arceapps.github.io/es/about-me"
