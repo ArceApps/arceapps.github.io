@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
 import rehypeExternalLinks from 'rehype-external-links';
+import { remarkLocaleLinks } from './src/plugins/remark-locale-links.ts';
 // import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
@@ -11,6 +12,7 @@ export default defineConfig({
   site: 'https://arceapps.com',
 
   markdown: {
+    remarkPlugins: [remarkLocaleLinks],
     rehypePlugins: [
       [
         rehypeExternalLinks,

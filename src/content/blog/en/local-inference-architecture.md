@@ -10,7 +10,7 @@ With the release of **Android 16 (Baklava)** and the stabilization of **LiteRT**
 
 In this post, we'll explore how to integrate local inference engines into a robust **Clean Architecture** setup, ensuring your UI remains decoupled from the underlying model implementation.
 
-> **Related Reading:** If you're new to Clean Architecture or DI, check out my previous posts on [Clean Architecture](/blog/clean-architecture) and [Dependency Injection](/blog/dependency-injection).
+> **Related Reading:** If you're new to Clean Architecture or DI, check out my previous posts on [Clean Architecture](/blog/clean-architecture-android) and [Dependency Injection](/blog/dependency-injection-android-hilt-koin).
 
 ## The Problem: Leaky Abstractions
 
@@ -133,4 +133,4 @@ By treating local inference engines as Data Sources, we gain the flexibility to 
 
 1.  [Google AI Edge Documentation](https://ai.google.dev/edge)
 2.  [LiteRT Guide](https://ai.google.dev/edge/litert)
-3.  [Android Clean Architecture Guide](/blog/clean-architecture)
+3.  [Android Clean Architecture Guide](/blog/clean-architecture-android)

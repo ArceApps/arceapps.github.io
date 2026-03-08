@@ -6,7 +6,7 @@ heroImage: "/images/tech-kmp-ui-sync.svg"
 tags: ["Kotlin Multiplatform", "KMP", "Compose Multiplatform", "iOS", "Android", "Architecture"]
 ---
 
-Kotlin Multiplatform (KMP) has matured significantly. As discussed in my [State of KMP 2025](/blog/kmp-2025-state) article, sharing business logic is now standard practice. However, with the release of **Compose Multiplatform 1.8**, the debate has shifted to the UI layer: *How much UI should we actually share?*
+Kotlin Multiplatform (KMP) has matured significantly. As discussed in my [State of KMP 2025](/blog/kotlin-multiplatform-2025-state) article, sharing business logic is now standard practice. However, with the release of **Compose Multiplatform 1.8**, the debate has shifted to the UI layer: *How much UI should we actually share?*
 
 In this article, we'll dive into advanced strategies for sharing UI code between Android and iOS without sacrificing the native "feel" that users expect.
 
@@ -103,4 +103,4 @@ There is no "one size fits all". For brownfield apps, the **Hybrid Approach** mi
 
 1.  [Compose Multiplatform Documentation](https://www.jetbrains.com/lp/compose-multiplatform/)
 2.  [Decompose Library](https://arkivanov.github.io/Decompose/)
-3.  [State of KMP 2025](/blog/kmp-2025-state)
+3.  [State of KMP 2025](/blog/kotlin-multiplatform-2025-state)
