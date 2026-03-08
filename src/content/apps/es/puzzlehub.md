@@ -1,7 +1,7 @@
 ---
 title: PuzzleHub
 description: >-
-  La colección definitiva de entrenamiento cerebral con 10 juegos de lógica
+  La colección definitiva de entrenamiento cerebral con 12 juegos de lógica
   clásicos y modernos en una sola aplicación.
 pubDate: '2023-12-01'
 heroImage: >-
@@ -40,20 +40,20 @@ version: 2.6.1
 
 PuzzleHub nació de una pregunta que me seguía haciendo: ¿por qué alguien que ama el Sudoku rara vez conoce el Hashi, el Slitherlink o el Calcudoku? Estos puzzles han sido pilares de los libros de rompecabezas y los periódicos durante décadas, pero siguen siendo prácticamente invisibles en el panorama de las apps móviles. Me propuse cambiar eso construyendo una única app que pudiera servir como introducción curada a todo el género de los puzzles de lógica.
 
-El reto técnico fue formidable. Cada uno de los 10 juegos requiere su propio motor de generación procedimental, sistema de calibración de dificultad y solver — porque solo puedes afirmar honestamente que un puzzle tiene solución si puedes resolverlo de forma programática. Construir y validar 10 generadores independientes fue el trabajo de ingeniería más complejo que he realizado hasta la fecha, y es algo de lo que hablo abiertamente porque creo que la comunidad indie de desarrollo móvil se beneficia de relatos honestos sobre lo que realmente implica "construir una app de colección". Cada generador pasó por cientos de miles de casos de prueba antes de que yo estuviera satisfecho.
+El reto técnico fue formidable. Cada uno de los 12 juegos requiere su propio motor de generación procedimental, sistema de calibración de dificultad y solver — porque solo puedes afirmar honestamente que un puzzle tiene solución si puedes resolverlo de forma programática. Construir y validar 12 generadores independientes fue el trabajo de ingeniería más complejo que he realizado hasta la fecha, y es algo de lo que hablo abiertamente porque creo que la comunidad indie de desarrollo móvil se beneficia de relatos honestos sobre lo que realmente implica "construir una app de colección". Cada generador pasó por cientos de miles de casos de prueba antes de que yo estuviera satisfecho.
 
-De lo que más me siento orgulloso es del sistema de progresión unificado. En lugar de tratar cada juego como un compartimento estanco, PuzzleHub hace un seguimiento de tu entrenamiento mental global en las 10 disciplinas. El modo de desafío diario te saca suavemente de tu juego habitual y te lleva a uno que quizás hayas ignorado, que es exactamente el tipo de experiencia que el concepto de un "gimnasio mental" exige. Cada actualización que publico en PuzzleHub está guiada por una única estrella del norte: hacer que un nuevo tipo de puzzle se sienta tan natural y satisfactorio como el que el usuario ya conoce.
+De lo que más me siento orgulloso es del sistema de progresión unificado. En lugar de tratar cada juego como un compartimento estanco, PuzzleHub hace un seguimiento de tu entrenamiento mental global en las 12 disciplinas. El modo de desafío diario te saca suavemente de tu juego habitual y te lleva a uno que quizás hayas ignorado, que es exactamente el tipo de experiencia que el concepto de un "gimnasio mental" exige. Cada actualización que publico en PuzzleHub está guiada por una única estrella del norte: hacer que un nuevo tipo de puzzle se sienta tan natural y satisfactorio como el que el usuario ya conoce.
 <!-- ABOUT_END -->
 
 <!-- STORE_DESCRIPTION_START -->
 
-**Disfruta PuzzleHub**, la colección definitiva de entrenamiento cerebral con 10 rompecabezas clásicos y modernos de lógica, todo en una sola aplicación. Perfecto para todos los niveles, PuzzleHub ofrece miles de puzles generados de forma procedimental para afinar tu razonamiento lógico y velocidad mental. Juega en cualquier momento y en cualquier lugar, incluso sin conexión.
+**Disfruta PuzzleHub**, la colección definitiva de entrenamiento cerebral con 12 rompecabezas clásicos y modernos de lógica, todo en una sola aplicación. Perfecto para todos los niveles, PuzzleHub ofrece miles de puzles generados de forma procedimental para afinar tu razonamiento lógico y velocidad mental. Juega en cualquier momento y en cualquier lugar, incluso sin conexión.
 
 <!-- STORE_DESCRIPTION_END -->
 
 ## Características Principales
 
-*   **10 Juegos en 1**: Disfruta de variedad infinita con Hashi, Calcudoku, Buscaminas y más.
+*   **12 Juegos en 1**: Disfruta de variedad infinita con Hashi, Calcudoku, Buscaminas y más.
 *   **Puzles Ilimitados**: Miles de niveles con dificultad escalable desde Fácil hasta Experto.
 *   **Múltiples Modos de Juego**: Elige entre Relax, Contrarreloj y Desafíos Diarios.
 *   **Mejora y Aprende**: Usa pistas inteligentes y comprobación de errores para perfeccionar tus habilidades.
@@ -75,5 +75,7 @@ PuzzleHub es más que un simple pasatiempo; es tu gimnasio mental personal. Si d
 *   **Buscaminas**: El clásico atemporal de la deducción. Usa pistas numéricas para localizar y marcar todas las minas ocultas.
 *   **Fillomino**: Un rompecabezas de llenado de territorio. Crea regiones de un tamaño específico, como lo indican los números dentro de ellas. (Polyominous)
 *   **Dominosa**: Descubre el diseño de un conjunto completo de dominós emparejando números adyacentes. (Dominós Solitario)
+*   **Akari**: Colocación estratégica de bombillas. (Light Up)
+*   **Math Crossword**: Puzles de ecuaciones matemáticas. (Crossmath)
 
 ¿Listo para desafiar tu mente? **Descarga PuzzleHub ahora** y comienza tu viaje de entrenamiento cerebral hoy!

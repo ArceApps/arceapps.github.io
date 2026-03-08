@@ -1,7 +1,7 @@
 ---
 title: PuzzleHub
 description: >-
-  The ultimate brain training collection with 10 classic and modern logic games
+  The ultimate brain training collection with 12 classic and modern logic games
   in a single app.
 pubDate: '2023-12-01'
 heroImage: >-
@@ -40,20 +40,20 @@ version: 2.6.1
 
 PuzzleHub was born from a question I kept asking myself: why does someone who loves Sudoku so rarely know about Hashi, Slitherlink, or Calcudoku? These puzzles have been staples of puzzle books and newspapers for decades, yet they remain largely invisible in the mobile app landscape. I set out to fix that by building a single app that could serve as a curated introduction to the entire logic puzzle genre.
 
-The technical challenge was formidable. Each of the 10 games requires its own procedural generation engine, difficulty calibration system, and solver — because you can only honestly claim a puzzle is solvable if you can actually solve it programmatically. Building and validating 10 separate generators was the most complex engineering work I've done to date, and it's something I talk about openly because I think the indie mobile dev community benefits from honest accounts of what "building a collection app" actually entails. Every generator went through hundreds of thousands of test cases before I was satisfied.
+The technical challenge was formidable. Each of the 12 games requires its own procedural generation engine, difficulty calibration system, and solver — because you can only honestly claim a puzzle is solvable if you can actually solve it programmatically. Building and validating 12 separate generators was the most complex engineering work I've done to date, and it's something I talk about openly because I think the indie mobile dev community benefits from honest accounts of what "building a collection app" actually entails. Every generator went through hundreds of thousands of test cases before I was satisfied.
 
-What I'm most proud of is the unified progression system. Rather than treating each game as a separate silo, PuzzleHub tracks your overall mental training across all 10 disciplines. The daily challenge mode gently pushes you out of your comfort game and into one you might have ignored — which is exactly the kind of experience the concept of a "mental gym" demands. Every update I ship to PuzzleHub is guided by a single north star: make a new puzzle type feel as natural and satisfying as the one the user already loves.
+What I'm most proud of is the unified progression system. Rather than treating each game as a separate silo, PuzzleHub tracks your overall mental training across all 12 disciplines. The daily challenge mode gently pushes you out of your comfort game and into one you might have ignored — which is exactly the kind of experience the concept of a "mental gym" demands. Every update I ship to PuzzleHub is guided by a single north star: make a new puzzle type feel as natural and satisfying as the one the user already loves.
 <!-- ABOUT_END -->
 
 <!-- STORE_DESCRIPTION_START -->
 
-**Enjoy PuzzleHub**, the ultimate brain training collection featuring 10 classic and modern logic puzzles, all in one app. Perfect for all skill levels, PuzzleHub offers thousands of procedurally generated puzzles to sharpen your logical reasoning and mental speed. Play anytime, anywhere, even offline.
+**Enjoy PuzzleHub**, the ultimate brain training collection featuring 12 classic and modern logic puzzles, all in one app. Perfect for all skill levels, PuzzleHub offers thousands of procedurally generated puzzles to sharpen your logical reasoning and mental speed. Play anytime, anywhere, even offline.
 
 <!-- STORE_DESCRIPTION_END -->
 
 ## Key Features
 
-*   **10 Games in 1**: Enjoy endless variety with Hashi, Calcudoku, Minesweeper, and more.
+*   **12 Games in 1**: Enjoy endless variety with Hashi, Calcudoku, Minesweeper, and more.
 *   **Unlimited Puzzles**: Thousands of levels with scalable difficulty from Easy to Expert.
 *   **Multiple Game Modes**: Choose between Relax, Time Attack, and Daily Challenges.
 *   **Improve and Learn**: Use smart hints and error checking to refine your skills.
@@ -75,5 +75,7 @@ PuzzleHub is more than just a pastime; it's your personal mental gym. If you enj
 *   **Minesweeper**: The timeless deduction classic. Use numerical clues to locate and flag all hidden mines.
 *   **Fillomino**: A territory-filling puzzle. Create regions of a specific size as indicated by the numbers within them. (Polyominous)
 *   **Dominosa**: Uncover the layout of a full set of dominoes by pairing adjacent numbers. (Solitaire Dominoes)
+*   **Akari**: Strategic light bulb placement. (Light Up)
+*   **Math Crossword**: Mathematical equations puzzles. (Crossmath)
 
 Ready to challenge your mind? **Download PuzzleHub now** and start your brain training journey today!
