@@ -43,13 +43,13 @@ if (!nextPath) {
   // Note: This works perfectly for structural pages. For content with different slugs (blog posts),
   // it might lead to 404s if slugs don't match.
   // Ideally, we would map exact content paths, but for now this covers the main navigation.
+  const segments = pathname.split('/').filter(Boolean);
   if (currentLang === 'es') {
-    nextPath = pathname.replace(/^\/es/, '') || '/';
+    if (segments[0] === 'es') segments.shift();
   } else {
-    nextPath = '/es' + pathname;
+    segments.unshift('es');
   }
-  // Fix double slashes just in case
-  nextPath = nextPath.replace(/\/\//g, '/');
+  nextPath = '/' + segments.join('/');
 }
 ---
 
