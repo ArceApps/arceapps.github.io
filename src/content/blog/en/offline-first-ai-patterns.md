@@ -97,6 +97,6 @@ AI on the Edge isn't just about chatbots. It's an infrastructural tool that can 
 
 ## References
 
-1.  [Room Database Guide](/blog/room-database)
+1.  [Room Database Guide](/blog/room-database-android-guide)
 2.  [Google AI Edge: Text Generation](https://ai.google.dev/edge/generative/text)
 3.  [Offline-First Architecture](https://developer.android.com/topic/architecture/data-layer/offline-first)
