@@ -56,12 +56,11 @@ Let's get to what matters. The API for accessing Gemini Nano from Android goes t
 ```kotlin
 // libs.versions.toml
 [versions]
-google-ai-client = "16.0.0"
+google-aicore = "0.0.1-exp01"
 
 [libraries]
-google-ai-generative = { group = "com.google.android.gms", name = "play-services-mlkit-text-recognition", version.ref = "google-ai-client" }
-// For Android AI Core (Gemini Nano on-device):
-google-aicore = { group = "com.google.ai.edge.aicore", name = "aicore", version = "0.0.1-exp01" }
+// Android AI Core — access to Gemini Nano on-device via Google Play Services
+google-aicore = { group = "com.google.ai.edge.aicore", name = "aicore", version.ref = "google-aicore" }
 ```
 
 ### Configuration and availability check
