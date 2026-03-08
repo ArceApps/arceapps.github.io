@@ -47,9 +47,42 @@ The diagonal line scoring is a detail I'm particularly proud of. Most Color Line
 
 <!-- STORE_DESCRIPTION_START -->
 
-**4Line for Color line** is a totally free game of logic, puzzle and brain teaser design for Android.
-It is easy, intuitive and addictive. Take a stimulating pause. Enjoy having your mind active and do it in a pleasant way.
-Challenge your mind! You are ready for a new challenge!
+✔ 4Line for Color line is a totally free game of logic, puzzle and brain teaser design for Android.
+
+✔ 4Line for Color line is easy, intuitive and addictive.
+
+✔ Take a stimulanting pause. Enjoy having your mind active and do it in a pleasant way.
+
+✔ 4Line for Color line is free
+
+✔ Challenge your mind!
+
+✔ You are ready for a new challenge!
+
+
+Game tutorial:
+
+✔ 4Line for Color line game consists of moving color squares around the board forming lines with at least 4 squares of the same color.
+
+✔ Each time we move a square another 3 with different colors come up, and randomly arrange themselves around the board.
+
+✔ The squares can be placed horizontally, vertically or diagonally.
+
+✔ The more squares you can make disappear at the same time, the more points you get.
+
+✔ The game ends when there are no empty squares or possible movements over the board.
+
+✔ The game is similar to clasic game 4Line for Color lines, etc, for a single player.
+
+✔ Check daily, weakly and the highest score of the standings.
+
+✔ Get ready to face a new challenge!
+
+✔ Puzzle Game.
+
+✔ Frequent game enhancements based on your comments.
+
+Enjoy the game!
 
 <!-- STORE_DESCRIPTION_END -->
 

@@ -47,8 +47,42 @@ I started Sudoku+ because I wanted a Sudoku app I'd actually use myself — one 
 
 <!-- STORE_DESCRIPTION_START -->
 
-Challenge your brain with **Sudoku+** anywhere and anytime!
-The full game is free, with very few ads. The app itself can be used offline without an internet connection!
+✔ Complete tutorial that shows you all the tricks to solve sudokus, valid for both beginners and experts.
+
+✔ 5 perfectly balanced levels of difficulty: Easy, medium, hard, very hard and extreme
+
+✔ More than 5,000 well-formed puzzles.
+
+✔ 9x9 grid.
+
+✔ Lots of different designs, choose your favorite.
+
+✔ Unlimited Undo/Redo
+
+✔ Auto-Fill Notes Option
+
+✔ Auto-Clear Notes Option
+
+✔ Advanced game options and notes
+
+✔ Full game is free, with very few ads.
+
+✔ Highlight duplicates to avoid repeating numbers in a row, column and block.
+
+✔ Simple and intuitive design.
+
+✔ No intrusive permissions.
+
+✔ Sudoku + free includes advertisements to allow offering this game for free. The app itself can be used offline / without an internet connection!
+
+----------------------------------------
+👍 Challenge your brain with Sudoku+ anywhere and anytime!
+..........................................
+
+If you want to help us in the translation of our apps to other languages, contact us.
+
+------------------------------------------------------------
+Translations: María Llorens Ribes.  Send an Email
 
 <!-- STORE_DESCRIPTION_END -->
 

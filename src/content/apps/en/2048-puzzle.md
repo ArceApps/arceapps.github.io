@@ -47,9 +47,79 @@ Building this app taught me more about Android performance optimization than any
 <!-- STORE_DESCRIPTION_START -->
 
 Welcome to the ultimate brain-teasing adventure of 2048!
+
 Dive into the addictive world of numbers, strategy, and puzzle-solving.
 Can you conquer the ultimate challenge and reach the coveted 2048 tile?
+
 Get ready to test your skills and embark on an unforgettable journey!
+
+Game Features:
+
+✔ Compete with players from all over the world and share the scores and achievements available in 2048+
+
+✔ Choose different and colorful designs to configure the game to your liking.
+
+✔ Enjoy an exciting gaming experience.
+
+✔ Get all the achievements available in the game and collect all the badges.
+Addictive Gameplay: Engage in hours of captivating gameplay as you strive to reach the elusive 2048 tile. The more you play, the more challenging it becomes!
+
+✔ Strategic Moves: Swipe in different directions to move the numbered tiles. Plan your moves strategically to merge matching numbers and increase their value. Careful planning and foresight are key to success!
+
+✔ Endless Excitement: Enjoy an endless supply of challenging puzzles with random tile placement. Each game presents a unique combination of tiles, ensuring a fresh experience every time you play.
+
+✔ Power-Ups and Boosters: Unlock power-ups and boosters to enhance your gameplay. Use them strategically to undo moves, shuffle tiles, or get a hint when you're stuck. Maximize your chances of success!
+
+✔ Achievements and Leaderboards: Compete against friends and players worldwide for the highest score and climb the leaderboards. Unlock achievements as you master the game and showcase your skills to the world.
+
+✔ Customizable Themes: Personalize your gaming experience with a variety of visually stunning themes. Choose from a collection of captivating designs and immerse yourself in the world of 2048.
+
+✔ Play Anytime, Anywhere: Enjoy the convenience of playing 2048 offline, no internet connection required. Play at your own pace and challenge yourself wherever you go.
+
+✔ Simple and Intuitive Controls: Experience smooth and intuitive controls that make playing 2048 a breeze. Swipe in your desired direction to move the tiles and watch as they merge into higher numbers.
+
+✔ Mind-Stimulating: Sharpen your logical thinking, strategic planning, and number skills with every move. 2048 is not just a game; it's a workout for your brain!
+
+HOW TO PLAY:
+✔ Slide the colors in one of the four allowed movements, up, down, right and left.
+
+✔ When two colors are combined with the same number, a new color is created with the sum of the numbers. The player wins when he reaches 2048.
+
+✔ From that moment you can continue playing to get your own record.
+
+✔ 2048+ is the classic 2048 puzzle game. Slide the tiles and match them to get 2048 tiles. Start with 2 and work your way up to 32, 128, 512, 1024, and finally 2048.
+
+✔ If you like number games and number puzzle games, play 2048 number puzzle games for free!
+
+✔ It is one of the best brain teasers and brain teasers for all ages.
+
+✔ Enjoy difficult and fun games in a brain game!
+
+✔ 2048 puzzle game is fun and free game and you can play it offline!
+
+✔ Plan your moves carefully to create higher-value tiles.
+
+2048 puzzle
+Addictive gameplay
+Strategy game
+Brain teaser
+Number puzzle
+Tile merging
+Logical thinking
+Challenging levels
+Power-ups and boosters
+Achievements and leaderboards
+Customizable themes
+Offline play
+Mind-stimulating
+
+Embark on an epic 2048 adventure and become the ultimate puzzle master! Download now and start your journey to 2048 domination.
+
+Can you conquer the challenge? Play now and find out!
+
+For any questions, suggestions, or technical issues, please contact our support team at arce.com.apps@gmail.com
+
+We value your feedback and are here to assist you!
 
 <!-- STORE_DESCRIPTION_END -->
 
