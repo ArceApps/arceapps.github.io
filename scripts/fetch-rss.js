@@ -49,26 +49,26 @@ function sanitize(text, maxLength = 500) {
 async function fetchFeeds() {
   console.log('📰 Starting RSS Feed Collection...');
 
-  const allItems = [];
-
-  for (const feed of FEEDS) {
+  const feedPromises = FEEDS.map(async (feed) => {
     try {
       console.log(`fetching ${feed.name}...`);
       const feedData = await parser.parseURL(feed.url);
 
-      const items = feedData.items.slice(0, 10).map(item => ({
+      return feedData.items.slice(0, 10).map(item => ({
         source: feed.name,
         title: sanitize(item.title, 150),
         link: item.link,
         pubDate: item.pubDate,
         contentSnippet: sanitize(item.contentSnippet || item.summary || item.content || '', 500)
       }));
-
-      allItems.push(...items);
     } catch (error) {
       console.error(`❌ Error fetching ${feed.name}:`, error.message);
+      return [];
     }
-  }
+  });
+
+  const results = await Promise.all(feedPromises);
+  const allItems = results.flat();
 
   // Ensure output directory exists
   await fs.mkdir(OUTPUT_DIR, { recursive: true });
