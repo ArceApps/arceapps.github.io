@@ -8,8 +8,8 @@ import PostNavigation from '../../../components/PostNavigation.astro';
 import { slugify } from '../../../utils/slugs';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('es/'));
-  const enPosts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('en/'));
+  const posts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'));
+  const enPosts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'));
   // Sort posts by date to ensure correct next/prev logic
   const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
@@ -61,7 +61,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 
 // Related posts logic
-const allPosts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('es/'));
+const allPosts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'));
 const currentTags = post.data.tags || [];
 const relatedPosts = allPosts
   .filter(p => p.slug !== post.slug)

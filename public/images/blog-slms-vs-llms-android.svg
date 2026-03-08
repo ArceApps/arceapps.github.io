@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bgGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#01302f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tealPillar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#018786;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#015f5e;stop-opacity:0.7" />
+    </linearGradient>
+    <linearGradient id="orangePillar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9800;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#e65100;stop-opacity:0.7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGrad2)"/>
+
+  <!-- Subtle divider line -->
+  <line x1="400" y1="20" x2="400" y2="380" stroke="white" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.15"/>
+
+  <!-- Title -->
+  <text x="400" y="40" font-family="Roboto, Arial, sans-serif" font-size="17" font-weight="700" fill="white" text-anchor="middle" letter-spacing="2" opacity="0.9">SLM vs LLM · Android Inference</text>
+
+  <!-- === LEFT SIDE: SLM / On-Device (Teal) === -->
+  <!-- Pillar -->
+  <rect x="80" y="80" width="260" height="240" rx="16" fill="url(#tealPillar)" opacity="0.18" stroke="#018786" stroke-width="1.5"/>
+
+  <!-- Phone icon -->
+  <rect x="170" y="100" width="80" height="130" rx="10" fill="none" stroke="#018786" stroke-width="2.5"/>
+  <rect x="178" y="108" width="64" height="100" rx="4" fill="#018786" opacity="0.2"/>
+  <circle cx="210" cy="220" r="5" fill="#018786" opacity="0.7"/>
+  <!-- Screen content lines -->
+  <line x1="188" y1="120" x2="232" y2="120" stroke="#018786" stroke-width="2" opacity="0.7"/>
+  <line x1="188" y1="130" x2="225" y2="130" stroke="#018786" stroke-width="1.5" opacity="0.5"/>
+  <line x1="188" y1="139" x2="218" y2="139" stroke="#018786" stroke-width="1.5" opacity="0.5"/>
+  <!-- Brain/chip on phone -->
+  <rect x="196" y="148" width="28" height="28" rx="4" fill="none" stroke="#018786" stroke-width="1.8" opacity="0.9"/>
+  <line x1="196" y1="156" x2="200" y2="156" stroke="#018786" stroke-width="1.5"/>
+  <line x1="196" y1="162" x2="200" y2="162" stroke="#018786" stroke-width="1.5"/>
+  <line x1="196" y1="168" x2="200" y2="168" stroke="#018786" stroke-width="1.5"/>
+  <line x1="220" y1="156" x2="224" y2="156" stroke="#018786" stroke-width="1.5"/>
+  <line x1="220" y1="162" x2="224" y2="162" stroke="#018786" stroke-width="1.5"/>
+  <line x1="220" y1="168" x2="224" y2="168" stroke="#018786" stroke-width="1.5"/>
+  <line x1="206" y1="148" x2="206" y2="144" stroke="#018786" stroke-width="1.5"/>
+  <line x1="214" y1="148" x2="214" y2="144" stroke="#018786" stroke-width="1.5"/>
+  <line x1="206" y1="176" x2="206" y2="180" stroke="#018786" stroke-width="1.5"/>
+  <line x1="214" y1="176" x2="214" y2="180" stroke="#018786" stroke-width="1.5"/>
+  <!-- Chip inner grid -->
+  <line x1="203" y1="153" x2="217" y2="153" stroke="#018786" stroke-width="1" opacity="0.7"/>
+  <line x1="203" y1="162" x2="217" y2="162" stroke="#018786" stroke-width="1" opacity="0.7"/>
+  <line x1="203" y1="171" x2="217" y2="171" stroke="#018786" stroke-width="1" opacity="0.7"/>
+  <line x1="207" y1="153" x2="207" y2="176" stroke="#018786" stroke-width="1" opacity="0.7"/>
+  <line x1="213" y1="153" x2="213" y2="176" stroke="#018786" stroke-width="1" opacity="0.7"/>
+
+  <text x="210" y="250" font-family="Roboto, Arial, sans-serif" font-size="22" font-weight="900" fill="#018786" text-anchor="middle">SLM</text>
+  <text x="210" y="270" font-family="Roboto, Arial, sans-serif" font-size="11" fill="#80cbc4" text-anchor="middle">Small Language Model</text>
+
+  <!-- SLM tags -->
+  <rect x="108" y="285" width="68" height="20" rx="10" fill="#018786" opacity="0.3"/>
+  <text x="142" y="299" font-family="Roboto, Arial, sans-serif" font-size="9" fill="#80cbc4" text-anchor="middle">On-Device</text>
+  <rect x="184" y="285" width="52" height="20" rx="10" fill="#018786" opacity="0.3"/>
+  <text x="210" y="299" font-family="Roboto, Arial, sans-serif" font-size="9" fill="#80cbc4" text-anchor="middle">Private</text>
+  <rect x="244" y="285" width="60" height="20" rx="10" fill="#018786" opacity="0.3"/>
+  <text x="274" y="299" font-family="Roboto, Arial, sans-serif" font-size="9" fill="#80cbc4" text-anchor="middle">Offline</text>
+
+  <text x="210" y="330" font-family="Roboto, Arial, sans-serif" font-size="10" fill="#018786" text-anchor="middle">Gemini Nano · Phi-3 Mini · Llama 3.2</text>
+
+  <!-- === CENTER: Scale/Balance === -->
+  <text x="400" y="195" font-family="Roboto, Arial, sans-serif" font-size="28" text-anchor="middle" fill="white" opacity="0.4">⚖</text>
+  <!-- VS text -->
+  <rect x="372" y="200" width="56" height="28" rx="14" fill="white" opacity="0.08"/>
+  <text x="400" y="220" font-family="Roboto, Arial, sans-serif" font-size="15" font-weight="900" fill="white" text-anchor="middle" opacity="0.7">VS</text>
+
+  <!-- === RIGHT SIDE: LLM / Cloud (Orange) === -->
+  <!-- Pillar -->
+  <rect x="460" y="80" width="260" height="240" rx="16" fill="url(#orangePillar)" opacity="0.18" stroke="#FF9800" stroke-width="1.5"/>
+
+  <!-- Cloud icon -->
+  <path d="M538 160 Q530 160 530 170 Q522 170 522 180 Q522 188 530 188 L590 188 Q600 188 600 180 Q600 170 592 170 Q590 157 578 157 Q568 148 558 152 Q552 148 542 152 Q538 152 538 160Z" fill="none" stroke="#FF9800" stroke-width="2.5" opacity="0.9"/>
+  <!-- Cloud fill hint -->
+  <path d="M538 160 Q530 160 530 170 Q522 170 522 180 Q522 188 530 188 L590 188 Q600 188 600 180 Q600 170 592 170 Q590 157 578 157 Q568 148 558 152 Q552 148 542 152 Q538 152 538 160Z" fill="#FF9800" opacity="0.08"/>
+
+  <!-- Server racks inside cloud -->
+  <rect x="540" y="165" width="40" height="16" rx="3" fill="none" stroke="#FF9800" stroke-width="1.5" opacity="0.8"/>
+  <circle cx="547" cy="173" r="2" fill="#FF9800" opacity="0.7"/>
+  <line x1="552" y1="170" x2="575" y2="170" stroke="#FF9800" stroke-width="1" opacity="0.5"/>
+  <line x1="552" y1="174" x2="568" y2="174" stroke="#FF9800" stroke-width="1" opacity="0.5"/>
+
+  <text x="560" y="222" font-family="Roboto, Arial, sans-serif" font-size="22" font-weight="900" fill="#FF9800" text-anchor="middle">LLM</text>
+  <text x="560" y="242" font-family="Roboto, Arial, sans-serif" font-size="11" fill="#ffcc80" text-anchor="middle">Large Language Model</text>
+
+  <!-- LLM tags -->
+  <rect x="480" y="257" width="60" height="20" rx="10" fill="#FF9800" opacity="0.25"/>
+  <text x="510" y="271" font-family="Roboto, Arial, sans-serif" font-size="9" fill="#ffcc80" text-anchor="middle">Cloud API</text>
+  <rect x="548" y="257" width="60" height="20" rx="10" fill="#FF9800" opacity="0.25"/>
+  <text x="578" y="271" font-family="Roboto, Arial, sans-serif" font-size="9" fill="#ffcc80" text-anchor="middle">Powerful</text>
+  <rect x="616" y="257" width="68" height="20" rx="10" fill="#FF9800" opacity="0.25"/>
+  <text x="650" y="271" font-family="Roboto, Arial, sans-serif" font-size="9" fill="#ffcc80" text-anchor="middle">Scalable</text>
+
+  <text x="560" y="302" font-family="Roboto, Arial, sans-serif" font-size="10" fill="#FF9800" text-anchor="middle">GPT-4o · Gemini 1.5 · Claude 3.5</text>
+
+  <!-- Bottom hint -->
+  <text x="400" y="370" font-family="Roboto, Arial, sans-serif" font-size="10" fill="white" text-anchor="middle" opacity="0.35" letter-spacing="1">LATENCY · PRIVACY · COST · CAPABILITY · BATTERY</text>
+
+  <!-- Corner decorations -->
+  <circle cx="40" cy="40" r="20" fill="#018786" opacity="0.12"/>
+  <circle cx="760" cy="40" r="20" fill="#FF9800" opacity="0.12"/>
+  <circle cx="40" cy="360" r="12" fill="#018786" opacity="0.10"/>
+  <circle cx="760" cy="360" r="12" fill="#FF9800" opacity="0.10"/>
+</svg>

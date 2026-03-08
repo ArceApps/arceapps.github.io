@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <radialGradient id="bg2" cx="40%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#0a1a1a"/>
+      <stop offset="100%" stop-color="#060f0f"/>
+    </radialGradient>
+    <radialGradient id="chip-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#018786" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#018786" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#018786" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow2">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="soft-glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bg2)"/>
+
+  <!-- Subtle circuit pattern left side -->
+  <g stroke="#018786" stroke-width="0.5" opacity="0.1">
+    <line x1="60" y1="80" x2="140" y2="80"/>
+    <line x1="140" y1="80" x2="140" y2="140"/>
+    <line x1="60" y1="140" x2="140" y2="140"/>
+    <line x1="60" y1="80" x2="60" y2="320"/>
+    <line x1="60" y1="320" x2="140" y2="320"/>
+    <circle cx="60" cy="80" r="3" fill="#018786" opacity="0.4"/>
+    <circle cx="140" cy="140" r="3" fill="#018786" opacity="0.4"/>
+    <circle cx="60" cy="320" r="3" fill="#018786" opacity="0.4"/>
+  </g>
+
+  <!-- Phone outline -->
+  <g transform="translate(290,40)">
+    <!-- Phone shadow/glow -->
+    <rect x="-5" y="-5" width="230" height="330" rx="28" fill="#018786" opacity="0.06"/>
+
+    <!-- Phone body -->
+    <rect x="0" y="0" width="220" height="320" rx="24" fill="#0d2020" stroke="#018786" stroke-width="2"/>
+    <!-- Phone shine -->
+    <rect x="2" y="2" width="216" height="316" rx="22" fill="none" stroke="#01a898" stroke-width="0.5" opacity="0.4"/>
+
+    <!-- Screen area -->
+    <rect x="12" y="28" width="196" height="266" rx="8" fill="#071414"/>
+    <!-- Dynamic island / notch -->
+    <rect x="78" y="10" width="64" height="12" rx="6" fill="#071414"/>
+
+    <!-- Chip glow inside screen -->
+    <circle cx="98" cy="148" r="70" fill="url(#chip-glow)" opacity="0.6"/>
+
+    <!-- CPU/Chip representation -->
+    <g transform="translate(68,118)" filter="url(#glow2)">
+      <!-- Chip body -->
+      <rect x="0" y="0" width="60" height="60" rx="6" fill="#013535" stroke="#018786" stroke-width="1.5"/>
+      <rect x="4" y="4" width="52" height="52" rx="4" fill="#014040" stroke="#01a898" stroke-width="1"/>
+      <!-- Chip grid pattern -->
+      <line x1="20" y1="4" x2="20" y2="56" stroke="#018786" stroke-width="0.5" opacity="0.5"/>
+      <line x1="40" y1="4" x2="40" y2="56" stroke="#018786" stroke-width="0.5" opacity="0.5"/>
+      <line x1="4" y1="20" x2="56" y2="20" stroke="#018786" stroke-width="0.5" opacity="0.5"/>
+      <line x1="4" y1="40" x2="56" y2="40" stroke="#018786" stroke-width="0.5" opacity="0.5"/>
+      <!-- Center core -->
+      <rect x="18" y="18" width="24" height="24" rx="3" fill="#018786" opacity="0.8"/>
+      <text x="30" y="34" text-anchor="middle" font-family="Roboto, sans-serif" font-size="8" font-weight="700" fill="white">AI</text>
+      <!-- Chip pins left -->
+      <rect x="-8" y="10" width="8" height="4" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="-8" y="20" width="8" height="4" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="-8" y="30" width="8" height="4" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="-8" y="40" width="8" height="4" rx="1" fill="#018786" opacity="0.7"/>
+      <!-- Chip pins right -->
+      <rect x="60" y="10" width="8" height="4" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="60" y="20" width="8" height="4" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="60" y="30" width="8" height="4" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="60" y="40" width="8" height="4" rx="1" fill="#018786" opacity="0.7"/>
+      <!-- Chip pins top -->
+      <rect x="10" y="-8" width="4" height="8" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="20" y="-8" width="4" height="8" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="36" y="-8" width="4" height="8" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="46" y="-8" width="4" height="8" rx="1" fill="#018786" opacity="0.7"/>
+      <!-- Chip pins bottom -->
+      <rect x="10" y="60" width="4" height="8" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="20" y="60" width="4" height="8" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="36" y="60" width="4" height="8" rx="1" fill="#018786" opacity="0.7"/>
+      <rect x="46" y="60" width="4" height="8" rx="1" fill="#018786" opacity="0.7"/>
+    </g>
+
+    <!-- Internal signal waves (staying inside device = on-device) -->
+    <g transform="translate(98,148)" fill="none">
+      <path d="M-30,0 Q-15,-20 0,0 Q15,20 30,0" stroke="#FF9800" stroke-width="1.5" opacity="0.7"/>
+      <path d="M-45,0 Q-22,-32 0,0 Q22,32 45,0" stroke="#FF9800" stroke-width="1" opacity="0.45"/>
+      <path d="M-58,0 Q-29,-44 0,0 Q29,44 58,0" stroke="#FF9800" stroke-width="0.8" opacity="0.25"/>
+    </g>
+
+    <!-- Shield/lock icon at bottom of screen -->
+    <g transform="translate(86,220)">
+      <path d="M24,0 L48,10 L48,28 Q48,44 24,52 Q0,44 0,28 L0,10 Z" fill="#013535" stroke="#FF9800" stroke-width="1.5" opacity="0.9"/>
+      <path d="M24,6 L42,14 L42,28 Q42,40 24,47 Q6,40 6,28 L6,14 Z" fill="#FF9800" opacity="0.15"/>
+      <!-- Lock body -->
+      <rect x="16" y="26" width="16" height="14" rx="3" fill="none" stroke="white" stroke-width="1.5"/>
+      <path d="M17,26 L17,20 Q17,14 24,14 Q31,14 31,20 L31,26" fill="none" stroke="white" stroke-width="1.5"/>
+      <circle cx="24" cy="32" r="2.5" fill="white" opacity="0.9"/>
+    </g>
+
+    <!-- Bottom bar -->
+    <rect x="88" y="304" width="44" height="5" rx="2.5" fill="#018786" opacity="0.5"/>
+  </g>
+
+  <!-- Right side: privacy/no-cloud illustration -->
+  <g transform="translate(560,80)">
+    <!-- Cloud with X (no cloud dependency) -->
+    <g opacity="0.7">
+      <path d="M70,50 Q70,30 90,30 Q92,15 108,15 Q124,15 126,30 Q140,30 140,50 Q140,65 125,65 L85,65 Q70,65 70,50 Z" fill="#0d2020" stroke="#334444" stroke-width="1.5"/>
+      <!-- X over cloud -->
+      <line x1="85" y1="35" x2="125" y2="65" stroke="#FF9800" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="125" y1="35" x2="85" y2="65" stroke="#FF9800" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+    <text x="105" y="88" text-anchor="middle" font-family="Roboto, sans-serif" font-size="9" fill="#a0b8b8" opacity="0.7">NO CLOUD</text>
+  </g>
+
+  <!-- Right side: privacy label -->
+  <g transform="translate(530,180)">
+    <rect x="0" y="0" width="160" height="50" rx="8" fill="#013535" stroke="#018786" stroke-width="1" opacity="0.8"/>
+    <text x="80" y="18" text-anchor="middle" font-family="Roboto, sans-serif" font-size="9" fill="#018786" opacity="0.9" letter-spacing="1">ON-DEVICE ONLY</text>
+    <text x="80" y="34" text-anchor="middle" font-family="Roboto, sans-serif" font-size="9" fill="#a0c4c4" opacity="0.7">Privacy · Low Latency</text>
+    <text x="80" y="46" text-anchor="middle" font-family="Roboto, sans-serif" font-size="9" fill="#a0c4c4" opacity="0.7">Offline Ready</text>
+  </g>
+
+  <!-- Left side text -->
+  <g transform="translate(30,150)">
+    <text x="0" y="0" font-family="Roboto, sans-serif" font-size="10" fill="#018786" opacity="0.7" letter-spacing="1">GEMINI NANO</text>
+    <text x="0" y="18" font-family="Roboto, sans-serif" font-size="10" fill="#a0c4c4" opacity="0.5">Android AI Core</text>
+    <text x="0" y="36" font-family="Roboto, sans-serif" font-size="10" fill="#a0c4c4" opacity="0.5">LiteRT Runtime</text>
+  </g>
+
+  <!-- Title -->
+  <text x="400" y="388" text-anchor="middle" font-family="Roboto, sans-serif" font-size="13" font-weight="700" fill="white" opacity="0.75" letter-spacing="3">GEMINI NANO · ON-DEVICE AI · ANDROID</text>
+</svg>

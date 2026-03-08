@@ -10,7 +10,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const devlogs = (await getCollection("devlog", ({ data, id }) => !data.draft && id.startsWith(`${lang}/`))).sort(
+const devlogs = (await getCollection("devlog", ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith(`${lang}/`))).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
