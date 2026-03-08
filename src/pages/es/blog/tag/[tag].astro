@@ -13,7 +13,7 @@ interface TagGroup {
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog", ({ data, id }) => !data.draft && id.startsWith('es/'));
+  const allPosts = await getCollection("blog", ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'));
 
   // Group posts by slugified tag
   const tagGroups = new Map<string, TagGroup>();

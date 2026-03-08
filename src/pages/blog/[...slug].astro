@@ -11,8 +11,8 @@ import { useTranslations } from '../../i18n/utils';
 const t = useTranslations('en');
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('en/'));
-  const esPosts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('es/'));
+  const posts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'));
+  const esPosts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'));
   // Sort posts by date to ensure correct next/prev logic
   const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
@@ -67,7 +67,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 
 // Related posts logic
-const allPosts = await getCollection('blog', ({ data, id }) => !data.draft && id.startsWith('en/'));
+const allPosts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'));
 const currentTags = post.data.tags || [];
 const relatedPosts = allPosts
   .filter(p => p.slug !== post.slug)

@@ -18,7 +18,7 @@ const prefix = lang === 'es' ? 'es/' : 'en/';
 const linkPrefix = lang === 'es' ? '/es' : '';
 
 // Get latest blog posts
-const allPosts = (await getCollection("blog", ({ data, id }) => !data.draft && id.startsWith(prefix)))
+const allPosts = (await getCollection("blog", ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith(prefix)))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
