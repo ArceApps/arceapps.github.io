@@ -35,9 +35,23 @@ lastUpdated: 'Jul 23, 2025'
 version: 2.1.1
 ---
 
+<!-- ABOUT_START -->
+## Behind the App
+
+4Line is my take on Color Lines, a puzzle game that first appeared on PC in 1992 and has never truly left. There's something timeless about the "place a ball, build a line, plan three steps ahead" cycle that keeps players engaged long after they've learned the rules. I wanted to rebuild that feeling with modern Android standards — crisp colors, clean animations, and the kind of responsive touch input that the original PC mouse-driven version could never offer.
+
+What makes 4Line personally significant to me is that it was the first app where I truly wrestled with grid-based pathfinding. Implementing A* to route balls across the board, making sure the game never spawns new pieces in positions that cause an immediate loss, and balancing randomness so the game feels fair rather than arbitrary — these were genuinely hard problems that forced me to think like both a game designer and a systems engineer at the same time.
+
+The diagonal line scoring is a detail I'm particularly proud of. Most Color Lines clones ignore diagonals or handle them inconsistently. I spent a disproportionate amount of time making sure diagonal five-in-a-rows register exactly the way a player intuitively expects them to, because fairness in game mechanics is non-negotiable. Building this app taught me that the most important features are often the ones players never consciously notice.
+<!-- ABOUT_END -->
+
+<!-- STORE_DESCRIPTION_START -->
+
 **4Line for Color line** is a totally free game of logic, puzzle and brain teaser design for Android.
 It is easy, intuitive and addictive. Take a stimulating pause. Enjoy having your mind active and do it in a pleasant way.
 Challenge your mind! You are ready for a new challenge!
+
+<!-- STORE_DESCRIPTION_END -->
 
 ## Game Tutorial
 

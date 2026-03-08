@@ -35,8 +35,22 @@ lastUpdated: 13 feb 2026
 version: 1.1.1
 ---
 
-Challenge your brain with **Sudoku+** anywhere and anytime!
-The full game is free, with very few ads. The app itself can be used offline without an internet connection!
+<!-- ABOUT_START -->
+## Detrás de la App
+
+Sudoku+ fue la app que me enseñó lo que "pulido" significa realmente en la práctica. El Sudoku es probablemente el tipo de puzzle más resuelto en el móvil, lo que significa que el listón de calidad lo marcan años de expectativas de usuarios formadas por decenas de competidores bien financiados. Construir en ese espacio me obligó a ser deliberado con cada decisión: por qué este tamaño de cuadrícula, por qué estas etiquetas de dificultad, por qué este tono específico de color para el resaltado.
+
+El algoritmo de generación de puzzles es algo de lo que hablo con bastante apertura. Generar un Sudoku válido es sencillo; generar uno con solución única que sea resoluble sin adivinar en un nivel de dificultad específico es genuinamente difícil. La calibración de dificultad en Sudoku+ está basada en técnicas de resolución y no en métricas de fuerza bruta — un puzzle "Fácil" se puede completar usando solo singles desnudos, mientras que los puzzles "Extremo" requieren técnicas avanzadas como X-Wing y Pez Espada. Este es el tipo de decisión de diseño que la mayoría de los jugadores nunca nota conscientemente, pero que es exactamente lo que crea la sensación de "desafío justo" que les hace volver.
+
+Empecé Sudoku+ porque quería una app de Sudoku que realmente me apeteciera usar a mí mismo — sin apenas anuncios, con funcionamiento offline y un tutorial lo suficientemente completo para alguien que aprende el juego desde cero. El modo tutorial, que explica las técnicas desde lo básico hasta lo avanzado, refleja la guía que me hubiera gustado encontrar cuando me tomé en serio resolver el Sudoku por primera vez. Construirlo fue mi manera de devolver algo a la comunidad del puzzle mientras aprendía lo que supone publicar algo verdaderamente cuidado.
+<!-- ABOUT_END -->
+
+<!-- STORE_DESCRIPTION_START -->
+
+¡Desafía tu cerebro con **Sudoku+** en cualquier lugar y en cualquier momento!
+El juego completo es gratuito, con muy pocos anuncios. ¡La propia app se puede usar sin conexión a internet!
+
+<!-- STORE_DESCRIPTION_END -->
 
 ## Features
 

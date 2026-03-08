@@ -35,7 +35,21 @@ lastUpdated: 28 feb 2026
 version: 2.6.1
 ---
 
+<!-- ABOUT_START -->
+## Detrás de la App
+
+PuzzleHub nació de una pregunta que me seguía haciendo: ¿por qué alguien que ama el Sudoku rara vez conoce el Hashi, el Slitherlink o el Calcudoku? Estos puzzles han sido pilares de los libros de rompecabezas y los periódicos durante décadas, pero siguen siendo prácticamente invisibles en el panorama de las apps móviles. Me propuse cambiar eso construyendo una única app que pudiera servir como introducción curada a todo el género de los puzzles de lógica.
+
+El reto técnico fue formidable. Cada uno de los 10 juegos requiere su propio motor de generación procedimental, sistema de calibración de dificultad y solver — porque solo puedes afirmar honestamente que un puzzle tiene solución si puedes resolverlo de forma programática. Construir y validar 10 generadores independientes fue el trabajo de ingeniería más complejo que he realizado hasta la fecha, y es algo de lo que hablo abiertamente porque creo que la comunidad indie de desarrollo móvil se beneficia de relatos honestos sobre lo que realmente implica "construir una app de colección". Cada generador pasó por cientos de miles de casos de prueba antes de que yo estuviera satisfecho.
+
+De lo que más me siento orgulloso es del sistema de progresión unificado. En lugar de tratar cada juego como un compartimento estanco, PuzzleHub hace un seguimiento de tu entrenamiento mental global en las 10 disciplinas. El modo de desafío diario te saca suavemente de tu juego habitual y te lleva a uno que quizás hayas ignorado, que es exactamente el tipo de experiencia que el concepto de un "gimnasio mental" exige. Cada actualización que publico en PuzzleHub está guiada por una única estrella del norte: hacer que un nuevo tipo de puzzle se sienta tan natural y satisfactorio como el que el usuario ya conoce.
+<!-- ABOUT_END -->
+
+<!-- STORE_DESCRIPTION_START -->
+
 **Disfruta PuzzleHub**, la colección definitiva de entrenamiento cerebral con 10 rompecabezas clásicos y modernos de lógica, todo en una sola aplicación. Perfecto para todos los niveles, PuzzleHub ofrece miles de puzles generados de forma procedimental para afinar tu razonamiento lógico y velocidad mental. Juega en cualquier momento y en cualquier lugar, incluso sin conexión.
+
+<!-- STORE_DESCRIPTION_END -->
 
 ## Características Principales
 

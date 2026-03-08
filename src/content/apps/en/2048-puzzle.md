@@ -34,10 +34,24 @@ version: 4.2.3
 rating: 4.5
 ---
 
+<!-- ABOUT_START -->
+## Behind the App
+
+2048 started as an experiment in understanding procedural game mechanics and the psychology of "just one more move." I've always been fascinated by how the original 2048 by Gabriele Cirulli went viral in 2014 with just a few hundred lines of code. That simplicity hiding deep strategic depth is exactly the kind of design challenge I wanted to explore hands-on.
+
+The core inspiration was straightforward: take something already beloved and understand why it works at a mechanical level before adding anything new. What I discovered is that the satisfaction loop in 2048 is almost perfect by design — the moment two tiles merge, the brain releases a small reward signal. Every feature I added (achievements, customizable themes, leaderboards) was evaluated against a single question: does this enhance that core loop, or does it distract from it?
+
+Building this app taught me more about Android performance optimization than any tutorial could. Smooth swipe animations on older devices, handling screen rotation without losing game state, managing the undo stack efficiently — these are the kinds of problems that only surface when real users start playing. It remains one of my most downloaded apps and continues to generate feedback that directly shapes how I approach UI decisions in every project that comes after.
+<!-- ABOUT_END -->
+
+<!-- STORE_DESCRIPTION_START -->
+
 Welcome to the ultimate brain-teasing adventure of 2048!
 Dive into the addictive world of numbers, strategy, and puzzle-solving.
 Can you conquer the ultimate challenge and reach the coveted 2048 tile?
 Get ready to test your skills and embark on an unforgettable journey!
+
+<!-- STORE_DESCRIPTION_END -->
 
 ## Game Features
 

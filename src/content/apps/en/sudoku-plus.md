@@ -35,8 +35,22 @@ lastUpdated: 'Feb 13, 2026'
 version: 1.1.1
 ---
 
+<!-- ABOUT_START -->
+## Behind the App
+
+Sudoku+ was the app that taught me what "polished" really means in practice. Sudoku is arguably the most-solved puzzle type on mobile, which means the quality bar is set by years of user expectations shaped by dozens of well-funded competitors. Building in that space forced me to be deliberate about every single decision: why this grid size, why these difficulty labels, why this specific shade of highlight color.
+
+The puzzle generation algorithm is something I'm genuinely open about. Generating a valid Sudoku is easy; generating one with a unique solution that's achievable without guessing at a specific difficulty level is genuinely hard. The difficulty calibration in Sudoku+ is based on solving techniques rather than brute-force metrics — an "Easy" puzzle can be completed using only naked singles, while "Extreme" puzzles require advanced techniques like X-Wing and Swordfish. This is the kind of design decision that most players never consciously notice, but it's exactly what creates the feeling of "fair challenge" that keeps people coming back.
+
+I started Sudoku+ because I wanted a Sudoku app I'd actually use myself — one that was offline-first, had very few ads, and came with a tutorial complete enough for someone learning the game from scratch. The tutorial mode, which walks through techniques from basic to advanced, reflects the guide I wish I'd found when I first got serious about solving Sudoku. Building it was my way of giving back to the puzzle community while learning what it takes to ship something truly clean.
+<!-- ABOUT_END -->
+
+<!-- STORE_DESCRIPTION_START -->
+
 Challenge your brain with **Sudoku+** anywhere and anytime!
 The full game is free, with very few ads. The app itself can be used offline without an internet connection!
+
+<!-- STORE_DESCRIPTION_END -->
 
 ## Features
 
