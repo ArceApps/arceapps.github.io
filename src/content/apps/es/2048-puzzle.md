@@ -34,10 +34,24 @@ version: 4.2.3
 rating: 4.5
 ---
 
-Welcome to the ultimate brain-teasing adventure of 2048!
-Dive into the addictive world of numbers, strategy, and puzzle-solving.
-Can you conquer the ultimate challenge and reach the coveted 2048 tile?
-Get ready to test your skills and embark on an unforgettable journey!
+<!-- ABOUT_START -->
+## Detrás de la App
+
+2048 comenzó como un experimento para entender las mecánicas de juego procedural y la psicología del "solo una jugada más". Siempre me fascinó cómo el 2048 original de Gabriele Cirulli se volvió viral en 2014 con apenas unas pocas centenas de líneas de código. Esa simplicidad que esconde una profundidad estratégica enorme es exactamente el tipo de reto de diseño que quería explorar de primera mano.
+
+La inspiración central fue directa: tomar algo que ya era querido y entender por qué funciona mecánicamente antes de añadir nada nuevo. Lo que descubrí es que el bucle de satisfacción del 2048 es casi perfecto por diseño — en el momento en que dos fichas se fusionan, el cerebro libera una pequeña señal de recompensa. Cada funcionalidad que añadí (logros, temas visuales, clasificaciones) se evaluó con la misma pregunta: ¿potencia ese bucle central o lo distrae?
+
+Construir esta app me enseñó más sobre optimización de rendimiento en Android que cualquier tutorial. Animaciones de deslizamiento fluidas en dispositivos más antiguos, gestionar la rotación de pantalla sin perder el estado del juego, implementar el historial de deshacer de forma eficiente — estos son los problemas que solo aparecen cuando los usuarios reales empiezan a jugar. Sigue siendo una de mis apps más descargadas y continúa generando feedback que directamente moldea mis decisiones de UI en todos los proyectos posteriores.
+<!-- ABOUT_END -->
+
+<!-- STORE_DESCRIPTION_START -->
+
+¡Bienvenido a la aventura definitiva del rompecabezas 2048!
+Sumérgete en el adictivo mundo de los números, la estrategia y la resolución de puzzles.
+¿Puedes superar el desafío supremo y alcanzar la codiciada ficha de 2048?
+¡Prepárate para poner a prueba tus habilidades y embarcarte en un viaje inolvidable!
+
+<!-- STORE_DESCRIPTION_END -->
 
 ## Game Features
 

@@ -35,9 +35,23 @@ lastUpdated: 23 jul 2025
 version: 2.1.1
 ---
 
-**4Line for Color line** is a totally free game of logic, puzzle and brain teaser design for Android.
-It is easy, intuitive and addictive. Take a stimulating pause. Enjoy having your mind active and do it in a pleasant way.
-Challenge your mind! You are ready for a new challenge!
+<!-- ABOUT_START -->
+## Detrás de la App
+
+4Line es mi interpretación de Color Lines, un juego de puzzles que apareció por primera vez en PC en 1992 y nunca ha desaparecido del todo. Hay algo atemporal en el ciclo de "colocar una bola, formar una línea, planear tres pasos por adelante" que mantiene a los jugadores enganchados mucho después de aprender las reglas. Quería reconstruir esa sensación con los estándares modernos de Android: colores vivos, animaciones limpias y la entrada táctil responsiva que la versión original de PC con ratón nunca pudo ofrecer.
+
+Lo que hace a 4Line especialmente significativa para mí es que fue la primera app donde me enfrenté de verdad con la búsqueda de caminos en cuadrículas. Implementar A* para enrutar las bolas por el tablero, asegurarme de que el juego nunca coloque nuevas piezas en posiciones que provoquen una derrota inmediata, y equilibrar la aleatoriedad para que el juego se sienta justo en lugar de arbitrario — estos fueron problemas genuinamente difíciles que me obligaron a pensar como diseñador de juegos y como ingeniero de sistemas al mismo tiempo.
+
+La puntuación por líneas diagonales es un detalle del que estoy especialmente orgulloso. La mayoría de los clones de Color Lines ignoran las diagonales o las gestionan de forma inconsistente. Dediqué una cantidad desproporcionada de tiempo a asegurarme de que las líneas diagonales de cinco en raya se detecten exactamente como el jugador espera intuitivamente que lo hagan, porque la equidad en las mecánicas de juego no es negociable. Construir esta app me enseñó que las características más importantes suelen ser las que los jugadores nunca notan conscientemente.
+<!-- ABOUT_END -->
+
+<!-- STORE_DESCRIPTION_START -->
+
+**4Line para líneas de colores** es un juego de lógica, puzzle y ejercicio mental totalmente gratuito para Android.
+Es fácil, intuitivo y adictivo. Date un descanso estimulante. Disfruta manteniendo tu mente activa de una forma agradable.
+¡Desafía tu mente! ¡Estás listo para un nuevo reto!
+
+<!-- STORE_DESCRIPTION_END -->
 
 ## Game Tutorial
 

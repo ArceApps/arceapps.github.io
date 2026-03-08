@@ -102,8 +102,29 @@ async function processFile(filePath) {
         }
     }
 
+    // Actualizar la descripción de la ficha de la tienda en el cuerpo del artículo
+    let bodyUpdated = false;
+    if (appInfo.description) {
+      const STORE_START = '<!-- STORE_DESCRIPTION_START -->';
+      const STORE_END   = '<!-- STORE_DESCRIPTION_END -->';
+      const startIdx = parsed.content.indexOf(STORE_START);
+      const endIdx   = parsed.content.indexOf(STORE_END);
 
-    if (updated) {
+      if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+        const currentSection = parsed.content.slice(startIdx + STORE_START.length, endIdx);
+        const newSection     = `\n\n${appInfo.description}\n\n`;
+
+        if (currentSection.trim() !== appInfo.description.trim()) {
+          parsed.content =
+            parsed.content.slice(0, startIdx + STORE_START.length) +
+            newSection +
+            parsed.content.slice(endIdx);
+          bodyUpdated = true;
+        }
+      }
+    }
+
+    if (updated || bodyUpdated) {
       const newContent = matter.stringify(parsed.content, data);
       fs.writeFileSync(filePath, newContent, 'utf8');
       console.log(`[OK] Updated ${path.basename(filePath)} with latest Google Play data.`);
@@ -130,11 +151,11 @@ async function walkDir(dir) {
 }
 
 async function main() {
-  console.log('Starting Google Play images update...');
+  console.log('Starting Google Play data update (images + store description)...');
   try {
     if (fs.existsSync(APPS_DIR)) {
       await walkDir(APPS_DIR);
-      console.log('Finished updating Google Play images.');
+      console.log('Finished updating Google Play data.');
     } else {
       console.error(`Directory not found: ${APPS_DIR}`);
     }
