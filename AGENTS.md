@@ -2,8 +2,13 @@
 
 Este archivo sirve como fuente de verdad y contexto para todos los agentes de IA (como Sentinel, Palette, Bolt) que interactúan con este repositorio.
 
-## 1. Visión General del Proyecto
-**ArceApps** es un sitio web de portafolio y blog construido con Astro, enfocado en aplicaciones Android y artículos técnicos. El diseño sigue principios de Material Design y la comunicación debe ser técnica pero cercana ("Cercano").
+## 1. Visión General del Proyecto y Filosofía Indie
+**ArceApps** es el sitio web de portafolio y blog personal de un desarrollador independiente (indie dev/solopreneur) que crea aplicaciones y juegos en sus ratos libres por pura pasión. Está construido con Astro y enfocado en el ecosistema Android y el desarrollo de software en general.
+
+**Regla de Oro de Comunicación (El Espíritu Indie):**
+La comunicación en toda la web debe reflejar sutilmente esta filosofía indie. Todo el contenido (artículos de blog, devlogs, descripciones de apps) debe respirar este espíritu de creador independiente.
+- **Evitar jergas corporativas:** No se debe hablar de "reuniones", "empresas de software", "gestión de equipos grandes", "jefes" o "dinámicas corporativas".
+- **Tono:** Técnico, apasionado, cercano, realista y sobrio. Es el espacio de un artesano del software compartiendo sus aprendizajes, herramientas y frustraciones reales, no un blog de una empresa B2B buscando clientes corporativos.
 
 ## 2. Stack Tecnológico
 - **Framework:** Astro 5.16.3 (Modo estático)
@@ -58,7 +63,7 @@ Este archivo sirve como fuente de verdad y contexto para todos los agentes de IA
 - Las apps usan `realIconUrl` en el frontmatter.
 
 ### Contenido
-- **Blog:** Tono técnico, explicativo, con ejemplos prácticos.
+- **Blog:** Tono técnico, explicativo, con ejemplos prácticos, siempre manteniendo el "Espíritu Indie" (proyectos personales, open source, aprendizaje autodidacta). Evitar narrativas de entorno corporativo.
 - **Referencias:** Todo artículo técnico debe incluir una sección de Bibliografía o Referencias al final.
 - **Frontmatter:** Definido estrictamente en `src/content/config.ts`.
 

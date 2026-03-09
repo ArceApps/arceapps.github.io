@@ -107,7 +107,7 @@ Mi plantilla para el Daily Note (`40_Templates/Daily.md`) incluye:
 
 1.  **Focus del Día:** Una sola tarea prioritaria.
 2.  **Log:** Una lista con timestamps.
-    *   `09:30` - Daily Standup. Bloqueo con el equipo de backend por la API de usuarios.
+    *   `09:30` - Revisión de issues abiertos en GitHub y priorización del día.
     *   `10:15` - Investigando error en producción. El stacktrace apunta a `NullPointerException` en el servicio de pagos.
     *   `11:00` - Solución encontrada: faltaba validación en el input. [[Link al PR]]
 3.  **Snippets:** Cualquier comando o bloque de código útil que descubrí hoy.
@@ -134,7 +134,7 @@ Mi setup favorito (Android + Linux):
 ### La opción "Sin Dolor": Obsidian Sync
 Si valoras tu tiempo por encima de $8/mes y necesitas encriptación de extremo a extremo sin configurar servidores, Sync es la respuesta. Además, permite mantener configuraciones separadas (puedes no querer cargar todos los plugins pesados en el móvil).
 
-## 8. Documentación de Equipo: Obsidian Publish
+## 8. Documentación Pública: Obsidian Publish
 
 ¿Qué pasa cuando tu "Jardín Digital" crece tanto que quieres compartirlo?
 Obsidian Publish te permite publicar partes de tu bóveda como una web estática (muy similar a lo que estás leyendo ahora, pero generado al vuelo por Obsidian).

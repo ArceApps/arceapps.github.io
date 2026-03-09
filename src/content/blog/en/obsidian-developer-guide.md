@@ -107,7 +107,7 @@ My Daily Note template (`40_Templates/Daily.md`) includes:
 
 1.  **Focus of the Day:** A single priority task.
 2.  **Log:** A list with timestamps.
-    *   `09:30` - Daily Standup. Blocking with backend team regarding user API.
+    *   `09:30` - Reviewing open issues on GitHub and daily prioritization.
     *   `10:15` - Investigating production error. Stacktrace points to `NullPointerException` in payment service.
     *   `11:00` - Solution found: missing validation on input. [[Link to PR]]
 3.  **Snippets:** Any useful command or code block I discovered today.
@@ -134,13 +134,13 @@ My favorite setup (Android + Linux):
 ### The "Painless" option: Obsidian Sync
 If you value your time over $8/month and need end-to-end encryption without configuring servers, Sync is the answer. Plus, it allows keeping configurations separate (you might not want to load all heavy plugins on mobile).
 
-## 8. Team Documentation: Obsidian Publish
+## 8. Public Documentation: Obsidian Publish
 
 What happens when your "Digital Garden" grows so much you want to share it?
 Obsidian Publish allows you to publish parts of your vault as a static website (very similar to what you are reading now, but generated on the fly by Obsidian).
 
 **Use case for Tech Leads:**
-Create a `Team Docs` folder in your vault. Document Onboarding processes, Code Standards, and RFCs. Publish that folder. Now you have an internal wiki that updates itself every time you edit the file locally. No CI/CD pipelines breaking, no Hugos or Jekylls to maintain. Just text.
+Create a `Public Docs` folder in your vault. Document your workflows, Code Standards, and RFCs. Publish that folder. Now you have a personal wiki that updates itself every time you edit the file locally. No CI/CD pipelines breaking, no Hugos or Jekylls to maintain. Just text.
 
 ## Conclusion: From Consumer to Creator
 

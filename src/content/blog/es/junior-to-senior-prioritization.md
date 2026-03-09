@@ -16,7 +16,7 @@ Como Junior, tu objetivo principal es la ejecución. Se te asignan tareas y opti
 
 *   "¿Puedes añadir esta animación?" -> "¡Sí!"
 *   "¿Podemos refactorizar este módulo ahora?" -> "¡Sí!"
-*   "¿Puedes unirte a esta reunión?" -> "¡Sí!"
+*   "¿Puedo ayudar en esto otro?" -> "¡Sí!"
 
 El problema es que decir "Sí" a todo significa que no estás priorizando nada. Tu tiempo es un recurso finito. Si pasas 4 horas en una animación de bajo impacto, son 4 horas que no dedicaste a una corrección de error crítica o a la planificación arquitectónica.
 

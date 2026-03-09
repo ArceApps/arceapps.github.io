@@ -27,7 +27,7 @@ Un agente *autónomo* monitoriza, decide y actúa por su cuenta dentro de unos l
 
 > **Definición de trabajo:** Un agente autónomo es un sistema de IA que percibe eventos del entorno (un PR abierto, un test fallado, una issue creada), razona sobre qué acción tomar, ejecuta esa acción a través de herramientas externas, y evalúa el resultado — sin intervención humana en cada paso.
 
-En el ciclo de desarrollo Android esto se traduce en cosas concretas: el agente detecta que se ha abierto una PR, analiza los cambios, ejecuta los tests de la feature afectada, escribe el review con comentarios específicos al código Kotlin, y lo publica. Todo mientras tú estás en otra reunión.
+En el ciclo de desarrollo Android esto se traduce en cosas concretas: el agente detecta que se ha abierto una PR, analiza los cambios, ejecuta los tests de la feature afectada, escribe el review con comentarios específicos al código Kotlin, y lo publica. Todo mientras tú te enfocas en programar la siguiente feature de tu proyecto.
 
 ## 🧠 Los Frameworks Multi-Agente que Importan
 

@@ -8,7 +8,7 @@ reference_id: "0f3f40cf-3a5d-481d-b211-b372ac4a2298"
 ---
 ## 🧠 ¿Por qué el Contexto es Rey?
 
-Imagina a un desarrollador Senior nuevo que se une a tu equipo. Si le dices: "Haz la pantalla de login", probablemente te hará mil preguntas o asumirá cosas incorrectas. Pero si le dices: "Haz la pantalla de login usando nuestro `AuthViewModel` base, siguiendo el diseño de `LoginScreen.kt` existente y reutilizando `PrimaryButton`", el resultado será mucho mejor.
+Imagina a un desarrollador Senior que te ayuda a codear por primera vez en tu repositorio. Si le dices: "Haz la pantalla de login", probablemente te hará mil preguntas o asumirá cosas incorrectas. Pero si le dices: "Haz la pantalla de login usando nuestro `AuthViewModel` base, siguiendo el diseño de `LoginScreen.kt` existente y reutilizando `PrimaryButton`", el resultado será mucho mejor.
 
 Los agentes de IA (LLMs) funcionan igual. No leen tu mente; leen el **contexto** que les proporcionas. La calidad de la salida (código generado) es directamente proporcional a la calidad de la entrada (contexto proporcionado).
 

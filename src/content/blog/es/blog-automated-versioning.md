@@ -103,10 +103,10 @@ android {
         run: ./gradlew bundleRelease -PversionCode=${{ needs.calc.outputs.version_code }} -PversionName=${{ needs.calc.outputs.new_tag }}
 ```
 
-## ⚡ Estrategias Avanzadas para Equipos Grandes
+## ⚡ Estrategias Avanzadas para Flujos Complejos
 
 ### Versionado por Ramas (Branch-based Versioning)
-En equipos grandes, `develop` y `main` pueden divergir.
+En flujos complejos, `develop` y `main` pueden divergir.
 - **Main (Producción)**: v1.2.0 (Code: 10200)
 - **Develop (Beta)**: v1.3.0-beta.1 (Code: 103001) -> Usamos un dígito extra al final para pre-releases.
 

@@ -113,7 +113,7 @@ Google Play has "tracks". Your CD strategy should use them intelligently.
 - **Trigger**: Every merge to `develop` or nightly (`cron`).
 
 ### 2. Alpha/Beta Track
-- **Use**: For "Dogfooding" (company employees) or Public Beta Testers.
+- **Use**: For "Dogfooding" (internal testing) or Public Beta Testers.
 - **Availability**: Requires Google review (hours/days).
 - **Trigger**: Merge to `release/*` branch.
 

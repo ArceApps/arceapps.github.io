@@ -158,7 +158,7 @@ El resultado es mágico: la persistencia es totalmente transparente. Puedes mata
 ## Integración UI: La Batalla Civil por los Píxeles
 
 Con el motor listo, llegó el momento de diseñar la interfaz. ¿Dónde ponemos los botones de Undo y Redo?
-Esto desató un debate intenso en el equipo de diseño (que, siendo un equipo indie pequeño, soy básicamente yo discutiendo conmigo mismo frente a un espejo).
+Esto desató un debate intenso en el equipo de diseño (que soy básicamente yo discutiendo con mi equipo de agentes de IA y pidiéndole opinión a Palette sobre UX).
 
 *   **La Facción FAB (Floating Action Button):** Argumentaba que los botones debían estar flotando en la parte inferior de la pantalla, cerca del pulgar del usuario, para facilitar el acceso rápido.
 *   **La Facción Minimalista (Yo):** Argumentaba que el área del tablero es sagrada. En juegos densos como *Minesweeper* o *Nonogram* de 20x20 celdas, cada píxel cuenta. Cubrir una esquina del tablero con un botón flotante es el peor pecado capital en el diseño de puzzles: ocultas información y provocas clics accidentales frustrantes.

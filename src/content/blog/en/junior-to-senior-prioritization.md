@@ -16,7 +16,7 @@ As a Junior, your primary goal is execution. You are given tasks, and you optimi
 
 *   "Can you add this animation?" -> "Yes!"
 *   "Can we refactor this module now?" -> "Yes!"
-*   "Can you join this meeting?" -> "Yes!"
+*   "Can I help with this too?" -> "Yes!"
 
 The problem is that saying "Yes" to everything means you are not prioritizing anything. Your time is a finite resource. If you spend 4 hours on a low-impact animation, that's 4 hours you didn't spend on a critical bug fix or architectural planning.
 

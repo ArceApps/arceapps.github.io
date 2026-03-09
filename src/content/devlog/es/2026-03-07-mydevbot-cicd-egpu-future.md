@@ -45,7 +45,7 @@ Podría hacerlo a mano desde la terminal del VS Code Server, pero si he construi
 
 Quería llegar a un punto donde yo simplemente hiciera `git push` (ya sea desde el VS Code Server en el móvil o desde mi portátil en casa) y el Mini PC se actualizara solo. Un pipeline de Continuous Integration / Continuous Deployment (CI/CD) en toda regla, pero para mi homelab.
 
-Tradicionalmente, en entornos empresariales, un GitHub Action se conectaría por SSH a mi servidor y ejecutaría un script de actualización. O usaría herramientas como ArgoCD. Pero esas opciones son complejas de mantener en un entorno doméstico donde mi IP pública puede cambiar (aunque use Tailscale).
+Tradicionalmente, en entornos complejos o proyectos con más presupuesto, un GitHub Action se conectaría por SSH a mi servidor y ejecutaría un script de actualización. O usaría herramientas como ArgoCD. Pero esas opciones son complejas de mantener en un entorno doméstico indie donde mi IP pública puede cambiar (aunque use Tailscale).
 
 La respuesta más elegante para contenedores Docker es **Watchtower**.
 

@@ -244,6 +244,6 @@ fun setDisplayName(name: String)
 
 La documentación profesional en Android es un ecosistema compuesto por **intención (KDoc)**, **herramientas (Dokka)** y **procesos (CI/CD)**.
 
-Al adoptar KDoc y Dokka, no solo estás "escribiendo comentarios"; estás construyendo una base de conocimiento navegable, interconectada y viva que escala con tu equipo. Transforma la documentación de una tarea odiada a una ventaja competitiva.
+Al adoptar KDoc y Dokka, no solo estás "escribiendo comentarios"; estás construyendo una base de conocimiento navegable, interconectada y viva que escala con la complejidad de tus proyectos. Transforma la documentación de una tarea odiada a una ventaja técnica real.
 
 **Empieza hoy:** Configura el plugin de Dokka en tu `build.gradle` y corre `./gradlew dokkaHtml`. El resultado te sorprenderá.

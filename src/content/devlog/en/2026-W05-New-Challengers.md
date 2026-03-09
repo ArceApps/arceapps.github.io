@@ -48,7 +48,7 @@ My generator wasn't finding optimal solution. It was finding *any* solution, a s
 
 ### Descent into Backtracking Madness
 
-Tuesday decided to fix it. "We need to find Global Minimum", said in meeting.
+Tuesday decided to fix it. "I need to find the Global Minimum", I told myself.
 Implemented solver by **Backtracking** (Recursive Brute Force).
 Algorithm is conceptually simple, kind of thing asked in job interview:
 Try placing bulb. Call function recursively. If reach end, save record. If not, backtrack, remove bulb and try another path.

@@ -73,7 +73,7 @@ Google Play Store tiene requisitos específicos:
 Con Android App Bundle, Google genera múltiples APKs optimizados. Cada uno debe tener el mismo versionCode, pero Google maneja internamente los códigos específicos.
 
 ### Canales de distribución
-- **Interno**: Para testing interno del equipo
+- **Interno**: Para testing interno en mis dispositivos personales
 - **Alpha**: Para testing cerrado
 - **Beta**: Para testing abierto
 - **Producción**: Para usuarios finales
@@ -104,7 +104,7 @@ jobs:
 
 ## Mejores Prácticas
 
-### 1. Consistencia en el equipo
+### 1. Consistencia en tu workflow
 Establecer reglas claras sobre cuándo incrementar cada número:
 - **MAJOR**: Cambios incompatibles o rediseños completos
 - **MINOR**: Nuevas funcionalidades compatibles
@@ -138,6 +138,6 @@ Implementar tests que verifiquen la compatibilidad entre versiones, especialment
 
 ## Conclusión
 
-El versionado semántico en Android requiere un enfoque híbrido que combine las mejores prácticas de SemVer con las particularidades de la plataforma. La clave está en la automatización y la consistencia en el equipo de desarrollo.
+El versionado semántico en Android requiere un enfoque híbrido que combine las mejores prácticas de SemVer con las particularidades de la plataforma. La clave está en la automatización y la consistencia en tus procesos.
 
 Implementar estas prácticas desde el inicio del proyecto ahorra tiempo y reduce errores en el futuro, especialmente cuando la aplicación crece en complejidad y número de usuarios.

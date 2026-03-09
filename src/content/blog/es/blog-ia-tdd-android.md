@@ -13,7 +13,7 @@ Todos conocemos la teoría de **TDD (Test Driven Development)**:
 2.  **Green**: Escribe el código mínimo para pasar el test.
 3.  **Refactor**: Mejora el código sin romper el test.
 
-La realidad: **Es difícil**. Requiere mucha disciplina y escribir mucho código de "fontanería" (mocks, setups) antes de escribir una línea de lógica productiva. Por eso muchos equipos lo abandonan.
+La realidad: **Es difícil**. Requiere mucha disciplina y escribir mucho código de "fontanería" (mocks, setups) antes de escribir una línea de lógica productiva. Por eso es común abandonar este enfoque a medio camino.
 
 ## 🚀 La IA como Catalizador de TDD
 

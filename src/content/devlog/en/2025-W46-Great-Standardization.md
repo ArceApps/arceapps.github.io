@@ -81,7 +81,7 @@ We fixed this by intercepting all touch events on the pause layer. The timer is 
 
 ## Reflection: The Discipline of the Invisible
 
-This week we haven't added a single new feature that the marketing team can sell. "Now margins are equal" doesn't sell copies.
+This week we haven't added a single new feature that catches the eye at first glance. "Now margins are equal" is not something that surprises in a Play Store screenshot.
 
 But software quality isn't measured only by what it does, but by how it makes you feel while using it. Consistency breeds trust. A user who sees that buttons, dialogs, and errors behave the same in 10 different games starts to trust the application. Stops fighting the interface and starts flowing with the game.
 

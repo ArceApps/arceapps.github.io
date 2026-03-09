@@ -11,7 +11,7 @@ reference_id: "b0454438-8d0c-4998-abc2-3dd70aa5bf3d"
 
 Two years ago, using Kotlin Multiplatform (KMP) was a risky bet. Today, in February 2025, the question is no longer "Should we use KMP?" but "Why are we *not* using KMP?".
 
-Big companies like Netflix, McDonald's, and Philips have migrated critical parts of their business logic to shared Kotlin, reducing code duplication by 40-60% without sacrificing native performance.
+High-impact projects have migrated critical parts of their business logic to shared Kotlin, reducing code duplication by 40-60% without sacrificing native performance.
 
 ## 🎨 Compose Multiplatform: The "Game Changer"
 

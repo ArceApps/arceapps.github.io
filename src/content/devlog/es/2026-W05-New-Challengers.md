@@ -48,7 +48,7 @@ Mi generador no estaba encontrando la solución óptima. Estaba encontrando *una
 
 ### El Descenso a la Locura del Backtracking
 
-El martes decidí arreglarlo. "Necesitamos encontrar el Mínimo Global", dije en la reunión.
+El martes decidí arreglarlo. "Necesito encontrar el Mínimo Global", me dije a mí mismo.
 Implementé un solver por **Backtracking** (Fuerza Bruta Recursiva).
 El algoritmo es conceptualmente sencillo, el tipo de cosa que te piden en una entrevista de trabajo:
 Prueba a poner una bombilla. Llama a la función recursivamente. Si llegas al final, guarda el récord. Si no, retrocede (backtrack), quita la bombilla y prueba otro camino.

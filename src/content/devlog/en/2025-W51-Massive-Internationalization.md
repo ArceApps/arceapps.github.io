@@ -14,7 +14,7 @@ Well, this week, "later" finally arrived.
 
 Week 51 (December 15th to 21st) officially became Internationalization Week. We realized that our stats and history screens were a mosaic of Spanish text "hardcoded" into the code, making it impossible to offer a quality experience in any other language.
 
-The team (well, me and my AI agents) embarked on a mission to search and destroy hardcoded strings.
+My AI agent team and I embarked on a mission to search and destroy hardcoded strings.
 
 ### The Scope of Work
 

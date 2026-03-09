@@ -104,7 +104,7 @@ externalDocumentationLink {
 
 - **`dokkaHtml`**: El estándar moderno. Responsivo, con búsqueda integrada y modo oscuro. Ideal para publicar en GitHub Pages.
 - **`dokkaGfm` (GitHub Flavored Markdown)**: Genera archivos `.md`. Útil si quieres integrar la documentación dentro de un sitio Jekyll o Hugo existente.
-- **`dokkaJavadoc`**: Genera HTML clásico estilo Java. Útil solo por compatibilidad legacy o requisitos corporativos estrictos.
+- **`dokkaJavadoc`**: Genera HTML clásico estilo Java. Útil solo por compatibilidad legacy estricta.
 
 ## 🏗️ Estrategia de Documentación para Librerías Android
 

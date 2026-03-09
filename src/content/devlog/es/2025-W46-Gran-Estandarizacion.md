@@ -81,7 +81,7 @@ Arreglamos esto interceptando todos los eventos táctiles en la capa de pausa. E
 
 ## Reflexión: La Disciplina de lo Invisible
 
-Esta semana no hemos añadido ni una sola funcionalidad nueva que el equipo de marketing pueda vender. "Ahora los márgenes son iguales" no vende copias.
+Esta semana no hemos añadido ni una sola funcionalidad nueva de las que llaman la atención a primera vista. "Ahora los márgenes son iguales" no es algo que sorprenda en una captura de pantalla de la Play Store.
 
 Pero la calidad del software no se mide solo por lo que hace, sino por cómo te hace sentir mientras lo usas. La consistencia genera confianza. Un usuario que ve que los botones, los diálogos y los errores se comportan igual en 10 juegos distintos, empieza a confiar en la aplicación. Deja de luchar contra la interfaz y empieza a fluir con el juego.
 

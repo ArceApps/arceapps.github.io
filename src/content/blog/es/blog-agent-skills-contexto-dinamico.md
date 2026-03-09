@@ -9,7 +9,7 @@ reference_id: "c8b07a57-31a7-459e-94af-fc4d60d827e7"
 
 > **Nota:** Este artículo es una evolución directa de conceptos que hemos tratado previamente. Si eres nuevo aquí, te recomiendo leer primero sobre [cómo estandarizar el contexto con AGENTS.md](/blog/blog-agents-md-estandar) y [cómo configurar tus primeros agentes](/blog/blog-configuracion-agentes-ia). Hoy vamos un paso más allá para solucionar los problemas de escalabilidad de ese modelo.
 
-Imagínate la escena: estás concentrado en ajustar una animación compleja en Jetpack Compose y le pides ayuda a tu asistente de IA. Sin embargo, antes de poder responderte, el modelo se ve obligado a procesar un archivo `AGENTS.md` inmenso que contiene desde las reglas de tu pipeline de CI/CD hasta guías de migración de bases de datos legacy. Es como si contrataras a un experto para una consulta rápida, pero le obligaras a leerse la enciclopedia entera de la empresa antes de dejarle decir una palabra. Este enfoque de "contexto estático", aunque ha sido el estándar hasta ahora, está empezando a mostrar sus costuras.
+Imagínate la escena: estás concentrado en ajustar una animación compleja en Jetpack Compose y le pides ayuda a tu asistente de IA. Sin embargo, antes de poder responderte, el modelo se ve obligado a procesar un archivo `AGENTS.md` inmenso que contiene desde las reglas de tu pipeline de CI/CD hasta guías de migración de bases de datos antiguas. Es como si consultaras a un experto para una duda rápida, pero le obligaras a leerse toda la documentación de tus repositorios antes de dejarle decir una palabra. Este enfoque de "contexto estático", aunque ha sido el estándar hasta ahora, está empezando a mostrar sus costuras.
 
 ## 🎯 El Problema del Contexto Monolítico
 

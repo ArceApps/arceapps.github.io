@@ -27,7 +27,7 @@ An *autonomous* agent monitors, decides, and acts on its own within boundaries y
 
 > **Working definition:** An autonomous agent is an AI system that perceives events from the environment (an opened PR, a failed test, a created issue), reasons about what action to take, executes that action through external tools, and evaluates the result — without human intervention at each step.
 
-In the Android development cycle, this translates into concrete things: the agent detects that a PR has been opened, analyzes the changes, runs the tests for the affected feature, writes the review with specific inline comments on the Kotlin code, and publishes it. All while you're in another meeting.
+In the Android development cycle, this translates into concrete things: the agent detects that a PR has been opened, analyzes the changes, runs the tests for the affected feature, writes the review with specific inline comments on the Kotlin code, and publishes it. All while you focus on coding the next feature of your project.
 
 ## 🧠 The Multi-Agent Frameworks That Matter
 

@@ -175,7 +175,7 @@ class GetLatestNewsUseCaseTest {
 1.  **Modelos Anémicos Compartidos**: Usar el mismo objeto para DB, API y UI.
     *   *Por qué está mal*: Si cambias la API, rompes la UI. Viola la separación de capas.
 2.  **Use Cases Pasamanos**: Use Cases que solo llaman al repositorio y no hacen nada más.
-    *   *Defensa*: A veces parece boilerplate, pero protege tu arquitectura para cuando las reglas cambien. Aún así, si *realmente* no hay lógica, algunos equipos permiten llamar al Repo directo desde el ViewModel (Pragmatic Clean Arch), pero ten cuidado.
+    *   *Defensa*: A veces parece boilerplate, pero protege tu arquitectura para cuando las reglas cambien. Aún así, si *realmente* no hay lógica, algunos desarrolladores permiten llamar al Repo directo desde el ViewModel (Pragmatic Clean Arch), pero ten cuidado.
 3.  **Lógica de Negocio en ViewModel**: "Si el usuario es premium, muestra esto".
     *   *Solución*: Mueve esa lógica al Use Case o a la Entidad de Dominio.
 

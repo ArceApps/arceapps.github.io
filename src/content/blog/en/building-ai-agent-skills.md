@@ -13,7 +13,7 @@ Both **Google Gemini** and **GitHub Copilot** (and others like Claude Code or Ch
 
 ## 🧩 What is a Skill?
 
-A **Skill** is basically a folder that encapsulates specific knowledge. Imagine it as installing a plugin in your digital brain. Instead of explaining to your AI how your company's rules work in every chat, the agent "discovers" that it has a skill called `company-standards` and invokes it only when it detects that it needs it.
+A **Skill** is basically a folder that encapsulates specific knowledge. Imagine it as installing a plugin in your digital brain. Instead of explaining to your AI how your repository rules work in every chat, the agent "discovers" that it has a skill called `company-standards` and invokes it only when it detects that it needs it.
 
 The standard structure (largely defined by tools like Gemini CLI) is usually:
 

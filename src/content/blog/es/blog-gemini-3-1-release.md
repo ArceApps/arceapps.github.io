@@ -34,7 +34,7 @@ La innovación clave aquí es la "marca de agua imperceptible" (SynthID) que ase
 ## 🛠️ Integración y Disponibilidad
 
 Gemini 3.1 Pro se está desplegando inmediatamente en el ecosistema de Google:
-*   **Vertex AI:** Para despliegues empresariales.
+*   **Vertex AI:** Para despliegues a gran escala.
 *   **Android Studio:** Potenciando la próxima generación de funciones "Bot-in-IDE".
 *   **NotebookLM:** Mejorando la popular herramienta de investigación con capacidades de síntesis más profundas.
 
