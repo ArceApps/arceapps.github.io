@@ -6,7 +6,7 @@ tags: ["devlog", "architecture", "dominosa", "planning", "philosophy"]
 heroImage: "/images/devlog-w44-dominosa-genesis.svg"
 ---
 
-There is a moment in every software project where the team looks each other in the eye and says: "That's it. No more *features*". It is the moment to freeze, to polish, to stabilize. In *PuzzleSuite*, we thought we had reached that point at the end of October. We had eight solid games: *KenKen* for mathematicians, *Hashi* for architects, *Slitherlink* for topologists. The suite felt complete.
+There is a moment in every software project where you sit at the keyboard, discuss with your AI agent team and say: "That's it. No more *features*". It is the moment to freeze, to polish, to stabilize. In *PuzzleSuite*, we thought we had reached that point at the end of October. We had eight solid games: *KenKen* for mathematicians, *Hashi* for architects, *Slitherlink* for topologists. The suite felt complete.
 
 But then, as always happens, an idea appeared. Or rather, an old memory in the form of domino tiles.
 

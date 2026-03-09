@@ -52,7 +52,7 @@ The pragmatic choice. Pure Kotlin. No code generation.
 ## 🚀 When to Choose What
 
 ### Choose Hilt if:
-- You are building a massive enterprise app with 100+ modules.
+- You are building a massive app with 100+ modules.
 - You need absolute compile-time guarantees.
 - You rely heavily on Google's opinionated stack (Jetpack).
 

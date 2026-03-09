@@ -13,7 +13,7 @@ Tanto **Google Gemini** como **GitHub Copilot** (y otros como Claude Code o Chat
 
 ## 🧩 ¿Qué es un Skill?
 
-Un **Skill** es básicamente una carpeta que encapsula un conocimiento específico. Imagínalo como instalar un plugin en tu cerebro digital. En lugar de explicarle a tu IA cómo funcionan las normas de tu empresa en cada chat, el agente "descubre" que tiene una habilidad llamada `company-standards` y la invoca solo cuando detecta que la necesita.
+Un **Skill** es básicamente una carpeta que encapsula un conocimiento específico. Imagínalo como instalar un plugin en tu cerebro digital. En lugar de explicarle a tu IA cómo funcionan las normas de tu repositorio en cada chat, el agente "descubre" que tiene una habilidad llamada `company-standards` y la invoca solo cuando detecta que la necesita.
 
 La estructura estándar (definida en gran parte por herramientas como Gemini CLI) suele ser:
 

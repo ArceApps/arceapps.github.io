@@ -165,7 +165,7 @@ This separation of powers (Game plays, Tutorial supervises) is what allows us to
 
 ## Philosophy: Suggestion vs Prison
 
-One last note on UX/Philosophy. We had an intense debate in the team about whether we should **force** the user to finish practice.
+One last note on UX/Philosophy. We had an intense debate with my AI agent team about whether we should **force** the user to finish practice.
 *"If we let them skip it, they won't learn. They'll get frustrated later and uninstall"*, argued one part of my brain.
 We implemented a hard block. "Back" button was disabled until you finished.
 

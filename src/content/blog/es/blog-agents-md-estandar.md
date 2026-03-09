@@ -18,7 +18,7 @@ Para entender por qué `agents.md` es necesario, debemos mirar la evolución de 
 3.  **Era Open Source (CONTRIBUTING.md)**: Reglas específicas para colaboradores humanos que quieren aportar.
 4.  **Era IA (agents.md)**: Reglas específicas para "colaboradores sintéticos" (IAs) que generan código.
 
-**¿Por qué surgió este estándar?** Los equipos de desarrollo se dieron cuenta de que, aunque los LLMs (Large Language Models) son poderosos, sufren de "alucinaciones" o inconsistencias cuando les falta contexto. Lo que comenzó como una práctica informal de copiar y pegar reglas en cada prompt, convergió naturalmente hacia un archivo único y estandarizado: `agents.md`.
+**¿Por qué surgió este estándar?** La comunidad de desarrollo se dieron cuenta de que, aunque los LLMs (Large Language Models) son poderosos, sufren de "alucinaciones" o inconsistencias cuando les falta contexto. Lo que comenzó como una práctica informal de copiar y pegar reglas en cada prompt, convergió naturalmente hacia un archivo único y estandarizado: `agents.md`.
 
 ## 🧠 Teoría: ¿Por Qué Funciona agents.md?
 

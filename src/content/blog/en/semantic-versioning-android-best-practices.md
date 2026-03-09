@@ -46,4 +46,4 @@ Don't guess the version. Use tools like `semantic-release` or Conventional Commi
 
 ## 🏁 Conclusion
 
-Adopting SemVer brings discipline to your release process. It communicates the scope of changes clearly to your users (and your QA team).
+Adopting SemVer brings discipline to your release process. It communicates the scope of changes clearly to your users (and to yourself when looking back at old branches).

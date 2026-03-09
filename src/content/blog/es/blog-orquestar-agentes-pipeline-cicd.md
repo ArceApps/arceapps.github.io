@@ -9,7 +9,7 @@ draft: false
 
 > Este artículo es parte de la serie sobre Agentes de IA en el desarrollo Android. Antes de continuar, te recomiendo revisar:
 >
-> - **[Más allá del Chat: Por qué necesitas Agentes en tu equipo de Android](/blog/blog-agentes-ia-android-teoria)** — La base teórica sobre qué son los agentes y por qué cambian el juego.
+> - **[Más allá del Chat: Por qué necesitas Agentes en un entorno multi-agente en Android](/blog/blog-agentes-ia-android-teoria)** — La base teórica sobre qué son los agentes y por qué cambian el juego.
 > - **[Tu Staff Virtual: Configurando Sentinel, Bolt y Palette](/blog/blog-configuracion-agentes-ia)** — Cómo montar cada agente en tu repositorio con `AGENTS.md`.
 > - **[Agentes IA Autónomos en Android: Más Allá del Asistente](/blog/blog-agentes-ia-autonomos-android)** — El salto conceptual a agentes que actúan sin intervención humana.
 
@@ -255,7 +255,7 @@ La clave para que los agentes sean *consistentes* entre ejecuciones es que todos
 - Métricas prioritarias: TimeToFullDisplayMs, FrameOverrunMs
 ```
 
-Con este contrato, un nuevo agente que se añada al equipo en el futuro puede leer el mismo `AGENTS.md` y comportarse de forma coherente. **Es como un onboarding automatizado para los agentes.**
+Con este contrato, un nuevo agente que se añada a tus herramientas en el futuro puede leer el mismo `AGENTS.md` y comportarse de forma coherente. **Es como un onboarding automatizado para los agentes.**
 
 ## 🔀 Coordinación Avanzada: Flujos Condicionales
 

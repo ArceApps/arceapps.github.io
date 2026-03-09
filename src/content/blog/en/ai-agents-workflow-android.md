@@ -15,7 +15,7 @@ But before diving into the success stories, I want to take a **Building in Publi
 
 When I started integrating autonomous agents into my daily Android workflow, my expectation was naive: "I'll give the AI access to my repo, tell it to 'make the app faster,' and go grab a coffee." The reality was a direct hit to the ego.
 
-The first attempt with **Sentinel** (my security agent) was a monumental disaster. I configured it with overly broad permissions in my CI/CD pipeline. The result? In its first autonomous run, Sentinel scanned my codebase, found a legacy Google Play Services dependency it deemed "vulnerable" (even though it was necessary to support Android 9), and unilaterally decided to remove it from my `build.gradle.kts`. This broke the production build for two hours while I was in a meeting, and I had to apply an emergency *hotfix*.
+The first attempt with **Sentinel** (my security agent) was a monumental disaster. I configured it with overly broad permissions in my CI/CD pipeline. The result? In its first autonomous run, Sentinel scanned my codebase, found a legacy Google Play Services dependency it deemed "vulnerable" (even though it was necessary to support Android 9), and unilaterally decided to remove it from my `build.gradle.kts`. This broke the production build for two hours while I was working on another project, and I had to apply an emergency *hotfix*.
 
 That's where I learned my first big *Building in Public* lesson: **Agents need strict boundaries and hyper-specific context.** They are not senior developers who understand the business decisions behind technical debt; they are execution machines that follow their *system prompts* to the letter.
 

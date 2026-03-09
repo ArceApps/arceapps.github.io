@@ -14,7 +14,7 @@ Bueno, esta semana, "luego" finalmente llegó.
 
 La semana 51 (del 15 al 21 de Diciembre) se convirtió oficialmente en la semana de la Internacionalización. Nos dimos cuenta de que nuestras pantallas de estadísticas e historial eran un mosaico de textos en español "hardcodeados" en el código, lo que hacía imposible ofrecer una experiencia de calidad en cualquier otro idioma.
 
-El equipo (bueno, yo y mis agentes de IA) nos embarcamos en una misión de búsqueda y destrucción de strings hardcodeados.
+Mi equipo de agentes de IA y yo nos embarcamos en una misión de búsqueda y destrucción de strings hardcodeados.
 
 ### El Alcance del Trabajo
 

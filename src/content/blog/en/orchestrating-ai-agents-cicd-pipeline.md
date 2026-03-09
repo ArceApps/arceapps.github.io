@@ -9,7 +9,7 @@ draft: false
 
 > This article is part of the AI Agents in Android Development series. Before continuing, I recommend checking out:
 >
-> - **[Beyond the Chat: Why You Need AI Agents on Your Android Team](/blog/ai-agents-android-theory)** — The theoretical foundation of what agents are and why they matter.
+> - **[Beyond the Chat: Why You Need AI Agents on a Multi-Agent Environment in Android](/blog/ai-agents-android-theory)** — The theoretical foundation of what agents are and why they matter.
 > - **[Your Virtual Staff: Configuring Sentinel, Bolt, and Palette](/blog/configuring-ai-agents)** — How to set up each agent in your repository using `AGENTS.md`.
 > - **[Autonomous AI Agents in Android: Beyond the Assistant](/blog/autonomous-ai-agents-android)** — The conceptual leap to agents that act without human intervention.
 
@@ -254,7 +254,7 @@ The key to keeping agents *consistent* across runs is having all of them read th
 - Priority metrics: TimeToFullDisplayMs, FrameOverrunMs
 ```
 
-With this contract, any new agent added to the team in the future can read the same `AGENTS.md` and behave consistently. **It's like automated onboarding for your AI agents.**
+With this contract, any new agent added to your toolset in the future can read the same `AGENTS.md` and behave consistently. **It's like automated onboarding for your AI agents.**
 
 ## 🔀 Advanced Coordination: Conditional Flows
 

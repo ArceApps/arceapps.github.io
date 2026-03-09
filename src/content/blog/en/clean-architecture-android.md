@@ -175,7 +175,7 @@ class GetLatestNewsUseCaseTest {
 1.  **Shared Anemic Models**: Using the same object for DB, API, and UI.
     *   *Why it's bad*: If you change the API, you break the UI. Violates layer separation.
 2.  **Pass-through Use Cases**: Use Cases that only call the repository and do nothing else.
-    *   *Defense*: Sometimes looks like boilerplate, but protects your architecture for when rules change. Still, if there is *really* no logic, some teams allow calling Repo directly from ViewModel (Pragmatic Clean Arch), but be careful.
+    *   *Defense*: Sometimes looks like boilerplate, but protects your architecture for when rules change. Still, if there is *really* no logic, some developers allow calling Repo directly from ViewModel (Pragmatic Clean Arch), but be careful.
 3.  **Business Logic in ViewModel**: "If user is premium, show this".
     *   *Solution*: Move that logic to the Use Case or Domain Entity.
 

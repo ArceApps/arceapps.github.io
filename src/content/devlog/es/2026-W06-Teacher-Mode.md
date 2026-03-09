@@ -165,7 +165,7 @@ Esta separación de poderes (El Juego juega, el Tutorial supervisa) es lo que no
 
 ## Filosofía: Sugerencia vs Prisión
 
-Un último apunte sobre UX/Filosofía. Tuvimos un debate intenso en el equipo sobre si debíamos **obligar** al usuario a terminar la práctica.
+Un último apunte sobre UX/Filosofía. Tuvimos un debate intenso con mi equipo de agentes de IA sobre si debíamos **obligar** al usuario a terminar la práctica.
 *"Si les dejamos saltárselo, no aprenderán. Se frustrarán luego y desinstalarán"*, argumentaba una parte de mi cerebro.
 Implementamos un bloqueo duro. El botón "Atrás" estaba deshabilitado hasta que acabaras.
 

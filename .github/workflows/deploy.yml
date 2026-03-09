@@ -28,6 +28,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - name: Update Google Play Data
+        run: pnpm run apps:update
       - name: Build
         run: pnpm run build
         env:

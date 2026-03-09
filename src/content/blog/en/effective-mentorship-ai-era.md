@@ -3,7 +3,7 @@ title: "Effective Mentorship: A Guide for Seniors in the AI Era"
 description: "How to mentor junior developers when AI can write the code. Focusing on architectural thinking and debugging."
 pubDate: 2026-02-09
 heroImage: "/images/career-mentorship.svg"
-tags: ["Mentorship", "Leadership", "Team Building", "AI", "Seniority"]
+tags: ["Mentorship", "Leadership", "Skill Building", "AI", "Seniority"]
 ---
 
 In 2020, mentoring a Junior Developer often meant explaining how `RecyclerView` adapters work or debugging a NullPointerException together.

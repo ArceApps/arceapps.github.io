@@ -85,7 +85,7 @@ Escribir tus propios contenedores de dependencias.
 
 ### Usa Hilt si...
 -   Estás en un equipo grande donde la seguridad en compilación es crítica.
--   Tu proyecto es una app empresarial a largo plazo.
+-   Tu proyecto es una app muy compleja a largo plazo.
 -   Quieres seguir el estándar oficial de Google y Jetpack.
 
 ### Usa Koin si...

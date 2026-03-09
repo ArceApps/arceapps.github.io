@@ -34,7 +34,7 @@ The key innovation here is the "imperceptible watermark" (SynthID) which ensures
 ## 🛠️ Integration & Availability
 
 Gemini 3.1 Pro is rolling out immediately across the Google ecosystem:
-*   **Vertex AI:** For enterprise deployments.
+*   **Vertex AI:** For large scale deployments.
 *   **Android Studio:** Powering the next generation of "Bot-in-IDE" features.
 *   **NotebookLM:** Enhancing the popular research tool with deeper synthesis capabilities.
 

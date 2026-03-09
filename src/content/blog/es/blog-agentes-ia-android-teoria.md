@@ -1,6 +1,6 @@
 ---
-title: "Más allá del Chat: Por qué necesitas Agentes en tu equipo de Android"
-description: "Descubre cómo pasar de simples prompts a un equipo de agentes de IA especializados que conocen tu arquitectura Android y multiplican tu productividad."
+title: "Más allá del Chat: Por qué necesitas Agentes en un entorno multi-agente en Android"
+description: "Descubre cómo pasar de simples prompts a un entorno de agentes de IA especializados que conocen tu arquitectura Android y multiplican tu productividad."
 pubDate: 2025-05-20
 tags: ["IA", "Productividad", "Android", "Agentes", "Workflow"]
 heroImage: "/images/placeholder-article-ai-evolution.svg"
@@ -22,7 +22,7 @@ A diferencia de una sesión de chat efímera, un Agente es una instancia de IA c
 
 En el desarrollo de Android, donde el ecosistema es vasto y las configuraciones son críticas (Gradle, Manifest, ProGuard), tener agentes que "viven" en tu repositorio cambia las reglas del juego.
 
-## La Arquitectura del Equipo Virtual
+## La Arquitectura de los Agentes Virtuales
 
 En lugar de un solo chat omnisciente, imagina tener especialistas. En **ArceApps**, por ejemplo, hemos definido tres perfiles claros que nos ayudan a mantener la calidad sin saturarnos mentalmente:
 

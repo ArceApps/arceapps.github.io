@@ -113,7 +113,7 @@ Google Play tiene "carriles" (tracks). Tu estrategia de CD debe usarlos intelige
 - **Trigger**: Cada merge a `develop` o cada noche (`cron`).
 
 ### 2. Alpha/Beta Track
-- **Uso**: Para "Dogfooding" (empleados de la empresa) o Beta Testers públicos.
+- **Uso**: Para "Dogfooding" (pruebas de los propios desarrolladores) o Beta Testers públicos.
 - **Disponibilidad**: Requiere revisión de Google (horas/días).
 - **Trigger**: Merge a rama `release/*`.
 

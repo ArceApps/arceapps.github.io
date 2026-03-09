@@ -8,9 +8,9 @@ reference_id: "3cb651cb-7e90-47b2-aff0-77bc2cf41808"
 ---
 ## 📝 Why Documentation Matters in Android
 
-In the fast-paced world of Android development, documentation often takes a back seat. We prioritize shipping features over writing docs. However, as projects grow and teams scale, the lack of proper documentation becomes a bottleneck.
+In the fast-paced world of Android development, documentation often takes a back seat. We prioritize shipping features over writing docs. However, as projects grow and complexity scales, the lack of proper documentation becomes a bottleneck.
 
-Documentation is not just about writing comments; it's about creating a knowledge base that empowers your team (and your future self) to understand the **why** and **how** behind the code.
+Documentation is not just about writing comments; it's about creating a knowledge base that empowers you (and your future self) to understand the **why** and **how** behind the code.
 
 ## 📚 Types of Documentation
 
@@ -101,4 +101,4 @@ jobs:
 
 ## 🧠 Conclusion
 
-Good documentation is a superpower. It reduces onboarding time, prevents knowledge silos, and improves code quality. Start small: add meaningful KDoc, write a solid README, and automate the rest. Your team will thank you.
+Good documentation is a superpower. It reduces context-switching time, prevents knowledge silos, and improves code quality. Start small: add meaningful KDoc, write a solid README, and automate the rest. Your future self will thank you.

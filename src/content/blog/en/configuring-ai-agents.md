@@ -1,6 +1,6 @@
 ---
 title: "Your Virtual Staff: Configuring Sentinel, Bolt, and Palette"
-description: "Practical step-by-step guide to implementing an agent architecture in your Android project. Configure your own team of experts and define their rules."
+description: "Practical step-by-step guide to implementing an agent architecture in your Android project. Configure your own AI experts and define their rules."
 pubDate: 2025-05-21
 heroImage: "/images/placeholder-article-ai-setup.svg"
 tags: ["AI", "Tutorial", "Configuration", "Android", "Agents"]

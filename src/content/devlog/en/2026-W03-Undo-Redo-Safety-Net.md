@@ -158,7 +158,7 @@ The result is magical: persistence is totally transparent. You can kill the app 
 ## UI Integration: The Civil War for Pixels
 
 With the engine ready, it was time to design the interface. Where do we put the Undo and Redo buttons?
-This unleashed an intense debate in the design team (which, being a small indie team, is basically me arguing with myself in front of a mirror).
+This unleashed an intense debate in the design team (which is basically me arguing with my AI agent team and asking Palette for UX advice).
 
 *   **The FAB Faction (Floating Action Button):** Argued that buttons should be floating at the bottom of the screen, near the user's thumb, for quick access.
 *   **The Minimalist Faction (Me):** Argued that the board area is sacred. In dense games like *Minesweeper* or *Nonogram* of 20x20 cells, every pixel counts. Covering a corner of the board with a floating button is the worst cardinal sin in puzzle design: you hide information and cause frustrating accidental clicks.

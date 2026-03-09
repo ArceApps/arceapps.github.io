@@ -186,7 +186,7 @@ Crear un skill no es una tarea de una sola vez ("Set and Forget"). Debe tratarse
 1.  **Drafting**: Crear la primera versión del prompt/instrucción.
 2.  **Validation**: Probarlo con 5-10 casos de uso reales.
 3.  **Refinement**: Si el skill falla (ej. usa una librería vieja), actualiza las reglas explícitamente ("NO uses Gson").
-4.  **Sharing**: Guardar el skill en un repositorio compartido (`skills/android-mvvm.md`) para que todo el equipo use el mismo estándar.
+4.  **Sharing**: Guardar el skill en un repositorio compartido (`skills/android-mvvm.md`) para que todos los agentes usen el mismo estándar.
 
 ### Documentación del Skill
 Igual que documentamos APIs, documentamos Skills:
