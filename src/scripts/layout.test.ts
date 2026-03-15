@@ -88,8 +88,8 @@ describe('Layout Script', () => {
       expect(console.log).toHaveBeenCalledWith('SW registered: ', { scope: '/' });
     });
 
-    it('should log error if registration fails', async () => {
-      const error = new Error('SW failed');
+    it('should log error if registration fails asynchronously', async () => {
+      const error = new Error('SW failed asynchronously');
       registerMock.mockRejectedValue(error);
 
       initServiceWorker();
@@ -98,6 +98,18 @@ describe('Layout Script', () => {
 
       // Wait for promise resolution
       await new Promise(resolve => setTimeout(resolve, 0));
+      expect(console.log).toHaveBeenCalledWith('SW registration failed: ', error);
+    });
+
+    it('should log error if registration fails synchronously', () => {
+      const error = new Error('SW failed synchronously');
+      registerMock.mockImplementation(() => {
+        throw error;
+      });
+
+      initServiceWorker();
+
+      expect(registerMock).toHaveBeenCalledWith('/sw.js');
       expect(console.log).toHaveBeenCalledWith('SW registration failed: ', error);
     });
 
