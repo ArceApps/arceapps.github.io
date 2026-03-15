@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const APPS_DIR = path.join(__dirname, '../src/content/apps');
 
 async function processFile(filePath) {
-  const content = fs.readFileSync(filePath, 'utf8');
+  const content = await fs.promises.readFile(filePath, 'utf8');
   const parsed = matter(content);
   const data = parsed.data;
 
@@ -126,7 +126,7 @@ async function processFile(filePath) {
 
     if (updated || bodyUpdated) {
       const newContent = matter.stringify(parsed.content, data);
-      fs.writeFileSync(filePath, newContent, 'utf8');
+      await fs.promises.writeFile(filePath, newContent, 'utf8');
       console.log(`[OK] Updated ${path.basename(filePath)} with latest Google Play data.`);
     } else {
       console.log(`[SKIP] No updates needed for ${path.basename(filePath)}.`);
@@ -138,22 +138,24 @@ async function processFile(filePath) {
 }
 
 async function walkDir(dir) {
-  const files = fs.readdirSync(dir);
-  for (const file of files) {
+  const files = await fs.promises.readdir(dir);
+  const tasks = files.map(async (file) => {
     const fullPath = path.join(dir, file);
-    const stat = fs.statSync(fullPath);
+    const stat = await fs.promises.stat(fullPath);
     if (stat.isDirectory()) {
-      await walkDir(fullPath);
+      return walkDir(fullPath);
     } else if (file.endsWith('.md')) {
-      await processFile(fullPath);
+      return processFile(fullPath);
     }
-  }
+  });
+  await Promise.all(tasks);
 }
 
 async function main() {
   console.log('Starting Google Play data update (images + store description)...');
   try {
-    if (fs.existsSync(APPS_DIR)) {
+    const appsDirExists = await fs.promises.access(APPS_DIR).then(() => true).catch(() => false);
+    if (appsDirExists) {
       await walkDir(APPS_DIR);
       console.log('Finished updating Google Play data.');
     } else {
