@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#011f1f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#013030;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#018786;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#01a19f;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Grid lines (subtle) -->
+  <g stroke="#018786" stroke-opacity="0.08" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="150" y1="0" x2="150" y2="630"/>
+    <line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="450" y1="0" x2="450" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="750" y1="0" x2="750" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+    <line x1="1050" y1="0" x2="1050" y2="630"/>
+  </g>
+
+  <!-- Connection lines between nodes -->
+  <g stroke="#018786" stroke-opacity="0.4" stroke-width="1.5" fill="none">
+    <!-- Central node to surrounding nodes -->
+    <line x1="600" y1="315" x2="420" y2="190"/>
+    <line x1="600" y1="315" x2="600" y2="145"/>
+    <line x1="600" y1="315" x2="780" y2="190"/>
+    <line x1="600" y1="315" x2="420" y2="440"/>
+    <line x1="600" y1="315" x2="600" y2="485"/>
+    <line x1="600" y1="315" x2="780" y2="440"/>
+    <line x1="600" y1="315" x2="290" y2="315"/>
+    <line x1="600" y1="315" x2="910" y2="315"/>
+    <!-- Peripheral connections -->
+    <line x1="420" y1="190" x2="600" y2="145"/>
+    <line x1="780" y1="190" x2="600" y2="145"/>
+    <line x1="420" y1="190" x2="290" y2="315"/>
+    <line x1="780" y1="190" x2="910" y2="315"/>
+    <line x1="420" y1="440" x2="290" y2="315"/>
+    <line x1="780" y1="440" x2="910" y2="315"/>
+    <line x1="420" y1="440" x2="600" y2="485"/>
+    <line x1="780" y1="440" x2="600" y2="485"/>
+  </g>
+
+  <!-- Orange accent connection lines -->
+  <g stroke="#FF9800" stroke-opacity="0.3" stroke-width="1" fill="none" stroke-dasharray="4 4">
+    <line x1="290" y1="315" x2="150" y2="200"/>
+    <line x1="290" y1="315" x2="150" y2="430"/>
+    <line x1="910" y1="315" x2="1050" y2="200"/>
+    <line x1="910" y1="315" x2="1050" y2="430"/>
+    <line x1="600" y1="145" x2="480" y2="60"/>
+    <line x1="600" y1="145" x2="720" y2="60"/>
+    <line x1="600" y1="485" x2="480" y2="570"/>
+    <line x1="600" y1="485" x2="720" y2="570"/>
+  </g>
+
+  <!-- Central memory node -->
+  <circle cx="600" cy="315" r="52" fill="url(#nodeGrad)" filter="url(#glow)" opacity="0.95"/>
+  <circle cx="600" cy="315" r="52" fill="none" stroke="#FF9800" stroke-width="2" opacity="0.8"/>
+  <!-- Brain/memory icon in center -->
+  <text x="600" y="307" text-anchor="middle" font-size="28" fill="#ffffff">🧠</text>
+  <text x="600" y="332" text-anchor="middle" font-family="monospace" font-size="9" fill="#ffffff" opacity="0.9">MEMORY</text>
+
+  <!-- Surrounding nodes -->
+  <!-- Top -->
+  <circle cx="600" cy="145" r="32" fill="#018786" opacity="0.85" filter="url(#glow)"/>
+  <text x="600" y="141" text-anchor="middle" font-size="18" fill="#ffffff">📝</text>
+  <text x="600" y="158" text-anchor="middle" font-family="monospace" font-size="7" fill="#aaffff">MARKDOWN</text>
+
+  <!-- Top-left -->
+  <circle cx="420" cy="190" r="30" fill="#018786" opacity="0.8" filter="url(#glow)"/>
+  <text x="420" y="186" text-anchor="middle" font-size="16" fill="#ffffff">📂</text>
+  <text x="420" y="202" text-anchor="middle" font-family="monospace" font-size="7" fill="#aaffff">PARA</text>
+
+  <!-- Top-right -->
+  <circle cx="780" cy="190" r="30" fill="#018786" opacity="0.8" filter="url(#glow)"/>
+  <text x="780" y="186" text-anchor="middle" font-size="16" fill="#ffffff">🔍</text>
+  <text x="780" y="202" text-anchor="middle" font-family="monospace" font-size="7" fill="#aaffff">QMD</text>
+
+  <!-- Left -->
+  <circle cx="290" cy="315" r="32" fill="#018786" opacity="0.8" filter="url(#glow)"/>
+  <text x="290" y="311" text-anchor="middle" font-size="18" fill="#ffffff">⚡</text>
+  <text x="290" y="328" text-anchor="middle" font-family="monospace" font-size="7" fill="#aaffff">OPENCLAW</text>
+
+  <!-- Right -->
+  <circle cx="910" cy="315" r="32" fill="#018786" opacity="0.8" filter="url(#glow)"/>
+  <text x="910" y="311" text-anchor="middle" font-size="18" fill="#ffffff">🕸️</text>
+  <text x="910" y="328" text-anchor="middle" font-family="monospace" font-size="7" fill="#aaffff">COGNEE</text>
+
+  <!-- Bottom-left -->
+  <circle cx="420" cy="440" r="30" fill="#018786" opacity="0.8" filter="url(#glow)"/>
+  <text x="420" y="436" text-anchor="middle" font-size="16" fill="#ffffff">💾</text>
+  <text x="420" y="452" text-anchor="middle" font-family="monospace" font-size="7" fill="#aaffff">MEM0</text>
+
+  <!-- Bottom -->
+  <circle cx="600" cy="485" r="30" fill="#018786" opacity="0.8" filter="url(#glow)"/>
+  <text x="600" y="481" text-anchor="middle" font-size="16" fill="#ffffff">🔗</text>
+  <text x="600" y="497" text-anchor="middle" font-family="monospace" font-size="7" fill="#aaffff">GRAPH RAG</text>
+
+  <!-- Bottom-right -->
+  <circle cx="780" cy="440" r="30" fill="#018786" opacity="0.8" filter="url(#glow)"/>
+  <text x="780" y="436" text-anchor="middle" font-size="16" fill="#ffffff">🎯</text>
+  <text x="780" y="452" text-anchor="middle" font-family="monospace" font-size="7" fill="#aaffff">FOCUS</text>
+
+  <!-- Outer small nodes (orange accent) -->
+  <circle cx="150" cy="200" r="16" fill="#FF9800" opacity="0.7"/>
+  <circle cx="150" cy="430" r="16" fill="#FF9800" opacity="0.7"/>
+  <circle cx="1050" cy="200" r="16" fill="#FF9800" opacity="0.7"/>
+  <circle cx="1050" cy="430" r="16" fill="#FF9800" opacity="0.7"/>
+  <circle cx="480" cy="60" r="12" fill="#FF9800" opacity="0.5"/>
+  <circle cx="720" cy="60" r="12" fill="#FF9800" opacity="0.5"/>
+  <circle cx="480" cy="570" r="12" fill="#FF9800" opacity="0.5"/>
+  <circle cx="720" cy="570" r="12" fill="#FF9800" opacity="0.5"/>
+
+  <!-- Title text -->
+  <text x="600" y="580" text-anchor="middle" font-family="'Roboto', 'Arial', sans-serif" font-size="13" fill="#FF9800" font-weight="600" letter-spacing="3" opacity="0.9">AGENTIC MEMORY ARCHITECTURE</text>
+</svg>
