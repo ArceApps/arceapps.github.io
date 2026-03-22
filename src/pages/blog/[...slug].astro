@@ -13,6 +13,10 @@ const t = useTranslations('en');
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'));
   const esPosts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'));
+
+  // Create a map for O(1) translation lookup
+  const esPostsMap = new Map(esPosts.map(p => [p.data.reference_id, p]));
+
   // Sort posts by date to ensure correct next/prev logic
   const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
@@ -26,7 +30,7 @@ export async function getStaticPaths() {
     // Find translated post
     let translatedPath = undefined;
     if (post.data.reference_id) {
-       const esPost = esPosts.find(p => p.data.reference_id === post.data.reference_id);
+       const esPost = esPostsMap.get(post.data.reference_id);
        if (esPost) {
          translatedPath = `/es/blog/${esPost.slug.split('/').pop()}`;
        }
