@@ -10,6 +10,10 @@ import { slugify } from '../../../utils/slugs';
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'));
   const enPosts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'));
+
+  // Create a map for O(1) translation lookup
+  const enPostsMap = new Map(enPosts.map(p => [p.data.reference_id, p]));
+
   // Sort posts by date to ensure correct next/prev logic
   const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
@@ -20,7 +24,7 @@ export async function getStaticPaths() {
     // Find translated post
     let translatedPath = undefined;
     if (post.data.reference_id) {
-       const enPost = enPosts.find(p => p.data.reference_id === post.data.reference_id);
+       const enPost = enPostsMap.get(post.data.reference_id);
        if (enPost) {
          translatedPath = `/blog/${enPost.slug.split('/').pop()}`;
        }
