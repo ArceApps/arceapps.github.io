@@ -1,8 +1,18 @@
 // src/scripts/search.ts
+import type Fuse from "fuse.js";
+
+export interface SearchItem {
+  title: string;
+  description: string;
+  slug: string;
+  type: "Blog" | "App";
+  tags: string[];
+  lang: "es" | "en";
+}
 
 // Module-level state (persists across View Transitions)
-let fuse: any;
-let searchIndex: any[] = [];
+let fuse: Fuse<SearchItem> | undefined;
+let searchIndex: SearchItem[] = [];
 let loadingPromise: Promise<void> | undefined;
 
 // DOM Element References (refreshed on each navigation)
@@ -166,7 +176,7 @@ export function performSearch(query: string) {
     searchResults.classList.remove("hidden");
     searchResults.innerHTML = results
       .slice(0, 10)
-      .map((result: any) => {
+      .map((result) => {
         const item = result.item;
         const icon = item.type === "App" ? "android" : "article";
         return `
