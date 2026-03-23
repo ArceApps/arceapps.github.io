@@ -70,5 +70,25 @@ describe('Code Copy Script', () => {
         const buttons = document.querySelectorAll('.copy-code-btn');
         expect(buttons.length).toBe(1);
     });
+
+    it('should log error if clipboard write fails', async () => {
+        const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+        const error = new Error('Clipboard fail');
+        (navigator.clipboard.writeText as any).mockRejectedValue(error);
+
+        document.body.innerHTML = '<pre><code>test code</code></pre>';
+        copyModule.setupCopyButtons();
+        const btn = document.querySelector('.copy-code-btn') as HTMLButtonElement;
+
+        if (btn) {
+            btn.click();
+        }
+
+        // Wait for promise rejection to be handled
+        await new Promise(resolve => setTimeout(resolve, 0));
+
+        expect(consoleSpy).toHaveBeenCalledWith('Failed to copy:', error);
+        consoleSpy.mockRestore();
+    });
   });
 });
