@@ -75,6 +75,43 @@ describe('Search Script', () => {
         const results = document.getElementById('search-results');
         expect(results?.innerHTML).toContain('Test App');
     });
+
+    it('should sanitize javascript: URIs in results', async () => {
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([{ title: "XSS", slug: "javascript:alert(1)", type: "App" }]),
+        });
+
+        searchMock.mockReturnValue([{
+            item: { title: "XSS", slug: "javascript:alert(1)", type: "App", description: "Vulnerable" }
+        }]);
+
+        await searchModule.initFuse();
+        searchModule.performSearch('xss');
+
+        const results = document.getElementById('search-results');
+        const anchor = results?.querySelector('a');
+        expect(anchor?.getAttribute('href')).toBe('about:blank');
+    });
+
+    it('should NOT sanitize legitimate URIs in results', async () => {
+        const legitimateSlug = "/blog/my-awesome-post";
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([{ title: "Safe", slug: legitimateSlug, type: "Article" }]),
+        });
+
+        searchMock.mockReturnValue([{
+            item: { title: "Safe", slug: legitimateSlug, type: "Article", description: "Safe Link" }
+        }]);
+
+        await searchModule.initFuse();
+        searchModule.performSearch('safe');
+
+        const results = document.getElementById('search-results');
+        const anchor = results?.querySelector('a');
+        expect(anchor?.getAttribute('href')).toBe(legitimateSlug);
+    });
   });
 
   describe('initSearchComponent', () => {
