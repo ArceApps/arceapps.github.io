@@ -44,9 +44,9 @@ if (!nextPath) {
   // it might lead to 404s if slugs don't match.
   // Ideally, we would map exact content paths, but for now this covers the main navigation.
   const segments = pathname.split('/').filter(Boolean);
-  if (currentLang === 'es') {
-    if (segments[0] === 'es') segments.shift();
-  } else {
+  if (currentLang === 'es' && segments[0] === 'es') {
+    segments.shift();
+  } else if (currentLang === 'en') {
     segments.unshift('es');
   }
   nextPath = '/' + segments.join('/');
