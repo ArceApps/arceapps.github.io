@@ -32,6 +32,27 @@ export function escapeHtml(unsafe: string) {
     .replace(/'/g, "&#039;");
 }
 
+/**
+ * Sanitizes a URL to prevent XSS attacks (javascript:, data:, etc.)
+ * @param url The URL to sanitize
+ * @returns A safe URL (the original or 'about:blank' if dangerous)
+ */
+export function sanitizeUrl(url: string): string {
+  if (!url) return "";
+
+  // Normalize for comparison (remove whitespace and control characters)
+  const sanitizedUrl = url.replace(/[^\x20-\x7E]/g, "").trim();
+
+  // Block dangerous schemes
+  // We check if it starts with a dangerous protocol
+  if (/^(javascript|data|vbscript):/i.test(sanitizedUrl)) {
+    return "about:blank";
+  }
+
+  // If it's a relative URL or uses a safe protocol, it's fine
+  return url;
+}
+
 function handleEscape(e: KeyboardEvent) {
   if (e.key === "Escape") {
     closeModal();
@@ -169,8 +190,9 @@ export function performSearch(query: string) {
       .map((result: any) => {
         const item = result.item;
         const icon = item.type === "App" ? "android" : "article";
+        const safeUrl = sanitizeUrl(item.slug);
         return `
-                <a href="${escapeHtml(item.slug)}" class="block p-3 rounded-lg hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
+                <a href="${escapeHtml(safeUrl)}" class="block p-3 rounded-lg hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
                     <div class="flex items-start gap-3">
                         <div class="w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1">
                             <span class="material-icons text-sm">${icon}</span>
