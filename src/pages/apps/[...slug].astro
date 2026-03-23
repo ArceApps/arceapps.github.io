@@ -155,12 +155,14 @@ const { Content } = await app.render();
             aria-label="Screenshots gallery"
           >
             {app.data.screenshots.map((screenshot, index) => (
-              <img
-                src={screenshot}
-                alt={`Screenshot ${index + 1}`}
-                class="h-64 w-auto rounded-xl shadow-md snap-center flex-shrink-0 border border-gray-200 dark:border-gray-700"
-                loading="lazy"
-              />
+              <div class="h-64 flex-shrink-0 snap-center">
+                <img
+                  src={screenshot}
+                  alt={`Screenshot ${index + 1}`}
+                  class="h-full w-auto max-w-[200px] object-contain rounded-xl shadow-md border border-gray-200 dark:border-gray-700"
+                  loading="lazy"
+                />
+              </div>
             ))}
           </div>
         </div>
