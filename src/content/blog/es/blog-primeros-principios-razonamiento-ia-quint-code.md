@@ -7,7 +7,7 @@ tags: ["IA", "Razonamiento", "Primeros Principios", "Quint Code", "FPF", "Agente
 reference_id: "5031f97d-df40-43f0-a398-2c6a58557c4a"
 ---
 
-> **Lectura relacionada:** [Desarrollo Dirigido por Especificaciones con IA Agéntica](/blog/spec-driven-development-ai) · [AI Agent Skills: Inyección Dinámica de Contexto](/blog/ai-agent-skills-dynamic-context) · [Modelos de Razonamiento: De o1 a R1](/blog/reasoning-models-o1-r1)
+> **Lectura relacionada:** [Desarrollo Dirigido por Especificaciones con IA Agéntica](/blog/blog-specs-driven-development) · [AI Agent Skills: Inyección Dinámica de Contexto](/blog/blog-agent-skills-contexto-dinamico) · [Modelos de Razonamiento: De o1 a R1](/blog/blog-reasoning-models-o1-r1)
 
 ---
 
@@ -275,5 +275,5 @@ El ciclo ADI — Abducción, Deducción, Inducción — es cómo la ingeniería 
 - [First Principles Framework (FPF)](https://github.com/ailev/FPF) por Anatoly Levenchuk — La especificación de razonamiento transdisciplinario que sustenta Quint Code.
 - [Documentación de Quint Code](https://quint.codes/learn) — Guías detalladas sobre modos de decisión, formato DRR, características calculadas y gestión del ciclo de vida.
 - Peirce, C.S. — *Collected Papers* (Volúmenes 5–6) — La fuente original de la lógica abductiva, deductiva e inductiva.
-- [Desarrollo Dirigido por Especificaciones con IA Agéntica](/blog/spec-driven-development-ai) — Cómo SDD complementa el razonamiento estilo FPF.
-- [Modelos de Razonamiento: De o1 a R1](/blog/reasoning-models-o1-r1) — La perspectiva a nivel de modelo de IA sobre el razonamiento estructurado.
+- [Desarrollo Dirigido por Especificaciones con IA Agéntica](/blog/blog-specs-driven-development) — Cómo SDD complementa el razonamiento estilo FPF.
+- [Modelos de Razonamiento: De o1 a R1](/blog/blog-reasoning-models-o1-r1) — La perspectiva a nivel de modelo de IA sobre el razonamiento estructurado.

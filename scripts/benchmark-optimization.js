@@ -15,15 +15,15 @@ function generateData(count) {
 
 function runOld(posts, translations) {
   const start = performance.now();
-  const result = posts.map(post => {
-    let translatedPath = undefined;
+  posts.forEach(post => {
+
     if (post.data.reference_id) {
        const esPost = translations.find(p => p.data.reference_id === post.data.reference_id);
        if (esPost) {
          translatedPath = `/es/blog/${esPost.slug.split('/').pop()}`;
        }
     }
-    return translatedPath;
+
   });
   const end = performance.now();
   return end - start;
@@ -32,15 +32,15 @@ function runOld(posts, translations) {
 function runNew(posts, translations) {
   const start = performance.now();
   const translationsMap = new Map(translations.map(p => [p.data.reference_id, p]));
-  const result = posts.map(post => {
-    let translatedPath = undefined;
+  posts.forEach(post => {
+
     if (post.data.reference_id) {
        const esPost = translationsMap.get(post.data.reference_id);
        if (esPost) {
          translatedPath = `/es/blog/${esPost.slug.split('/').pop()}`;
        }
     }
-    return translatedPath;
+
   });
   const end = performance.now();
   return end - start;

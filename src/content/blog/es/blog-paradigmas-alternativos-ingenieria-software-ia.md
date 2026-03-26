@@ -7,7 +7,7 @@ tags: ["IA", "Metodología", "IDD", "SDD", "BEADS", "Dark Factory", "Ingeniería
 draft: false
 ---
 
-> **Lectura relacionada:** [Spec-Driven Development con IA Agéntica](/blog/blog-specs-driven-development) · [Agentes IA Autónomos en Android: Más Allá del Asistente](/blog/blog-agentes-ia-autonomos-android) · [Construyendo Skills para Agentes IA](/blog/blog-building-ai-agent-skills)
+> **Lectura relacionada:** [Spec-Driven Development con IA Agéntica](/blog/blog-specs-driven-development) · [Agentes IA Autónomos en Android: Más Allá del Asistente](/blog/blog-agentes-ia-autonomos-android) · [Construyendo Skills para Agentes IA](/blog/blog-agentes-ia-skills)
 
 ---
 

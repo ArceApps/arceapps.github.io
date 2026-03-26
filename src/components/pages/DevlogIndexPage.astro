@@ -43,7 +43,7 @@ const linkPrefix = lang === 'es' ? '/es/devlog' : '/devlog';
     <div class="container mx-auto px-4 max-w-4xl">
       <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-300 before:to-transparent dark:before:via-gray-700">
 
-        {devlogs.map((log, index) => {
+        {devlogs.map((log) => {
           const slug = log.slug.split('/').pop();
           return (
           <div class="relative flex flex-col md:flex-row items-center md:items-start justify-between md:justify-normal md:odd:flex-row-reverse group is-active">

@@ -7,7 +7,7 @@ tags: ["AI", "Workflow", "SDD", "IA Agéntica", "Documentación", "Productividad
 reference_id: "d8152217-0875-4637-84fc-c004f535fb93"
 ---
 
-> **Lecturas relacionadas:** [Construyendo AI Skills para Desarrollo](/blog/building-ai-agent-skills) · [Configurando Agentes de IA](/blog/configuring-ai-agents) · [Code Reviews con IA: Puertas de Calidad Automáticas](/blog/ai-code-reviews)
+> **Lecturas relacionadas:** [Construyendo AI Skills para Desarrollo](/blog/blog-agentes-ia-skills) · [Configurando Agentes de IA](/blog/blog-configuracion-agentes-ia) · [Code Reviews con IA: Puertas de Calidad Automáticas](/blog/blog-code-review-ia)
 
 ## 🧠 La Crisis del Vibe Coding
 
