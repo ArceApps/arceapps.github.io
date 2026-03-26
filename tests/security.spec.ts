@@ -7,7 +7,7 @@ let maliciousPort: number;
 
 test.beforeAll(async () => {
   // Start a local server to serve the malicious iframe
-  server = http.createServer((req, res) => {
+  server = http.createServer((_req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     // The iframe points to our running Astro preview
     res.end(`

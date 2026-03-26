@@ -26,7 +26,7 @@ self.addEventListener('fetch', (event) => {
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request)
-        .catch(() => {
+        .catch(async () => {
           return caches.match(event.request)
             .then((response) => {
               // Return cached response if found, otherwise return offline page if we had one

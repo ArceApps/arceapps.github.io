@@ -113,9 +113,9 @@ const socialImageURL = new URL(image, Astro.url);
 
     <!-- Google Analytics -->
     <script
-      type="text/partytown"
+      is:inline type="text/partytown"
       src="https://www.googletagmanager.com/gtag/js?id=G-CZLNYSWY76"></script>
-    <script type="text/partytown">
+    <script is:inline type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
@@ -127,7 +127,7 @@ const socialImageURL = new URL(image, Astro.url);
 
     <!-- Schema.org -->
     <script
-      type="application/ld+json"
+      is:inline type="application/ld+json"
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": type === "article" ? "BlogPosting" : "WebSite",

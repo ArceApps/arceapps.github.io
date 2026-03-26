@@ -19,7 +19,7 @@ const newUrl = `/devlog/${slug}`;
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content={`0;url=${newUrl}`}>
     <title>Redireccionando...</title>
-    <script define:vars={{ newUrl }}>
+    <script is:inline define:vars={{ newUrl }}>
         window.location.href = newUrl;
     </script>
 </head>

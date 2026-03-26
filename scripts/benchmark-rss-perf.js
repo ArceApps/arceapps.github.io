@@ -9,7 +9,7 @@ const FEEDS = [
 
 // Mock Parser simulating network delay
 const mockParser = {
-  parseURL: async (url) => {
+  parseURL: async (_url) => {
     // Simulate 200ms delay per request
     await new Promise(resolve => setTimeout(resolve, 200));
     return {
@@ -69,7 +69,7 @@ async function parallelFetch() {
   });
 
   const results = await Promise.all(feedPromises);
-  const allItems = results.flat();
+
 
   const duration = Date.now() - start;
   console.log(`Duration: ${duration}ms`);
