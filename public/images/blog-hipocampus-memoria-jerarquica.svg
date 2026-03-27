@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#0f172a"/>
+
+  <!-- Subtle grid -->
+  <line x1="0" y1="150" x2="800" y2="150" stroke="#1e293b" stroke-width="1"/>
+  <line x1="0" y1="300" x2="800" y2="300" stroke="#1e293b" stroke-width="1"/>
+  <line x1="200" y1="0" x2="200" y2="450" stroke="#1e293b" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="450" stroke="#1e293b" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="450" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- 3-tier pyramid representing Hot/Warm/Cold layers -->
+  <!-- Cold layer (base - widest) -->
+  <polygon points="400,330 160,330 280,260" fill="#014f4e" opacity="0.5"/>
+  <polygon points="400,330 640,330 520,260" fill="#014f4e" opacity="0.5"/>
+  <polygon points="280,260 520,260 400,330" fill="#014f4e" opacity="0.7"/>
+  <!-- Warm layer (middle) -->
+  <polygon points="400,260 280,260 340,205" fill="#015f5e" opacity="0.7"/>
+  <polygon points="400,260 520,260 460,205" fill="#015f5e" opacity="0.7"/>
+  <polygon points="340,205 460,205 400,260" fill="#015f5e" opacity="0.9"/>
+  <!-- Hot layer (top - smallest) -->
+  <polygon points="400,205 340,205 370,165" fill="#018786" opacity="0.9"/>
+  <polygon points="400,205 460,205 430,165" fill="#018786" opacity="0.9"/>
+  <polygon points="370,165 430,165 400,205" fill="#018786"/>
+
+  <!-- ROOT.md highlight at the apex -->
+  <circle cx="400" cy="155" r="18" fill="#018786" opacity="0.9"/>
+  <text x="400" y="160" font-family="monospace" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="bold">ROOT</text>
+
+  <!-- Layer labels -->
+  <text x="400" y="193" font-family="monospace" font-size="9" fill="#ffffff" text-anchor="middle" opacity="0.9">HOT</text>
+  <text x="400" y="248" font-family="monospace" font-size="9" fill="#4db6ac" text-anchor="middle">WARM</text>
+  <text x="400" y="312" font-family="monospace" font-size="9" fill="#64748b" text-anchor="middle">COLD</text>
+
+  <!-- Right panel: compaction tree -->
+  <rect x="530" y="145" width="195" height="165" rx="8" fill="#1e293b" stroke="#018786" stroke-width="1" opacity="0.8"/>
+  <text x="627" y="163" font-family="monospace" font-size="10" fill="#018786" text-anchor="middle">Compaction Tree</text>
+
+  <!-- Tree nodes (5 levels) -->
+  <circle cx="627" cy="183" r="7" fill="#FF9800" opacity="0.9"/>
+  <text x="660" y="187" font-family="monospace" font-size="9" fill="#FF9800">root</text>
+
+  <line x1="620" y1="190" x2="610" y2="205" stroke="#64748b" stroke-width="1"/>
+  <line x1="634" y1="190" x2="644" y2="205" stroke="#64748b" stroke-width="1"/>
+  <circle cx="607" cy="209" r="6" fill="#FF9800" opacity="0.7"/>
+  <circle cx="647" cy="209" r="6" fill="#FF9800" opacity="0.7"/>
+  <text x="540" y="213" font-family="monospace" font-size="9" fill="#FF9800" opacity="0.8">monthly</text>
+
+  <line x1="601" y1="215" x2="591" y2="228" stroke="#64748b" stroke-width="1"/>
+  <line x1="653" y1="215" x2="663" y2="228" stroke="#64748b" stroke-width="1"/>
+  <circle cx="588" cy="232" r="5" fill="#018786" opacity="0.8"/>
+  <circle cx="666" cy="232" r="5" fill="#018786" opacity="0.8"/>
+  <text x="540" y="236" font-family="monospace" font-size="9" fill="#4db6ac">weekly</text>
+
+  <line x1="583" y1="237" x2="575" y2="249" stroke="#64748b" stroke-width="1"/>
+  <line x1="671" y1="237" x2="679" y2="249" stroke="#64748b" stroke-width="1"/>
+  <circle cx="572" cy="253" r="4" fill="#018786" opacity="0.6"/>
+  <circle cx="682" cy="253" r="4" fill="#018786" opacity="0.6"/>
+  <text x="540" y="257" font-family="monospace" font-size="9" fill="#4db6ac" opacity="0.8">daily</text>
+
+  <line x1="568" y1="257" x2="562" y2="267" stroke="#64748b" stroke-width="1"/>
+  <circle cx="559" cy="271" r="3" fill="#64748b" opacity="0.8"/>
+  <text x="540" y="275" font-family="monospace" font-size="9" fill="#64748b">raw</text>
+
+  <!-- Left panel: key files -->
+  <rect x="75" y="145" width="185" height="140" rx="8" fill="#1e293b" stroke="#018786" stroke-width="1" opacity="0.8"/>
+  <text x="167" y="163" font-family="monospace" font-size="10" fill="#018786" text-anchor="middle">Hot Layer Files</text>
+
+  <rect x="87" y="170" width="161" height="18" rx="3" fill="#018786" opacity="0.2"/>
+  <text x="97" y="183" font-family="monospace" font-size="10" fill="#018786">ROOT.md</text>
+  <text x="190" y="183" font-family="monospace" font-size="8" fill="#4db6ac" text-anchor="end">~3K tokens</text>
+
+  <rect x="87" y="192" width="161" height="18" rx="3" fill="#1e293b"/>
+  <text x="97" y="205" font-family="monospace" font-size="10" fill="#4db6ac">MEMORY.md</text>
+
+  <rect x="87" y="214" width="161" height="18" rx="3" fill="#1e293b"/>
+  <text x="97" y="227" font-family="monospace" font-size="10" fill="#4db6ac">SCRATCHPAD.md</text>
+
+  <rect x="87" y="236" width="161" height="18" rx="3" fill="#1e293b"/>
+  <text x="97" y="249" font-family="monospace" font-size="10" fill="#64748b">WORKING.md</text>
+
+  <rect x="87" y="258" width="161" height="18" rx="3" fill="#1e293b"/>
+  <text x="97" y="271" font-family="monospace" font-size="10" fill="#64748b">TASK-QUEUE.md</text>
+
+  <!-- Bottom install command -->
+  <rect x="255" y="355" width="290" height="34" rx="6" fill="#018786" opacity="0.15" stroke="#018786" stroke-width="1"/>
+  <text x="400" y="378" font-family="monospace" font-size="13" fill="#018786" text-anchor="middle">npx hipocampus init</text>
+
+  <!-- Title -->
+  <text x="400" y="52" font-family="sans-serif" font-size="30" font-weight="bold" fill="#ffffff" text-anchor="middle">Hipocampus</text>
+  <text x="400" y="80" font-family="sans-serif" font-size="14" fill="#4db6ac" text-anchor="middle">3-Tier Hierarchical Memory · Zero Infrastructure</text>
+  <text x="400" y="105" font-family="monospace" font-size="11" fill="#64748b" text-anchor="middle">Hot → Warm → Cold · Compaction Tree · ROOT.md awareness</text>
+
+  <!-- Accent dots -->
+  <circle cx="90" cy="95" r="5" fill="#FF9800" opacity="0.6"/>
+  <circle cx="710" cy="95" r="5" fill="#FF9800" opacity="0.6"/>
+  <circle cx="735" cy="370" r="4" fill="#018786" opacity="0.5"/>
+  <circle cx="65" cy="370" r="4" fill="#018786" opacity="0.5"/>
+</svg>
