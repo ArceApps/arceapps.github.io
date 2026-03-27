@@ -1,0 +1,117 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0d1117"/>
+
+  <!-- Grid lines -->
+  <g stroke="#1a2233" stroke-width="1" opacity="0.5">
+    <line x1="0" y1="90" x2="1200" y2="90"/>
+    <line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="270" x2="1200" y2="270"/>
+    <line x1="0" y1="360" x2="1200" y2="360"/>
+    <line x1="0" y1="450" x2="1200" y2="450"/>
+    <line x1="0" y1="540" x2="1200" y2="540"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Disrupted network connections (broken/scattered) -->
+  <g stroke="#FF9800" stroke-width="1.5" stroke-dasharray="8,6" opacity="0.4">
+    <line x1="600" y1="315" x2="200" y2="150"/>
+    <line x1="600" y1="315" x2="950" y2="130"/>
+    <line x1="600" y1="315" x2="1050" y2="400"/>
+    <line x1="600" y1="315" x2="180" y2="480"/>
+    <line x1="600" y1="315" x2="750" y2="530"/>
+  </g>
+  <g stroke="#018786" stroke-width="1.5" stroke-dasharray="8,6" opacity="0.4">
+    <line x1="600" y1="315" x2="350" y2="130"/>
+    <line x1="600" y1="315" x2="820" y2="200"/>
+    <line x1="600" y1="315" x2="430" y2="490"/>
+    <line x1="600" y1="315" x2="900" y2="480"/>
+  </g>
+
+  <!-- Scattered/compromised agent nodes (orange = affected) -->
+  <!-- Top-left node: impersonation -->
+  <circle cx="200" cy="150" r="36" fill="#0d1117" stroke="#FF9800" stroke-width="2.5"/>
+  <text x="200" y="145" text-anchor="middle" fill="#FF9800" font-size="18" font-family="monospace">👤</text>
+  <text x="200" y="163" text-anchor="middle" fill="#FF9800" font-size="9" font-family="sans-serif">IMPERSONATION</text>
+
+  <!-- Top-center-left node: social engineering -->
+  <circle cx="350" cy="130" r="36" fill="#0d1117" stroke="#FF9800" stroke-width="2.5"/>
+  <text x="350" y="125" text-anchor="middle" fill="#FF9800" font-size="18" font-family="monospace">🎭</text>
+  <text x="350" y="143" text-anchor="middle" fill="#FF9800" font-size="9" font-family="sans-serif">SOC. ENGINEERING</text>
+
+  <!-- Top-right node: no verification -->
+  <circle cx="950" cy="130" r="36" fill="#0d1117" stroke="#FF9800" stroke-width="2.5"/>
+  <text x="950" y="125" text-anchor="middle" fill="#FF9800" font-size="18" font-family="monospace">🔓</text>
+  <text x="950" y="143" text-anchor="middle" fill="#FF9800" font-size="9" font-family="sans-serif">NO IDENTITY CHECK</text>
+
+  <!-- Right node: data leak -->
+  <circle cx="1050" cy="400" r="36" fill="#0d1117" stroke="#FF9800" stroke-width="2.5"/>
+  <text x="1050" y="395" text-anchor="middle" fill="#FF9800" font-size="18" font-family="monospace">💧</text>
+  <text x="1050" y="413" text-anchor="middle" fill="#FF9800" font-size="9" font-family="sans-serif">DATA LEAK</text>
+
+  <!-- Bottom-right node: infra destruction -->
+  <circle cx="750" cy="530" r="36" fill="#0d1117" stroke="#FF9800" stroke-width="2.5"/>
+  <text x="750" y="525" text-anchor="middle" fill="#FF9800" font-size="18" font-family="monospace">💥</text>
+  <text x="750" y="543" text-anchor="middle" fill="#FF9800" font-size="9" font-family="sans-serif">INFRA DESTROY</text>
+
+  <!-- Teal nodes (potential mitigations / still standing) -->
+  <!-- Top-center node -->
+  <circle cx="820" cy="200" r="36" fill="#0d1117" stroke="#018786" stroke-width="2.5"/>
+  <text x="820" y="195" text-anchor="middle" fill="#018786" font-size="18" font-family="monospace">🔁</text>
+  <text x="820" y="213" text-anchor="middle" fill="#018786" font-size="9" font-family="sans-serif">INFINITE LOOP</text>
+
+  <!-- Left node: memory manipulation -->
+  <circle cx="180" cy="480" r="36" fill="#0d1117" stroke="#018786" stroke-width="2.5"/>
+  <text x="180" y="475" text-anchor="middle" fill="#018786" font-size="18" font-family="monospace">🧠</text>
+  <text x="180" y="493" text-anchor="middle" fill="#018786" font-size="9" font-family="sans-serif">MEMORY ATTACK</text>
+
+  <!-- Bottom-left node: indirect leak -->
+  <circle cx="430" cy="490" r="36" fill="#0d1117" stroke="#018786" stroke-width="2.5"/>
+  <text x="430" y="485" text-anchor="middle" fill="#018786" font-size="18" font-family="monospace">📤</text>
+  <text x="430" y="503" text-anchor="middle" fill="#018786" font-size="9" font-family="sans-serif">INDIRECT LEAK</text>
+
+  <!-- Right-bottom node: censorship -->
+  <circle cx="900" cy="480" r="36" fill="#0d1117" stroke="#018786" stroke-width="2.5"/>
+  <text x="900" y="475" text-anchor="middle" fill="#018786" font-size="18" font-family="monospace">🚫</text>
+  <text x="900" y="493" text-anchor="middle" fill="#018786" font-size="9" font-family="sans-serif">CENSORSHIP</text>
+
+  <!-- Central compromised hub -->
+  <circle cx="600" cy="315" r="62" fill="#0d1117" stroke="#FF9800" stroke-width="3" opacity="0.9"/>
+  <circle cx="600" cy="315" r="50" fill="#1a0a00" stroke="#FF9800" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.8"/>
+  <!-- Broken chain icon -->
+  <text x="600" y="308" text-anchor="middle" fill="#FF9800" font-size="32" font-family="monospace">⚡</text>
+  <text x="600" y="332" text-anchor="middle" fill="#FF9800" font-size="11" font-family="sans-serif" font-weight="bold">AGENT</text>
+
+  <!-- Alert indicator top-right -->
+  <circle cx="1140" cy="60" r="28" fill="#FF9800" opacity="0.9"/>
+  <text x="1140" y="67" text-anchor="middle" fill="#0d1117" font-size="22" font-family="monospace" font-weight="bold">!</text>
+
+  <!-- Left data stream (teal) -->
+  <g opacity="0.25" stroke="#018786" stroke-width="1.5">
+    <line x1="30" y1="100" x2="100" y2="100"/>
+    <line x1="30" y1="116" x2="85" y2="116"/>
+    <line x1="30" y1="132" x2="95" y2="132"/>
+    <line x1="30" y1="148" x2="75" y2="148"/>
+    <line x1="30" y1="164" x2="90" y2="164"/>
+  </g>
+
+  <!-- Right data stream (orange) -->
+  <g opacity="0.25" stroke="#FF9800" stroke-width="1.5">
+    <line x1="1100" y1="460" x2="1170" y2="460"/>
+    <line x1="1115" y1="476" x2="1170" y2="476"/>
+    <line x1="1105" y1="492" x2="1170" y2="492"/>
+    <line x1="1120" y1="508" x2="1170" y2="508"/>
+    <line x1="1110" y1="524" x2="1170" y2="524"/>
+  </g>
+
+  <!-- Title block -->
+  <text x="600" y="590" text-anchor="middle" fill="#FFFFFF" font-size="38" font-family="sans-serif" font-weight="bold" letter-spacing="2">Agents of Chaos</text>
+  <text x="600" y="616" text-anchor="middle" fill="#018786" font-size="15" font-family="sans-serif" letter-spacing="3">SEGURIDAD · AGENTES IA · RED-TEAM · 2026</text>
+
+  <!-- ArceApps brand -->
+  <text x="60" y="620" fill="#4a5568" font-size="11" font-family="sans-serif">ArceApps</text>
+</svg>
