@@ -62,7 +62,8 @@ bd init
 bd add "Implementar middleware de autenticación"
 
 # Añadir una dependencia (el middleware de auth depende del modelo de usuario)
-bd add "Crear modelo de usuario" --before "Implementar middleware de autenticación"
+bd add "Crear modelo de usuario"
+bd add "Implementar middleware de autenticación" --after "Crear modelo de usuario"
 
 # Consultar el trabajo listo (tareas sin dependencias pendientes)
 bd ready

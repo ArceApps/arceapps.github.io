@@ -62,7 +62,8 @@ bd init
 bd add "Implement authentication middleware"
 
 # Add a dependency (auth middleware depends on user model)
-bd add "Create user model" --before "Implement authentication middleware"
+bd add "Create user model"
+bd add "Implement authentication middleware" --after "Create user model"
 
 # Query for ready work (tasks with no pending dependencies)
 bd ready
