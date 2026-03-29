@@ -220,3 +220,16 @@
 **Cambios:**
 - Se actualizó `src/pages/rss.xml.js` añadiendo el filtro `({ data }) => !data.draft` a la llamada `getCollection('blog')`.
 **Aprendizaje (si aplica):** Los endpoints de generación de feeds y sitemaps deben aplicar los mismos filtros de visibilidad que las páginas de listado para evitar fugas de información.
+
+## 2026-03-29 - Mitigación de Exposición de Correo en Formulario
+**Estado:** Realizado
+**Análisis:**
+- Se identificó que la variable de entorno `PUBLIC_CONTACT_EMAIL` en `src/components/ContactForm.astro` utilizaba el prefijo `PUBLIC_`.
+- En Astro, las variables con este prefijo se exponen automáticamente al lado del cliente en el bundle de JavaScript generado.
+- Esto resultaba en la exposición directa del correo electrónico real del administrador en el código fuente del cliente y en el atributo `action` del formulario HTML.
+**Cambios:**
+- Se renombró la variable de entorno a `CONTACT_FORM_KEY` eliminando el prefijo `PUBLIC_`.
+- Se actualizó `src/components/ContactForm.astro` para usar la nueva variable, asegurando que solo esté disponible en el servidor (build time para SSG).
+- Se actualizó `.github/workflows/deploy.yml` con el nuevo nombre de la variable y se configuró para usar secretos de GitHub (`secrets.CONTACT_FORM_KEY`) en lugar de valores hardcodeados.
+- Se renombró la variable local a `formActionKey` para reflejar que FormSubmit permite usar un token opaco en lugar del correo electrónico.
+**Aprendizaje (si aplica):** Nunca usar el prefijo `PUBLIC_` para datos sensibles en Astro, incluso si parecen necesarios para el cliente (como un destino de formulario). Además, los secretos deben gestionarse mediante GitHub Secrets y no hardcodearse en los flujos de trabajo de CI/CD. FormSubmit permite tokens opacos para proteger la privacidad del correo electrónico en el HTML generado.

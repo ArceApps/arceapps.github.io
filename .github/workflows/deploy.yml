@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
-          PUBLIC_CONTACT_EMAIL: arceapps.dev@gmail.com
+          CONTACT_FORM_KEY: ${{ secrets.CONTACT_FORM_KEY }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
