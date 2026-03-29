@@ -35,6 +35,66 @@ describe('Search Script', () => {
     searchModule.initSearchComponent();
   });
 
+  describe('debounce', () => {
+    it('should delay function execution', () => {
+      vi.useFakeTimers();
+      const func = vi.fn();
+      const debouncedFunc = searchModule.debounce(func, 100);
+
+      debouncedFunc();
+      expect(func).not.toHaveBeenCalled();
+
+      vi.advanceTimersByTime(50);
+      expect(func).not.toHaveBeenCalled();
+
+      vi.advanceTimersByTime(50);
+      expect(func).toHaveBeenCalledTimes(1);
+      vi.useRealTimers();
+    });
+
+    it('should only execute once for multiple calls', () => {
+      vi.useFakeTimers();
+      const func = vi.fn();
+      const debouncedFunc = searchModule.debounce(func, 100);
+
+      debouncedFunc();
+      debouncedFunc();
+      debouncedFunc();
+
+      vi.advanceTimersByTime(100);
+      expect(func).toHaveBeenCalledTimes(1);
+      vi.useRealTimers();
+    });
+
+    it('should pass arguments to the function', () => {
+      vi.useFakeTimers();
+      const func = vi.fn();
+      const debouncedFunc = searchModule.debounce(func, 100);
+
+      debouncedFunc('test', 123);
+
+      vi.advanceTimersByTime(100);
+      expect(func).toHaveBeenCalledWith('test', 123);
+      vi.useRealTimers();
+    });
+
+    it('should preserve this context', () => {
+      vi.useFakeTimers();
+      const context = { value: 'test' };
+      let capturedContext: any;
+      const func = function(this: any) {
+        capturedContext = this;
+      };
+      const debouncedFunc = searchModule.debounce(func, 100);
+
+      debouncedFunc.call(context);
+
+      vi.advanceTimersByTime(100);
+      expect(capturedContext).toBe(context);
+      vi.useRealTimers();
+    });
+  });
+
   describe('escapeHtml', () => {
     it('should escape special characters', () => {
       expect(searchModule.escapeHtml('<script>alert("xss")</script>')).toBe('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
