@@ -8,11 +8,13 @@ interface Props {
 const { lang = 'es' } = Astro.props;
 const t = useTranslations(lang);
 
-// Security: Use environment variable for email to prevent hardcoding secrets in repo
-const contactEmail = import.meta.env.PUBLIC_CONTACT_EMAIL;
+// Security: Use environment variable for the form key to avoid exposing the email address.
+// FormSubmit allows using a random string token instead of the email address directly.
+// We remove the "PUBLIC_" prefix to prevent Astro from exposing it to the client side.
+const formActionKey = import.meta.env.CONTACT_FORM_KEY;
 
-if (!contactEmail && import.meta.env.PROD) {
-  throw new Error("PUBLIC_CONTACT_EMAIL environment variable is not defined. Contact form will not work in production.");
+if (!formActionKey && import.meta.env.PROD) {
+  throw new Error("CONTACT_FORM_KEY environment variable is not defined. Contact form will not work in production.");
 }
 
 const nextUrl = lang === 'es'
@@ -22,7 +24,7 @@ const nextUrl = lang === 'es'
 
 <form
   id="contact-form"
-  action={`https://formsubmit.co/${contactEmail}`}
+  action={`https://formsubmit.co/${formActionKey}`}
   method="POST"
   class="bg-surface dark:bg-dark-surface p-6 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm"
   data-sending-text={t('contact.sending')}
