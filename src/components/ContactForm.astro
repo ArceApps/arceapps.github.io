@@ -14,7 +14,7 @@ const t = useTranslations(lang);
 const formActionKey = import.meta.env.CONTACT_FORM_KEY;
 
 if (!formActionKey && import.meta.env.PROD) {
-  throw new Error("CONTACT_FORM_KEY environment variable is not defined. Contact form will not work in production.");
+  console.warn("CONTACT_FORM_KEY environment variable is not defined. Contact form will not work in production.");
 }
 
 const nextUrl = lang === 'es'
@@ -22,6 +22,12 @@ const nextUrl = lang === 'es'
   : "https://arceapps.github.io/about-me";
 ---
 
+{!formActionKey ? (
+  <div class="bg-surface dark:bg-dark-surface p-6 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm text-center text-on-surface-variant dark:text-dark-on-surface-variant">
+    <span class="material-icons text-4xl mb-2 block" aria-hidden="true">mail_off</span>
+    <p>{t('contact.unavailable')}</p>
+  </div>
+) : (
 <form
   id="contact-form"
   action={`https://formsubmit.co/${formActionKey}`}
@@ -115,6 +121,7 @@ const nextUrl = lang === 'es'
     {t('contact.disclaimer')}
   </p>
 </form>
+)}
 
 <script>
   function initContactForm() {

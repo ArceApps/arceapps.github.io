@@ -56,6 +56,7 @@ export const ui = {
     'contact.sending': 'Sending...',
     'contact.disclaimer': 'By sending this message, you agree to be contacted in response to your inquiry. Your email will be kept confidential.',
     'contact.subject': 'New contact message - ArceApps',
+    'contact.unavailable': 'The contact form is temporarily unavailable. Please try again later.',
   },
   es: {
     'nav.home': 'Inicio',
@@ -107,5 +108,6 @@ export const ui = {
     'contact.sending': 'Enviando...',
     'contact.disclaimer': 'Al enviar este mensaje, aceptas ser contactado en respuesta a tu consulta. Tu correo se mantendrá confidencial.',
     'contact.subject': 'Nuevo mensaje de contacto - ArceApps',
+    'contact.unavailable': 'El formulario de contacto no está disponible temporalmente. Por favor, inténtalo más tarde.',
   },
 } as const;
