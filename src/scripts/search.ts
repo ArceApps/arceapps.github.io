@@ -24,9 +24,12 @@ let searchResults: HTMLElement | null = null;
 let searchStatus: HTMLElement | null = null;
 
 // Utility: Debounce function to limit execution frequency
-export function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
+export function debounce<T extends (...args: unknown[]) => void>(
+  func: T,
+  wait: number
+) {
   let timeout: ReturnType<typeof setTimeout>;
-  return function(this: any, ...args: Parameters<T>) {
+  return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
