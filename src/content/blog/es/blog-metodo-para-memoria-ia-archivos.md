@@ -7,7 +7,7 @@ tags: ["IA", "Memoria", "PARA", "Obsidian", "Logseq", "MCP", "PKM", "Markdown", 
 reference_id: "a3f8d2c1-9e4b-47f3-b812-6c5a1d8e0f3b"
 ---
 
-> Este artículo es el complemento directo de [La Arquitectura de la Memoria Persistente en Agentes IA](/blog/ai-agent-memory-persistence-guide), que cubre el panorama amplio de frameworks como OpenClaw, Mem0 y Cognee. Aquí profundizamos en un enfoque concreto y extremadamente práctico: el uso del **método PARA** y archivos Markdown planos como sustrato de memoria transparente y editable por humanos para agentes de IA. Si usas Obsidian o Logseq, encontrarás esto aplicable directamente a tu flujo de trabajo hoy mismo.
+> Este artículo es el complemento directo de [La Arquitectura de la Memoria Persistente en Agentes IA](/blog/blog-memoria-persistente-agentes-ia), que cubre el panorama amplio de frameworks como OpenClaw, Mem0 y Cognee. Aquí profundizamos en un enfoque concreto y extremadamente práctico: el uso del **método PARA** y archivos Markdown planos como sustrato de memoria transparente y editable por humanos para agentes de IA. Si usas Obsidian o Logseq, encontrarás esto aplicable directamente a tu flujo de trabajo hoy mismo.
 
 ---
 
@@ -19,7 +19,7 @@ Los almacenes vectoriales en la nube, las bases de datos de embeddings propietar
 
 Esto está arquitectónicamente al revés. La memoria es fundamentalmente una relación de confianza. Necesitas poder ver lo que el agente sabe, editarlo, borrarlo y añadirle contenido. Necesitas poder hacerlo con un editor de texto, no a través de una API especializada que puede desaparecer el año que viene.
 
-La solución, como he argumentado en detalle en mi artículo más amplio sobre [la persistencia de la memoria en agentes IA](/blog/ai-agent-memory-persistence-guide), es la **memoria local, basada en archivos**. Y el mejor marco organizativo para esa memoria — para nuestros propósitos — es el **método PARA** de Tiago Forte.
+La solución, como he argumentado en detalle en mi artículo más amplio sobre [la persistencia de la memoria en agentes IA](/blog/blog-memoria-persistente-agentes-ia), es la **memoria local, basada en archivos**. Y el mejor marco organizativo para esa memoria — para nuestros propósitos — es el **método PARA** de Tiago Forte.
 
 ---
 
@@ -401,7 +401,7 @@ Juntos, crean una arquitectura de memoria IA cualitativamente diferente de las a
 1. Forte, T. (2017). *The PARA Method: The Simple System for Organizing Your Digital Life in Seconds*. Forte Labs. [fortelabs.com/blog/para](https://fortelabs.com/blog/para)
 2. *How to Implement PARA with AI*. The Second Brain. [thesecondbrain.io/how-to-implement-para-with-ai](https://thesecondbrain.io/how-to-implement-para-with-ai)
 3. Documentación del Model Context Protocol (MCP). Anthropic. [modelcontextprotocol.io](https://modelcontextprotocol.io)
-4. Relacionado: [La Arquitectura de la Memoria Persistente en Agentes IA: Marcos, Metodologías y la Evolución de la Gestión del Conocimiento Personal](/blog/ai-agent-memory-persistence-guide) — el panorama más amplio de los sistemas de memoria IA.
-5. Relacionado: [Obsidian para Desarrolladores: Guía Definitiva 2025](/blog/obsidian-developer-guide) — configurar Obsidian como un IDE para desarrolladores.
+4. Relacionado: [La Arquitectura de la Memoria Persistente en Agentes IA: Marcos, Metodologías y la Evolución de la Gestión del Conocimiento Personal](/blog/blog-memoria-persistente-agentes-ia) — el panorama más amplio de los sistemas de memoria IA.
+5. Relacionado: [Obsidian para Desarrolladores: Guía Definitiva 2025](/blog/obsidian-para-desarrolladores) — configurar Obsidian como un IDE para desarrolladores.
 6. Plugin MCP de Obsidian. Desarrollado por la comunidad. [github.com/calclavia/mcp-obsidian](https://github.com/calclavia/mcp-obsidian)
 7. Documentación de Logseq: Sistema de Grafo y Consultas. [docs.logseq.com](https://docs.logseq.com)

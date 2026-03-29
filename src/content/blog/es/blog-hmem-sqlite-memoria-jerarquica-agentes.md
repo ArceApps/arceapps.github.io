@@ -7,7 +7,7 @@ tags: ["IA", "Memoria", "Agentes", "MCP", "SQLite", "FTS5", "Arquitectura", "Ope
 reference_id: "c7d4e2f1-8b3a-4c9e-a5f7-2d1e8c6b4a3f"
 ---
 
-> Este artículo se integra en la serie de memoria agéntica de este blog. Si quieres el panorama completo, empieza por [La Arquitectura de Memoria Persistente para Agentes IA](/blog/ai-agent-memory-persistence-guide). Para el ángulo de seguridad y privacidad, lee [Memoria Agéntica: Seguridad, Privacidad y el Futuro del Segundo Cerebro de la IA](/blog/memory-security-privacy-agentic). Para la propuesta de Microsoft Research, revisa [PlugMem: El Módulo de Memoria Plugin de Microsoft Research](/blog/plugmem-microsoft-agent-memory). Este artículo analiza hmem, un servidor MCP open source que adopta un enfoque diferente y muy pragmático: modelar la memoria humana como una jerarquía de cinco niveles con lazy loading, respaldada por SQLite plano.
+> Este artículo se integra en la serie de memoria agéntica de este blog. Si quieres el panorama completo, empieza por [La Arquitectura de Memoria Persistente para Agentes IA](/blog/blog-memoria-persistente-agentes-ia). Para el ángulo de seguridad y privacidad, lee [Memoria Agéntica: Seguridad, Privacidad y el Futuro del Segundo Cerebro de la IA](/blog/blog-memoria-seguridad-privacidad-agentica). Para la propuesta de Microsoft Research, revisa [PlugMem: El Módulo de Memoria Plugin de Microsoft Research](/blog/blog-plugmem-microsoft-memoria-agentes). Este artículo analiza hmem, un servidor MCP open source que adopta un enfoque diferente y muy pragmático: modelar la memoria humana como una jerarquía de cinco niveles con lazy loading, respaldada por SQLite plano.
 
 ---
 
@@ -159,7 +159,7 @@ Tras ejecutar `npx hmem-mcp init`, hmem genera ficheros de habilidades para cada
 - `/hmem-curate`: Activa el agente curador para limpiar la memoria.
 - `/hmem-status`: Muestra estadísticas actuales de memoria (entradas, niveles, puntuaciones de decaimiento).
 
-El patrón es consistente con el enfoque de [Agent Skills y contexto dinámico](/blog/ai-agent-skills-dynamic-context) que hemos explorado en este blog. Las operaciones de memoria se convierten en comandos explícitos que el agente puede invocar, en lugar de procesos automáticos opacos.
+El patrón es consistente con el enfoque de [Agent Skills y contexto dinámico](/blog/blog-agent-skills-contexto-dinamico) que hemos explorado en este blog. Las operaciones de memoria se convierten en comandos explícitos que el agente puede invocar, en lugar de procesos automáticos opacos.
 
 ---
 
@@ -231,16 +231,16 @@ Para un proyecto con 9 estrellas en GitHub, hmem muestra un diseño sorprendente
    - [https://www.reddit.com/r/vibecoding/comments/1rjlki3/my_agent_knows_exactly_what_it_did_a_week_ago/](https://www.reddit.com/r/vibecoding/comments/1rjlki3/my_agent_knows_exactly_what_it_did_a_week_ago/)
 
 3. **La Arquitectura de Memoria Persistente para Agentes IA** — ArceApps Blog (2026). Análisis amplio de frameworks de memoria agéntica incluyendo Mem0, Cognee y OpenClaw.
-   - [/blog/ai-agent-memory-persistence-guide](/blog/ai-agent-memory-persistence-guide)
+   - [/blog/blog-memoria-persistente-agentes-ia](/blog/blog-memoria-persistente-agentes-ia)
 
 4. **Memoria Agéntica: Seguridad, Privacidad y el Futuro del Segundo Cerebro de la IA** — ArceApps Blog (2026). Análisis de los riesgos de seguridad y privacidad en la memoria persistente de agentes.
-   - [/blog/memory-security-privacy-agentic](/blog/memory-security-privacy-agentic)
+   - [/blog/blog-memoria-seguridad-privacidad-agentica](/blog/blog-memoria-seguridad-privacidad-agentica)
 
 5. **PlugMem: El Módulo de Memoria Plugin de Microsoft Research** — ArceApps Blog (2026). Análisis en profundidad de la arquitectura de grafo de conocimiento proposicional y prescriptivo de PlugMem.
-   - [/blog/plugmem-microsoft-agent-memory](/blog/plugmem-microsoft-agent-memory)
+   - [/blog/blog-plugmem-microsoft-memoria-agentes](/blog/blog-plugmem-microsoft-memoria-agentes)
 
 6. **El Método PARA y la Memoria IA Basada en Ficheros** — ArceApps Blog (2026). Exploración del enfoque de memoria local basado en ficheros usando Markdown y el método PARA.
-   - [/blog/para-method-file-based-ai-memory](/blog/para-method-file-based-ai-memory)
+   - [/blog/blog-metodo-para-memoria-ia-archivos](/blog/blog-metodo-para-memoria-ia-archivos)
 
 7. **Agent Skills y Contexto Dinámico** — ArceApps Blog (2026). Cómo usar ficheros de habilidades y slash commands para dar a los agentes contexto estructurado y bajo demanda.
-   - [/blog/ai-agent-skills-dynamic-context](/blog/ai-agent-skills-dynamic-context)
+   - [/blog/blog-agent-skills-contexto-dinamico](/blog/blog-agent-skills-contexto-dinamico)

@@ -7,7 +7,7 @@ tags: ["IA", "Memoria", "Agentes", "Arquitectura", "Open Source", "Ventana de Co
 reference_id: "d3f7a2b1-9c5e-4d8a-b2f6-1e3c7d5a8b4e"
 ---
 
-> Este artículo forma parte de la serie de memoria agéntica de este blog. Para el panorama amplio de la memoria persistente en agentes, empieza por [La Arquitectura de Memoria Persistente para Agentes IA](/blog/ai-agent-memory-persistence-guide). Para el ángulo de seguridad y privacidad, lee [Memoria Agéntica: Seguridad, Privacidad y el Futuro del Segundo Cerebro de la IA](/blog/memory-security-privacy-agentic). Para la propuesta de Microsoft Research, revisa [PlugMem: El Módulo de Memoria Plugin de Microsoft Research](/blog/plugmem-microsoft-agent-memory). Para el enfoque SQLite + FTS5 con cinco niveles de lazy loading, consulta [hmem: Memoria Jerárquica SQLite para Agentes IA que Realmente Persiste](/blog/hmem-sqlite-hierarchical-memory-agents). Este artículo analiza Hipocampus, un arnés de memoria basado exclusivamente en markdown, sin infraestructura, con una solución genuinamente novedosa al problema de "¿qué sabe mi agente?".
+> Este artículo forma parte de la serie de memoria agéntica de este blog. Para el panorama amplio de la memoria persistente en agentes, empieza por [La Arquitectura de Memoria Persistente para Agentes IA](/blog/blog-memoria-persistente-agentes-ia). Para el ángulo de seguridad y privacidad, lee [Memoria Agéntica: Seguridad, Privacidad y el Futuro del Segundo Cerebro de la IA](/blog/blog-memoria-seguridad-privacidad-agentica). Para la propuesta de Microsoft Research, revisa [PlugMem: El Módulo de Memoria Plugin de Microsoft Research](/blog/blog-plugmem-microsoft-memoria-agentes). Para el enfoque SQLite + FTS5 con cinco niveles de lazy loading, consulta [hmem: Memoria Jerárquica SQLite para Agentes IA que Realmente Persiste](/blog/blog-hmem-sqlite-memoria-jerarquica-agentes). Este artículo analiza Hipocampus, un arnés de memoria basado exclusivamente en markdown, sin infraestructura, con una solución genuinamente novedosa al problema de "¿qué sabe mi agente?".
 
 ---
 
@@ -195,16 +195,16 @@ Para un desarrollador trabajando en un proyecto de larga duración con agentes I
    - [https://www.reddit.com/r/SideProject/comments/1ryq2iq/i_built_a_persistent_memory_system_for_ai_agents/](https://www.reddit.com/r/SideProject/comments/1ryq2iq/i_built_a_persistent_memory_system_for_ai_agents/)
 
 4. **La Arquitectura de Memoria Persistente para Agentes IA** — ArceApps Blog (2026). Análisis amplio de frameworks de memoria agéntica incluyendo Mem0, Cognee y OpenClaw.
-   - [/blog/ai-agent-memory-persistence-guide](/blog/ai-agent-memory-persistence-guide)
+   - [/blog/blog-memoria-persistente-agentes-ia](/blog/blog-memoria-persistente-agentes-ia)
 
 5. **Memoria Agéntica: Seguridad, Privacidad y el Futuro del Segundo Cerebro de la IA** — ArceApps Blog (2026). Análisis de los riesgos de seguridad y privacidad en sistemas de memoria persistente de agentes.
-   - [/blog/memory-security-privacy-agentic](/blog/memory-security-privacy-agentic)
+   - [/blog/blog-memoria-seguridad-privacidad-agentica](/blog/blog-memoria-seguridad-privacidad-agentica)
 
 6. **PlugMem: El Módulo de Memoria Plugin de Microsoft Research** — ArceApps Blog (2026). Análisis en profundidad de la arquitectura de grafo de conocimiento proposicional y prescriptivo de PlugMem.
-   - [/blog/plugmem-microsoft-agent-memory](/blog/plugmem-microsoft-agent-memory)
+   - [/blog/blog-plugmem-microsoft-memoria-agentes](/blog/blog-plugmem-microsoft-memoria-agentes)
 
 7. **hmem: Memoria Jerárquica SQLite para Agentes IA que Realmente Persiste** — ArceApps Blog (2026). Análisis de la jerarquía de lazy loading en cinco niveles de hmem, el decaimiento Fibonacci y el backend SQLite + FTS5.
-   - [/blog/hmem-sqlite-hierarchical-memory-agents](/blog/hmem-sqlite-hierarchical-memory-agents)
+   - [/blog/blog-hmem-sqlite-memoria-jerarquica-agentes](/blog/blog-hmem-sqlite-memoria-jerarquica-agentes)
 
 8. **El Método PARA y la Memoria IA Basada en Ficheros** — ArceApps Blog (2026). Exploración del enfoque de memoria local basado en ficheros usando Markdown y el método PARA.
-   - [/blog/para-method-file-based-ai-memory](/blog/para-method-file-based-ai-memory)
+   - [/blog/blog-metodo-para-memoria-ia-archivos](/blog/blog-metodo-para-memoria-ia-archivos)
