@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <!-- Background -->
+  <rect width="800" height="450" fill="#0f1117"/>
+
+  <!-- Grid lines subtle -->
+  <line x1="0" y1="150" x2="800" y2="150" stroke="#1a2030" stroke-width="1"/>
+  <line x1="0" y1="300" x2="800" y2="300" stroke="#1a2030" stroke-width="1"/>
+  <line x1="200" y1="0" x2="200" y2="450" stroke="#1a2030" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="450" stroke="#1a2030" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="450" stroke="#1a2030" stroke-width="1"/>
+
+  <!-- Central node (teal) -->
+  <circle cx="400" cy="225" r="48" fill="#018786" opacity="0.9"/>
+  <circle cx="400" cy="225" r="34" fill="#0f1117"/>
+  <circle cx="400" cy="225" r="14" fill="#018786"/>
+
+  <!-- Orbiting tool nodes (orange) -->
+  <!-- LangGraph -->
+  <circle cx="220" cy="130" r="28" fill="#FF9800" opacity="0.85"/>
+  <text x="220" y="134" text-anchor="middle" font-family="monospace" font-size="9" fill="#0f1117" font-weight="bold">LANG</text>
+  <text x="220" y="144" text-anchor="middle" font-family="monospace" font-size="9" fill="#0f1117" font-weight="bold">GRAPH</text>
+
+  <!-- CrewAI -->
+  <circle cx="400" cy="80" r="28" fill="#FF9800" opacity="0.85"/>
+  <text x="400" y="84" text-anchor="middle" font-family="monospace" font-size="9" fill="#0f1117" font-weight="bold">CREW</text>
+  <text x="400" y="94" text-anchor="middle" font-family="monospace" font-size="9" fill="#0f1117" font-weight="bold">AI</text>
+
+  <!-- n8n -->
+  <circle cx="580" cy="130" r="28" fill="#FF9800" opacity="0.85"/>
+  <text x="580" y="138" text-anchor="middle" font-family="monospace" font-size="10" fill="#0f1117" font-weight="bold">n8n</text>
+
+  <!-- Cursor -->
+  <circle cx="580" cy="320" r="28" fill="#FF9800" opacity="0.85"/>
+  <text x="580" y="328" text-anchor="middle" font-family="monospace" font-size="9" fill="#0f1117" font-weight="bold">CURSOR</text>
+
+  <!-- Claude Code -->
+  <circle cx="400" cy="370" r="28" fill="#FF9800" opacity="0.85"/>
+  <text x="400" y="374" text-anchor="middle" font-family="monospace" font-size="8" fill="#0f1117" font-weight="bold">CLAUDE</text>
+  <text x="400" y="384" text-anchor="middle" font-family="monospace" font-size="8" fill="#0f1117" font-weight="bold">CODE</text>
+
+  <!-- AutoGen -->
+  <circle cx="220" cy="320" r="28" fill="#FF9800" opacity="0.85"/>
+  <text x="220" y="324" text-anchor="middle" font-family="monospace" font-size="8" fill="#0f1117" font-weight="bold">AUTO</text>
+  <text x="220" y="334" text-anchor="middle" font-family="monospace" font-size="8" fill="#0f1117" font-weight="bold">GEN</text>
+
+  <!-- Connection lines from center to nodes (teal) -->
+  <line x1="366" y1="202" x2="242" y2="151" stroke="#018786" stroke-width="1.5" opacity="0.6"/>
+  <line x1="400" y1="177" x2="400" y2="108" stroke="#018786" stroke-width="1.5" opacity="0.6"/>
+  <line x1="434" y1="202" x2="558" y2="151" stroke="#018786" stroke-width="1.5" opacity="0.6"/>
+  <line x1="434" y1="248" x2="558" y2="299" stroke="#018786" stroke-width="1.5" opacity="0.6"/>
+  <line x1="400" y1="273" x2="400" y2="342" stroke="#018786" stroke-width="1.5" opacity="0.6"/>
+  <line x1="366" y1="248" x2="242" y2="299" stroke="#018786" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- OpenAI Agents node (smaller, accent) -->
+  <circle cx="100" cy="225" r="22" fill="#018786" opacity="0.7"/>
+  <text x="100" y="221" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff" font-weight="bold">OPENAI</text>
+  <text x="100" y="231" text-anchor="middle" font-family="monospace" font-size="7" fill="#fff" font-weight="bold">AGENTS</text>
+  <line x1="352" y1="225" x2="122" y2="225" stroke="#018786" stroke-width="1" opacity="0.5" stroke-dasharray="4,3"/>
+
+  <!-- Title text -->
+  <text x="400" y="430" text-anchor="middle" font-family="monospace" font-size="13" fill="#018786" font-weight="bold" letter-spacing="2">AI TOOLS WORTH LEARNING · 2026</text>
+
+  <!-- Decorative corner marks -->
+  <polyline points="20,20 20,40 40,40" fill="none" stroke="#FF9800" stroke-width="1.5" opacity="0.5"/>
+  <polyline points="780,20 780,40 760,40" fill="none" stroke="#FF9800" stroke-width="1.5" opacity="0.5"/>
+  <polyline points="20,430 20,410 40,410" fill="none" stroke="#FF9800" stroke-width="1.5" opacity="0.5"/>
+  <polyline points="780,430 780,410 760,410" fill="none" stroke="#FF9800" stroke-width="1.5" opacity="0.5"/>
+</svg>
