@@ -20,6 +20,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString(lang === 'es' ? "es-E
 
 const slug = post.slug.split('/').pop();
 const href = lang === 'es' ? `/es/blog/${slug}/` : `/blog/${slug}/`;
+const firstTag = post.data.tags?.[0];
 ---
 
 <article
@@ -50,16 +51,15 @@ const href = lang === 'es' ? `/es/blog/${slug}/` : `/blog/${slug}/`;
   <div class="p-6 flex flex-col flex-grow relative z-20 pointer-events-none">
     <div class="flex items-center gap-2 mb-3">
       {
-        post.data.tags &&
-          post.data.tags.slice(0, 1).map((tag: string) => (
-            <a
-              href={lang === 'es' ? `/es/blog/tag/${slugify(tag)}/` : `/blog/tag/${slugify(tag)}/`}
-              data-astro-prefetch
-              class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-            >
-              {tag}
-            </a>
-          ))
+        firstTag && (
+          <a
+            href={lang === 'es' ? `/es/blog/tag/${slugify(firstTag)}/` : `/blog/tag/${slugify(firstTag)}/`}
+            data-astro-prefetch
+            class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+          >
+            {firstTag}
+          </a>
+        )
       }
       <span
         class="text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70 ml-auto"
