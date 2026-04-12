@@ -9,9 +9,9 @@ reference_id: "36aa3a31-4e48-4a60-9af8-9424cfcd9e9e"
 
 > Este artículo asume familiaridad con agentes de IA y flujos de trabajo de código. Si estás empezando, puede interesarte leer antes:
 >
-> - **[De Copilot a Agentes Autónomos: Cline, Cursor y el Workflow en 2025](/blog/coding-with-ai-agents)** — La base: qué cambió cuando los agentes entraron en escena.
-> - **[Agentes IA Autónomos en el Desarrollo Android](/blog/autonomous-ai-agents-android)** — Cómo se comparan los frameworks multi-agente en un proyecto real.
-> - **[Orquestando Agentes IA en un Pipeline CI/CD](/blog/orchestrating-ai-agents-cicd-pipeline)** — Automatización práctica con LangGraph y CrewAI.
+> - **[De Copilot a Agentes Autónomos: Cline, Cursor y el Workflow en 2025](/blog/blog-ai-agents-coding)** — La base: qué cambió cuando los agentes entraron en escena.
+> - **[Agentes IA Autónomos en el Desarrollo Android](/blog/blog-agentes-ia-autonomos-android)** — Cómo se comparan los frameworks multi-agente en un proyecto real.
+> - **[Orquestando Agentes IA en un Pipeline CI/CD](/blog/blog-orquestar-agentes-pipeline-cicd)** — Automatización práctica con LangGraph y CrewAI.
 
 ---
 

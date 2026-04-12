@@ -299,9 +299,9 @@ export function initSearchComponent() {
   }
 
   if (searchInput) {
-      const handleInput = debounce((e: Event) => {
-          performSearch((e.target as HTMLInputElement).value);
-      }, 300);
+      const handleInput = debounce((e: unknown) => {
+          performSearch(((e as Event).target as HTMLInputElement).value);
+      }, 300) as unknown as EventListener;
 
       searchInput.addEventListener("input", handleInput);
   }

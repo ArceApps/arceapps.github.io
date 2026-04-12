@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { getLangFromUrl, getRouteFromUrl, useTranslations } from './utils';
 
 describe('i18n utils', () => {
