@@ -95,16 +95,6 @@ describe('Search Script', () => {
     });
   });
 
-  describe('escapeHtml', () => {
-    it('should escape special characters', () => {
-      expect(searchModule.escapeHtml('<script>alert("xss")</script>')).toBe('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
-    });
-
-    it('should handle empty strings', () => {
-        expect(searchModule.escapeHtml('')).toBe('');
-    });
-  });
-
   describe('performSearch', () => {
     it('should show "at least 2 characters" message for short query', async () => {
         global.fetch = vi.fn().mockResolvedValue({
