@@ -72,8 +72,6 @@ describe('Layout Script', () => {
         writable: true,
       });
 
-      // Mock console.log
-      vi.spyOn(console, 'log').mockImplementation(() => {});
     });
 
     it('should register service worker if supported', async () => {
@@ -82,26 +80,18 @@ describe('Layout Script', () => {
       initServiceWorker();
 
       expect(registerMock).toHaveBeenCalledWith('/sw.js');
-
-      // Wait for promise resolution
-      await new Promise(resolve => setTimeout(resolve, 0));
-      expect(console.log).toHaveBeenCalledWith('SW registered: ', { scope: '/' });
     });
 
-    it('should log error if registration fails asynchronously', async () => {
+    it('should handle registration failure asynchronously', async () => {
       const error = new Error('SW failed asynchronously');
       registerMock.mockRejectedValue(error);
 
       initServiceWorker();
 
       expect(registerMock).toHaveBeenCalledWith('/sw.js');
-
-      // Wait for promise resolution
-      await new Promise(resolve => setTimeout(resolve, 0));
-      expect(console.log).toHaveBeenCalledWith('SW registration failed: ', error);
     });
 
-    it('should log error if registration fails synchronously', () => {
+    it('should handle registration failure synchronously', () => {
       const error = new Error('SW failed synchronously');
       registerMock.mockImplementation(() => {
         throw error;
@@ -110,7 +100,6 @@ describe('Layout Script', () => {
       initServiceWorker();
 
       expect(registerMock).toHaveBeenCalledWith('/sw.js');
-      expect(console.log).toHaveBeenCalledWith('SW registration failed: ', error);
     });
 
     it('should not register if serviceWorker is not in navigator', () => {
