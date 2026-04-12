@@ -288,7 +288,7 @@ NanoStack no exige cambiar de proveedor de IA ni aprender un nuevo paradigma de 
 
 La integración en el flujo de trabajo es directa. En Claude Code, los skills aparecen como comandos de barra directamente. En Gemini CLI, se cargan como extensiones. En Cursor, aparecen como instrucciones personalizadas. Los mismos ocho comandos funcionan igual independientemente de la herramienta que uses.
 
-Si eres nuevo en el concepto de skills, vale la pena entender cómo funcionan los [agent skills](/blog/building-ai-agent-skills) y el [estándar AGENTS.md](/blog/agents-md-standard) antes de profundizar con NanoStack — el framework tiene más sentido una vez que comprendes el modelo de inyección de contexto modular que hay detrás.
+Si eres nuevo en el concepto de skills, vale la pena entender cómo funcionan los [agent skills](/blog/blog-ai-skills-desarrollo) y el [estándar AGENTS.md](/blog/blog-agents-md-estandar) antes de profundizar con NanoStack — el framework tiene más sentido una vez que comprendes el modelo de inyección de contexto modular que hay detrás.
 
 ## 🔌 Agnóstico del LLM por Diseño
 
