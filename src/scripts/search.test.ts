@@ -172,6 +172,43 @@ describe('Search Script', () => {
         const anchor = results?.querySelector('a');
         expect(anchor?.getAttribute('href')).toBe(legitimateSlug);
     });
+
+    it('should render malicious title as plain text (XSS protection)', async () => {
+        const xssPayload = '<img src=x onerror=alert(1)>';
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([{ title: xssPayload, slug: "/app", type: "App", description: "Desc" }]),
+        });
+
+        searchMock.mockReturnValue([{
+            item: { title: xssPayload, slug: "/app", type: "App", description: "Desc" }
+        }]);
+
+        await searchModule.initFuse();
+        searchModule.performSearch('xss');
+
+        const results = document.getElementById('search-results');
+        const h4 = results?.querySelector('h4');
+        expect(h4?.textContent).toBe(xssPayload);
+        expect(h4?.innerHTML).not.toContain('<img');
+    });
+
+    it('should render malicious query as plain text in "no results" (XSS protection)', async () => {
+        const xssPayload = '"><img src=x onerror=alert(1)>';
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([]),
+        });
+
+        searchMock.mockReturnValue([]);
+
+        await searchModule.initFuse();
+        searchModule.performSearch(xssPayload);
+
+        const status = document.getElementById('search-status');
+        expect(status?.textContent).toContain(`No encontramos resultados para "${xssPayload}"`);
+        expect(status?.innerHTML).not.toContain('<img');
+    });
   });
 
   describe('initSearchComponent', () => {
