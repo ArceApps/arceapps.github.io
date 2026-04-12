@@ -17,23 +17,11 @@
  */
 
 import { describe, it, expect } from 'vitest';
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const CONTENT_DIR = path.resolve(__dirname, '../content/blog');
 const LOCALES = ['en', 'es'] as const;
-
-/** Returns the slugs (filename without .md) for all posts in a locale. */
-function getSlugsForLocale(locale: string): Set<string> {
-  const dir = path.join(CONTENT_DIR, locale);
-  if (!fs.existsSync(dir)) return new Set();
-  return new Set(
-    fs
-      .readdirSync(dir)
-      .filter((f) => f.endsWith('.md'))
-      .map((f) => f.replace(/\.md$/, ''))
-  );
-}
 
 /** Extracts all `/blog/<slug>` links from markdown text. */
 function extractInternalBlogLinks(content: string): string[] {
@@ -60,29 +48,38 @@ interface BrokenLink {
 const brokenLinks: BrokenLink[] = [];
 const checkedCount = { value: 0 };
 
-for (const locale of LOCALES) {
-  const slugsInLocale = getSlugsForLocale(locale);
-  const dir = path.join(CONTENT_DIR, locale);
-  if (!fs.existsSync(dir)) continue;
-
-  const files = fs.readdirSync(dir).filter((f) => f.endsWith('.md'));
-  for (const file of files) {
-    const filePath = path.join(dir, file);
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const linkedSlugs = extractInternalBlogLinks(content);
-
-    for (const slug of linkedSlugs) {
-      checkedCount.value++;
-      if (!slugsInLocale.has(slug)) {
-        brokenLinks.push({
-          file: `src/content/blog/${locale}/${file}`,
-          slug,
-          expectedLocale: locale,
-        });
-      }
+await Promise.all(
+  LOCALES.map(async (locale) => {
+    const dir = path.join(CONTENT_DIR, locale);
+    try {
+      await fs.access(dir);
+    } catch {
+      return;
     }
-  }
-}
+
+    const files = (await fs.readdir(dir)).filter((f) => f.endsWith('.md'));
+    const slugsInLocale = new Set(files.map((f) => f.replace(/\.md$/, '')));
+
+    await Promise.all(
+      files.map(async (file) => {
+        const filePath = path.join(dir, file);
+        const content = await fs.readFile(filePath, 'utf-8');
+        const linkedSlugs = extractInternalBlogLinks(content);
+
+        for (const slug of linkedSlugs) {
+          checkedCount.value++;
+          if (!slugsInLocale.has(slug)) {
+            brokenLinks.push({
+              file: `src/content/blog/${locale}/${file}`,
+              slug,
+              expectedLocale: locale,
+            });
+          }
+        }
+      })
+    );
+  })
+);
 
 // ---------------------------------------------------------------------------
 // Tests
