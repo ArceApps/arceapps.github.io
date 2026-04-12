@@ -75,5 +75,20 @@ describe('i18n utils', () => {
         const urlEn = new URL('http://localhost:4321/');
         expect(getRouteFromUrl(urlEn)).toBe('/');
     });
+
+    it('does not treat prototype properties as language codes', () => {
+      const url = new URL('http://localhost:4321/toString/blog');
+      expect(getRouteFromUrl(url)).toBe('/toString/blog');
+    });
+
+    it('handles missing language segment correctly', () => {
+      const url = new URL('http://localhost:4321/');
+      expect(getRouteFromUrl(url)).toBe('/');
+    });
+
+    it('handles non-prefixed deep paths correctly', () => {
+      const url = new URL('http://localhost:4321/blog/post-1');
+      expect(getRouteFromUrl(url)).toBe('/blog/post-1');
+    });
   });
 });
