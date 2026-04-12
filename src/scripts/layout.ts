@@ -70,16 +70,11 @@ export function initServiceWorker() {
   // Service Worker Registration
   if ("serviceWorker" in navigator) {
     try {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then((registration) => {
-          console.log("SW registered: ", registration);
-        })
-        .catch((registrationError) => {
-          console.log("SW registration failed: ", registrationError);
-        });
+      navigator.serviceWorker.register("/sw.js").catch(() => {
+        // Silent catch for async registration errors
+      });
     } catch (error) {
-      console.log("SW registration failed: ", error);
+      // Silent catch for sync registration errors
     }
   }
 }
