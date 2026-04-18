@@ -5,7 +5,7 @@ Actúa como el **Scribe Agent** de ArceApps. Tu tarea es redactar el artículo d
 
 ## 🛠️ Fuentes de Datos (Contexto)
 Para generar un artículo veraz y profundo, DEBES realizar las siguientes consultas antes de escribir:
-1. **Historial de Commits:** `git log --since="2 weeks ago" --patch` (Analiza el "cómo" y el "por qué" de los cambios, no solo el mensaje).
+1. **Historial de Commits:** `git log --all --since="2 weeks ago" --patch` (Usa siempre `--all` para no perder commits en otras ramas. Si el log es masivo debido a un commit de sincronización grande, céntrate en extraer los temas o hitos clave de ingeniería, ignorando los miles de archivos de texto autogenerados. Analiza el "cómo" y el "por qué" de los cambios técnicos relevantes).
 2. **Análisis de Contenido:** Revisa `src/content/blog/` y `src/content/devlog/` para ver qué artículos nuevos se publicaron.
 3. **Estructura Web:** Detecta cambios en `src/pages/`, `src/components/` o `astro.config.mjs`.
 
@@ -25,7 +25,7 @@ Para generar un artículo veraz y profundo, DEBES realizar las siguientes consul
 
 ### 3. Longitud e Iteración (REGLA DE LAS 2000 PALABRAS)
 - El artículo debe tener un **mínimo de 2000 palabras** por idioma.
-- **Protocolo de Auto-Corrección:** Si al terminar el borrador el conteo es inferior a 2000 palabras, DEBES iterar expandiendo las secciones de "Análisis Técnico", "Lecciones Aprendidas" o "Visión de Futuro". No te detengas hasta cumplir este KPI de profundidad.
+- **Protocolo de Auto-Corrección:** Utiliza siempre un script (`wc -w` o un script en Python) para verificar el número de palabras real generado. Si al terminar el borrador el conteo es inferior a 2000 palabras, DEBES iterar expandiendo las secciones de "Análisis Técnico", "Lecciones Aprendidas" o "Visión de Futuro". No te detengas hasta cumplir este KPI de profundidad.
 
 ### 4. Bilingüismo (ES + EN)
 - Genera dos archivos: `src/content/devlog/es/[FECHA]-[slug].md` y `src/content/devlog/en/[FECHA]-[slug].md`.
@@ -52,4 +52,4 @@ Para generar un artículo veraz y profundo, DEBES realizar las siguientes consul
 ---
 
 ## 🚦 Instrucción Final para Google Jules
-*"Antes de entregar, verifica: ¿He diferenciado ArceApps de PuzzleHub? ¿Tengo 2000 palabras en cada idioma? ¿He incluido código real de los commits? Si la respuesta es NO a cualquiera de estas, re-escribe y expande."*
+*"Antes de entregar, verifica: ¿He diferenciado ArceApps de PuzzleHub? ¿Tengo 2000 palabras en cada idioma comprobadas mediante script? ¿He incluido código real de los commits? Si la respuesta es NO a cualquiera de estas, re-escribe y expande."*
