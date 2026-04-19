@@ -460,6 +460,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import { getLangFromUrl } from "../i18n/utils";
+import { safeJsonLd } from "../utils/security";
 
 interface Props {
   title: string;
@@ -580,8 +581,9 @@ const socialImageURL = new URL(image, Astro.url);
 
     <!-- Schema.org -->
     <script
-      is:inline type="application/ld+json"
-      set:html={JSON.stringify({
+      is:inline
+      type="application/ld+json"
+      set:html={safeJsonLd({
         "@context": "https://schema.org",
         "@type": type === "article" ? "BlogPosting" : "WebSite",
         url: Astro.url,
@@ -597,7 +599,7 @@ const socialImageURL = new URL(image, Astro.url);
           datePublished: publishDate.toISOString(),
           dateModified: publishDate.toISOString(),
         }),
-      }).replace(/</g, "\\u003C")}
+      })}
     />
 
     <script is:inline>
