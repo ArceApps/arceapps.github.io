@@ -222,7 +222,9 @@
 
   /* Images & Videos */
   .prose img, .prose video {
-    @apply rounded-2xl shadow-lg my-10 mx-auto block;
+    @apply rounded-2xl shadow-lg block;
+    margin-block: 2.5rem;
+    margin-inline: auto;
     max-width: min(100%, 500px); /* Fix: Responsive Visual Hierarchy to avoid "exploding" media on tablets/desktop */
     width: auto;
     height: auto;
