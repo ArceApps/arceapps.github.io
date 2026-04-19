@@ -38,12 +38,12 @@ export async function getStaticPaths() {
     });
   });
   
-  return Array.from(tagGroups.entries()).map(([slug, data]) => {
+  return Array.from(tagGroups, ([slug, data]) => {
     // Find the most frequent display name for this slug
     let bestDisplayName = "";
     let maxCount = -1;
 
-    for (const [name, count] of data.displayNames.entries()) {
+    for (const [name, count] of data.displayNames) {
       if (count > maxCount) {
         maxCount = count;
         bestDisplayName = name;
