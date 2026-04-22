@@ -35,15 +35,6 @@ export function debounce<T extends (...args: unknown[]) => void>(
   };
 }
 
-export function escapeHtml(unsafe: string) {
-  if (!unsafe) return "";
-  return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
 
 /**
  * Sanitizes a URL to prevent XSS attacks (javascript:, data:, etc.)
@@ -89,7 +80,8 @@ export function closeModal() {
     }
 
     if (searchResults) {
-      searchResults.replaceChildren();
+======
+      searchResults.textContent = "";
       searchResults.classList.add("hidden");
     }
 
@@ -107,18 +99,24 @@ export async function initFuse() {
   loadingPromise = (async () => {
     // Show loading state
     if (searchStatus) {
-      const container = document.createElement("div");
-      container.className = "flex items-center justify-center gap-2";
+======
+      searchStatus.textContent = "";
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "flex items-center justify-center gap-2";
 
       const icon = document.createElement("span");
       icon.className = "material-icons animate-spin";
       icon.textContent = "refresh";
 
-      const span = document.createElement("span");
-      span.textContent = "Cargando índice...";
+======
+      const text = document.createElement("span");
+      text.textContent = "Cargando índice...";
 
-      container.append(icon, span);
-      searchStatus.replaceChildren(container);
+      wrapper.appendChild(icon);
+      wrapper.appendChild(text);
+      searchStatus.appendChild(wrapper);
+
       searchStatus.classList.remove("hidden");
     }
 
@@ -196,24 +194,32 @@ export function performSearch(query: string) {
   if (results.length === 0) {
     if (searchResults) searchResults.classList.add("hidden");
     if (searchStatus) {
-      const container = document.createElement("div");
-      container.className =
+======
+      searchStatus.textContent = "";
+
+      const wrapper = document.createElement("div");
+      wrapper.className =
         "flex flex-col items-center justify-center py-8 gap-3 text-gray-500 dark:text-gray-400";
 
       const icon = document.createElement("span");
       icon.className = "material-icons text-5xl opacity-50";
       icon.textContent = "search_off";
 
-      const p1 = document.createElement("p");
-      p1.className = "font-medium";
-      p1.textContent = `No encontramos resultados para "${query}"`;
+======
+      const message = document.createElement("p");
+      message.className = "font-medium";
+      message.textContent = `No encontramos resultados para "${query}"`;
 
-      const p2 = document.createElement("p");
-      p2.className = "text-sm";
-      p2.textContent = "Intenta con otras palabras clave o revisa la ortografía.";
+      const subMessage = document.createElement("p");
+      subMessage.className = "text-sm";
+      subMessage.textContent =
+        "Intenta con otras palabras clave o revisa la ortografía.";
 
-      container.append(icon, p1, p2);
-      searchStatus.replaceChildren(container);
+      wrapper.appendChild(icon);
+      wrapper.appendChild(message);
+      wrapper.appendChild(subMessage);
+      searchStatus.appendChild(wrapper);
+
       searchStatus.classList.remove("hidden");
     }
     return;
@@ -222,53 +228,68 @@ export function performSearch(query: string) {
   if (searchStatus) searchStatus.classList.add("hidden");
   if (searchResults) {
     searchResults.classList.remove("hidden");
-    searchResults.replaceChildren(
-      ...results.slice(0, 10).map((result) => {
-        const item = result.item;
-        const icon = item.type === "App" ? "android" : "article";
-        const safeUrl = sanitizeUrl(item.slug);
+======
+    searchResults.textContent = "";
 
-        const a = document.createElement("a");
-        a.href = safeUrl;
-        a.className =
-          "block p-3 rounded-lg hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none";
+    const fragment = document.createDocumentFragment();
 
-        const outerDiv = document.createElement("div");
-        outerDiv.className = "flex items-start gap-3";
+    results.slice(0, 10).forEach((result) => {
+      const item = result.item;
+      const icon = item.type === "App" ? "android" : "article";
+      const safeUrl = sanitizeUrl(item.slug);
 
-        const iconDiv = document.createElement("div");
-        iconDiv.className =
-          "w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1";
-        const iconSpan = document.createElement("span");
-        iconSpan.className = "material-icons text-sm";
-        iconSpan.textContent = icon;
-        iconDiv.append(iconSpan);
+      const a = document.createElement("a");
+      a.href = safeUrl;
+      a.className =
+        "block p-3 rounded-lg hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none";
 
-        const contentDiv = document.createElement("div");
-        const h4 = document.createElement("h4");
-        h4.className =
-          "font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors";
-        h4.textContent = item.title;
+      const mainDiv = document.createElement("div");
+      mainDiv.className = "flex items-start gap-3";
 
-        const p = document.createElement("p");
-        p.className =
-          "text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2";
-        p.textContent = item.description;
+      const iconDiv = document.createElement("div");
+      iconDiv.className =
+        "w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1";
 
-        const tagDiv = document.createElement("div");
-        tagDiv.className = "flex gap-2 mt-1";
-        const tagSpan = document.createElement("span");
-        tagSpan.className =
-          "text-xs px-2 py-0.5 rounded-full bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-gray-500";
-        tagSpan.textContent = item.type;
-        tagDiv.append(tagSpan);
+      const iconSpan = document.createElement("span");
+      iconSpan.className = "material-icons text-sm";
+      iconSpan.textContent = icon;
 
-        contentDiv.append(h4, p, tagDiv);
-        outerDiv.append(iconDiv, contentDiv);
-        a.append(outerDiv);
-        return a;
-      })
-    );
+      iconDiv.appendChild(iconSpan);
+
+      const contentDiv = document.createElement("div");
+
+      const title = document.createElement("h4");
+      title.className =
+        "font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors";
+      title.textContent = item.title;
+
+      const description = document.createElement("p");
+      description.className =
+        "text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2";
+      description.textContent = item.description;
+
+      const tagWrapper = document.createElement("div");
+      tagWrapper.className = "flex gap-2 mt-1";
+
+      const typeTag = document.createElement("span");
+      typeTag.className =
+        "text-xs px-2 py-0.5 rounded-full bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-gray-500";
+      typeTag.textContent = item.type;
+
+      tagWrapper.appendChild(typeTag);
+
+      contentDiv.appendChild(title);
+      contentDiv.appendChild(description);
+      contentDiv.appendChild(tagWrapper);
+
+      mainDiv.appendChild(iconDiv);
+      mainDiv.appendChild(contentDiv);
+
+      a.appendChild(mainDiv);
+      fragment.appendChild(a);
+    });
+
+    searchResults.appendChild(fragment);
   }
 }
 
