@@ -80,7 +80,6 @@ export function closeModal() {
     }
 
     if (searchResults) {
-======
       searchResults.textContent = "";
       searchResults.classList.add("hidden");
     }
@@ -99,7 +98,6 @@ export async function initFuse() {
   loadingPromise = (async () => {
     // Show loading state
     if (searchStatus) {
-======
       searchStatus.textContent = "";
 
       const wrapper = document.createElement("div");
@@ -109,7 +107,6 @@ export async function initFuse() {
       icon.className = "material-icons animate-spin";
       icon.textContent = "refresh";
 
-======
       const text = document.createElement("span");
       text.textContent = "Cargando índice...";
 
@@ -194,7 +191,6 @@ export function performSearch(query: string) {
   if (results.length === 0) {
     if (searchResults) searchResults.classList.add("hidden");
     if (searchStatus) {
-======
       searchStatus.textContent = "";
 
       const wrapper = document.createElement("div");
@@ -205,7 +201,6 @@ export function performSearch(query: string) {
       icon.className = "material-icons text-5xl opacity-50";
       icon.textContent = "search_off";
 
-======
       const message = document.createElement("p");
       message.className = "font-medium";
       message.textContent = `No encontramos resultados para "${query}"`;
@@ -228,7 +223,6 @@ export function performSearch(query: string) {
   if (searchStatus) searchStatus.classList.add("hidden");
   if (searchResults) {
     searchResults.classList.remove("hidden");
-======
     searchResults.textContent = "";
 
     const fragment = document.createDocumentFragment();
