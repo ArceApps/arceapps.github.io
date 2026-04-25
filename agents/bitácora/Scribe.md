@@ -37,3 +37,25 @@ Se realizó una búsqueda en internet sobre los cinco temas más actuales e impo
 **Nota:** Se intentó crear una issue de GitHub para discutir el tema, pero el acceso a la API de GitHub está restringido en el entorno sandbox. El contenido completo de la investigación está disponible en la PR asociada para su revisión y discusión.
 
 **Aprendizaje:** Los temas de IA más relevantes para un blog de Android developer en 2026 son aquellos que tienen un ángulo específico de implementación práctica en el ecosistema Android, no los temas de IA generalista.
+
+---
+
+## 2026-04-23 - Artículo: Stack Completo para Construir Agentes IA en 2026
+**Estado:** Completado
+
+**Fuente:** Hilo en r/AI_Agents (https://www.reddit.com/r/AI_Agents/comments/1rdf5v7/my_guide_on_what_tools_to_use_to_build_ai_agents/) publicado por la comunidad. El usuario propuso un stack: OpenClaw + Vercel AI SDK/Next.js + OpenAI/Claude + MCPs + Cursor/Claude Code.
+
+**Artículos creados:**
+- ES: `src/content/blog/es/blog-stack-completo-agentes-ia-2026.md` (2601 palabras)
+- EN: `src/content/blog/en/complete-beginners-guide-ai-agents-stack-2026.md` (2432 palabras)
+
+**Imagen generada:** `/public/images/blog-agent-stack-2026.svg` (minimalista, colores de marca #018786 y #FF9800)
+
+**Prior Art enlazado:**
+- ES: [Herramientas IA 2026](/blog/herramientas-ia-2026), [NanoStack](/blog/nanostack-agentes-ia), [Memoria Agéntica](/blog/memoria-seguridad-privacidad-agentica)
+- EN: [AI Tools Worth Learning 2026](/blog/ai-tools-worth-learning-2026), [NanoStack](/blog/nanostack-agents), [Agent Memory](/blog/memory-security-privacy-agentic)
+
+**Estructura:** Gancho contextual → Stack completo (OpenClaw, Vercel, Modelos, MCPs, IDEs) → Costos → Seguridad → Hook de acción → Referencias
+
+**Verificación frontmatter:** OK en ambos idiomas
+**Calidad:** Cumple mínimo 2000 palabras, tono indie, sin jerga corporativa
