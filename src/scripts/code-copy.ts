@@ -1,5 +1,18 @@
 import { triggerHapticFeedback } from "./haptics";
 
+/**
+ * Sets the icon for the copy button using safe DOM APIs.
+ * @param button The button element to update.
+ * @param iconName The name of the material icon to display.
+ */
+function setButtonIcon(button: HTMLButtonElement, iconName: string) {
+  const icon = document.createElement("span");
+  icon.className = "material-icons";
+  icon.setAttribute("aria-hidden", "true");
+  icon.textContent = iconName;
+  button.replaceChildren(icon);
+}
+
 export function setupCopyButtons() {
   const preTags = document.querySelectorAll("pre");
   preTags.forEach((pre) => {
@@ -14,8 +27,9 @@ export function setupCopyButtons() {
     const button = document.createElement("button");
     button.className =
       "copy-code-btn focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none";
-    button.innerHTML =
-      '<span class="material-icons" aria-hidden="true">content_copy</span>';
+
+    setButtonIcon(button, "content_copy");
+
     button.title = "Copiar código";
     button.setAttribute("aria-label", "Copiar código");
 
@@ -30,16 +44,14 @@ export function setupCopyButtons() {
           triggerHapticFeedback();
 
           // Visual feedback
-          button.innerHTML =
-            '<span class="material-icons" aria-hidden="true">check</span>';
+          setButtonIcon(button, "check");
           button.classList.add("text-green-400");
           button.setAttribute("aria-label", "¡Copiado!");
           button.title = "¡Copiado!";
 
           setTimeout(() => {
             // Restore original state
-            button.innerHTML =
-              '<span class="material-icons" aria-hidden="true">content_copy</span>';
+            setButtonIcon(button, "content_copy");
             button.classList.remove("text-green-400");
             button.setAttribute("aria-label", "Copiar código");
             button.title = "Copiar código";
