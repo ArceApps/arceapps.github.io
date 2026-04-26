@@ -226,4 +226,44 @@ describe('Search Script', () => {
         expect(global.fetch).toHaveBeenCalledWith('/search-index.json');
     });
   });
+
+  describe('sanitizeUrl', () => {
+    it('should return empty string for empty input', () => {
+      expect(searchModule.sanitizeUrl('')).toBe('');
+    });
+
+    it('should allow safe relative URLs', () => {
+      expect(searchModule.sanitizeUrl('/blog/post')).toBe('/blog/post');
+      expect(searchModule.sanitizeUrl('apps/my-app')).toBe('apps/my-app');
+    });
+
+    it('should allow safe absolute URLs', () => {
+      expect(searchModule.sanitizeUrl('https://arceapps.com')).toBe('https://arceapps.com');
+      expect(searchModule.sanitizeUrl('http://localhost:3000')).toBe('http://localhost:3000');
+    });
+
+    it('should block javascript: protocol', () => {
+      expect(searchModule.sanitizeUrl('javascript:alert(1)')).toBe('about:blank');
+      expect(searchModule.sanitizeUrl('JAVASCRIPT:alert(1)')).toBe('about:blank');
+    });
+
+    it('should block data: protocol', () => {
+      expect(searchModule.sanitizeUrl('data:text/html,<script>alert(1)</script>')).toBe('about:blank');
+    });
+
+    it('should block vbscript: protocol', () => {
+      expect(searchModule.sanitizeUrl('vbscript:msgbox("Hello")')).toBe('about:blank');
+    });
+
+    it('should sanitize control characters and whitespace before check', () => {
+      expect(searchModule.sanitizeUrl('   javascript:alert(1)')).toBe('about:blank');
+      expect(searchModule.sanitizeUrl('\x00javascript:alert(1)')).toBe('about:blank');
+      expect(searchModule.sanitizeUrl('java\x01script:alert(1)')).toBe('about:blank');
+    });
+
+    it('should allow URLs containing dangerous strings but not as protocol', () => {
+      expect(searchModule.sanitizeUrl('/search?q=javascript:foo')).toBe('/search?q=javascript:foo');
+      expect(searchModule.sanitizeUrl('https://example.com/data:abc')).toBe('https://example.com/data:abc');
+    });
+  });
 });
