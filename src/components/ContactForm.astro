@@ -136,9 +136,6 @@ const nextUrl = lang === 'es'
       // Get the translated text from data attribute
       const sendingText = form.getAttribute('data-sending-text') || 'Sending...';
 
-      // Remove any existing listener to avoid duplicates if called multiple times (though page-load usually cleans up DOM)
-      // Actually, since the DOM element 'form' is new on navigation, we don't need to remove old listeners on it.
-
       form.addEventListener("submit", () => {
         // Disable button
         btn.disabled = true;
