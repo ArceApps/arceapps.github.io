@@ -10,7 +10,7 @@ reference_id: "b7c3d91e-5a2f-4e8c-9d1f-6a8b0c3d2e4f"
 > If you're new to AI agents, this guide assumes basic familiarity with LLMs and web development. Related articles that provide context:
 >
 > - **[AI Tools Worth Learning in 2026](/blog/ai-tools-worth-learning-2026)** — The complete landscape of agent tools including n8n, LangGraph, and CrewAI.
-> - **[NanoStack: The Framework that Thinks Before Coding](/blog/nanostack-agents)** — How to structure an agent's workflow to avoid implementation without reflection.
+> - **[NanoStack: The Framework that Thinks Before Coding](/blog/nanostack-ai-agent-framework)** — How to structure an agent's workflow to avoid implementation without reflection.
 > - **[Agent Memory: Security, Privacy, and the Future](/blog/memory-security-privacy-agentic)** — Everything you need to know about persistent memory before building your agent.
 
 ---

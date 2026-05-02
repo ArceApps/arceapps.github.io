@@ -9,9 +9,9 @@ reference_id: "b7c3d91e-5a2f-4e8c-9d1f-6a8b0c3d2e4f"
 
 > Si eres nuevo en el mundo de los agentes IA, esta guía asume familiaridad básica con LLMs y desarrollo web. Artículos relacionados que te darán contexto:
 >
-> - **[Herramientas IA que Vale la Pena Aprender en 2026](/blog/herramientas-ia-2026)** — El panorama completo de herramientas agentes incluyendo n8n, LangGraph y CrewAI.
-> - **[NanoStack: El Framework que Piensa Antes de Programar](/blog/nanostack-agentes-ia)** — Cómo estructurar el flujo de trabajo de un agente para evitar implementación sin reflexión.
-> - **[Memoria Agéntica: Seguridad, Privacidad y el Futuro](/blog/memoria-seguridad-privacidad-agentica)** — Todo lo que necesitas saber sobre memoria persistente antes de construir tu agente.
+> - **[Herramientas IA que Vale la Pena Aprender en 2026](/blog/blog-herramientas-ia-2026)** — El panorama completo de herramientas agentes incluyendo n8n, LangGraph y CrewAI.
+> - **[NanoStack: El Framework que Piensa Antes de Programar](/blog/blog-nanostack-agentes-ia)** — Cómo estructurar el flujo de trabajo de un agente para evitar implementación sin reflexión.
+> - **[Memoria Agéntica: Seguridad, Privacidad y el Futuro](/blog/blog-memoria-seguridad-privacidad-agentica)** — Todo lo que necesitas saber sobre memoria persistente antes de construir tu agente.
 
 ---
 

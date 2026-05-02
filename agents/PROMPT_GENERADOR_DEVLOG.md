@@ -23,9 +23,9 @@ Para generar un artículo veraz y profundo, DEBES realizar las siguientes consul
 - **Narrativa:** Usa la primera persona del plural ("Nosotros", refiriéndote al equipo humano-IA).
 - **Código:** Incluye fragmentos de código real extraídos de los commits para ilustrar desafíos técnicos. Explica la lógica detrás del código.
 
-### 3. Longitud e Iteración (REGLA DE LAS 2000 PALABRAS)
-- El artículo debe tener un **mínimo de 2000 palabras** por idioma.
-- **Protocolo de Auto-Corrección:** Utiliza siempre un script (`wc -w` o un script en Python) para verificar el número de palabras real generado. Si al terminar el borrador el conteo es inferior a 2000 palabras, DEBES iterar expandiendo las secciones de "Análisis Técnico", "Lecciones Aprendidas" o "Visión de Futuro". No te detengas hasta cumplir este KPI de profundidad.
+### 3. Longitud e Iteración (REGLA DE LAS 1000 PALABRAS)
+- El artículo debe tener un **mínimo de 1000 palabras** por idioma.
+- **Protocolo de Auto-Corrección:** Utiliza siempre un script (`wc -w` o un script en Python) para verificar el número de palabras real generado. Si al terminar el borrador el conteo es inferior a 1000 palabras, DEBES iterar expandiendo las secciones de "Análisis Técnico", "Lecciones Aprendidas" o "Visión de Futuro". No te detengas hasta cumplir este KPI de profundidad, primando siempre la densidad técnica (código, explicaciones orgánicas) sobre el relleno.
 
 ### 4. Bilingüismo (ES + EN)
 - Genera dos archivos: `src/content/devlog/es/[FECHA]-[slug].md` y `src/content/devlog/en/[FECHA]-[slug].md`.
@@ -52,4 +52,4 @@ Para generar un artículo veraz y profundo, DEBES realizar las siguientes consul
 ---
 
 ## 🚦 Instrucción Final para Google Jules
-*"Antes de entregar, verifica: ¿He diferenciado ArceApps de PuzzleHub? ¿Tengo 2000 palabras en cada idioma comprobadas mediante script? ¿He incluido código real de los commits? Si la respuesta es NO a cualquiera de estas, re-escribe y expande."*
+*"Antes de entregar, verifica: ¿He diferenciado ArceApps de PuzzleHub? ¿Tengo 1000 palabras en cada idioma comprobadas mediante script? ¿He incluido código real de los commits? Si la respuesta es NO a cualquiera de estas, re-escribe y expande."*
