@@ -1,95 +1,95 @@
 ---
-title: "Hermes AI vs OpenClaw: The Complete Guide to Autonomous AI Agents in 2026"
-description: "A comprehensive comparison between Hermes AI and OpenClaw, two autonomous AI agent frameworks with radically different philosophies. Analysis based on verifiable public information and real-world experience."
+title: "Hermes Agent vs OpenClaw: The Complete Guide to Autonomous AI Agents in 2026"
+description: "A comprehensive comparison between Hermes Agent and OpenClaw, two open source autonomous AI agent frameworks. Analysis based on verifiable public information from their official repositories and documentation."
 pubDate: 2026-05-09
 heroImage: "/images/placeholder-article-hermes-openclaw.svg"
-tags: ["AI", "Agents", "Hermes AI", "OpenClaw", "Autonomous", "Coding", "2026"]
+tags: ["AI", "Agents", "Hermes Agent", "OpenClaw", "Autonomous", "Coding", "2026"]
 reference_id: "hermes-vs-openclaw-es-001"
 ---
 
 ## 🤖 Introduction: The Age of Autonomous AI Agents
 
-In 2025-2026, autonomous AI agents have solidified as the next evolution of assisted software development. We're no longer talking about simple assistants that complete code — we're talking about complete systems capable of planning, executing, and delivering results independently. Among the growing ecosystem of agent frameworks, two names stand out for radically different approaches: **Hermes AI** and **OpenClaw**.
+In 2025-2026, autonomous AI agents have solidified as the next evolution of assisted software development. We're no longer talking about simple assistants that complete code — we're talking about complete systems capable of planning, executing, and delivering results independently. Among the growing ecosystem of agent frameworks, two names stand out for radically different approaches: **Hermes Agent** and **OpenClaw**.
 
-In this article we'll perform a deep, honest comparison between both, based on verifiable public information and practical experience. This isn't a superficial feature comparison — it's an analysis of philosophy, architecture, and real-world use cases.
+Both are open source projects with MIT licenses, but their philosophies, creators, and use cases differ substantially. In this article we'll perform a deep, honest comparison based solely on publicly verifiable information from their official repositories and documentation.
 
 ---
 
-## 🏛️ What is Hermes AI?
+## 🏛️ What is Hermes Agent?
 
 ### Origin and Philosophy
 
-Hermes AI is an autonomous agent framework belonging to and personally used by its creator (@Stenddhal). The name comes from the Greek god of messages, which reflects its orientation: connecting different systems, platforms, and tools into a unified, autonomous workflow.
+**Hermes Agent** is an open source autonomous AI agent developed by **Nous Research** ([github.com/NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)). It was released in February 2026 and is compatible with Linux, macOS, and WSL2.
 
-Unlike other frameworks that emerged as commercial products or research experiments, Hermes was born out of a real practical need: its creator needed an agent that could manage their personal infrastructure — VPS, task automation, Telegram integration, GitHub and Google Workspace — without constant intervention.
+The central philosophy of Hermes Agent is **persistent memory and continuous self-improvement**. The agent doesn't start each session from scratch; it remembers user preferences, the state of previous projects, and established conventions. Furthermore, when it solves a difficult problem, it automatically writes a reusable skill document — creating its own skills without human intervention.
 
-The central philosophy of Hermes is **memory and context persistence**. The agent doesn't start each session from scratch; it remembers user preferences, the state of previous projects, and established conventions. This makes it a true long-term "collaborator," not just a transient assistant.
+The project's tagline summarizes it: *"The AI agent that grows with you."*
 
-### Architecture and Main Components
+### Main Features
 
-Hermes architecture is based on several differentiated components:
+**1. Persistent Memory**
 
-**1. Skills System**
+Hermes Agent maintains persistent memory that survives between sessions. It remembers your preferences, projects, and environment in every conversation. The longer it runs, the better it knows you. Data is stored locally in `~/.hermes/` on your machine.
 
-The skills system is the heart of Hermes' extensibility. Each skill is a reusable set of instructions, scripts, and patterns that allow the agent to specialize in specific areas. Skills are stored as structured Markdown files (SKILL.md) with:
+**2. Automatic Skill Creation**
 
-- Description and trigger conditions
-- Numbered steps with exact commands
-- Pitfalls and verification steps section
-- References to auxiliary files and templates
+When Hermes solves a difficult problem, it writes a reusable skill document. This means the agent becomes exponentially more capable over time, accumulating knowledge in the form of documented skills. Compatible with the open standard [agentskills.io](https://agentskills.io).
 
-The skills system supports chaining: one skill can invoke another, enabling complex workflows. Skills can be loaded dynamically based on the task, meaning Hermes only loads the relevant context for the current work.
+**3. Built-in Skills System**
 
-**2. Persistent Memory**
+40+ built-in skills covering MLOps, GitHub, diagrams, notes, and more. Users can install community skills from agentskills.io and the SKILL.md format is portable and shareable.
 
-Unlike other agents that lose all context when the session ends, Hermes maintains persistent memory that survives between sessions. This memory is divided into:
+**4. Multi-Platform Gateway**
 
-- **User Profile**: User preferences, communication tone, connected platforms
-- **Environment Facts**: Infrastructure, installed tools, project conventions
-- **Session History**: Record of previous work (accessible via session_search)
-- **Skills**: Loaded skills and corrections made to them
+Connect Telegram, Discord, Slack, WhatsApp, and Signal through a single gateway process. One daemon runs on your server and connects all messaging channels.
 
-The memory system is compact and declarative — it's not a conversation log, but structured facts that allow the agent to "remember" without needing to re-read previous conversations.
+**5. Parallel Sub-Agents**
 
-**3. Tool Discovery via MCP (Model Context Protocol)**
+Generate isolated sub-agents for parallel workflows. Each has its own conversation and independent terminal.
 
-Hermes supports MCP (Model Context Protocol) for automatic tool discovery. This means the agent can detect and use external tools dynamically, without exhaustive manual configuration.
+**6. Complete Browser Control**
 
-Native tools include:
+Web search, page extraction, complete browser automation. Visual analysis, image generation, and text-to-speech.
 
-- **terminal()**: Shell command execution on Linux/Unix
-- **browser_navigate/click/type**: Web automation via headless browser
-- **read_file/write_file/patch**: Project file manipulation
-- **send_message**: Integration with Telegram, Discord and other channels
-- **cronjob**: Recurrent task scheduling
-- **delegate_task**: Spawning subagents for parallel work
+**7. Scheduled Automations**
 
-**4. Session System**
+Built-in cron scheduler for daily reports, nightly backups, weekly audits — all without supervision.
 
-Sessions in Hermes allow monitoring and control. Each session has:
+### Technical Capabilities
 
-- State (QUEUED, PLANNING, IN_PROGRESS, COMPLETED, FAILED, CANCELLED)
-- Structured outputs (diff, commit message, PR info)
-- URL for manual review
+**Execution Environments:**
+- Local Terminal
+- Docker (with security hardening: readonly root, reduced capabilities, PID limits)
+- Remote SSH
+- Modal / Singularity (cloud and HPC execution backends)
 
-**5. Multi-Platform Integrations**
+**LLM Providers:**
+- Nous Portal (native OAuth integration)
+- OpenRouter (access to 200+ models with API key)
+- Custom API (any OpenAI-compatible endpoint)
+- Local vLLM (run models entirely locally)
 
-Hermes integrates natively with:
+**Security and Privacy:**
+- Zero telemetry, zero data collection
+- Data stored locally in `~/.hermes/`
+- MIT License — fully auditable code
+- Container hardening for secure execution
 
-- **Telegram**: Messages, channels, bots
-- **GitHub**: PR creation, merge, code review via gh CLI
-- **Google Workspace**: Gmail, Calendar, Tasks via OAuth
-- **Cron Jobs**: Autonomous scheduling with channel output
-- **Jules API**: Spawning autonomous tasks on GitHub repos
+### MLOps and AI Training
 
-### Autonomy Model
+Beyond task automation, Hermes Agent is a platform for:
 
-Hermes operates in fully autonomous mode when configured with `requirePlanApproval: false`. In this mode, the agent:
+- **Batch Processing**: Generate thousands of tool-call trajectories in parallel with automatic checkpointing
+- **RL Training**: Integration with Atropos for reinforcement learning on agent behaviors (11 tool-call parsers)
+- **Trajectory Export**: Export conversations in ShareGPT format for fine-tuning
 
-1. Receives a task in natural language
-2. Plans the necessary steps
-3. Executes using available tools
-4. Returns structured results (PR, modified files, logs)
+### Installation
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+```
+
+One command, no prerequisites. Installs uv, Python 3.11, clones the repository, and configures everything automatically.
 
 ---
 
@@ -97,42 +97,38 @@ Hermes operates in fully autonomous mode when configured with `requirePlanApprov
 
 ### Origin and Philosophy
 
-OpenClaw is an AI personal assistant framework developed by **Peter Steinberger** ([@steipete](https://github.com/steipete)) and maintained by an active community of hundreds of contributors. The project was originally built for **Molty**, a space lobster AI assistant 🦞. The name "OpenClaw" combines the open source nature with the metaphor of an agent that can "claw" and manipulate the digital world.
+**OpenClaw** is an AI personal assistant framework developed by **Peter Steinberger** ([@steipete](https://github.com/steipete)) and maintained by an active community of hundreds of contributors. The project was originally built for **Molty**, a space lobster AI assistant 🦞. The name combines the open source nature with the metaphor of an agent that can "claw" and manipulate the digital world.
 
-Unlike Hermes, OpenClaw was born in the open source community and is designed to work as a multi-platform personal assistant. Its focus is on automating personal workflows: email management, programming, scraping, and repetitive task automation.
+OpenClaw's philosophy centers on **simplicity and accessibility**. The framework is designed to be understandable by a single person, without platform engineering teams behind it. This is reflected in its lean architecture and documentation oriented toward practical use cases. The tagline: *"Your own personal AI assistant. Any OS. Any Platform. The lobster way."*
 
-OpenClaw's philosophy centers on **simplicity and accessibility**. The framework is designed to be understandable by a single person, without platform engineering teams behind it. This is reflected in its lean architecture and documentation oriented toward practical use cases.
+### Main Features
 
-### Architecture and Main Components
+**1. Extensible Plugin Architecture**
 
-**1. Plugin Architecture**
+OpenClaw is based on a plugin architecture where the core stays lean and optional capabilities ship as plugins:
 
-OpenClaw is based on an extensible plugin architecture where the core stays lean and optional capabilities ship as plugins. There are two plugin styles:
-
-- **Code plugins**: Run OpenClaw plugin code and are appropriate for deeper runtime extension
+- **Code plugins**: Run OpenClaw plugin code for deeper runtime extension
 - **Bundle-style plugins**: Package stable external surfaces such as skills, MCP servers, and related configuration
 
 **2. Skills System via ClawHub**
 
-Skills in OpenClaw are managed through ClawHub ([clawhub.ai](https://clawhub.ai)), a plugin and skills registry. Bundled skills ship for baseline UX, but new skills should first be published to ClawHub.
+Skills are managed through ClawHub ([clawhub.ai](https://clawhub.ai)), a plugin and skills registry. Bundled skills ship for baseline UX, but new skills should first be published to ClawHub.
 
 **3. Multi-Channel Inbox**
 
-OpenClaw supports an extensive range of messaging channels:
+Supports an extensive range of messaging channels:
 
 WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, IRC, Microsoft Teams, Matrix, Feishu, LINE, Mattermost, Nextcloud Talk, Nostr, Synology Chat, Tlon, Twitch, Zalo, WeChat, QQ, WebChat
 
 **4. Voice Wake + Talk Mode**
 
-OpenClaw supports voice wake words on macOS/iOS and continuous voice on Android, using ElevenLabs + system TTS fallback.
+Voice wake words on macOS/iOS and continuous voice on Android, using ElevenLabs + system TTS fallback.
 
 **5. Live Canvas**
 
-OpenClaw includes an agent-driven visual workspace called Live Canvas with A2UI support.
+Agent-driven visual workspace with A2UI support.
 
 **6. Sandbox and Security**
-
-OpenClaw implements a security model where:
 
 - For `main` sessions, tools run on the host with full access
 - For non-main sessions, you can run inside sandboxes (Docker, SSH, OpenShell)
@@ -140,13 +136,17 @@ OpenClaw implements a security model where:
 
 **7. Runtime and Stack**
 
-OpenClaw is built with:
-
 - **Runtime**: Node.js 24 (recommended) or Node.js 22.16+
 - **Language**: TypeScript (strict ESM)
 - **Package Manager**: pnpm (monorepo workspace)
 - **License**: MIT
 - **Repository**: [github.com/openclaw/openclaw](https://github.com/openclaw/openclaw)
+- **Sponsors**: OpenAI, GitHub, NVIDIA, Vercel, Convex, Blacksmith
+
+**8. Native Apps**
+
+- macOS menu bar app
+- iOS/Android nodes (voice trigger forwarding + Canvas surface)
 
 ### Autonomy Model
 
@@ -155,90 +155,105 @@ OpenClaw operates in two main modes:
 - **Agentic Mode**: The agent makes decisions autonomously within defined scope
 - **Supervised Mode**: The agent proposes actions but waits for confirmation before executing
 
-Agentic mode is similar to Hermes' fully autonomous mode (`requirePlanApproval: false`), while supervised mode is comparable to `requirePlanApproval: true`.
-
 ---
 
 ## 📊 Technical Comparison
 
 ### Comparison Table
 
-| Feature | Hermes AI | OpenClaw |
-|---------|-----------|----------|
-| **Main Creator** | @Stenddhal (personal use) | Peter Steinberger (@steipete) + community |
-| **Primary Language** | Python | TypeScript/Node.js |
-| **Persistent Memory** | Declarative Facts (memory tool) | Memory plugin (multiple options) |
-| **Skills System** | Structured SKILL.md with triggers | ClawHub registry + bundled skills |
-| **Tool Discovery** | MCP (Model Context Protocol) | Plugin API + MCP support |
-| **Native Integrations** | Telegram, GitHub, Google Workspace, Jules | Multi-channel (20+ channels), multi-provider |
-| **Autonomy Model** | requirePlanApproval: false for fully autonomous | Agentic vs Supervised modes |
-| **Cron Jobs** | ✅ Native with channel output | ✅ Native cron jobs |
-| **Sub-agents** | ✅ Native delegate_task | ✅ sessions_spawn |
-| **Target Platforms** | VPS, Linux server | macOS, iOS, Android, Windows, Linux |
-| **Voice/Wake** | ❌ No native | ✅ Voice Wake + Talk Mode |
-| **Live Canvas** | ❌ No | ✅ Agent-driven visual workspace |
-| **Native Apps** | ❌ No | ✅ macOS menu bar, iOS/Android nodes |
-| **Setup Complexity** | Medium (requires OAuth setup) | Medium (Node.js environment) |
-| **Learning Curve** | Low if you know the skills system | Medium (terminal-first, extensible) |
-| **Open Source** | ✅ GitHub (ArceApps/hermes-agent) | ✅ MIT, active community |
-| **Stack** | Python | TypeScript/Node.js |
-| **Sponsors** | No corporate sponsors | OpenAI, GitHub, NVIDIA, Vercel, Convex, Blacksmith |
+| Feature | Hermes Agent | OpenClaw |
+|---------|--------------|----------|
+| **Developer** | Nous Research | Peter Steinberger (@steipete) + community |
+| **Release Date** | February 2026 | — |
+| **Repository** | NousResearch/hermes-agent | openclaw/openclaw |
+| **License** | MIT | MIT |
+| **Language** | Python | TypeScript/Node.js |
+| **Operating Systems** | Linux, macOS, WSL2 | macOS, Windows, Linux |
+| **Persistent Memory** | ✅ Native (data in ~/.hermes/) | ✅ Memory plugin (multiple options) |
+| **Skills System** | 40+ built-in + auto-creation + agentskills.io | ClawHub registry + bundled skills |
+| **Auto Skill Creation** | ✅ When solving difficult problems | ❌ No |
+| **Messaging Integrations** | Telegram, Discord, Slack, WhatsApp, Signal | 20+ channels (see list above) |
+| **LLM Providers** | Nous Portal, OpenRouter, Custom API, Local vLLM | Multi-provider (configurable) |
+| **Voice/Wake** | ❌ No | ✅ Voice Wake + Talk Mode |
+| **Live Canvas** | ❌ No | ✅ |
+| **Native Apps** | ❌ No | ✅ macOS, iOS, Android |
+| **Cron Jobs** | ✅ Native | ✅ Native |
+| **Sub-Agents** | ✅ Parallel sub-agents | ✅ sessions_spawn |
+| **Browser Control** | ✅ Full (search, extraction, automation) | ❌ No |
+| **MLOps** | ✅ Batch processing, RL training, trajectory export | ❌ No |
+| **Secure Containers** | ✅ Docker hardening (readonly root, caps, PID limits) | ✅ Docker sandbox |
+| **Local vLLM** | ✅ Native | ❌ No |
+| **Remote SSH** | ✅ | ❌ No |
+| **Modal/Singularity** | ✅ | ❌ No |
+| **Telemetry/Tracking** | 0% (no telemetry) | Not specified |
+| **Installation** | `curl...install.sh \| bash` (1 command) | npm/pnpm global + onboard wizard |
+| **Quick Start** | curl install, hermes setup, hermes | openclaw onboard --install-daemon |
 
 ### Detailed Analysis
 
 **Memory and Persistence**
 
-Hermes uses a declarative memory system where the user or the agent can write facts that persist between sessions. The format is compact and structured (key-value style with old_text targeting for updates). The advantage is that it's very efficient and doesn't require additional infrastructure.
+Hermes Agent uses a declarative, structured memory system where facts persist between sessions in `~/.hermes/`. Additionally, when it solves difficult problems, it automatically creates reusable skills — something OpenClaw doesn't do.
 
-OpenClaw supports multiple memory plugins, allowing you to choose between different approaches. The system is more flexible but requires selecting and configuring the right memory plugin.
+OpenClaw supports multiple memory plugins, allowing you to choose between different approaches. It's more flexible in options but requires selecting and configuring.
 
 **Skills System**
 
-Hermes' Markdown-based skills approach is extremely flexible for documentation and reusable patterns. Anyone can create a skill by writing a structured SKILL.md file.
+Hermes Agent has 40+ built-in skills and can create new skills automatically when solving problems. The open agentskills.io standard allows portability.
 
-OpenClaw uses ClawHub as a centralized skills registry, with a distinction between code plugins and bundle-style plugins. The community can publish and discover skills more structured.
+OpenClaw uses ClawHub as a centralized skills registry, with a distinction between code plugins and bundle-style plugins. The community can publish and discover skills structured.
 
-**Integrations**
+**Messaging Integrations**
 
-Hermes has deep integrations with productivity tools in the personal ecosystem: Telegram for notifications and commands, Google Workspace for email and calendar, Jules for spawning autonomous tasks on GitHub repos.
+OpenClaw supports more messaging channels (20+) but Hermes Agent covers the main ones (Telegram, Discord, Slack, WhatsApp, Signal) with a unified gateway architecture.
 
-OpenClaw excels in its multi-channel support, connecting directly with more than 20 different messaging platforms. It also supports multiple model providers beyond a single ecosystem.
+**MLOps Capabilities**
+
+Here's a fundamental difference: Hermes Agent is specifically built for MLOps, with trajectory batch processing, Atropos integration for RL training, and ShareGPT export for fine-tuning. OpenClaw has no documented MLOps capabilities.
+
+**Browser Control**
+
+Hermes Agent includes complete browser control for web search, page extraction, and automation. OpenClaw offers no such functionality.
+
+**Privacy**
+
+Hermes Agent explicitly emphasizes its zero-telemetry policy with all data remaining locally. OpenClaw doesn't document a similar policy.
 
 **Technology Stack**
 
-Hermes is built in Python, which facilitates integration with ML tools and scripting. OpenClaw is built in TypeScript/Node.js, giving it access to the npm ecosystem and making it easier to integrate with web development and JavaScript tools.
-
-**Privacy and Data**
-
-OpenClaw allows the assistant to run on the user's own devices, which can offer more control over privacy. Hermes can also run locally, but its primary use case is on a VPS with remote access via Telegram.
+Hermes Agent is built in Python (facilitating integration with ML tools), while OpenClaw uses TypeScript/Node.js (facilitating integration with web development and JavaScript tools).
 
 ---
 
 ## 💡 Use Cases
 
-### When to Choose Hermes AI
+### When to Choose Hermes Agent
 
-**1. Personal Development and Infrastructure Automation**
+**1. Infrastructure Automation and Server Management**
 
-If you need to manage your own VPS, servers, and personal automations, Hermes offers directly applicable tools: terminal(), cronjob(), read_file/write_file. You can set up cron jobs that execute autonomous tasks and notify you via Telegram.
+Hermes Agent shines in server management and personal infrastructure automation. Its SSH support, Docker hardening, and native cron jobs make it ideal for system administrators.
 
-**2. Centralized Project Management**
+**2. MLOps Projects and Training Data Generation**
 
-The skills system allows you to have reusable content generation, code review, and GitHub repository management patterns. If you work with multiple repos and need consistent workflows, Hermes' skills system is very powerful.
+If you need to generate trajectories for model fine-tuning, Hermes Agent has built-in batch processing, automatic checkpointing, and ShareGPT export.
 
-**3. Google Workspace Integration**
+**3. Total Privacy**
 
-If you use Gmail, Calendar, and Tasks for personal management, Hermes has native OAuth integrations.
+If privacy is critical and you want zero telemetry with all data on your local machine, Hermes Agent explicitly guarantees this.
 
-**4. GitHub Automation Workflow**
+**4. Automatic Skill Development**
 
-The workflow of using Jules to generate content in GitHub repos and automatically merge PRs is exactly the kind of use case Hermes handles well.
+If you want an agent that self-improves by creating skills when solving problems, Hermes Agent is the only one with this capability.
+
+**5. Local Model Execution**
+
+If you want to run models locally with vLLM, Hermes Agent supports it natively. OpenClaw doesn't have this option.
 
 ### When to Choose OpenClaw
 
 **1. Multi-Channel Personal Assistant**
 
-If you want an assistant that responds on WhatsApp, Telegram, Discord, Signal, and many other channels simultaneously, OpenClaw is the most complete option.
+If you want an assistant that responds on WhatsApp, Telegram, Discord, Signal, and many other channels simultaneously, OpenClaw is the most complete option with 20+ channels.
 
 **2. Voice-first Interaction**
 
@@ -248,33 +263,41 @@ If you want to interact with your assistant via voice — with wake words and ta
 
 OpenClaw includes Live Canvas, a visual workspace where the agent can manipulate and display information visually.
 
-**4. Community and Resources**
+**4. Native Desktop/Mobile Apps**
 
-The awesome-openclaw-usecases collection and skills registry on ClawHub offer many community-driven resources. If you want to start from existing templates, OpenClaw has more resources available.
+If you want native apps for macOS menu bar, iOS, and Android, OpenClaw offers official companion apps.
 
-**5. Privacy-first**
+**5. Community and Resources**
 
-OpenClaw can run entirely on your own devices, which may be preferable if data privacy is a primary concern.
+With 400+ contributors and corporate sponsors (OpenAI, GitHub, NVIDIA), OpenClaw has a more mature ecosystem with awesome lists and templates.
+
+**6. Native Windows**
+
+OpenClaw works directly on Windows (without WSL2), while Hermes Agent requires WSL2 on Windows.
 
 ---
 
 ## ✅ Pros and Cons
 
-### Hermes AI
+### Hermes Agent
 
 **Pros:**
-- ✅ Structured, efficient persistent memory
-- ✅ Deep integration with Telegram, GitHub, Google Workspace
-- ✅ Markdown-based skills system, very flexible and readable
-- ✅ Native support for Jules API (spawning autonomous agents on repos)
-- ✅ Cron jobs with automatic channel delivery
-- ✅ Python — access to ML ecosystem and scripting
+- ✅ Automatic skill creation when solving problems
+- ✅ 40+ built-in skills
+- ✅ Complete MLOps (batch processing, RL training, trajectory export)
+- ✅ Local vLLM support
+- ✅ Documented zero telemetry
+- ✅ Docker container hardening
+- ✅ Complete browser control
+- ✅ Remote SSH and Modal/Singularity execution
+- ✅ 1-command installation (curl install)
 
 **Cons:**
 - ❌ No voice/wake or live canvas
-- ❌ Skills system requires learning the SKILL.md format
-- ❌ Only one UI platform (Telegram/CLI)
-- ❌ Smaller documentation and community
+- ❌ No native desktop/mobile apps
+- ❌ No native Windows support (requires WSL2)
+- ❌ Smaller community than OpenClaw
+- ❌ No support for 20+ messaging channels
 
 ### OpenClaw
 
@@ -283,84 +306,70 @@ OpenClaw can run entirely on your own devices, which may be preferable if data p
 - ✅ Native Voice Wake + Talk Mode
 - ✅ Live Canvas for visual workspace
 - ✅ Native apps for macOS/iOS/Android
-- ✅ Large, active community (400+ contributors)
+- ✅ Large community (400+ contributors)
 - ✅ Corporate sponsors (OpenAI, GitHub, NVIDIA)
-- ✅ MIT license, completely open source
+- ✅ Native Windows support
+- ✅ Typed codebase (TypeScript strict ESM)
 
 **Cons:**
-- ❌ No native Google Workspace integration
-- ❌ No equivalent to Jules API for autonomous spawning on repos
-- ❌ More complex security configuration (sandboxing options)
-- ❌ TypeScript/Node.js — different stack than ML tools
-- ❌ No native structured persistent memory (depends on plugins)
+- ❌ No automatic skill creation
+- ❌ No MLOps or training capabilities
+- ❌ No browser control
+- ❌ No local vLLM
+- ❌ No remote SSH execution
+- ❌ Telemetry not specified
+- ❌ No Modal/Singularity support
 
 ---
 
 ## 🔮 Future Perspectives
 
-### Hermes AI
+### Hermes Agent
 
-Hermes' roadmap appears focused on:
-
-- Improving the skills system with more automation tooling
-- Expanding integrations with more platforms
-- Improving debugging and session monitoring experience
-- Potentially opening the memory system for more sophisticated queries
-
-The relationship with Jules API is key — if Google continues developing Jules, Hermes could become an orchestrator of autonomous Jules agents across multiple repos, with centralized supervision from Telegram.
+Hermes Agent is positioned as an MLOps platform with a focus on continuous self-improvement. Automatic skill creation means it becomes exponentially more capable over time. Nous Research behind the project suggests a roadmap centered on training and fine-tuning capabilities.
 
 ### OpenClaw
 
-OpenClaw is following a more community-driven trajectory with corporate support:
-
-- Improving support for major model providers
-- Expanding messaging channel support
-- Performance and test infrastructure
-- Better computer-use and agent harness capabilities
-- Companion apps across all platforms
-
-The relationship with sponsors like OpenAI and GitHub suggests OpenClaw is well-positioned for deep integration with AI services.
+OpenClaw is following a platform expansion trajectory with support for more channels, model providers, and improved computer-use. The relationship with corporate sponsors suggests deep integration with AI services.
 
 ---
 
 ## 🏆 Conclusion: Which to Choose?
 
-There's no single answer — the choice depends on your specific context:
-
-**Choose Hermes AI if:**
-- You're a developer or sysadmin managing servers and VPS
-- You use Telegram as your control center and notifications hub
-- You primarily work with GitHub and Google Workspace
-- You want Jules API integration for autonomous spawning on repos
-- You prefer a structured, efficient memory system
-- Python is your preferred language
+**Choose Hermes Agent if:**
+- You work with MLOps or need to generate training data
+- You want an agent that self-improves by creating skills
+- Total privacy is critical (guaranteed zero telemetry)
+- You need to run models locally with vLLM
+- You manage infrastructure via SSH and containers
+- You prefer Python as your technology stack
+- You use Linux or macOS
 
 **Choose OpenClaw if:**
-- You want an assistant that lives on multiple messaging channels
-- You need to interact by voice with wake words
-- You value privacy by running everything on your own devices
-- You want access to a large community with many resources
-- You prefer TypeScript/JavaScript as your stack
-- You want Live Canvas and native apps for desktop/mobile
-
-### My Personal Recommendation
-
-For an indie developer with personal infrastructure (VPS, automation) who wants centralized management via Telegram, **Hermes AI offers a more complete workflow**: from code management (via Jules) to receiving updates (via Telegram), all integrated coherently.
-
-OpenClaw shines when you want an omnipresent assistant that responds across all your communication channels and can interact by voice. It's more ambitious in terms of coverage but can be overkill if you only need server automation.
+- You want an omnipresent assistant on 20+ messaging channels
+- You need voice interaction with wake words
+- You want live canvas and native apps
+- You primarily work on Windows
+- You value a large community with many resources
+- You prefer TypeScript/Node.js as your stack
 
 ---
 
 ## 🔗 Resources
 
-- **Hermes AI**: @Stenddhal's personal agent
-- **OpenClaw Main Repo**: [https://github.com/openclaw/openclaw](https://github.com/openclaw/openclaw)
-- **OpenClaw Docs**: [https://docs.openclaw.ai](https://docs.openclaw.ai)
-- **OpenClaw Website**: [https://openclaw.ai](https://openclaw.ai)
-- **ClawHub (Skills Registry)**: [https://clawhub.ai](https://clawhub.ai)
-- **Awesome OpenClaw Use Cases**: [https://github.com/hesamsheikh/awesome-openclaw-usecases](https://github.com/hesamsheikh/awesome-openclaw-usecases)
-- **Peter Steinberger** (OpenClaw Creator): [https://steipete.me](https://steipete.me)
+### Hermes Agent
+- **Website**: [https://hermes-agent.org](https://hermes-agent.org)
+- **GitHub**: [github.com/NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)
+- **Nous Research**: [https://nousresearch.com](https://nousresearch.com)
+- **agentskills.io**: [https://agentskills.io](https://agentskills.io)
+
+### OpenClaw
+- **Website**: [https://openclaw.ai](https://openclaw.ai)
+- **GitHub**: [github.com/openclaw/openclaw](https://github.com/openclaw/openclaw)
+- **Docs**: [https://docs.openclaw.ai](https://docs.openclaw.ai)
+- **ClawHub**: [https://clawhub.ai](https://clawhub.ai)
+- **Peter Steinberger**: [https://steipete.me](https://steipete.me)
 
 ---
 
-*This article was written as part of a comparative analysis between autonomous AI agent frameworks. If you have experience with either framework and want to contribute your perspective, comments are open.*
+*Comparison based on public information from repositories and official documentation. If you have experience with both frameworks and want to contribute your perspective, comments are open.*
