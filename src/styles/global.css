@@ -241,6 +241,33 @@
     @apply text-primary;
   }
 
+  /* Tables */
+  .prose table {
+    @apply w-full text-sm my-8 border-collapse;
+  }
+  .prose thead {
+    @apply bg-surface-variant dark:bg-gray-800;
+  }
+  .prose th {
+    @apply px-4 py-3 text-left font-semibold text-on-surface-variant dark:text-dark-on-surface-variant border-b border-gray-200 dark:border-gray-700;
+  }
+  .prose td {
+    @apply px-4 py-3 border-b border-gray-100 dark:border-gray-800;
+  }
+  .prose tbody tr {
+    @apply hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors;
+  }
+  /* Dark mode table body for readability */
+  .dark .prose table {
+    @apply text-dark-on-surface;
+  }
+  .dark .prose tbody tr {
+    @apply border-gray-700;
+  }
+  .dark .prose td {
+    @apply border-gray-700;
+  }
+
   /* HR */
   .prose hr {
     @apply border-gray-200 dark:border-gray-800 my-12;
