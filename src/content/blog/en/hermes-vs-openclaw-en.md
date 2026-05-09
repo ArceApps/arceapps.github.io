@@ -4,7 +4,7 @@ description: "A comprehensive comparison between Hermes Agent and OpenClaw, two 
 pubDate: 2026-05-09
 heroImage: "/images/placeholder-article-hermes-openclaw.svg"
 tags: ["AI", "Agents", "Hermes Agent", "OpenClaw", "Autonomous", "Coding", "2026"]
-reference_id: "hermes-vs-openclaw-es-001"
+reference_id: "hermes-vs-openclaw-en-001"
 ---
 
 ## 🤖 Introduction: The Age of Autonomous AI Agents
