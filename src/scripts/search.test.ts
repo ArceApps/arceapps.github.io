@@ -95,6 +95,45 @@ describe('Search Script', () => {
     });
   });
 
+  describe('initFuse error handling', () => {
+    it('should show error message when fetch response is not ok', async () => {
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: false,
+            status: 404,
+        });
+
+        await searchModule.initFuse();
+
+        const status = document.getElementById('search-status');
+        expect(status?.textContent).toBe('Error al cargar el buscador.');
+    });
+
+    it('should show error message when fetch throws an error', async () => {
+        global.fetch = vi.fn().mockRejectedValue(new Error('Network failure'));
+
+        await searchModule.initFuse();
+
+        const status = document.getElementById('search-status');
+        expect(status?.textContent).toBe('Error al cargar el buscador.');
+    });
+
+    it('should allow retry after a failure', async () => {
+        // First call fails
+        global.fetch = vi.fn().mockRejectedValueOnce(new Error('First failure'))
+                               .mockResolvedValueOnce({
+                                   ok: true,
+                                   json: () => Promise.resolve([]),
+                               });
+
+        await searchModule.initFuse();
+        expect(global.fetch).toHaveBeenCalledTimes(1);
+
+        // Second call should trigger fetch again because loadingPromise was reset
+        await searchModule.initFuse();
+        expect(global.fetch).toHaveBeenCalledTimes(2);
+    });
+  });
+
   describe('performSearch', () => {
     it('should show "at least 2 characters" message for short query', async () => {
         global.fetch = vi.fn().mockResolvedValue({
