@@ -28,21 +28,27 @@ Actualizamos `src/styles/global.css` para aplicar una caja delimitadora estricta
 ```css
 /* src/styles/global.css */
 /* Jerarquía visual para medios dentro del prose de markdown */
-.prose img,
-.prose video {
-  max-width: min(100%, 500px);
-  width: auto;
-  height: auto;
-  margin-inline: auto; /* Propiedad lógica para margen horizontal */
-  margin-block: 2rem;  /* Propiedad lógica para margen vertical */
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  display: block;
+.prose :where(img, video, iframe) {
+  @apply rounded-2xl shadow-lg block;
+  margin-block: 2.5rem;
+  margin-inline: auto;
+  max-inline-size: min(100%, 500px); /* Fix: Responsive Visual Hierarchy */
+}
+
+.prose :where(img, video) {
+  inline-size: auto;
+  block-size: auto;
+}
+
+.prose iframe {
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 ```
 
 **Por qué funciona este enfoque:**
-1.  **`max-width: min(100%, 500px)`:** Este es el núcleo del comportamiento responsivo. Asegura que la imagen nunca exceda el ancho de su contenedor (`100%`) en móviles, pero limita su crecimiento máximo a `500px` en escritorio. Esto previene que capturas de pantalla de baja resolución se estiren para llenar una columna de artículo ancha, manteniendo la fidelidad visual.
+1.  **`max-inline-size: min(100%, 500px)`:** Este es el núcleo del comportamiento responsivo. Asegura que la imagen nunca exceda el ancho de su contenedor (`100%`) en móviles, pero limita su crecimiento máximo a `500px` en escritorio. Esto previene que capturas de pantalla de baja resolución se estiren para llenar una columna de artículo ancha, manteniendo la fidelidad visual.
 2.  **Propiedades Lógicas CSS:** Al usar `margin-inline` y `margin-block` en lugar de `margin-left`/`right` o `margin-top`/`bottom`, nos aseguramos de que nuestros estilos sigan siendo robustos si alguna vez introducimos soporte para idiomas de derecha a izquierda (RTL) en el futuro. Esto se alinea con nuestro compromiso con estándares web modernos e inclusivos delineados en nuestro `ANALISIS_WEB.md`.
 3.  **Pulido Estético:** La combinación de `border-radius` y un sutil `box-shadow` eleva la presentación de las capturas de pantalla, dándoles una apariencia moderna tipo "tarjeta" que encaja perfectamente con el lenguaje de diseño de ArceApps.
 

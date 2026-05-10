@@ -28,25 +28,33 @@ Antes de nuestra intervención, el CSS global no limitaba el crecimiento de las 
 
 ### La Solución Técnica e Implementación
 
-A través del commit `646ac17`, modificamos `src/styles/global.css` para aplicar restricciones específicas a los selectores `.prose img` y `.prose video`.
+A través del commit `646ac17`, modificamos `src/styles/global.css` para aplicar restricciones específicas a los selectores `.prose img`, `.prose video` y `.prose iframe`.
 
 ```css
 /* src/styles/global.css */
-.prose img,
-.prose video {
-  max-width: min(100%, 500px); /* Restringe el tamaño máximo sin romper en móviles */
-  width: auto;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+.prose :where(img, video, iframe) {
+  @apply rounded-2xl shadow-lg block;
+  margin-block: 2.5rem;
+  margin-inline: auto;
+  max-inline-size: min(100%, 500px); /* Fix: Responsive Visual Hierarchy */
+}
+
+.prose :where(img, video) {
+  inline-size: auto;
+  block-size: auto;
+}
+
+.prose iframe {
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 ```
 
 **Análisis profundo de la solución:**
-1. **El poder de `min()` en CSS:** La propiedad `max-width: min(100%, 500px)` es un ejemplo brillante de diseño resiliente. Evalúa dos valores: el 100% del contenedor y 500px, y aplica el más pequeño. En un dispositivo móvil donde el contenedor mide, digamos, 350px, el valor 100% (350px) es menor que 500px, por lo que la imagen se adapta perfectamente a la pantalla sin crear scroll horizontal. En una pantalla grande donde el contenedor mide 800px, el valor de 500px es menor, por lo que la imagen se limita a ese tamaño. Esto elimina por completo la necesidad de puntos de interrupción o media queries para las imágenes del contenido.
-2. **Preservación de la Relación de Aspecto:** Al establecer explícitamente `width: auto; height: auto;`, anulamos cualquier regla heredada que pudiera forzar a la imagen a distorsionarse para llenar un espacio predeterminado. El navegador consulta el tamaño intrínseco del archivo de imagen y ajusta sus dimensiones para mantener la proporción matemática exacta.
-3. **Punto Focal Visual:** Aplicando `display: block` y `margin-inline: auto`, forzamos a que cualquier elemento multimedia que caiga bajo estas reglas, ya sea alineado a la izquierda o en línea por el motor de Markdown, se posicione en su propia línea en el centro de la columna de lectura. Esto mejora drásticamente el flujo visual, permitiendo a los ojos del lector descansar entre párrafos.
+1. **El poder de `min()` en CSS:** La propiedad `max-inline-size: min(100%, 500px)` es un ejemplo brillante de diseño resiliente. Evalúa dos valores: el 100% del contenedor y 500px, y aplica el más pequeño. En un dispositivo móvil donde el contenedor mide, digamos, 350px, el valor 100% (350px) es menor que 500px, por lo que la imagen se adapta perfectamente a la pantalla sin crear scroll horizontal. En una pantalla grande donde el contenedor mide 800px, el valor de 500px es menor, por lo que la imagen se limita a ese tamaño. Esto elimina por completo la necesidad de puntos de interrupción o media queries para las imágenes del contenido.
+2. **Preservación de la Relación de Aspecto:** Al establecer explícitamente `inline-size: auto; block-size: auto;` para imágenes y videos, anulamos cualquier regla heredada que pudiera forzar a la imagen a distorsionarse para llenar un espacio predeterminado. Para los iframes, garantizamos una relación de aspecto consistente de `16/9`. El navegador consulta el tamaño intrínseco del archivo de imagen y ajusta sus dimensiones para mantener la proporción matemática exacta.
+3. **Punto Focal Visual:** Aplicando `display: block` y `margin-inline: auto`, forzamos a que cualquier elemento multimedia que caiga bajo estas reglas, ya sea alineado a la izquierda o en línea por el motor de Markdown, se posicione en su propia línea en el centro de la columna de lectura. El uso de `margin-block` asegura una separación vertical consistente de `2.5rem`, permitiendo a los ojos del lector descansar entre párrafos.
 
 Esta mejora arquitectónica de CSS, aunque parece un ajuste estilístico menor, tiene un impacto profundo en la calidad de nuestro portafolio. Permite que nuestros ensayos y bitácoras mantengan una calidad de tipo editorial sin importar la forma del dispositivo que los esté consumiendo.
 
