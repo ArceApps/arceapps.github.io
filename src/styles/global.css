@@ -225,9 +225,9 @@
     @apply rounded-2xl shadow-lg block;
     margin-block: 2.5rem;
     margin-inline: auto;
-    max-width: min(100%, 500px); /* Fix: Responsive Visual Hierarchy to avoid "exploding" media on tablets/desktop */
-    width: auto;
-    height: auto;
+    max-inline-size: min(100%, 500px); /* Fix: Responsive Visual Hierarchy to avoid "exploding" media on tablets/desktop */
+    inline-size: auto;
+    block-size: auto;
   }
 
   /* Lists */
