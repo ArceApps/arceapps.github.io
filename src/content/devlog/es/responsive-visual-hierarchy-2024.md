@@ -243,11 +243,23 @@ Para comprender verdaderamente los cambios realizados en el PR #420, debemos exa
     @apply border-l-4 border-primary bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-4 pl-6 pr-4 my-8 rounded-r-xl not-italic font-serif text-lg text-on-surface dark:text-gray-100;
   }
 
-  /* Images & Videos */
-  .prose img, .prose video {
-    @apply rounded-2xl shadow-lg my-10 mx-auto block;
-    max-width: min(100%, 500px); /* Fix: Responsive Visual Hierarchy to avoid "exploding" media on tablets/desktop */
-    height: auto;
+  /* Images, Videos & Iframes */
+  .prose :where(img, video, iframe) {
+    @apply rounded-2xl shadow-lg block;
+    margin-block: 2.5rem;
+    margin-inline: auto;
+    max-inline-size: min(100%, 500px); /* Fix: Responsive Visual Hierarchy to avoid "exploding" media on tablets/desktop */
+  }
+
+  .prose :where(img, video) {
+    inline-size: auto;
+    block-size: auto;
+  }
+
+  .prose iframe {
+    inline-size: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
   }
 
   /* Lists */

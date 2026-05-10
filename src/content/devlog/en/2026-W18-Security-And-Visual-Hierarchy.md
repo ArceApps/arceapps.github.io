@@ -28,21 +28,27 @@ We updated `src/styles/global.css` to enforce a strict, responsive bounding box 
 ```css
 /* src/styles/global.css */
 /* Visual hierarchy for media inside markdown prose */
-.prose img,
-.prose video {
-  max-width: min(100%, 500px);
-  width: auto;
-  height: auto;
-  margin-inline: auto; /* Logical property for horizontal margin */
-  margin-block: 2rem;  /* Logical property for vertical margin */
-  border-radius: 1rem;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  display: block;
+.prose :where(img, video, iframe) {
+  @apply rounded-2xl shadow-lg block;
+  margin-block: 2.5rem;
+  margin-inline: auto;
+  max-inline-size: min(100%, 500px); /* Fix: Responsive Visual Hierarchy */
+}
+
+.prose :where(img, video) {
+  inline-size: auto;
+  block-size: auto;
+}
+
+.prose iframe {
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 ```
 
 **Why this approach works:**
-1.  **`max-width: min(100%, 500px)`:** This is the core of the responsive behavior. It ensures the image never exceeds the width of its container (`100%`) on mobile, but caps its maximum growth at `500px` on desktop. This prevents low-resolution screenshots from being stretched to fill a wide article column, maintaining visual fidelity.
+1.  **`max-inline-size: min(100%, 500px)`:** This is the core of the responsive behavior. It ensures the image never exceeds the width of its container (`100%`) on mobile, but caps its maximum growth at `500px` on desktop. This prevents low-resolution screenshots from being stretched to fill a wide article column, maintaining visual fidelity.
 2.  **CSS Logical Properties:** By using `margin-inline` and `margin-block` instead of `margin-left`/`right` or `margin-top`/`bottom`, we ensure that our styles remain robust if we ever introduce right-to-left (RTL) language support in the future. This aligns with our commitment to modern, inclusive web standards outlined in our `ANALISIS_WEB.md`.
 3.  **Aesthetic Polish:** The combination of `border-radius` and a subtle `box-shadow` elevates the presentation of screenshots, giving them a modern, "card-like" appearance that fits seamlessly with the ArceApps design language.
 

@@ -28,25 +28,33 @@ Prior to our intervention, the global CSS did not limit the growth of images wit
 
 ### The Technical Solution and Implementation
 
-Through commit `646ac17`, we modified `src/styles/global.css` to apply specific constraints to the `.prose img` and `.prose video` selectors.
+Through commit `646ac17`, we modified `src/styles/global.css` to apply specific constraints to the `.prose img`, `.prose video`, and `.prose iframe` selectors.
 
 ```css
 /* src/styles/global.css */
-.prose img,
-.prose video {
-  max-width: min(100%, 500px); /* Restricts maximum size without breaking on mobile */
-  width: auto;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+.prose :where(img, video, iframe) {
+  @apply rounded-2xl shadow-lg block;
+  margin-block: 2.5rem;
+  margin-inline: auto;
+  max-inline-size: min(100%, 500px); /* Fix: Responsive Visual Hierarchy */
+}
+
+.prose :where(img, video) {
+  inline-size: auto;
+  block-size: auto;
+}
+
+.prose iframe {
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
 ```
 
 **Deep dive into the solution:**
-1. **The power of `min()` in CSS:** The `max-width: min(100%, 500px)` property is a brilliant example of resilient design. It evaluates two values: 100% of the container and 500px, and applies the smaller one. On a mobile device where the container measures, say, 350px, the 100% value (350px) is smaller than 500px, so the image adapts perfectly to the screen without creating horizontal scroll. On a large screen where the container measures 800px, the 500px value is smaller, so the image is capped at that size. This completely eliminates the need for breakpoints or media queries for content images.
-2. **Preservation of Aspect Ratio:** By explicitly setting `width: auto; height: auto;`, we override any inherited rule that might force the image to distort to fill a predetermined space. The browser queries the intrinsic size of the image file and scales its dimensions to maintain the exact mathematical proportion.
-3. **Visual Focal Point:** By applying `display: block` and `margin-inline: auto`, we force any multimedia element that falls under these rules—whether originally left-aligned or inline by the Markdown engine—to position itself on its own line in the center of the reading column. This drastically improves the visual flow, allowing the reader's eyes to rest between paragraphs.
+1. **The power of `min()` in CSS:** The `max-inline-size: min(100%, 500px)` property is a brilliant example of resilient design. It evaluates two values: 100% of the container and 500px, and applies the smaller one. On a mobile device where the container measures, say, 350px, the 100% value (350px) is smaller than 500px, so the image adapts perfectly to the screen without creating horizontal scroll. On a large screen where the container measures 800px, the 500px value is smaller, so the image is capped at that size. This completely eliminates the need for breakpoints or media queries for content images.
+2. **Preservation of Aspect Ratio:** By explicitly setting `inline-size: auto; block-size: auto;` for images and videos, we override any inherited rule that might force the image to distort to fill a predetermined space. For iframes, we ensure a consistent `16/9` aspect ratio. The browser queries the intrinsic size of the image file and scales its dimensions to maintain the exact mathematical proportion.
+3. **Visual Focal Point:** By applying `display: block` and `margin-inline: auto`, we force any multimedia element that falls under these rules—whether originally left-aligned or inline by the Markdown engine—to position itself on its own line in the center of the reading column. The use of `margin-block` ensures a consistent vertical separation of `2.5rem`, allowing the reader's eyes to rest between paragraphs.
 
 This architectural CSS improvement, while seemingly a minor stylistic tweak, has a profound impact on the quality of our portfolio. It ensures our essays and logs maintain an editorial-type quality regardless of the device's shape and form consuming them.
 
