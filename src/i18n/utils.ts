@@ -22,3 +22,36 @@ export function getRouteFromUrl(url: URL): string | undefined {
   }
   return pathname;
 }
+
+/**
+ * Normalizes a path by removing the trailing slash, except for the root path.
+ */
+export function normalizePath(path: string) {
+  return path.replace(/\/$/, "") || "/";
+}
+
+/**
+ * Determines if a path is active based on the current path.
+ */
+export function isPathActive(currentPath: string, targetPath: string) {
+  const normalizedCurrent = normalizePath(currentPath);
+  const normalizedTarget = normalizePath(targetPath);
+
+  if (normalizedTarget === "/" || normalizedTarget === "/es") {
+    return normalizedCurrent === normalizedTarget;
+  }
+  return normalizedCurrent.startsWith(normalizedTarget);
+}
+
+/**
+ * Returns the path for the language toggle.
+ */
+export function getLocalizedTogglePath(url: URL, currentLang: string): string {
+  const segments = url.pathname.split('/').filter(Boolean);
+  if (currentLang === 'es' && segments[0] === 'es') {
+    segments.shift();
+  } else if (currentLang === 'en') {
+    segments.unshift('es');
+  }
+  return '/' + segments.join('/');
+}

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getLangFromUrl, getRouteFromUrl, useTranslations } from './utils';
+import { getLangFromUrl, getRouteFromUrl, useTranslations, normalizePath, isPathActive, getLocalizedTogglePath } from './utils';
 
 describe('i18n utils', () => {
   describe('useTranslations', () => {
@@ -89,6 +89,64 @@ describe('i18n utils', () => {
     it('handles non-prefixed deep paths correctly', () => {
       const url = new URL('http://localhost:4321/blog/post-1');
       expect(getRouteFromUrl(url)).toBe('/blog/post-1');
+    });
+  });
+
+  describe('normalizePath', () => {
+    it('removes trailing slash', () => {
+      expect(normalizePath('/es/')).toBe('/es');
+      expect(normalizePath('/blog/')).toBe('/blog');
+    });
+
+    it('handles root correctly', () => {
+      expect(normalizePath('/')).toBe('/');
+    });
+
+    it('does nothing to paths without trailing slash', () => {
+      expect(normalizePath('/es')).toBe('/es');
+      expect(normalizePath('/blog/post-1')).toBe('/blog/post-1');
+    });
+  });
+
+  describe('isPathActive', () => {
+    it('returns true for exact matches on root', () => {
+      expect(isPathActive('/', '/')).toBe(true);
+      expect(isPathActive('/es', '/es')).toBe(true);
+      expect(isPathActive('/es/', '/es')).toBe(true);
+    });
+
+    it('returns false for partial matches on root', () => {
+      expect(isPathActive('/apps', '/')).toBe(false);
+      expect(isPathActive('/es/apps', '/es')).toBe(false);
+    });
+
+    it('returns true for subpaths', () => {
+      expect(isPathActive('/apps/my-app', '/apps')).toBe(true);
+      expect(isPathActive('/es/blog/post-1', '/es/blog')).toBe(true);
+    });
+
+    it('returns false for unrelated paths', () => {
+      expect(isPathActive('/blog', '/apps')).toBe(false);
+    });
+  });
+
+  describe('getLocalizedTogglePath', () => {
+    it('adds "es" prefix for English URLs', () => {
+      const url = new URL('http://localhost:4321/blog');
+      expect(getLocalizedTogglePath(url, 'en')).toBe('/es/blog');
+    });
+
+    it('removes "es" prefix for Spanish URLs', () => {
+      const url = new URL('http://localhost:4321/es/blog');
+      expect(getLocalizedTogglePath(url, 'es')).toBe('/blog');
+    });
+
+    it('handles root correctly', () => {
+      const urlEn = new URL('http://localhost:4321/');
+      expect(getLocalizedTogglePath(urlEn, 'en')).toBe('/es');
+
+      const urlEs = new URL('http://localhost:4321/es/');
+      expect(getLocalizedTogglePath(urlEs, 'es')).toBe('/');
     });
   });
 });
