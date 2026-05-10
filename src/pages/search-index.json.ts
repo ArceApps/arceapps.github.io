@@ -2,8 +2,10 @@ import { getCollection } from 'astro:content';
 import { sanitizeForSearch } from '../utils/sanitizer';
 
 export async function GET() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
-  const apps = await getCollection('apps', ({ data }) => !data.draft);
+  const [posts, apps] = await Promise.all([
+    getCollection('blog', ({ data }) => !data.draft),
+    getCollection('apps', ({ data }) => !data.draft),
+  ]);
 
   const searchIndex = [
     ...posts.map((post) => {
