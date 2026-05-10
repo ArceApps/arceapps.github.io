@@ -36,6 +36,20 @@ export async function getStaticPaths() {
        }
     }
 
+    // Related posts logic
+    const currentTags = post.data.tags || [];
+    const relatedPosts = sortedPosts
+      .filter(p => p.slug !== post.slug)
+      .map(p => {
+        const commonTags = (p.data.tags || []).filter(t => currentTags.includes(t)).length;
+        return { ...p, commonTags };
+      })
+      .sort((a, b) => {
+        if (b.commonTags !== a.commonTags) return b.commonTags - a.commonTags;
+        return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+      })
+      .slice(0, 3);
+
     return {
       params: { slug: post.slug.split('/').pop() },
       props: {
@@ -49,12 +63,13 @@ export async function getStaticPaths() {
           title: nextPost.data.title
         } : undefined,
         translatedPath,
+        relatedPosts,
       },
     };
   });
 }
 
-const { post, prevPost, nextPost, translatedPath } = Astro.props;
+const { post, prevPost, nextPost, translatedPath, relatedPosts } = Astro.props;
 const { Content, headings } = await post.render();
 
 const wordCount = post.body.split(/\s+/g).length;
@@ -69,21 +84,6 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 
 // Filter headings for TOC (H2 and H3 only)
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
-
-// Related posts logic
-const allPosts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'));
-const currentTags = post.data.tags || [];
-const relatedPosts = allPosts
-  .filter(p => p.slug !== post.slug)
-  .map(p => {
-    const commonTags = (p.data.tags || []).filter(t => currentTags.includes(t)).length;
-    return { ...p, commonTags };
-  })
-  .sort((a, b) => {
-    if (b.commonTags !== a.commonTags) return b.commonTags - a.commonTags;
-    return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
-  })
-  .slice(0, 3);
 
 const breadcrumbItems = [
   { label: 'Home', href: '/' },
