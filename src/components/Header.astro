@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import brandIcon from "../assets/brand-icon.png";
 import Search from "./Search.astro";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl, useTranslations, isPathActive, getLocalizedTogglePath } from "../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -22,13 +22,8 @@ const navItems = [
 ];
 
 const { pathname } = Astro.url;
-const normalize = (path: string) => path.replace(/\/$/, "") || "/";
-const currentPath = normalize(pathname);
 
-const isActive = (href: string) => {
-  if (href === "/" || href === "/es") return currentPath === href;
-  return currentPath.startsWith(href);
-};
+const isActive = (href: string) => isPathActive(pathname, href);
 
 // Language Toggle Logic
 const currentLang = lang;
@@ -36,21 +31,7 @@ const nextLang = currentLang === 'es' ? 'en' : 'es';
 const nextLangLabel = currentLang === 'es' ? 'EN' : 'ES';
 
 // Use translatedPath if provided, otherwise fallback to simple path replacement
-let nextPath = translatedPath;
-
-if (!nextPath) {
-  // Simple path replacement for language switching
-  // Note: This works perfectly for structural pages. For content with different slugs (blog posts),
-  // it might lead to 404s if slugs don't match.
-  // Ideally, we would map exact content paths, but for now this covers the main navigation.
-  const segments = pathname.split('/').filter(Boolean);
-  if (currentLang === 'es' && segments[0] === 'es') {
-    segments.shift();
-  } else if (currentLang === 'en') {
-    segments.unshift('es');
-  }
-  nextPath = '/' + segments.join('/');
-}
+const nextPath = translatedPath || getLocalizedTogglePath(Astro.url, currentLang);
 ---
 
 <header
