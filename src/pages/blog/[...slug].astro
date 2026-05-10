@@ -36,7 +36,7 @@ export async function getStaticPaths() {
        }
     }
 
-    // Related posts logic — precomputed in getStaticPaths using sortedPosts (no extra getCollection call)
+// Related posts logic — precomputed in getStaticPaths using sortedPosts (no extra getCollection call)
     const currentTags = post.data.tags || [];
     const relatedPosts = sortedPosts
       .filter(p => p.slug !== post.slug)
@@ -84,9 +84,6 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 
 // Filter headings for TOC (H2 and H3 only)
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
-
-// Related posts — precomputed in getStaticPaths (no extra getCollection call needed)
-
 const breadcrumbItems = [
   { label: 'Home', href: '/' },
   { label: 'Blog', href: '/blog' },
