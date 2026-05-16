@@ -25,7 +25,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Run opencode
-        run: opencode github run
+      - name: Install and run opencode
+        run: |
+          curl -fsSL https://opencode.ai/install | bash
+          echo "$HOME/.opencode/bin" >> $GITHUB_PATH
+          opencode github run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
