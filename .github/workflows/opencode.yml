@@ -26,10 +26,12 @@ jobs:
           persist-credentials: false
 
       - name: Install opencode
-        run: curl -fsSL https://opencode.ai/install | bash
+        run: curl -fsSL https://opencode.ai/install | bash -s -- --version 1.14.30
 
       - name: Run opencode
-        run: opencode github run
+        run: |
+          python3 -c "import json; print(json.dumps(${{ toJSON(github.event) }}))" > /tmp/event.json
+          opencode github run --event /tmp/event.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MODEL: opencode-go/deepseek-v4-flash
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
