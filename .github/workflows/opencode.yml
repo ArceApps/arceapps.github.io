@@ -30,7 +30,7 @@ jobs:
 
       - name: Run opencode
         run: |
-          python3 -c "import json; print(json.dumps(${{ toJSON(github.event) }}))" > /tmp/event.json
+          echo "${{ toJSON(github.event) }}" > /tmp/event.json
           opencode github run --event /tmp/event.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
