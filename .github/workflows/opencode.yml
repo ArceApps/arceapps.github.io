@@ -32,4 +32,4 @@ jobs:
         run: opencode github run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MODEL: opencode-go/minimax-m2.7
+          MODEL: opencode-go/deepseek-v4-flash
