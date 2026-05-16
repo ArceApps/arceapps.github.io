@@ -34,4 +34,3 @@ jobs:
           opencode github run --event /tmp/event.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
