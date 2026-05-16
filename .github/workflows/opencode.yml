@@ -31,3 +31,4 @@ jobs:
           MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
         with:
           model: minimax/MiniMax-M2.7
+          instance-ref: ${{ github.event.comment.id }}
