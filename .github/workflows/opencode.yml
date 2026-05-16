@@ -29,9 +29,7 @@ jobs:
         run: curl -fsSL https://opencode.ai/install | bash
 
       - name: Run opencode
-        run: opencode github run
+        run: opencode github run --model minimax/MiniMax-M2.7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
-        with:
-          model: minimax/MiniMax-M2.7
