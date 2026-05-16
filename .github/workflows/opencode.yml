@@ -25,11 +25,13 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install opencode
+        run: curl -fsSL https://opencode.ai/install | bash
+
       - name: Run opencode
-        uses: anomalyco/opencode/github@latest
+        run: opencode github run
         env:
-          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
         with:
           model: minimax/MiniMax-M2.7
-          use_github_token: true
