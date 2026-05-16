@@ -29,6 +29,6 @@ jobs:
         run: |
           curl -fsSL https://opencode.ai/install | bash
           echo "$HOME/.opencode/bin" >> $GITHUB_PATH
-          opencode github run
+          $HOME/.opencode/bin/opencode github run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
