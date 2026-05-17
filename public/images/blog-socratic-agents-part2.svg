@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420">
+  <!-- Background -->
+  <rect width="800" height="420" fill="#0d1117"/>
+
+  <!-- Grid lines -->
+  <line x1="0" y1="140" x2="800" y2="140" stroke="#1a2332" stroke-width="1"/>
+  <line x1="0" y1="280" x2="800" y2="280" stroke="#1a2332" stroke-width="1"/>
+  <line x1="267" y1="0" x2="267" y2="420" stroke="#1a2332" stroke-width="1"/>
+  <line x1="534" y1="0" x2="534" y2="420" stroke="#1a2332" stroke-width="1"/>
+
+  <!-- === LEFT: SDD Spec document === -->
+  <rect x="50" y="80" width="180" height="240" rx="8" fill="#1a2332" stroke="#FF9800" stroke-width="2"/>
+  <text x="140" y="115" text-anchor="middle" font-family="monospace" font-size="12" font-weight="bold" fill="#FF9800">SPEC.md</text>
+  <line x1="70" y1="130" x2="210" y2="130" stroke="#FF9800" stroke-width="1" opacity="0.5"/>
+  <line x1="70" y1="150" x2="180" y2="150" stroke="#FF9800" stroke-width="1" opacity="0.4"/>
+  <line x1="70" y1="165" x2="200" y2="165" stroke="#FF9800" stroke-width="1" opacity="0.4"/>
+  <line x1="70" y1="180" x2="160" y2="180" stroke="#FF9800" stroke-width="1" opacity="0.3"/>
+  <!-- Checklist items -->
+  <rect x="70" y="200" width="12" height="12" rx="2" fill="none" stroke="#FF9800" stroke-width="1.5"/>
+  <line x1="73" y1="203" x2="77" y2="209" stroke="#FF9800" stroke-width="1.5"/>
+  <line x1="77" y1="209" x2="85" y2="200" stroke="#FF9800" stroke-width="1.5"/>
+  <rect x="70" y="220" width="12" height="12" rx="2" fill="none" stroke="#FF9800" stroke-width="1.5"/>
+  <rect x="70" y="240" width="12" height="12" rx="2" fill="none" stroke="#FF9800" stroke-width="1.5"/>
+  <line x1="73" y1="243" x2="77" y2="249" stroke="#FF9800" stroke-width="1.5"/>
+  <line x1="77" y1="249" x2="85" y2="240" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="140" y="290" text-anchor="middle" font-family="monospace" font-size="9" fill="#FF9800">Spec-Driven</text>
+  <text x="140" y="305" text-anchor="middle" font-family="monospace" font-size="9" fill="#FF9800">Development</text>
+
+  <!-- === CENTER: Sycophancy arrows === -->
+  <!-- Agent box -->
+  <rect x="310" y="100" width="180" height="100" rx="8" fill="#6366f1" opacity="0.15" stroke="#6366f1" stroke-width="2"/>
+  <text x="400" y="140" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#6366f1">AI AGENT</text>
+  <text x="400" y="160" text-anchor="middle" font-family="monospace" font-size="9" fill="#6366f1">"Yes-Man" Syndrome</text>
+  <!-- User box -->
+  <rect x="310" y="220" width="180" height="80" rx="8" fill="#ec4899" opacity="0.15" stroke="#ec4899" stroke-width="2"/>
+  <text x="400" y="250" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#ec4899">HUMAN</text>
+  <text x="400" y="270" text-anchor="middle" font-family="monospace" font-size="9" fill="#ec4899">User Opinion</text>
+  <!-- Bidirectional arrows -->
+  <line x1="400" y1="200" x2="400" y2="220" stroke="#64748b" stroke-width="2"/>
+  <polygon points="396,205 400,195 404,205" fill="#64748b"/>
+  <polygon points="396,215 400,225 404,215" fill="#64748b"/>
+
+  <!-- === RIGHT: CI/CD pipeline === -->
+  <rect x="580" y="120" width="150" height="180" rx="8" fill="#1a2332" stroke="#10b981" stroke-width="2"/>
+  <text x="655" y="155" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#10b981">CI/CD</text>
+  <!-- Pipeline stages -->
+  <rect x="600" y="170" width="110" height="25" rx="4" fill="#10b981" opacity="0.2"/>
+  <text x="655" y="187" text-anchor="middle" font-family="monospace" font-size="8" fill="#10b981">Build</text>
+  <rect x="600" y="200" width="110" height="25" rx="4" fill="#10b981" opacity="0.3"/>
+  <text x="655" y="217" text-anchor="middle" font-family="monospace" font-size="8" fill="#10b981">Test</text>
+  <rect x="600" y="230" width="110" height="25" rx="4" fill="#10b981" opacity="0.4"/>
+  <text x="655" y="247" text-anchor="middle" font-family="monospace" font-size="8" fill="#10b981">Deploy</text>
+  <rect x="600" y="260" width="110" height="25" rx="4" fill="#10b981" opacity="0.5"/>
+  <text x="655" y="277" text-anchor="middle" font-family="monospace" font-size="8" fill="#10b981">Monitor</text>
+  <!-- Socratic Gate badge -->
+  <rect x="600" y="300" width="60" height="20" rx="10" fill="#ec4899" opacity="0.2"/>
+  <text x="630" y="314" text-anchor="middle" font-family="monospace" font-size="8" fill="#ec4899">Gate</text>
+
+  <!-- === Labels bottom === -->
+  <text x="140" y="380" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">Specification</text>
+  <text x="400" y="380" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">Alignment Problem</text>
+  <text x="655" y="380" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">Socratic Gate</text>
+
+</svg>

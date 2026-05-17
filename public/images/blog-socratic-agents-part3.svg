@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420">
+  <!-- Background -->
+  <rect width="800" height="420" fill="#0d1117"/>
+
+  <!-- Grid lines -->
+  <line x1="0" y1="140" x2="800" y2="140" stroke="#1a2332" stroke-width="1"/>
+  <line x1="0" y1="280" x2="800" y2="280" stroke="#1a2332" stroke-width="1"/>
+  <line x1="267" y1="0" x2="267" y2="420" stroke="#1a2332" stroke-width="1"/>
+  <line x1="534" y1="0" x2="534" y2="420" stroke="#1a2332" stroke-width="1"/>
+
+  <!-- === TOP CENTER: Orchestrator hub === -->
+  <circle cx="400" cy="80" r="50" fill="#6366f1" opacity="0.2" stroke="#6366f1" stroke-width="3"/>
+  <text x="400" y="75" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#6366f1">ORCHESTRATOR</text>
+  <text x="400" y="90" text-anchor="middle" font-family="monospace" font-size="8" fill="#6366f1">Multi-Agent</text>
+
+  <!-- === LEFT: Agent 1 (Researcher) === -->
+  <rect x="40" y="150" width="140" height="80" rx="8" fill="#10b981" opacity="0.15" stroke="#10b981" stroke-width="2"/>
+  <text x="110" y="180" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#10b981">Researcher</text>
+  <text x="110" y="200" text-anchor="middle" font-family="monospace" font-size="8" fill="#10b981">Gather Data</text>
+  <circle cx="80" cy="215" r="8" fill="#10b981" opacity="0.4"/>
+  <circle cx="110" cy="215" r="8" fill="#10b981" opacity="0.4"/>
+  <circle cx="140" cy="215" r="8" fill="#10b981" opacity="0.4"/>
+
+  <!-- === CENTER-LEFT: Agent 2 (Analyzer) === -->
+  <rect x="200" y="150" width="140" height="80" rx="8" fill="#f59e0b" opacity="0.15" stroke="#f59e0b" stroke-width="2"/>
+  <text x="270" y="180" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#f59e0b">Analyzer</text>
+  <text x="270" y="200" text-anchor="middle" font-family="monospace" font-size="8" fill="#f59e0b">Process Info</text>
+  <rect x="230" y="210" width="80" height="15" rx="3" fill="#f59e0b" opacity="0.3"/>
+
+  <!-- === CENTER-RIGHT: Agent 3 (Coder) === -->
+  <rect x="360" y="150" width="140" height="80" rx="8" fill="#ec4899" opacity="0.15" stroke="#ec4899" stroke-width="2"/>
+  <text x="430" y="180" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#ec4899">Coder</text>
+  <text x="430" y="200" text-anchor="middle" font-family="monospace" font-size="8" fill="#ec4899">Generate Code</text>
+  <text x="430" y="215" text-anchor="middle" font-family="monospace" font-size="10" fill="#ec4899">&lt;/&gt;</text>
+
+  <!-- === RIGHT: Agent 4 (Reviewer) === -->
+  <rect x="520" y="150" width="140" height="80" rx="8" fill="#8b5cf6" opacity="0.15" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="590" y="180" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#8b5cf6">Reviewer</text>
+  <text x="590" y="200" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6">Validate</text>
+  <path d="M565 215 L585 215 M575 205 L575 225" stroke="#8b5cf6" stroke-width="2"/>
+
+  <!-- === Connection lines from orchestrator === -->
+  <line x1="370" y1="130" x2="110" y2="150" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+  <line x1="400" y1="130" x2="400" y2="150" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+  <line x1="430" y1="130" x2="590" y2="150" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
+
+  <!-- === BOTTOM: State/Memory layer === -->
+  <rect x="100" y="280" width="600" height="80" rx="8" fill="#1a2332" stroke="#64748b" stroke-width="1.5"/>
+  <text x="400" y="305" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#64748b">SHARED STATE (StateFlow)</text>
+  <!-- Memory blocks -->
+  <rect x="130" y="320" width="100" height="30" rx="4" fill="#6366f1" opacity="0.2" stroke="#6366f1" stroke-width="1"/>
+  <text x="180" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#6366f1">Context</text>
+  <rect x="250" y="320" width="100" height="30" rx="4" fill="#10b981" opacity="0.2" stroke="#10b981" stroke-width="1"/>
+  <text x="300" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#10b981">Memory</text>
+  <rect x="370" y="320" width="100" height="30" rx="4" fill="#f59e0b" opacity="0.2" stroke="#f59e0b" stroke-width="1"/>
+  <text x="420" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#f59e0b">History</text>
+  <rect x="490" y="320" width="100" height="30" rx="4" fill="#ec4899" opacity="0.2" stroke="#ec4899" stroke-width="1"/>
+  <text x="540" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#ec4899">Results</text>
+  <rect x="610" y="320" width="70" height="30" rx="4" fill="#8b5cf6" opacity="0.2" stroke="#8b5cf6" stroke-width="1"/>
+  <text x="645" y="340" text-anchor="middle" font-family="monospace" font-size="8" fill="#8b5cf6">Status</text>
+
+  <!-- === Labels bottom === -->
+  <text x="110" y="385" text-anchor="middle" font-family="monospace" font-size="9" fill="#10b981">Research</text>
+  <text x="270" y="385" text-anchor="middle" font-family="monospace" font-size="9" fill="#f59e0b">Analysis</text>
+  <text x="430" y="385" text-anchor="middle" font-family="monospace" font-size="9" fill="#ec4899">Code</text>
+  <text x="590" y="385" text-anchor="middle" font-family="monospace" font-size="9" fill="#8b5cf6">Review</text>
+  <text x="400" y="400" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">Agent Coordination Layer</text>
+
+</svg>
