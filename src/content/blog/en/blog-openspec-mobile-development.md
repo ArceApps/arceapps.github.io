@@ -4,7 +4,7 @@ description: "How to apply OpenSpec in Android and Kotlin projects to keep AI ag
 pubDate: 2026-05-17
 heroImage: "/images/blog-openspec-mobile-development.svg"
 tags: ["SDD", "OpenSpec", "Android", "Kotlin", "AI Agents", "Mobile Development", "Spec-Driven Development", "Workflow", "Architecture"]
-reference_id: "f8g93b2c-4d56-4e0f-9g2b-3c4d5e6f7h"
+reference_id: "e7f82a1b-3c45-4d9e-8f1a-2b3c4d5e6f7g"
 ---
 
 > **Related readings:** [Deep Analysis of SDD Frameworks: Spec Kit, OpenSpec and BMAD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) · [Spec-Driven Development with Agentic AI](/blog/blog-specs-driven-development) · [Complete Guide: Stack Recommended for Building AI Agents in 2026](/blog/blog-stack-completo-agentes-ia-2026)
