@@ -7,7 +7,7 @@ tags: ["SDD", "OpenSpec", "Android", "Kotlin", "AI Agents", "Mobile Development"
 reference_id: "e7f82a1b-3c45-4d9e-8f1a-2b3c4d5e6f7g"
 ---
 
-> **Related readings:** [Deep Analysis of SDD Frameworks: Spec Kit, OpenSpec and BMAD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) · [Spec-Driven Development with Agentic AI](/blog/blog-specs-driven-development) · [Complete Guide: Stack Recommended for Building AI Agents in 2026](/blog/blog-stack-completo-agentes-ia-2026)
+> **Related readings:** [Deep Analysis of SDD Frameworks: Spec Kit, OpenSpec and BMAD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) · [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [Complete Guide: Stack Recommended for Building AI Agents in 2026](/blog/complete-beginners-guide-ai-agents-stack-2026)
 
 Mobile development has a particular discipline that web development doesn't share: the **fragmentation of technical contexts**. Each mobile platform — Android with Kotlin, iOS with Swift — has its own release cycles, hardware constraints, native APIs, and architectural patterns. When you introduce AI agents into this ecosystem, the risk of misalignment multiplies: the agent might suggest a deprecated Android API, use an inadequate concurrency pattern for Kotlin, or implement a feature ignoring Material Design guidelines.
 
