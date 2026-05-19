@@ -1,563 +1,426 @@
 ---
-title: "Spec Kitty: La Evolución de GitHub Spec Kit para Desarrollo Móvil Impulsado por IA"
-description: "Cómo Spec Kitty reimagina el Desarrollo Impulsado por Especificaciones para equipos móviles que usan Kotlin y Android, con una filosofía donde el código es la fuente de verdad y worktrees de Git que hacen que los agentes de IA sean genuinamente útiles."
+title: "Spec Kitty: Desarrollo Impulsado por Especificaciones para Agentes de Codificación con IA"
+description: "Guía completa de Spec Kitty — la CLI que convierte la intención de producto en un flujo de trabajo repetible para agentes de IA usando git worktrees, un sistema kanban de 9 carriles y artefactos de misión nativos del repositorio."
 pubDate: 2026-05-19
 heroImage: "/images/blog-spec-kitty-mobile-development.svg"
-tags: ["SDD", "Spec Kitty", "Spec Kit", "Android", "Kotlin", "IA Agéntica", "Desarrollo Móvil", "Spec-Driven Development", "Workflow", "Arquitectura", "Git Worktrees"]
+tags: ["SDD", "Spec Kitty", "Agentes IA", "Git Worktrees", "Desarrollo Impulsado por Especificaciones", "Workflow", "Kanban", "Multi-Agente", "CLI", "Python"]
 reference_id: "a8f92c3d-4e15-4b7a-9f2c-1d3e5f6a7b8c"
 ---
 
-> **Lecturas relacionadas:** [Análisis Profundo de Frameworks SDD: Spec Kit, OpenSpec y BMAD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) · [OpenSpec para Desarrollo Móvil: SDD en Android y Kotlin](/blog/blog-openspec-mobile-development) · [Desarrollo Impulsado por Especificaciones con IA Agéntica](/blog/blog-specs-driven-development)
+> **Lecturas relacionadas:** [Desarrollo Impulsado por Especificaciones con IA Agéntica](/blog/blog-specs-driven-development) · [Git Worktrees para Desarrollo Paralelo](/blog/blog-git-worktrees-android) · [Agentes IA en Desarrollo Android](/blog/blog-ai-agents-workflow-android)
 
-Cuando GitHub publicó Spec Kit como proyecto de código abierto a finales de 2025, estableció un hito en cómo los equipos de desarrollo podían estructurar flujos de trabajo asistidos por IA. El framework introdujo el concepto de **constitución** — un documento vivo que los agentes de IA consultan antes de generar cualquier código — junto con un sistema de cuatro fases con compuertas (`specify` → `plan` → `tasks` → `merge`) que exigía aprobación humana en cada transición. Fue un enfoque metódico y reflexivo que funcionaba admirablemente para equipos de desarrollo native para web incrustados en el ecosistema de GitHub.
+Cuando un equipo de desarrollo móvil trabaja con un agente de codificación con IA, el flujo se siente manejable. Describes lo que quieres, el agente escribe código, lo revisas, y la funcionalidad aterriza en tu codebase. Pero cuando agregas un segundo agente — quizás uno manejando lógica de backend mientras otro construye la UI — aparecen las grietas: ¿qué agente está trabajando en qué, dónde se perdieron los requisitos, cómo fusionas dos implementaciones separadas sin conflictos?
 
-Pero el desarrollo móvil tiene su propio ritmo. Los proyectos Android con Kotlin tienen restricciones específicas — fragmentación de dispositivos, requisitos de nivel de API, patrones específicos de plataforma como Jetpack Compose o inyección de dependencias con Hilt — que un framework de propósito general como Spec Kit no estaba diseñado para abordar. El momento en que un desarrollador móvil intentaba usar Spec Kit en un proyecto Android, la fricción se hacía evidente: el modelo de constitución asumía que podías escribir documentación comprehensiva del sistema desde el principio, pero los proyectos móviles evolucionan en incrementos pequeños y verificables donde la documentación prematura se convierte en deuda técnica.
+**Spec Kitty** aborda esto tratando el repositorio como la única fuente de verdad para todo lo que los agentes de IA necesitan para mantenerse alineados. Es una CLI de código abierto (Python, Python 3.11+) que estructura el trabajo alrededor de **misiones** — unidades autocontenidas de funcionalidad con su propio ciclo de vida, paquetes de trabajo y estado de carril kanban. El flujo de trabajo central sigue siete fases:
 
-**Spec Kitty** emerge de este vacío. Es una evolución de las ideas centrales de Spec Kit — desarrollo impulsado por especificaciones, compuertas con humano-en-el-bucle, persistencia de artefactos en el repositorio — pero rediseñada desde cero para cómo los desarrolladores móviles y Kotlin realmente trabajan. La diferencia más significativa: **el código es la fuente de verdad, no la especificación**. Las especificaciones en Spec Kitty son solicitudes de cambio (change requests), no documentación comprehensiva. Esta inversión suena sutil pero transforma todo sobre cómo los agentes de IA operan en un codebase móvil.
+```
+spec -> plan -> tasks -> next -> review -> accept -> merge
+```
+
+Lo que hace a Spec Kitty distintivo es su filosofía: **el código es la fuente de verdad, no la especificación**. Las especificaciones en Spec Kitty son solicitudes de cambio — deltas que describen qué quieres añadir, modificar o eliminar — en lugar de documentación comprehensiva. El agente siempre lee el código real para entender el estado actual antes de generar nueva implementación. Después de una fusión, la especificación se convierte en contexto histórico; el código es lo que importa.
+
+Este artículo es un recorrido comprehensivo y basado en hechos de cada característica principal de Spec Kitty, extraído directamente del repositorio del proyecto en [github.com/Priivacy-ai/spec-kitty](https://github.com/Priivacy-ai/spec-kitty).
 
 ---
 
-## La Inversión Fundamental: El Código Es Verdad, la Spec Es Delta
+## El Problema que Spec Kitty Resuelve
 
-Para entender por qué esto importa, consideremos el modo de fallo clásico del desarrollo impulsado por especificaciones en contextos móviles.
+Las sesiones de codificación con IA frecuentemente pierden requisitos, decisiones o criterios de aceptación. Un agente comienza a implementar una funcionalidad, el desarrollador responde algunas preguntas, pero tres semanas después nadie recuerda por qué se tomó una decisión arquitectónica particular o cuál era el alcance original. Spec Kitty resuelve esto almacenando cada artefacto — especificaciones, planes, desgloses de tareas, comentarios de revisión y estado de fusión — directamente en el repositorio bajo `kitty-specs/`.
 
-Cuando un equipo móvil escribe un documento de especificación comprehensivo para una funcionalidad de autenticación, documentan todo el sistema: cómo se almacenan los tokens, qué APIs se llaman, qué pasa en caso de fallo, el flujo de UI para login y registro. El documento se convierte en la fuente de verdad. Pero seis meses después, cuando el equipo ha evolucionado la implementación — cambiando de JWT a OAuth2, añadiendo autenticación biométrica, modificando la estrategia de almacenamiento de tokens — el documento de especificación ya está obsoleto. Nadie lo actualizó. El agente de IA lee la spec, genera código basado en ella, e introduce bugs porque la spec ya no refleja la realidad.
+La herramienta está diseñada para equipos que:
 
-La fundación filosófica de Spec Kitty aborda esto directamente. **La especificación es siempre un delta desde la realidad actual, nunca la realidad actual en sí.**
+- Ejecutan sesiones de codificación con IA donde los requisitos se desvían durante la implementación
+- Tienen múltiples agentes o desarrolladores que necesitan límites de paquete de trabajo claros
+- Quieren todo versionado con historial de auditoría completo
+- Necesitan un flujo de trabajo local primero, con integraciones opcionales de tracker hospedado después
 
-Esto significa:
-- Las especificaciones describen qué quieres AÑADIR, MODIFICAR o ELIMINAR
-- El agente de IA SIEMPRE lee el código real para entender el estado actual
-- Después de que un cambio se fusiona, la spec se convierte en contexto histórico — el código es lo que importa
-- No hay deriva entre especificación e implementación porque cumplen roles diferentes
-
-Para un proyecto Android con Kotlin, esto se mapea limpiamente a cómo el desarrollo móvil realmente ocurre. No escribes una spec para todo el sistema de autenticación. Escribes una spec que dice: "Añadir autenticación biométrica como fallback cuando el dispositivo lo soporte, usando la API BiometricPrompt con EncryptedSharedPreferences para almacenamiento de tokens." El agente de IA lee la implementación actual de auth, entiende el flujo JWT existente, y añade la capa biométrica como delta. El código resultante es correcto porque el agente trabajó desde la verdad terreno.
-
-### Cómo Spec Kitty Se Diferencia del Modelo de Constitución de Spec Kit
-
-Spec Kit usa una **constitución** como el artefacto de contexto primario. La constitución intenta documentar todas las decisiones arquitectónicas, estándares de codificación, elecciones tecnológicas y restricciones. Cuando ejecutas `/speckit.specify`, el agente carga la constitución y la usa para validar la spec generada.
-
-Esto funciona cuando:
-- El proyecto tiene una arquitectura estable y bien comprendida
-- Estás construyendo desde cero (greenfield)
-- El equipo puede invertir tiempo upfront en documentación comprehensiva
-
-Se rompe cuando:
-- El proyecto es brownfield con decisiones no documentadas dispersas en el codebase
-- Los requisitos cambian frecuentemente y las specs se vuelven obsoletas
-- La constitución crece tanto que los agentes la ignoran
-
-Spec Kitty elimina la constitución completamente. En su lugar, la charter (`doctrine/charter.md`) define principios de desarrollo immutables — imperativo test-first, arquitectura library-first, restricciones de simplicidad — en lugar de documentación comprehensiva del sistema. Estos principios guían el comportamiento del agente sin intentar documentar el estado actual del sistema.
-
-La diferencia práctica para un desarrollador Android:
-
-**Enfoque Spec Kit:**
-```
-Constitución: "El sistema usa Retrofit 2.9 para networking, Moshi para serialización JSON,
-Hilt para DI, Coroutines para async, StateFlow para estado UI. Nunca uses LiveData."
-→ El agente lee la constitución
-→ El agente genera spec de autenticación asumiendo Retrofit + Moshi + Hilt
-```
-
-**Enfoque Spec Kitty:**
-```
-Charter: "Imperativo test-first. Todas las operaciones de red DEBEN tener tests de contrato
-antes de la implementación. Library-first: cada funcionalidad empieza como un módulo
-independiente."
-→ El agente lee la implementación actual de auth en el codebase
-→ El agente lee la spec de Spec Kitty para el cambio: "Añadir auth biométrica con BiometricPrompt"
-→ El agente genera implementación basada en código real + spec delta
-```
-
-El segundo enfoque es más robusto porque el agente nunca toma decisiones basadas en documentación obsoleta.
+Probablemente es overkill para ediciones únicas, scripts pequeños o equipos que no usan Git.
 
 ---
 
-## La Arquitectura de Spec Kitty para Proyectos Android
+## El Modelo de Datos Central: Misiones, Paquetes de Trabajo y Carriles
 
-Un proyecto Android con Kotlin usando Spec Kitty tiene una estructura de directorios específica que organiza los artefactos de especificación junto a la implementación:
+### Misiones
+
+Una **misión** es el término de Spec Kitty para una unidad de funcionalidad. Cada misión vive en su propio directorio bajo `kitty-specs/` y lleva todo lo que el equipo necesita para entender, planificar, implementar y revisar esa funcionalidad:
 
 ```
-mi-app-android/
-├── app/
-│   └── src/main/
-│       ├── java/com/miapp/
-│       └── res/
-├── kitty-specs/                  # Artefactos de Spec Kitty (no van al APK)
-│   ├── 001-auth-biometrica/
-│   │   ├── spec.md               # Especificación de la funcionalidad
-│   │   ├── plan.md               # Plan de implementación
-│   │   ├── research.md           # Hallazgos de investigación técnica
-│   │   ├── data-model.md         # Entidades de dominio y relaciones
-│   │   ├── contracts/             # Especificaciones de API
-│   │   │   └── biometric-api.md
-│   │   ├── tasks.md              # Lista de verificación de tareas
-│   │   └── tasks/                # Prompts de work packages (estructura plana)
-│   │       ├── WP01-deps.md
-│   │       ├── WP02-almacenamiento.md
-│   │       ├── WP03-biometrico.md
-│   │       └── WP04-integracion.md
-│   └── _archive/                 # Specs de funcionalidades completadas
-├── .worktrees/                   # Worktrees de Git para desarrollo paralelo
-│   └── 001-auth-biometrica/     # Checkout aislado para esta funcionalidad
-├── doctrine/                     # Charter y principios
-│   └── charter.md
-└── build.gradle.kts
+kitty-specs/
+└── 001-auth-system/
+    ├── spec.md           # Qué construir (el delta/solicitud de cambio)
+    ├── plan.md           # Cómo construirlo (enfoque técnico)
+    ├── research.md       # Hallazgos de investigación (opcional)
+    ├── data-model.md     # Entidades de dominio y relaciones
+    ├── contracts/        # Especificaciones de API
+    ├── tasks.md          # Lista maestra de verificación de tareas
+    └── tasks/            # Prompts individuales de paquetes de trabajo (estructura plana)
+        ├── WP01-deps.md
+        ├── WP02-storage.md
+        ├── WP03-biometric.md
+        └── WP04-integration.md
 ```
 
-El directorio `kitty-specs/` es el corazón del sistema. A diferencia de una carpeta general de documentación, está estructurado alrededor de **misiones** (el término de Spec Kitty para funcionalidades) con un ciclo de vida claro: especificación → planificación → tareas → implementación → revisión → aceptación → fusión → archivo.
+Cada misión tiene un **slug** (kebab-case, p.ej., `001-auth-system`) que sirve como su identificador legible por humanos, y una **identidad canónica basada en ULID** (`mission_id`) asignada al momento de la creación de la misión. El prefijo numérico de tres dígitos es solo para visualización y se asigna en el momento de la fusión — esto elimina el problema de colisión donde dos misiones podrían compartir el mismo prefijo `NNN-` y confundir selectores, ramas y dashboards.
 
-### La Idea Clave: Worktrees para Aislamiento
+La convención de nombrado de ramas y worktrees usa el prefijo ULID (`mid8`) para garantizar unicidad:
 
-Una de las características más prácticas de Spec Kitty es su uso de **git worktrees** para aislamiento de funcionalidades. Cuando ejecutas `/spec-kitty.specify "Añadir autenticación biométrica"`, el CLI:
+- **Rama:** `kitty/mission-<human-slug>-<mid8>-lane-<id>` (p.ej., `kitty/mission-my-feature-01J6XW9K-lane-a`)
+- **Worktree:** `.worktrees/<human-slug>-<mid8>-lane-<id>`
 
-1. Crea una rama semántica: `001-auth-biometrica`
-2. Genera un worktree en `.worktrees/001-auth-biometrica/`
-3. Cambia tu agente (Claude, Cursor, Gemini) a ese checkout aislado
+### Paquetes de Trabajo
 
-Esto importa enormemente para desarrollo móvil porque:
+Una misión se divide en **paquetes de trabajo** (work packages, WPs) — prompts individuales que un agente puede ejecutar de forma aislada. Cada paquete de trabajo es un archivo plano en `tasks/` con frontmatter YAML que codifica su estado de carril:
 
-- **Sin overhead de cambio de rama**: Trabajas en el worktree de la funcionalidad, haces commits, y la rama principal se mantiene limpia. Sin ciclos de `git stash` / `git checkout` cuando necesitas verificar algo rápidamente en main.
-- **Desarrollo paralelo verdadero**: Si estás construyendo dos funcionalidades simultáneamente, puedes tener dos worktrees con diferentes agentes trabajando independientemente.
-- **Transferencia limpia**: Cuando una funcionalidad está completa, el worktree se fusiona limpiamente y desaparece. Sin ramas huérfanas.
+```yaml
+---
+work_package_id: "WP01"
+title: "Database Schema"
+lane: "in_progress"
+assignee: "claude"
+agent: "claude"
+shell_pid: "12345"
+review_status: ""
+review_feedback: ""
+---
+```
 
-Para Android específicamente, el enfoque de worktree se alinea bien con cómo funcionan los módulos de Gradle. Una funcionalidad podría involucrar cambios al módulo app, un nuevo módulo de biblioteca para el wrapper biométrico, y módulos de test — todo aislado en el worktree sin tocar main.
+El campo frontmatter `lane` se mantiene por compatibilidad con características pre-3.0, pero a partir de Spec Kitty 3.0, el **modelo de estado canónico** usa un log de eventos append-only en `status.events.jsonl`. Cada transición de carril es un `StatusEvent` inmutable:
+
+```json
+{"actor":"claude","at":"2026-02-08T12:00:00+00:00","event_id":"01HXYZ...","evidence":null,"execution_mode":"worktree","feature_slug":"034-feature","force":false,"from_lane":"planned","reason":null,"review_ref":null,"to_lane":"claimed","wp_id":"WP01"}
+```
+
+La función `reduce()` reproduce todos los eventos para producir un `StatusSnapshot` (materializado como `status.json`). Esto significa que los mismos eventos siempre producen el mismo snapshot — una máquina de estados determinista y auditable.
+
+### La Máquina de Estados de 9 Carriles
+
+Los paquetes de trabajo se mueven a través de **nueve carriles** durante su ciclo de vida:
+
+```
+planned -> claimed -> in_progress -> for_review -> in_review -> approved -> done
+       + blocked (alcanzable desde planned, claimed, in_progress, for_review, in_review, approved)
+       + canceled (alcanzable desde todos los carriles no terminales)
+```
+
+La máquina de estados enforce exactamente **27 transiciones legales**. Cualquier transición que no esté en esta lista es rechazada a menos que se use `--force` (que requiere actor + razón para auditoría). Los carriles `done` y `canceled` son **terminales** — abandonarlos requiere `--force`.
+
+El **log de eventos canónico** rastrea cada transición. Esto habilita:
+
+- **Inmutabilidad**: Ningún evento se modifica o elimina jamás
+- **Reproducción determinista**: Los mismos eventos siempre producen el mismo snapshot
+- **Depuración**: Historial completo de quién hizo qué, cuándo y por qué
+- **Métricas**: Calcular tiempo-en-carril, cycle time, throughput desde el stream de eventos
+- **Coordinación**: Múltiples agentes pueden ver lo que otros están haciendo
 
 ---
 
-## Comparando Spec Kitty y OpenSpec: Dos Filosofías, Un Problema
+## Git Worktrees: Desarrollo Paralelo Sin Cambio de Rama
 
-Tanto Spec Kitty como OpenSpec abordan el mismo problema central — mantener a los agentes de IA alineados con la intención arquitectónica en un codebase que evoluciona continuamente. Pero se aproximan desde ángulos fundamentalmente diferentes.
+Spec Kitty usa **git worktrees** para aislar la implementación de misiones. Cuando ejecutas `/spec-kitty.specify`, la CLI:
 
-### El Modelo de Propuesta de Cambio de OpenSpec
+1. Crea una rama semántica: `kitty/mission-<slug>-<mid8>-lane-a`
+2. Crea un worktree en `.worktrees/<slug>-<mid8>-lane-a/`
+3. Cambia tu agente a ese checkout aislado
 
-OpenSpec trata cada modificación como una **propuesta formal** con una estructura específica:
+Esto importa porque:
 
-```
-openspec/
-├── main/specs/                    # Specs canónicas del proyecto (construidas con el tiempo)
-│   ├── architecture.md
-│   └── security.md
-└── changes/
-    └── ch-0042-add-biometric/    # Cada cambio es una propuesta autocontenida
-        ├── proposal.md             # Por qué, qué, alcance
-        ├── specs/                 # Deltas de spec (adiciones/modificaciones/eliminaciones)
-        │   └── biometric-spec.md
-        ├── tasks.md               # Tareas atómicas verificables
-        └── design.md              # Decisiones arquitectónicas
-```
+- **Sin overhead de cambio de rama**: Trabaja en el worktree de la misión, haz commits, mantenén main limpio. Sin ciclos de `git stash` / `git checkout` cuando necesitas verificar algo rápidamente en main.
+- **Desarrollo paralelo verdadero**: Si estás construyendo dos funcionalidades simultáneamente, tienes dos worktrees con diferentes agentes trabajando independientemente. Cada worktree tiene su propio directorio de trabajo, su propia rama, sin interferencia.
+- **Transferencia limpia**: Cuando una misión está completa, el worktree se fusiona limpiamente y desaparece. Sin ramas huérfanas.
 
-La innovación clave es **construcción retroactiva de specs**: empiezas con un directorio `main/specs/` vacío y lo construyes incrementalmente. Cada cambio, cuando se archiva, fusiona sus specs delta de vuelta a las specs canónicas. Después de un año de cambios, tienes un documento de especificación comprehensivo que fue construido orgánicamente en lugar de escrito especulativamente.
+Para desarrollo móvil en Kotlin y Android, el modelo de worktree se alinea bien con cómo funcionan los módulos de Gradle. Una funcionalidad podría involucrar cambios al módulo app, un nuevo módulo de biblioteca para un wrapper biométrico, y módulos de test — todo aislado en el worktree sin tocar main.
 
-El paso de validación (`openspec validate`) asegura alineación spec-tarea antes de que comience la implementación. Esto detecta discrepancias entre lo propuesto y lo planificado *antes* de que se escriba cualquier código.
-
-### El Modelo Basado en Misiones de Spec Kitty
-
-Spec Kitty organiza el trabajo alrededor de **misiones** (funcionalidades) en lugar de cambios. La distinción es sutil pero importante:
-
-- **Cambio OpenSpec**: Una modificación al comportamiento existente del sistema
-- **Misión Spec Kitty**: Un resultado orientado al usuario que podría involucrar múltiples sistemas
-
-Una funcionalidad de autenticación biométrica en Spec Kitty es una misión (`001-auth-biometrica`). Dentro de esa misión, hay work packages que podrían tocar la capa de almacenamiento, la integración de API biométrica, la UI y los tests — cada uno como un work package separado con su propio lane de ciclo de vida.
-
-La gobernanza basada en charter de Spec Kitty proporciona restricciones que OpenSpec carece. La charter define principios immutables (test-first, library-first, restricciones de simplicidad) que aplican a todas las misiones. Esto significa que no necesitas redescubrir principios arquitectónicos para cada funcionalidad — están integrados en el flujo de trabajo.
-
-### Tabla Comparativa de Características
-
-| Aspecto | Spec Kitty | OpenSpec |
-|---------|------------|----------|
-| **Artefacto primario** | Misión (funcionalidad) con work packages | Propuesta de cambio con specs delta |
-| **Contexto arquitectónico** | Principios de charter + código real | Specs canónicas construidas via archivo |
-| **Alcance de especificación** | Delta desde código actual (solicitud de cambio) | Puede ser delta o comprehensivo |
-| **Compuertas de aprobación humana** | Specify, plan, tasks, review, accept, merge | Propuesta, validación de spec |
-| **Desarrollo paralelo** | Git worktrees (aislamiento nativo) | Basado en ramas (gestión manual) |
-| **Amigabilidad brownfield** | Alta — trabaja desde código real | Alta — construye specs retroactivamente |
-| **Soporte Android/Kotlin** | Multi-agente, aware de Hilt/Compose | Basado en cambios, agnóstico de plataforma |
-| **Herramienta CLI** | `spec-kitty` (Python) | `openspec` (Node.js) |
-| **Madurez** | Desarrollo activo, v3.x | Establecido, v2.x |
-
-### Cuándo Elegir Cuál
-
-**Elige Spec Kitty cuando:**
-- Quieres principios de charter que apliquen consistentemente en todas las funcionalidades
-- Trabajas con múltiples agentes de IA simultáneamente (Claude + Cursor + Gemini en paralelo)
-- Los git worktrees encajan en tu flujo de trabajo (cambio rápido de rama, funcionalidades paralelas)
-- Valoras el imperativo test-first aplicado como compuerta en lugar de como convención
-- Tu proyecto Android usa intensamente Hilt, Compose y Coroutines — Spec Kitty tiene templates que entienden estos patrones
-
-**Elige OpenSpec cuando:**
-- Quieres trazabilidad a nivel de cambio (cada cambio es una propuesta formal con su propio delta)
-- Tu equipo está cómodo con flujo de trabajo basado en ramas en lugar de worktrees
-- El ecosistema Node.js encaja mejor en tu tooling
-- Quieres una ceremonia más ligera para cambios pequeños (menos compuertas obligatorias)
-
-La respuesta honesta es que para un proyecto Android con Kotlin y un equipo que usa múltiples asistentes de codificación con IA, **el modelo de worktree y los principios de charter de Spec Kitty proporcionan gobernanza más robusta**. Pero si ya estás invertido en OpenSpec y funciona para tu equipo, la hierba no es más verde al otro lado — ambos resuelven el mismo problema bien.
+El dashboard muestra qué worktrees están activos, en qué carril está cada paquete de trabajo, y qué agente está trabajando en qué tarea. Puedes filtrar por agente, ver historial de actividad e identificar bloqueos de un vistazo.
 
 ---
 
-## Ejemplos de Implementación en Kotlin y Android
+## El Dashboard: Visibilidad Kanban en Tiempo Real
 
- recorramos cómo Spec Kitty maneja un escenario Android concreto: añadiendo autenticación biométrica a un sistema de login existente.
-
-### Paso 1: Inicializar el Proyecto
+Spec Kitty incluye un **dashboard kanban local** que se ejecuta como un proceso en segundo plano:
 
 ```bash
-# Instalar el CLI de Spec Kitty
-pipx install spec-kitty-cli
-
-# Inicializar con Claude Code como el agente primario
-spec-kitty init mi-app-android --ai claude
-
-cd mi-app-android
-spec-kitty verify-setup
+spec-kitty dashboard        # Iniciar el dashboard
+spec-kitty dashboard --open  # Iniciar y abrir en el navegador inmediatamente
+spec-kitty dashboard --port 8080  # Puerto personalizado
+spec-kitty dashboard --kill # Detener el proceso en segundo plano
 ```
 
-El comando init crea la estructura de directorios `kitty-specs/`, configura la carpeta `doctrine/` con una charter por defecto, y genera archivos de comando de agente para Claude Code (`.claude/commands/`).
+La URL del dashboard se almacena en `.kittify/.dashboard`. Si el navegador no se abre automáticamente, lee ese archivo para obtener la URL.
 
-### Paso 2: Crear la Especificación de la Misión
+### Vistas del Dashboard
 
-```text
-/spec-kitty.specify
+**Tablero Kanban**: Refleja el flujo de trabajo de carriles (`planned -> claimed -> in_progress -> for_review -> in_review -> approved -> done`) con actualizaciones WebSocket en tiempo real — no necesitas recargar la página manualmente.
 
-Añadir autenticación biométrica al flujo de login existente. Los usuarios con
-reconocimiento de huella dactilar o facial deben poder autenticarse usando
-BiometricPrompt. Los dispositivos sin capacidad biométrica deben hacer fallback
-al flujo de PIN/contraseña existente. Almacenar tokens de autenticación en
-EncryptedSharedPreferences usando la biblioteca AndroidX Security.
-```
+**Vista General de Características**: Resume el progreso de funcionalidades, artefactos y worktrees en todo el proyecto.
 
-El CLI entra en modo descubrimiento, haciendo preguntas de clarificación sobre:
-- Qué tipos biométricos soportar (huella, rostro, iris)
-- Si exigir biométrico como auth primaria o permitirlo como opcional
-- Cómo debe funcionar el fallback cuando falla lo biométrico
-- Puntos de integración con el AuthManager existente
+### Endpoints de API del Dashboard
 
-Después de completar la entrevista, crea `kitty-specs/001-auth-biometrica/spec.md` con la especificación estructurada.
+El dashboard expone endpoints REST para monitoreo personalizado y automatización:
 
-### Paso 3: Generar el Plan de Implementación
+- `GET /api/features` — Lista todas las funcionalidades y sus paquetes de trabajo
+- `GET /api/feature/{slug}` — Obtiene detalles de una funcionalidad específica
 
-```text
-/spec-kitty.plan
+Puedes construir alertas personalizadas cuando las tareas pasen más de 4 horas en el carril `doing`, o exportar métricas para reportes de stand-up diario.
 
-Usar la biblioteca AndroidX Biometric 1.1.0, AndroidX Security-Crypto 1.1.0-alpha06
-para EncryptedSharedPreferences. Mantener el flujo JWT existente para autenticación
-de red. Añadir BiometricPrompt para autenticación local con BiometricManager.canAuthenticate()
-para verificar disponibilidad en tiempo de ejecución.
-```
+### Usando el Dashboard en el Flujo de Trabajo Diario
 
-El comando de plan crea `plan.md` con:
-- Enfoque técnico (BiometricPrompt + EncryptedSharedPreferences)
-- Estructura de módulos (nuevo módulo de biblioteca BiometricAuth)
-- Adiciones de dependencias a build.gradle.kts
-- Decisiones arquitectónicas con racional
+En un flujo de trabajo de desarrollo dirigido por dashboard, el equipo usa el dashboard como la única fuente de verdad:
 
-### Paso 4: Fase de Investigación (Opcional pero Recomendada)
+1. **Alineación matutina**: Todos abren el dashboard, el PM revisa conteos de carriles por funcionalidad y marca paquetes de trabajo atascados en "doing" más de 24 horas
+2. **Asignar trabajo**: El tech lead ejecuta `.kittify/scripts/bash/tasks-list-lanes.sh FEATURE-SLUG` para detectar prompts inactivos, los agentes los reclaman vía `spec-kitty agent action implement WP01`
+3. **Revisión de mediodía**: El diseñador revisa prompts en el carril `for_review`, añade comentarios de feedback como markdown, mueve de vuelta a `planned` o adelante a `done`
+4. **Recapitulación vespertina**: El PM toma captura del dashboard para stakeholders, el tech lead consulta la API para métricas
 
-```text
-/spec-kitty.research
-
-Investigar:
-1. Mejores prácticas para manejo de errores de BiometricPrompt
-2. Consideraciones de seguridad para autenticación biométrica en Android
-3. Impacto en rendimiento de la autenticación biométrica
-4. Estrategias de testing para flujos biométricos (requiere tests de instrumentación)
-```
-
-Esto genera `research.md` con hallazgos del agente de investigación, incluyendo notas de compatibilidad de bibliotecas y benchmarks de seguridad específicos de Android.
-
-### Paso 5: Generar los Work Packages
-
-```text
-/spec-kitty.tasks
-```
-
-Esto crea `tasks.md` con la lista de verificación de tareas y archivos individuales de work package en `tasks/`:
-
-**WP01-deps.md** (lane: planned):
-```markdown
----
-lane: "planned"
-agent: "claude"
-assignee: "Claude Code"
----
-
-## Instalación de Dependencias
-
-1. Añadir `androidx.biometric:biometric:1.1.0` a `app/build.gradle.kts`
-2. Añadir `androidx.security:security-crypto:1.1.0-alpha06` a dependencias
-3. Verificar que `minSdk` es 23 o superior (requerido para BiometricPrompt)
-4. Ejecutar `./gradlew dependencies` para confirmar sin conflictos de versión
-```
-
-**WP02-almacenamiento.md** (lane: planned):
-```markdown
----
-lane: "planned"
-agent: "claude"
-assignee: "Claude Code"
----
-
-## Almacenamiento Seguro de Tokens
-
-1. Crear clase `SecureTokenStorage` envolviendo EncryptedSharedPreferences
-2. Implementar `MasterKey` usando `MasterKey.Builder` con `setKeyScheme(MasterKey.KeyScheme.AES256_GCM)`
-3. Migrar tokens existentes de SharedPreferences a EncryptedSharedPreferences
-4. Añadir tests unitarios para operaciones de lectura/escritura de `SecureTokenStorage`
-```
-
-**WP03-biometrico.md** (lane: planned):
-```markdown
----
-lane: "planned"
-agent: "claude"
-assignee: "Claude Code"
----
-
-## Integración de BiometricPrompt
-
-1. Crear clase `BiometricAuthenticator` con método `authenticate()`
-2. Usar `BiometricPrompt.PromptInfo` con `setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)`
-3. Manejar `BiometricPrompt.AuthenticationCallback` con paths de éxito, error y fallo
-4. Implementar fallback a PIN cuando `canAuthenticate()` retorna `BIOMETRIC_NO_HARDWARE` o `BIOMETRIC_ERROR_NONE_ENROLLED`
-5. Añadir tests de instrumentación para el flujo biométrico
-```
-
-**WP04-integracion.md** (lane: planned):
-```markdown
----
-lane: "planned"
-agent: "claude"
-assignee: "Claude Code"
----
-
-## Integración con Flujo de Login
-
-1. Modificar `LoginViewModel` para exponer estado de auth biométrica vía `StateFlow<BiometricState>`
-2. Añadir botón "Usar huella" a `LoginScreen` composable
-3. Conectar click del botón biométrico para activar `BiometricAuthenticator.authenticate()`
-4. En auth biométrica exitosa, recuperar token de `SecureTokenStorage` y proceder a home
-5. Verificar que el flujo existente de PIN/contraseña sigue funcionando cuando biométrico no disponible
-```
-
-### Paso 6: Implementar con Comandos de Workflow
-
-```bash
-# Comenzar a implementar WP01 - mueve automáticamente a lane "doing"
-spec-kitty agent action implement WP01
-```
-
-El comando de workflow:
-1. Mueve WP01 de `planned` → `doing` en frontmatter
-2. Añade entrada de log de actividad con timestamp e info del agente
-3. Muestra el prompt completo de implementación con instrucciones
-4. Hace commit de la transición de lane a git
-
-Después de la implementación:
-```bash
-# Cuando está hecho, avanzar a for_review
-spec-kitty agent action implement WP01
-# Esto mueve de "doing" a "for_review"
-```
-
-### Paso 7: Revisar y Aceptar
-
-```text
-/spec-kitty.review
-```
-
-El comando de revisión:
-1. Auto-detecta primer WP con `lane: "for_review"`
-2. Mueve a `doing` y muestra instrucciones de revisión
-3. El agente revisa el código contra la spec
-4. El humano aprueba (→ `done`) o solicita cambios (→ `planned`)
-
-Una vez todos los WPs están en `done`:
-```text
-/spec-kitty.accept
-# Valida todos los WPs completos, metadata de frontmatter, checkboxes de tasks
-# Registra metadata de aceptación en meta.json
-
-/spec-kitty.merge --push
-# Fusiona rama de funcionalidad a main, elimina worktree
-```
+Incluso para desarrolladores individuales, el dashboard proporciona progreso visual, recuperación de contexto después de interrupciones, y un impulso de motivación viendo las tareas moverse de `planned` a `done`.
 
 ---
 
-## Flujos de Trabajo Multi-Agente en Spec Kitty
+## La Charter: Principios Inmutables, No Documentación Comprehensiva
 
-El diseño de Spec Kitty acomoda múltiples agentes de IA trabajando simultáneamente — un escenario cada vez más común en desarrollo móvil donde un agente maneja lógica de negocio mientras otro se enfoca en UI o infraestructura.
+Spec Kitty no usa una constitución (como Spec Kit) ni documentación comprehensiva del proyecto. En su lugar, usa una **charter** — un pequeño conjunto de principios inmutables almacenados en `.kittify/memory/charter.md` que guían el comportamiento del agente sin intentar documentar el estado actual del sistema.
 
-### Orquestando Claude y Gemini en la Misma Funcionalidad
+La charter define principios como:
 
-En el patrón multi-agente, los agentes se especializan:
+- **Imperativo test-first**: Ningún código de implementación se escribirá antes de que los tests unitarios se escriban y confirmen que fallan
+- **Arquitectura library-first**: Cada funcionalidad empieza como un módulo independiente
+- **Restricciones de simplicidad**: Preferir soluciones simples sobre complejas
+
+Esto es fundamentalmente diferente del modelo de constitución de Spec Kit. Una constitución intenta documentar todas las decisiones arquitectónicas, estándares de codificación, elecciones tecnológicas y restricciones. Una charter define principios que guían el comportamiento sin importar cómo se vea el sistema actualmente.
+
+La charter vive en `.kittify/memory/charter.md` y aplica a **todas las misiones** en el proyecto, enforcecida automáticamente por los comandos de Spec Kitty. Cuando ejecutas `/spec-kitty.specify`, `/spec-kitty.plan` o `/spec-kitty.tasks`, la charter influye en lo que va en los artefactos — requisitos de seguridad, objetivos de rendimiento y obligaciones de testing se incluyen automáticamente en lugar de ser redescubiertos para cada funcionalidad.
+
+Para proyectos Android y Kotlin, podrías añadir artículos de charter como:
+
+- Restricciones de versión de bibliotecas AndroidX
+- Requisitos de testing de Compose
+- Requisitos de SDK mínimo enforceable a nivel de spec
+- Convenciones de módulos Hilt
+
+La charter puede actualizarse vía `/spec-kitty.charter`, que crea una nueva versión. Las misiones existentes aceptadas bajo una versión más antigua de la charter son "grandfathered" — no necesitan cumplir los nuevos requisitos hasta que se actualicen.
+
+---
+
+## Orquestación Multi-Agente
+
+Spec Kitty soporta **flujos de trabajo multi-agente** donde múltiples agentes de codificación con IA trabajan simultáneamente en la misma misión o en diferentes misiones. La herramienta está diseñada para agentes como Claude, Codex, Cursor, Gemini, Copilot, OpenCode, Qwen, Windsurf, Kiro, Vibe, Pi y Letta.
+
+### Carriles de Ejecución para Trabajo Paralelo Dentro de una Misión
+
+Dentro de una sola misión, Spec Kitty soporta **carriles de ejecución** — paquetes de trabajo paralelos que pueden ejecutarse concurrentemente. El sistema rastrea dependencias y asegura que los paquetes de trabajo upstream se completen antes de que empiecen los dependientes.
+
+### Patrones de Especialización de Agentes
+
+Un patrón común es la especialización de agentes:
 
 - **Claude**: Descubrimiento, planificación, revisión (tareas narrativas pesadas)
 - **Gemini**: Modelado de datos, investigación, diseño de API (profundidad técnica)
 - **Cursor**: Implementación (integración IDE, iteración rápida)
 
-Para la funcionalidad de auth biométrica, la orquestación se ve así:
+Para una funcionalidad como autenticación biométrica, la orquestación se ve así:
 
-1. **Lead (Claude) ejecuta specify**: `/spec-kitty.specify` crea la estructura de misión
+1. **Lead (Claude)** ejecuta `/spec-kitty.specify` para crear la estructura de la misión
 2. **Lead cambia a worktree**: `cd .worktrees/001-auth-biometrica`
 3. **Gemini ejecuta research**: `/spec-kitty.research` investiga implicaciones de seguridad biométrica
 4. **Claude ejecuta plan**: `/spec-kitty.plan` genera el enfoque de implementación
-5. **Claude ejecuta tasks**: `/spec-kitty.tasks` crea work packages
+5. **Claude ejecuta tasks**: `/spec-kitty.tasks` crea paquetes de trabajo
 6. **Cursor implementa**: `spec-kitty agent action implement WP03` mientras Claude maneja revisión
 7. **Lead acepta y fusiona**: Después de que todos los WPs se completan
 
-El directorio plano `tasks/` con frontmatter basado en lanes hace esta coordinación robusta. Cada agente trabaja en su WP asignado sin pisar el trabajo de otros. El dashboard (`spec-kitty dashboard`) muestra posiciones de lane en tiempo real para que nadie duplique trabajo.
+El directorio plano `tasks/` con frontmatter basado en carriles hace esta coordinación robusta. Cada agente trabaja en su WP asignado sin pisar el trabajo de otros. El dashboard muestra posiciones de carril en tiempo real para que nadie duplique esfuerzo.
 
-### Ejemplo de Colaboración Claude + Cursor
+### Comando de Estado de la CLI
 
-Para equipos que usan Claude para planificación y Cursor para implementación:
+El comando `spec-kitty agent tasks status` muestra un **tablero kanban de 5 columnas** en la terminal:
 
-```bash
-# Setup del proyecto (una vez)
-cd mi-app-android
-claude
+```
+Feature: 012-user-authentication
+Kanban Board
+  Planned       Doing         For Review    In Review     Approved      Done
+  WP04-tests    WP03-front..  WP02-api      WP06-auth     WP05-docs     WP01-database
+                (stale: 15m)
 
-# Claude crea la misión
-/spec-kitty.specify
-
-Añadir soporte de sync offline-first para la gestión de inventario con
-resolución de conflictos usando last-write-wins y un indicador de sync
-en la UI mostrando uploads pendientes.
-
-# Cambiar a worktree - Claude continúa planificación
-cd .worktrees/002-sync-offline
-claude
-
-# Fase de planificación
-/spec-kitty.plan
-
-Usar base de datos Room con WorkManager para sync en background,
-Retrofit para llamadas API, Kotlin Flows para streams de datos reactivos.
-Implementar resolución de conflictos en la capa Repository.
-
-# Generar tareas
-/spec-kitty.tasks
-
-# Salir de Claude, iniciar Cursor en mismo worktree
-exit
-cursor-agent
-
-# Cursor implementa desde work packages
-spec-kitty agent action implement WP01  # Schema de base de datos
-spec-kitty agent action implement WP02  # DAOs de Room
-spec-kitty agent action implement WP03  # Sync con WorkManager
-spec-kitty agent action implement WP04  # Indicador de sync en UI
-
-# Cursor sale, Claude revisa
-exit
-claude
-
-/spec-kitty.review  # Revisa cada WP desde lane for_review
+  1 WPs         1 WPs         1 WPs         1 WPs         1 WPs         1 WPs
+Progress: 1/6 (16.7%)
 ```
 
-El mecanismo clave habilitando esta colaboración es el **prompt bundle** en cada archivo de work package. El prompt contiene todo lo que el agente implementador necesita: contexto de spec.md y plan.md, instrucciones específicas de implementación, criterios de aceptación que el agente auto-verificará, los comandos exactos a ejecutar para validación, y las instrucciones de transición de lane.
+La visualización mapea los 9 carriles internos a 6 columnas de tablero. Los WPs `blocked` y `canceled` aparecen en secciones separadas debajo del tablero cuando están presentes.
 
 ---
 
-## Por Qué la Filosofía de Spec Kitty Funciona Mejor para Agentes de IA
+## Misiones Más Allá del Desarrollo de Software
 
-Los documentos de especificación tradicionales asumen que humanos los leerán. Optimizan para comprensión humana: explicaciones narrativas, diagramas, ejemplos y prosa que guía el entendimiento. Los agentes de IA no necesitan esta optimización — pueden parsear contenido estructurado y extraer significado directamente de él.
+### Misiones de Investigación
 
-Spec Kitty aprovecha esto estructurando specs como **prompts ejecutables** en lugar de documentos legibles por humanos. El prompt del work package no es una descripción de qué construir — es una instrucción directa para el agente de IA que incluye:
+Spec Kitty soporta un **template de misión de Investigación Profunda** para investigaciones sistemáticas:
 
-- El contexto de spec.md y plan.md
-- Instrucciones específicas de implementación
-- Los criterios de aceptación que el agente auto-verificará
-- Los comandos exactos a ejecutar para validación
-- Las instrucciones de transición de lane
+```bash
+cd my-research-project
+spec-kitty mission switch research  # Activar Deep Research Kitty
+```
 
-Esto significa que las specs de Spec Kitty son más densas y menos narrativas que las especificaciones tradicionales. Asumen un lector de IA. Para humanos que necesitan entender el trabajo, los archivos `spec.md`, `plan.md` y `tasks.md` proporcionan la vista narrativa — pero el agente trabaja desde los prompt bundles, que están optimizados para consumo por máquina.
+Las misiones de investigación crean artefactos diferentes:
 
-La charter juega un papel crucial aquí. Porque la charter define principios immutables (test-first, library-first, simplicidad), los prompt bundles no necesitan repetir restricciones arquitectónicas. El agente sabe: "Debo escribir tests antes de la implementación. Debo empezar esto como un módulo de biblioteca antes de integrarlo en la app. Debo usar características del framework directamente en lugar de envolverlas." Estas restricciones están embebidas en la charter, no en cada spec.
+- `research.md` — Hallazgos y análisis
+- `evidence-log.csv` — Seguimiento de fuentes con ratings de confianza
+- `comparison-matrix.md` — Comparaciones lado a lado
+- `synthesis-notes.md` — Perspectivas de integración
 
-Para un desarrollador Android con Kotlin, esto significa:
-- Escribes menos documentación (la charter maneja las restricciones)
-- El agente genera código más correcto (los principios de charter se aplican)
-- Pasas menos tiempo revisando porque el agente auto-valida contra principios de charter
+El flujo de trabajo:
+
+1. Definir pregunta de investigación vía `/spec-kitty.specify`
+2. Crear metodología vía `/spec-kitty.plan`
+3. Recolectar evidencia vía `/spec-kitty.research`
+4. Generar tareas vía `/spec-kitty.tasks`
+5. Ejecutar investigación vía `/spec-kitty.implement`
+6. Sintetizar hallazgos vía `/spec-kitty.review`
+7. Finalizar vía `/spec-kitty.accept`
+
+Después de que la investigación se completa, cambiar de vuelta a modo de desarrollo de software vía `spec-kitty mission switch software-dev` y usar los hallazgos para informar misiones de implementación.
 
 ---
 
-## Empezando con Spec Kitty en Android
+## Flujo de Trabajo para Desarrollador Individual
 
-Si estás convencido y quieres probarlo:
+Incluso para desarrolladores individuales, Spec Kitty proporciona estructura que mejora los resultados:
 
-### 1. Instalar e Inicializar
+1. **Instalar e inicializar**: `pipx install spec-kitty-cli && spec-kitty init my-app --ai claude`
+2. **Crear charter**: `/spec-kitty.charter` define tus principios (calidad de código, testing, seguridad)
+3. **Specify**: `/spec-kitty.specify` describe qué construir
+4. **Plan**: `/spec-kitty.plan` define el enfoque técnico
+5. **Research** (opcional): `/spec-kitty.research` para investigaciones técnicas
+6. **Tasks**: `/spec-kitty.tasks` genera paquetes de trabajo, visibles en el dashboard
+7. **Implement**: `/spec-kitty.implement` mueve un WP a `doing` y muestra instrucciones de implementación
+8. **Review**: `/spec-kitty.review` revisa el trabajo contra la especificación
+9. **Accept y merge**: `/spec-kitty.accept && /spec-kitty.merge --push`
+
+Estimaciones de tiempo para una funcionalidad simple: aproximadamente 1 hora en total (10 min charter, 5-10 min specify, 5-10 min plan, 2 min tasks, 30-60 min implement, 5-10 min review, 2 min accept/merge).
+
+---
+
+## El Flujo de Trabajo de 7 Fases en Detalle
+
+### Fase 1: Specify
+
+`/spec-kitty.specify` crea una misión a partir de la intención de producto. La CLI entra en modo descubrimiento, haciendo preguntas de clarificación sobre alcance, casos límite y criterios de aceptación. El resultado es `kitty-specs/<slug>/spec.md` — un documento de solicitud de cambio estructurado, no documentación comprehensiva.
+
+### Fase 2: Plan
+
+`/spec-kitty.plan` genera `plan.md` con el enfoque técnico: qué bibliotecas usar, estructura de módulos, decisiones arquitectónicas con racional, adiciones a `build.gradle.kts`.
+
+### Fase 3: Tasks
+
+`/spec-kitty.tasks` genera `tasks.md` y archivos individuales de paquete de trabajo en `tasks/`. Cada WP tiene un bundle de prompt con contexto de `spec.md` y `plan.md`, instrucciones específicas de implementación, criterios de aceptación para auto-verificación, y comandos de transición de carril.
+
+### Fase 4: Next (Runtime)
+
+`spec-kitty next --agent claude --mission <slug>` pregunta a Spec Kitty qué debería hacer el agente a continuación. El runtime elige la siguiente acción basándose en estado del WP, dependencias y disponibilidad del agente.
+
+### Fase 5: Review
+
+`/spec-kitty.review` auto-detecta el primer WP con carril `for_review`, lo mueve a `in_review`, y muestra instrucciones de revisión. El revisor aprueba (`→ approved → done`) o solicita cambios (`→ planned` con feedback).
+
+### Fase 6: Accept
+
+`/spec-kitty.accept` valida que todos los WPs están completos, la metadata es correcta, la lista de verificación de tareas está completamente marcada. Registra metadata de aceptación en `meta.json`.
+
+### Fase 7: Merge
+
+`/spec-kitty.merge --push` fusiona la rama de la misión a main y limpia el worktree. El sistema tiene validación preflight de fusión, predicción de conflictos, y `spec-kitty merge --resume` / `spec-kitty merge --abort` para fusiones interrumpidas.
+
+---
+
+## Comparando Spec Kitty con Alternativas
+
+### Spec Kitty vs Spec Kit (GitHub)
+
+Spec Kit usa una **constitución** como el artefacto de contexto primario — documentación comprehensiva de todas las decisiones arquitectónicas. Funciona para proyectos greenfield con arquitectura estable pero se rompe para proyectos brownfield donde las decisiones están dispersas por todo el codebase.
+
+Spec Kitty elimina la constitución en favor de una **charter** (principios inmutables) más **código-como-verdad**. El agente siempre lee código real, no documentación. Esto es más robusto a medida que el sistema evoluciona.
+
+### Spec Kitty vs OpenSpec
+
+OpenSpec trata cada modificación como una **propuesta de cambio formal** con construcción retroactiva de specs — las specs se acumulan en `main/specs/` a medida que los cambios se archivan. Proporciona trazabilidad excelente a nivel de cambio.
+
+Spec Kitty organiza alrededor de **misiones** (resultados) en lugar de cambios (modificaciones). Una misión puede abarcar múltiples sistemas. La gobernanza basada en charter proporciona restricciones que OpenSpec carece.
+
+### Diferenciadores Clave
+
+| Aspecto | Spec Kitty | Spec Kit | OpenSpec |
+|---------|-----------|----------|----------|
+| Artefacto primario | Misión con WPs | Constitución | Propuesta de cambio |
+| Fuente de contexto | Charter + código | Constitución + código | Specs canónicas construidas retroactivamente |
+| Alcance de spec | Delta (solicitud de cambio) | Comprehensivo | Delta o comprehensivo |
+| Compuertas humanas | 7 fases | 4 fases | Propuesta + validación |
+| Desarrollo paralelo | Git worktrees (nativo) | Ramas (manual) | Ramas (manual) |
+| Amigabilidad brownfield | Alta | Media | Alta |
+| CLI | Python (`spec-kitty`) | Node.js (`@github/spec-kit`) | Node.js (`openspec`) |
+
+---
+
+## Empezando
+
+Instala la CLI:
 
 ```bash
 pipx install spec-kitty-cli
+```
 
-# Crear un nuevo proyecto o inicializar existente
-spec-kitty init mi-app-android --ai claude
+Crea o inicializa un proyecto:
 
-cd mi-app-android
+```bash
+spec-kitty init my-project --ai claude
+cd my-project
 spec-kitty verify-setup
 ```
 
-### 2. Revisar y Personalizar la Charter
-
-La charter por defecto (`doctrine/charter.md`) tiene valores sensatos para Android:
-
-```markdown
-## Artículo III: Imperativo Test-First
-Toda implementación DEBE seguir Desarrollo Dirigido por Tests estricto.
-Ningún código de implementación se escribirá antes de que:
-1. Los tests unitarios estén escritos y confirmados como FALLANDO (fase Red)
-2. Los tests sean validados y aprobados
-```
-
-Para tu proyecto, podrías añadir:
-- Restricciones de versión de bibliotecas AndroidX
-- Requisitos de testing de Compose
-- Requisitos de SDK mínimo forzados a nivel de spec
-- Convenciones de módulos Hilt
-
-### 3. Ejecutar Tu Primera Misión
+Abre tu agente de codificación con IA y ejecuta el flujo de trabajo central:
 
 ```text
-/spec-kitty.specify
-
-Añadir soporte de notificaciones push usando Firebase Cloud Messaging.
-Soportar acciones de tap en notificaciones que deep-link a pantallas específicas.
-Manejar permisos de notificación en Android 13+ (API 33) con una
-explicación racional a los usuarios antes de solicitar.
+/spec-kitty.charter
+/spec-kitty.specify Construir un sistema de autenticación de usuario con email/contraseña y fallback biométrico.
+/spec-kitty.plan
+/spec-kitty.tasks
 ```
 
-La entrevista de descubrimiento preguntará sobre categorías de notificación, niveles de prioridad, manejo de payload de datos, y estrategia de testing. Responde las preguntas, y Spec Kitty genera una estructura de misión completa.
-
-### 4. Seguimiento Visual del Progreso
+Deja que el runtime elija las siguientes acciones:
 
 ```bash
-spec-kitty dashboard
-# Abre el kanban board local en http://localhost:3000
+spec-kitty next --agent claude --mission <mission-slug>
 ```
 
-El dashboard muestra todas las misiones y sus work packages en posiciones de lane. Puedes filtrar por agente, ver historial de actividad, e identificar bloqueos de un vistazo.
+Revisa, acepta, fusiona:
+
+```text
+/spec-kitty.review
+/spec-kitty.accept
+/spec-kitty.merge --push
+```
+
+Abre el dashboard en cualquier momento:
+
+```bash
+spec-kitty dashboard --open
+```
 
 ---
 
-## Conclusión: Spec Kitty como la Evolución de Spec Kit para Móvil
+## Conclusión
 
-Spec Kitty no reemplaza a Spec Kit — evoluciona sus ideas centrales para contextos para los que Spec Kit no fue diseñado. La gobernanza basada en charter, el aislamiento via worktrees, y la filosofía de código-como-verdad lo hacen particularmente adecuado para equipos de desarrollo Android y Kotlin que trabajan con agentes de codificación con IA.
+Spec Kitty proporciona un enfoque estructurado al desarrollo augmentado por IA que escala desde desarrolladores individuales hasta equipos multi-agente. Su filosofía central — el código es verdad, las specs son deltas — previene la deriva de documentación que plagia los enfoques tradicionales impulsados por especificaciones. La máquina de estados de 9 carriles con logging de eventos append-only te da un registro determinista y auditable de cada decisión. Los git worktrees permiten desarrollo paralelo verdadero sin overhead de cambio de rama. El dashboard proporciona visibilidad en tiempo real que mantiene a todos alineados.
 
-El diferenciador clave es **pragmatismo sobre comprehensividad**. En lugar de intentar documentar todo el sistema upfront (modelo de constitución de Spec Kit), Spec Kitty trata las especificaciones como solicitudes de cambio que trabajan junto al código real. En lugar de requerir propuestas formales para cada modificación (modelo de cambio de OpenSpec), Spec Kitty usa organización basada en misiones con ceremonia más ligera para funcionalidades pequeñas.
+Para equipos de desarrollo móvil usando Kotlin y Android, el sistema de charter de Spec Kitty puede codificar restricciones específicas de la plataforma (versiones AndroidX, requisitos de testing de Compose, convenciones de Hilt) y su modelo de worktree encaja naturalmente con la arquitectura basada en módulos de Gradle.
 
-Para desarrolladores móviles, esto se mapea limpiamente a cómo realmente trabajan: incrementos pequeños, resultados verificables, restricciones específicas de plataforma que cambian con el tiempo. La charter mantiene los principios arquitectónicos consistentes mientras las specs permanecen enfocadas y actuales.
-
-Si ya estás usando Spec Kit u OpenSpec, Spec Kitty no es necesariamente una migración — es un enfoque alternativo que podría encajar mejor en tu flujo de trabajo. Evalúa basándote en tu tamaño de equipo, complejidad del proyecto, y cuántos agentes de IA usas simultáneamente. Para un desarrollador en solitario o equipo pequeño haciendo desarrollo Android con uno o dos asistentes de IA, el modelo de worktree y la aplicación de charter de Spec Kitty proporcionan ventajas significativas sobre enfoques menos estructurados.
-
-El ecosistema alrededor de Spec Kitty se está desarrollando activamente — la serie v3.x está añadiendo características como sync hospedado, autenticación de teamspace, y visualizaciones de dashboard mejoradas. Vigila el proyecto si te tomas en serio el desarrollo móvil aumentado por IA.
+El proyecto está activamente mantenido — la serie v3.x introdujo el modelo de estado con log de eventos canónico, identidades ULID para misiones, y el corte de frontera de paquete compartido. Vigila el repositorio para sync hospedado, autenticación de teamspace y visualizaciones mejoradas del dashboard que vienen en futuros releases.
 
 ---
 
-## Referencias y Enlaces
+## Referencias
 
-- [Repositorio de Spec Kitty en GitHub](https://github.com/Priivacy-ai/spec-kitty)
-- [Spec Kit por GitHub](https://github.com/github/spec-kit)
-- [OpenSpec por Fission-AI](https://github.com/Fission-AI/OpenSpec)
-- [Guía de Desarrollo Impulsado por Especificaciones (Spec Kitty)](spec-driven.md)
-- [Análisis de Frameworks SDD: Spec Kit, OpenSpec, BMAD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
-- [OpenSpec para Desarrollo Móvil](/blog/blog-openspec-mobile-development)
+- [Repositorio GitHub de Spec Kitty](https://github.com/Priivacy-ai/spec-kitty)
+- [CLAUDE.md — Documentación Completa de Spec Kitty](https://github.com/Priivacy-ai/spec-kitty/blob/main/CLAUDE.md)
+- [Guía de Desarrollo Impulsado por Especificaciones](https://github.com/Priivacy-ai/spec-kitty/blob/main/spec-driven.md)
+- [Flujo de Trabajo Kanban Explicado](https://github.com/Priivacy-ai/spec-kitty/blob/main/docs/explanation/kanban-workflow.md)
+- [Ejemplo de Desarrollo Dirigido por Dashboard](https://github.com/Priivacy-ai/spec-kitty/blob/main/examples/dashboard-driven-development.md)
+- [Ejemplo de Flujo de Trabajo para Desarrollador Individual](https://github.com/Priivacy-ai/spec-kitty/blob/main/examples/solo-developer-workflow.md)
+- [Documentación de Git Worktrees](https://github.com/Priivacy-ai/spec-kitty/blob/main/docs/explanation/git-worktrees.md)
+- [Guía de Orquestación Multi-Agente](https://github.com/Priivacy-ai/spec-kitty/blob/main/docs/explanation/multi-agent-orchestration.md)
