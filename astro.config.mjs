@@ -35,7 +35,22 @@ export default defineConfig({
   },
 
   integrations: [
-    sitemap(),
+    sitemap({
+      filter: (page) => {
+        if (page === '/' || page === '/about-me' || page === '/contact' || page.startsWith('/api')) {
+          return false;
+        }
+        return true;
+      },
+      customPages: [
+        'https://arceapps.com/blog',
+        'https://arceapps.com/es/blog',
+        'https://arceapps.com/apps',
+        'https://arceapps.com/es/apps',
+        'https://arceapps.com/devlog',
+        'https://arceapps.com/es/devlog',
+      ],
+    }),
     partytown({
       config: {
         forward: ["dataLayer.push"],

@@ -8,17 +8,39 @@ const t = useTranslations('en');
 
 export async function getStaticPaths() {
   const apps = await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('en/'));
-  return apps.map((app) => ({
-    params: { slug: app.slug.split('/').pop() },
-    props: { app },
-  }));
+  const esApps = await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('es/'));
+
+  return apps.map((app) => {
+    let hreflangPath = undefined;
+    if (app.data.reference_id) {
+      const esApp = esApps.find(a => a.data.reference_id === app.data.reference_id);
+      if (esApp) {
+        hreflangPath = `/es/apps/${esApp.slug.split('/').pop()}`;
+      }
+    }
+
+    return {
+      params: { slug: app.slug.split('/').pop() },
+      props: { app, hreflangPath },
+    };
+  });
 }
 
-const { app } = Astro.props;
+const { app, hreflangPath } = Astro.props;
 const { Content } = await app.render();
 ---
 
-<Layout title={`${app.data.title} - ArceApps Portfolio`}>
+<Layout 
+  title={`${app.data.title} - ArceApps Portfolio`}
+  description={app.data.description}
+  hreflangPath={hreflangPath}
+  isAppPage={true}
+  appData={{
+    rating: app.data.rating,
+    realIconUrl: app.data.realIconUrl,
+    googlePlayUrl: app.data.googlePlayUrl,
+  }}
+>
   <!-- Hero Section -->
   <div class="relative bg-surface dark:bg-dark-surface min-h-[60vh] flex items-center overflow-hidden">
     <!-- Background Gradient -->

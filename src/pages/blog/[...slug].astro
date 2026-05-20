@@ -29,10 +29,12 @@ export async function getStaticPaths() {
 
     // Find translated post
     let translatedPath = undefined;
+    let hreflangPath = undefined;
     if (post.data.reference_id) {
        const esPost = esPostsMap.get(post.data.reference_id);
        if (esPost) {
          translatedPath = `/es/blog/${esPost.slug.split('/').pop()}`;
+         hreflangPath = translatedPath;
        }
     }
 
@@ -63,13 +65,14 @@ export async function getStaticPaths() {
           title: nextPost.data.title
         } : undefined,
         translatedPath,
+        hreflangPath,
         relatedPosts,
       },
     };
   });
 }
 
-const { post, prevPost, nextPost, translatedPath, relatedPosts } = Astro.props;
+const { post, prevPost, nextPost, translatedPath, hreflangPath, relatedPosts } = Astro.props;
 const { Content, headings } = await post.render();
 
 const wordCount = post.body.split(/\s+/g).length;
@@ -91,7 +94,7 @@ const breadcrumbItems = [
 ];
 ---
 
-<Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description} translatedPath={translatedPath}>
+<Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description} translatedPath={translatedPath} hreflangPath={hreflangPath} type="article" publishDate={post.data.pubDate}>
   <!-- Progress Bar -->
   <div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-[100] bg-transparent">
     <div id="progress-bar" class="scroll-progress-bar h-full bg-secondary w-full origin-left"></div>

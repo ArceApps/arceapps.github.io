@@ -7,7 +7,6 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import { getLangFromUrl } from "../i18n/utils";
-import { safeJsonLd } from "../utils/security";
 
 interface Props {
   title: string;
@@ -18,6 +17,13 @@ interface Props {
   author?: string;
   lang?: string;
   translatedPath?: string;
+  hreflangPath?: string;
+  isAppPage?: boolean;
+  appData?: {
+    rating?: number;
+    realIconUrl?: string;
+    googlePlayUrl?: string;
+  };
 }
 
 const lang = Astro.props.lang || getLangFromUrl(Astro.url);
@@ -30,6 +36,9 @@ const {
   publishDate,
   author = "ArceApps",
   translatedPath,
+  hreflangPath,
+  isAppPage = false,
+  appData,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -44,6 +53,15 @@ const socialImageURL = new URL(image, Astro.url);
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
     <link rel="canonical" href={canonicalURL} />
+    {hreflangPath && (
+      <>
+        <link rel="alternate" hreflang="es" href={hreflangPath} />
+        <link rel="alternate" hreflang="en" href={Astro.url} />
+      </>
+    )}
+    {!hreflangPath && lang === "es" && (
+      <link rel="alternate" hreflang="es" href={Astro.url} />
+    )}
     <ClientRouter />
 
     <!-- Security Headers -->
@@ -126,28 +144,67 @@ const socialImageURL = new URL(image, Astro.url);
       gtag("config", "G-CZLNYSWY76");
     </script>
 
-    <!-- Schema.org -->
-    <script
-      is:inline
-      type="application/ld+json"
-      set:html={safeJsonLd({
-        "@context": "https://schema.org",
-        "@type": type === "article" ? "BlogPosting" : "WebSite",
-        url: Astro.url,
-        name: title,
-        description: description,
-        image: socialImageURL,
-        author: {
-          "@type": "Person",
-          name: author,
-          url: "https://arceapps.com/about-me",
-        },
-        ...(publishDate && {
-          datePublished: publishDate.toISOString(),
-          dateModified: publishDate.toISOString(),
-        }),
-      })}
-    />
+    <!-- Schema.org - Conditional based on page type -->
+    {type === "article" && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: title,
+          description: description,
+          image: socialImageURL,
+          datePublished: publishDate?.toISOString(),
+          dateModified: publishDate?.toISOString(),
+          url: Astro.url,
+          author: {
+            "@type": "Person",
+            name: author,
+            url: "https://arceapps.com/about-me",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "ArceApps",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://arceapps.com/logo.png",
+            },
+          },
+          inLanguage: lang,
+        }).replace(/</g, "\\u003C")}
+      />
+    )}
+    {isAppPage && appData && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: title,
+          description: description,
+          image: appData.realIconUrl || socialImageURL,
+          url: Astro.url,
+          brand: {
+            "@type": "Brand",
+            name: "ArceApps",
+          },
+          ...(appData.rating && {
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: appData.rating,
+              reviewCount: 1,
+            },
+          }),
+          offers: {
+            "@type": "Offer",
+            url: appData.googlePlayUrl || Astro.url,
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+          },
+          inLanguage: lang,
+        }).replace(/</g, "\\u003C")}
+      />
+    )}
 
     <script is:inline>
       // Theme Script

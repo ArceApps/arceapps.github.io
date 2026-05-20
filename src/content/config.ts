@@ -29,6 +29,7 @@ const appsCollection = defineCollection({
     repoUrl: z.string().url().regex(/^https?:\/\//, 'Must start with http:// or https://').optional(),
     demoUrl: z.string().url().regex(/^https?:\/\//, 'Must start with http:// or https://').optional(),
     googlePlayUrl: z.string().url().regex(/^https?:\/\//, 'Must start with http:// or https://').optional(),
+    reference_id: z.string().optional(),
   }),
 });
 
