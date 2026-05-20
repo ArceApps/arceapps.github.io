@@ -27,7 +27,7 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
       - name: Update Google Play Data
         run: pnpm run apps:update
       - name: Build
