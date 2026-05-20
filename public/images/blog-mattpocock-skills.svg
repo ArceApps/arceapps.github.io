@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420">
+  <!-- Background -->
+  <rect width="800" height="420" fill="#0d1117"/>
+
+  <!-- Subtle grid -->
+  <line x1="0" y1="140" x2="800" y2="140" stroke="#1a2332" stroke-width="1"/>
+  <line x1="0" y1="280" x2="800" y2="280" stroke="#1a2332" stroke-width="1"/>
+  <line x1="267" y1="0" x2="267" y2="420" stroke="#1a2332" stroke-width="1"/>
+  <line x1="534" y1="0" x2="534" y2="420" stroke="#1a2332" stroke-width="1"/>
+
+  <!-- === LEFT: The monolithic pipeline (crossed out) === -->
+  <text x="133" y="55" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#64748b">MONOLITHIC</text>
+  <text x="133" y="67" text-anchor="middle" font-family="monospace" font-size="9" fill="#475569">Full-stack frameworks</text>
+
+  <!-- Big pipeline block -->
+  <rect x="40" y="82" width="186" height="190" rx="12" fill="#1e2d3d" stroke="#334155" stroke-width="2"/>
+  <text x="133" y="110" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#475569">pipeline.md</text>
+
+  <!-- Pipeline stages inside -->
+  <rect x="55" y="124" width="156" height="26" rx="5" fill="#0d1117" stroke="#334155" stroke-width="1"/>
+  <text x="133" y="141" text-anchor="middle" font-family="monospace" font-size="9" fill="#475569">1. SPEC</text>
+
+  <rect x="55" y="158" width="156" height="26" rx="5" fill="#0d1117" stroke="#334155" stroke-width="1"/>
+  <text x="133" y="175" text-anchor="middle" font-family="monospace" font-size="9" fill="#475569">2. CODE</text>
+
+  <rect x="55" y="192" width="156" height="26" rx="5" fill="#0d1117" stroke="#334155" stroke-width="1"/>
+  <text x="133" y="209" text-anchor="middle" font-family="monospace" font-size="9" fill="#475569">3. TEST</text>
+
+  <rect x="55" y="226" width="156" height="26" rx="5" fill="#0d1117" stroke="#334155" stroke-width="1"/>
+  <text x="133" y="243" text-anchor="middle" font-family="monospace" font-size="9" fill="#475569">4. DEPLOY</text>
+
+  <!-- Big red X over it -->
+  <line x1="40" y1="82" x2="226" y2="272" stroke="#ef4444" stroke-width="4" opacity="0.7"/>
+  <line x1="226" y1="82" x2="40" y2="272" stroke="#ef4444" stroke-width="4" opacity="0.7"/>
+
+  <text x="133" y="295" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">You lose control</text>
+
+  <!-- === RIGHT: Composable skills === -->
+  <text x="533" y="55" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#10b981">COMPOSABLE</text>
+  <text x="533" y="67" text-anchor="middle" font-family="monospace" font-size="9" fill="#475569">Pick what you need</text>
+
+  <!-- /grill-me — highlighted, primary -->
+  <rect x="420" y="82" width="226" height="42" rx="8" fill="#10b981" opacity="0.15" stroke="#10b981" stroke-width="2"/>
+  <text x="533" y="105" text-anchor="middle" font-family="monospace" font-size="13" font-weight="bold" fill="#10b981">/grill-me</text>
+
+  <!-- /tdd -->
+  <rect x="420" y="134" width="100" height="38" rx="7" fill="#0d1117" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="470" y="155" text-anchor="middle" font-family="monospace" font-size="10" fill="#7c3aed">/tdd</text>
+
+  <!-- /diagnose -->
+  <rect x="532" y="134" width="114" height="38" rx="7" fill="#0d1117" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="589" y="155" text-anchor="middle" font-family="monospace" font-size="10" fill="#7c3aed">/diagnose</text>
+
+  <!-- /improve-codebase-architecture -->
+  <rect x="420" y="182" width="226" height="38" rx="7" fill="#0d1117" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="533" y="203" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">/improve-codebase-...</text>
+
+  <!-- /caveman -->
+  <rect x="420" y="230" width="108" height="38" rx="7" fill="#0d1117" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="474" y="251" text-anchor="middle" font-family="monospace" font-size="10" fill="#f59e0b">/caveman</text>
+
+  <!-- /handoff -->
+  <rect x="540" y="230" width="106" height="38" rx="7" fill="#0d1117" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="593" y="251" text-anchor="middle" font-family="monospace" font-size="10" fill="#f59e0b">/handoff</text>
+
+  <!-- /zoom-out -->
+  <rect x="420" y="278" width="90" height="36" rx="7" fill="#0d1117" stroke="#ec4899" stroke-width="1.5"/>
+  <text x="465" y="299" text-anchor="middle" font-family="monospace" font-size="10" fill="#ec4899">/zoom-out</text>
+
+  <!-- + more (dots) -->
+  <text x="580" y="299" text-anchor="middle" font-family="monospace" font-size="14" fill="#475569">...</text>
+
+  <!-- You own the process -->
+  <text x="533" y="340" text-anchor="middle" font-family="monospace" font-size="9" fill="#10b981">You drive · tools follow</text>
+
+  <!-- === BOTTOM: comparison bar === -->
+  <line x1="40" y1="360" x2="760" y2="360" stroke="#1a2332" stroke-width="1"/>
+  <text x="133" y="385" text-anchor="middle" font-family="monospace" font-size="9" fill="#475569">Framework owns process</text>
+  <text x="400" y="385" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">vs</text>
+  <text x="533" y="385" text-anchor="middle" font-family="monospace" font-size="9" fill="#10b981">You own process</text>
+  <text x="680" y="385" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">tools adapt</text>
+
+  <!-- Title -->
+  <text x="400" y="412" text-anchor="middle" font-family="monospace" font-size="8" fill="#334155">mattpocock/skills · github.com/mattpocock/skills</text>
+</svg>
