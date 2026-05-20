@@ -12,6 +12,17 @@ const apps = (await getCollection("apps", ({ data, id }) => !data.draft && id.st
 ---
 
 <Layout title={`${t('apps.title')} - ArceApps`}>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://arceapps.com" },
+        { "@type": "ListItem", position: 2, name: "Apps", item: "https://arceapps.com/apps" },
+      ],
+    }).replace(/</g, "\\u003C")}
+  />
   <div class="relative bg-surface dark:bg-dark-surface py-20 md:py-32 overflow-hidden">
     <!-- Background Elements -->
     <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10"></div>

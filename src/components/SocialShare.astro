@@ -2,9 +2,10 @@
 interface Props {
   url: string;
   title: string;
+  lang?: 'en' | 'es';
 }
 
-const { url, title } = Astro.props;
+const { url, title, lang = 'en' } = Astro.props;
 
 // Encode for sharing
 const encodedUrl = encodeURIComponent(url);
@@ -30,14 +31,30 @@ const shareLinks = [
     color: 'bg-[#25D366] hover:bg-[#128C7E]'
   }
 ];
+
+const shareLabel = lang === 'es' ? 'Compartir' : 'Share';
+const shareAriaLabel = lang === 'es' ? 'Compartir esta entrada' : 'Share this post';
+const fallbackLabel = lang === 'es' ? 'Compartir esta entrada:' : 'Share this post:';
 ---
 
 <div class="flex flex-col sm:flex-row items-center gap-4 my-8 p-4 bg-surface-variant/30 dark:bg-dark-surface-variant/30 rounded-xl border border-gray-200 dark:border-gray-800">
   <span class="font-bold text-on-surface dark:text-dark-on-surface mr-2 flex items-center gap-2">
     <span class="material-icons text-primary" aria-hidden="true">share</span>
-    Share this post:
+    {fallbackLabel}
   </span>
-  <div class="flex flex-wrap gap-2">
+  
+  <!-- Web Share API button (shown when supported) -->
+  <button
+    id="web-share-btn"
+    class="hidden flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-medium text-sm transition-all transform hover:scale-105 shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+    aria-label={shareAriaLabel}
+  >
+    <span class="material-icons text-base" aria-hidden="true">share</span>
+    {shareLabel}
+  </button>
+
+  <!-- Fallback social buttons (shown when Web Share API not supported) -->
+  <div id="social-share-fallback" class="flex flex-wrap gap-2">
     {shareLinks.map((link) => (
       <a
         href={link.url}
@@ -54,3 +71,21 @@ const shareLinks = [
     ))}
   </div>
 </div>
+
+<script define:vars={{ shareLabel }}>
+  (function() {
+    if ('share' in navigator) {
+      document.getElementById('web-share-btn').classList.remove('hidden');
+      document.getElementById('social-share-fallback').classList.add('hidden');
+      document.getElementById('web-share-btn').addEventListener('click', function() {
+        navigator.share({ 
+          title: document.title, 
+          url: location.href 
+        }).catch(function(err) {
+          // Graceful failure - user cancelled or share failed
+          // No action needed, component remains interactive
+        });
+      });
+    }
+  })();
+</script>

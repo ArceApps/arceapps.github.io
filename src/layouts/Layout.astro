@@ -158,13 +158,29 @@ const socialImageURL = new URL(image, Astro.url);
       gtag("config", "G-CZLNYSWY76");
     </script>
 
-    <!-- Schema.org - Conditional based on page type -->
+    <!-- Schema.org - WebSite (always rendered) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "ArceApps",
+        url: "https://arceapps.com",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: "https://arceapps.com/blog?q={search_term_string}",
+          "query-input": "required name=search_term_string",
+        },
+      }).replace(/</g, "\\u003C")}
+    />
+
+    <!-- Schema.org - Article (when type="article") -->
     {type === "article" && (
       <script
         type="application/ld+json"
         set:html={JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "BlogPosting",
+          "@type": "Article",
           headline: title,
           description: description,
           image: socialImageURL,

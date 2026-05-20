@@ -27,6 +27,17 @@ const { page, allTags } = Astro.props;
 ---
 
 <Layout title={`${t('blog.title')} - ArceApps`}>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://arceapps.com" },
+        { "@type": "ListItem", position: 2, name: "Blog", item: "https://arceapps.com/blog" },
+      ],
+    }).replace(/</g, "\\u003C")}
+  />
   <div class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16 md:py-24 fade-in-section">
     <div class="container mx-auto px-4 text-center">
       <h1 class="text-4xl md:text-5xl font-bold mb-6 text-on-surface dark:text-dark-on-surface">{t('blog.title')}</h1>

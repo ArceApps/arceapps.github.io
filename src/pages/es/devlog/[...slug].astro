@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../../layouts/Layout.astro';
+import SocialShare from '../../../components/SocialShare.astro';
 import { useTranslations } from '../../../i18n/utils';
 
 const t = useTranslations('es');
@@ -51,6 +52,8 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
       <div class="prose md:prose-lg max-w-none bg-surface dark:bg-dark-surface p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800">
         <Content />
       </div>
+
+      <SocialShare url={Astro.url.href} title={post.data.title} lang="es" />
 
     </div>
   </article>
