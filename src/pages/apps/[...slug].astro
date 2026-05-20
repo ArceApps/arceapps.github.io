@@ -35,6 +35,7 @@ const { Content } = await app.render();
   description={app.data.description}
   hreflangPath={hreflangPath}
   isAppPage={true}
+  image={`/images/og/apps-en-${app.slug.split('/').pop()}.png`}
   appData={{
     rating: app.data.rating,
     realIconUrl: app.data.realIconUrl,

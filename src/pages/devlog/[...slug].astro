@@ -24,7 +24,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<Layout title={`${post.data.title} - ArceApps Devlog`} description={post.data.description}>
+<Layout title={`${post.data.title} - ArceApps Devlog`} description={post.data.description} image={`/images/og/devlog-en-${post.slug.split('/').pop()}.png`}>
   <article class="pt-24 pb-20">
     <div class="container mx-auto px-4 max-w-4xl">
       <!-- Back Link -->

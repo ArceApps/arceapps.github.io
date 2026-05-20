@@ -94,7 +94,7 @@ const breadcrumbItems = [
 ];
 ---
 
-<Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description} translatedPath={translatedPath} hreflangPath={hreflangPath} type="article" publishDate={post.data.pubDate}>
+<Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description} translatedPath={translatedPath} hreflangPath={hreflangPath} type="article" publishDate={post.data.pubDate} image={`/images/og/blog-en-${post.slug.split('/').pop()}.png`}>
   <!-- Progress Bar -->
   <div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-[100] bg-transparent">
     <div id="progress-bar" class="scroll-progress-bar h-full bg-secondary w-full origin-left"></div>

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "prebuild": "tsx scripts/generate-og-images.ts",
     "preview": "astro preview",
     "astro": "astro",
     "news:fetch": "node scripts/fetch-rss.js",
@@ -36,6 +37,7 @@
     "rehype-external-links": "^3.0.0",
     "rss-parser": "^3.13.0",
     "terser": "5.46.0",
+    "tsx": "^4.22.3",
     "typescript": "^5.9.3",
     "vfile": "^6.0.3",
     "vitest": "^4.0.18"

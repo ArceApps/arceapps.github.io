@@ -122,6 +122,20 @@ const socialImageURL = new URL(image, Astro.url);
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImageURL} />
 
+    <!-- RSS Autodiscovery -->
+    {Astro.url.pathname.startsWith('/blog') && (
+      <link rel="alternate" type="application/rss+xml" title="ArceApps Blog RSS" href="/blog.xml" />
+    )}
+    {Astro.url.pathname.startsWith('/es/blog') && (
+      <link rel="alternate" type="application/rss+xml" title="ArceApps Blog RSS (ES)" href="/es/blog.xml" />
+    )}
+    {Astro.url.pathname.startsWith('/devlog') && !Astro.url.pathname.startsWith('/es/devlog') && (
+      <link rel="alternate" type="application/rss+xml" title="ArceApps Devlog RSS" href="/devlog.xml" />
+    )}
+    {Astro.url.pathname.startsWith('/es/devlog') && (
+      <link rel="alternate" type="application/rss+xml" title="ArceApps Devlog RSS (ES)" href="/es/devlog.xml" />
+    )}
+
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#018786" />
