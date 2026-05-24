@@ -32,7 +32,7 @@ Actualizamos `src/styles/global.css` para aplicar una caja delimitadora estricta
   @apply rounded-2xl shadow-lg block;
   margin-block: 2.5rem;
   margin-inline: auto;
-  max-inline-size: min(100%, 500px); /* Fix: Responsive Visual Hierarchy */
+  max-inline-size: min(100%, 500px); /* Fix: Responsive Visual Hierarchy to avoid "exploding" media on tablets/desktop */
 }
 
 .prose :where(img, video) {
