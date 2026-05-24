@@ -240,6 +240,81 @@ describe('Search Script', () => {
     });
   });
 
+
+  describe('closeModal', () => {
+    it('should hide modal and reset body overflow', () => {
+      const modal = document.getElementById('search-modal');
+      modal?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      searchModule.closeModal();
+
+      expect(modal?.classList.contains('hidden')).toBe(true);
+      expect(document.body.style.overflow).toBe('');
+    });
+
+    it('should set aria-expanded to false on search button', () => {
+      const button = document.getElementById('search-button');
+      button?.setAttribute('aria-expanded', 'true');
+
+      searchModule.closeModal();
+
+      expect(button?.getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('should clear the search input', () => {
+      const input = document.getElementById('search-input') as HTMLInputElement;
+      if (input) input.value = 'test query';
+
+      searchModule.closeModal();
+
+      expect(input?.value).toBe('');
+    });
+
+    it('should clear and hide search results', () => {
+      const results = document.getElementById('search-results');
+      if (results) {
+        results.textContent = 'Some results';
+        results.classList.remove('hidden');
+      }
+
+      searchModule.closeModal();
+
+      expect(results?.textContent).toBe('');
+      expect(results?.classList.contains('hidden')).toBe(true);
+    });
+
+    it('should reset and show search status', () => {
+      const status = document.getElementById('search-status');
+      if (status) {
+        status.textContent = 'Searching...';
+        status.classList.add('hidden');
+      }
+
+      searchModule.closeModal();
+
+      expect(status?.textContent).toBe('Escribe para buscar...');
+      expect(status?.classList.contains('hidden')).toBe(false);
+    });
+
+    it('should handle missing elements gracefully without throwing errors', () => {
+      // Create a scenario where elements are missing by overwriting innerHTML temporarily
+      const originalHTML = document.body.innerHTML;
+      document.body.innerHTML = '';
+
+      // Re-initialize to update references to nulls internally in searchModule
+      searchModule.initSearchComponent();
+
+      expect(() => {
+        searchModule.closeModal();
+      }).not.toThrow();
+
+      // Restore
+      document.body.innerHTML = originalHTML;
+      searchModule.initSearchComponent();
+    });
+  });
+
   describe('initSearchComponent', () => {
     it('should prefetch on mouseenter', () => {
         global.fetch = vi.fn().mockResolvedValue({
