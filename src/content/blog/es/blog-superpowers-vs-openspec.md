@@ -2,7 +2,7 @@
 title: "Metodologías de Ingeniería Agéntica: Superpowers vs OpenSpec"
 description: "Una comparación profunda de dos enfoques distintos para el desarrollo de software con IA: la metodología basada en habilidades de Superpowers y el flujo de trabajo guiado por artefactos de OpenSpec."
 pubDate: 2026-04-12
-heroImage: "/images/blog-superpowers-vs-openspec.svg"
+heroImage: "/images/placeholder-article-ai-agents.svg"
 tags: ["SDD", "IA", "Superpowers", "OpenSpec", "IA Agéntica", "Metodología", "Workflow", "Productividad"]
 reference_id: "e4d2a1c9-6f8b-4a3d-8e7c-2b1d9f4a5c6d"
 ---

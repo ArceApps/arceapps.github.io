@@ -2,7 +2,7 @@
 title: "Dentro de Superpowers: El Framework que Obliga a la IA a Hacer Ingeniería"
 description: "Un análisis técnico exhaustivo de la metodología Superpowers, explorando su orquestación de subagentes, la aplicación estricta de TDD y cómo transforma a la IA de un programador caótico a un socio de ingeniería disciplinado."
 pubDate: 2026-04-19
-heroImage: "/images/blog-superpowers-deep-dive.svg"
+heroImage: "/images/placeholder-article-ai-workflow.svg"
 tags: ["Superpowers", "Agentes IA", "TDD", "Subagentes", "Metodología", "Ingeniería", "Workflow", "Análisis Profundo"]
 reference_id: "b7c3e5d1-9a2f-4c8e-b1d6-8a9f2e3d4c5b"
 ---

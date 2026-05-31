@@ -2,7 +2,7 @@
 title: "Inside Superpowers: The Framework That Forces AI to Engineer"
 description: "A comprehensive technical deep dive into the Superpowers methodology, exploring its subagent orchestration, strict TDD enforcement, and how it transforms AI from a chaotic coder into a disciplined engineering partner."
 pubDate: 2026-04-19
-heroImage: "/images/blog-superpowers-deep-dive.svg"
+heroImage: "/images/placeholder-article-ai-workflow.svg"
 tags: ["Superpowers", "AI Agents", "TDD", "Subagents", "Methodology", "Engineering", "Workflow", "Deep Dive"]
 reference_id: "b7c3e5d1-9a2f-4c8e-b1d6-8a9f2e3d4c5b"
 ---
