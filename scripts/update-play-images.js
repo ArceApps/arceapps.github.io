@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const APPS_DIR = path.join(__dirname, '../src/content/apps');
 
 async function processFile(filePath) {
-  const content = fs.readFileSync(filePath, 'utf8');
+  const content = await fs.promises.readFile(filePath, 'utf8');
   const parsed = matter(content);
   const data = parsed.data;
 
@@ -126,7 +126,7 @@ async function processFile(filePath) {
 
     if (updated || bodyUpdated) {
       const newContent = matter.stringify(parsed.content, data);
-      fs.writeFileSync(filePath, newContent, 'utf8');
+      await fs.promises.writeFile(filePath, newContent, 'utf8');
       console.log(`[OK] Updated ${path.basename(filePath)} with latest Google Play data.`);
     } else {
       console.log(`[SKIP] No updates needed for ${path.basename(filePath)}.`);
@@ -138,26 +138,33 @@ async function processFile(filePath) {
 }
 
 async function walkDir(dir) {
-  const files = fs.readdirSync(dir);
-  for (const file of files) {
+  const files = await fs.promises.readdir(dir);
+  const promises = files.map(async (file) => {
     const fullPath = path.join(dir, file);
-    const stat = fs.statSync(fullPath);
+    const stat = await fs.promises.stat(fullPath);
     if (stat.isDirectory()) {
       await walkDir(fullPath);
     } else if (file.endsWith('.md')) {
       await processFile(fullPath);
     }
-  }
+  });
+  await Promise.all(promises);
 }
 
 async function main() {
   console.log('Starting Google Play data update (images + store description)...');
   try {
-    if (fs.existsSync(APPS_DIR)) {
+    let dirExists = true;
+    try {
+      await fs.promises.access(APPS_DIR);
+    } catch (err) {
+      dirExists = false;
+      console.error(`Directory not found or inaccessible: ${APPS_DIR}`);
+    }
+
+    if (dirExists) {
       await walkDir(APPS_DIR);
       console.log('Finished updating Google Play data.');
-    } else {
-      console.error(`Directory not found: ${APPS_DIR}`);
     }
   } catch (error) {
     console.error('Error during update process:', error);
