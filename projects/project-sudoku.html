@@ -56,15 +56,15 @@
         </div>
         <h1>Sudoku Android</h1>
         <p class="project-subtitle">Juego clásico de Sudoku para Android con múltiples niveles de dificultad, validación inteligente y diseño Material Design 3</p>
-        
+
         <div class="project-hero-image">
           <img src="../images/placeholder-project-sudoku.svg" alt="Sudoku Android App" />
         </div>
 
         <div class="project-links">
-          <a href="#" class="btn btn-primary" target="_blank">Ver en Google Play</a>
-          <a href="#" class="btn btn-outline" target="_blank">Código en GitHub</a>
-          <a href="#" class="btn btn-outline" target="_blank">Demo APK</a>
+          <a href="#" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Ver en Google Play</a>
+          <a href="#" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Código en GitHub</a>
+          <a href="#" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Demo APK</a>
         </div>
       </header>
 
@@ -72,7 +72,7 @@
         <div class="project-overview">
           <h2>Descripción del Proyecto</h2>
           <p>Sudoku Android es una implementación moderna del clásico juego de lógica matemática, diseñada específicamente para dispositivos Android. La aplicación combina la experiencia tradicional del Sudoku con características modernas como múltiples temas, sistema de logros, estadísticas detalladas y sincronización en la nube.</p>
-          
+
           <p>El proyecto fue desarrollado utilizando las últimas tecnologías de Android, incluyendo Jetpack Compose para la UI, Room para persistencia de datos, y arquitectura MVVM con coroutines para manejo asíncrono.</p>
         </div>
 
@@ -126,7 +126,7 @@
 
         <div class="features-section">
           <h2>Características Principales</h2>
-          
+
           <div class="feature-grid">
             <div class="feature-card">
               <div class="feature-icon">🎯</div>
@@ -180,27 +180,27 @@
 
         <div class="architecture-section">
           <h2>Arquitectura y Patrones</h2>
-          
+
           <h3>Arquitectura MVVM</h3>
           <p>La aplicación sigue el patrón Model-View-ViewModel recomendado por Google:</p>
-          
+
           <div class="code-block">
             <pre><code>// SudokuViewModel.kt
 class SudokuViewModel(
     private val gameRepository: GameRepository,
     private val statisticsRepository: StatisticsRepository
 ) : ViewModel() {
-    
+
     private val _gameState = MutableLiveData&lt;GameState&gt;()
     val gameState: LiveData&lt;GameState&gt; = _gameState
-    
+
     fun generateNewGame(difficulty: Difficulty) {
         viewModelScope.launch {
             val puzzle = gameRepository.generatePuzzle(difficulty)
             _gameState.value = GameState.Playing(puzzle)
         }
     }
-    
+
     fun makeMove(row: Int, col: Int, value: Int) {
         // Lógica de validación y actualización
     }
@@ -209,21 +209,21 @@ class SudokuViewModel(
 
           <h3>Generación de Puzzles</h3>
           <p>Algoritmo personalizado para generar puzzles únicos y solucionables:</p>
-          
+
           <div class="code-block">
             <pre><code>// PuzzleGenerator.kt
 class PuzzleGenerator {
     fun generatePuzzle(difficulty: Difficulty): SudokuPuzzle {
         val completedGrid = generateCompletedGrid()
         val puzzle = removeCells(completedGrid, difficulty.cellsToRemove)
-        
+
         return SudokuPuzzle(
             puzzle = puzzle,
             solution = completedGrid,
             difficulty = difficulty
         )
     }
-    
+
     private fun generateCompletedGrid(): Array&lt;IntArray&gt; {
         // Algoritmo de backtracking para generar grid completo
     }
@@ -256,10 +256,10 @@ data class GameEntity(
 
         <div class="ui-design-section">
           <h2>Diseño de UI/UX</h2>
-          
+
           <h3>Material Design 3</h3>
           <p>La interfaz está completamente diseñada siguiendo las guías de Material Design 3:</p>
-          
+
           <ul>
             <li><strong>Dynamic Color:</strong> Soporte para colores que se adaptan al wallpaper del usuario</li>
             <li><strong>Motion:</strong> Animaciones fluidas y naturales para transiciones</li>
@@ -283,7 +283,7 @@ fun SudokuGrid(
         items(81) { index -&gt;
             val row = index / 9
             val col = index % 9
-            
+
             SudokuCell(
                 value = puzzle.getValue(row, col),
                 isOriginal = puzzle.isOriginal(row, col),
@@ -299,7 +299,7 @@ fun SudokuGrid(
 
         <div class="performance-section">
           <h2>Optimización y Rendimiento</h2>
-          
+
           <h3>Optimizaciones Implementadas</h3>
           <ul>
             <li><strong>Lazy Loading:</strong> Carga diferida de puzzles y estadísticas</li>
@@ -335,7 +335,7 @@ fun SudokuGrid(
 
         <div class="challenges-section">
           <h2>Desafíos y Soluciones</h2>
-          
+
           <h3>1. Generación de Puzzles Únicos</h3>
           <p><strong>Desafío:</strong> Crear puzzles que tengan una única solución y sean apropiados para cada nivel de dificultad.</p>
           <p><strong>Solución:</strong> Implementación de un algoritmo híbrido que combina backtracking con validación de unicidad y métricas de dificultad.</p>
@@ -351,7 +351,7 @@ fun SudokuGrid(
 
         <div class="testing-section">
           <h2>Testing y Calidad</h2>
-          
+
           <h3>Estrategia de Testing</h3>
           <ul>
             <li><strong>Unit Tests:</strong> Cobertura del 95% en lógica de negocio</li>
@@ -366,10 +366,10 @@ fun SudokuGrid(
 fun `generateNewGame creates valid puzzle`() = runTest {
     // Given
     val difficulty = Difficulty.EASY
-    
+
     // When
     viewModel.generateNewGame(difficulty)
-    
+
     // Then
     val gameState = viewModel.gameState.getOrAwaitValue()
     assertThat(gameState).isInstanceOf(GameState.Playing::class.java)
@@ -399,7 +399,7 @@ fun `generateNewGame creates valid puzzle`() = runTest {
             <span class="tag">Room Database</span>
             <span class="tag">MVVM</span>
           </div>
-          
+
           <div class="project-navigation">
             <a href="../portfolio.html" class="nav-btn">← Volver al Portfolio</a>
             <a href="project-2048.html" class="nav-btn">Siguiente Proyecto →</a>
