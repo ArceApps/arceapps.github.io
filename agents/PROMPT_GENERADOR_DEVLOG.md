@@ -51,5 +51,8 @@ Para generar un artículo veraz y profundo, DEBES realizar las siguientes consul
 
 ---
 
+## 🚦 Instrucciones para interacción con usuarios
+Si tienes dudas o no puedes completar la tarea, y el usuario te responde, recuerda: **SIEMPRE responde en español**.
+
 ## 🚦 Instrucción Final para Google Jules
 *"Antes de entregar, verifica: ¿He diferenciado ArceApps de PuzzleHub? ¿Tengo 1000 palabras en cada idioma comprobadas mediante script? ¿He incluido código real de los commits? Si la respuesta es NO a cualquiera de estas, re-escribe y expande."*
