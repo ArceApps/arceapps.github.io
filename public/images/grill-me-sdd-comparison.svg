@@ -1,0 +1,8 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#282a36"/>
+  <text x="25%" y="50%" font-family="Arial" font-size="30" fill="#50fa7b" text-anchor="middle">Spec-Driven (SDD)</text>
+  <text x="50%" y="50%" font-family="Arial" font-size="30" fill="#f8f8f2" text-anchor="middle">VS</text>
+  <text x="75%" y="50%" font-family="Arial" font-size="30" fill="#ffb86c" text-anchor="middle">Grill Me (Socratic)</text>
+  <line x1="10%" y1="60%" x2="40%" y2="60%" stroke="#50fa7b" stroke-width="4" />
+  <line x1="60%" y1="60%" x2="90%" y2="60%" stroke="#ffb86c" stroke-width="4" />
+</svg>
