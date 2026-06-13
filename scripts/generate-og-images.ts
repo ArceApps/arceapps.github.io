@@ -116,7 +116,7 @@ async function generateOGImage(entry: OGEntry): Promise<void> {
 
     // Write to file
     const outputPath = path.join(process.cwd(), OUTPUT_DIR, `${entry.slug}.png`);
-    fs.writeFileSync(outputPath, pngBuffer);
+    fs.writeFileSync(outputPath, new Uint8Array(pngBuffer));
     
     console.log(`  ✓ Generated: ${entry.slug}.png`);
   } catch (error) {
