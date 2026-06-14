@@ -90,6 +90,14 @@ describe('i18n utils', () => {
       const url = new URL('http://localhost:4321/blog/post-1');
       expect(getRouteFromUrl(url)).toBe('/blog/post-1');
     });
+
+    it('returns original path for URLs with invalid first path segments', () => {
+      const url = new URL('http://localhost:4321/invalid/blog');
+      expect(getRouteFromUrl(url)).toBe('/invalid/blog');
+
+      const url2 = new URL('http://localhost:4321/fr/about');
+      expect(getRouteFromUrl(url2)).toBe('/fr/about');
+    });
   });
 
   describe('normalizePath', () => {
