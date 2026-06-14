@@ -51,60 +51,114 @@ const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
 
   <Hero />
 
-  <!-- Bitácora Section (Highlighted) -->
-  {latestDevlog && (
-    <section class="py-12 bg-surface dark:bg-dark-surface border-b border-gray-100 dark:border-gray-800 cv-auto" style="contain-intrinsic-size: 200px;">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 md:p-8 rounded-2xl bg-surface-variant/30 dark:bg-dark-surface-variant/30 border border-gray-200 dark:border-gray-700">
-          <div class="flex-1">
-            <div class="inline-flex items-center gap-2 mb-3">
-              <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse motion-reduce:animate-none"></span>
-              <span class="text-sm font-bold text-primary tracking-wide uppercase">{t('home.building_public')}</span>
-            </div>
-            <h2 class="text-2xl md:text-3xl font-bold mb-3 text-on-surface dark:text-dark-on-surface">
-              {latestDevlog.data.title}
-            </h2>
-            <p class="text-on-surface-variant dark:text-dark-on-surface-variant mb-0 line-clamp-2">
-              {latestDevlog.data.description}
-            </p>
-          </div>
-          <div class="shrink-0">
-             <a href={`${linkPrefix}/devlog/${devlogSlug}`} class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-on-surface dark:text-dark-on-surface font-medium hover:border-primary hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transition-all duration-300 shadow-sm">
-               {t('home.read_entry')}
-               <span class="material-icons ml-2 text-sm" aria-hidden="true">arrow_forward</span>
-             </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  )}
+  <!-- Bento Section (Apps & Devlog) - Luces de fondo difusas y estructura Bento Grid -->
+  <section id="apps" class="relative py-24 bg-surface dark:bg-dark-surface overflow-hidden cv-auto fade-in-section" style="contain-intrinsic-size: 800px;">
+    <!-- Background Decor (Glows en Bento) -->
+    <div class="absolute top-1/3 left-10 w-80 h-80 opacity-30 dark:opacity-10 pointer-events-none blur-3xl" style="background: radial-gradient(circle, color-mix(in srgb, var(--color-primary), transparent 90%) 0%, transparent 70%);"></div>
+    <div class="absolute bottom-1/3 right-10 w-96 h-96 opacity-30 dark:opacity-10 pointer-events-none blur-3xl" style="background: radial-gradient(circle, color-mix(in srgb, var(--color-secondary), transparent 90%) 0%, transparent 70%);"></div>
 
-  <!-- Apps Section -->
-  <section id="apps" class="py-24 bg-surface-variant/30 dark:bg-dark-surface-variant/30 cv-auto" style="contain-intrinsic-size: 800px;">
-    <div class="container mx-auto px-4">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-on-surface dark:text-dark-on-surface">{t('home.building')}</h2>
-        <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant">
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <h2 class="text-4xl md:text-5xl font-black mb-6 text-on-surface dark:text-dark-on-surface tracking-tight">
+          {t('home.building')}
+        </h2>
+        <p class="text-lg md:text-xl text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed">
           {t('home.building_desc')}
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {apps.map(app => (
-          <ProjectCard
-            title={app.data.title}
-            description={app.data.description}
-            heroImage={app.data.heroImage}
-            realIconUrl={app.data.realIconUrl}
-            tags={app.data.tags}
-            pubDate={app.data.pubDate}
-            slug={app.slug.split('/').pop() || ''}
-          />
-        ))}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <!-- Tarjeta Bento 1: Bitácora Destacada (Doble Ancho en LG) -->
+        {latestDevlog && (
+          <div class="lg:col-span-8 flex">
+            <div class="spatial-card w-full rounded-[32px] p-8 md:p-10 flex flex-col justify-between relative overflow-hidden group border border-gray-200/60 dark:border-transparent transition-all duration-300 hover:shadow-2xl hover:scale-[1.01] transform-gpu">
+              <!-- Glow interno del bento -->
+              <div class="absolute -right-24 -bottom-24 w-80 h-80 rounded-full bg-primary/10 dark:bg-primary/5 blur-3xl pointer-events-none transition-all duration-700 group-hover:scale-110"></div>
+              <!-- Icono gigante de fondo -->
+              <span class="absolute right-8 top-8 material-icons text-9xl text-primary/5 dark:text-primary/5 select-none pointer-events-none transform group-hover:scale-105 group-hover:rotate-6 transition-all duration-500">history_edu</span>
+              
+              <div class="relative z-10 flex-1 flex flex-col justify-between">
+                <div class="text-left">
+                  <!-- Badge -->
+                  <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 mb-6 shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                    <span class="text-xs font-bold text-green-600 dark:text-green-400 tracking-wider uppercase">{t('home.building_public')}</span>
+                  </div>
+                  
+                  <!-- Título -->
+                  <h3 class="text-3xl md:text-4xl font-extrabold mb-4 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors">
+                    {latestDevlog.data.title}
+                  </h3>
+                  
+                  <!-- Descripción -->
+                  <p class="text-base md:text-lg text-on-surface-variant dark:text-dark-on-surface-variant mb-8 leading-relaxed line-clamp-3 md:line-clamp-4">
+                    {latestDevlog.data.description}
+                  </p>
+                </div>
+
+                <!-- Footer de la tarjeta -->
+                <div class="flex items-center justify-between pt-6 border-t border-gray-100 dark:border-gray-800/80 mt-auto">
+                  <span class="text-sm font-semibold text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
+                    {latestDevlog.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US')}
+                  </span>
+                  <a href={`${linkPrefix}/devlog/${devlogSlug}`} class="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold text-sm shadow-[0_4px_14px_rgba(1,135,134,0.25)] hover:shadow-[0_4px_14px_rgba(1,135,134,0.45)] hover:-translate-y-0.5 transition-all duration-300">
+                    {t('home.read_entry')}
+                    <span class="material-icons ml-2 text-sm transform group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <!-- Tarjeta Bento 2: App 1 (LG: col-span-4) -->
+        {apps[0] && (
+          <div class="lg:col-span-4 flex">
+            <ProjectCard
+              title={apps[0].data.title}
+              description={apps[0].data.description}
+              heroImage={apps[0].data.heroImage}
+              realIconUrl={apps[0].data.realIconUrl}
+              tags={apps[0].data.tags}
+              pubDate={apps[0].data.pubDate}
+              slug={apps[0].slug.split('/').pop() || ''}
+            />
+          </div>
+        )}
+
+        <!-- Tarjeta Bento 3: App 2 (LG: col-span-6) -->
+        {apps[1] && (
+          <div class="lg:col-span-6 flex">
+            <ProjectCard
+              title={apps[1].data.title}
+              description={apps[1].data.description}
+              heroImage={apps[1].data.heroImage}
+              realIconUrl={apps[1].data.realIconUrl}
+              tags={apps[1].data.tags}
+              pubDate={apps[1].data.pubDate}
+              slug={apps[1].slug.split('/').pop() || ''}
+            />
+          </div>
+        )}
+
+        <!-- Tarjeta Bento 4: App 3 (LG: col-span-6) -->
+        {apps[2] && (
+          <div class="lg:col-span-6 flex">
+            <ProjectCard
+              title={apps[2].data.title}
+              description={apps[2].data.description}
+              heroImage={apps[2].data.heroImage}
+              realIconUrl={apps[2].data.realIconUrl}
+              tags={apps[2].data.tags}
+              pubDate={apps[2].data.pubDate}
+              slug={apps[2].slug.split('/').pop() || ''}
+            />
+          </div>
+        )}
       </div>
 
-      <div class="mt-12 text-center">
-        <a href={`${linkPrefix}/apps`} class="inline-flex items-center justify-center px-8 py-3 rounded-full border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none transition-all duration-300">
+      <div class="mt-16 text-center">
+        <a href={`${linkPrefix}/apps`} class="inline-flex items-center justify-center px-10 py-4 rounded-2xl border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold text-lg focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:outline-none transition-all duration-300 hover:shadow-lg active:scale-[0.98]">
           {t('home.view_all_apps')}
         </a>
       </div>
@@ -112,10 +166,10 @@ const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
   </section>
 
   <!-- Blog Section -->
-  <section class="py-24 bg-surface dark:bg-dark-surface cv-auto" style="contain-intrinsic-size: 600px;">
+  <section class="py-24 bg-surface dark:bg-dark-surface cv-auto fade-in-section" style="contain-intrinsic-size: 600px;">
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-        <div>
+        <div class="text-left">
           <h2 class="text-3xl md:text-4xl font-bold mb-4 text-on-surface dark:text-dark-on-surface">{t('home.tech_articles')}</h2>
           <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl">
             {t('home.tech_articles_desc')}
@@ -136,7 +190,7 @@ const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
   </section>
 
   <!-- CTA -->
-  <section class="py-20 relative overflow-hidden cv-auto" style="contain-intrinsic-size: 300px;">
+  <section class="py-20 relative overflow-hidden cv-auto fade-in-section" style="contain-intrinsic-size: 300px;">
     <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-90"></div>
     <!-- Decorative pattern -->
     <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 20px 20px;"></div>
@@ -147,11 +201,11 @@ const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
         {t('home.explore_code_desc')}
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://github.com/arceapps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-primary font-bold text-lg shadow-xl hover:bg-gray-100 focus-visible:ring-4 focus-visible:ring-white/50 focus-visible:outline-none focus-visible:scale-105 transform transition-all">
+        <a href="https://github.com/arceapps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-white text-primary font-bold text-lg shadow-xl hover:bg-gray-100 focus-visible:ring-4 focus-visible:ring-white/50 focus-visible:outline-none focus-visible:scale-105 active:scale-[0.98] transform transition-all duration-300">
           <span class="material-icons mr-2" aria-hidden="true">code</span>
           {t('home.view_github')}
         </a>
-        <a href="https://play.google.com/store/apps/developer?id=Arce+Apps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary-dark/30 backdrop-blur-sm border border-white/30 text-white font-bold text-lg shadow-xl hover:bg-primary-dark/50 focus-visible:ring-4 focus-visible:ring-white/50 focus-visible:outline-none focus-visible:scale-105 transform transition-all">
+        <a href="https://play.google.com/store/apps/developer?id=Arce+Apps" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-primary-dark/30 backdrop-blur-sm border border-white/30 text-white font-bold text-lg shadow-xl hover:bg-primary-dark/50 focus-visible:ring-4 focus-visible:ring-white/50 focus-visible:outline-none focus-visible:scale-105 active:scale-[0.98] transform transition-all duration-300">
           <span class="material-icons mr-2" aria-hidden="true">shop</span>
           {t('home.google_play')}
         </a>

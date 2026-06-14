@@ -4,34 +4,124 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<section class="relative overflow-hidden bg-surface dark:bg-dark-surface pt-20 pb-32 lg:pt-32 lg:pb-48">
-  <!-- Background Decor -->
-  <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 opacity-50 dark:opacity-20 pointer-events-none" style="background: radial-gradient(circle, color-mix(in srgb, var(--color-primary), transparent 90%) 0%, transparent 70%);"></div>
-  <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 opacity-50 dark:opacity-20 pointer-events-none" style="background: radial-gradient(circle, color-mix(in srgb, var(--color-secondary), transparent 90%) 0%, transparent 70%);"></div>
+<section class="relative overflow-hidden bg-surface dark:bg-dark-surface pt-20 pb-24 lg:pt-32 lg:pb-36">
+  <!-- Background Decor - Luces de fondo difusas más amplias -->
+  <div class="absolute top-0 right-1/4 -mt-20 w-[500px] h-[500px] opacity-40 dark:opacity-15 pointer-events-none blur-3xl" style="background: radial-gradient(circle, color-mix(in srgb, var(--color-primary), transparent 85%) 0%, transparent 70%);"></div>
+  <div class="absolute bottom-0 left-1/4 -mb-20 w-[400px] h-[400px] opacity-45 dark:opacity-15 pointer-events-none blur-3xl" style="background: radial-gradient(circle, color-mix(in srgb, var(--color-secondary), transparent 85%) 0%, transparent 70%);"></div>
 
-  <div class="container mx-auto px-4 relative z-10 text-center">
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20 mb-8 fade-in" style="animation-delay: 0.1s;">
-      <span class="w-2 h-2 rounded-full bg-secondary animate-pulse motion-reduce:animate-none"></span>
-      <span class="text-sm font-medium text-primary dark:text-primary-light">Indie Android Developer</span>
-    </div>
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <!-- Columna Texto (Izquierda) -->
+      <div class="lg:col-span-7 text-center lg:text-left">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20 mb-8 fade-in shadow-sm animate-fade-in" style="animation-delay: 0.1s;">
+          <span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse motion-reduce:animate-none"></span>
+          <span class="text-sm font-semibold text-primary dark:text-teal-400 tracking-wide uppercase">Indie Android Developer</span>
+        </div>
 
-    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-on-surface dark:text-dark-on-surface tracking-tight fade-in" style="animation-delay: 0.2s;">
-      {t('home.hero.title')}
-    </h1>
+        <!-- Título -->
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-on-surface dark:text-dark-on-surface tracking-tight leading-[1.15] fade-in" style="animation-delay: 0.2s;">
+          {lang === 'es' ? 'Desarrollo de' : 'We build'} <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary via-teal-500 to-secondary font-extrabold">{t('home.hero.title')}</span>
+        </h1>
 
-    <p class="text-xl md:text-2xl text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed fade-in" style="animation-delay: 0.3s;">
-      {t('home.hero.subtitle')}
-    </p>
+        <!-- Subtítulo -->
+        <p class="text-lg md:text-xl text-on-surface-variant dark:text-dark-on-surface-variant max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed fade-in" style="animation-delay: 0.3s;">
+          {t('home.hero.subtitle')}
+        </p>
 
-    <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in" style="animation-delay: 0.4s;">
-      <a href="#apps" data-astro-prefetch class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary hover:bg-primary/90 text-white font-medium text-lg shadow-lg hover:shadow-xl hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 focus-visible:-translate-y-0.5 transition-all duration-300">
-        <span class="material-icons mr-2" aria-hidden="true">apps</span>
-        {t('home.view_all_apps')}
-      </a>
-      <a href={lang === 'es' ? '/es/devlog' : '/devlog'} data-astro-prefetch class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-surface-variant dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-on-surface dark:text-dark-on-surface font-medium text-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 transition-all duration-300">
-        <span class="material-icons mr-2" aria-hidden="true">article</span>
-        {t('nav.devlog')}
-      </a>
+        <!-- Botones -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start fade-in" style="animation-delay: 0.4s;">
+          <a href="#apps" data-astro-prefetch class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-primary hover:bg-primary/90 text-white font-bold text-lg shadow-[0_8px_30px_rgba(1,135,134,0.3)] hover:shadow-[0_8px_30px_rgba(1,135,134,0.5)] active:scale-[0.98] transition-all duration-300 transform-gpu">
+            <span class="material-icons mr-2 text-xl" aria-hidden="true">apps</span>
+            {t('home.view_all_apps')}
+          </a>
+          <a href={lang === 'es' ? '/es/devlog' : '/devlog'} data-astro-prefetch class="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-surface-variant/70 dark:bg-gray-800/80 hover:bg-gray-200 dark:hover:bg-gray-700/90 text-on-surface dark:text-dark-on-surface font-semibold text-lg border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm active:scale-[0.98] transition-all duration-300 transform-gpu">
+            <span class="material-icons mr-2 text-xl" aria-hidden="true">article</span>
+            {t('nav.devlog')}
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna Mockup (Derecha) -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end fade-in" style="animation-delay: 0.5s;">
+        <!-- Mockup Teléfono CSS -->
+        <div class="phone-mockup-wrapper relative transform-gpu transition-all duration-500 hover:scale-[1.03] group" style="perspective: 1200px;">
+          <!-- Shadow/Glow bajo el celular -->
+          <div class="absolute inset-x-8 -bottom-10 h-10 bg-primary/20 dark:bg-primary/10 rounded-full blur-2xl opacity-80 transition-all duration-500 group-hover:scale-x-90 group-hover:opacity-60"></div>
+          
+          <!-- Cuerpo del teléfono -->
+          <div class="phone-body relative w-[280px] h-[570px] rounded-[48px] bg-gray-900 border-[10px] border-gray-800 shadow-2xl flex flex-col overflow-hidden transition-transform duration-500 ease-out lg:group-hover:rotate-y-12 lg:group-hover:rotate-x-6 lg:group-hover:-rotate-z-3 transform-gpu">
+            <!-- Dynamic Island/Cámara superior -->
+            <div class="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-4 rounded-full bg-black z-30 flex items-center justify-end px-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-900/60"></span>
+            </div>
+
+            <!-- Pantalla del celular -->
+            <div class="phone-screen flex-1 bg-gradient-to-tr from-slate-900 via-gray-950 to-slate-900 p-4 pt-10 flex flex-col justify-between select-none relative overflow-hidden z-20">
+              <!-- Glow de fondo en pantalla -->
+              <div class="absolute -top-12 -left-12 w-36 h-36 rounded-full bg-secondary/15 blur-2xl animate-pulse"></div>
+              <div class="absolute -bottom-12 -right-12 w-36 h-36 rounded-full bg-primary/20 blur-2xl animate-pulse" style="animation-delay: 1s;"></div>
+
+              <!-- Barra de Estado Simulada (MD3 style) -->
+              <div class="flex justify-between items-center text-[10px] text-gray-400 font-bold px-2 py-1">
+                <span>12:00</span>
+                <div class="flex items-center gap-1">
+                  <span class="material-icons text-[10px]">wifi</span>
+                  <span class="material-icons text-[10px]">signal_cellular_4_bar</span>
+                  <span class="material-icons text-[10px]">battery_std</span>
+                </div>
+              </div>
+
+              <!-- Contenido de App Simulada -->
+              <div class="flex-1 flex flex-col justify-start gap-4 mt-6 z-10">
+                <!-- App Header -->
+                <div class="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-md">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-lg shadow-md">A</div>
+                  <div class="text-left">
+                    <h3 class="text-xs font-bold text-white mb-0.5">ArceApps Hub</h3>
+                    <p class="text-[9px] text-gray-400">Verificando actualizaciones...</p>
+                  </div>
+                </div>
+
+                <!-- Simulación de Gráfico / Estadística -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-3 backdrop-blur-md flex flex-col gap-2">
+                  <span class="text-[10px] font-bold text-primary dark:text-teal-400 tracking-wide uppercase text-left">Rendimiento (Kotlin)</span>
+                  <div class="flex items-end justify-between h-14 pt-2 px-1">
+                    <div class="w-4 bg-primary/30 rounded-t-sm h-[30%] transition-all duration-1000 group-hover:h-[60%]"></div>
+                    <div class="w-4 bg-primary/45 rounded-t-sm h-[50%] transition-all duration-1000 group-hover:h-[80%]"></div>
+                    <div class="w-4 bg-primary/60 rounded-t-sm h-[40%] transition-all duration-1000 group-hover:h-[50%]"></div>
+                    <div class="w-4 bg-secondary/70 rounded-t-sm h-[75%] transition-all duration-1000 group-hover:h-[95%]"></div>
+                    <div class="w-4 bg-primary rounded-t-sm h-[90%] transition-all duration-1000 group-hover:h-[70%]"></div>
+                  </div>
+                  <div class="flex justify-between items-center text-[9px] text-gray-500 pt-1 border-t border-white/5">
+                    <span>FPS Estables</span>
+                    <span class="text-green-400 font-bold">60 FPS</span>
+                  </div>
+                </div>
+
+                <!-- Mini Cards del listado en celular -->
+                <div class="flex gap-2">
+                  <div class="flex-1 bg-white/5 border border-white/10 rounded-2xl p-2.5 backdrop-blur-md flex flex-col gap-1 text-center">
+                    <span class="material-icons text-primary dark:text-teal-400 text-sm">speed</span>
+                    <span class="text-[9px] text-white font-bold">Optimizado</span>
+                  </div>
+                  <div class="flex-1 bg-white/5 border border-white/10 rounded-2xl p-2.5 backdrop-blur-md flex flex-col gap-1 text-center">
+                    <span class="material-icons text-secondary text-sm">security</span>
+                    <span class="text-[9px] text-white font-bold">Privado</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pie de App con barra Android -->
+              <div class="flex flex-col items-center gap-1.5 mt-auto pt-2 z-10">
+                <span class="text-[8px] text-gray-500 tracking-wider">ARCEAPPS.GITHUB.IO</span>
+                <!-- Android Gesture Navigation Bar -->
+                <div class="w-24 h-1 rounded-full bg-white/40"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
