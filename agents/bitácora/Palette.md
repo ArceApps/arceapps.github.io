@@ -1,3 +1,21 @@
+## 2026-06-14 - Creación de la Guía de Diseño Visual (design.md)
+
+**Revisión:**
+- Se analizó la configuración de estilos de la web en `src/styles/global.css`, `ANALISIS_WEB.md` y `AGENTS.md` para identificar colores, fuentes, componentes visuales, animaciones y estándares de accesibilidad implementados en producción.
+
+**Propuesta:**
+- Crear un archivo consolidado `design.md` en la raíz del proyecto para documentar de forma clara y accesible el sistema de diseño visual de la marca y la web, facilitando futuras implementaciones consistentes.
+
+**Realizado:**
+- Creado y redactado el archivo `design.md` en la raíz del proyecto cubriendo:
+  - Principios de diseño (Espíritu Indie).
+  - Paleta de colores de marca y del sistema (Material Design 3) para modo claro y modo oscuro.
+  - Tipografías (Inter Variable, pesos variables animados, de escala).
+  - Componentes visuales clave (elevaciones, tarjetas con Glassmorphism 2.0 y Material cards, clases de Markdown prose, botones flotantes de código).
+  - Animaciones y micro-interacciones (Scroll-Driven animations, View Transitions, Haptic Feedback).
+  - Pautas de accesibilidad y estándares de reducción de movimiento.
+- Verificado que el proyecto compila exitosamente tras la adición mediante `npx astro build`.
+
 ## 2026-01-07 - Accesibilidad de Foco en BlogCard
 
 **Revisión:**
