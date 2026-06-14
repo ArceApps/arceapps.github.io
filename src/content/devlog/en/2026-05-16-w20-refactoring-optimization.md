@@ -114,7 +114,7 @@ We implemented `safeJsonLd` in `src/utils/security.ts`, which escapes problemati
 
 ```typescript
 // src/utils/security.ts
-export function safeJsonLd(data: any): string {
+export function safeJsonLd(data: unknown): string {
   return JSON.stringify(data)
     .replace(/</g, '\\u003c')
     .replace(/>/g, '\\u003e')
