@@ -10,10 +10,17 @@ export async function getStaticPaths() {
   const apps = await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('en/'));
   const esApps = await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('es/'));
 
+  const esAppsMap = new Map();
+  for (const app of esApps) {
+    if (app.data.reference_id) {
+      esAppsMap.set(app.data.reference_id, app);
+    }
+  }
+
   return apps.map((app) => {
     let hreflangPath = undefined;
     if (app.data.reference_id) {
-      const esApp = esApps.find(a => a.data.reference_id === app.data.reference_id);
+      const esApp = esAppsMap.get(app.data.reference_id);
       if (esApp) {
         hreflangPath = `/es/apps/${esApp.slug.split('/').pop()}`;
       }
