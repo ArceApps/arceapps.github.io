@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 describe('Search Script', () => {
-  let searchModule: any;
-  let searchMock: any;
+  let searchModule: typeof import('./search');
+  let searchMock: ReturnType<typeof vi.fn>;
 
   beforeEach(async () => {
     vi.resetModules();
