@@ -34,17 +34,33 @@ export async function getStaticPaths() {
 
 // Related posts logic — precomputed in getStaticPaths using sortedPosts (no extra getCollection call)
     const currentTags = post.data.tags || [];
-    const relatedPosts = sortedPosts
-      .filter(p => p.slug !== post.slug)
-      .map(p => {
-        const commonTags = (p.data.tags || []).filter(t => currentTags.includes(t)).length;
-        return { ...p, commonTags };
-      })
+    const currentTagsSet = new Set(currentTags);
+    const relatedPostsData = [];
+
+    for (let i = 0; i < sortedPosts.length; i++) {
+      const p = sortedPosts[i];
+      if (p.slug === post.slug) continue;
+
+      let commonTags = 0;
+      const pTags = p.data.tags;
+      if (pTags) {
+        for (let j = 0; j < pTags.length; j++) {
+          if (currentTagsSet.has(pTags[j])) {
+            commonTags++;
+          }
+        }
+      }
+
+      relatedPostsData.push({ post: p, commonTags });
+    }
+
+    const relatedPosts = relatedPostsData
       .sort((a, b) => {
         if (b.commonTags !== a.commonTags) return b.commonTags - a.commonTags;
-        return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+        return b.post.data.pubDate.valueOf() - a.post.data.pubDate.valueOf();
       })
-      .slice(0, 3);
+      .slice(0, 3)
+      .map(r => ({ ...r.post, commonTags: r.commonTags }));
 
     return {
       params: { slug: post.slug.split('/').pop() },
