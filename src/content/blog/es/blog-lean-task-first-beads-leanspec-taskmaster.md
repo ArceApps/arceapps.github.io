@@ -7,7 +7,7 @@ heroImage: "/images/blog-lean-task-first-beads-leanspec-taskmaster.svg"
 reference_id: "e9a3c571-2b4e-4f8d-93d1-7c0e2a5b8f16"
 ---
 
-> **Lectura relacionada:** [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Spec-Driven Development con IA Agéntica](/blog/blog-specs-driven-development) · [Análisis de Frameworks SDD: Spec Kit, OpenSpec y BMAD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
+> **Lectura relacionada:** [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Spec-Driven Development con IA Agéntica](/blog/specs-driven-development) · [Análisis de Frameworks SDD: Spec Kit, OpenSpec y BMAD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
 
 Hay una frustración particular que te golpea alrededor del tercer día de un proyecto con asistencia de IA. La primera sesión fue gloriosa: el agente entendió el objetivo, generó código sensato, hizo las preguntas correctas. Pero para el tercer día ya estás empezando cada sesión con un prólogo largo: "Okay, el proyecto es una app de gestión de tareas, decidimos usar PostgreSQL en vez de SQLite porque X, eliminamos la capa de Redux porque Y, y la última vez nos atascamos en Z." El agente asiente educadamente y luego procede a regenerar el archivo de Redux.
 
@@ -425,7 +425,7 @@ Empieza pequeño. Elige la que resuelve tu punto de dolor más inmediato. Constr
 - [LeanSpec (lean-spec)](https://github.com/codervisor/lean-spec) — Herramienta de desarrollo spec-driven minimalista con integración MCP
 - [Taskmaster (claude-task-master)](https://github.com/eyaltoledano/claude-task-master) — Motor de orquestación PRD-a-tareas por Eyal Toledano
 - [task-master-ai en npm](https://www.npmjs.com/package/task-master-ai) — Paquete npm oficial
-- [Spec-Driven Development con IA Agéntica](/blog/blog-specs-driven-development) — Lectura fundamental sobre principios SDD
+- [Spec-Driven Development con IA Agéntica](/blog/specs-driven-development) — Lectura fundamental sobre principios SDD
 - [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) — Contexto más amplio sobre metodologías emergentes
 - [Análisis de Frameworks SDD: Spec Kit, OpenSpec, BMAD-METHOD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) — Comparación de frameworks SDD más pesados
 - Yegge, S. (2024). *Distributed Issue Tracking for the AI Age*. Blog personal.

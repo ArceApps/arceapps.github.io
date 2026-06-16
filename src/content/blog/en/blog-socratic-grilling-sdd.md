@@ -8,7 +8,7 @@ reference_id: "c8a2f3d5-7e1b-4c9d-8f0a-3e6b9d2c1a0d"
 related_posts:
   - blog-mattpocock-skills
   - blog-socratic-method-prompts-kotlin-android
-  - blog-sdd-frameworks-analysis-spec-kit-openspec-bmad
+  - blog-sdd-frameworks-spec-kit-openspec-bmad
   - socratic-agents-part-2-sdd-sycophancy
 ---
 
@@ -248,7 +248,7 @@ The combined approach — Socratic pre-spec + SDD during build + Socratic post-g
 
 - [mattpocock/skills](/blog/blog-mattpocock-skills) — the composable skills approach
 - [Socratic Method Prompts: Breaking AI Sycophancy](/blog/blog-socratic-method-prompts-kotlin-android) — the four-component Socratic prompt anatomy
-- [SDD Frameworks Comparison](/blog/blog-sdd-frameworks-analysis-spec-kit-openspec-bmad) — Spec Kit, OpenSpec, and BMAD
-- [Socratic Agents Part 2: SDD and Sycophancy](/blog/blog-socratic-agents-part-2-sdd-sycophancy) — the relationship between adversarial prompting and SDD
+- [SDD Frameworks Comparison](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) — Spec Kit, OpenSpec, and BMAD
+- [Socratic Agents Part 2: SDD and Sycophancy](/blog/socratic-agents-part-2-sdd-sycophancy) — the relationship between adversarial prompting and SDD
 - [/diagnose skill](https://github.com/mattpocock/skills/blob/main/skills/engineering/diagnose/SKILL.md) — the six-phase disciplined debugging loop
 - [/grill-me skill](https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md) — the alignment-before-coding session

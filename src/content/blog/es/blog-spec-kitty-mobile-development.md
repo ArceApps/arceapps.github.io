@@ -7,7 +7,7 @@ tags: ["SDD", "Spec Kitty", "Agentes IA", "Git Worktrees", "Desarrollo Impulsado
 reference_id: "a8f92c3d-4e15-4b7a-9f2c-1d3e5f6a7b8c"
 ---
 
-> **Lecturas relacionadas:** [Desarrollo Impulsado por Especificaciones con IA Agéntica](/blog/blog-specs-driven-development) · [Git Worktrees para Desarrollo Paralelo](/blog/blog-git-worktrees-android) · [Agentes IA en Desarrollo Android](/blog/blog-ai-agents-workflow-android)
+> **Lecturas relacionadas:** [Desarrollo Impulsado por Especificaciones con IA Agéntica](/blog/specs-driven-development) · [Git Worktrees para Desarrollo Paralelo](/blog/git-worktrees-android) · [Agentes IA en Desarrollo Android](/blog/ai-agents-workflow-android)
 
 Cuando un equipo de desarrollo móvil trabaja con un agente de codificación con IA, el flujo se siente manejable. Describes lo que quieres, el agente escribe código, lo revisas, y la funcionalidad aterriza en tu codebase. Pero cuando agregas un segundo agente — quizás uno manejando lógica de backend mientras otro construye la UI — aparecen las grietas: ¿qué agente está trabajando en qué, dónde se perdieron los requisitos, cómo fusionas dos implementaciones separadas sin conflictos?
 

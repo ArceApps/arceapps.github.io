@@ -6,9 +6,9 @@ heroImage: "/images/blog-mattpocock-skills.svg"
 tags: ["SDD", "AI", "Skills", "Claude Code", "mattpocock", "Architecture"]
 reference_id: "b4e7c9a1-5f2d-4e8c-9b3a-7d6e1f2c8a0b"
 related_posts:
-  - blog-sdd-frameworks-analysis-spec-kit-openspec-bmad
-  - blog-socratic-agents-part-2-sdd-sycophancy
-  - blog-specs-driven-development
+  - blog-sdd-frameworks-spec-kit-openspec-bmad
+  - socratic-agents-part-2-sdd-sycophancy
+  - specs-driven-development
 ---
 
 ## The Problem With Monolithic AI Methodologies
@@ -19,7 +19,7 @@ That sentence is doing a lot of work. He's saying: when you hand your project to
 
 This is the core thesis of [`mattpocock/skills`](https://github.com/mattpocock/skills) — a collection of agent skills for coding agents (Claude Code, Codex, and others) that are small, composable, and explicitly *not* a full-stack methodology. Each skill does one thing. You pick the ones you need. You leave the rest.
 
-If you've been reading this blog's [SDD framework comparison](/blog/blog-sdd-frameworks-analysis-spec-kit-openspec-bmad), you know we spent a lot of words on what Spec Kit does, what OpenSpec does, and what BMAD does. Skills is a different answer to the same question: "how do I make AI agents actually useful instead of just compliant?"
+If you've been reading this blog's [SDD framework comparison](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad), you know we spent a lot of words on what Spec Kit does, what OpenSpec does, and what BMAD does. Skills is a different answer to the same question: "how do I make AI agents actually useful instead of just compliant?"
 
 Let's dig into what makes it genuinely different.
 
@@ -229,7 +229,7 @@ The skill that gets the most praise in the community is `/grill-with-docs`. The 
 
 ## How It Compares to the Frameworks We Reviewed
 
-In our [SDD framework comparison](/blog/blog-sdd-frameworks-analysis-spec-kit-openspec-bmad), we found three distinct philosophies:
+In our [SDD framework comparison](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad), we found three distinct philosophies:
 
 - **Spec Kit**: Constitutional approach — your project has a `SPEC.md` that's treated as the source of truth. Agents read it before generating code.
 - **OpenSpec**: Change-proposal approach — every modification goes through a review process that produces a titled document before any code is written.
@@ -266,7 +266,7 @@ That's worth something. The best practices in `/diagnose` and `/tdd` are not the
 - [mattpocock/skills GitHub Repository](https://github.com/mattpocock/skills)
 - [skills.sh Installer](https://skills.sh/b/mattpocock/skills)
 - [Matt Pocock's Newsletter (~60,000 subscribers)](https://www.aihero.dev/s/skills-newsletter)
-- [The Pragmatic Programmer, Thomas & Hunt](/blog/blog-sdd-frameworks-analysis-spec-kit-openspec-bmad)
-- [Domain-Driven Design, Eric Evans](/blog/blog-sdd-frameworks-analysis-spec-kit-openspec-bmad)
-- [A Philosophy of Software Design, John Ousterhout](/blog/blog-sdd-frameworks-analysis-spec-kit-openspec-bmad)
-- Previous SDD articles on this blog: [SDD Frameworks Comparison](/blog/blog-sdd-frameworks-analysis-spec-kit-openspec-bmad), [Socratic Agents and Sycophancy](/blog/blog-socratic-agents-part-2-sdd-sycophancy), [Specs-Driven Development](/blog/blog-specs-driven-development)
+- [The Pragmatic Programmer, Thomas & Hunt](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
+- [Domain-Driven Design, Eric Evans](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
+- [A Philosophy of Software Design, John Ousterhout](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
+- Previous SDD articles on this blog: [SDD Frameworks Comparison](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad), [Socratic Agents and Sycophancy](/blog/socratic-agents-part-2-sdd-sycophancy), [Specs-Driven Development](/blog/specs-driven-development)

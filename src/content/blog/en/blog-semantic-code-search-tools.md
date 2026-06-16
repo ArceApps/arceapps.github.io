@@ -7,7 +7,7 @@ tags: ["AI", "Code Search", "Claude Code", "Development Tools", "CocoIndex", "Co
 reference_id: "b4c5d6e7-8f9a-0b1c-2d3e-4f5a6b7c8d9e"
 ---
 
-> **Related reads:** [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [Complete Guide: Stack Recommended for Building AI Agents in 2026](/blog/complete-beginners-guide-ai-agents-stack-2026) · [AI Agents in Android Development](/blog/blog-ai-agents-workflow-android)
+> **Related reads:** [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [Complete Guide: Stack Recommended for Building AI Agents in 2026](/blog/complete-beginners-guide-ai-agents-stack-2026) · [AI Agents in Android Development](/blog/ai-agents-workflow-android)
 
 When you work with an AI coding agent on a large codebase, you have probably noticed something frustrating: the agent spends a significant portion of its token budget navigating the code. Before it can implement a feature or fix a bug, it needs to understand the surrounding context. It fires off grep commands, glob patterns, and find operations — searching for the right file, the relevant function, the correct abstraction. This exploration phase consumes tokens that could be spent actually writing code.
 

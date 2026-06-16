@@ -8,7 +8,7 @@ reference_id: "c8a2f3d5-7e1b-4c9d-8f0a-3e6b9d2c1a0d"
 related_posts:
   - blog-mattpocock-skills
   - blog-socratic-method-prompts-kotlin-android
-  - blog-sdd-frameworks-analysis-spec-kit-openspec-bmad
+  - blog-sdd-frameworks-spec-kit-openspec-bmad
   - socratic-agents-part-2-sdd-sycophancy
 ---
 
@@ -229,7 +229,7 @@ La diferencia: en el primer workflow, la sicofancia del modelo permite que los d
 
 - [mattpocock/skills](/blog/blog-mattpocock-skills) — el enfoque de skills composables
 - [Prompts del Método Socrático: Rompiendo la Sicofancia de la IA](/blog/blog-socratic-method-prompts-kotlin-android) — la anatomía del prompt socrático de cuatro componentes
-- [Comparativa de Frameworks SDD](/blog/blog-sdd-frameworks-analysis-spec-kit-openspec-bmad) — Spec Kit, OpenSpec y BMAD
-- [Agentes Socráticos Parte 2: SDD y Sicofancia](/blog/blog-socratic-agents-part-2-sdd-sycophancy) — la relación entre prompting adversario y SDD
+- [Comparativa de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) — Spec Kit, OpenSpec y BMAD
+- [Agentes Socráticos Parte 2: SDD y Sicofancia](/blog/socratic-agents-part-2-sdd-sycophancy) — la relación entre prompting adversario y SDD
 - [Skill /diagnose](https://github.com/mattpocock/skills/blob/main/skills/engineering/diagnose/SKILL.md) — el loop de debugging disciplinado de 6 fases
 - [Skill /grill-me](https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md) — la sesión de alineación antes de programar
