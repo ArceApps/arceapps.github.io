@@ -7,7 +7,7 @@ tags: ["SDD", "IA", "Workflow", "GitHub Copilot", "BMAD", "OpenSpec", "Spec Kit"
 reference_id: "a3f72b91-4c18-4e2d-9b5c-1d0e6f2a8c34"
 ---
 
-> **Lectura previa recomendada:** [Desarrollo Guiado por Especificaciones con IA Agéntica](/blog/blog-specs-driven-development) · [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Orquestar Agentes de IA en Pipelines CI/CD](/blog/blog-orquestar-agentes-pipeline-cicd)
+> **Lectura previa recomendada:** [Desarrollo Guiado por Especificaciones con IA Agéntica](/blog/specs-driven-development) · [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Orquestar Agentes de IA en Pipelines CI/CD](/blog/blog-orquestar-agentes-pipeline-cicd)
 
 El ecosistema SDD ha producido tres frameworks que abordan el mismo problema fundamental —mantener a los agentes de IA alineados con tu intención arquitectónica— desde tres ángulos completamente diferentes. **GitHub Spec Kit** trata tu proyecto como un documento constitucional. **OpenSpec** trata cada cambio como una propuesta que necesita aprobación antes de que se toque una sola línea de código. **BMAD-METHOD** trata toda tu organización de desarrollo como un escuadrón multi-agente a orquestar.
 

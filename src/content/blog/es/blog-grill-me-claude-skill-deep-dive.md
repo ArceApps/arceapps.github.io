@@ -178,4 +178,4 @@ Este artículo se ha construido a partir del análisis de las siguientes fuentes
 - [r/vibecoding - Viral 'Grill Me' Claude skill...](https://www.reddit.com/r/vibecoding/comments/1swyadr/viral_grill_me_claude_skill_proves_specstocode_is/): Hilo de Reddit con el caso práctico del sistema RAG.
 - [Adversarial Prompting (Prompting Guide)](https://www.promptingguide.ai/risks/adversarial): Base teórica para el stress-testing.
 
-*Lee más en nuestro blog sobre metodologías complementarias como el [Spec-Driven Development](/blog/blog-specs-driven-development) y el [Método Socrático para Prompts en Kotlin](/blog/blog-socratic-method-prompts-kotlin-android).*
+*Lee más en nuestro blog sobre metodologías complementarias como el [Spec-Driven Development](/blog/specs-driven-development) y el [Método Socrático para Prompts en Kotlin](/blog/blog-socratic-method-prompts-kotlin-android).*

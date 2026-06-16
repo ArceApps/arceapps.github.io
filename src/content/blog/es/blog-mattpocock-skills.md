@@ -7,8 +7,8 @@ tags: ["SDD", "IA", "Skills", "Claude Code", "mattpocock", "Arquitectura"]
 reference_id: "b4e7c9a1-5f2d-4e8c-9b3a-7d6e1f2c8a0b"
 related_posts:
   - blog-sdd-frameworks-spec-kit-openspec-bmad
-  - blog-socratic-agents-part-2-sdd-sycophancy
-  - blog-specs-driven-development
+  - socratic-agents-part-2-sdd-sycophancy
+  - specs-driven-development
 ---
 
 ## El Problema Con Las Metodologías Monolíticas de IA
@@ -269,4 +269,4 @@ Eso vale algo. Las mejores prácticas en `/diagnose` y `/tdd` no son teóricas �
 - [The Pragmatic Programmer, Thomas & Hunt](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
 - [Domain-Driven Design, Eric Evans](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
 - [A Philosophy of Software Design, John Ousterhout](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
-- Artículos anteriores sobre SDD en este blog: [Comparativa de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad), [Agentes Socráticos y Sicofancia](/blog/blog-socratic-agents-part-2-sdd-sycophancy), [Specs-Driven Development](/blog/blog-specs-driven-development)
+- Artículos anteriores sobre SDD en este blog: [Comparativa de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad), [Agentes Socráticos y Sicofancia](/blog/socratic-agents-part-2-sdd-sycophancy), [Specs-Driven Development](/blog/specs-driven-development)

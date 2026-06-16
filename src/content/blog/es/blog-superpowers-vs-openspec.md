@@ -7,7 +7,7 @@ tags: ["SDD", "IA", "Superpowers", "OpenSpec", "IA Agéntica", "Metodología", "
 reference_id: "e4d2a1c9-6f8b-4a3d-8e7c-2b1d9f4a5c6d"
 ---
 
-> **Lectura previa recomendada:** [Desarrollo Guiado por Especificaciones con IA Agéntica](/blog/blog-specs-driven-development) · [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Análisis Profundo de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
+> **Lectura previa recomendada:** [Desarrollo Guiado por Especificaciones con IA Agéntica](/blog/specs-driven-development) · [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Análisis Profundo de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
 
 Cuando comencé a incorporar agentes de programación con IA en mi flujo de trabajo diario para ArceApps, la fase de luna de miel no duró mucho. Al principio, parecía magia: dejabas un prompt en el chat, veías cómo el código brotaba de la nada y le dabas a commit. Pero a medida que las aplicaciones crecían en complejidad, también lo hacía la fricción. Los agentes alucinaban decisiones arquitectónicas, sobrescribían abstracciones perfectamente válidas con implementaciones ingenuas y, lo peor de todo, rompían comportamientos existentes en silencio porque carecían del contexto general de lo que estaba intentando construir.
 
