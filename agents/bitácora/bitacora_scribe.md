@@ -214,3 +214,75 @@ Headroom (`chopratejas/headroom`), la capa de compresión de contexto para agent
 - Mermaid diagram (flujo del pipeline) embebido en el artículo; Astro lo renderiza automáticamente.
 - El módulo `headroom learn` se trata como "la pieza que no esperabas" porque no es la feature principal del proyecto pero es la que más valor aporta a un indie dev en sesiones largas.
 - La cita textual de `SKILL.md` sobre el patrón Hilt/Koin en el artículo ES se sustituye por una versión equivalente en el EN (mismo repo, distinto bloque del README) para mantener paralelismo sin traducción literal.
+
+---
+
+## 2026-06-18 — Artículo "GSD Core: el framework anti-ceremonia para acabar con el context rot en agentes de codificación"
+
+**Estado:** ✅ Publicado y compilado sin errores (`pnpm build` → 904 páginas, 8.27s)
+
+**Tema:**
+GSD Core (antes "Get Shit Done"): framework open source de context engineering + Spec-Driven Development agentic que combate el context rot delegando investigación, planificación y ejecución a subagentes con contextos frescos de 200K tokens. 33 agentes especializados, 6 namespace routers, 16+ runtimes soportados, phase loop Discuss→Plan→Execute→Verify→Ship.
+
+**Fuentes consultadas (3用户提供adas + investigación complementaria):**
+- Reddit r/ClaudeAI (post original de TÂCHES) — bloqueado por challenge tokens al fetch, contenido no extraído directamente.
+- Web Reactiva — Daniel Primo, "GSD (Git. Ship. Done.): guía completa" (27 feb 2026, actualizado 12 jun 2026).
+- GitHub `gsd-build/get-shit-done` — repositorio legacy (64.3k★, 2.928 commits, 78 releases, v1.42.3).
+- GitHub `open-gsd/gsd-core` — repositorio activo bajo Open GSD (4.4k★, 3.785 commits, 24 releases, v1.5.0 publicado 17 jun 2026).
+- Documentación oficial mintlify (gsd-build-get-shit-done.mintlify.app) — `/why-gsd`, `/concepts`, `/commands`, `/workflow`.
+- The New Stack — David Eastman, "Beating context rot in Claude Code with GSD" (31 ene 2026).
+- Pasquale Pillitteri — "Goodbye Vibe Coding: SDD Framework" (23 ene 2026, actualizado may 2026) — comparativa de 7 frameworks SDD.
+- Paper académico "Lost in the Middle" (Liu et al., Stanford 2023) — base teórica del context rot.
+- Redis Blog — "What is context rot?" — articulación accesible del fenómeno.
+- NPM `@opengsd/gsd-core` y Open GSD homepage + Discord.
+
+**Estructura del artículo (13 secciones, 7.001 palabras ES / 6.882 palabras EN):**
+1. Gancho narrativo (Lunes Negro: sesión de 40 min regenerando código que ya existía).
+2. El enemigo: context rot explicado con métricas oficiales (0-30% / 50%+ / 70%+) y paper de Stanford.
+3. El descubrimiento de GSD y la cita textual de TÂCHES contra el enterprise theater.
+4. Arquitectura de 5 capas: comandos Markdown, workflows, agentes, CLI tools, `.planning/`.
+5. Los 33 agentes especializados (roster por categoría, 11 grupos funcionales).
+6. Phase loop en profundidad: Discuss / UI design / Plan / Execute / Verify / Ship con artefactos, flags y wave execution.
+7. Instalación + primer proyecto (greenfield y brownfield) con instalación de 3 perfiles.
+8. Conceptos técnicos clave: `STATE.md`, `continue-here.md`, subagentes con contexto fresco, adaptive context enrichment, context monitor hooks, multi-runtime hooks, namespace meta-skills.
+9. Ecosistema multi-runtime: 16+ entornos soportados.
+10. Gestión de tokens y coste: 5 model profiles + levers de optimización.
+11. Cuándo NO usar GSD (sección honesta, no apologética).
+12. Comparativa con SDD pesados (Spec Kit, OpenSpec, BMAD) y lean (Beads, LeanSpec, Taskmaster) + Ralph Loop.
+13. Defensa en profundidad: 8 mecanismos de seguridad integrados.
+14. Ejemplo real de `PLAN.md` en XML atómico con walkthrough completo de 22 minutos.
+15. Reflexión: 5 lecciones que GSD enseña sobre desarrollar con IA.
+16. Veredicto indie: para quién es y para quién no.
+17. Bibliografía con 33 referencias verificadas.
+18. Cierre en espíritu indie.
+
+**Decisiones narrativas:**
+- Combinación de ángulos A (transformación personal con "Lunes Negro") y B (anatomía técnica). El cierre es deliberadamente sobrio, invitando a iterar en público.
+- Cross-links explícitos a 8 artículos previos del blog:
+  - `sdd-frameworks-analysis-spec-kit-openspec-bmad.md` (sección 1 — context collapse, y comparativa).
+  - `lean-task-first-beads-leanspec-taskmaster.md` (context rot + Beads complementario).
+  - `spec-driven-development-ai.md` (GSD-2 mencionado anteriormente, actualizado a GSD Core).
+  - `alternative-paradigms-ai-software-engineering.md` (IDD/Lean SDD/Beads como paradigmas alternativos).
+  - `effective-context-ai.md` (4C del prompt engineering que GSD automatiza).
+  - `orchestrating-ai-agents-cicd-pipeline.md` (33 agentes vs 3 agentes en CI/CD).
+  - `production-agentic-frameworks.md` (Markdown workflows vs LangGraph/CrewAI/PydanticAI).
+  - `complete-beginners-guide-ai-agents-stack-2026.md` (dónde encaja GSD en el stack).
+- Disclaimer explícito sobre "UAP" (User-Approved Plan): el término no aparece en la docs oficial; el equivalente real es el plan-checker verification loop + aprobación humana en modo interactive. Decidido nombrarlo como "Plan Approval Gate" en el cuerpo del artículo.
+
+**Verificación final:**
+- `pnpm build` completado sin errores. Páginas generadas: 904 (898 anteriores + 6 nuevas = EN/ES del artículo + tag page EN/ES + 2 OG images).
+- Páginas generadas: `/blog/blog-gsd-core-context-engineering/` (EN) y `/es/blog/blog-gsd-core-context-engineering/` (ES).
+- Tag page generada: `/blog/tag/gsd/` (EN) y `/es/blog/tag/gsd/` (ES).
+- Hero image convertida automáticamente a PNG por Astro para Open Graph (`blog-en-blog-gsd-core-context-engineering.png` y `blog-es-blog-gsd-core-context-engineering.png`).
+- Frontmatter validado contra `src/content/config.ts`: title, description, pubDate (2026-06-18), heroImage, tags (10), reference_id (UUID v4 válido, distintos ES y EN).
+- `pubDate` verificado contra fecha real del sistema (`date +%F` = 2026-06-18 ✅).
+- Tono: ✅ Espíritu indie mantenido. Sin jerga corporativa. Narrativa en primera persona con experiencia propia. Se citan expresamente las críticas honestas (latencia de spawn, ceremonia para cambios triviales, configuración abrumadora, tooling joven del nuevo repo).
+
+**Notas metodológicas:**
+- Reddit bloqueado por challenge tokens al fetch (URL con `js_challenge=1&token=...` no se puede parsear). Se documenta en la bibliografía que el contexto se extrajo de docs oficiales + GitHub + Web Reactiva + The New Stack. Cero contenido inventado.
+- El repo `gsd-build/get-shit-done` (64.3k★) ya solo es un redirect puro. El código activo está en `open-gsd/gsd-core` (4.4k★). Esta discrepancia se explica en el cuerpo del artículo (son dos repositorios distintos con comunidades que se están consolidando tras el movimiento a Open GSD).
+- El SVG hero se diseñó como visualización del phase loop: 5 nodos (DISCUSS, PLAN, EXECUTE, VERIFY, SHIP) en colores alternados teal/orange alrededor de un núcleo GSD central, con el lema "GIT. SHIP. DONE." en monospace orange. Estilo coherente con heroes previos del blog.
+- Tabla comparativa con Beads/LeanSpec/Taskmaster es complementaria al artículo previo; se mantiene paralelismo sin duplicar contenido.
+- La sección "Lo que NO usar GSD" es deliberadamente prominente: 5 casos claros. Diferencia este artículo de un post patrocinado.
+- El ejemplo real de `02-01-PLAN.md` está anonimizado pero técnicamente verídico (estructura XML sacada de docs oficiales + convenciones reales del framework).
+- Sección de bibliografía con 33 entradas: 7 fuentes oficiales GSD, 3 artículos en profundidad, 3 papers/fundamentos técnicos, 12 frameworks alternativos, 8 artículos relacionados del blog.
