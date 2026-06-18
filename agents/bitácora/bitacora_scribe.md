@@ -286,3 +286,65 @@ GSD Core (antes "Get Shit Done"): framework open source de context engineering +
 - La sección "Lo que NO usar GSD" es deliberadamente prominente: 5 casos claros. Diferencia este artículo de un post patrocinado.
 - El ejemplo real de `02-01-PLAN.md` está anonimizado pero técnicamente verídico (estructura XML sacada de docs oficiales + convenciones reales del framework).
 - Sección de bibliografía con 33 entradas: 7 fuentes oficiales GSD, 3 artículos en profundidad, 3 papers/fundamentos técnicos, 12 frameworks alternativos, 8 artículos relacionados del blog.
+
+---
+
+## 2026-06-19 — Mantenimiento editorial: fix de reference_id, limpieza de BOM y redistribución de fechas
+
+**Estado:** ✅ `pnpm build` exitoso, 904 páginas en 7.26s, 0 errores.
+
+**Motivación:**
+Auditoría completa del blog (`src/content/blog/`) tras detectar tres质量问题 que afectaban a la paridad i18n y a la cadencia de publicación.
+
+### 1. Fix de `reference_id` en 12 pares EN/ES
+Los artículos bilingües se enlazan entre sí mediante el campo `reference_id` del frontmatter (`src/content/blog/[...slug].astro:33-39`). Tras revisar todos los pares se detectaron 12 con IDs no coincidentes, lo que rompía el switcher de idioma y la etiqueta `<link rel="alternate" hreflang>`. En todos los casos se adoptó el ID del archivo EN como canónico (idioma por defecto del sitio) y se actualizó el archivo ES:
+
+| ES (archivo) | ref_id viejo → nuevo |
+|---|---|
+| `blog-agents-of-chaos-seguridad-agentica.md` | `c7e4b2a1-…5b6c` → `d8f5c3b2-…6c7d` |
+| `blog-gsd-core-context-engineering.md` | `…1e93` → `…1e94` |
+| `blog-headroom-compression-layer.md` | `…4c6a` → `…4c6b` |
+| `blog-opencode-subagents.md` | `7a4529bf-…401a` → `bd0a8de2-…dfa9` |
+| `blog-semantic-code-search-tools.md` | `a1b2c3d4-…7890` → `b4c5d6e7-…8d9e` |
+| `github-agentic-workflows-cicd.md` | `f11a1d85-…56b1` → `27a53d69-…29f4` |
+| `blog-servidores-mcp-memoria-cross-agent.md` | `9c5a0e4f-…6f3a` → `0d6b1f5a-…7a4b` |
+| `blog-memoria-seguridad-privacidad-agentica.md` | `a4f8d2c1-…1f9b` → `b7e3f1a2-…2a0c` |
+| `blog-null-safety.md` | revertido a `5765a71d-…1024` (enlace correcto con `kotlin-null-safety-guide.md` EN; el otro EN `null-safety-kotlin-guide.md` es un artículo distinto sin par ES) |
+| `blog-opencode-plugins-memoria-nativos.md` | `7a3f8c2d-…4d1e` → `8b4f9d3e-…5e2f` |
+| `blog-stack-memoria-persistente-implementacion.md` | `1e7c2a6b-…8b5c` → `2f8d3b7c-…9c6d` |
+| `blog-plugmem-microsoft-memoria-agentes.md` | `f2e9b1c4-…0b8a` → `a8c3d5e7-…1b5d` |
+
+**Verificación:** 95 pares EN/ES correctamente enlazados. Solo 2 artículos quedan legítimamente EN-only (`null-safety-kotlin-guide`, `reasoning-models-prompt-engineering-death`) y 0 ES-only.
+
+### 2. Eliminación de BOM en 2 archivos
+Dos archivos `.md` del blog ES empezaban con byte order mark UTF-8 (`EF BB BF`):
+- `src/content/blog/es/blog-kotlin-coroutines.md`
+- `src/content/blog/es/blog-semantic-versioning.md`
+
+Astro los parseaba correctamente, pero el BOM podía romper parsers externos (linter, scripts, herramientas de terceros). Eliminados los 3 bytes iniciales en ambos. Verificado: 0 archivos con BOM en `src/content/`.
+
+### 3. Redistribución de fechas (cluster 2026-06-18)
+El 2026-06-18 tenía 6 artículos publicados en el mismo día, lo que concentraba demasiado la cadencia. Se movieron 5 de ellos a días vacíos de las dos semanas anteriores, manteniendo 1 anclado en el 18-jun como cierre de la serie:
+
+| Artículo (par EN+ES) | Fecha vieja | Fecha nueva |
+|---|---|---|
+| GSD Core | 2026-06-18 | **2026-06-05** |
+| Headroom compression layer | 2026-06-18 | **2026-06-08** |
+| GitHub Agentic Workflows | 2026-06-18 | **2026-06-10** |
+| MCP Servers cross-agent | 2026-06-18 | **2026-06-12** |
+| OpenCode plugins memoria nativos | 2026-06-18 | **2026-06-16** |
+| Persistent memory stack (cierre) | 2026-06-18 | 2026-06-18 *(queda)* |
+
+**Distribución resultante (15 días, 10 artículos):**
+```
+2026-06-05: █  2026-06-06: ·  2026-06-07: ·  2026-06-08: █
+2026-06-09: ·  2026-06-10: █  2026-06-11: ·  2026-06-12: █
+2026-06-13: ██ 2026-06-14: █  2026-06-15: █  2026-06-16: █
+2026-06-17: ·  2026-06-18: █  2026-06-19: █
+```
+5 días aún vacíos (06-06, 06-07, 06-09, 06-11, 06-17) — son huecos naturales de descanso que dan respiro a la serie. Antes había un día con 6 publicaciones; ahora la densidad máxima es 2.
+
+**Notas:**
+- Las fechas se cambiaron tanto en el archivo EN como en su par ES para mantener la simetría de publicación.
+- La navegación siguiente/anterior dentro del post se recalcula automáticamente en `getStaticPaths` (`src/pages/blog/[...slug].astro:21-28`) en función de `pubDate`, por lo que no requiere ajuste manual.
+- El devlog y la sección `apps/` se revisaron y no presentaban clusters análogos, así que no se modificaron.

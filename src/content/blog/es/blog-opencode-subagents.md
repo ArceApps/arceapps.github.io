@@ -5,7 +5,7 @@ pubDate: 2026-05-20
 author: ArceApps
 heroImage: /images/blog-opencode-subagents.svg
 tags: ["ia","opencode","agents"]
-reference_id: "7a4529bf-e678-4cf5-9936-7d8d3e22401a"
+reference_id: "bd0a8de2-6772-4a99-8ef2-c2947c7edfa9"
 ---
 
 ## Introducción

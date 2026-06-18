@@ -4,7 +4,7 @@ description: "Análisis técnico de PlugMem, el sistema de memoria plugin de Mic
 pubDate: 2026-03-26
 heroImage: "/images/plugmem-microsoft-memory.svg"
 tags: ["IA", "Memoria", "Agentes", "LLM", "Microsoft Research", "Grafo de Conocimiento", "Arquitectura"]
-reference_id: "f2e9b1c4-8d3a-4f7e-a2b6-5c1d9e3f0b8a"
+reference_id: "a8c3d5e7-2f1b-4a9c-b6d0-7e4f2c8a1b5d"
 ---
 
 > Este artículo complementa directamente la serie de memoria agéntica de este blog. Si no has leído todavía el análisis general de los frameworks de memoria persistente, te recomiendo empezar por [La Arquitectura de la Memoria Persistente en Agentes IA](/blog/blog-memoria-persistente-agentes-ia). Y si te preocupa la dimensión de seguridad y privacidad, no te pierdas [Memoria Agéntica: Seguridad, Privacidad y el Futuro del Segundo Cerebro de la IA](/blog/blog-memoria-seguridad-privacidad-agentica). Este artículo entra en un ángulo específico que no habíamos cubierto: la propuesta de Microsoft Research para desacoplar completamente la memoria del agente mediante un módulo plugin agnóstico a tareas.

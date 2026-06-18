@@ -1,7 +1,7 @@
 ---
 title: "Cross-Agent MCP Servers for Persistent Memory: supermemory, basic-memory and forgetful In Depth"
 description: "Exhaustive technical comparison of three cross-platform MCP servers to give AI agents persistent memory: opencode-supermemory (cloud), basic-memory (Markdown + graph), and forgetful (atomic Zettelkasten). Works with Claude Code, Codex, Cursor and more."
-pubDate: 2026-06-18
+pubDate: 2026-06-12
 heroImage: "/images/mcp-servers-memory-cross-agent.svg"
 tags: ["AI", "Agents", "Memory", "MCP", "Claude Code", "Codex", "Cursor", "Indie Dev"]
 reference_id: "0d6b1f5a-4b2e-7a8d-bf0b-6e9c5d2f7a4b"

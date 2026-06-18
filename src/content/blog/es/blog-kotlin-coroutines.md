@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Kotlin Coroutines en Android: Programación Asíncrona Moderna"
 description: "Domina las corrutinas de Kotlin para crear aplicaciones Android más eficientes y reactivas, siguiendo las mejores prácticas de arquitectura limpia y MVVM."
 pubDate: 2025-09-20

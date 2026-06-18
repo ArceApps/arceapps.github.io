@@ -1,7 +1,7 @@
 ---
 title: "GitHub Agentic Workflows: Automation With Judgement (Not Just Scripts)"
 description: "CI/CD already automates builds and deploys, but we still spend hours on triage, CI failures, and stale documentation. GitHub Agentic Workflows pushes automation one step further: agents operating inside defined guardrails to handle that repetitive work with judgement."
-pubDate: 2026-06-18
+pubDate: 2026-06-10
 heroImage: "/images/github-agentic-workflows-cicd.svg"
 tags: ["CI/CD", "GitHub Actions", "AI", "Agents", "Automation", "DevOps", "Indie"]
 draft: false

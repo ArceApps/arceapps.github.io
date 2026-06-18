@@ -1,10 +1,10 @@
 ---
 title: "GSD Core: el framework anti-ceremonia para acabar con el context rot en agentes de codificación"
 description: "Análisis profundo de GSD Core (ex Get Shit Done): 33 agentes, wave execution, contexto fresco de 200K por subagente, y el phase loop Discuss→Plan→Execute→Verify→Ship. Cómo instalarlo, cuándo usarlo y cuándo no."
-pubDate: 2026-06-18
+pubDate: 2026-06-05
 heroImage: "/images/gsd-core-context-engineering.svg"
 tags: ["AI", "Workflow", "GSD", "Claude Code", "Spec-Driven Development", "Context Engineering", "Agentic AI", "Productivity", "Open Source", "Indie Dev"]
-reference_id: "f8a4d6c2-7e3b-4a1f-9d5e-2c8b6a4f1e93"
+reference_id: "f8a4d6c2-7e3b-4a1f-9d5e-2c8b6a4f1e94"
 ---
 
 > **Lectura relacionada:** [SDD Frameworks Deep Dive: Spec Kit, OpenSpec y BMAD-METHOD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) · [Lean, Task-First: Beads, LeanSpec y Taskmaster](/blog/lean-task-first-beads-leanspec-taskmaster) · [Spec-Driven Development con IA Agentic](/blog/specs-driven-development) · [Alternative Paradigms in AI-Assisted Engineering](/blog/paradigmas-alternativos-ingenieria-software-ia) · [Effective Context for AI](/blog/contexto-efectivo-ia)

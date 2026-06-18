@@ -1,10 +1,10 @@
 ---
 title: "Headroom: la capa de compresión de contexto que tu agente IA necesita (y que probablemente no sabías que existía)"
 description: "Análisis en profundidad de Headroom, el proyecto open source (33.4k ⭐) que promete reducir entre un 60% y un 95% los tokens que mandas a un LLM sin perder precisión. Probamos sus 6 algoritmos, su CCR reversible y su modo proxy, y lo comparamos con el resto del ecosistema."
-pubDate: 2026-06-18
+pubDate: 2026-06-08
 heroImage: "/images/blog-headroom-compression-layer.svg"
 tags: ["Headroom", "LLM", "Context Compression", "AI Agents", "Token Optimization", "MCP", "Indie Dev"]
-reference_id: "8f3a2c1e-9b4d-4e7a-a1c5-7e9d8b2f4c6a"
+reference_id: "8f3a2c1e-9b4d-4e7a-a1c5-7e9d8b2f4c6b"
 ---
 
 > **Lectura relacionada en el blog:** Hace poco analizamos [Ponytail, el "lazy senior dev" skill](/blog/ponytail-skill-senior-perezoso) y mencionamos un stack de tres capas donde Headroom hacía de **transporte reversible**. Hoy le toca su turno a esa capa, con todo el detalle que merecía. Si trabajas con agentes IA, esto te interesa.

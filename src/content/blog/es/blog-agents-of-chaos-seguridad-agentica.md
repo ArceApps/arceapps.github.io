@@ -5,7 +5,7 @@ pubDate: 2026-03-27
 heroImage: "/images/blog-agents-of-chaos.svg"
 tags: ["IA", "Seguridad", "Agentes", "Red-Team", "Memoria", "Investigación", "Vulnerabilidades"]
 draft: false
-reference_id: "c7e4b2a1-3f9d-4e8c-a5b6-1d2e3f4a5b6c"
+reference_id: "d8f5c3b2-4a0e-5f9d-b6c7-2e3f4a5b6c7d"
 ---
 
 > Este artículo complementa y profundiza en los riesgos prácticos mencionados en [Memoria Agéntica: Seguridad, Privacidad y el Futuro del Segundo Cerebro de la IA](/blog/blog-memoria-seguridad-privacidad-agentica). Si aún no lo has leído, es un buen punto de partida para entender la superficie de ataque de la memoria persistente.

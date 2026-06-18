@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Versionado Semántico en Android: Mejores Prácticas para Desarrolladores"
 description: "Una guía completa sobre cómo implementar versionado semántico en aplicaciones Android, desde versionCode hasta Google Play Store."
 pubDate: 2025-08-25

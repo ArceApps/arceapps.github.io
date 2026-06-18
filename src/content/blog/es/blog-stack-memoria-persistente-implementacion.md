@@ -4,7 +4,7 @@ description: "Deep dive técnico y honesto en el stack de memoria persistente qu
 pubDate: 2026-06-18
 heroImage: "/images/blog-stack-memoria-persistente-implementacion.svg"
 tags: ["IA", "Agentes", "Memoria", "MCP", "OpenCode", "Claude Code", "Codex", "Cursor", "Workflow"]
-reference_id: "1e7c2a6b-5c3f-8b9e-cf1c-7f0d6e3a8b5c"
+reference_id: "2f8d3b7c-6d4a-9c0f-df2d-8a1e7f4b9c6d"
 ---
 
 > Este es el tercer artículo de la serie sobre memoria persistente en agentes. En el [primero](/blog/opencode-plugins-memoria-nativos) cubrimos tres plugins nativos de OpenCode. En el [segundo](/blog/servidores-mcp-memoria-cross-agent), tres servidores MCP cross-agent. Hoy cierro la serie con lo que realmente importa: **cómo combino los mejores en mi flujo real**, con configuraciones verificadas, scripts de mantenimiento y casos de uso honestos — incluyendo los momentos donde cada pieza falla.

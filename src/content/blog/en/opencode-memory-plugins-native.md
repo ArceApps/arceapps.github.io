@@ -1,7 +1,7 @@
 ---
 title: "Native OpenCode Plugins for Persistent Memory: simple-memory, Mnemosyne and true-mem In Depth"
 description: "Comparative technical analysis of three native OpenCode plugins to give your AI agent persistent local memory: simple-memory (logfmt), Mnemosyne (offline Go binary), and true-mem (cognitive psychology)."
-pubDate: 2026-06-18
+pubDate: 2026-06-16
 heroImage: "/images/opencode-memory-plugins-native.svg"
 tags: ["AI", "Agents", "Memory", "OpenCode", "Plugins", "MCP", "Indie Dev"]
 reference_id: "8b4f9d3e-2f0c-5e6b-9d8f-4c7a3b0d5e2f"

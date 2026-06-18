@@ -1,11 +1,11 @@
 ---
 title: "GitHub Agentic Workflows: la automatización con criterio (no solo scripts)"
 description: "CI/CD ya automatiza builds y deploys, pero todavía dedicamos horas a triage, fallos de CI y documentación desalineada. GitHub Agentic Workflows lleva la automatización un paso más allá: agentes que operan dentro de límites definidos para encargarse de ese trabajo repetitivo con criterio."
-pubDate: 2026-06-18
+pubDate: 2026-06-10
 heroImage: "/images/github-agentic-workflows-cicd.svg"
 tags: ["CI/CD", "GitHub Actions", "IA", "Agents", "Automatización", "DevOps", "Indie"]
 draft: false
-reference_id: "f11a1d85-de46-49be-8718-dc2387e556b1"
+reference_id: "27a53d69-538e-496c-8531-58adb79629f4"
 ---
 
 > Este artículo dialoga con dos piezas previas del blog que conviene leer antes o después:

@@ -1,10 +1,10 @@
 ---
 title: "Plugins Nativos de OpenCode para Memoria Persistente: simple-memory, Mnemosyne y true-mem a Fondo"
 description: "Análisis técnico comparativo de tres plugins nativos de OpenCode para dotar a tu agente IA de memoria persistente local: simple-memory (logfmt), Mnemosyne (binario Go offline) y true-mem (psicología cognitiva)."
-pubDate: 2026-06-18
+pubDate: 2026-06-16
 heroImage: "/images/blog-opencode-plugins-memoria-nativos.svg"
 tags: ["IA", "Agentes", "Memoria", "OpenCode", "Plugins", "MCP", "Indie Dev"]
-reference_id: "7a3f8c2d-1e9b-4d5a-8c7e-3b6f2a9c4d1e"
+reference_id: "8b4f9d3e-2f0c-5e6b-9d8f-4c7a3b0d5e2f"
 ---
 
 > Si llevas tiempo trabajando con agentes de codificación, sabes lo que es el "síndrome del agente amnésico": cada sesión empieza desde cero, vuelves a explicar tu arquitectura, tus preferencias y las decisiones que tomaste ayer. En [La Arquitectura de la Memoria Persistente en Agentes IA](/blog/memoria-persistente-agentes-ia/) ya cubrimos el marco teórico (OpenClaw, QMD, Mem0, Cognee). Hoy bajamos al barro con tres plugins reales que puedes instalar hoy mismo en [OpenCode](https://opencode.ai).

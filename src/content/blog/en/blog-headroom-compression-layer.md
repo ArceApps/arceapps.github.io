@@ -1,7 +1,7 @@
 ---
 title: "Headroom: the context compression layer your AI agent needs (and probably didn't know existed)"
 description: "Deep dive into Headroom, the open-source project (33.4k ⭐) that promises 60-95% token reduction on what you send to an LLM without losing accuracy. We test its 6 algorithms, its reversible CCR, and its proxy mode, and compare it to the rest of the ecosystem."
-pubDate: 2026-06-18
+pubDate: 2026-06-08
 heroImage: "/images/blog-headroom-compression-layer.svg"
 tags: ["Headroom", "LLM", "Context Compression", "AI Agents", "Token Optimization", "MCP", "Indie Dev"]
 reference_id: "8f3a2c1e-9b4d-4e7a-a1c5-7e9d8b2f4c6b"

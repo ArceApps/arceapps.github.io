@@ -1,7 +1,7 @@
 ---
 title: "GSD Core: the Anti-Ceremony Framework That Kills Context Rot in Coding Agents"
 description: "Deep dive into GSD Core (formerly Get Shit Done): 33 agents, wave execution, 200K fresh context per subagent, and the Discuss→Plan→Execute→Verify→Ship phase loop. How to install it, when to use it, and when not to."
-pubDate: 2026-06-18
+pubDate: 2026-06-05
 heroImage: "/images/gsd-core-context-engineering.svg"
 tags: ["AI", "Workflow", "GSD", "Claude Code", "Spec-Driven Development", "Context Engineering", "Agentic AI", "Productivity", "Open Source", "Indie Dev"]
 reference_id: "f8a4d6c2-7e3b-4a1f-9d5e-2c8b6a4f1e94"

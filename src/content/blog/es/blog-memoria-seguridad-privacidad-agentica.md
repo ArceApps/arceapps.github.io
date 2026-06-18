@@ -5,7 +5,7 @@ pubDate: 2026-03-25
 heroImage: "/images/blog-memoria-seguridad-agentica.svg"
 tags: ["IA", "Seguridad", "Privacidad", "Memoria", "Agentes", "GDPR", "Cifrado Homomórfico", "Arquitectura"]
 draft: false
-reference_id: "a4f8d2c1-9e3b-4a7d-b5f1-8c2e6d4a1f9b"
+reference_id: "b7e3f1a2-0d4c-5b8e-c6g2-9d3f7e5b2a0c"
 ---
 
 > Este artículo es la continuación directa de **[La Arquitectura de la Memoria Persistente en Agentes IA](/blog/blog-memoria-persistente-agentes-ia)**, donde exploramos los frameworks, metodologías y la evolución del conocimiento personal agéntico. Si todavía no lo has leído, te recomiendo empezar por ahí para entender el *cómo construir* la memoria antes de abordar el *cómo protegerla*.

@@ -4,7 +4,7 @@ description: "Una comparación exhaustiva de CocoIndex Code y CodeGraph — dos 
 pubDate: 2026-05-19
 heroImage: "/images/blog-semantic-code-search.svg"
 tags: ["IA", "Búsqueda de Código", "Claude Code", "Herramientas de Desarrollo", "CocoIndex", "CodeGraph", "Búsqueda Semántica", "Android", "Kotlin", "Productividad"]
-reference_id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+reference_id: "b4c5d6e7-8f9a-0b1c-2d3e-4f5a6b7c8d9e"
 author: "ArceApps"
 ---
 
