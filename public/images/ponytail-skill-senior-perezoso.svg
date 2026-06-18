@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- Dark background -->
+  <rect width="1200" height="630" fill="#0F172A"/>
+
+  <!-- Subtle grid -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.5"/>
+
+  <!-- Title block -->
+  <text x="600" y="68" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="bold" fill="#FF9800" letter-spacing="3">PONYTAIL · LAZY SENIOR DEV MODE</text>
+  <text x="600" y="102" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="bold" fill="#F8FAFC">He says nothing. He writes one line. It works.</text>
+
+  <!-- ============================== -->
+  <!-- LEFT: The bloated code (before) -->
+  <!-- ============================== -->
+  <g transform="translate(60, 160)">
+    <rect x="0" y="0" width="320" height="370" rx="14" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+    <text x="160" y="30" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="bold" fill="#94A3B8">NO SKILL · 293 LINES</text>
+
+    <!-- Fake bloated code lines -->
+    <g font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#64748B">
+      <rect x="14" y="50" width="180" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="64" width="240" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="78" width="220" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="92" width="190" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="106" width="260" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="120" width="170" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="134" width="230" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="148" width="200" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="162" width="250" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="176" width="180" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="190" width="210" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="204" width="240" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="218" width="190" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="232" width="220" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="246" width="260" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="260" width="200" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="274" width="240" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="288" width="180" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="302" width="220" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="316" width="200" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="330" width="240" height="8" rx="2" fill="#334155"/>
+      <rect x="14" y="344" width="200" height="8" rx="2" fill="#334155"/>
+    </g>
+
+    <!-- Big red X over it -->
+    <line x1="20" y1="20" x2="300" y2="350" stroke="#EF4444" stroke-width="5" opacity="0.55" stroke-linecap="round"/>
+    <line x1="300" y1="20" x2="20" y2="350" stroke="#EF4444" stroke-width="5" opacity="0.55" stroke-linecap="round"/>
+  </g>
+
+  <!-- ======================================= -->
+  <!-- CENTER: The 6-rung ladder (the magic)  -->
+  <!-- ======================================= -->
+  <g transform="translate(440, 160)">
+    <text x="160" y="20" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="bold" fill="#018786" letter-spacing="2">THE LADDER</text>
+
+    <!-- The 6 rungs as stacked horizontal bars descending in length -->
+    <!-- Rung 1 (YAGNI) - widest, top, skipped -->
+    <rect x="20" y="40" width="280" height="28" rx="6" fill="#018786" opacity="0.18" stroke="#018786" stroke-width="2"/>
+    <text x="160" y="59" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F8FAFC">1. Does it need to exist?</text>
+
+    <!-- Rung 2 (stdlib) -->
+    <rect x="40" y="80" width="240" height="28" rx="6" fill="#018786" opacity="0.25" stroke="#018786" stroke-width="2"/>
+    <text x="160" y="99" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F8FAFC">2. Stdlib does it?</text>
+
+    <!-- Rung 3 (native) -->
+    <rect x="60" y="120" width="200" height="28" rx="6" fill="#018786" opacity="0.4" stroke="#018786" stroke-width="2"/>
+    <text x="160" y="139" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F8FAFC">3. Native platform?</text>
+
+    <!-- Rung 4 (installed dep) -->
+    <rect x="80" y="160" width="160" height="28" rx="6" fill="#018786" opacity="0.55" stroke="#018786" stroke-width="2"/>
+    <text x="160" y="179" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F8FAFC">4. Installed dep?</text>
+
+    <!-- Rung 5 (one line) -->
+    <rect x="100" y="200" width="120" height="28" rx="6" fill="#FF9800" opacity="0.4" stroke="#FF9800" stroke-width="2"/>
+    <text x="160" y="219" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#F8FAFC">5. One line?</text>
+
+    <!-- Rung 6 (minimum) -->
+    <rect x="120" y="240" width="80" height="28" rx="6" fill="#FF9800" opacity="0.7" stroke="#FF9800" stroke-width="2"/>
+    <text x="160" y="259" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="bold" fill="#0F172A">6. Minimum</text>
+
+    <!-- Arrow from ladder to right side -->
+    <line x1="320" y1="160" x2="380" y2="160" stroke="#FF9800" stroke-width="3" stroke-dasharray="4 4"/>
+    <polygon points="380,155 390,160 380,165" fill="#FF9800"/>
+
+    <!-- Quote below the ladder -->
+    <text x="160" y="310" text-anchor="middle" font-family="ui-serif, Georgia, serif" font-size="13" font-style="italic" fill="#94A3B8">"The ladder is a reflex, not a research project."</text>
+    <text x="160" y="335" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#64748B">— skills/ponytail/SKILL.md</text>
+  </g>
+
+  <!-- ============================== -->
+  <!-- RIGHT: The minimal code (after) -->
+  <!-- ============================== -->
+  <g transform="translate(820, 160)">
+    <rect x="0" y="0" width="320" height="370" rx="14" fill="#1E293B" stroke="#018786" stroke-width="2"/>
+    <text x="160" y="30" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="bold" fill="#5EEAD4">PONYTAIL · 13 LINES</text>
+
+    <!-- One real line of code as the result -->
+    <g transform="translate(20, 60)">
+      <rect x="0" y="0" width="280" height="46" rx="6" fill="#0F172A" stroke="#018786" stroke-width="1.5"/>
+      <text x="14" y="28" font-family="ui-monospace, Menlo, monospace" font-size="13" fill="#5EEAD4">&lt;input type="date"&gt;</text>
+    </g>
+
+    <text x="160" y="135" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#64748B">// ponytail: browser has one</text>
+
+    <!-- Stats block -->
+    <g transform="translate(20, 175)">
+      <text x="140" y="0" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" font-weight="bold" fill="#FF9800" letter-spacing="1.5">BENCHMARKS</text>
+
+      <line x1="20" y1="14" x2="260" y2="14" stroke="#334155" stroke-width="1"/>
+
+      <text x="20" y="38" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#94A3B8">Less code</text>
+      <text x="260" y="38" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="bold" fill="#F8FAFC">80-94%</text>
+
+      <text x="20" y="60" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#94A3B8">Faster</text>
+      <text x="260" y="60" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="bold" fill="#F8FAFC">3-6×</text>
+
+      <text x="20" y="82" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#94A3B8">Cheaper</text>
+      <text x="260" y="82" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="bold" fill="#F8FAFC">42-75%</text>
+
+      <line x1="20" y1="98" x2="260" y2="98" stroke="#334155" stroke-width="1"/>
+
+      <text x="20" y="120" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#94A3B8">Stars (6d)</text>
+      <text x="260" y="120" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="bold" fill="#FF9800">33.9k</text>
+
+      <text x="20" y="142" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#94A3B8">Agents</text>
+      <text x="260" y="142" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="11" font-weight="bold" fill="#F8FAFC">14</text>
+    </g>
+
+    <!-- Footer line -->
+    <line x1="20" y1="345" x2="300" y2="345" stroke="#334155" stroke-width="1"/>
+    <text x="160" y="362" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#64748B">github.com/DietrichGebert/ponytail</text>
+  </g>
+
+  <!-- Bottom bar: Indie spirit -->
+  <line x1="60" y1="565" x2="1140" y2="565" stroke="#1E293B" stroke-width="1"/>
+  <text x="60" y="595" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748B">arceapps · blog · 2026-06-19</text>
+  <text x="1140" y="595" text-anchor="end" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#64748B">The best code is the code you never wrote.</text>
+</svg>
