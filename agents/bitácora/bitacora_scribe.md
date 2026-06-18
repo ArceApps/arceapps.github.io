@@ -132,3 +132,85 @@ Ponytail (`DietrichGebert/ponytail`), el skill viral que codifica una filosofía
 - Reddit fue accesible vía `old.reddit.com` con búsqueda HTML; la API de Reddit devolvía un muro de verificación. Se usaron quotes textuales verificables y se citaron con atribución correcta.
 - La crítica de Colin Eberhardt se incluye como parte central del análisis, no como apéndice. Esto está alineado con el principio "indie ≠ crédulo" y con la honestidad del propio autor de Ponytail al publicar resultados adversos.
 - Los quotes de LinkedIn están traducidos/adaptados al español cuando se citan en el artículo ES, y se mantienen en inglés en el artículo EN. Las quotes de Hacker News y Reddit van en inglés en ambos idiomas (contexto cultural).
+
+---
+
+## 2026-06-18 — Artículo "Headroom: la capa de compresión de contexto que tu agente IA necesita"
+
+**Estado:** ✅ Publicado y compilado sin errores (`pnpm build` → 898 páginas, 6.60s)
+
+**Tema:**
+Headroom (`chopratejas/headroom`), la capa de compresión de contexto para agentes IA que se ejecuta en local, es reversible (CCR) y funciona como librería, proxy, middleware ASGI o servidor MCP. 33.4k ⭐, 2.2k forks, 156 releases, v0.26.0. 6 algoritmos especializados (CacheAligner, ContentRouter, SmartCrusher, CodeCompressor, Kompress-base, CCR). Ahorros 60-95% en workloads reales, con honesty en benchmarks: en code exploration baja al 47%.
+
+**Fuentes consultadas (repo del usuario + investigación complementaria):**
+- GitHub — `chopratejas/headroom` repo completo (33.4k ⭐, 2.2k forks, 156 releases, v0.26.0, Apache 2.0, 78.7% Python + 16.8% Rust).
+- README raw — pipeline diagram, benchmarks, agent compatibility matrix, output token reduction, install, compared-to table, llms.txt.
+- Headroom docs (Vercel) — `/docs/architecture` (3-stage transform pipeline: CacheAligner, SmartCrusher, Context Manager; cache optimization por proveedor), `/docs/ccr` (4 fases: Compression Store, Tool Injection, Response Handler, Context Tracker; BM25 search dentro de compressed data; message-level CCR).
+- HuggingFace — `chopratejas/kompress-v2-base` (model card del text compressor fine-tuned en agentic traces).
+- Trendshift — repo stats + social mentions agregadas (Twitter/X posts de @Tejas_Chopra, @svtransit1, @codephobic, @pand_lin, @jimle_uk, @berryxia, @gangtiser, @mrluiscalderon, @TheRealDiwanshu, @NUjovich).
+- Twitter/X — análisis crítico de @svtransit1 sobre los benchmarks (95% solo en search/logs, 47% en code exploration).
+- GitHub Trending Weekly 2026-06-14 via @pand_lin.
+- PyPI — `headroom-ai` con extras granulares (`[proxy]`, `[mcp]`, `[ml]`, `[code]`, `[memory]`, `[relevance]`, `[image]`, `[agno]`, `[langchain]`, `[evals]`, `[pytorch-mps]`).
+- npm — `headroom-ai` SDK TypeScript.
+- GitHub Container Registry — `ghcr.io/chopratejas/headroom` Docker image.
+- Proyectos relacionados — `rtk-ai/rtk` (CLI rewriter integrado como dependencia), `yvgude/lean-ctx` (CLI/MCP tool configurable vía `HEADROOM_CONTEXT_TOOL`).
+- Documentación oficial de Anthropic Prompt Caching y OpenAI Prompt Caching (mecanismos explotados por CacheAligner).
+- Kneedle algorithm paper (Raghavan et al., USC) — algoritmo usado por SmartCrusher.
+- tree-sitter docs — parser AST de CodeCompressor.
+- BM25 (Okapi BM25) — algoritmo de ranking para in-compressed-content search en CCR.
+- `src/content/config.ts` — schema de blog frontmatter.
+- `agents/bots/bot_Scribe.md` — reglas de redacción y formato.
+
+**Estructura del artículo:**
+- Gancho narrativo: "el truco de la piscina para beber un vaso" (problema de confianza con mis propios agentes IA).
+- Contexto del problema: ventanas crecieron pero la carga creció más, coste asimétrico (output = 5x input), KV cache se invalida, ecosistema MCP madurando.
+- Qué es Headroom (una frase + diagrama Mermaid del pipeline).
+- Los 6 algoritmos en profundidad:
+  1. CacheAligner (sub-milisegundo, hasta 90% cache hit).
+  2. ContentRouter (pattern strategy, hooks de pipeline).
+  3. SmartCrusher (Kneedle, errores preservados, tabla de benchmarks).
+  4. CodeCompressor (AST con tree-sitter, 6 lenguajes).
+  5. Kompress-base (HF model local, ONNX Runtime, air-gapped).
+  6. CCR (4 fases, BM25 search, message-level CCR, ejemplo de código Python).
+- 4 modos de adopción: library / proxy (zero code) / agent wrap / MCP server.
+- `headroom learn` (failure miner que escribe en CLAUDE.md/AGENTS.md/GEMINI.md).
+- Output token reduction (verbosity steering, effort routing, honest reporting con CI).
+- Lo que NO hace: no comprime system prompts, no toca código por defecto, pasa de largo en <200 tokens, dependencia de assets externos, image compression sin probar.
+- Instalación y primer arranque (mi flujo en Linux/Python 3.13).
+- Comparativa honesta con RTK, lean-ctx, Compresr, OpenAI Compaction (tabla con scope, deploy, local, reversible).
+- 5 lecciones para el indie dev: infraestructura vs prompt, reversibilidad bajo demanda, honestidad en métricas, ecosistema OSS Lego, leer la letra pequeña de benchmarks.
+- Veredicto + Verdict.
+- Bibliografía completa con 5 categorías (repo/docs, paquetes, alternativas, artículos del blog, redes, papers).
+
+**Prior Art enlazado (6 artículos previos del blog):**
+- `ponytail-skill-senior-perezoso` / `ponytail-lazy-senior-dev-skill` — cita textual del stack de 3 capas (NeuralMind + Headroom + Ponytail) y referencia cruzada en Related reads.
+- `effective-context-ai` / `blog-contexto-efectivo-ia` — los 4 C's del contexto.
+- `blog-agent-skills-contexto-dinamico` / `ai-agent-skills-dynamic-context` — patrón complementario de skills modulares.
+- `blog-hmem-sqlite-memoria-jerarquica-agentes` / `hmem-sqlite-hierarchical-memory-agents` — memoria persistente ortogonal.
+- `blog-servidores-mcp-memoria-cross-agent` / `mcp-servers-memory-cross-agent` — panorama del ecosistema MCP.
+- `blog-claude-4-6-enterprise-launch` / `claude-4-6-enterprise-launch` — por qué el contexto grande no resuelve el problema de la paja.
+
+**Entregables:**
+- `src/content/blog/es/blog-headroom-compression-layer.md` — 4678 palabras.
+- `src/content/blog/en/blog-headroom-compression-layer.md` — 4425 palabras.
+- `public/images/blog-headroom-compression-layer.svg` — hero image 1200×630 con colores de marca (Teal #018786, Orange #FF9800) sobre fondo oscuro #0F172A. Concepto: pipeline de Headroom con 4 stages numerados, panel izquierdo "UNCOMPRESSED 17,765 tokens" con FATAL preservado, panel derecho "COMPRESSED 1,408 tokens −92%" con la misma línea de error visible, endpoint LLM Provider, badge "33.4k ★ · v0.26.0", tags al pie, grid decorativa.
+- Mismo `reference_id` (con sufijo `-a` en ES, `-b` en EN) en ambos frontmatter para enlazado bilingüe automático.
+
+**Verificación:**
+- `pnpm build` completado sin errores. Failed: 0. Páginas generadas: 898 (de 889 anteriores, +9 = EN/ES del artículo + tag page + 2 internas).
+- Páginas generadas: `/blog/blog-headroom-compression-layer/` (EN) y `/es/blog/blog-headroom-compression-layer/` (ES).
+- Tag page generada: `/blog/tag/headroom/` (EN) y `/es/blog/tag/headroom/` (ES).
+- Hero image convertida automáticamente a PNG por Astro para Open Graph (`blog-en-blog-headroom-compression-layer.png` y `blog-es-blog-headroom-compression-layer.png`).
+- Frontmatter validado contra `src/content/config.ts`: title, description, pubDate (2026-06-18), heroImage, tags (7), draft=false, reference_id (UUID v4 válido).
+- `pubDate` verificado contra fecha real del sistema (`date +%F` = 2026-06-18 ✅).
+- Tono: ✅ Espíritu indie mantenido. Sin jerga corporativa. Narrativa en primera persona desde la perspectiva del artesano. Se citan expresamente las críticas de la comunidad (svtransit1 sobre los benchmarks).
+
+**Notas metodológicas:**
+- Reddit fue bloqueado por verificación al fetch (search API devuelve "Please wait for verification"). Se documenta en la bibliografía que el grueso de la discusión comunitaria se extrajo de Twitter/X vía Trendshift. Cero contenido inventado o no verificable.
+- LinkedIn search no devolvió posts específicos sobre Headroom con la query probada; en su lugar se usaron las menciones agregadas de Trendshift que sí incluyen posts de LinkedIn vía la red de Tejas Chopra.
+- Las cifras del repo (33.4k★) están verificadas a fecha del build; el repo crece a varios cientos de estrellas/día. Se añadió contexto sobre la velocidad de crecimiento sin prometer una cifra futura.
+- El benchmark crítico de @svtransit1 (95% solo en search/logs, 47% en code exploration) se cita textualmente y se incorpora al análisis como contrapeso a la narrativa hero del repo. Esto está alineado con el principio "indie ≠ crédulo".
+- La sección "Lo que NO hace" es deliberadamente larga: 5 puntos honestos. Es la pieza que diferencia este análisis de un post patrocinado.
+- Mermaid diagram (flujo del pipeline) embebido en el artículo; Astro lo renderiza automáticamente.
+- El módulo `headroom learn` se trata como "la pieza que no esperabas" porque no es la feature principal del proyecto pero es la que más valor aporta a un indie dev en sesiones largas.
+- La cita textual de `SKILL.md` sobre el patrón Hilt/Koin en el artículo ES se sustituye por una versión equivalente en el EN (mismo repo, distinto bloque del README) para mantener paralelismo sin traducción literal.
