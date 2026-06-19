@@ -1,10 +1,14 @@
 ---
 title: "MVVM: The View Layer Guide"
-description: "How to implement the View layer in MVVM with Jetpack Compose. State collection, error handling, and separation of concerns."
+description: How to implement the View layer in MVVM with Jetpack Compose. State collection, error handling, and separation of concerns.
 pubDate: 2025-10-15
-heroImage: "/images/placeholder-article-mvvm-view.svg"
+heroImage: /images/placeholder-article-mvvm-view.svg
 tags: ["MVVM", "View", "Android", "Jetpack Compose", "Architecture", "Clean Code"]
-reference_id: "0b7b5c3e-9982-4ee9-a47d-02edb4be618d"
+reference_id: 0b7b5c3e-9982-4ee9-a47d-02edb4be618d
+author: ArceApps
+lastmod: 2025-10-15
+canonical: "https://arceapps.com/blog/mvvm-view-layer-guide/"
+keywords: ["MVVM", "View", "Android", "Jetpack Compose", "Architecture", "Clean Code"]
 ---
 ## 🖼️ The Role of the View
 

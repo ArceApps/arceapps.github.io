@@ -1,9 +1,13 @@
 ---
-title: "2025 W41: Multiplicar por Tres"
-description: "De un juego a tres en tiempo récord. Cómo la abstracción correcta y los Genéricos de Kotlin nos permitieron escalar sin copiar código."
+title: "2025 W41: Multiplicar por Tres (PuzzleHub)"
+description: "De un juego a tres en tiempo record. Como la abstraccion correcta y los Genericos de Kotlin nos permitieron escalar sin copiar codigo."
 pubDate: 2025-10-12
-tags: ["devlog", "kotlin", "generics", "scaling", "refactoring"]
+lastmod: 2025-10-12
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "kotlin", "genericos", "refactoring"]
+canonical: "https://arceapps.com/es/devlog/2025-W41-Multiplicar-Por-Tres/"
 heroImage: "/images/devlog/2025-w41-cover.png"
+tags: ["devlog", "kotlin", "generics", "scaling", "refactoring"]
 ---
 
 Dicen que si haces algo una vez, es una casualidad. Si lo haces dos veces, es una coincidencia. Si lo haces tres veces, es un patrón.

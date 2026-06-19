@@ -1,10 +1,14 @@
 ---
-title: "Cross-Agent MCP Servers for Persistent Memory: supermemory, basic-memory and forgetful In Depth"
+title: Cross-Agent MCP Servers for Persistent
 description: "Exhaustive technical comparison of three cross-platform MCP servers to give AI agents persistent memory: opencode-supermemory (cloud), basic-memory (Markdown + graph), and forgetful (atomic Zettelkasten). Works with Claude Code, Codex, Cursor and more."
 pubDate: 2026-06-12
-heroImage: "/images/mcp-servers-memory-cross-agent.svg"
+heroImage: /images/mcp-servers-memory-cross-agent.svg
 tags: ["AI", "Agents", "Memory", "MCP", "Claude Code", "Codex", "Cursor", "Indie Dev"]
-reference_id: "0d6b1f5a-4b2e-7a8d-bf0b-6e9c5d2f7a4b"
+reference_id: 0d6b1f5a-4b2e-7a8d-bf0b-6e9c5d2f7a4b
+author: ArceApps
+lastmod: 2026-06-12
+canonical: "https://arceapps.com/blog/mcp-servers-memory-cross-agent/"
+keywords: ["AI", "Agents", "Memory", "MCP", "Claude Code", "Codex", "Cursor", "Indie Dev"]
 ---
 
 > The native OpenCode plugins we covered in the [previous article](/blog/opencode-memory-plugins-native) are fantastic for personal use within the OpenCode ecosystem. But what happens when you want to use Claude Code for a serious task, Codex in your CI pipeline, or Cursor for a quick refactor? If your memory lives only in OpenCode, you have to start from zero in each tool. This is where cross-agent MCP servers come in.

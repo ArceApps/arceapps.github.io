@@ -1,10 +1,14 @@
 ---
 title: "Advanced Kotlin Flow: Operators and Patterns"
-description: "Level up with Kotlin Flow. Master operators like combine, zip, flatMapLatest, and learn to handle complex reactive streams in Android."
+description: Level up with Kotlin Flow. Master operators like combine, zip, flatMapLatest, and learn to handle complex reactive streams in Android.
 pubDate: 2025-10-15
-heroImage: "/images/placeholder-article-flow-advanced.svg"
+lastmod: 2025-10-15
+author: ArceApps
+keywords: ["Kotlin", "Flow", "Reactive Programming", "Android", "Coroutines"]
+canonical: "https://arceapps.com/blog/advanced-kotlin-flow-guide/"
+heroImage: /images/placeholder-article-flow-advanced.svg
 tags: ["Kotlin", "Flow", "Reactive Programming", "Android", "Coroutines"]
-reference_id: "bbab8f8a-8eba-4227-988a-15f5c7ec0ad4"
+reference_id: bbab8f8a-8eba-4227-988a-15f5c7ec0ad4
 ---
 ## 🌊 Beyond basic `collect`
 

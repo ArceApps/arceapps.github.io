@@ -2,10 +2,21 @@
 title: "Google Stitch: La Revolución del Diseño UI en Android con IA"
 description: "Descubre cómo Google Stitch, impulsado por Gemini, está transformando el diseño de interfaces en Android. Ejemplos, guías, trucos y su integración con Jetpack Compose y Kotlin."
 pubDate: 2026-06-13
+lastmod: 2026-06-13
+author: ArceApps
+keywords:
+  - "Google Stitch"
+  - "Android"
+  - "Diseño UI"
+  - "IA"
+  - "Guía"
+canonical: "https://arceapps.com/es/blog/google-stitch-android-guide/"
 heroImage: "/images/google-stitch-hero.svg"
 tags: ["IA", "Google Stitch", "Android", "Jetpack Compose", "Kotlin", "UI/UX"]
 reference_id: "dd55d5f0-1ac1-4f8b-ac2d-9e6baa28e81d"
 ---
+
+
 
 ## 🎨 Introducción: El Cuello de Botella del Diseño UI
 

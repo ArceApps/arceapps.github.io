@@ -1,9 +1,13 @@
 ---
-title: "Advanced KMP: UI Sharing Strategies with Compose Multiplatform 1.8"
-description: "Exploring complex navigation patterns and state management across Android and iOS using Kotlin Multiplatform in 2026."
+title: "Advanced KMP: UI Sharing Strategies with C..."
+description: Exploring complex navigation patterns and state management across Android and iOS using Kotlin Multiplatform in 2026.
 pubDate: 2026-02-06
-heroImage: "/images/tech-kmp-ui-sync.svg"
+heroImage: /images/tech-kmp-ui-sync.svg
 tags: ["Kotlin Multiplatform", "KMP", "Compose Multiplatform", "iOS", "Android", "Architecture"]
+author: ArceApps
+lastmod: 2026-02-06
+canonical: "https://arceapps.com/blog/kmp-advanced-ui-strategies/"
+keywords: ["Kotlin Multiplatform", "KMP", "Compose Multiplatform", "iOS", "Android", "Architecture"]
 ---
 
 Kotlin Multiplatform (KMP) has matured significantly. As discussed in my [State of KMP 2025](/blog/kotlin-multiplatform-2025-state) article, sharing business logic is now standard practice. However, with the release of **Compose Multiplatform 1.8**, the debate has shifted to the UI layer: *How much UI should we actually share?*

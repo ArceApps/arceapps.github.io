@@ -1,10 +1,14 @@
 ---
 title: "AI Code Review: Your New Tireless Agent Companion"
-description: "Learn how to configure AI agents to perform automated code reviews, catch subtle bugs, and enforce standards before a human intervenes."
+description: Learn how to configure AI agents to perform automated code reviews, catch subtle bugs, and enforce standards before a human intervenes.
 pubDate: 2025-11-05
-heroImage: "/images/placeholder-article-code-review-ia.svg"
+heroImage: /images/placeholder-article-code-review-ia.svg
 tags: ["AI", "Code Review", "DevOps", "Quality Assurance", "GitHub Actions"]
-reference_id: "5b17aef6-0aca-453a-a030-06f848e5c51e"
+reference_id: 5b17aef6-0aca-453a-a030-06f848e5c51e
+author: ArceApps
+lastmod: 2025-11-05
+canonical: "https://arceapps.com/blog/ai-code-reviews/"
+keywords: ["AI", "Code Review", "DevOps", "Quality Assurance", "GitHub Actions"]
 ---
 ## 🧐 The Problem with Human Code Review
 

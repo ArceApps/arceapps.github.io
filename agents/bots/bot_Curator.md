@@ -45,3 +45,8 @@ Reply to the user confirming the update and listing the 2 titles chosen.
 *   We prefer **"Why"** and **"How"** over just news.
 *   We love **Kotlin Multiplatform**, **Jetpack Compose**, **Gemini**, and **On-device AI**.
 *   We avoid rumors or leaks; focus on released/beta technology.
+*   **Criterio SEO:** Al evaluar una noticia, considerar si tiene tool
+    name claro y potencial de keyword search ("AI improves coding" se
+    descarta; "Anthropic launches Claude 4.6" se prioriza). Las
+    noticias con tool/subject identificable generan artículos con
+    mejor SEO; las que no, se descartan.

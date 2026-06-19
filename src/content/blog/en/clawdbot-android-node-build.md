@@ -1,10 +1,14 @@
 ---
 title: "Clawdbot: Hosting Your Own AI Assistant"
-description: "How to deploy Clawdbot on Android. A self-hosted, open-source AI assistant that respects your privacy. Architecture and setup guide."
+description: How to deploy Clawdbot on Android. A self-hosted, open-source AI assistant that respects your privacy. Architecture and setup guide.
 pubDate: 2025-10-31
-heroImage: "/images/placeholder-article-clawdbot.svg"
+heroImage: /images/placeholder-article-clawdbot.svg
 tags: ["Android", "AI", "Open Source", "Clawdbot", "Self-hosting", "Privacy"]
-reference_id: "3eb5c086-8be4-48c6-a348-5973806f84e9"
+reference_id: 3eb5c086-8be4-48c6-a348-5973806f84e9
+author: ArceApps
+lastmod: 2025-10-31
+canonical: "https://arceapps.com/blog/clawdbot-android-node-build/"
+keywords: ["Android", "AI", "Open Source", "Clawdbot", "Self-hosting", "Privacy"]
 ---
 ## 🤖 Why Self-Host?
 

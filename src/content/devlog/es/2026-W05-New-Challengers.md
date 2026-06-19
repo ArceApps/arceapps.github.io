@@ -1,9 +1,13 @@
 ---
-title: "2026 W05: La Búsqueda de la Verdad Matemática (y por qué importamos una librería de física cuántica)"
-description: "Una crónica de 3000 palabras sobre cómo intentamos añadir dos juegos 'sencillos' y acabamos peleando con problemas NP-Completos. La historia de cómo un simple tablero de luces nos obligó a usar SAT Solvers industriales y cómo la división entera casi destruye nuestra salud mental."
+title: "2026 W05: La Busqueda de la Verdad Matematica (PuzzleHub)"
+description: "Como intentamos anadir dos juegos sencillos y acabamos peleando con problemas NP-Completos. La historia de un tablero de luces y SAT Solvers industriales."
 pubDate: 2026-02-01
-tags: ["devlog", "algorithms", "sat-solver", "procedural-generation", "difficulty-design", "android", "math"]
+lastmod: 2026-02-01
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "algoritmos", "sat-solver", "matematicas"]
+canonical: "https://arceapps.com/es/devlog/2026-W05-New-Challengers/"
 heroImage: "/images/devlog-default.svg"
+tags: ["devlog", "algorithms", "sat-solver", "procedural-generation", "difficulty-design", "android", "math"]
 ---
 
 Esta semana iba a ser tranquila. Lo juro.

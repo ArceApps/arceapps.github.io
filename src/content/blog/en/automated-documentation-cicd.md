@@ -1,10 +1,14 @@
 ---
 title: "Automated Documentation: CI/CD with Dokka and MkDocs"
-description: "Generate and deploy your Android documentation automatically. How to set up GitHub Actions to publish KDoc and MkDocs to GitHub Pages."
+description: Generate and deploy your Android documentation automatically. How to set up GitHub Actions to publish KDoc and MkDocs to GitHub Pages.
 pubDate: 2025-10-18
-heroImage: "/images/placeholder-article-automated-docs.svg"
+heroImage: /images/placeholder-article-automated-docs.svg
 tags: ["Documentation", "CI/CD", "Dokka", "GitHub Actions", "Android", "MkDocs"]
-reference_id: "1299d2ab-5ddf-49e3-b1dc-6c4925f7f5fd"
+reference_id: 1299d2ab-5ddf-49e3-b1dc-6c4925f7f5fd
+author: ArceApps
+lastmod: 2025-10-18
+canonical: "https://arceapps.com/blog/automated-documentation-cicd/"
+keywords: ["Documentation", "CI/CD", "Dokka", "GitHub Actions", "Android", "MkDocs"]
 ---
 ## 📝 The Documentation Gap
 

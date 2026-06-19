@@ -1,7 +1,11 @@
 ---
-title: "2025 W51: Breaking the Language Barrier"
+title: "2025 W51: Breaking the Language Barrier (PuzzleHub)"
 description: "A massive internationalization sprint to eliminate hardcoded text and prepare PuzzleSuite for the world."
 pubDate: 2025-12-21
+lastmod: 2025-12-21
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "i18n", "refactoring", "quality"]
+canonical: "https://arceapps.com/devlog/2025-w51-massive-internationalization/"
 tags: ["devlog", "i18n", "refactoring", "quality"]
 heroImage: "/images/devlog-w51-i18n.svg"
 ---

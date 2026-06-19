@@ -1,10 +1,14 @@
 ---
 title: "Agents.md Standard: Blueprint for AI-Ready Projects"
-description: "Introducing the Agents.md standard. A file convention to context-load AI agents with project architecture, coding rules, and domain knowledge."
+description: Introducing the Agents.md standard. A file convention to context-load AI agents with project architecture, coding rules, and domain knowledge.
 pubDate: 2025-05-15
-heroImage: "/images/placeholder-article-agents-md.svg"
+lastmod: 2025-05-15
+author: ArceApps
+keywords: ["AI", "Standard", "Agents", "Documentation", "Productivity", "Workflow"]
+canonical: "https://arceapps.com/blog/agents-md-standard/"
+heroImage: /images/placeholder-article-agents-md.svg
 tags: ["AI", "Standard", "Agents", "Documentation", "Productivity", "Workflow"]
-reference_id: "18f8fad7-3b63-4ea6-a8b2-bf9e057ed125"
+reference_id: 18f8fad7-3b63-4ea6-a8b2-bf9e057ed125
 ---
 ## 📜 The Problem: Context Amnesia
 

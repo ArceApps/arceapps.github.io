@@ -1,7 +1,11 @@
 ---
-title: "2026 W01: House Cleaning and Solid Foundations (Extended Version)"
+title: "2026 W01: House Cleaning and Solid Foundations (PuzzleHub)"
 description: "Starting the year by bringing order to chaos. A technical chronicle of how we dismantled a 600-line ViewModel, unified time logic with Flows, and improved Slitherlink's invisible accessibility."
 pubDate: 2026-01-07
+lastmod: 2026-01-07
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "refactoring", "hitori", "accessibility"]
+canonical: "https://arceapps.com/devlog/2026-w01-hitori-kakuro-refactoring/"
 tags: ["devlog", "refactoring", "hitori", "accessibility", "clean-architecture", "technical-debt", "kotlin"]
 heroImage: "/images/devlog-w01-refactoring.svg"
 ---

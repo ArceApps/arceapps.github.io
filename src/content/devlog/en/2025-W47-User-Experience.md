@@ -1,7 +1,11 @@
 ---
-title: "2025 W47: The White Lie and the Redesign"
+title: "2025 W47: The White Lie and the Redesign (PuzzleHub)"
 description: "How we redesigned the app's main entrance and discovered we had been lying to our users about their stats."
 pubDate: 2025-11-23
+lastmod: 2025-11-23
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "frontend", "stats", "design-system"]
+canonical: "https://arceapps.com/devlog/2025-w47-user-experience/"
 tags: ["devlog", "frontend", "stats", "bugfix", "design-system"]
 heroImage: "/images/devlog-w47-ux-design.svg"
 ---

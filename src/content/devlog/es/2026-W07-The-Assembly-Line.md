@@ -1,9 +1,13 @@
 ---
-title: "2026 W07: La Línea de Montaje (y el placer de borrar código legado)"
-description: "Cómo pasamos de la artesanía a la producción industrial: 11 tutoriales interactivos en 7 días. Una crónica técnica sobre escalado, deuda técnica y el arte de enseñar geometría sin usar palabras."
+title: "2026 W07: La Linea de Montaje - 11 Tutoriales en 7 Dias (PuzzleHub)"
+description: "Como pasamos de la artesania a la produccion industrial: 11 tutoriales interactivos en 7 dias. Cronica tecnica sobre escalado y deuda tecnica."
 pubDate: 2026-02-15
-tags: ["devlog", "scaling", "refactoring", "ux-design", "education", "legacy-code", "kotlin", "jetpack-compose"]
+lastmod: 2026-02-15
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "escalado", "refactoring", "educacion"]
+canonical: "https://arceapps.com/es/devlog/2026-W07-The-Assembly-Line/"
 heroImage: "/images/devlog-default.svg"
+tags: ["devlog", "scaling", "refactoring", "ux-design", "education", "legacy-code", "kotlin", "jetpack-compose"]
 ---
 
 El lunes 9 de febrero me desperté con una sensación extraña en el estómago. Una mezcla de emoción y pánico existencial.

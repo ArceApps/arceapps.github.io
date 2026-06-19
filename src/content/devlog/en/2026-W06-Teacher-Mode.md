@@ -1,7 +1,11 @@
 ---
-title: "2026 W06: Teacher Mode (Or how we taught users to think like the machine)"
+title: "2026 W06: Teacher Mode (PuzzleHub)"
 description: "We redesigned the onboarding system. No more static texts. We implemented an interactive 'Teacher Mode' that guides you step by step, detects your confusion, and celebrates your small victories."
 pubDate: 2026-02-08
+lastmod: 2026-02-08
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "ux", "onboarding", "tutorial"]
+canonical: "https://arceapps.com/devlog/2026-w06-teacher-mode/"
 tags: ["devlog", "ux", "onboarding", "tutorial", "education", "design"]
 heroImage: "/images/devlog-default.svg"
 ---

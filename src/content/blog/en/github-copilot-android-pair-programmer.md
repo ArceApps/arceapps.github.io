@@ -1,10 +1,14 @@
 ---
 title: "GitHub Copilot in Android: Your AI Pair Programmer"
-description: "Maximize your productivity in Android Studio with GitHub Copilot. Advanced prompting techniques, test generation, and assisted refactoring."
+description: Maximize your productivity in Android Studio with GitHub Copilot. Advanced prompting techniques, test generation, and assisted refactoring.
 pubDate: 2025-10-10
-heroImage: "/images/placeholder-article-copilot-android.svg"
+heroImage: /images/placeholder-article-copilot-android.svg
 tags: ["AI", "GitHub Copilot", "Android", "Productivity", "IDE"]
-reference_id: "f43f93b9-d757-4cd9-a01d-0662a05e1b55"
+reference_id: f43f93b9-d757-4cd9-a01d-0662a05e1b55
+author: ArceApps
+lastmod: 2025-10-10
+canonical: "https://arceapps.com/blog/github-copilot-android-pair-programmer/"
+keywords: ["AI", "GitHub Copilot", "Android", "Productivity", "IDE"]
 ---
 ## 🤖 What really is GitHub Copilot?
 

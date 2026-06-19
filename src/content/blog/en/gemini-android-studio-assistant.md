@@ -1,10 +1,14 @@
 ---
 title: "Gemini in Android Studio: The AI Assistant"
-description: "Review of Gemini Code Assist for Android developers. How does it compare to Copilot? Best practices for prompt engineering in the IDE."
+description: Review of Gemini Code Assist for Android developers. How does it compare to Copilot? Best practices for prompt engineering in the IDE.
 pubDate: 2025-10-15
-heroImage: "/images/placeholder-article-gemini.svg"
+heroImage: /images/placeholder-article-gemini.svg
 tags: ["Android", "Gemini", "Android Studio", "AI", "Productivity", "Copilot"]
-reference_id: "4f64ccd2-e466-43b5-93df-f29d2de5eb91"
+reference_id: 4f64ccd2-e466-43b5-93df-f29d2de5eb91
+author: ArceApps
+lastmod: 2025-10-15
+canonical: "https://arceapps.com/blog/gemini-android-studio-assistant/"
+keywords: ["Android", "Gemini", "Android Studio", "AI", "Productivity", "Copilot"]
 ---
 ## 🤖 The Assistant Built-In
 

@@ -1,10 +1,14 @@
 ---
 title: "Conventional Commits: The Communication Standard"
-description: "Why your commit messages matter. A guide to Conventional Commits for better team communication and automated tooling."
+description: Why your commit messages matter. A guide to Conventional Commits for better team communication and automated tooling.
 pubDate: 2025-06-21
-heroImage: "/images/placeholder-article-conventional-commits.svg"
+heroImage: /images/placeholder-article-conventional-commits.svg
 tags: ["Git", "Best Practices", "Conventional Commits", "DevOps", "Communication"]
-reference_id: "c81d684b-4edf-4881-afb5-722e474a8980"
+reference_id: c81d684b-4edf-4881-afb5-722e474a8980
+author: ArceApps
+lastmod: 2025-06-21
+canonical: "https://arceapps.com/blog/conventional-commits-guide/"
+keywords: ["Git", "Best Practices", "Conventional Commits", "DevOps", "Communication"]
 ---
 ## 📝 The Importance of Commit Messages
 

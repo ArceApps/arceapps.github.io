@@ -1,10 +1,14 @@
 ---
-title: "Google Stitch: The AI-Powered UI Design Revolution in Android"
-description: "Discover how Google Stitch, powered by Gemini, is transforming UI design in Android. Examples, guides, tricks, and its integration with Jetpack Compose and Kotlin."
+title: Google Stitch
+description: Discover how Google Stitch, powered by Gemini, is transforming UI design in Android. Examples, guides, tricks, and its integration with Jetpack Compose and Kotlin.
 pubDate: 2026-06-13
-heroImage: "/images/google-stitch-hero.svg"
+heroImage: /images/google-stitch-hero.svg
 tags: ["AI", "Google Stitch", "Android", "Jetpack Compose", "Kotlin", "UI/UX"]
-reference_id: "dd55d5f0-1ac1-4f8b-ac2d-9e6baa28e81d"
+reference_id: dd55d5f0-1ac1-4f8b-ac2d-9e6baa28e81d
+author: ArceApps
+lastmod: 2026-06-13
+canonical: "https://arceapps.com/blog/google-stitch-android-guide/"
+keywords: ["AI", "Google Stitch", "Android", "Jetpack Compose", "Kotlin", "UI/UX"]
 ---
 
 ## 🎨 Introduction: The UI Design Bottleneck

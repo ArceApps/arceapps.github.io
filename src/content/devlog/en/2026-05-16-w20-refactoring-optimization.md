@@ -1,7 +1,11 @@
 ---
-title: "W20: Bilingual Refactoring, Optimization, and Security"
+title: "W20: Bilingual Refactoring, Optimization, and Security (ArceApps)"
 description: "An engineering chronicle detailing architectural improvements, performance optimizations, XSS security mitigations, and enriched unit testing at ArceApps."
 pubDate: 2026-05-16
+lastmod: 2026-05-16
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "performance", "security", "vitest"]
+canonical: "https://arceapps.com/devlog/2026-05-16-w20-refactoring-optimization/"
 tags: ["devlog", "arceapps", "performance", "security", "vitest", "i18n"]
 heroImage: "/images/devlog-default.svg"
 reference_id: "2026-w20-refactoring-optimization"

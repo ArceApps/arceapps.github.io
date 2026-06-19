@@ -1,10 +1,14 @@
 ---
-title: "The Architecture of Persistent AI Agent Memory: Frameworks, Methodologies and the Evolution of Personal Knowledge Management"
-description: "A deep technical analysis of how AI agents persist, consolidate and retrieve information autonomously. From OpenClaw and QMD to Mem0, Cognee and neurobiological memory models."
+title: The Architecture of Persistent AI Agent
+description: A deep technical analysis of how AI agents persist, consolidate and retrieve information autonomously. From OpenClaw and QMD to Mem0, Cognee and neurobiological memory models.
 pubDate: 2026-03-17
-heroImage: "/images/placeholder-article-ai-memory.svg"
+lastmod: 2026-03-17
+author: ArceApps
+keywords: ["AI", "Agents", "Memory", "PKM", "Architecture", "OpenClaw", "RAG", "Knowledge Graph"]
+canonical: "https://arceapps.com/blog/ai-agent-memory-persistence-guide/"
+heroImage: /images/placeholder-article-ai-memory.svg
 tags: ["AI", "Agents", "Memory", "PKM", "Architecture", "OpenClaw", "RAG", "Knowledge Graph"]
-reference_id: "c16722cd-c33d-43fe-9e47-e2961095fac5"
+reference_id: c16722cd-c33d-43fe-9e47-e2961095fac5
 ---
 
 > This article was inspired by a post from [Nat Eliason (@nateliason)](https://x.com/nateliason/status/2017636775347331276), one of the most thoughtful voices exploring how AI agents can work with truly persistent memory systems. His research and practical experiments with tools like OpenClaw and the PARA method were the spark that led me to dive deep into this topic. All credit to him for the initial conceptual framing.

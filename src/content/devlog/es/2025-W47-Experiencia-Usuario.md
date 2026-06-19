@@ -1,9 +1,13 @@
 ---
-title: "2025 W47: La Mentira Piadosa y el Rediseño"
-description: "Cómo rediseñamos la entrada principal de la aplicación y descubrimos que habíamos estado mintiendo a nuestros usuarios sobre sus estadísticas."
+title: "2025 W47: La Mentira Piadosa y el Rediseño (PuzzleHub)"
+description: "Como redisenamos la entrada principal de la aplicacion y descubrimos que habiamos estado mintiendo a nuestros usuarios sobre sus estadisticas."
 pubDate: 2025-11-23
-tags: ["devlog", "frontend", "stats", "bugfix", "design-system"]
+lastmod: 2025-11-23
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "frontend", "estadisticas", "diseno"]
+canonical: "https://arceapps.com/es/devlog/2025-W47-Experiencia-Usuario/"
 heroImage: "/images/devlog-w47-ux-design.svg"
+tags: ["devlog", "frontend", "stats", "bugfix", "design-system"]
 ---
 
 Dicen que no hay segunda oportunidad para una primera impresión. En una aplicación móvil, esa primera impresión ocurre en los primeros 3 segundos tras el lanzamiento.

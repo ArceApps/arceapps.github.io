@@ -1,10 +1,14 @@
 ---
 title: "The Billion Dollar Mistake: Null Safety in Kotlin vs Java"
-description: "Why is 'null' so dangerous? Discover how Kotlin solves the NullPointerException problem at the compiler level and how to design null-safe APIs."
+description: Why is 'null' so dangerous? Discover how Kotlin solves the NullPointerException problem at the compiler level and how to design null-safe APIs.
 pubDate: 2025-09-10
-heroImage: "/images/placeholder-article-null-safety.svg"
+heroImage: /images/placeholder-article-null-safety.svg
 tags: ["Kotlin", "Java", "Null Safety", "Language Design", "Clean Code"]
-reference_id: "77f7f9fe-81a6-4367-93d9-8d52830301d9"
+reference_id: 77f7f9fe-81a6-4367-93d9-8d52830301d9
+author: ArceApps
+lastmod: 2025-09-10
+canonical: "https://arceapps.com/blog/null-safety-kotlin-guide/"
+keywords: ["Kotlin", "Java", "Null Safety", "Language Design", "Clean Code"]
 ---
 ## 💥 Tony Hoare's Confession
 

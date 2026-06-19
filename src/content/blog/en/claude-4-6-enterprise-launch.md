@@ -1,10 +1,14 @@
 ---
-title: "Anthropic Claude 4.6: Enterprise Integration and Infinite Context"
-description: "Claude 4.6 Opus and Sonnet arrive on Microsoft Foundry with a 1 Million Token context window. Anthropic solidifies its place in the enterprise with deep integration into Azure and everyday work tools."
+title: Anthropic Claude 4.6
+description: Claude 4.6 Opus and Sonnet arrive on Microsoft Foundry with a 1 Million Token context window. Anthropic solidifies its place in the enterprise with deep integration into Azure and everyday work tools.
 pubDate: 2026-02-22
-heroImage: "/images/claude-4-6-launch-placeholder.svg"
+heroImage: /images/claude-4-6-launch-placeholder.svg
 tags: ["AI", "Anthropic", "Claude", "Enterprise", "Azure", "Context Window"]
-reference_id: "06e62ddc-a7d2-4269-83ff-251f931fd773"
+reference_id: 06e62ddc-a7d2-4269-83ff-251f931fd773
+author: ArceApps
+lastmod: 2026-02-22
+canonical: "https://arceapps.com/blog/claude-4-6-enterprise-launch/"
+keywords: ["AI", "Anthropic", "Claude", "Enterprise", "Azure", "Context Window"]
 ---
 
 ## 🏢 Claude Goes Corporate (In a Good Way)

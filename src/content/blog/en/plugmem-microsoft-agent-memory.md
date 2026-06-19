@@ -1,10 +1,14 @@
 ---
-title: "PlugMem: Microsoft Research's Task-Agnostic Memory Module That Every LLM Agent Needs"
-description: "A technical deep-dive into PlugMem, Microsoft Research's plugin memory system that transforms raw LLM agent interactions into reusable structured knowledge. How its three-component architecture (Structure, Retrieval, and Reasoning) outperforms task-specific memory designs."
+title: "PlugMem: Microsoft Research's Task-Agnosti..."
+description: A technical deep-dive into PlugMem, Microsoft Research's plugin memory system that transforms raw LLM agent interactions into reusable structured knowledge. How its three-component architecture (Structure, Retrieval, and Reasoning) outperforms task-specific memory designs.
 pubDate: 2026-03-26
-heroImage: "/images/plugmem-microsoft-memory.svg"
+heroImage: /images/plugmem-microsoft-memory.svg
 tags: ["AI", "Memory", "Agents", "LLM", "Microsoft Research", "Knowledge Graph", "Architecture"]
-reference_id: "a8c3d5e7-2f1b-4a9c-b6d0-7e4f2c8a1b5d"
+reference_id: a8c3d5e7-2f1b-4a9c-b6d0-7e4f2c8a1b5d
+author: ArceApps
+lastmod: 2026-03-26
+canonical: "https://arceapps.com/blog/plugmem-microsoft-agent-memory/"
+keywords: ["AI", "Memory", "Agents", "LLM", "Microsoft Research", "Knowledge Graph", "Architecture"]
 ---
 
 > This article is a direct complement to the agentic memory series on this blog. If you have not yet read the broad analysis of persistent memory frameworks, start with [The Architecture of Persistent AI Agent Memory](/blog/ai-agent-memory-persistence-guide). For the security and privacy angle, check out [Agentic Memory: Security, Privacy, and the Future of the AI Second Brain](/blog/memory-security-privacy-agentic). This article covers a specific angle we had not addressed yet: Microsoft Research's proposal to fully decouple agent memory through a task-agnostic plugin module.

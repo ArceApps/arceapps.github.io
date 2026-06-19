@@ -2,9 +2,13 @@ import { defineCollection, z } from 'astro:content';
 
 const blogCollection = defineCollection({
   schema: z.object({
-    title: z.string(),
-    description: z.string(),
+    title: z.string().max(100),
+    description: z.string().min(80).max(300),
     pubDate: z.coerce.date(),
+    lastmod: z.coerce.date(),
+    author: z.string().default('ArceApps'),
+    keywords: z.array(z.string()).min(3).max(8),
+    canonical: z.string().url().optional(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().optional().default(false),
@@ -35,9 +39,13 @@ const appsCollection = defineCollection({
 
 const devlogCollection = defineCollection({
   schema: z.object({
-    title: z.string(),
-    description: z.string(),
+    title: z.string().max(100),
+    description: z.string().min(80).max(300),
     pubDate: z.coerce.date(),
+    lastmod: z.coerce.date(),
+    author: z.string().default('ArceApps'),
+    keywords: z.array(z.string()).min(3).max(5),
+    canonical: z.string().url().optional(),
     heroImage: z.string().optional(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().optional().default(false),

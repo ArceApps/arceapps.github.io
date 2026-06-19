@@ -1,10 +1,14 @@
 ---
 title: "Paperclip AI: The Platform That Enables Zero-Human Companies"
-description: "Discover how Paperclip AI revolutionizes business management with autonomous AI agents, heartbeats, budgets, and multi-team governance to operate organizations without human intervention."
+description: Discover how Paperclip AI revolutionizes business management with autonomous AI agents, heartbeats, budgets, and multi-team governance to operate organizations without human intervention.
 pubDate: 2026-04-04
-heroImage: "/images/blog-paperclip-ai-zero-human-company.svg"
+heroImage: /images/blog-paperclip-ai-zero-human-company.svg
 tags: ["AI", "Paperclip", "Agents", "Automation", "Multi-Agent", "Governance"]
 draft: false
+author: ArceApps
+lastmod: 2026-04-04
+canonical: "https://arceapps.com/blog/paperclip-ai-zero-human-company/"
+keywords: ["AI", "Paperclip", "Agents", "Automation", "Multi-Agent", "Governance"]
 ---
 
 > If you're not yet familiar with what AI agents are or how to configure them in a project, this series will give you the foundation you need:

@@ -1,7 +1,11 @@
 ---
-title: "Automated QA as an Indie: Testing the ArceApps Ecosystem"
+title: "Automated QA as an Indie: Testing the ArceApps Ecosystem (ArceApps)"
 description: "A comprehensive analysis of how I built an enterprise-grade automated testing pipeline using Playwright and Vitest for a single-developer portfolio."
 pubDate: "2024-05-19"
+lastmod: "2024-05-19"
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "testing", "qa", "playwright"]
+canonical: "https://arceapps.com/devlog/automated-qa-indie-2024/"
 heroImage: "/images/devlog/devlog-testing-qa.svg"
 tags: ['testing', 'qa', 'playwright']
 reference_id: "automated-qa-indie-2024"

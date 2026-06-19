@@ -1,10 +1,14 @@
 ---
 title: "Kotlin 2.1: Guard Clauses, K2 and the Future of the Language"
-description: "Kotlin 2.1 arrives to consolidate the K2 compiler revolution. We analyze the new syntactic features and why you should update today."
+description: Kotlin 2.1 arrives to consolidate the K2 compiler revolution. We analyze the new syntactic features and why you should update today.
 pubDate: 2025-01-28
-heroImage: "/images/placeholder-article-kotlin-2-1.svg"
+heroImage: /images/placeholder-article-kotlin-2-1.svg
 tags: ["Kotlin", "K2", "Compiler", "Performance", "Language Features", "Updates"]
-reference_id: "3c516e3b-a58e-440b-b7b5-6b0446996231"
+reference_id: 3c516e3b-a58e-440b-b7b5-6b0446996231
+author: ArceApps
+lastmod: 2025-01-28
+canonical: "https://arceapps.com/blog/kotlin-2-1-new-features/"
+keywords: ["Kotlin", "K2", "Compiler", "Performance", "Language Features", "Updates"]
 ---
 
 ## ⚡ The Post-K2 Era

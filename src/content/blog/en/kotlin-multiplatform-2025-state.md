@@ -1,10 +1,14 @@
 ---
-title: "Kotlin Multiplatform in 2025: Is it Finally Ready for Production?"
-description: "KMP has moved from a promise to the de facto standard. We analyze the state of the technology, Compose Multiplatform on iOS, and why 2025 is the year of change."
+title: Kotlin Multiplatform in 2025
+description: KMP has moved from a promise to the de facto standard. We analyze the state of the technology, Compose Multiplatform on iOS, and why 2025 is the year of change.
 pubDate: 2025-02-10
-heroImage: "/images/placeholder-article-kmp-state.svg"
+heroImage: /images/placeholder-article-kmp-state.svg
 tags: ["Kotlin", "KMP", "Multiplatform", "iOS", "Android", "Compose"]
-reference_id: "b0454438-8d0c-4998-abc2-3dd70aa5bf3d"
+reference_id: b0454438-8d0c-4998-abc2-3dd70aa5bf3d
+author: ArceApps
+lastmod: 2025-02-10
+canonical: "https://arceapps.com/blog/kotlin-multiplatform-2025-state/"
+keywords: ["Kotlin", "KMP", "Multiplatform", "iOS", "Android", "Compose"]
 ---
 
 ## 🌍 From Experiment to Industry Standard

@@ -1,7 +1,11 @@
 ---
-title: "2025 W46: The Broken Window Theory"
+title: "2025 W46: The Broken Window Theory (PuzzleHub)"
 description: "Why we decided to halt development of new features to fix a pixel 6dp out of place, and the hunt for the geometric bug in Hashi."
 pubDate: 2025-11-16
+lastmod: 2025-11-16
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "refactoring", "bugfix", "clean-code"]
+canonical: "https://arceapps.com/devlog/2025-w46-great-standardization/"
 tags: ["devlog", "refactoring", "bugfix", "ui", "clean-code"]
 heroImage: "/images/devlog-w46-broken-window.svg"
 ---

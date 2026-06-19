@@ -2,9 +2,13 @@
 title: "Clean Architecture: The Ultimate Guide for Modern Android"
 description: "Demystifying Clean Architecture: A deep dive into layers, dependencies, and data flow to build indestructible Android apps."
 pubDate: 2025-10-15
-heroImage: "/images/placeholder-article-clean-architecture.svg"
+heroImage: /images/placeholder-article-clean-architecture.svg
 tags: ["Architecture", "Android", "Clean Architecture", "Kotlin", "Best Practices"]
-reference_id: "0564583c-c60b-45b0-ba43-1e6337ce476d"
+reference_id: 0564583c-c60b-45b0-ba43-1e6337ce476d
+author: ArceApps
+lastmod: 2025-10-15
+canonical: "https://arceapps.com/blog/clean-architecture-android/"
+keywords: ["Architecture", "Android", "Clean Architecture", "Kotlin", "Best Practices"]
 ---
 ## 🏛️ Philosophy: What is really "Clean"?
 

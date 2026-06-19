@@ -1,10 +1,14 @@
 ---
-title: "The Socratic Agent Series (Part 2): Spec-Driven Development & Defeating the Yes-Man AI"
-description: "How AI's desire to please you is destroying your codebase. We explore Spec-Driven Development frameworks and how to implement Socratic verification gates in your Android CI pipeline."
+title: "The Socratic Agent Series (Part 2): Spec-D..."
+description: How AI's desire to please you is destroying your codebase. We explore Spec-Driven Development frameworks and how to implement Socratic verification gates in your Android CI pipeline.
 pubDate: 2026-05-16
-heroImage: "/images/blog-socratic-agents-part2.svg"
+heroImage: /images/blog-socratic-agents-part2.svg
 tags: ["AI", "SDD", "Spec-Driven Development", "Sycophancy", "CI/CD", "Kotlin", "Android", "GitHub Actions"]
-reference_id: "ed6af514-ca96-4c41-9269-aaa520358f69"
+reference_id: ed6af514-ca96-4c41-9269-aaa520358f69
+author: ArceApps
+lastmod: 2026-05-16
+canonical: "https://arceapps.com/blog/socratic-agents-part-2-sdd-sycophancy/"
+keywords: ["AI", "SDD", "Spec-Driven Development", "Sycophancy", "CI/CD", "Kotlin", "Android", "GitHub Actions"]
 ---
 
 > **Foundation reading:** [The Socratic Agent Series (Part 1)](/blog/socratic-agents-part-1-induction-entropy) · [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [Alternative Paradigms in AI-Assisted Engineering](/blog/alternative-paradigms-ai-software-engineering)

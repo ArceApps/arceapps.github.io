@@ -1,9 +1,13 @@
 ---
-title: "Enseñando a mydevbot a programar - GitHub Skills y Tareas Cron"
-description: "La segunda fase de mydevbot. Cómo integrar la API de GitHub usando las capacidades de Function Calling de Gemini y configurar tareas programadas con APScheduler para recibir resúmenes diarios."
+title: "2026-03-06: Ensenando a mydevbot a Programar (mydevbot)"
+description: "La segunda fase de mydevbot. Como integrar la API de GitHub usando las capacidades de Function Calling de Gemini y configurar tareas programadas con APScheduler."
 pubDate: 2026-03-06
-tags: ["devlog", "telegram", "mydevbot", "gemini", "github", "cron", "python"]
+lastmod: 2026-03-06
+author: "ArceApps"
+keywords: ["mydevbot", "devlog", "github", "cron", "gemini"]
+canonical: "https://arceapps.com/es/devlog/2026-03-06-mydevbot-github-cron-skills/"
 heroImage: "/images/mydevbot-skills-cron-hero.svg"
+tags: ["devlog", "telegram", "mydevbot", "gemini", "github", "cron", "python"]
 reference_id: "0463727d-8058-4f3a-b565-1baec56b3470"
 ---
 

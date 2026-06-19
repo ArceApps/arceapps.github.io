@@ -1,10 +1,14 @@
 ---
 title: "Android Documentation: Best Practices for Developers"
-description: "Master the art of documenting Android projects. From KDoc to GitHub Actions, ensure your code is maintainable and scalable."
+description: Master the art of documenting Android projects. From KDoc to GitHub Actions, ensure your code is maintainable and scalable.
 pubDate: 2025-10-14
-heroImage: "/images/placeholder-article-documentation.svg"
+heroImage: /images/placeholder-article-documentation.svg
 tags: ["Documentation", "Android", "Dokka", "MkDocs", "Best Practices", "KDoc", "Kotlin", "Workflow", "GitHub Actions"]
-reference_id: "3cb651cb-7e90-47b2-aff0-77bc2cf41808"
+reference_id: 3cb651cb-7e90-47b2-aff0-77bc2cf41808
+author: ArceApps
+lastmod: 2025-10-14
+canonical: "https://arceapps.com/blog/android-documentation-best-practices/"
+keywords: ["Documentation", "Android", "Dokka", "MkDocs", "Best Practices", "KDoc", "Kotlin", "Workflow"]
 ---
 ## 📝 Why Documentation Matters in Android
 

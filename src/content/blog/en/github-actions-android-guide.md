@@ -1,10 +1,14 @@
 ---
 title: "GitHub Actions: The Engine of Your CI/CD"
-description: "Learn the fundamentals of GitHub Actions to automate your workflows, from running tests to automated deployment."
+description: "Learn the fundamentals of GitHub Actions to automate your Android CI/CD workflows, from running tests to automated deployment on Google Play Store."
 pubDate: 2025-10-25
-heroImage: "/images/placeholder-article-github-actions.svg"
+heroImage: /images/placeholder-article-github-actions.svg
 tags: ["GitHub Actions", "CI/CD", "DevOps", "Automation", "Workflow"]
-reference_id: "944bdacb-c6dc-4b89-b7de-0a6633738244"
+reference_id: 944bdacb-c6dc-4b89-b7de-0a6633738244
+author: ArceApps
+lastmod: 2025-10-25
+canonical: "https://arceapps.com/blog/github-actions-android-guide/"
+keywords: ["GitHub Actions", "CI/CD", "DevOps", "Automation", "Workflow"]
 ---
 ## 🏗️ Anatomy of a Workflow
 

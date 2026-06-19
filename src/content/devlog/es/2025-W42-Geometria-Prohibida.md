@@ -1,9 +1,13 @@
 ---
-title: "2025 W42: Geometría Prohibida"
+title: "2025 W42: Geometria Prohibida (PuzzleHub)"
 description: "Slitherlink y Galaxies rompen nuestra cuadrícula. Introduciendo matemáticas vectoriales, zonas de impacto difusas y generación en hilos de fondo."
 pubDate: 2025-10-19
-tags: ["devlog", "canvas", "math", "algorithms", "performance"]
+lastmod: 2025-10-19
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "canvas", "matematicas", "algoritmos"]
+canonical: "https://arceapps.com/es/devlog/2025-W42-Geometria-Prohibida/"
 heroImage: "/images/devlog/2025-w42-cover.png"
+tags: ["devlog", "canvas", "math", "algorithms", "performance"]
 ---
 
 Hasta ahora, nuestros juegos (Hitori, Shikaku, Fillomino) vivían felices dentro de celdas cuadradas perfectas.

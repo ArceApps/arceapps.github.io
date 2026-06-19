@@ -1,10 +1,14 @@
 ---
 title: "AI Tools Worth Learning in 2026: Investment vs. Hype"
-description: "LangGraph, CrewAI, n8n, AutoGen, Cursor, Claude Code, OpenAI Agents SDK — a community debate emerged about which of these will still exist in a year. Here's an honest breakdown."
+description: LangGraph, CrewAI, n8n, AutoGen, Cursor, Claude Code, OpenAI Agents SDK — a community debate emerged about which of these will still exist in a year. Here's an honest breakdown.
 pubDate: 2026-04-03
-heroImage: "/images/blog-ai-tools-2026.svg"
+heroImage: /images/blog-ai-tools-2026.svg
 tags: ["AI", "Agents", "LangGraph", "CrewAI", "n8n", "AutoGen", "Cursor", "Tools", "2026"]
-reference_id: "36aa3a31-4e48-4a60-9af8-9424cfcd9e9e"
+reference_id: 36aa3a31-4e48-4a60-9af8-9424cfcd9e9e
+author: ArceApps
+lastmod: 2026-04-03
+canonical: "https://arceapps.com/blog/ai-tools-worth-learning-2026/"
+keywords: ["AI", "Agents", "LangGraph", "CrewAI", "n8n", "AutoGen", "Cursor", "Tools"]
 ---
 
 > This article assumes some familiarity with AI agents and coding workflows. If you are just getting started, you may want to read these first:

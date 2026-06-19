@@ -2,9 +2,20 @@
 title: "Superando el Síndrome del Impostor como Desarrollador en 2026"
 description: "Por qué la sensación de insuficiencia está aumentando en la era de la IA, y cómo combatirla redefiniendo tu valor."
 pubDate: 2026-02-10
+lastmod: 2026-02-10
+author: ArceApps
+keywords:
+  - "Síndrome del Impostor"
+  - "Desarrollador"
+  - "2026"
+  - "Superando"
+  - "Carrera"
+canonical: "https://arceapps.com/es/blog/imposter-syndrome-developer-2026/"
 heroImage: "/images/career-imposter-syndrome.svg"
 tags: ["Carrera", "Salud Mental", "Síndrome del Impostor", "Vida de Desarrollador", "IA"]
 ---
+
+
 
 "No pertenezco aquí. Eventualmente, se darán cuenta de que no sé nada."
 

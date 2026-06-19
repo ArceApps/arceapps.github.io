@@ -1,7 +1,11 @@
 ---
-title: "2026 W05: The Quest for Mathematical Truth (and why we imported a quantum physics library)"
+title: "2026 W05: The Quest for Mathematical Truth (PuzzleHub)"
 description: "A 3000-word chronicle on how we tried to add two 'simple' games and ended up fighting NP-Complete problems. The story of how a simple light board forced us to use industrial SAT Solvers and how integer division almost destroyed our mental health."
 pubDate: 2026-02-01
+lastmod: 2026-02-01
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "algorithms", "sat-solver", "math"]
+canonical: "https://arceapps.com/devlog/2026-w05-new-challengers/"
 tags: ["devlog", "algorithms", "sat-solver", "procedural-generation", "difficulty-design", "android", "math"]
 heroImage: "/images/devlog-default.svg"
 ---

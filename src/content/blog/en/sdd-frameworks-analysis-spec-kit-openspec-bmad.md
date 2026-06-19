@@ -1,10 +1,14 @@
 ---
-title: "SDD Frameworks Deep Dive: GitHub Spec Kit, OpenSpec, and BMAD-METHOD Compared"
+title: "SDD Frameworks Deep Dive: GitHub Spec Kit,..."
 description: "A thorough analysis of the three leading Spec-Driven Development frameworks: the architectural contracts of GitHub Spec Kit, the change-proposal agility of OpenSpec, and the multi-agent orchestration of BMAD-METHOD."
 pubDate: 2026-03-28
-heroImage: "/images/blog-sdd-frameworks-analysis.svg"
+heroImage: /images/blog-sdd-frameworks-analysis.svg
 tags: ["SDD", "AI", "Workflow", "GitHub Copilot", "BMAD", "OpenSpec", "Spec Kit", "Methodology", "Agentic AI", "Productivity"]
-reference_id: "a3f72b91-4c18-4e2d-9b5c-1d0e6f2a8c34"
+reference_id: a3f72b91-4c18-4e2d-9b5c-1d0e6f2a8c34
+author: ArceApps
+lastmod: 2026-03-28
+canonical: "https://arceapps.com/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad/"
+keywords: ["SDD", "AI", "Workflow", "GitHub Copilot", "BMAD", "OpenSpec", "Spec Kit", "Methodology"]
 ---
 
 > **Foundation reading:** [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [Alternative Paradigms in AI-Assisted Engineering](/blog/alternative-paradigms-ai-software-engineering) · [Orchestrating AI Agents in CI/CD Pipelines](/blog/orchestrating-ai-agents-cicd-pipeline)

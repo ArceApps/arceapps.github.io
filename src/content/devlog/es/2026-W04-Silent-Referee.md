@@ -1,9 +1,13 @@
 ---
-title: "2026 W04: El Árbitro Silencioso (y por qué borrar botones es la mejor mejora de UX)"
-description: "Una inmersión técnica y filosófica en la eliminación de la burocracia de UI. Cómo pasamos de pedirle al usuario que rellene formularios a crear un sistema de Auto-Verificación reactiva, y cómo optimizamos la detección de ciclos en grafos O(N) para que funcione a 60fps."
+title: "2026 W04: El Arbitro Silencioso - Auto-Verificacion (PuzzleHub)"
+description: "Inmersion tecnica y filosofica en la eliminacion de la burocracia de UI. Como pasamos de pedir formularios a crear un sistema de Auto-Verificacion reactiva."
 pubDate: 2026-01-25
-tags: ["devlog", "ux", "android", "algorithms", "performance", "graph-theory", "kotlin"]
+lastmod: 2026-01-25
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "ux", "algoritmos", "rendimiento"]
+canonical: "https://arceapps.com/es/devlog/2026-W04-Silent-Referee/"
 heroImage: "/images/devlog-w47-ux-design.svg"
+tags: ["devlog", "ux", "android", "algorithms", "performance", "graph-theory", "kotlin"]
 ---
 
 La semana pasada, hay que reconocerlo, nos vinimos arriba.

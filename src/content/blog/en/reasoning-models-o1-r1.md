@@ -1,10 +1,14 @@
 ---
 title: "Reasoning Models: From o1 to R1"
-description: "The evolution of reasoning in AI. How OpenAI's o1 and DeepSeek's R1 compare. Chain-of-Thought prompting and the future of coding agents."
+description: The evolution of reasoning in AI. How OpenAI's o1 and DeepSeek's R1 compare. Chain-of-Thought prompting and the future of coding agents.
 pubDate: 2025-01-31
-heroImage: "/images/placeholder-article-reasoning.svg"
+heroImage: /images/placeholder-article-reasoning.svg
 tags: ["AI", "OpenAI o1", "DeepSeek", "Reasoning", "CoT", "R1", "Productivity"]
-reference_id: "0ece5566-9f7e-40e6-8548-8b6163eba96d"
+reference_id: 0ece5566-9f7e-40e6-8548-8b6163eba96d
+author: ArceApps
+lastmod: 2025-01-31
+canonical: "https://arceapps.com/blog/reasoning-models-o1-r1/"
+keywords: ["AI", "OpenAI o1", "DeepSeek", "Reasoning", "CoT", "R1", "Productivity"]
 ---
 ## 🧠 The Era of "Thinking" Models
 

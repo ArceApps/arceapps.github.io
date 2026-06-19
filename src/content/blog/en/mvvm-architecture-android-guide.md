@@ -1,10 +1,14 @@
 ---
 title: "MVVM Architecture in Android: The Comprehensive Guide (2025)"
-description: "Master the Model-View-ViewModel pattern from basic concepts to advanced implementations with practical examples of a Minesweeper game for Android."
+description: Master the Model-View-ViewModel pattern from basic concepts to advanced implementations with practical examples of a Minesweeper game for Android.
 pubDate: 2025-10-01
-heroImage: "/images/placeholder-article-mvvm.svg"
+heroImage: /images/placeholder-article-mvvm.svg
 tags: ["Android", "MVVM", "Architecture", "Kotlin", "Best Practices"]
-reference_id: "4a17203c-115d-4548-bad9-4c67698de707"
+reference_id: 4a17203c-115d-4548-bad9-4c67698de707
+author: ArceApps
+lastmod: 2025-10-01
+canonical: "https://arceapps.com/blog/mvvm-architecture-android-guide/"
+keywords: ["Android", "MVVM", "Architecture", "Kotlin", "Best Practices"]
 ---
 ## 🏛️ Theory: The Evolution of UI Architectures
 

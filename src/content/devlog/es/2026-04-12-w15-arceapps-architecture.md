@@ -1,9 +1,13 @@
 ---
-title: "W15: Evolución de Arquitectura y Seguridad en ArceApps"
-description: "Un análisis profundo sobre cómo reforzamos la seguridad mitigando vulnerabilidades XSS, optimizamos la jerarquía visual de nuestros medios y actualizamos nuestros agentes de IA para mejorar la consistencia de la marca en el portfolio de ArceApps."
-pubDate: "2026-04-12"
-tags: ["devlog", "arceapps", "ia-agents", "security", "xss", "frontend", "responsive-design"]
+title: "W15: Evolucion de Arquitectura y Seguridad en ArceApps (ArceApps)"
+description: "Un analisis profundo sobre como reforzamos la seguridad mitigando vulnerabilidades XSS, optimizamos la jerarquia visual de nuestros medios y actualizamos nuestros agentes de IA."
+pubDate: 2026-04-12
+lastmod: 2026-04-12
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "seguridad", "xss", "frontend"]
+canonical: "https://arceapps.com/es/devlog/2026-04-12-w15-arceapps-architecture/"
 heroImage: "/images/devlog-default.svg"
+tags: ["devlog", "arceapps", "ia-agents", "security", "xss", "frontend", "responsive-design"]
 ---
 
 ## Introducción: El Estado del Arte de la Quincena

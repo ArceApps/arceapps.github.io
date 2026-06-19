@@ -1,10 +1,14 @@
 ---
 title: "design.md: The New Standard for AI-Assisted UI/UX Design"
-description: "Discover how design.md complements agents.md, focusing on design decisions, UI/UX, accessibility, and Jetpack Compose for Android development in the era of AI agents."
+description: Discover how design.md complements agents.md, focusing on design decisions, UI/UX, accessibility, and Jetpack Compose for Android development in the era of AI agents.
 pubDate: 2026-06-13
-heroImage: "/images/placeholder-article-design-md.svg"
+heroImage: /images/placeholder-article-design-md.svg
 tags: ["AI", "design.md", "Android", "Kotlin", "UI/UX", "Jetpack Compose"]
-reference_id: "6a9e1b2c-8f4d-4e9b-b3c1-7d5a0f2e9d8f"
+reference_id: 6a9e1b2c-8f4d-4e9b-b3c1-7d5a0f2e9d8f
+author: ArceApps
+lastmod: 2026-06-13
+canonical: "https://arceapps.com/blog/design-md-standard/"
+keywords: ["AI", "design.md", "Android", "Kotlin", "UI/UX", "Jetpack Compose"]
 ---
 ## 🎨 Introduction: The Evolution of AI-Oriented Documentation
 

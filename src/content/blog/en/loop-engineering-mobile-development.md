@@ -1,10 +1,14 @@
 ---
-title: "Loop Engineering: From Prompts to Autonomous Systems in Android"
-description: "Discover how Loop Engineering is replacing traditional prompting. Learn to design autonomous systems for mobile development with Kotlin and Android, managing risks and optimizing resources."
+title: Loop Engineering
+description: Discover how Loop Engineering is replacing traditional prompting. Learn to design autonomous systems for mobile development with Kotlin and Android, managing risks and optimizing resources.
 pubDate: 2026-06-15
-heroImage: "/images/placeholder-article-ai-agents.svg"
+heroImage: /images/placeholder-article-ai-agents.svg
 tags: ["AI", "Agents", "Loop Engineering", "Kotlin", "Android", "Productivity"]
-reference_id: "41a8f1cb-8cc6-4568-8631-8e463ca1dc65"
+reference_id: 41a8f1cb-8cc6-4568-8631-8e463ca1dc65
+author: ArceApps
+lastmod: 2026-06-15
+canonical: "https://arceapps.com/blog/loop-engineering-mobile-development/"
+keywords: ["AI", "Agents", "Loop Engineering", "Kotlin", "Android", "Productivity"]
 ---
 
 ## The End of the Manual Prompting Era

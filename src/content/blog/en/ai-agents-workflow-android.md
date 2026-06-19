@@ -1,10 +1,14 @@
 ---
-title: "Asynchronous Pair Programming with Agents: Sentinel, Bolt, and Palette in Action"
-description: "Real Android development cases where delegating to specialized agents beats any standard AI chat. Security, Performance, and UX."
+title: "Asynchronous Pair Programming with Agents:..."
+description: Real Android development cases where delegating to specialized agents beats any standard AI chat. Security, Performance, and UX.
 pubDate: 2025-05-22
+lastmod: 2025-05-22
+author: ArceApps
+keywords: ["AI", "Kotlin", "Workflow", "Use Cases", "Android"]
+canonical: "https://arceapps.com/blog/ai-agents-workflow-android/"
 tags: ["AI", "Kotlin", "Workflow", "Use Cases", "Android"]
-heroImage: "/images/placeholder-article-ai-workflow.svg"
-reference_id: "0ce33761-8899-4d89-aff7-39579c3bca46"
+heroImage: /images/placeholder-article-ai-workflow.svg
+reference_id: 0ce33761-8899-4d89-aff7-39579c3bca46
 ---
 
 You already have the [theory](/blog/ai-agents-android-theory) and you have the [configuration](/blog/configuring-ai-agents). Now let's see the magic in action. We are going to simulate real Android development scenarios and see how **Sentinel**, **Bolt**, and **Palette** solve problems that a generalist "chatbot" would likely ignore or solve poorly.

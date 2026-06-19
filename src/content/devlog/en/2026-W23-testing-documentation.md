@@ -1,7 +1,11 @@
 ---
-title: "W23: Enhancing Testing and Documentation Sync"
+title: "W23: Enhancing Testing and Documentation Sync (ArceApps)"
 description: "Engineering chronicle on adding comprehensive tests for search functionality and syncing visual hierarchy documentation with CSS in the ArceApps portfolio."
 pubDate: 2026-06-09
+lastmod: 2026-06-09
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "testing", "documentation", "vitest"]
+canonical: "https://arceapps.com/devlog/2026-w23-testing-documentation/"
 tags: ["devlog", "arceapps", "testing", "documentation", "css", "vitest"]
 heroImage: "/images/devlog-default.svg"
 reference_id: "2026-w23-testing-documentation"

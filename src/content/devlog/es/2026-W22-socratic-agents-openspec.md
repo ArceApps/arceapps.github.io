@@ -1,9 +1,13 @@
 ---
-title: "W22: Agentes Socráticos y Expansión de OpenSpec"
-description: "Crónica de ingeniería detallando el lanzamiento de la serie de blogs sobre Agentes Socráticos y la introducción de OpenSpec para el desarrollo móvil en el ecosistema ArceApps."
+title: "W22: Agentes Socraticos y Expansion de OpenSpec (ArceApps)"
+description: "Cronica de ingenieria detallando el lanzamiento de la serie de blogs sobre Agentes Socraticos y la introduccion de OpenSpec para el desarrollo movil."
 pubDate: 2026-05-24
-tags: ["devlog", "arceapps", "ai", "openspec", "architecture", "socratic-agents"]
+lastmod: 2026-05-24
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "agentes-ia", "openspec", "arquitectura"]
+canonical: "https://arceapps.com/es/devlog/2026-W22-socratic-agents-openspec/"
 heroImage: "/images/devlog-default.svg"
+tags: ["devlog", "arceapps", "ai", "openspec", "architecture", "socratic-agents"]
 reference_id: "2026-w22-socratic-agents-openspec"
 ---
 

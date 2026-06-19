@@ -1,9 +1,13 @@
 ---
-title: "2026 W02: Generics, Canvas y la Búsqueda de la Eficiencia Absoluta"
-description: "Una crónica de extremos: eliminando 400 líneas de código repetido con arquitecturas genéricas y redibujando cada píxel a mano para salvar el rendimiento en gama media."
+title: "2026 W02: Generics, Canvas y la Busqueda de la Eficiencia (PuzzleHub)"
+description: "Una cronica de extremos: eliminando 400 lineas de codigo repetido con arquitecturas genericas y redibujando cada pixel a mano para salvar el rendimiento."
 pubDate: 2026-01-14
-tags: ["devlog", "kotlin", "architecture", "performance", "canvas", "compose", "refactoring", "generics"]
+lastmod: 2026-01-14
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "kotlin", "canvas", "genericos"]
+canonical: "https://arceapps.com/es/devlog/2026-W02-Repository-Patterns-Canvas/"
 heroImage: "/images/devlog-w02-canvas.svg"
+tags: ["devlog", "kotlin", "architecture", "performance", "canvas", "compose", "refactoring", "generics"]
 ---
 
 Hay semanas en el desarrollo de software que se sienten como construir una catedral: todo es estructura, vigas de acero, planos azules y discusiones elevadas sobre la carga estructural del viento o la inyección de dependencias. Y hay otras semanas que se sienten como ser un relojero suizo obsesivo, con una lupa en el ojo, limando un engranaje microscópico para que el segundero no pierda un milisegundo.

@@ -1,10 +1,14 @@
 ---
-title: "The Socratic Agent Series (Part 3): Building a Socratic Multi-Agent Orchestrator in Android"
-description: "A pragmatic guide to building advanced multi-agent interactions using Kotlin Coroutines and StateFlow. From MARS to MotivGraph-SoIQ, bringing academic theory to production code."
+title: "The Socratic Agent Series (Part 3): Buildi..."
+description: A pragmatic guide to building advanced multi-agent interactions using Kotlin Coroutines and StateFlow. From MARS to MotivGraph-SoIQ, bringing academic theory to production code.
 pubDate: 2026-05-17
-heroImage: "/images/blog-socratic-agents-part3.svg"
+heroImage: /images/blog-socratic-agents-part3.svg
 tags: ["AI", "Socratic Agents", "Orchestration", "Kotlin", "Android", "Coroutines", "StateFlow", "Multi-Agent"]
-reference_id: "c3b10009-cc21-4612-81e9-d527a8c64e95"
+reference_id: c3b10009-cc21-4612-81e9-d527a8c64e95
+author: ArceApps
+lastmod: 2026-05-17
+canonical: "https://arceapps.com/blog/socratic-agents-part-3-multi-agent-orchestrator/"
+keywords: ["AI", "Socratic Agents", "Orchestration", "Kotlin", "Android", "Coroutines", "StateFlow", "Multi-Agent"]
 ---
 
 > **Foundation reading:** [The Socratic Agent Series (Part 1)](/blog/socratic-agents-part-1-induction-entropy) · [The Socratic Agent Series (Part 2)](/blog/socratic-agents-part-2-sdd-sycophancy) · [Orchestrating AI Agents in CI/CD Pipelines](/blog/orchestrating-ai-agents-cicd-pipeline)

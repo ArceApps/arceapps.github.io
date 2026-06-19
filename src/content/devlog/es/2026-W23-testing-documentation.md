@@ -1,9 +1,13 @@
 ---
-title: "W23: Mejorando Pruebas y Sincronización de Documentación"
-description: "Crónica de ingeniería sobre la adición de pruebas exhaustivas para la funcionalidad de búsqueda y la sincronización de la documentación de jerarquía visual con CSS en el portfolio de ArceApps."
+title: "W23: Mejorando Pruebas y Sincronizacion de Documentacion (ArceApps)"
+description: "Cronica de ingenieria sobre la adicion de pruebas exhaustivas para la funcionalidad de busqueda y la sincronizacion de la documentacion."
 pubDate: 2026-06-09
-tags: ["devlog", "arceapps", "testing", "documentation", "css", "vitest"]
+lastmod: 2026-06-09
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "testing", "documentacion", "vitest"]
+canonical: "https://arceapps.com/es/devlog/2026-W23-testing-documentation/"
 heroImage: "/images/devlog-default.svg"
+tags: ["devlog", "arceapps", "testing", "documentation", "css", "vitest"]
 reference_id: "2026-w23-testing-documentation"
 ---
 

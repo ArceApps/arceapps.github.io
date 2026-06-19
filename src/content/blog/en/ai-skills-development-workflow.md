@@ -1,10 +1,14 @@
 ---
 title: "AI Skills in Development: Powering Your Android Workflow"
-description: "Discover how AI Skills transform modern development, automating complex tasks and improving productivity in Android projects."
+description: Discover how AI Skills transform modern development, automating complex tasks and improving productivity in Android projects.
 pubDate: 2025-12-29
-heroImage: "/images/placeholder-article-ai-skills.svg"
+heroImage: /images/placeholder-article-ai-skills.svg
 tags: ["AI", "Android", "Development", "Skills", "Gemini", "GitHub Copilot"]
-reference_id: "f6063ef7-ac6b-4ff3-88cf-55681f3eb150"
+reference_id: f6063ef7-ac6b-4ff3-88cf-55681f3eb150
+author: ArceApps
+lastmod: 2025-12-29
+canonical: "https://arceapps.com/blog/ai-skills-development-workflow/"
+keywords: ["AI", "Android", "Development", "Skills", "Gemini", "GitHub Copilot"]
 ---
 ## 🧠 What are AI Skills? Theory and Concepts
 

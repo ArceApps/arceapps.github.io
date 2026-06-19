@@ -1,9 +1,13 @@
 ---
-title: "Overcoming Imposter Syndrome as a Developer in 2026"
-description: "Why the feeling of inadequacy is rising in the age of AI, and how to combat it by redefining your value."
+title: Overcoming Imposter Syndrome as a Developer in 2026
+description: Why the feeling of inadequacy is rising in the age of AI, and how to combat it by redefining your value.
 pubDate: 2026-02-10
-heroImage: "/images/career-imposter-syndrome.svg"
+heroImage: /images/career-imposter-syndrome.svg
 tags: ["Career", "Mental Health", "Imposter Syndrome", "Developer Life", "AI"]
+author: ArceApps
+lastmod: 2026-02-10
+canonical: "https://arceapps.com/blog/imposter-syndrome-developer-2026/"
+keywords: ["Career", "Mental Health", "Imposter Syndrome", "Developer Life", "AI"]
 ---
 
 "I don't belong here. Eventually, they will find out I don't know anything."

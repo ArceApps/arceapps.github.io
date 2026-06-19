@@ -1,9 +1,13 @@
 ---
-title: "2026 W06: Modo Profe (Cómo reducir 25.000 líneas de código a 1.000 y enseñar a jugar)"
-description: "De un script monolítico de 2000 líneas a un Motor de Educación Modular. Una historia sobre deuda técnica, pedagogía interactiva y por qué decidimos dar diplomas virtuales con físicas de resorte."
+title: "2026 W06: Modo Profe - Reduciendo 25.000 Lineas a 1.000 (PuzzleHub)"
+description: "De un script monolitico de 2000 lineas a un Motor de Educacion Modular. Historia sobre deuda tecnica y pedagogia interactiva."
 pubDate: 2026-02-08
-tags: ["devlog", "refactoring", "software-architecture", "ux-design", "jetpack-compose", "education"]
+lastmod: 2026-02-08
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "refactoring", "educacion", "ux"]
+canonical: "https://arceapps.com/es/devlog/2026-W06-Teacher-Mode/"
 heroImage: "/images/devlog-default.svg"
+tags: ["devlog", "refactoring", "software-architecture", "ux-design", "jetpack-compose", "education"]
 ---
 
 Esta semana, **PuzzleHub** se ha graduado.

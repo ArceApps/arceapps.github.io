@@ -1,7 +1,11 @@
 ---
-title: "2025 W49: Achievements Unlocked"
+title: "2025 W49: Achievements Unlocked (PuzzleHub)"
 description: "Minesweeper and Galaxies join the party, completing the achievement system for all 10 games."
 pubDate: 2025-12-07
+lastmod: 2025-12-07
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "gamification", "minesweeper", "galaxies"]
+canonical: "https://arceapps.com/devlog/2025-w49-achievements-unlocked/"
 tags: ["devlog", "gamification", "minesweeper", "galaxies"]
 heroImage: "/images/devlog-w49-achievements.svg"
 ---

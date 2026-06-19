@@ -1,10 +1,14 @@
 ---
 title: "Kotlin Coroutines: The Android Guide"
-description: "Mastering Kotlin Coroutines on Android. Dispatchers, structured concurrency, and best practices for asynchronous programming."
+description: Mastering Kotlin Coroutines on Android. Dispatchers, structured concurrency, and best practices for asynchronous programming.
 pubDate: 2025-10-15
-heroImage: "/images/placeholder-article-coroutines.svg"
+heroImage: /images/placeholder-article-coroutines.svg
 tags: ["Kotlin", "Coroutines", "Android", "Async", "Concurrency", "Best Practices"]
-reference_id: "68c16e5f-eccc-4903-bd42-f5c5dd0d19f6"
+reference_id: 68c16e5f-eccc-4903-bd42-f5c5dd0d19f6
+author: ArceApps
+lastmod: 2025-10-15
+canonical: "https://arceapps.com/blog/kotlin-coroutines-android-guide/"
+keywords: ["Kotlin", "Coroutines", "Android", "Async", "Concurrency", "Best Practices"]
 ---
 ## 🔄 The Async Problem
 

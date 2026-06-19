@@ -1,9 +1,13 @@
 ---
-title: "W25: La Arquitectura Visual y Agentes Orquestados"
-description: "Rediseño completo de la Homepage con Bento Grid interactivo, mejoras en Content-Visibility y avances profundos en la documentación de agentes IA."
+title: "W25: La Arquitectura Visual y Agentes Orquestados (ArceApps)"
+description: "Rediseno completo de la Homepage con Bento Grid interactivo, mejoras en Content-Visibility y avances en la documentacion de agentes IA."
 pubDate: 2026-06-16
-tags: ["devlog", "arceapps", "ia-agents", "bento-grid", "css", "architecture"]
+lastmod: 2026-06-16
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "bento-grid", "css", "agentes-ia"]
+canonical: "https://arceapps.com/es/devlog/2026-W25-redesign-bento-grid-ai-agents/"
 heroImage: "/images/devlog-default.svg"
+tags: ["devlog", "arceapps", "ia-agents", "bento-grid", "css", "architecture"]
 ---
 
 ## Estado del Arte: Construyendo en Público

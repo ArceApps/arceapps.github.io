@@ -1,7 +1,11 @@
 ---
-title: "W25: Visual Architecture and Orchestrated Agents"
+title: "W25: Visual Architecture and Orchestrated Agents (ArceApps)"
 description: "Complete Homepage redesign with an interactive Bento Grid, Content-Visibility enhancements, and deep advancements in AI agent documentation."
 pubDate: 2026-06-16
+lastmod: 2026-06-16
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "ai-agents", "bento-grid", "css"]
+canonical: "https://arceapps.com/devlog/2026-w25-redesign-bento-grid-ai-agents/"
 tags: ["devlog", "arceapps", "ai-agents", "bento-grid", "css", "architecture"]
 heroImage: "/images/devlog-default.svg"
 ---

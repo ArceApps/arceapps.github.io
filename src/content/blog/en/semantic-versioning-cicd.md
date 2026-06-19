@@ -1,10 +1,14 @@
 ---
-title: "Semantic Versioning in CI/CD: The Science of Continuous Delivery"
-description: "Master semantic versioning in CI/CD pipelines. Learn to calculate versions automatically and ensure traceability in your Android deployments."
+title: Semantic Versioning in CI/CD
+description: Master semantic versioning in CI/CD pipelines. Learn to calculate versions automatically and ensure traceability in your Android deployments.
 pubDate: 2025-12-05
-heroImage: "/images/placeholder-article-cde-semver.svg"
+heroImage: /images/placeholder-article-cde-semver.svg
 tags: ["DevOps", "CI/CD", "Semantic Versioning", "Android", "GitHub Actions"]
-reference_id: "0d37152d-08bf-43c6-8f5d-3372660e90a5"
+reference_id: 0d37152d-08bf-43c6-8f5d-3372660e90a5
+author: ArceApps
+lastmod: 2025-12-05
+canonical: "https://arceapps.com/blog/semantic-versioning-cicd/"
+keywords: ["DevOps", "CI/CD", "Semantic Versioning", "Android", "GitHub Actions"]
 ---
 ## 📐 Theory: The Social Contract of Versioning
 

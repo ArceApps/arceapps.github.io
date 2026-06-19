@@ -1,11 +1,22 @@
 ---
-title: "Ponytail: el skill viral que enseña a tus agentes a escribir como un senior perezoso"
-description: "34k estrellas en seis días. Un skill que fuerza a Claude Code, Codex, Cursor y compañía a recorrer una escalera de seis peldaños antes de escribir una sola línea. 80-94% menos código, pero ¿realmente funciona? Análisis a fondo, benchmarks, críticas y la comparación honesta con el resto del ecosistema."
+title: "Ponytail: el skill viral que enseña a tus agentes a ser seniors perezosos"
+description: "34k estrellas en seis días. Un skill que fuerza a Claude Code, Codex, Cursor y compañía a recorrer una escalera de seis peldaños antes de escribir una sola línea. 80-94% menos código, pero ¿realmente funciona? Análisis a fondo, benchmarks,"
 pubDate: 2026-06-19
+lastmod: 2026-06-19
+author: ArceApps
+keywords:
+  - "Ponytail"
+  - "Skill Viral"
+  - "Senior"
+  - "Perezoso"
+  - "IA"
+canonical: "https://arceapps.com/es/blog/ponytail-skill-senior-perezoso/"
 heroImage: "/images/ponytail-skill-senior-perezoso.svg"
 tags: ["AI Agents", "Skills", "YAGNI", "Ponytail", "Claude Code", "Codex", "Cursor", "Minimalismo", "Indie"]
 reference_id: "f3a1b8d2-4e7c-4a9b-b1c3-7d8e9f0a1b2c"
 ---
+
+
 
 > **Lecturas relacionadas en el blog:** [Inside Superpowers: el framework que fuerza a la IA a ingenierizar](/blog/blog-superpowers-deep-dive) · [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/blog-mattpocock-skills) · [Power Up Your AI Agents with Skills](/blog/building-ai-agent-skills) · [Dynamic Context: el coste oculto de los skills siempre activos](/blog/ai-agent-skills-dynamic-context) · [AI Code Reviews: revisando código generado por agentes](/blog/ai-code-reviews)
 

@@ -2,9 +2,13 @@
 title: "SLMs vs LLMs for Android: When to Run AI on the Device"
 description: "Practical guide for Android developers to choose between on-device small models (Gemini Nano, Phi-3 Mini) and cloud LLMs: latency, privacy, cost, and battery life."
 pubDate: 2026-03-09
-heroImage: "/images/blog-slms-vs-llms-android.svg"
+heroImage: /images/blog-slms-vs-llms-android.svg
 tags: ["Android", "AI", "SLM", "LLM", "On-Device AI", "Gemini Nano", "LiteRT", "Efficiency"]
 draft: false
+author: ArceApps
+lastmod: 2026-03-09
+canonical: "https://arceapps.com/blog/slms-vs-llms-android-local-inference/"
+keywords: ["Android", "AI", "SLM", "LLM", "On-Device AI", "Gemini Nano", "LiteRT", "Efficiency"]
 ---
 
 > This article assumes familiarity with on-device model inference on Android. Before continuing, I recommend these articles:

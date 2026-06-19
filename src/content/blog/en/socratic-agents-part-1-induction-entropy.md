@@ -1,10 +1,14 @@
 ---
-title: "The Socratic Agent Series (Part 1): Induction, Entropy, and the Math Behind AI Doubt"
-description: "Why LLM hallucinations aren't bugs, but features of prediction. Discover how to build Socratic Induction loops in Kotlin to force AI agents to doubt their own logic before acting in Android systems."
+title: "The Socratic Agent Series (Part 1): Induct..."
+description: Why LLM hallucinations aren't bugs, but features of prediction. Discover how to build Socratic Induction loops in Kotlin to force AI agents to doubt their own logic before acting in Android systems.
 pubDate: 2026-05-15
-heroImage: "/images/blog-socratic-agents-part1.svg"
+heroImage: /images/blog-socratic-agents-part1.svg
 tags: ["AI", "Socratic Agents", "Math", "Kotlin", "Android", "Information Theory", "LLM"]
-reference_id: "7f08fd2c-854c-4980-8e44-ddfbdd11cfa2"
+reference_id: 7f08fd2c-854c-4980-8e44-ddfbdd11cfa2
+author: ArceApps
+lastmod: 2026-05-15
+canonical: "https://arceapps.com/blog/socratic-agents-part-1-induction-entropy/"
+keywords: ["AI", "Socratic Agents", "Math", "Kotlin", "Android", "Information Theory", "LLM"]
 ---
 
 > **Foundation reading:** [Alternative Paradigms in AI-Assisted Engineering](/blog/alternative-paradigms-ai-software-engineering) · [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [First Principles of AI Reasoning](/blog/first-principles-ai-reasoning-quint-code)

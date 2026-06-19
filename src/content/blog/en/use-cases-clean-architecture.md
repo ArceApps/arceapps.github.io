@@ -1,10 +1,14 @@
 ---
 title: "Clean Architecture: Use Cases in Android"
-description: "Why Use Cases matter in Clean Architecture. How to implement them effectively in Kotlin to decouple business logic from UI."
+description: Why Use Cases matter in Clean Architecture. How to implement them effectively in Kotlin to decouple business logic from UI.
 pubDate: 2025-06-21
-heroImage: "/images/placeholder-article-use-cases.svg"
+heroImage: /images/placeholder-article-use-cases.svg
 tags: ["Architecture", "Clean Code", "Use Cases", "Android", "Domain"]
-reference_id: "2eddc21e-4c8f-4f39-859d-e4c1fc1066bc"
+reference_id: 2eddc21e-4c8f-4f39-859d-e4c1fc1066bc
+author: ArceApps
+lastmod: 2025-06-21
+canonical: "https://arceapps.com/blog/use-cases-clean-architecture/"
+keywords: ["Architecture", "Clean Code", "Use Cases", "Android", "Domain"]
 ---
 ## 🎯 The Role of the Use Case
 

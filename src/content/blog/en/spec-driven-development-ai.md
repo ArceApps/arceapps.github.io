@@ -1,10 +1,14 @@
 ---
-title: "Spec-Driven Development with Agentic AI: Methodologies, Frameworks, and Real-World Implementation"
+title: Spec-Driven Development with Agentic
 description: "A senior engineer's guide to SDD for agentic AI: from vibe coding to structured, reproducible development using GitHub Spec Kit, BMAD Method, OpenSpec, SPARC, and more."
 pubDate: 2026-03-24
-heroImage: "/images/placeholder-article-sdd-agentic.svg"
+heroImage: /images/placeholder-article-sdd-agentic.svg
 tags: ["AI", "Workflow", "SDD", "Agentic AI", "Documentation", "Productivity", "GitHub Copilot", "BMAD", "OpenSpec"]
-reference_id: "d8152217-0875-4637-84fc-c004f535fb93"
+reference_id: d8152217-0875-4637-84fc-c004f535fb93
+author: ArceApps
+lastmod: 2026-03-24
+canonical: "https://arceapps.com/blog/spec-driven-development-ai/"
+keywords: ["AI", "Workflow", "SDD", "Agentic AI", "Documentation", "Productivity", "GitHub Copilot", "BMAD"]
 ---
 
 > **Related reading:** [Building AI Agent Skills for Development](/blog/building-ai-agent-skills) · [Configuring AI Agents for Your Workflow](/blog/configuring-ai-agents) · [AI Code Reviews: Automated Quality Gates](/blog/ai-code-reviews)

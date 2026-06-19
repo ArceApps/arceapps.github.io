@@ -1,10 +1,14 @@
 ---
 title: "Effective Context for AI: Prompt Engineering"
-description: "How to craft prompts that work. From simple instructions to complex multi-step reasoning. Optimizing context windows."
+description: How to craft prompts that work. From simple instructions to complex multi-step reasoning. Optimizing context windows.
 pubDate: 2025-10-25
-heroImage: "/images/placeholder-article-prompt-context.svg"
+heroImage: /images/placeholder-article-prompt-context.svg
 tags: ["AI", "Prompt Engineering", "Context", "Productivity", "GitHub Copilot", "Gemini", "Android"]
-reference_id: "0f3f40cf-3a5d-481d-b211-b372ac4a2298"
+reference_id: 0f3f40cf-3a5d-481d-b211-b372ac4a2298
+author: ArceApps
+lastmod: 2025-10-25
+canonical: "https://arceapps.com/blog/effective-context-ai/"
+keywords: ["AI", "Prompt Engineering", "Context", "Productivity", "GitHub Copilot", "Gemini", "Android"]
 ---
 ## 🧠 Context is King
 

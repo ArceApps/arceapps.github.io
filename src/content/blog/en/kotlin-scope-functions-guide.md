@@ -1,10 +1,14 @@
 ---
-title: "Mastering Kotlin Scope Functions: let, run, with, apply, also"
-description: "let, run, with, apply, also... Which one to use and why? A deep dive into Kotlin Scope Functions, language design theory, and best practices."
+title: Mastering Kotlin Scope Functions
+description: let, run, with, apply, also... Which one to use and why? A deep dive into Kotlin Scope Functions, language design theory, and best practices.
 pubDate: 2025-09-15
-heroImage: "/images/placeholder-article-kotlin-let.svg"
+heroImage: /images/placeholder-article-kotlin-let.svg
 tags: ["Kotlin", "Best Practices", "Language Design", "Refactoring", "Clean Code"]
-reference_id: "6e4f7984-b5f6-41f8-b34c-46e8b41076c5"
+reference_id: 6e4f7984-b5f6-41f8-b34c-46e8b41076c5
+author: ArceApps
+lastmod: 2025-09-15
+canonical: "https://arceapps.com/blog/kotlin-scope-functions-guide/"
+keywords: ["Kotlin", "Best Practices", "Language Design", "Refactoring", "Clean Code"]
 ---
 ## 🧐 The Problem They Solve (Language Design Theory)
 

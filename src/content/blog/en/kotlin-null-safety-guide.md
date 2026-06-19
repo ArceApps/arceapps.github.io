@@ -1,10 +1,14 @@
 ---
-title: "Null Safety in Kotlin: The End of the 'One Billion Dollar Mistake'"
-description: "Deeply understand Kotlin's type system, how it eliminates NullPointerExceptions, and advanced techniques for handling nullability elegantly."
+title: Null Safety in Kotlin
+description: Deeply understand Kotlin's type system, how it eliminates NullPointerExceptions, and advanced techniques for handling nullability elegantly.
 pubDate: 2025-09-10
-heroImage: "/images/placeholder-article-null-safety.svg"
+heroImage: /images/placeholder-article-null-safety.svg
 tags: ["Kotlin", "Null Safety", "Best Practices", "Clean Code", "Java Interop"]
-reference_id: "5765a71d-efe1-414d-af77-a67913131024"
+reference_id: 5765a71d-efe1-414d-af77-a67913131024
+author: ArceApps
+lastmod: 2025-09-10
+canonical: "https://arceapps.com/blog/kotlin-null-safety-guide/"
+keywords: ["Kotlin", "Null Safety", "Best Practices", "Clean Code", "Java Interop"]
 ---
 ## 💥 Theory: The Billion Dollar Mistake
 

@@ -1,11 +1,22 @@
 ---
-title: "La Serie de Agentes Socráticos (Parte 1): Inducción, Entropía y la Matemática de la Duda en la IA"
+title: "La Serie de Agentes Socráticos (Parte 1): Inducción, Entropía y los Límites de la Lógica"
 description: "Por qué las alucinaciones de los LLM no son bugs, sino características de la predicción. Descubre cómo construir bucles de Inducción Socrática en Kotlin para obligar a los agentes a dudar de su lógica en Android."
 pubDate: 2026-05-15
+lastmod: 2026-05-15
+author: ArceApps
+keywords:
+  - "Agentes Socráticos"
+  - "Parte 1"
+  - "Inducción"
+  - "Entropía"
+  - "IA"
+canonical: "https://arceapps.com/es/blog/socratic-agents-part-1-induction-entropy/"
 heroImage: "/images/blog-socratic-agents-part1.svg"
 tags: ["IA", "Agentes Socráticos", "Matemáticas", "Kotlin", "Android", "Teoría de la Información", "LLM"]
 reference_id: "7f08fd2c-854c-4980-8e44-ddfbdd11cfa2"
 ---
+
+
 
 > **Lectura fundamental:** [Paradigmas Alternativos en la Ingeniería Asistida por IA](/es/blog/alternative-paradigms-ai-software-engineering) · [Desarrollo Dirigido por Especificaciones con IA Agéntica](/es/blog/spec-driven-development-ai) · [Primeros Principios del Razonamiento de la IA](/es/blog/first-principles-ai-reasoning-quint-code)
 

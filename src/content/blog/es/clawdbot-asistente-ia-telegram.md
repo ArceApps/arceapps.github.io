@@ -1,11 +1,22 @@
 ---
-title: "Clawdbot: Tu Asistente IA Privado en Telegram con Gemini 3.0 y GitHub Copilot"
+title: "Clawdbot: Tu Asistente IA Privado en Telegram"
 description: "Aprende a instalar Clawdbot, conectarlo a Telegram y potenciarlo con Gemini 3.0 y GitHub Copilot para tener un 'Code Buddy' 24/7 en tu bolsillo."
 pubDate: 2026-01-07
-tags: ["IA", "Clawdbot", "Telegram", "Gemini", "GitHub Copilot", "Productividad", "Android"]
+lastmod: 2026-01-07
+author: ArceApps
+keywords:
+  - "Clawdbot"
+  - "Asistente IA"
+  - "Telegram"
+  - "Privado"
+  - "Chatbot"
+canonical: "https://arceapps.com/es/blog/clawdbot-asistente-ia-telegram/"
 heroImage: "/images/clawdbot-telegram-gemini.svg"
+tags: ["IA", "Clawdbot", "Telegram", "Gemini", "GitHub Copilot", "Productividad", "Android"]
 reference_id: "a799021c-02cb-427a-ae6e-cd63360b833b"
 ---
+
+
 
 ¿Alguna vez has deseado tener a ChatGPT o Claude "viviendo" en tu Telegram, pero con acceso real a tus herramientas locales y sin pagar suscripciones extras absurdas?
 

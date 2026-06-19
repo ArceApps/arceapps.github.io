@@ -1,10 +1,14 @@
 ---
 title: "Android 16 Baklava: Features and Privacy"
-description: "Everything developers need to know about Android 16 (Baklava). Privacy updates, Health Connect, and roadmap for API adoption."
+description: Everything developers need to know about Android 16 (Baklava). Privacy updates, Health Connect, and roadmap for API adoption.
 pubDate: 2025-06-21
-heroImage: "/images/placeholder-article-baklava.svg"
+heroImage: /images/placeholder-article-baklava.svg
 tags: ["Android", "Android 16", "Baklava", "Features", "Roadmap", "Privacy", "Health Connect"]
-reference_id: "be5f8f27-9428-4735-a643-d081c334aeee"
+reference_id: be5f8f27-9428-4735-a643-d081c334aeee
+author: ArceApps
+lastmod: 2025-06-21
+canonical: "https://arceapps.com/blog/android-16-baklava-features/"
+keywords: ["Android", "Android 16", "Baklava", "Features", "Roadmap", "Privacy", "Health Connect"]
 ---
 ## 🥧 What's New in Android 16 (Baklava)?
 

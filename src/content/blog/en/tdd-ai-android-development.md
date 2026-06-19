@@ -1,10 +1,14 @@
 ---
-title: "TDD and AI in Android Development"
-description: "How Test-Driven Development (TDD) pairs with AI coding assistants. Writing tests first to guide LLM code generation."
+title: TDD and AI in Android Development
+description: How Test-Driven Development (TDD) pairs with AI coding assistants. Writing tests first to guide LLM code generation.
 pubDate: 2025-10-21
-heroImage: "/images/placeholder-article-tdd-ai.svg"
+heroImage: /images/placeholder-article-tdd-ai.svg
 tags: ["TDD", "AI", "Testing", "Android", "Productivity", "GitHub Copilot"]
-reference_id: "0ac2ca01-c1c4-42cc-b392-40461065750c"
+reference_id: 0ac2ca01-c1c4-42cc-b392-40461065750c
+author: ArceApps
+lastmod: 2025-10-21
+canonical: "https://arceapps.com/blog/tdd-ai-android-development/"
+keywords: ["TDD", "AI", "Testing", "Android", "Productivity", "GitHub Copilot"]
 ---
 ## 🧪 TDD: The AI Whisperer
 

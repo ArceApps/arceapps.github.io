@@ -1,7 +1,11 @@
 ---
-title: "2025 W48: Invisible Foundations"
+title: "2025 W48: Invisible Foundations (PuzzleHub)"
 description: "Preparing the ground for feature parity. Backend work, Room migrations, and why Minesweeper is different from everything else."
 pubDate: 2025-11-30
+lastmod: 2025-11-30
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "backend", "room", "architecture"]
+canonical: "https://arceapps.com/devlog/2025-w48-invisible-foundations/"
 tags: ["devlog", "backend", "room", "architecture", "minesweeper"]
 heroImage: "/images/devlog-w48-foundations.svg"
 ---

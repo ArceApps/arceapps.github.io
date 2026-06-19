@@ -1,10 +1,14 @@
 ---
-title: "hmem: Hierarchical SQLite Memory for AI Agents That Actually Persists"
-description: "A technical deep-dive into hmem (Humanlike Memory), an MCP server that models human memory in five lazy-loaded levels backed by SQLite + FTS5. How Fibonacci decay, logarithmic aging, and a curator agent solve the context window problem across sessions and machines."
+title: "hmem: Hierarchical SQLite Memory for AI Ag..."
+description: A technical deep-dive into hmem (Humanlike Memory), an MCP server that models human memory in five lazy-loaded levels backed by SQLite + FTS5. How Fibonacci decay, logarithmic aging, and a curator agent solve the context window problem across sessions and machines.
 pubDate: 2026-03-27
-heroImage: "/images/blog-hmem-sqlite-memoria-jerarquica.svg"
+heroImage: /images/blog-hmem-sqlite-memoria-jerarquica.svg
 tags: ["AI", "Memory", "Agents", "MCP", "SQLite", "FTS5", "Architecture", "Open Source"]
-reference_id: "c7d4e2f1-8b3a-4c9e-a5f7-2d1e8c6b4a3f"
+reference_id: c7d4e2f1-8b3a-4c9e-a5f7-2d1e8c6b4a3f
+author: ArceApps
+lastmod: 2026-03-27
+canonical: "https://arceapps.com/blog/hmem-sqlite-hierarchical-memory-agents/"
+keywords: ["AI", "Memory", "Agents", "MCP", "SQLite", "FTS5", "Architecture", "Open Source"]
 ---
 
 > This article joins the ongoing memory series on this blog. If you want the broad landscape first, start with [The Architecture of Persistent AI Agent Memory](/blog/ai-agent-memory-persistence-guide). For the security angle, read [Agentic Memory: Security, Privacy, and the Future of the AI Second Brain](/blog/memory-security-privacy-agentic). For Microsoft Research's task-agnostic approach, check out [PlugMem: Microsoft Research's Task-Agnostic Memory Plugin](/blog/plugmem-microsoft-agent-memory). This article covers hmem, an open-source MCP server that takes a different and very pragmatic approach: model human memory as a five-level lazy hierarchy backed by plain SQLite.

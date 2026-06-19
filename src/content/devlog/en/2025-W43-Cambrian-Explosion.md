@@ -1,7 +1,11 @@
 ---
-title: "2025 W43: The Cambrian Explosion"
+title: "2025 W43: The Cambrian Explosion (PuzzleHub)"
 description: "Doubling the catalog in seven days. From 4 games to 8. Code reuse reaches its peak, but technical debt starts accumulating interest."
 pubDate: 2025-10-26
+lastmod: 2025-10-26
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "minesweeper", "hashi", "tech-debt"]
+canonical: "https://arceapps.com/devlog/2025-w43-cambrian-explosion/"
 tags: ["devlog", "minesweeper", "hashi", "tech-debt", "productivity"]
 heroImage: "/images/devlog/2025-w43-cover.png"
 ---

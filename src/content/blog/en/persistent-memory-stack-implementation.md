@@ -1,10 +1,14 @@
 ---
-title: "The Persistent Memory Stack I Actually Use: supermemory + basic-memory + forgetful Day-to-Day"
-description: "Honest technical deep dive into the persistent memory stack I combine daily in my projects: opencode-supermemory for auto-compact, basic-memory as main memory with Markdown + graph, and forgetful as procedural skills layer. With real configuration examples for Claude Code, Codex, Cursor and OpenCode."
+title: The Persistent Memory Stack I Actually Use...
+description: "Honest technical deep dive into the persistent memory stack I combine daily in my projects: opencode-supermemory for auto-compact, basic-memory as main memory with Markdown + graph, and forgetful as procedural skills layer. With real configuration examples for Claude Code, Codex,"
 pubDate: 2026-06-18
-heroImage: "/images/persistent-memory-stack-implementation.svg"
+heroImage: /images/persistent-memory-stack-implementation.svg
 tags: ["AI", "Agents", "Memory", "MCP", "OpenCode", "Claude Code", "Codex", "Cursor", "Workflow"]
-reference_id: "2f8d3b7c-6d4a-9c0f-df2d-8a1e7f4b9c6d"
+reference_id: 2f8d3b7c-6d4a-9c0f-df2d-8a1e7f4b9c6d
+author: ArceApps
+lastmod: 2026-06-18
+canonical: "https://arceapps.com/blog/persistent-memory-stack-implementation/"
+keywords: ["AI", "Agents", "Memory", "MCP", "OpenCode", "Claude Code", "Codex", "Cursor"]
 ---
 
 > This is the third article in the persistent memory series. In the [first](/blog/opencode-memory-plugins-native) we covered three native OpenCode plugins. In the [second](/blog/mcp-servers-memory-cross-agent), three cross-agent MCP servers. Today I close the series with what actually matters: **how I combine the best ones in my real flow**, with verified configurations, maintenance scripts, and honest use cases — including the moments where each piece fails.

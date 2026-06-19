@@ -1,11 +1,22 @@
 ---
-title: "La Serie de Agentes Socráticos (Parte 3): Construyendo un Orquestador Multi-Agente Socrático en Android"
+title: "La Serie de Agentes Socráticos (Parte 3): Construyendo un Orquestador Multi-Agente"
 description: "Una guía pragmática para construir interacciones avanzadas multi-agente usando Kotlin Coroutines y StateFlow. De MARS a MotivGraph-SoIQ, llevando la teoría académica a producción."
 pubDate: 2026-05-17
+lastmod: 2026-05-17
+author: ArceApps
+keywords:
+  - "Agentes Socráticos"
+  - "Parte 3"
+  - "Multi-Agent"
+  - "Orquestador"
+  - "IA"
+canonical: "https://arceapps.com/es/blog/socratic-agents-part-3-multi-agent-orchestrator/"
 heroImage: "/images/blog-socratic-agents-part3.svg"
 tags: ["IA", "Agentes Socráticos", "Orquestación", "Kotlin", "Android", "Coroutines", "StateFlow", "Multi-Agente"]
 reference_id: "c3b10009-cc21-4612-81e9-d527a8c64e95"
 ---
+
+
 
 > **Lectura fundamental:** [La Serie de Agentes Socráticos (Parte 1)](/es/blog/socratic-agents-part-1-induction-entropy) · [La Serie de Agentes Socráticos (Parte 2)](/es/blog/socratic-agents-part-2-sdd-sycophancy) · [Orquestando Agentes de IA en Pipelines CI/CD](/es/blog/orchestrating-ai-agents-cicd-pipeline)
 

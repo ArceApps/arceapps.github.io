@@ -1,7 +1,11 @@
 ---
-title: "The maturity of mydevbot - CI/CD, eGPUs and the future of mobile development"
+title: "The Maturity of mydevbot - CI/CD, eGPUs and the Future of Mobile Development (mydevbot)"
 description: "The final phase. How mydevbot deploys itself using GitHub Actions and Watchtower, mobile programming with VS Code Server and the preparation of the UM890 Pro for extreme local AI via OCuLink."
 pubDate: 2026-03-07
+lastmod: 2026-03-07
+author: "ArceApps"
+keywords: ["mydevbot", "devlog", "cicd", "oculink", "egpu"]
+canonical: "https://arceapps.com/devlog/2026-03-07-mydevbot-cicd-egpu-future/"
 tags: ["devlog", "telegram", "mydevbot", "cicd", "oculink", "egpu", "vscode", "n8n"]
 heroImage: "/images/mydevbot-cicd-future-hero.svg"
 reference_id: "83523401-9392-426f-b039-f3ae73132d40"

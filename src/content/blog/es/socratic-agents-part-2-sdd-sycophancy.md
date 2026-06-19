@@ -1,11 +1,22 @@
 ---
-title: "La Serie de Agentes Socráticos (Parte 2): Desarrollo Dirigido por Especificaciones y la IA Complaciente"
+title: "La Serie de Agentes Socráticos (Parte 2): Spec-Driven Development contra la Sycophancy"
 description: "Cómo el deseo de la IA de complacerte está destruyendo tu código. Exploramos frameworks SDD y cómo implementar compuertas de verificación socrática en tu CI de Android."
 pubDate: 2026-05-16
+lastmod: 2026-05-16
+author: ArceApps
+keywords:
+  - "Agentes Socráticos"
+  - "Parte 2"
+  - "SDD"
+  - "Sycophancy"
+  - "IA"
+canonical: "https://arceapps.com/es/blog/socratic-agents-part-2-sdd-sycophancy/"
 heroImage: "/images/blog-socratic-agents-part2.svg"
 tags: ["IA", "SDD", "Desarrollo Dirigido por Especificaciones", "Sicofancia", "CI/CD", "Kotlin", "Android", "GitHub Actions"]
 reference_id: "ed6af514-ca96-4c41-9269-aaa520358f69"
 ---
+
+
 
 > **Lectura fundamental:** [La Serie de Agentes Socráticos (Parte 1)](/es/blog/socratic-agents-part-1-induction-entropy) · [Desarrollo Dirigido por Especificaciones con IA Agéntica](/es/blog/spec-driven-development-ai) · [Paradigmas Alternativos en la Ingeniería Asistida por IA](/es/blog/alternative-paradigms-ai-software-engineering)
 

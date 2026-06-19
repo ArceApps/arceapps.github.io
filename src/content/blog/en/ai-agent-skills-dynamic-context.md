@@ -1,10 +1,14 @@
 ---
 title: "AI Agent Skills: Dynamic Context Injection"
-description: "How to inject dynamic context into AI agent prompts. Techniques for providing memory, skills, and tools on-the-fly."
+description: How to inject dynamic context into AI agent prompts. Techniques for providing memory, skills, and tools on-the-fly.
 pubDate: 2025-10-25
-heroImage: "/images/placeholder-article-ai-skills.svg"
+lastmod: 2025-10-25
+author: ArceApps
+keywords: ["AI", "Context", "Agents", "Memory", "LLM", "Prompt Engineering"]
+canonical: "https://arceapps.com/blog/ai-agent-skills-dynamic-context/"
+heroImage: /images/placeholder-article-ai-skills.svg
 tags: ["AI", "Context", "Agents", "Memory", "LLM", "Prompt Engineering"]
-reference_id: "c8b07a57-31a7-459e-94af-fc4d60d827e7"
+reference_id: c8b07a57-31a7-459e-94af-fc4d60d827e7
 ---
 ## 🧠 The Context Limit Problem
 

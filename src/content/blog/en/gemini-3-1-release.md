@@ -1,10 +1,14 @@
 ---
-title: "Google Gemini 3.1 Pro: The New Standard in Reasoning and Creativity"
-description: "Google's Gemini 3.1 Pro arrives with a verified 77.1% ARC-AGI-2 score, code-based SVG animation, and Lyria 3 music generation. Is this the reasoning leap we've been waiting for?"
+title: Google Gemini 3.1 Pro
+description: Google's Gemini 3.1 Pro arrives with a verified 77.1% ARC-AGI-2 score, code-based SVG animation, and Lyria 3 music generation. Is this the reasoning leap we've been waiting for?
 pubDate: 2026-02-20
-heroImage: "/images/gemini-3-1-placeholder.svg"
+heroImage: /images/gemini-3-1-placeholder.svg
 tags: ["AI", "Google", "Gemini", "Reasoning", "Creative Coding", "Music"]
-reference_id: "1d85a4d4-d55e-4891-9f86-afd0d56ac893"
+reference_id: 1d85a4d4-d55e-4891-9f86-afd0d56ac893
+author: ArceApps
+lastmod: 2026-02-20
+canonical: "https://arceapps.com/blog/gemini-3-1-release/"
+keywords: ["AI", "Google", "Gemini", "Reasoning", "Creative Coding", "Music"]
 ---
 
 ## 🧠 A Quantum Leap in Reasoning

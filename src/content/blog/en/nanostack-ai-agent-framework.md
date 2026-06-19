@@ -1,10 +1,14 @@
 ---
-title: "NanoStack: The AI Agent Framework That Thinks Before It Codes"
-description: "Discover NanoStack, the open-source, zero-dependency framework that transforms any AI coding agent into a complete engineering team. Compatible with Claude Code, Gemini CLI, OpenAI Codex, Cursor, and more."
+title: NanoStack
+description: Discover NanoStack, the open-source, zero-dependency framework that transforms any AI coding agent into a complete engineering team. Compatible with Claude Code, Gemini CLI, OpenAI Codex, Cursor, and more.
 pubDate: 2026-03-29
-heroImage: "/images/nanostack-hero.svg"
+heroImage: /images/nanostack-hero.svg
 tags: ["AI Agents", "NanoStack", "Gemini CLI", "Claude Code", "OpenAI", "Productivity", "Open Source"]
-reference_id: "f8a3d12e-4b7c-4e9a-a5f2-c8d6e9b0f123"
+reference_id: f8a3d12e-4b7c-4e9a-a5f2-c8d6e9b0f123
+author: ArceApps
+lastmod: 2026-03-29
+canonical: "https://arceapps.com/blog/nanostack-ai-agent-framework/"
+keywords: ["AI Agents", "NanoStack", "Gemini CLI", "Claude Code", "OpenAI", "Productivity", "Open Source"]
 ---
 
 Most AI coding tools answer a simple question: *"How do I write this?"* NanoStack answers a different one first: *"Should we even build this?"*

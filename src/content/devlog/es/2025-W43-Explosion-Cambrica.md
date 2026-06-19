@@ -1,9 +1,13 @@
 ---
-title: "2025 W43: La Explosión Cámbrica"
-description: "Duplicando el catálogo en siete días. De 4 juegos a 8. La reutilización de código alcanza su pico máximo, pero la deuda técnica empieza a acumular intereses."
+title: "2025 W43: La Explosion Cambrica (PuzzleHub)"
+description: "Duplicando el catalogo en siete dias. De 4 juegos a 8. La reutilizacion de codigo alcanza su pico maximo, pero la deuda tecnica empieza a acumular intereses."
 pubDate: 2025-10-26
-tags: ["devlog", "minesweeper", "hashi", "tech-debt", "productivity"]
+lastmod: 2025-10-26
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "productividad", "deuda-tecnica", "escalabilidad"]
+canonical: "https://arceapps.com/es/devlog/2025-W43-Explosion-Cambrica/"
 heroImage: "/images/devlog/2025-w43-cover.png"
+tags: ["devlog", "minesweeper", "hashi", "tech-debt", "productivity"]
 ---
 
 En biología evolutiva, la "Explosión Cámbrica" fue un periodo breve donde la vida en la Tierra se diversificó a una velocidad sin precedentes. De repente, aparecieron casi todos los planes corporales animales que conocemos hoy. Fue un caos de creatividad biológica.

@@ -28,6 +28,10 @@ ArceApps no es solo un repositorio de código; es un **Ecosistema de Software In
 2.  **Bilingüismo Nativo:** Todo contenido debe nacer en **Español (ES)** e **Inglés (EN)** de forma simultánea y simétrica.
 3.  **Auditoría Interna:** Tras generar contenido, invoca (mentalmente o vía prompt) a `agents/PROMPT_ANALISIS_BITACORA.md` para auto-evaluar tu calidad.
 4.  **Código Real:** No inventes ejemplos. Usa el código del repositorio para ilustrar tus puntos.
+5.  **Validación SEO:** Tras generar el contenido, invocar la skill
+    `write-blog-seo` para auditar el frontmatter. Iterar hasta PASS
+    antes de declarar el artículo terminado. Aplican también las
+    reglas de naming SEO descritas en `write-blog`/`write-devlog`.
 
 ## 🚦 Reglas de Oro
 - **Calidad > Cantidad:** Pero la cantidad (palabras) es el vehículo de la profundidad. No rellenes; profundiza.

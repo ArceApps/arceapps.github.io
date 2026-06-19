@@ -1,10 +1,14 @@
 ---
 title: "Semantic Versioning in Android: Best Practices"
-description: "How to apply Semantic Versioning (SemVer) to Android. Managing `versionName` and `versionCode` for predictable releases."
+description: How to apply Semantic Versioning (SemVer) to Android. Managing `versionName` and `versionCode` for predictable releases.
 pubDate: 2025-10-18
-heroImage: "/images/placeholder-article-semantic-versioning.svg"
+heroImage: /images/placeholder-article-semantic-versioning.svg
 tags: ["Semantic Versioning", "Android", "Best Practices", "Versioning", "Release Management"]
-reference_id: "ec7574e0-504b-474c-902b-fb10c1fde1d3"
+reference_id: ec7574e0-504b-474c-902b-fb10c1fde1d3
+author: ArceApps
+lastmod: 2025-10-18
+canonical: "https://arceapps.com/blog/semantic-versioning-android-best-practices/"
+keywords: ["Semantic Versioning", "Android", "Best Practices", "Versioning", "Release Management"]
 ---
 ## 🏷️ What is Semantic Versioning?
 

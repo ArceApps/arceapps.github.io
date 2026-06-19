@@ -1,10 +1,14 @@
 ---
-title: "The PARA Method and File-Based AI Memory: Transparency, Obsidian, and the Markdown-First Architecture"
-description: "A deep dive into using the PARA method (Projects, Areas, Resources, Archives) as a cognitive scaffold for AI agent memory. How Markdown files, Obsidian, and Logseq via MCP create transparent, human-editable memory systems that actually persist."
+title: The PARA Method and File-Based AI
+description: A deep dive into using the PARA method (Projects, Areas, Resources, Archives) as a cognitive scaffold for AI agent memory. How Markdown files, Obsidian, and Logseq via MCP create transparent, human-editable memory systems that actually persist.
 pubDate: 2026-03-26
-heroImage: "/images/para-method-ai-memory.svg"
+heroImage: /images/para-method-ai-memory.svg
 tags: ["AI", "Memory", "PARA", "Obsidian", "Logseq", "MCP", "PKM", "Markdown", "Agents"]
-reference_id: "a3f8d2c1-9e4b-47f3-b812-6c5a1d8e0f3b"
+reference_id: a3f8d2c1-9e4b-47f3-b812-6c5a1d8e0f3b
+author: ArceApps
+lastmod: 2026-03-26
+canonical: "https://arceapps.com/blog/para-method-file-based-ai-memory/"
+keywords: ["AI", "Memory", "PARA", "Obsidian", "Logseq", "MCP", "PKM", "Markdown"]
 ---
 
 > This article is the focused companion to [The Architecture of Persistent AI Agent Memory](/blog/ai-agent-memory-persistence-guide), which covers the broader landscape of frameworks like OpenClaw, Mem0, and Cognee. Here we go deeper on a specific and extremely practical slice: using the **PARA method** and plain Markdown files as a transparent, human-editable memory substrate for AI agents. If you use Obsidian or Logseq, you will find this directly applicable to your workflow today.

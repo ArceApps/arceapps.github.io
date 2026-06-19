@@ -1,10 +1,14 @@
 ---
-title: "First Principles Reasoning and AI Audit: Quint Code, FPF, and the ADI Cycle in Software Engineering"
-description: "How the First Principles Framework (FPF) and Quint Code enforce structured reasoning on AI agents. The Abduction–Deduction–Induction cycle applied to engineering decisions, auditable decision contracts, and why vibe-coded AI is not enough."
+title: "First Principles Reasoning and AI Audit: Q..."
+description: How the First Principles Framework (FPF) and Quint Code enforce structured reasoning on AI agents. The Abduction–Deduction–Induction cycle applied to engineering decisions, auditable decision contracts, and why vibe-coded AI is not enough.
 pubDate: 2026-03-25
-heroImage: "/images/quint-code-fpf-reasoning.svg"
+heroImage: /images/quint-code-fpf-reasoning.svg
 tags: ["AI", "Reasoning", "First Principles", "Quint Code", "FPF", "Agents", "Decision Making", "Workflow", "Audit"]
-reference_id: "5031f97d-df40-43f0-a398-2c6a58557c4a"
+reference_id: 5031f97d-df40-43f0-a398-2c6a58557c4a
+author: ArceApps
+lastmod: 2026-03-25
+canonical: "https://arceapps.com/blog/first-principles-ai-reasoning-quint-code/"
+keywords: ["AI", "Reasoning", "First Principles", "Quint Code", "FPF", "Agents", "Decision Making", "Workflow"]
 ---
 
 > **Related reading:** [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [AI Agent Skills: Dynamic Context Injection](/blog/ai-agent-skills-dynamic-context) · [Reasoning Models: From o1 to R1](/blog/reasoning-models-o1-r1)

@@ -1,10 +1,14 @@
 ---
-title: "Automated Deployment to Google Play Store with GitHub Actions"
-description: "Learn how to configure a robust Continuous Deployment pipeline that automatically compiles, signs, and publishes your Android App to Google Play Store."
+title: Automated Deployment to Google Play Store with GitHub Act...
+description: Learn how to configure a robust Continuous Deployment pipeline that automatically compiles, signs, and publishes your Android App to Google Play Store.
 pubDate: 2025-10-30
-heroImage: "/images/placeholder-article-github-actions-play-store.svg"
+heroImage: /images/placeholder-article-github-actions-play-store.svg
 tags: ["GitHub Actions", "Android", "Google Play Store", "CI/CD", "DevOps"]
-reference_id: "7fbdb277-a5a6-4e77-8436-8d6a6ccc4831"
+reference_id: 7fbdb277-a5a6-4e77-8436-8d6a6ccc4831
+author: ArceApps
+lastmod: 2025-10-30
+canonical: "https://arceapps.com/blog/automated-deployment-play-store/"
+keywords: ["GitHub Actions", "Android", "Google Play Store", "CI/CD", "DevOps"]
 ---
 ## 🚀 The Holy Grail of Android Development
 

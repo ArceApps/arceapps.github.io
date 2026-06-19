@@ -1,10 +1,14 @@
 ---
 title: "SOLID Principles: Android Examples"
-description: "Understanding SOLID principles in modern Android. Examples using Kotlin, Hilt, and MVVM."
+description: Understanding SOLID principles in modern Android. Examples using Kotlin, Hilt, and MVVM.
 pubDate: 2025-06-21
-heroImage: "/images/placeholder-article-solid-android.svg"
+heroImage: /images/placeholder-article-solid-android.svg
 tags: ["SOLID", "Principles", "Android", "Kotlin", "Clean Code", "Architecture"]
-reference_id: "23245d12-f1a0-4c90-a479-5054040d07f3"
+reference_id: 23245d12-f1a0-4c90-a479-5054040d07f3
+author: ArceApps
+lastmod: 2025-06-21
+canonical: "https://arceapps.com/blog/solid-principles-android-examples/"
+keywords: ["SOLID", "Principles", "Android", "Kotlin", "Clean Code", "Architecture"]
 ---
 ## 📏 SOLID Principles in Android
 

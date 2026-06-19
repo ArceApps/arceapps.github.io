@@ -1,10 +1,14 @@
 ---
 title: "Kotlin Delegation: Clean Code Pattern"
-description: "Master the Delegation pattern in Kotlin. Use `by` keyword to replace inheritance with composition. Practical examples for Android."
+description: Master the Delegation pattern in Kotlin. Use `by` keyword to replace inheritance with composition. Practical examples for Android.
 pubDate: 2025-10-15
-heroImage: "/images/placeholder-article-delegation.svg"
+heroImage: /images/placeholder-article-delegation.svg
 tags: ["Kotlin", "Delegation", "Design Patterns", "Clean Code", "Android"]
-reference_id: "f80704ef-54c1-481a-9d85-bd50b43cabc2"
+reference_id: f80704ef-54c1-481a-9d85-bd50b43cabc2
+author: ArceApps
+lastmod: 2025-10-15
+canonical: "https://arceapps.com/blog/kotlin-delegation-pattern/"
+keywords: ["Kotlin", "Delegation", "Design Patterns", "Clean Code", "Android"]
 ---
 ## 🤝 Composition over Inheritance
 

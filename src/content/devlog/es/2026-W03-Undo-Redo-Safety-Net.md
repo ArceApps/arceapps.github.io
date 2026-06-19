@@ -1,9 +1,13 @@
 ---
-title: "2026 W03: La Red de Seguridad (O cómo implementamos Deshacer en 10 juegos a la vez)"
-description: "La historia técnica detallada detrás de la implementación del sistema Undo/Redo en PuzzleHub: patrones de diseño, problemas de concurrencia con corrutinas, gestión de memoria eficiente, serialización polimórfica y la búsqueda de la UX perfecta en Android."
+title: "2026 W03: La Red de Seguridad - Undo/Redo en 10 Juegos (PuzzleHub)"
+description: "La historia tecnica detallada detras de la implementacion del sistema Undo/Redo en PuzzleHub: patrones de diseno, problemas de concurrencia y gestion de memoria."
 pubDate: 2026-01-18
-tags: ["devlog", "architecture", "android", "kotlin", "design-patterns", "testing", "clean-code", "concurrency"]
+lastmod: 2026-01-18
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "arquitectura", "deshacer", "diseno"]
+canonical: "https://arceapps.com/es/devlog/2026-W03-Undo-Redo-Safety-Net/"
 heroImage: "/images/devlog-default.svg"
+tags: ["devlog", "architecture", "android", "kotlin", "design-patterns", "testing", "clean-code", "concurrency"]
 ---
 
 Esta semana en el desarrollo de **PuzzleHub**, nos hemos enfrentado a una de esas características que, vistas desde fuera, parecen la cosa más trivial del mundo: "Solo pon un botón de deshacer, ¿no?". Esa frase, pronunciada a menudo por Product Managers optimistas (o por mi propio cerebro cansado a las 2 de la mañana), esconde un iceberg de complejidad arquitectónica descomunal. Especialmente cuando no estás haciendo un _To-Do List_, sino que tienes que mantener la estabilidad, la integridad de datos y el rendimiento fluido de **10 motores de juego diferentes** simultáneamente, cada uno con sus propias reglas, estructuras de datos y peculiaridades lógicas.

@@ -1,9 +1,13 @@
 ---
-title: "Offline-First Synchronization Patterns Powered by AI"
-description: "Revolutionizing data synchronization and conflict resolution using local AI models in 2026."
+title: Offline-First Synchronization Patterns Powered by AI
+description: Revolutionizing data synchronization and conflict resolution using local AI models in 2026.
 pubDate: 2026-02-07
-heroImage: "/images/tech-offline-ai.svg"
+heroImage: /images/tech-offline-ai.svg
 tags: ["Offline-First", "AI", "Synchronization", "Room", "Data Management", "Architecture"]
+author: ArceApps
+lastmod: 2026-02-07
+canonical: "https://arceapps.com/blog/offline-first-ai-patterns/"
+keywords: ["Offline-First", "AI", "Synchronization", "Room", "Data Management", "Architecture"]
 ---
 
 Building **Offline-First** applications has always been one of the toughest challenges in mobile development. While tools like **Room** and **WorkManager** handle the mechanics of local storage and background jobs, the real pain point is **Conflict Resolution**.

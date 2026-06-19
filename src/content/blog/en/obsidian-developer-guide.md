@@ -1,10 +1,14 @@
 ---
 title: "Obsidian for Developers: Ultimate Guide 2025"
-description: "Transform Obsidian into a Knowledge IDE. Learn to integrate Git, Dataview, Architecture Diagrams, and automated logs to boost your development career."
+description: Transform Obsidian into a Knowledge IDE. Learn to integrate Git, Dataview, Architecture Diagrams, and automated logs to boost your development career.
 pubDate: 2025-05-27
-heroImage: "/images/obsidian-dev-hero.svg"
+heroImage: /images/obsidian-dev-hero.svg
 tags: ["productivity", "workflow", "tools", "documentation"]
-reference_id: "5bcc1a10-55fd-4f2b-9285-f9b72f5fdcad"
+reference_id: 5bcc1a10-55fd-4f2b-9285-f9b72f5fdcad
+author: ArceApps
+lastmod: 2025-05-27
+canonical: "https://arceapps.com/blog/obsidian-developer-guide/"
+keywords: ["productivity", "workflow", "tools", "documentation"]
 ---
 
 If you are a developer, your current knowledge "system" probably looks like this: three Stack Overflow tabs open for a week, a `TODO.txt` on the desktop you haven't opened since 2023, and a bunch of useful terminal commands saved in your bash history that you pray not to lose.

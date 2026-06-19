@@ -1,7 +1,11 @@
 ---
-title: "2025 W40: The First Pixel"
+title: "2025 W40: The First Pixel (PuzzleHub)"
 description: "The fear of the blank page, the critical decision between Canvas and Compose, and why we chose an architecture that slowed us down for three days to speed us up for the rest of the year."
 pubDate: 2025-10-05
+lastmod: 2025-10-05
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "architecture", "canvas", "jetpack-compose"]
+canonical: "https://arceapps.com/devlog/2025-w40-first-pixel/"
 tags: ["devlog", "architecture", "canvas", "clean-code", "jetpack-compose"]
 heroImage: "/images/devlog/2025-w40-cover.png"
 ---

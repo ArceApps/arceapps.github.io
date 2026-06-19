@@ -1,7 +1,11 @@
 ---
-title: "Research: Clawdbot and Local-First Architecture"
+title: "Research: Clawdbot and Local-First Architecture (Clawdbot)"
 description: "Research diary on Clawdbot. Beyond the tutorial, here I analyze the decentralized architecture and Gemini 3.0 integration challenges."
 pubDate: 2026-01-07
+lastmod: 2026-01-07
+author: "ArceApps"
+keywords: ["Clawdbot", "devlog", "Research", "Architecture", "Local-First"]
+canonical: "https://arceapps.com/devlog/clawdbot-research/"
 tags: ["Research", "Clawdbot", "Architecture", "Local-First"]
 heroImage: "/images/devlog-default.svg"
 ---

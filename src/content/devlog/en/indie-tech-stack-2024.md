@@ -1,7 +1,11 @@
 ---
-title: "The Indie Tech Stack: Reflections on Architecture and Autonomy"
+title: "The Indie Tech Stack: Reflections on Architecture and Autonomy (ArceApps)"
 description: "An incredibly detailed review of the ArceApps system architecture, custom AI agents, and the philosophy of solo software engineering."
 pubDate: "2024-05-20"
+lastmod: "2024-05-20"
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "architecture", "mindset", "astro"]
+canonical: "https://arceapps.com/devlog/indie-tech-stack-2024/"
 heroImage: "/images/devlog/devlog-indie-mindset.svg"
 tags: ['architecture', 'mindset', 'astro']
 reference_id: "indie-tech-stack-2024"

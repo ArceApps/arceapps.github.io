@@ -1,10 +1,14 @@
 ---
 title: "Power Up Your AI Agents with Skills: From Gemini to Copilot"
-description: "Discover how to transform your generalist AI assistant into a team of specialists using Agent Skills. Includes practical examples for Android, Kotlin, and Conventional Commits."
+description: Discover how to transform your generalist AI assistant into a team of specialists using Agent Skills. Includes practical examples for Android, Kotlin, and Conventional Commits.
 pubDate: 2025-05-24
-heroImage: "/images/agent-skills-gemini.svg"
+heroImage: /images/agent-skills-gemini.svg
 tags: ["AI", "Gemini", "GitHub Copilot", "Android", "Kotlin", "Productivity"]
-reference_id: "3754f165-251e-4411-a2fd-b6b2d5e4fc02"
+reference_id: 3754f165-251e-4411-a2fd-b6b2d5e4fc02
+author: ArceApps
+lastmod: 2025-05-24
+canonical: "https://arceapps.com/blog/building-ai-agent-skills/"
+keywords: ["AI", "Gemini", "GitHub Copilot", "Android", "Kotlin", "Productivity"]
 ---
 
 Artificial Intelligence in software development has evolved rapidly. We have moved from simple "copy and paste" prompts to complex contexts managed by files like `AGENTS.md` or `GEMINI.md`. However, as our projects grow, so does the context we need to provide. This is where the next big leap comes in: **Agent Skills**.

@@ -1,10 +1,14 @@
 ---
 title: "Refactoring Legacy Code with AI: From Nightmare to Dream"
-description: "Strategies for tackling legacy code (Java, Spaghetti) using AI tools. How to migrate to Kotlin and Clean Architecture without breaking production."
+description: Strategies for tackling legacy code (Java, Spaghetti) using AI tools. How to migrate to Kotlin and Clean Architecture without breaking production.
 pubDate: 2025-11-10
-heroImage: "/images/placeholder-article-refactoring-ia.svg"
+heroImage: /images/placeholder-article-refactoring-ia.svg
 tags: ["AI", "Refactoring", "Legacy Code", "Kotlin Migration", "Strategy"]
-reference_id: "e61a0a9d-7846-43f0-a99a-932ed9a26d43"
+reference_id: e61a0a9d-7846-43f0-a99a-932ed9a26d43
+author: ArceApps
+lastmod: 2025-11-10
+canonical: "https://arceapps.com/blog/refactoring-legacy-code-ai/"
+keywords: ["AI", "Refactoring", "Legacy Code", "Kotlin Migration", "Strategy"]
 ---
 ## 🧟 The Legacy Monster
 

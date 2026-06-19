@@ -1,9 +1,13 @@
 ---
-title: "2025 W49: Logros Desbloqueados"
+title: "2025 W49: Logros Desbloqueados (PuzzleHub)"
 description: "Minesweeper y Galaxies se unen a la fiesta completando el sistema de logros para los 10 juegos."
 pubDate: 2025-12-07
-tags: ["devlog", "gamification", "minesweeper", "galaxies"]
+lastmod: 2025-12-07
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "gamificacion", "minesweeper", "galaxies"]
+canonical: "https://arceapps.com/es/devlog/2025-W49-Logros-Desbloqueados/"
 heroImage: "/images/devlog-w49-achievements.svg"
+tags: ["devlog", "gamification", "minesweeper", "galaxies"]
 ---
 
 Esta semana marca un hito importante en la historia de *PuzzleSuite*. Durante mucho tiempo, *Minesweeper* y *Galaxies* fueron los "hermanos pequeños" del catálogo, excelentes mecánicamente pero faltos de esa capa de profundidad que ofrecen las estadísticas y los logros.

@@ -1,7 +1,11 @@
 ---
-title: "2025 W52: House Cleaning and Solid Foundations"
+title: "2025 W52: House Cleaning and Solid Foundations (PuzzleHub)"
 description: "Massive refactoring of game states and visual improvements in Hashi before closing the year."
 pubDate: 2025-12-28
+lastmod: 2025-12-28
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "refactoring", "architecture", "hashi"]
+canonical: "https://arceapps.com/devlog/2025-w52-basegamestate-standardization/"
 tags: ["devlog", "refactoring", "architecture", "ui", "hashi"]
 heroImage: "/images/devlog-w52-state.svg"
 ---

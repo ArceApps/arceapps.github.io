@@ -1,10 +1,14 @@
 ---
-title: "GitHub Pages for Android Devs: Your Free Professional Portfolio"
-description: "Learn how to deploy this very blog, library documentation, or app landing pages using GitHub Pages and Astro, completely free."
+title: GitHub Pages for Android Devs
+description: Learn how to deploy this very blog, library documentation, or app landing pages using GitHub Pages and Astro, completely free.
 pubDate: 2025-11-15
-heroImage: "/images/placeholder-article-github-pages.svg"
+heroImage: /images/placeholder-article-github-pages.svg
 tags: ["GitHub Pages", "Web", "Portfolio", "Astro", "Personal Branding"]
-reference_id: "45210925-fcbf-46d8-a343-f68613cf8526"
+reference_id: 45210925-fcbf-46d8-a343-f68613cf8526
+author: ArceApps
+lastmod: 2025-11-15
+canonical: "https://arceapps.com/blog/github-pages-android-portfolio/"
+keywords: ["GitHub Pages", "Web", "Portfolio", "Astro", "Personal Branding"]
 ---
 ## 🌍 Why GitHub Pages?
 

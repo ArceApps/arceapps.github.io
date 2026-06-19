@@ -1,7 +1,11 @@
 ---
-title: "2026 W03: The Safety Net (Or how we implemented Undo in 10 games at once)"
+title: "2026 W03: The Safety Net (PuzzleHub)"
 description: "The detailed technical story behind the implementation of the Undo/Redo system in PuzzleHub: design patterns, concurrency problems with coroutines, efficient memory management, polymorphic serialization, and the search for the perfect UX on Android."
 pubDate: 2026-01-18
+lastmod: 2026-01-18
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "architecture", "android", "kotlin"]
+canonical: "https://arceapps.com/devlog/2026-w03-undo-redo-safety-net/"
 tags: ["devlog", "architecture", "android", "kotlin", "design-patterns", "testing", "clean-code", "concurrency"]
 heroImage: "/images/devlog-default.svg"
 ---

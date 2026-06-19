@@ -1,10 +1,14 @@
 ---
-title: "Autonomous AI Agents in Android Development: Beyond the Assistant"
+title: Autonomous AI Agents in Android Development
 description: "How autonomous AI agents transform Android development: from multi-agent frameworks to pipelines that open PRs and run tests on their own."
 pubDate: 2026-03-08
-heroImage: "/images/blog-agentes-autonomos-android.svg"
+heroImage: /images/blog-agentes-autonomos-android.svg
 tags: ["AI", "Android", "Agents", "Multi-Agent", "Automation"]
 draft: false
+author: ArceApps
+lastmod: 2026-03-08
+canonical: "https://arceapps.com/blog/autonomous-ai-agents-android/"
+keywords: ["AI", "Android", "Agents", "Multi-Agent", "Automation"]
 ---
 
 > If you're not yet familiar with what AI agents are or how to configure them in an Android project, this article assumes those concepts. Start with this series first:

@@ -1,7 +1,11 @@
 ---
-title: "2025 W44: The Ninth Passenger"
+title: "2025 W44: The Ninth Passenger (PuzzleHub)"
 description: "Just when you thought the catalog was closed, Dominosa arrives to challenge our architecture. A story about feature creep and modular design."
 pubDate: 2025-11-02
+lastmod: 2025-11-02
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "architecture", "dominosa", "planning"]
+canonical: "https://arceapps.com/devlog/2025-w44-dominosa-genesis/"
 tags: ["devlog", "architecture", "dominosa", "planning", "philosophy"]
 heroImage: "/images/devlog-w44-dominosa-genesis.svg"
 ---

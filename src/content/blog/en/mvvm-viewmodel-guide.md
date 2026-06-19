@@ -2,9 +2,13 @@
 title: "MVVM ViewModel: The Brain of the Operation"
 description: "Deep dive into the ViewModel component: State management, lifecycle, coroutines, and how to avoid the most common design errors."
 pubDate: 2025-10-04
-heroImage: "/images/placeholder-article-viewmodel.svg"
+heroImage: /images/placeholder-article-viewmodel.svg
 tags: ["Android", "MVVM", "ViewModel", "StateFlow", "Coroutines"]
-reference_id: "b1b0835b-d0cc-4efd-bbd4-853257664f56"
+reference_id: b1b0835b-d0cc-4efd-bbd4-853257664f56
+author: ArceApps
+lastmod: 2025-10-04
+canonical: "https://arceapps.com/blog/mvvm-viewmodel-guide/"
+keywords: ["Android", "MVVM", "ViewModel", "StateFlow", "Coroutines"]
 ---
 ## 🧠 Theory: What makes a ViewModel a ViewModel?
 

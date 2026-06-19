@@ -1,10 +1,14 @@
 ---
 title: "Repository Pattern: The True Data Abstraction"
-description: "Why the Repository is the most important pattern in Clean Architecture. Caching strategies, error handling, and data source orchestration."
+description: Why the Repository is the most important pattern in Clean Architecture. Caching strategies, error handling, and data source orchestration.
 pubDate: 2025-10-18
-heroImage: "/images/placeholder-article-repository.svg"
+heroImage: /images/placeholder-article-repository.svg
 tags: ["Architecture", "Design Patterns", "Android", "Data Layer"]
-reference_id: "e1498656-14e2-4b0b-9914-752ae17e6062"
+reference_id: e1498656-14e2-4b0b-9914-752ae17e6062
+author: ArceApps
+lastmod: 2025-10-18
+canonical: "https://arceapps.com/blog/repository-pattern-android/"
+keywords: ["Architecture", "Design Patterns", "Android", "Data Layer"]
 ---
 ## 🏛️ Theory: The Guardian of Data
 

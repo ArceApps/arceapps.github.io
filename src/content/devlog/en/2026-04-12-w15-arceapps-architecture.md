@@ -1,7 +1,11 @@
 ---
-title: "W15: Architecture and Security Evolution at ArceApps"
+title: "W15: Architecture and Security Evolution at ArceApps (ArceApps)"
 description: "A deep dive into how we reinforced security by mitigating XSS vulnerabilities, optimized the visual hierarchy of our media, and upgraded our AI agents to enhance brand consistency across the ArceApps portfolio."
 pubDate: "2026-04-12"
+lastmod: "2026-04-12"
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "security", "xss", "ia-agents"]
+canonical: "https://arceapps.com/devlog/2026-04-12-w15-arceapps-architecture/"
 tags: ["devlog", "arceapps", "ia-agents", "security", "xss", "frontend", "responsive-design"]
 heroImage: "/images/devlog-default.svg"
 ---

@@ -1,10 +1,14 @@
 ---
-title: "Hipocampus: Zero-Infrastructure Hierarchical Memory for AI Agents"
-description: "A technical deep-dive into Hipocampus, a drop-in memory harness for AI agents that uses a 3-tier Hot/Warm/Cold architecture and a 5-level compaction tree. How ROOT.md enables constant-cost memory awareness and how it compares to hmem, Mem0, and Letta."
+title: Hipocampus
+description: A technical deep-dive into Hipocampus, a drop-in memory harness for AI agents that uses a 3-tier Hot/Warm/Cold architecture and a 5-level compaction tree. How ROOT.md enables constant-cost memory awareness and how it compares to hmem, Mem0, and Letta.
 pubDate: 2026-03-27
-heroImage: "/images/blog-hipocampus-memoria-jerarquica.svg"
+heroImage: /images/blog-hipocampus-memoria-jerarquica.svg
 tags: ["AI", "Memory", "Agents", "Architecture", "Open Source", "Context Window", "Markdown"]
-reference_id: "d3f7a2b1-9c5e-4d8a-b2f6-1e3c7d5a8b4e"
+reference_id: d3f7a2b1-9c5e-4d8a-b2f6-1e3c7d5a8b4e
+author: ArceApps
+lastmod: 2026-03-27
+canonical: "https://arceapps.com/blog/hipocampus-hierarchical-memory-agents/"
+keywords: ["AI", "Memory", "Agents", "Architecture", "Open Source", "Context Window", "Markdown"]
 ---
 
 > This article is part of the ongoing memory series on this blog. For the broad landscape of persistent agent memory, start with [The Architecture of Persistent AI Agent Memory](/blog/ai-agent-memory-persistence-guide). For the security and privacy angle, read [Agentic Memory: Security, Privacy, and the Future of the AI Second Brain](/blog/memory-security-privacy-agentic). For Microsoft Research's task-agnostic approach, check [PlugMem: Microsoft Research's Task-Agnostic Memory Plugin](/blog/plugmem-microsoft-agent-memory). For the SQLite + FTS5 approach with five lazy-loaded levels, see [hmem: Hierarchical SQLite Memory for AI Agents That Actually Persists](/blog/hmem-sqlite-hierarchical-memory-agents). This article covers Hipocampus, a markdown-only, zero-infrastructure memory harness with a genuinely novel solution to the "what does my agent know?" problem.

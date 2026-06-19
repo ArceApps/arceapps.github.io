@@ -1,7 +1,11 @@
 ---
-title: "2026 W02: Generics, Canvas, and the Quest for Absolute Efficiency"
+title: "2026 W02: Generics, Canvas, and the Quest for Absolute Efficiency (PuzzleHub)"
 description: "A chronicle of extremes: eliminating 400 lines of repeated code with generic architectures and redrawing every pixel by hand to save performance on mid-range devices."
 pubDate: 2026-01-14
+lastmod: 2026-01-14
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "kotlin", "architecture", "performance"]
+canonical: "https://arceapps.com/devlog/2026-w02-repository-patterns-canvas/"
 tags: ["devlog", "kotlin", "architecture", "performance", "canvas", "compose", "refactoring", "generics"]
 heroImage: "/images/devlog-w02-canvas.svg"
 ---

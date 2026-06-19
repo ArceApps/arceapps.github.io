@@ -1,9 +1,13 @@
 ---
-title: "2025 W52: Limpieza de Casa y Cimientos Sólidos"
-description: "Refactorización masiva de estados de juego y mejoras visuales en Hashi antes de cerrar el año."
+title: "2025 W52: Limpieza de Casa y Cimientos Solidos (PuzzleHub)"
+description: "Refactorizacion masiva de estados de juego y mejoras visuales en Hashi antes de cerrar el ano."
 pubDate: 2025-12-28
-tags: ["devlog", "refactoring", "architecture", "ui", "hashi"]
+lastmod: 2025-12-28
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "refactoring", "arquitectura", "ui"]
+canonical: "https://arceapps.com/es/devlog/2025-W52-Estandarizacion-BaseGameState/"
 heroImage: "/images/devlog-w52-state.svg"
+tags: ["devlog", "refactoring", "architecture", "ui", "hashi"]
 ---
 
 A medida que el 2025 llega a su fin, en ArceApps decidimos que la mejor forma de recibir el año nuevo no era añadiendo más características frenéticamente, sino asegurándonos de que nuestra casa estuviera en orden. Esta semana, la penúltima del año, nos arremangamos para pagar una deuda técnica que nos venía persiguiendo: la inconsistencia en cómo nuestros 10 juegos manejaban sus estados internos.

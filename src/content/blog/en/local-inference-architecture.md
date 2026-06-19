@@ -1,9 +1,13 @@
 ---
-title: "Local Inference Architecture: Integrating LiteRT into Clean Architecture"
-description: "A guide to decoupling on-device AI models like Gemini Nano using Clean Architecture principles in Android 16."
+title: "Local Inference Architecture: Integrating ..."
+description: A guide to decoupling on-device AI models like Gemini Nano using Clean Architecture principles in Android 16.
 pubDate: 2026-02-05
-heroImage: "/images/tech-edge-ai-arch.svg"
+heroImage: /images/tech-edge-ai-arch.svg
 tags: ["Android", "AI", "Clean Architecture", "LiteRT", "Gemini Nano", "On-Device AI"]
+author: ArceApps
+lastmod: 2026-02-05
+canonical: "https://arceapps.com/blog/local-inference-architecture/"
+keywords: ["Android", "AI", "Clean Architecture", "LiteRT", "Gemini Nano", "On-Device AI"]
 ---
 
 With the release of **Android 16 (Baklava)** and the stabilization of **LiteRT** (formerly TensorFlow Lite), running high-performance AI models directly on user devices has become the norm rather than the exception. Whether it's using **Gemini Nano** for text summarization or a custom quantized model for image segmentation, the challenge for Android engineers has shifted from "how do I run this?" to "how do I architect this maintainably?".

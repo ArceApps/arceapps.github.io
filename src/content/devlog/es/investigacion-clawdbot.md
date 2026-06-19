@@ -1,9 +1,13 @@
 ---
-title: "Investigación: Clawdbot y la Arquitectura Local-First"
-description: "Diario de investigación sobre Clawdbot. Más allá del tutorial, aquí analizo la arquitectura descentralizada y los retos de integración con Gemini 3.0."
+title: "Investigacion: Clawdbot y la Arquitectura Local-First (Clawdbot)"
+description: "Diario de investigacion sobre Clawdbot. Mas alla del tutorial, analizo la arquitectura descentralizada y los retos de integracion con Gemini 3.0."
 pubDate: 2026-01-07
-tags: ["Investigación", "Clawdbot", "Arquitectura", "Local-First"]
+lastmod: 2026-01-07
+author: "ArceApps"
+keywords: ["Clawdbot", "devlog", "investigacion", "local-first", "arquitectura"]
+canonical: "https://arceapps.com/es/devlog/investigacion-clawdbot/"
 heroImage: "/images/devlog-default.svg"
+tags: ["Investigación", "Clawdbot", "Arquitectura", "Local-First"]
 ---
 
 Si llegaste aquí buscando *cómo* instalar Clawdbot, detente un momento. Ya he cubierto el "paso a paso" en el blog principal, donde explico cómo configurar el [Gateway y Telegram](/blog/clawdbot-asistente-ia-telegram) y cómo compilar el [Nodo Android](/blog/clawdbot-android-node-build).

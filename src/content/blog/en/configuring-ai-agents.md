@@ -1,10 +1,14 @@
 ---
 title: "Your Virtual Staff: Configuring Sentinel, Bolt, and Palette"
-description: "Practical step-by-step guide to implementing an agent architecture in your Android project. Configure your own AI experts and define their rules."
+description: Practical step-by-step guide to implementing an agent architecture in your Android project. Configure your own AI experts and define their rules.
 pubDate: 2025-05-21
-heroImage: "/images/placeholder-article-ai-setup.svg"
+heroImage: /images/placeholder-article-ai-setup.svg
 tags: ["AI", "Tutorial", "Configuration", "Android", "Agents"]
-reference_id: "b0624ec0-08af-4dad-bc3f-7dce6d88c8ea"
+reference_id: b0624ec0-08af-4dad-bc3f-7dce6d88c8ea
+author: ArceApps
+lastmod: 2025-05-21
+canonical: "https://arceapps.com/blog/configuring-ai-agents/"
+keywords: ["AI", "Tutorial", "Configuration", "Android", "Agents"]
 ---
 
 In the [previous article](/blog/ai-agents-android-theory), we explored why we need specialized agents instead of generic chats. Today, we are going to get our hands dirty. We are going to build the necessary infrastructure for **Sentinel**, **Bolt**, and **Palette** to live in your Android repository.

@@ -2,10 +2,21 @@
 title: "Clawdbot en Android: Compila e Instala tu Propio Nodo desde el Código Fuente"
 description: "Guía técnica para compilar la app nativa de Clawdbot para Android, permitiendo a tu asistente acceder a la cámara, ubicación y modo de voz."
 pubDate: 2026-01-07
-tags: ["Android", "Clawdbot", "Kotlin", "Build", "Gradle", "IA"]
+lastmod: 2026-01-07
+author: ArceApps
+keywords:
+  - "Clawdbot"
+  - "Android"
+  - "Compilar"
+  - "Nodo"
+  - "Build"
+canonical: "https://arceapps.com/es/blog/clawdbot-android-node-build/"
 heroImage: "/images/clawdbot-android-node.svg"
+tags: ["Android", "Clawdbot", "Kotlin", "Build", "Gradle", "IA"]
 reference_id: "3eb5c086-8be4-48c6-a348-5973806f84e9"
 ---
+
+
 
 En el [artículo anterior](/blog/clawdbot-asistente-ia-telegram), configuramos el "cerebro" de Clawdbot (Gateway) y su interfaz de chat (Telegram). Pero Clawdbot brilla realmente cuando tiene "cuerpo".
 

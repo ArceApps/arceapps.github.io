@@ -1,10 +1,14 @@
 ---
-title: "Gemini Nano on Android: On-Device AI Without Cloud Dependency"
-description: "Learn to integrate Gemini Nano in Android via Android AI Core. Real use cases, Kotlin snippets, and when to choose on-device vs. cloud inference."
+title: Gemini Nano on Android
+description: Learn to integrate Gemini Nano in Android via Android AI Core. Real use cases, Kotlin snippets, and when to choose on-device vs. cloud inference.
 pubDate: 2026-03-08
-heroImage: "/images/blog-gemini-nano-on-device.svg"
+heroImage: /images/blog-gemini-nano-on-device.svg
 tags: ["Android", "AI", "Gemini Nano", "On-Device AI", "Android AI Core", "LiteRT"]
 draft: false
+author: ArceApps
+lastmod: 2026-03-08
+canonical: "https://arceapps.com/blog/gemini-nano-android-on-device/"
+keywords: ["Android", "AI", "Gemini Nano", "On-Device AI", "Android AI Core", "LiteRT"]
 ---
 
 > Before diving in, if you're interested in the broader architectural context of local AI on Android, these two articles are essential reading:

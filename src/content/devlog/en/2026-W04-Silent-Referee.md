@@ -1,7 +1,11 @@
 ---
-title: "2026 W04: The Silent Referee (and why deleting buttons is the best UX improvement)"
+title: "2026 W04: The Silent Referee (PuzzleHub)"
 description: "A technical and philosophical dive into eliminating UI bureaucracy. How we moved from asking the user to fill out forms to creating a Reactive Auto-Verification system, and how we optimized O(N) graph cycle detection to run at 60fps."
 pubDate: 2026-01-25
+lastmod: 2026-01-25
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "ux", "algorithms", "performance"]
+canonical: "https://arceapps.com/devlog/2026-w04-silent-referee/"
 tags: ["devlog", "ux", "android", "algorithms", "performance", "graph-theory", "kotlin"]
 heroImage: "/images/devlog-w47-ux-design.svg"
 ---

@@ -1,10 +1,14 @@
 ---
-title: "From Copilot to Autonomous Agents: Cline, Cursor and the Workflow in 2025"
-description: "Autocomplete is a thing of the past. Discover how AI Agents like Cline and Cursor are redefining software development, allowing for multi-file editing and autonomous command execution."
+title: "From Copilot to Autonomous Agents: Cline, ..."
+description: Autocomplete is a thing of the past. Discover how AI Agents like Cline and Cursor are redefining software development, allowing for multi-file editing and autonomous command execution.
 pubDate: 2025-02-02
-heroImage: "/images/placeholder-article-ai-agents.svg"
+heroImage: /images/placeholder-article-ai-agents.svg
 tags: ["AI", "Agents", "Cursor", "Cline", "Coding", "Productivity", "MCP"]
-reference_id: "5709cbd1-2213-462b-9ecd-43b7e9f6ef68"
+reference_id: 5709cbd1-2213-462b-9ecd-43b7e9f6ef68
+author: ArceApps
+lastmod: 2025-02-02
+canonical: "https://arceapps.com/blog/coding-with-ai-agents/"
+keywords: ["AI", "Agents", "Cursor", "Cline", "Coding", "Productivity", "MCP"]
 ---
 
 ## 🤖 The Evolution: From "Suggesting" to "Acting"

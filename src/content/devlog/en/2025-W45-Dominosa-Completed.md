@@ -1,7 +1,11 @@
 ---
-title: "2025 W45: Dominating Uncertainty"
+title: "2025 W45: Dominating Uncertainty (PuzzleHub)"
 description: "From theory to practice: How we implemented Dominosa in a week and learned that true randomness is an enemy."
 pubDate: 2025-11-09
+lastmod: 2025-11-09
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "algorithms", "dominosa", "completion"]
+canonical: "https://arceapps.com/devlog/2025-w45-dominosa-completed/"
 tags: ["devlog", "algorithms", "dominosa", "completion", "production"]
 heroImage: "/images/devlog-w45-algorithms.svg"
 ---

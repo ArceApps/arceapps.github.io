@@ -1,10 +1,14 @@
 ---
 title: "Reasoning Models (o1, R1): Why Prompt Engineering is Dying"
-description: "The arrival of OpenAI o1 and DeepSeek R1 marks the end of complex 'Prompt Engineering'. Understand how reasoning models (System 2) work and when to use them."
+description: The arrival of OpenAI o1 and DeepSeek R1 marks the end of complex 'Prompt Engineering'. Understand how reasoning models (System 2) work and when to use them.
 pubDate: 2025-02-15
-heroImage: "/images/placeholder-article-reasoning-models.svg"
+heroImage: /images/placeholder-article-reasoning-models.svg
 tags: ["AI", "Reasoning", "Chain of Thought", "Prompt Engineering", "o1", "R1", "Productivity"]
-reference_id: "5acd5694-2afb-466c-8cca-66af438be57a"
+reference_id: 5acd5694-2afb-466c-8cca-66af438be57a
+author: ArceApps
+lastmod: 2025-02-15
+canonical: "https://arceapps.com/blog/reasoning-models-prompt-engineering-death/"
+keywords: ["AI", "Reasoning", "Chain of Thought", "Prompt Engineering", "o1", "R1", "Productivity"]
 ---
 
 ## 🧠 System 1 vs. System 2

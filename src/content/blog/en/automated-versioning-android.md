@@ -1,10 +1,14 @@
 ---
-title: "Automated Versioning in Android with CI/CD"
-description: "Stop manually bumping `versionCode`. Use GitHub Actions and SemVer to automate your Android app versioning strategy."
+title: Automated Versioning in Android with CI/CD
+description: Stop manually bumping `versionCode`. Use GitHub Actions and SemVer to automate your Android app versioning strategy.
 pubDate: 2025-10-18
-heroImage: "/images/placeholder-article-automated-versioning.svg"
+heroImage: /images/placeholder-article-automated-versioning.svg
 tags: ["Android", "Versioning", "Gradle", "CI/CD", "Semantic Versioning", "GitHub Actions"]
-reference_id: "f0d36318-91ed-4f7c-a447-f460ea56e7a0"
+reference_id: f0d36318-91ed-4f7c-a447-f460ea56e7a0
+author: ArceApps
+lastmod: 2025-10-18
+canonical: "https://arceapps.com/blog/automated-versioning-android/"
+keywords: ["Android", "Versioning", "Gradle", "CI/CD", "Semantic Versioning", "GitHub Actions"]
 ---
 ## 🔢 The Manual Problem
 

@@ -1,7 +1,11 @@
 ---
-title: "2025 W42: Forbidden Geometry"
+title: "2025 W42: Forbidden Geometry (PuzzleHub)"
 description: "Slitherlink and Galaxies break our grid. Introducing vector math, fuzzy hit zones, and background thread generation."
 pubDate: 2025-10-19
+lastmod: 2025-10-19
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "canvas", "math", "algorithms"]
+canonical: "https://arceapps.com/devlog/2025-w42-forbidden-geometry/"
 tags: ["devlog", "canvas", "math", "algorithms", "performance"]
 heroImage: "/images/devlog/2025-w42-cover.png"
 ---

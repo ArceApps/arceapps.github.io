@@ -1,11 +1,22 @@
 ---
-title: "Frameworks de Agentes en Producción: LangGraph, CrewAI, PydanticAI, Smolagents y Atomic Agents"
+title: "Frameworks de Agentes en Producción: LangGraph, CrewAI y el Estándar de facto"
 description: "Un análisis profundo de los estándares de facto para la orquestación de agentes de IA en entornos de producción. Analizamos arquitectura, características y casos de uso."
 pubDate: 2025-10-25
+lastmod: 2025-10-25
+author: ArceApps
+keywords:
+  - "Frameworks Agentes"
+  - "Producción"
+  - "LangGraph"
+  - "IA"
+  - "Comparativa"
+canonical: "https://arceapps.com/es/blog/production-agentic-frameworks/"
 heroImage: "/images/placeholder-article-ai-agents.svg"
 tags: ["IA", "Agentes", "LangGraph", "CrewAI", "PydanticAI", "Python", "Arquitectura"]
 reference_id: "c63a672f-79e5-45d1-ae7a-f25cf3027f7b"
 ---
+
+
 ## El Auge de los Frameworks de Agentes en Producción
 
 El panorama de la Inteligencia Artificial ha cambiado drásticamente. Ya no estamos simplemente chateando con Grandes Modelos de Lenguaje (LLMs); estamos diseñando entidades autónomas y con capacidad de razonamiento, capaces de ejecutar flujos de trabajo complejos, acceder a herramientas externas y colaborar para resolver problemas multifacéticos. Estos son los que llamamos agentes de IA, y su integración en entornos de producción requiere frameworks de orquestación robustos, predecibles y escalables. La transición de simples bots conversacionales a sistemas de agentes totalmente autónomos es quizás el salto más significativo en la ingeniería de software de esta década.

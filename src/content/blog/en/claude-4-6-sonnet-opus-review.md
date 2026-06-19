@@ -1,10 +1,14 @@
 ---
-title: "Claude 4.6 (Sonnet and Opus): The Thinking Developer's Choice"
-description: "Review of Anthropic's Claude 4.6 family. How 'Adaptive Thinking' and 'Computer Use v2' change the game for mobile CI/CD. Includes comparison with Gemini 3.0 Pro."
+title: Claude 4.6 (Sonnet and Opus)
+description: Review of Anthropic's Claude 4.6 family. How 'Adaptive Thinking' and 'Computer Use v2' change the game for mobile CI/CD. Includes comparison with Gemini 3.0 Pro.
 pubDate: 2026-02-18
-heroImage: "/images/claude-4-6-placeholder.svg"
+heroImage: /images/claude-4-6-placeholder.svg
 tags: ["AI", "Anthropic", "Claude", "DevOps", "Testing", "Gemini"]
-reference_id: "2c9b3fa3-363e-4a03-bc11-63179088168b"
+reference_id: 2c9b3fa3-363e-4a03-bc11-63179088168b
+author: ArceApps
+lastmod: 2026-02-18
+canonical: "https://arceapps.com/blog/claude-4-6-sonnet-opus-review/"
+keywords: ["AI", "Anthropic", "Claude", "DevOps", "Testing", "Gemini"]
 ---
 
 ## 🧠 The Rise of Adaptive Thinking

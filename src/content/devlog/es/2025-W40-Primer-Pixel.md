@@ -1,9 +1,13 @@
 ---
-title: "2025 W40: El Primer Píxel"
-description: "El miedo al folio en blanco, la decisión crítica entre Canvas y Compose, y por qué elegimos una arquitectura que nos frenó durante tres días para acelerarnos el resto del año."
+title: "2025 W40: El Primer Pixel (PuzzleHub)"
+description: "El miedo al folio en blanco, la decisicion critica entre Canvas y Compose, y por que elegimos una arquitectura que nos freno durante tres dias para acelerarnos el resto del ano."
 pubDate: 2025-10-05
-tags: ["devlog", "architecture", "canvas", "clean-code", "jetpack-compose"]
+lastmod: 2025-10-05
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "arquitectura", "canvas", "jetpack-compose"]
+canonical: "https://arceapps.com/es/devlog/2025-W40-Primer-Pixel/"
 heroImage: "/images/devlog/2025-w40-cover.png"
+tags: ["devlog", "architecture", "canvas", "clean-code", "jetpack-compose"]
 ---
 
 Todo proyecto grande comienza con un `File > New Project`. Es un momento de optimismo puro, pero también de terror paralizante. El terror al "folio en blanco".

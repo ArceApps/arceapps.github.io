@@ -2,9 +2,20 @@
 title: "De Junior a Senior: El Arte de Priorizar y Decir 'No'"
 description: "Por qué las habilidades técnicas son solo la mitad de la batalla. Aprende a gestionar el impacto, el tiempo y las expectativas para alcanzar el siguiente nivel."
 pubDate: 2026-02-08
+lastmod: 2026-02-08
+author: ArceApps
+keywords:
+  - "Junior a Senior"
+  - "Priorizar"
+  - "Organización"
+  - "Carrera"
+  - "Desarrollador"
+canonical: "https://arceapps.com/es/blog/junior-to-senior-prioritization/"
 heroImage: "/images/career-junior-to-senior.svg"
 tags: ["Carrera", "Soft Skills", "Seniority", "Productividad", "Liderazgo"]
 ---
+
+
 
 Existe un concepto erróneo común entre los desarrolladores al principio de sus carreras: "Para ser Senior, necesito escribir código más rápido y saber más frameworks."
 

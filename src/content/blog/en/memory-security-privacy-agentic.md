@@ -1,10 +1,14 @@
 ---
-title: "Agentic Memory: Security, Privacy, and the Future of the AI Second Brain"
+title: "Agentic Memory: Security, Privacy, and the..."
 description: "A deep analysis of the critical risks surrounding persistent memory in AI agents: memory poisoning, the right to be forgotten, homomorphic encryption, and the trends that will define 2026."
 pubDate: 2026-03-25
-heroImage: "/images/blog-memoria-seguridad-agentica.svg"
+heroImage: /images/blog-memoria-seguridad-agentica.svg
 tags: ["AI", "Security", "Privacy", "Memory", "Agents", "GDPR", "Homomorphic Encryption", "Architecture"]
-reference_id: "b7e3f1a2-0d4c-5b8e-c6g2-9d3f7e5b2a0c"
+reference_id: b7e3f1a2-0d4c-5b8e-c6g2-9d3f7e5b2a0c
+author: ArceApps
+lastmod: 2026-03-25
+canonical: "https://arceapps.com/blog/memory-security-privacy-agentic/"
+keywords: ["AI", "Security", "Privacy", "Memory", "Agents", "GDPR", "Homomorphic Encryption", "Architecture"]
 ---
 
 > This article is the direct continuation of **[The Architecture of Persistent AI Agent Memory](/blog/ai-agent-memory-persistence-guide)**, where we explored frameworks, methodologies, and the evolution of agentic personal knowledge management. If you have not read it yet, I recommend starting there to understand *how to build* memory before tackling *how to protect it*.

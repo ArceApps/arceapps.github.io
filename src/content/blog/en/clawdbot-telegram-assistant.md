@@ -1,10 +1,14 @@
 ---
 title: "Clawdbot: AI Assistant on Telegram"
-description: "Connecting your self-hosted Clawdbot to Telegram. How to build a private, smart bot that lives in your chat app."
+description: Connecting your self-hosted Clawdbot to Telegram. How to build a private, smart bot that lives in your chat app.
 pubDate: 2025-10-31
-heroImage: "/images/placeholder-article-clawdbot-telegram.svg"
+heroImage: /images/placeholder-article-clawdbot-telegram.svg
 tags: ["AI", "Telegram", "Bot", "Node.js", "Self-hosting", "Clawdbot", "Productivity"]
-reference_id: "a799021c-02cb-427a-ae6e-cd63360b833b"
+reference_id: a799021c-02cb-427a-ae6e-cd63360b833b
+author: ArceApps
+lastmod: 2025-10-31
+canonical: "https://arceapps.com/blog/clawdbot-telegram-assistant/"
+keywords: ["AI", "Telegram", "Bot", "Node.js", "Self-hosting", "Clawdbot", "Productivity"]
 ---
 ## 🤖 Why Telegram?
 

@@ -1,10 +1,14 @@
 ---
 title: "AI Agents on Android: Theory and Practice"
-description: "Understanding the role of AI Agents in modern mobile development. From theoretical foundations to practical implementation strategies using LLMs."
+description: Understanding the role of AI Agents in modern mobile development. From theoretical foundations to practical implementation strategies using LLMs.
 pubDate: 2025-10-25
-heroImage: "/images/placeholder-article-ai-agents.svg"
+lastmod: 2025-10-25
+author: ArceApps
+keywords: ["AI", "Android", "Agents", "LLM", "Theory", "Architecture"]
+canonical: "https://arceapps.com/blog/ai-agents-android-theory/"
+heroImage: /images/placeholder-article-ai-agents.svg
 tags: ["AI", "Android", "Agents", "LLM", "Theory", "Architecture"]
-reference_id: "fbbc92f4-c19e-4618-b57c-697983574014"
+reference_id: fbbc92f4-c19e-4618-b57c-697983574014
 ---
 ## 🤖 What is an AI Agent?
 

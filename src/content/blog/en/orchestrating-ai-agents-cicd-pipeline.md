@@ -1,10 +1,14 @@
 ---
-title: "Orchestrating AI Agents in Your Android CI/CD Pipeline"
-description: "Learn how to integrate specialized AI agents (code review, documentation, benchmarks) into your Android CI/CD pipeline using GitHub Actions and AGENTS.md."
+title: Orchestrating AI Agents in Your Android CI/CD Pipeline
+description: Learn how to integrate specialized AI agents (code review, documentation, benchmarks) into your Android CI/CD pipeline using GitHub Actions and AGENTS.md.
 pubDate: 2026-03-09
-heroImage: "/images/blog-multiagente-pipeline-cicd.svg"
+heroImage: /images/blog-multiagente-pipeline-cicd.svg
 tags: ["AI", "Android", "CI/CD", "GitHub Actions", "Agents", "Multi-Agent", "Automation"]
 draft: false
+author: ArceApps
+lastmod: 2026-03-09
+canonical: "https://arceapps.com/blog/orchestrating-ai-agents-cicd-pipeline/"
+keywords: ["AI", "Android", "CI/CD", "GitHub Actions", "Agents", "Multi-Agent", "Automation"]
 ---
 
 > This article is part of the AI Agents in Android Development series. Before continuing, I recommend checking out:

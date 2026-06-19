@@ -1,10 +1,14 @@
 ---
 title: "Firebase Crashlytics: Proactive Error Monitoring"
-description: "Move from reactive to proactive. Configure Firebase Crashlytics to detect, group, and fix critical errors before your users complain."
+description: Move from reactive to proactive. Configure Firebase Crashlytics to detect, group, and fix critical errors before your users complain.
 pubDate: 2025-09-25
-heroImage: "/images/placeholder-article-firebase.svg"
+heroImage: /images/placeholder-article-firebase.svg
 tags: ["Firebase", "Crashlytics", "Monitoring", "DevOps", "Quality"]
-reference_id: "d50cb3e0-09c6-48eb-a2e9-cb9758d2f149"
+reference_id: d50cb3e0-09c6-48eb-a2e9-cb9758d2f149
+author: ArceApps
+lastmod: 2025-09-25
+canonical: "https://arceapps.com/blog/firebase-crashlytics-proactive-monitoring/"
+keywords: ["Firebase", "Crashlytics", "Monitoring", "DevOps", "Quality"]
 ---
 ## 🚨 Theory: The Pyramid of Observability
 

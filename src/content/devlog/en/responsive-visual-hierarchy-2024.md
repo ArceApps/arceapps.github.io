@@ -1,7 +1,11 @@
 ---
-title: "Mastering Responsive Visual Hierarchy: The Definitive Indie Guide"
+title: "Mastering Responsive Visual Hierarchy: The Definitive Indie Guide (ArceApps)"
 description: "A massive deep dive into how I completely rebuilt the ArceApps UI architecture using Tailwind CSS v4, Astro, and fluid typography principles."
 pubDate: "2024-05-18"
+lastmod: "2024-05-18"
+author: "ArceApps"
+keywords: ["ArceApps", "devlog", "ui", "css", "design"]
+canonical: "https://arceapps.com/devlog/responsive-visual-hierarchy-2024/"
 heroImage: "/images/devlog/devlog-ui-responsive.svg"
 tags: ['ui', 'css', 'design']
 reference_id: "responsive-visual-hierarchy-2024"

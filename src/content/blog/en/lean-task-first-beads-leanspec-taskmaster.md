@@ -1,10 +1,14 @@
 ---
-title: "Lean Task-First Development: Beads, LeanSpec, and Taskmaster in Practice"
+title: "Lean Task-First Development: Beads, LeanSp..."
 description: "A deep dive into three tools that solve context rot and keep AI coding agents focused: Beads (git-native DAG issue tracker), LeanSpec (minimal spec-driven workflow), and Taskmaster (PRD-to-task orchestration). Real commands, real workflows, real indie dev perspective."
 pubDate: 2026-03-28
 tags: ["AI", "Workflow", "Productivity", "Beads", "LeanSpec", "Taskmaster", "SDD", "Task Management", "Context Rot", "Agentic AI"]
-heroImage: "/images/blog-lean-task-first-beads-leanspec-taskmaster.svg"
-reference_id: "e9a3c571-2b4e-4f8d-93d1-7c0e2a5b8f16"
+heroImage: /images/blog-lean-task-first-beads-leanspec-taskmaster.svg
+reference_id: e9a3c571-2b4e-4f8d-93d1-7c0e2a5b8f16
+author: ArceApps
+lastmod: 2026-03-28
+canonical: "https://arceapps.com/blog/lean-task-first-beads-leanspec-taskmaster/"
+keywords: ["AI", "Workflow", "Productivity", "Beads", "LeanSpec", "Taskmaster", "SDD", "Task Management"]
 ---
 
 > **Related reading:** [Alternative Paradigms in AI-Assisted Engineering](/blog/alternative-paradigms-ai-software-engineering) · [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [SDD Frameworks Deep Dive: Spec Kit, OpenSpec, BMAD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) · [Effective Context for AI](/blog/effective-context-ai)

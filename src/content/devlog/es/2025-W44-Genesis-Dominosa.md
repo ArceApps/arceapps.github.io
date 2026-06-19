@@ -1,9 +1,13 @@
 ---
-title: "2025 W44: El Noveno Pasajero"
-description: "Cuando creías que el catálogo estaba cerrado, Dominosa llega para desafiar nuestra arquitectura. Una historia sobre feature creep y diseño modular."
+title: "2025 W44: El Noveno Pasajero (PuzzleHub)"
+description: "Cuando creias que el catalogo estaba cerrado, Dominosa llega para desafiar nuestra arquitectura. Una historia sobre feature creep y diseno modular."
 pubDate: 2025-11-02
-tags: ["devlog", "architecture", "dominosa", "planning", "philosophy"]
+lastmod: 2025-11-02
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "dominosa", "arquitectura", "feature-creep"]
+canonical: "https://arceapps.com/es/devlog/2025-W44-Genesis-Dominosa/"
 heroImage: "/images/devlog-w44-dominosa-genesis.svg"
+tags: ["devlog", "architecture", "dominosa", "planning", "philosophy"]
 ---
 
 Hay un momento en todo proyecto de software donde te sientas frente al teclado, discutes con tu equipo de agentes de IA y dices: "Ya está. No más *features*". Es el momento de congelar, de pulir, de estabilizar. En *PuzzleSuite*, pensábamos que habíamos llegado a ese punto a finales de Octubre. Teníamos ocho juegos sólidos: *KenKen* para los matemáticos, *Hashi* para los arquitectos, *Slitherlink* para los topólogos. La suite se sentía completa.

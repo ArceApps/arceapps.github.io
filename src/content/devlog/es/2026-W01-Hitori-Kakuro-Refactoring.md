@@ -1,9 +1,13 @@
 ---
-title: "2026 W01: Limpieza de Casa y Cimientos Sólidos (Versión Extendida)"
-description: "Arrancamos el año poniendo orden en el caos. Una crónica técnica sobre cómo desmontamos un ViewModel de 600 líneas, unificamos la lógica del tiempo con Flows y mejoramos la accesibilidad invisible de Slitherlink."
+title: "2026 W01: Limpieza de Casa y Cimientos Solidos (PuzzleHub)"
+description: "Arrancamos el ano poniendo orden en el caos. Cronica tecnica sobre como desmontamos un ViewModel de 600 lineas y unificamos la logica del tiempo."
 pubDate: 2026-01-07
-tags: ["devlog", "refactoring", "hitori", "accessibility", "clean-architecture", "technical-debt", "kotlin"]
+lastmod: 2026-01-07
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "refactoring", "hitori", "accesibilidad"]
+canonical: "https://arceapps.com/es/devlog/2026-W01-Hitori-Kakuro-Refactoring/"
 heroImage: "/images/devlog-w01-refactoring.svg"
+tags: ["devlog", "refactoring", "hitori", "accessibility", "clean-architecture", "technical-debt", "kotlin"]
 ---
 
 Arrancar el año programando se siente un poco como limpiar el garaje un domingo por la mañana de resaca.

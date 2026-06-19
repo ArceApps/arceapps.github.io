@@ -1,10 +1,14 @@
 ---
 title: "ChatGPT 5.3 Codex: The New Standard for Mobile Development?"
-description: "A deep dive into ChatGPT 5.3 Codex, its new dedicated app, and what it means for Android developers. Includes comparison with Gemini 3.0 Pro."
+description: A deep dive into ChatGPT 5.3 Codex, its new dedicated app, and what it means for Android developers. Includes comparison with Gemini 3.0 Pro.
 pubDate: 2026-02-18
-heroImage: "/images/chatgpt-5-3-placeholder.svg"
+heroImage: /images/chatgpt-5-3-placeholder.svg
 tags: ["AI", "ChatGPT", "Codex", "Android", "Productivity", "Gemini"]
-reference_id: "a0debc84-8829-4713-8c1c-bbc4c5f46004"
+reference_id: a0debc84-8829-4713-8c1c-bbc4c5f46004
+author: ArceApps
+lastmod: 2026-02-18
+canonical: "https://arceapps.com/blog/chatgpt-5-3-codex-review/"
+keywords: ["AI", "ChatGPT", "Codex", "Android", "Productivity", "Gemini"]
 ---
 
 ## 🚀 The Arrival of Codex 5.3

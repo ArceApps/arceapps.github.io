@@ -1,10 +1,14 @@
 ---
-title: "Kotlin Collections vs Sequences: Optimizing Memory in Android"
-description: "Map or Sequence? Learn how to optimize your lists in Kotlin for Android, avoiding memory overhead with Lazy Evaluation and mastering functional operations."
+title: Kotlin Collections vs Sequences
+description: Map or Sequence? Learn how to optimize your lists in Kotlin for Android, avoiding memory overhead with Lazy Evaluation and mastering functional operations.
 pubDate: 2025-10-05
-heroImage: "/images/placeholder-article-collections.svg"
+heroImage: /images/placeholder-article-collections.svg
 tags: ["Kotlin", "Performance", "Collections", "Functional Programming", "Android"]
-reference_id: "ec02d167-8e20-4ac3-8964-25d5c7be83cd"
+reference_id: ec02d167-8e20-4ac3-8964-25d5c7be83cd
+author: ArceApps
+lastmod: 2025-10-05
+canonical: "https://arceapps.com/blog/kotlin-collections-vs-sequences-performance/"
+keywords: ["Kotlin", "Performance", "Collections", "Functional Programming", "Android"]
 ---
 ## 🧐 The Performance Dilemma in Lists
 

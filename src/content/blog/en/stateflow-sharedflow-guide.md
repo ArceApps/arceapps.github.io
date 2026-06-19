@@ -1,10 +1,14 @@
 ---
 title: "StateFlow vs. SharedFlow: A Practical Guide"
-description: "When to use which? Hot streams in Kotlin Coroutines. How to prevent event loss and ensure UI consistency."
+description: When to use which? Hot streams in Kotlin Coroutines. How to prevent event loss and ensure UI consistency.
 pubDate: 2025-10-15
-heroImage: "/images/placeholder-article-stateflow.svg"
+heroImage: /images/placeholder-article-stateflow.svg
 tags: ["Kotlin", "Coroutines", "Flow", "Android", "StateFlow", "SharedFlow"]
-reference_id: "4f809146-8583-4075-ade0-d55d8523f8d9"
+reference_id: 4f809146-8583-4075-ade0-d55d8523f8d9
+author: ArceApps
+lastmod: 2025-10-15
+canonical: "https://arceapps.com/blog/stateflow-sharedflow-guide/"
+keywords: ["Kotlin", "Coroutines", "Flow", "Android", "StateFlow", "SharedFlow"]
 ---
 ## 🌊 The Hot Flow Confusion
 

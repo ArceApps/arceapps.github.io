@@ -1,7 +1,11 @@
 ---
-title: "2025 W41: Multiply by Three"
+title: "2025 W41: Multiply by Three (PuzzleHub)"
 description: "From one game to three in record time. How the right abstraction and Kotlin Generics allowed us to scale without copying code."
 pubDate: 2025-10-12
+lastmod: 2025-10-12
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "kotlin", "generics", "scaling"]
+canonical: "https://arceapps.com/devlog/2025-w41-multiply-by-three/"
 tags: ["devlog", "kotlin", "generics", "scaling", "refactoring"]
 heroImage: "/images/devlog/2025-w41-cover.png"
 ---

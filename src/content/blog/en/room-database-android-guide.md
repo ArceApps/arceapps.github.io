@@ -2,9 +2,13 @@
 title: "Room Database: Robust Persistence in Android"
 description: "Complete guide to Room: from entities and DAOs to complex migrations, one-to-many relationships, and advanced usage of Flow and Coroutines."
 pubDate: 2025-10-12
-heroImage: "/images/placeholder-article-room.svg"
+heroImage: /images/placeholder-article-room.svg
 tags: ["Android", "Room", "Database", "SQL", "Persistence"]
-reference_id: "33bf7911-98a8-491c-b685-eb741eda08b5"
+reference_id: 33bf7911-98a8-491c-b685-eb741eda08b5
+author: ArceApps
+lastmod: 2025-10-12
+canonical: "https://arceapps.com/blog/room-database-android-guide/"
+keywords: ["Android", "Room", "Database", "SQL", "Persistence"]
 ---
 ## 🏛️ Theory: Why Room and not pure SQLite?
 

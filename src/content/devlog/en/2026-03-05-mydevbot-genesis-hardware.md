@@ -1,7 +1,11 @@
 ---
-title: "The birth of mydevbot and the odyssey of the perfect hardware"
+title: "The Birth of mydevbot and the Odyssey of the Perfect Hardware (mydevbot)"
 description: "How the need to control my development ecosystem from Telegram arises, the analysis of the AIPAL repository, the disappointment with the Synology DS212+ and the final decision for a Mini PC with the native Gemini SDK."
 pubDate: 2026-03-05
+lastmod: 2026-03-05
+author: "ArceApps"
+keywords: ["mydevbot", "devlog", "telegram", "gemini", "hardware"]
+canonical: "https://arceapps.com/devlog/2026-03-05-mydevbot-genesis-hardware/"
 tags: ["devlog", "telegram", "mydevbot", "gemini", "hardware", "minipc", "docker"]
 heroImage: "/images/mydevbot-hardware-hero.svg"
 reference_id: "a2e2f3d0-729b-4fcb-ae9c-5c9c95977d00"

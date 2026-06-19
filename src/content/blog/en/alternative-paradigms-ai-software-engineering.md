@@ -1,10 +1,14 @@
 ---
-title: "Alternative Paradigms and Emerging Methodologies in AI-Assisted Software Engineering"
+title: Alternative Paradigms and Emerging Methodo...
 description: "A deep dive into IDD, Lean SDD, BEADS Workflow, Agent OS, and the Dark Factory concept: emerging methodologies that challenge conventional development flows and raise the abstraction level in the age of autonomous AI."
 pubDate: 2026-03-24
-heroImage: "/images/blog-paradigmas-alternativos-ia.svg"
+heroImage: /images/blog-paradigmas-alternativos-ia.svg
 tags: ["AI", "Methodology", "IDD", "SDD", "BEADS", "Dark Factory", "Software Engineering", "Agents", "Workflow"]
 draft: false
+author: ArceApps
+lastmod: 2026-03-24
+canonical: "https://arceapps.com/blog/alternative-paradigms-ai-software-engineering/"
+keywords: ["AI", "Methodology", "IDD", "SDD", "BEADS", "Dark Factory", "Software Engineering", "Agents"]
 ---
 
 > **Related reading:** [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [Autonomous AI Agents in Android Development](/blog/autonomous-ai-agents-android) · [Building AI Agent Skills for Development](/blog/building-ai-agent-skills)

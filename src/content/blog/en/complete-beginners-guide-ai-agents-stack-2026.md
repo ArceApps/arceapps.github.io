@@ -1,10 +1,14 @@
 ---
-title: "Complete Beginner's Guide: Recommended Stack for Building AI Agents in 2026"
-description: "OpenClaw for ready-to-use agents, Vercel AI SDK with Next.js for custom development, OpenAI and Claude models, MCPs for integrations, and Cursor/Claude Code for programming. Complete analysis with practical examples and cost considerations."
+title: "Complete Beginner's Guide: Recommended Sta..."
+description: OpenClaw for ready-to-use agents, Vercel AI SDK with Next.js for custom development, OpenAI and Claude models, MCPs for integrations, and Cursor/Claude Code for programming. Complete analysis with practical examples and cost considerations.
 pubDate: 2026-04-23
-heroImage: "/images/blog-agent-stack-2026.svg"
+heroImage: /images/blog-agent-stack-2026.svg
 tags: ["AI", "Agents", "OpenClaw", "Vercel", "Next.js", "MCP", "Cursor", "Claude Code", "Stack", "2026"]
-reference_id: "b7c3d91e-5a2f-4e8c-9d1f-6a8b0c3d2e4f"
+reference_id: b7c3d91e-5a2f-4e8c-9d1f-6a8b0c3d2e4f
+author: ArceApps
+lastmod: 2026-04-23
+canonical: "https://arceapps.com/blog/complete-beginners-guide-ai-agents-stack-2026/"
+keywords: ["AI", "Agents", "OpenClaw", "Vercel", "Next.js", "MCP", "Cursor", "Claude Code"]
 ---
 
 > If you're new to AI agents, this guide assumes basic familiarity with LLMs and web development. Related articles that provide context:

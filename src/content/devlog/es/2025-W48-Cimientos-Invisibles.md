@@ -1,9 +1,13 @@
 ---
-title: "2025 W48: Los Cimientos Invisibles"
-description: "Preparando el terreno para la paridad de características. Trabajo de backend, migraciones de Room y por qué Minesweeper es diferente a todo lo demás."
+title: "2025 W48: Los Cimientos Invisibles (PuzzleHub)"
+description: "Preparando el terreno para la paridad de caracteristicas. Trabajo de backend, migraciones de Room y por que Minesweeper es diferente a todo lo demas."
 pubDate: 2025-11-30
-tags: ["devlog", "backend", "room", "architecture", "minesweeper"]
+lastmod: 2025-11-30
+author: "ArceApps"
+keywords: ["PuzzleHub", "devlog", "backend", "room", "arquitectura"]
+canonical: "https://arceapps.com/es/devlog/2025-W48-Cimientos-Invisibles/"
 heroImage: "/images/devlog-w48-foundations.svg"
+tags: ["devlog", "backend", "room", "architecture", "minesweeper"]
 ---
 
 Llegamos al final de Noviembre. La Semana 48 (del 24 al 30 de Noviembre) ha sido, visualmente, la menos impresionante del mes. Si descargas la versión de esta semana y la comparas con la anterior, apenas notarás diferencias en la pantalla.

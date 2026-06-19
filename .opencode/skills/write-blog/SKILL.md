@@ -136,6 +136,35 @@ Usa slugs descriptivos en inglés (incluso para la versión ES):
 - EN: `src/content/blog/en/<slug>.md`
 - Imagen: `public/images/<slug>.svg`
 
+## SEO Obligatorio
+
+Antes de escribir el archivo, el agente debe haber pasado por la skill
+`write-blog-seo` para validar el frontmatter. Reglas innegociables:
+
+### Naming
+- **Title (≤ 60 chars visibles en SERP):** patrón `[Tool/Subject]: [gancho]`.
+  La herramienta o sujeto principal va en las primeras 3-5 palabras.
+- **Slug:** kebab-case en inglés, sin stopwords, sin prefijo `blog-`,
+  sin sufijo de idioma, sin artículos.
+- **Longitud del title:** medir con `wc -c` post-propuesta. Si > 60, recortar.
+
+### Metadata obligatoria
+- `keywords`: array de 3-8 strings, mezcla de la tool + términos de búsqueda.
+- `author`: "ArceApps" (default).
+- `pubDate`: fecha real del sistema (verificada con `date +%F`).
+- `lastmod`: misma fecha que `pubDate` para artículos nuevos.
+- `canonical`: `${SITE_URL}/blog/${slug}/` (auto-computado por la skill SEO).
+- `description`: 120-160 chars, incluir la tool name y un verbo de acción.
+
+### Checklist pre-publicación
+- [ ] Tool name aparece en las primeras 5 palabras del title
+- [ ] Title ≤ 60 chars
+- [ ] Slug = kebab-case sin stopwords
+- [ ] keywords tiene 3-8 elementos
+- [ ] description tiene 120-160 chars
+- [ ] canonical apunta a la URL final
+- [ ] `pnpm build` pasa sin errores de Zod
+
 ## Verificación Obligatoria
 
 Antes de dar por terminado el artículo:
