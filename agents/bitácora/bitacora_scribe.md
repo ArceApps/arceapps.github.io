@@ -348,3 +348,61 @@ El 2026-06-18 tenía 6 artículos publicados en el mismo día, lo que concentrab
 - Las fechas se cambiaron tanto en el archivo EN como en su par ES para mantener la simetría de publicación.
 - La navegación siguiente/anterior dentro del post se recalcula automáticamente en `getStaticPaths` (`src/pages/blog/[...slug].astro:21-28`) en función de `pubDate`, por lo que no requiere ajuste manual.
 - El devlog y la sección `apps/` se revisaron y no presentaban clusters análogos, así que no se modificaron.
+
+---
+
+## 2026-06-21 — Artículo "Caveman: el skill viral que silencia a tus agentes AI"
+
+**Estado:** ✅ Publicado y compilado sin errores (`pnpm build` → 921 páginas, 6.32s)
+
+**Tema:**
+Caveman, el skill viral de JuliusBrussee (75.1k estrellas, MIT) que enseña a los agentes AI a hablar como cavernícolas: eliminar artículos, muletillas y cortesías para comprimir la prosa del output sin perder precisión técnica. La innovación real: no es un prompt, es un hook persistente que se re-inyecta en cada turno para sobrevivir al context drift.
+
+**Fuentes consultadas (siguiendo skill `write-blog`):**
+- Repo principal [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) — `SKILL.md` literal, `INSTALL.md`, benchmarks internos.
+- Ecosistema hermano: [caveman-code](https://github.com/JuliusBrussee/caveman-code), [cavemem](https://github.com/JuliusBrussee/cavemem), [cavekit](https://github.com/JuliusBrussee/cavekit), [finetune-caveman](https://github.com/JuliusBrussee/finetune-caveman), [wilpel/caveman-compression](https://github.com/wilpel/caveman-compression) (el original de nov 2025).
+- Compañeros del nicho: [rtk-ai/rtk](https://github.com/rtk-ai/rtk) (64.2k★), [chopratejas/headroom](https://github.com/chopratejas/headroom) (41.8k★).
+- Análisis críticos independientes:
+  - [SkillBenchmark by TiesPetersen](https://github.com/TiesPetersen/SkillBenchmark) — benchmark ciego: cero mejora de calidad estadísticamente confirmada.
+  - [Cutting LLM Token Costs with rtk, headroom, and caveman — CodePointer Substack](https://codepointer.substack.com/p/cutting-llm-token-costs-with-rtk) — 614M tokens reales medidos: caveman ahorró 0.4% de factura.
+  - Paper académico [Hakim, arXiv:2604.00025](https://arxiv.org/abs/2604.00025) — brevedad mejora accuracy 26 puntos en modelos grandes.
+- Reddit: r/LocalLLaMA (origen del meme, 651 upvotes), r/ClaudeCode (uso defensivo contra rate-limit, 116-202 upvotes), hilo GPT-5.5 chain-of-thought leak.
+
+**Prior art enlazado (regla crítica de AGENTS.md sección 6.2):**
+- `ponytail-skill-senior-perezoso.md` (ES) / `ponytail-lazy-senior-dev-skill.md` (EN) — caveman es ortogonal: ponytail ataca el código, caveman la prosa.
+- `mattpocock-skills.md` (ES+EN) — caveman como ejemplo vivo de la tesis "skills pequeños y composables".
+
+**Estructura del artículo (10 secciones, ~2.900 palabras ES / ~2.800 palabras EN):**
+1. Apertura — "Brain still big. Mouth small." (origen del meme).
+2. Contexto — por qué los agentes queman tokens hablando.
+3. Qué es caveman exactamente — los 6 niveles (lite/full/ultra/wenyan-lite/-full/-ultra).
+4. La innovación técnica real — hooks, no prompts (UserPromptSubmit re-injection).
+5. El ecosistema — 5 repos hermanos.
+6. Postura crítica — TiesPetersen + noninertialframe96 + paper de Hakim.
+7. Cuándo SÍ, cuándo NO — tabla con 10 escenarios.
+8. Cómo encaja con Ponytail + Matt Pocock grill-me = pila completa.
+9. Cierre con reflexión.
+10. Bibliografía completa con URLs verificadas.
+
+**Auditoría SEO (write-blog-seo):**
+
+| Campo | EN | ES | Estado |
+|---|---|---|---|
+| Title | 53 chars | 54 chars | ✅ ≤ 60 |
+| Tool name en primeras 5 palabras | "Caveman" | "Caveman" | ✅ |
+| Slug | `caveman-skill-token-compression` | (mismo) | ✅ kebab-case sin stopwords |
+| Keywords | 6 elementos | 6 elementos | ✅ 3-8 |
+| Description | 154 chars | 152 chars | ✅ 120-160 |
+| Canonical | `https://arceapps.com/blog/.../` | `https://arceapps.com/es/blog/.../` | ✅ |
+| pubDate | 2026-06-20 | 2026-06-20 | ✅ |
+
+**Verificación final:**
+- `pnpm build` → 921 páginas (913 antes + 8 de mis páginas: EN, ES, sus OG variants y feeds).
+- 4 enlaces internos en cada idioma apuntando a prior art correcto.
+- Sitemap EN y ES actualizados con las nuevas URLs.
+- OG images generadas (65KB EN, 65KB ES).
+- HeroImage SVG generado en `public/images/caveman-skill-token-compression.svg` (7.7KB, 1200x630, paleta teal `#018786` + orange `#FF9800` sobre fondo `#0F172A`→`#020617`).
+
+**Issue encontrado y corregido:** El sistema reportó fecha local CEST `2026-06-21 01:27` pero UTC `2026-06-20 23:27`. El filtro `pubDate <= new Date()` de Astro compara en UTC, así que `2026-06-21` se interpretaba como futuro (00:00 UTC del día siguiente) y excluía el artículo del build sin error visible. **Solución:** usar la fecha UTC verificada (`2026-06-20`), que es lo que `date +%F` en UTC reporta. Build pasó inmediatamente.
+
+**Decisión editorial:** Mantuve el tono crítico-balanceado exigido por la skill (`write-blog`): incluí tanto el claim del 75% como la crítica que muestra que el ahorro real medido es 0.4% de factura, sin decantar hacia hype ni hacia descarte. El valor del artículo está en mostrar la asimetría entre el marketing del repo y los datos independientes.
