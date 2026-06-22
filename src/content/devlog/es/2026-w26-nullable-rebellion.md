@@ -2,6 +2,8 @@
 title: "2026 W26: La rebelión de los Int? (Deep dive técnico)"
 description: "El lado B de la semana: cómo decidir entre columnas nullable y no-nullable, por qué escribimos el RetroactiveStatsPopulator en Kotlin en lugar de SQL, y las tripas de la migración Room para los doce juegos de PuzzleSuite."
 pubDate: "2026-06-22"
+lastmod: "2026-06-22"
+keywords: ["room migration", "kotlin sqlite", "android database"]
 heroImage: "/images/devlog/devlog-w26-nullable.svg"
 tags: ["devlog", "android", "kotlin", "room", "database", "refactor"]
 ---
