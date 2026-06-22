@@ -2,6 +2,8 @@
 title: "2026 W26: Conectando los puntos del rompecabezas"
 description: "Una semana donde dos features aparentemente pequeñas terminaron por revelar la arquitectura profunda de PuzzleSuite: navegación clicable desde el perfil y persistencia retroactiva de XP y scores en los doce juegos."
 pubDate: "2026-06-22"
+lastmod: "2026-06-22"
+keywords: ["puzzle suite", "android compose", "room database navigation"]
 heroImage: "/images/devlog/devlog-w26-connecting.svg"
 tags: ["devlog", "android", "kotlin", "compose", "room", "navigation"]
 ---
