@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="OpenCode Subagents Workflows">
+  <title>OpenCode Subagents Workflows</title>
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+
+    <!-- Teal Gradient -->
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#018786" />
+      <stop offset="100%" stop-color="#02c4b8" />
+    </linearGradient>
+
+    <!-- Orange Gradient -->
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9800" />
+      <stop offset="100%" stop-color="#ffb74d" />
+    </linearGradient>
+
+    <!-- Hexagon Pattern -->
+    <pattern id="hexagons" width="60" height="103.923" patternUnits="userSpaceOnUse" patternTransform="scale(0.5)">
+      <path d="M30 0l30 17.32v34.64L30 69.28 0 51.96V17.32zM30 103.923l30 17.32v34.64L30 173.205 0 155.885v-34.64zM60 51.961l30 17.32v34.64L60 121.244 30 103.923v-34.64z" fill="none" stroke="#018786" stroke-width="1" stroke-opacity="0.1"/>
+    </pattern>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#bg)" />
+  <rect width="100%" height="100%" fill="url(#hexagons)" />
+
+  <!-- Main Orcherstrator Node -->
+  <g transform="translate(600, 315)">
+    <!-- Glow rings -->
+    <circle cx="0" cy="0" r="140" fill="none" stroke="url(#tealGrad)" stroke-width="2" stroke-dasharray="10 10" opacity="0.3">
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="20s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="0" cy="0" r="120" fill="none" stroke="url(#orangeGrad)" stroke-width="1" opacity="0.4" />
+
+    <!-- Central Node -->
+    <circle cx="0" cy="0" r="70" fill="url(#tealGrad)" filter="url(#glow)" />
+    <path d="M-25,-15 L25,-15 L25,15 L-25,15 Z" fill="#0F172A" opacity="0.5" />
+    <path d="M-15,-25 L15,-25 L15,25 L-15,25 Z" fill="#0F172A" opacity="0.5" />
+    <circle cx="0" cy="0" r="30" fill="#0F172A" />
+    <circle cx="0" cy="0" r="15" fill="url(#orangeGrad)" />
+  </g>
+
+  <!-- Subagent Nodes & Connections -->
+  <g stroke-width="3" opacity="0.7">
+    <!-- Top left connection -->
+    <path d="M600,315 L400,180" stroke="url(#tealGrad)" />
+    <!-- Bottom left connection -->
+    <path d="M600,315 L350,450" stroke="url(#tealGrad)" />
+    <!-- Top right connection -->
+    <path d="M600,315 L850,150" stroke="url(#orangeGrad)" />
+    <!-- Bottom right connection -->
+    <path d="M600,315 L800,480" stroke="url(#orangeGrad)" />
+    <!-- Right side connection -->
+    <path d="M600,315 L950,315" stroke="url(#tealGrad)" stroke-dasharray="5 5" />
+  </g>
+
+  <!-- Subagents -->
+  <!-- Top Left (Cheap Agent) -->
+  <g transform="translate(400, 180)">
+    <polygon points="0,-40 34.6,-20 34.6,20 0,40 -34.6,20 -34.6,-20" fill="#0F172A" stroke="url(#tealGrad)" stroke-width="4" filter="url(#glow)" />
+    <circle cx="0" cy="0" r="15" fill="url(#tealGrad)" />
+  </g>
+
+  <!-- Bottom Left (Cheap Agent) -->
+  <g transform="translate(350, 450)">
+    <polygon points="0,-35 30.3,-17.5 30.3,17.5 0,35 -30.3,17.5 -30.3,-17.5" fill="#0F172A" stroke="url(#tealGrad)" stroke-width="4" filter="url(#glow)" />
+    <circle cx="0" cy="0" r="12" fill="url(#tealGrad)" />
+  </g>
+
+  <!-- Top Right (Frontier Agent) -->
+  <g transform="translate(850, 150)">
+    <rect x="-40" y="-40" width="80" height="80" rx="15" fill="#0F172A" stroke="url(#orangeGrad)" stroke-width="4" filter="url(#glow)" />
+    <circle cx="0" cy="0" r="20" fill="url(#orangeGrad)" />
+    <rect x="-10" y="-10" width="20" height="20" fill="#0F172A" />
+  </g>
+
+  <!-- Bottom Right (Frontier Agent) -->
+  <g transform="translate(800, 480)">
+    <rect x="-45" y="-45" width="90" height="90" rx="20" fill="#0F172A" stroke="url(#orangeGrad)" stroke-width="4" filter="url(#glow)" />
+    <circle cx="0" cy="0" r="22" fill="url(#orangeGrad)" />
+    <rect x="-12" y="-12" width="24" height="24" fill="#0F172A" />
+  </g>
+
+  <!-- Right Edge (Another Agent) -->
+  <g transform="translate(950, 315)">
+    <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" fill="#0F172A" stroke="url(#tealGrad)" stroke-width="3" />
+    <circle cx="0" cy="0" r="10" fill="url(#tealGrad)" />
+  </g>
+
+  <!-- Abstract Data Particles -->
+  <circle cx="500" cy="247" r="4" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="475" cy="382" r="4" fill="#FFFFFF" opacity="0.8" />
+  <circle cx="725" cy="232" r="6" fill="#FF9800" filter="url(#glow)" />
+  <circle cx="700" cy="397" r="6" fill="#FF9800" filter="url(#glow)" />
+  <circle cx="775" cy="315" r="4" fill="#FFFFFF" opacity="0.8" />
+
+  <!-- Code/Tech aesthetic accents -->
+  <g fill="#018786" opacity="0.6" font-family="monospace" font-size="14" font-weight="bold">
+    <text x="320" y="140">&lt;router_agent /&gt;</text>
+    <text x="250" y="490">{"mode": "triage"}</text>
+    <text x="880" y="110">@super-plan</text>
+    <text x="840" y="540">@paranoia-review</text>
+    <text x="560" y="420">[ORCHESTRATOR]</text>
+  </g>
+
+</svg>
