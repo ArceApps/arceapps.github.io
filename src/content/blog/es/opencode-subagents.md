@@ -1,13 +1,13 @@
 ---
-title: "Subagentes en OpenCode: cómo crear equipos de agentes que colaboran"
-description: "Aprende a configurar y usar subagentes en OpenCode para automatizar tareas complejas, crear flujos de trabajo en paralelo y dividir problemas grandes entre agentes especializados."
+title: "OpenCode Subagentes: Workflows y Superpowers"
+description: "Descubre mi flujo de trabajo con subagentes en OpenCode para automatizar tareas, crear pipelines en paralelo y resolver problemas complejos en la terminal."
 pubDate: 2026-05-20
 lastmod: 2026-05-20
 author: ArceApps
 keywords:
   - "OpenCode"
   - "Subagentes"
-  - "Equipos de Agentes"
+  - "Stacks de Agentes"
   - "Colaboración"
   - "IA"
 canonical: "https://arceapps.com/es/blog/opencode-subagents/"
@@ -20,7 +20,7 @@ reference_id: "bd0a8de2-6772-4a99-8ef2-c2947c7edfa9"
 
 ## Introducción
 
-Cuando trabajas en un proyecto de software real, raramente tienes una sola tarea limpia y delimitada. Normalmente estás leyendo código en varios archivos a la vez, planificando una refactorización, implementando una funcionalidad y revisando el trabajo hecho. Cada una de esas actividades requiere un modo de pensar distinto, herramientas distintas y niveles distintos de permiso. Hacer todo eso con un solo agente es como pedirle a un mismo desarrollador que sea al mismo tiempo arquitecto, escritor de tests, DBA y especialista en seguridad: funciona, pero no如愿 (ni es eficiente).
+En mi día a día como desarrollador independiente, raramente tienes una sola tarea limpia y delimitada. Normalmente estás leyendo código en varios archivos a la vez, planificando una refactorización, implementando una funcionalidad y revisando el trabajo hecho. Cada una de esas actividades requiere un modo de pensar distinto, herramientas distintas y niveles distintos de permiso. Hacer todo eso con un solo agente es como pedirme a mí mismo que sea al mismo tiempo arquitecto, escritor de tests, DBA y especialista en seguridad: funciona, pero no如愿 (ni es eficiente).
 
 OpenCode resuelve esto con un sistema de **agentes** que incluye dos roles fundamentales: **agentes primarios** y **subagentes**. Los agentes primarios son los asistentes principales con los que interactúas directamente. Los subagentes son asistentes especializados que pueden invocarse para tareas concretas, trabajar en paralelo o帮你 (a ti, al agente primario) con investigación, exploración o análisis sin interrumpir el flujo de trabajo principal.
 
@@ -66,7 +66,7 @@ Usa Explore cuando necesites entender un código base desconocido sin riesgo de 
 
 El subagente **Scout** es un agente de solo lectura especializado en documentación externa e investigación de dependencias. A diferencia de Explore, que trabaja únicamente con tu código local, Scout puede clonar repositorios de dependencias en la caché gestionada por OpenCode, inspeccionar el código fuente de librerías y cruzar-referenciar tu código local con las implementaciones upstream.
 
-Usa Scout cuando necesites entender cómo funciona una librería que estás usando, verificar los cambios entre versiones de una dependencia, o investigar una implementación específica en el código fuente de un paquete npm o de un módulo Python. Es especialmente útil en proyectos indie donde no tienes un equipo de-platform engineers (ingenieros de plataforma) dedicado pero necesitas entender profundamente las herramientas que usas.
+Usa Scout cuando necesites entender cómo funciona una librería que estás usando, verificar los cambios entre versiones de una dependencia, o investigar una implementación específica en el código fuente de un paquete npm o de un módulo Python. Es especialmente útil en proyectos indie donde no tienes un stack de-platform engineers (ingenieros de plataforma) dedicado pero necesitas entender profundamente las herramientas que usas.
 
 ---
 
@@ -135,7 +135,7 @@ Abre tu archivo `opencode.json` y añade una sección `agent`. Aquí puedes pers
   "agent": {
     "build": {
       "mode": "primary",
-      "model": "anthropic/claude-sonnet-4-20250514",
+      "model": "anthropic/claude-4.8-sonnet",
       "prompt": "{file:./prompts/build.txt}",
       "permission": {
         "edit": "allow",
@@ -144,7 +144,7 @@ Abre tu archivo `opencode.json` y añade una sección `agent`. Aquí puedes pers
     },
     "plan": {
       "mode": "primary",
-      "model": "anthropic/claude-haiku-4-20250514",
+      "model": "anthropic/claude-4.8-haiku",
       "permission": {
         "edit": "deny",
         "bash": "deny"
@@ -153,7 +153,7 @@ Abre tu archivo `opencode.json` y añade una sección `agent`. Aquí puedes pers
     "code-reviewer": {
       "description": "Reviews code for best practices and potential issues",
       "mode": "subagent",
-      "model": "anthropic/claude-sonnet-4-20250514",
+      "model": "anthropic/claude-4.8-sonnet",
       "prompt": "You are a code reviewer. Focus on security, performance, and maintainability.",
       "permission": {
         "edit": "deny"
@@ -174,9 +174,9 @@ Ejemplo de `~/.config/opencode/agents/review.md`:
 
 ```markdown
 ---
-description: Reviews code for quality and best practices
+description: Revisa el código buscando problemas de calidad y mejores prácticas
 mode: subagent
-model: anthropic/claude-sonnet-4-20250514
+model: anthropic/claude-4.8-sonnet
 temperature: 0.1
 permission:
   edit: deny
@@ -237,7 +237,7 @@ Controla la aleatoriedad y creatividad de las respuestas del modelo. Valores tí
 }
 ```
 
-Si no se especifica temperature, OpenCode usa los valores por defecto del modelo (típicamente 0 para la mayoría de modelos, 0.55 para modelos Qwen).
+Si no se especifica temperature, OpenCode usa los valores por defecto del modelo (típicamente 0 para la mayoría de modelos, 0.55 para modelos Qwen (como Qwen3.7-Max)).
 
 ### Max steps
 
@@ -376,7 +376,7 @@ Cuando te enfrentas a código que no has escrito tú (o que escribiste hace much
 @explore ¿Cuál es la estructura general del proyecto? Dame un resumen de los módulos principales
 ```
 
-Explore te da una visión general sin modificar nada. Es como tener un compañero de equipo que ya conoce el código y te puede guiar.
+Explore te da una visión general sin modificar nada. Es como tener un mentor técnico en tu máquina local que ya conoce tu código.
 
 ### Investigación de dependencias
 
@@ -402,7 +402,7 @@ Basándome en mi experiencia con OpenCode y los patrones que mejor funcionan, aq
 
 **Aprovecha los archivos Markdown para agentes complejos.** Si un agente tiene un prompt muy largo o quieres versionar su configuración junto con el proyecto, usa el formato Markdown en `.opencode/agents/`. Es más legible y mantiene la configuración cerca del código.
 
-**Navega entre sesiones activamente.** No dejes los resultados de los subagentes sin revisar. Usa `<Leader>+Down` para entrar en las sesiones hijo, revisa el progreso, y vuelve a la padre con `Up`. La navegación activa es lo que convierte un conjunto de agentes aislados en un verdadero equipo colaborador.
+**Navega entre sesiones activamente.** En mi flujo de trabajo, nunca dejo resultados sin revisar. Usa `<Leader>+Down` para entrar en las sesiones hijo, revisa el progreso, y vuelve a la padre con `Up`. La navegación activa es lo que convierte un conjunto de agentes aislados en un sistema verdaderamente colaborativo.
 
 ---
 
@@ -416,7 +416,99 @@ Finalmente, la invocación automática de subagentes depende del modelo de lengu
 
 ---
 
+
+
+## Casos de Uso Avanzados: Subagentes en la Práctica
+
+En mi flujo de trabajo diario, he ido refinando la forma en que interactúo con estos subagentes. No se trata solo de delegar tareas simples, sino de construir pipelines de procesamiento donde cada agente asume un rol específico, emulando la revisión por pares y el análisis en profundidad sin salir de mi entorno local.
+
+### 1. Migraciones de Código a Gran Escala
+
+Cuando necesito migrar una base de código de una arquitectura a otra (por ejemplo, pasar de RxJava a Kotlin Coroutines en un proyecto Android), no lanzo al agente principal a reescribir todo. Eso invariablemente lleva a alucinaciones, errores de compilación y pérdida de contexto.
+
+En su lugar, uso un enfoque de tres pasos con subagentes:
+
+1.  **Fase de Exploración (`@explore`)**:
+    Le pido a `@explore` que mapee todas las instancias donde se usa RxJava. "Analiza este módulo y extrae un listado de todas las clases que implementan `Single`, `Observable` o `Completable`". El agente lee el código y me genera un `migration_plan.md`.
+
+2.  **Fase de Implementación (`@general` en paralelo)**:
+    Por cada componente aislado (ej. un `Repository` y su `ViewModel`), lanzo un `@general` para realizar la migración específica basándose en el plan. Al hacerlo en sesiones separadas, los errores de contexto se minimizan.
+
+3.  **Fase de Revisión (`@review`)**:
+    Una vez que `@general` termina, uso mi subagente personalizado `@review` para auditar los cambios. "Revisa el diff de la migración en `UserRepository.kt`. Asegúrate de que el manejo de excepciones de Coroutines sea equivalente al de RxJava y verifica posibles memory leaks".
+
+Este flujo me ha ahorrado innumerables horas de depuración.
+
+### 2. Auditorías de Seguridad Locales
+
+La seguridad en aplicaciones móviles y web no es negociable. Antes de enviar una nueva release, ejecuto un subagente especializado en seguridad:
+
+```json
+{
+  "agent": {
+    "security-audit": {
+      "description": "Audita código buscando vulnerabilidades (OWASP, inyección, fugas de memoria)",
+      "mode": "subagent",
+      "model": "anthropic/claude-4.8-sonnet",
+      "temperature": 0.0,
+      "permission": {
+        "edit": "deny",
+        "bash": "deny"
+      },
+      "prompt": "Actúas como un auditor de seguridad estático. Revisa el código proporcionado buscando vulnerabilidades del OWASP Top 10, manejo inseguro de estado en Compose, y fugas de datos sensibles en logs."
+    }
+  }
+}
+```
+
+Puedo invocarlo con `@security-audit revisa los últimos commits del módulo de autenticación`. Como tiene `edit: deny`, sé que no va a romper nada. Su único trabajo es generar un reporte crítico.
+
+### 3. Generación de Documentación Automática
+
+Escribir documentación es la parte menos glamurosa del desarrollo, pero vital. Uso un subagente `@doc-gen` que se encarga de esto:
+
+```json
+{
+  "agent": {
+    "doc-gen": {
+      "description": "Genera KDoc/JSDoc y actualiza el README.md",
+      "mode": "subagent",
+      "model": "anthropic/claude-4.8-haiku",
+      "temperature": 0.2
+    }
+  }
+}
+```
+
+Nota que uso `claude-4.8-haiku` aquí. Para tareas de documentación estructurada, un modelo rápido y eficiente es suficiente y ahorra costes significativos frente a Sonnet.
+
+## Consideraciones sobre el Contexto y el Coste
+
+Usar subagentes no es gratis. Cada sesión de subagente consume tokens de entrada (el contexto compartido) y de salida. Aquí tienes mis reglas de oro para mantener los costes bajo control:
+
+1.  **Limita el contexto inicial**: No invoques un subagente desde una sesión principal que ya tiene 150 turnos de conversación. El subagente heredará ese contexto masivo. Es mejor empezar una nueva sesión limpia para tareas pesadas.
+2.  **Usa el modelo adecuado**: No todo necesita `claude-4.8-sonnet`. Para tareas de formato, parsing simple o exploración ligera, los modelos Haiku o incluso modelos locales de tamaño medio (si tienes el hardware) son más que capaces.
+3.  **Vigila el `maxSteps`**: Un subagente que entra en un bucle de corrección de errores (intenta compilar -> falla -> intenta corregir -> falla) puede drenar tu saldo de API en minutos. Mantén `maxSteps` bajo (entre 5 y 10) para forzar al agente a detenerse y pedir tu opinión.
+
+## El Futuro: Agentes Autónomos y MCP
+
+Los subagentes son solo el principio. Con la reciente integración del Model Context Protocol (MCP), estos subagentes ya no están limitados al código fuente. En mi configuración actual, mis subagentes pueden consultar mi base de datos de notas en Obsidian (vía un servidor MCP local) para recordar decisiones arquitectónicas que tomé hace meses.
+
+De hecho, en el ecosistema actual (mayo de 2026), la combinación de OpenCode con Claude 4.8 Sonnet y herramientas MCP está difuminando la línea entre "herramienta de autocompletado" y "colega desarrollador".
+
+## Conclusión
+
+Integrar subagentes en tu flujo de trabajo con OpenCode no se trata de trabajar menos, se trata de trabajar mejor. Al separar las responsabilidades (exploración, redacción de código, revisión de seguridad), reduces la carga cognitiva tanto tuya como del LLM subyacente.
+
+Como desarrollador independiente, mi tiempo es mi recurso más valioso. Los subagentes actúan como ese "stack colaborativo" que asume las tareas de fondo, permitiéndome concentrarme en la arquitectura, el diseño y la lógica de negocio core.
+
 ## Bibliografía y referencias
+
+- [OWASP Top 10 Mobile Risks](https://owasp.org/www-project-mobile-top-10/) — Para la auditoría de seguridad.
+- [Kotlin Coroutines Documentation](https://kotlinlang.org/docs/coroutines-overview.html) — Referencia para la migración desde RxJava.
+- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) — Información sobre MCP y su ecosistema.
+- [Qwen 3.7 Max Launch](https://qwen.ai/blog) — Contexto y documentación sobre el uso de la temperatura en modelos Qwen.
+- [Anthropic Claude 4.8 Release](https://www.anthropic.com/transparency) — Información sobre los modelos Claude 4.8 Sonnet y Haiku.
 
 - [OpenCode Agents Documentation](https://opencode.ai/docs/agents) — Documentación oficial de agentes en OpenCode
 - [OpenCode SDK](https://opencode.ai/docs/sdk) — SDK oficial para integrar OpenCode en tus proyectos

@@ -1,6 +1,6 @@
 ---
-title: Subagents in OpenCode
-description: Learn how to configure and use subagents in OpenCode to automate complex tasks, create parallel workflows, and split large problems among specialized agents.
+title: "OpenCode Subagents: Workflows & Superpowers"
+description: "Discover my OpenCode subagents workflow to automate complex tasks, build parallel pipelines, and solve problems without leaving the terminal context."
 pubDate: 2026-05-20
 author: ArceApps
 heroImage: /images/blog-opencode-subagents.svg
@@ -13,7 +13,7 @@ keywords: ["ia", "opencode", "agents"]
 
 ## Introduction
 
-When you're working on a real software project, you rarely have a single clean, well-defined task. Most of the time you're reading code across multiple files, planning a refactor, implementing a feature, and reviewing work done — all at the same time. Each of those activities requires a different mindset, different tools, and different permission levels. Doing all of that with a single agent is like asking the same developer to be architect, test writer, DBA, and security specialist simultaneously. It works, but it's not optimal (and it's not efficient).
+In my day-to-day as an indie developer, you rarely have a single clean, well-defined task. Most of the time you're reading code across multiple files, planning a refactor, implementing a feature, and reviewing work done — all at the same time. Each of those activities requires a different mindset, different tools, and different permission levels. Doing all of that with a single agent is like asking myself to be architect, test writer, DBA, and security specialist simultaneously. It works, but it's not optimal (and it's not efficient).
 
 OpenCode solves this with a system of **agents** that includes two fundamental roles: **primary agents** and **subagents**. Primary agents are the main assistants you interact with directly. Subagents are specialized assistants that can be invoked for specific tasks, work in parallel, or help you — and the primary agent — with research, exploration, or analysis without interrupting the main workflow.
 
@@ -59,7 +59,7 @@ Use Explore when you need to understand an unfamiliar codebase without any risk 
 
 The **Scout** subagent is a read-only agent specialized in external documentation and dependency research. Unlike Explore, which works only with your local codebase, Scout can clone dependency repositories into OpenCode's managed cache, inspect library source code, and cross-reference your local code against upstream implementations without modifying your workspace.
 
-Use Scout when you need to understand how a library you're using works, verify changes between dependency versions, or investigate a specific implementation in an npm package or Python module's source code. It's especially useful in indie projects where you don't have a dedicated platform engineering team but still need to deeply understand the tools you use.
+Use Scout when you need to understand how a library you're using works, verify changes between dependency versions, or investigate a specific implementation in an npm package or Python module's source code. It's especially useful in indie projects where you don't have a dedicated platform engineer but still need to deeply understand the tools you use.
 
 ---
 
@@ -128,7 +128,7 @@ Open your `opencode.json` file and add an `agent` section. Here you can customiz
   "agent": {
     "build": {
       "mode": "primary",
-      "model": "anthropic/claude-sonnet-4-20250514",
+      "model": "anthropic/claude-4.8-sonnet",
       "prompt": "{file:./prompts/build.txt}",
       "permission": {
         "edit": "allow",
@@ -137,7 +137,7 @@ Open your `opencode.json` file and add an `agent` section. Here you can customiz
     },
     "plan": {
       "mode": "primary",
-      "model": "anthropic/claude-haiku-4-20250514",
+      "model": "anthropic/claude-4.8-haiku",
       "permission": {
         "edit": "deny",
         "bash": "deny"
@@ -146,7 +146,7 @@ Open your `opencode.json` file and add an `agent` section. Here you can customiz
     "code-reviewer": {
       "description": "Reviews code for best practices and potential issues",
       "mode": "subagent",
-      "model": "anthropic/claude-sonnet-4-20250514",
+      "model": "anthropic/claude-4.8-sonnet",
       "prompt": "You are a code reviewer. Focus on security, performance, and maintainability.",
       "permission": {
         "edit": "deny"
@@ -169,7 +169,7 @@ Example of `~/.config/opencode/agents/review.md`:
 ---
 description: Reviews code for quality and best practices
 mode: subagent
-model: anthropic/claude-sonnet-4-20250514
+model: anthropic/claude-4.8-sonnet
 temperature: 0.1
 permission:
   edit: deny
@@ -230,7 +230,7 @@ Controls the randomness and creativity of the model's responses. Typical values:
 }
 ```
 
-If no temperature is specified, OpenCode uses model-specific defaults (typically 0 for most models, 0.55 for Qwen models).
+If no temperature is specified, OpenCode uses model-specific defaults (typically 0 for most models, 0.55 for Qwen models (like Qwen3.7-Max)).
 
 ### Max steps
 
@@ -369,7 +369,7 @@ When you face code you didn't write (or wrote a long time ago), use Explore to u
 @explore What is the overall project structure? Give me a summary of the main modules
 ```
 
-Explore gives you a high-level view without modifying anything. It's like having a teammate who already knows the codebase and can guide you.
+Explore gives you a high-level view without modifying anything. It's like having a technical mentor right in your terminal who already knows your code and can guide you.
 
 ### Dependency research
 
@@ -395,7 +395,7 @@ Based on my experience with OpenCode and the patterns that work best, here are s
 
 **Use Markdown files for complex agents.** If an agent has a very long prompt or you want to version its configuration alongside the project, use the Markdown format in `.opencode/agents/`. It's more readable and keeps configuration close to code.
 
-**Navigate between sessions actively.** Don't leave subagent results unreviewed. Use `<Leader>+Down` to enter child sessions, review progress, and return to the parent with `Up`. Active navigation is what turns a set of isolated agents into a true collaborative team.
+**Navigate between sessions actively.** In my workflow, I never leave subagent results unreviewed. Use `<Leader>+Down` to enter child sessions, review progress, and return to the parent with `Up`. Active navigation is what turns a set of isolated agents into a truly collaborative workflow.
 
 ---
 
@@ -409,7 +409,99 @@ Finally, automatic subagent invocation depends on the language model. Not all mo
 
 ---
 
+
+
+## Advanced Use Cases: Subagents in Practice
+
+In my daily workflow, I've refined the way I interact with these subagents. It's not just about delegating simple tasks, but about building processing pipelines where each agent assumes a specific role, emulating peer review and in-depth analysis without ever leaving my local environment.
+
+### 1. Large-Scale Code Migrations
+
+When I need to migrate a codebase from one architecture to another (for example, moving from RxJava to Kotlin Coroutines in an Android project), I don't unleash the primary agent to rewrite everything. That inevitably leads to hallucinations, compilation errors, and loss of context.
+
+Instead, I use a three-step approach with subagents:
+
+1.  **Exploration Phase (`@explore`)**:
+    I ask `@explore` to map all instances where RxJava is used. "Analyze this module and extract a list of all classes implementing `Single`, `Observable`, or `Completable`". The agent reads the code and generates a `migration_plan.md`.
+
+2.  **Implementation Phase (`@general` in parallel)**:
+    For each isolated component (e.g., a `Repository` and its `ViewModel`), I launch a `@general` to perform the specific migration based on the plan. By doing this in separate sessions, context errors are minimized.
+
+3.  **Review Phase (`@review`)**:
+    Once `@general` finishes, I use my custom `@review` subagent to audit the changes. "Review the migration diff in `UserRepository.kt`. Ensure the Coroutines exception handling is equivalent to the RxJava implementation and check for potential memory leaks".
+
+This flow has saved me countless hours of debugging.
+
+### 2. Local Security Audits
+
+Security in mobile and web applications is non-negotiable. Before pushing a new release, I run a specialized security subagent:
+
+```json
+{
+  "agent": {
+    "security-audit": {
+      "description": "Audits code for vulnerabilities (OWASP, injection, memory leaks)",
+      "mode": "subagent",
+      "model": "anthropic/claude-4.8-sonnet",
+      "temperature": 0.0,
+      "permission": {
+        "edit": "deny",
+        "bash": "deny"
+      },
+      "prompt": "Act as a static security auditor. Review the provided code looking for OWASP Top 10 vulnerabilities, insecure state management in Compose, and sensitive data leaks in logs."
+    }
+  }
+}
+```
+
+I can invoke it with `@security-audit review the latest commits in the auth module`. Because it has `edit: deny`, I know it won't break anything. Its only job is to generate a critical report.
+
+### 3. Automated Documentation Generation
+
+Writing documentation is the least glamorous part of development, but vital. I use a `@doc-gen` subagent that handles this:
+
+```json
+{
+  "agent": {
+    "doc-gen": {
+      "description": "Generates KDoc/JSDoc and updates the README.md",
+      "mode": "subagent",
+      "model": "anthropic/claude-4.8-haiku",
+      "temperature": 0.2
+    }
+  }
+}
+```
+
+Note that I use `claude-4.8-haiku` here. For structured documentation tasks, a fast and efficient model is sufficient and saves significant costs compared to Sonnet.
+
+## Context and Cost Considerations
+
+Using subagents isn't free. Every subagent session consumes input tokens (the shared context) and output tokens. Here are my golden rules for keeping costs under control:
+
+1.  **Limit initial context**: Don't invoke a subagent from a primary session that already has 150 conversation turns. The subagent will inherit that massive context. It's better to start a fresh, clean session for heavy tasks.
+2.  **Use the right model**: Not everything needs `claude-4.8-sonnet`. For formatting tasks, simple parsing, or light exploration, Haiku models or even mid-sized local models (if you have the hardware) are more than capable.
+3.  **Watch the `maxSteps`**: A subagent that enters an error-correction loop (tries to compile -> fails -> tries to fix -> fails) can drain your API balance in minutes. Keep `maxSteps` low (between 5 and 10) to force the agent to stop and ask for your input.
+
+## The Future: Autonomous Agents and MCP
+
+Subagents are just the beginning. With the recent integration of the Model Context Protocol (MCP), these subagents are no longer limited to the source code. In my current setup, my subagents can query my Obsidian notes database (via a local MCP server) to recall architectural decisions I made months ago.
+
+In fact, in the current ecosystem (May 2026), the combination of OpenCode with Claude 4.8 Sonnet and MCP tools is blurring the line between "autocomplete tool" and "developer colleague".
+
+## Conclusion
+
+Integrating subagents into your OpenCode workflow isn't about working less, it's about working better. By separating responsibilities (exploration, code writing, security review), you reduce the cognitive load for both yourself and the underlying LLM.
+
+As an indie developer, my time is my most valuable resource. Subagents act as that "collaborative stack" that takes on background tasks, allowing me to focus on architecture, design, and core business logic.
+
 ## Bibliography and references
+
+- [OWASP Top 10 Mobile Risks](https://owasp.org/www-project-mobile-top-10/) — For the security audit subagent context.
+- [Kotlin Coroutines Documentation](https://kotlinlang.org/docs/coroutines-overview.html) — Reference for migrating from RxJava.
+- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) — Information about MCP and its ecosystem.
+- [Qwen 3.7 Max Launch](https://qwen.ai/blog) — Context and documentation regarding temperature settings in Qwen models.
+- [Anthropic Claude 4.8 Release](https://www.anthropic.com/transparency) — Information regarding the Claude 4.8 Sonnet and Haiku models.
 
 - [OpenCode Agents Documentation](https://opencode.ai/docs/agents) — Official agents documentation on OpenCode
 - [OpenCode SDK](https://opencode.ai/docs/sdk) — Official SDK for integrating OpenCode into your projects
