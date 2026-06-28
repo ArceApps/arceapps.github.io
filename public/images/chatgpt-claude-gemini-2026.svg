@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#060911" />
+    </linearGradient>
+    <linearGradient id="primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#018786" />
+      <stop offset="100%" stop-color="#006b6b" />
+    </linearGradient>
+    <linearGradient id="secondary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9800" />
+      <stop offset="100%" stop-color="#c67600" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+
+  <!-- Abstract geometric shapes representing different AI tiers/models -->
+  <g transform="translate(600, 315)">
+    <!-- Central node -->
+    <circle cx="0" cy="0" r="120" fill="none" stroke="url(#primary)" stroke-width="8" opacity="0.8" />
+    <circle cx="0" cy="0" r="100" fill="url(#primary)" opacity="0.1" />
+    <circle cx="0" cy="0" r="40" fill="url(#secondary)" />
+
+    <!-- Model 1: ChatGPT -->
+    <g transform="rotate(30) translate(0, -200)">
+      <circle cx="0" cy="0" r="60" fill="none" stroke="url(#primary)" stroke-width="4" />
+      <polygon points="0,-30 26,15 -26,15" fill="url(#primary)" opacity="0.8" />
+      <line x1="0" y1="60" x2="0" y2="140" stroke="url(#primary)" stroke-width="4" stroke-dasharray="10,10" opacity="0.5" />
+    </g>
+
+    <!-- Model 2: Claude -->
+    <g transform="rotate(150) translate(0, -200)">
+      <circle cx="0" cy="0" r="60" fill="none" stroke="url(#primary)" stroke-width="4" />
+      <rect x="-20" y="-20" width="40" height="40" fill="url(#primary)" opacity="0.8" />
+      <line x1="0" y1="60" x2="0" y2="140" stroke="url(#primary)" stroke-width="4" stroke-dasharray="10,10" opacity="0.5" />
+    </g>
+
+    <!-- Model 3: Gemini -->
+    <g transform="rotate(270) translate(0, -200)">
+      <circle cx="0" cy="0" r="60" fill="none" stroke="url(#secondary)" stroke-width="4" />
+      <circle cx="0" cy="0" r="25" fill="url(#secondary)" opacity="0.8" />
+      <line x1="0" y1="60" x2="0" y2="140" stroke="url(#secondary)" stroke-width="4" stroke-dasharray="10,10" opacity="0.5" />
+    </g>
+
+    <!-- Data points/limits connections -->
+    <circle cx="0" cy="0" r="280" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.1" stroke-dasharray="5,5" />
+    <circle cx="0" cy="0" r="350" fill="none" stroke="#FFFFFF" stroke-width="1" opacity="0.05" />
+  </g>
+
+  <!-- Overlay text/grid pattern for tech feel -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="0.5" opacity="0.05" />
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)" />
+</svg>
