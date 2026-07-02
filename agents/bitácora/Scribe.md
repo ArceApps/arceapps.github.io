@@ -144,9 +144,8 @@ Harness Engineering como la nueva capa meta de la ingeniería de agentes: por qu
 Se realizó la integración de la nueva aplicación "RadioHub" al portafolio estático de ArceApps, asegurando el soporte de internacionalización (ES + EN) y la paridad en la configuración de metadatos.
 
 **Assets integrados:**
-- Logo y 7 capturas de pantalla de la app en español en `/public/images/apps/radiohub/es/`.
-- Logo y 7 capturas de pantalla de la app en inglés en `/public/images/apps/radiohub/en/`.
-- Imagen de portada hero en formato SVG minimalista (`/public/images/radiohub-hero.svg`) utilizando los colores de la marca (Teal `#018786` y Orange `#FF9800`) con un diseño geométrico de sintonización de frecuencias de radio.
+- Logo, 7 capturas de pantalla de la app y el gráfico destacado promocional (`feature_graphic.png`) como heroImage en español en `/public/images/apps/radiohub/es/`.
+- Logo, 7 capturas de pantalla de la app y el gráfico destacado promocional (`feature_graphic.png`) como heroImage en inglés en `/public/images/apps/radiohub/en/`.
 
 **Fichas creadas:**
 - ES: `src/content/apps/es/radiohub.md`
@@ -156,4 +155,4 @@ Se realizó la integración de la nueva aplicación "RadioHub" al portafolio est
 Se documentó la trastienda técnica de RadioHub siguiendo el "Espíritu Indie" de la web: la gestión del balanceo y failover automático entre los 4 servidores espejo de `radio-browser.info` usando Ktor, la sincronización en segundo plano mediante MediaSession, y la aplicación reactiva del ecualizador sobre ExoPlayer.
 
 **Verificación:**
-Se ejecutó la validación final del esquema de contenidos con `pnpm build` de forma local, completando la generación estática sin errores.
+Se ejecutó la validación final del esquema de contenidos con `pnpm build` de forma local, completando la generación estática sin errores y empleando los gráficos promocionales reales de la app.

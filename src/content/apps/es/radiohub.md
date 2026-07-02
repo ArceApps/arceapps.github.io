@@ -4,7 +4,7 @@ description: >-
   Sintoniza más de 30,000 emisoras en vivo de todo el mundo con ecualizador, 
   temporizador y una interfaz Material 3 moderna sin interrupciones.
 pubDate: '2026-07-02'
-heroImage: /images/radiohub-hero.svg
+heroImage: /images/apps/radiohub/es/feature_graphic.png
 icon: radio
 tags:
   - Music

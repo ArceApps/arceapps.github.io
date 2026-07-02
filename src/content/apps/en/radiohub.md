@@ -4,7 +4,7 @@ description: >-
   Tune into more than 30,000 live radio stations worldwide with a built-in equalizer, 
   sleep timer, and a clean, ad-free Material 3 interface.
 pubDate: '2026-07-02'
-heroImage: /images/radiohub-hero.svg
+heroImage: /images/apps/radiohub/en/feature_graphic.png
 icon: radio
 tags:
   - Music
