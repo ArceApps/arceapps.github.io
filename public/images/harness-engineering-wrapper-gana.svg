@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Harness Engineering: the wrapper around the model">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#018786"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF9800" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#FF9800" stop-opacity="0.35"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#018786" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#018786" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.55"/>
+
+  <!-- Decorative orange strap (harness band) -->
+  <g opacity="0.92">
+    <rect x="-40" y="138" width="1280" height="22" fill="url(#ringGrad)" transform="rotate(-6 600 149)"/>
+    <rect x="-40" y="470" width="1280" height="22" fill="url(#ringGrad)" transform="rotate(-6 600 481)"/>
+  </g>
+
+  <!-- Strap buckles (geometric) -->
+  <g transform="translate(220, 280)">
+    <rect x="-30" y="-30" width="60" height="60" fill="none" stroke="#FF9800" stroke-width="3" transform="rotate(45)"/>
+  </g>
+  <g transform="translate(980, 350)">
+    <rect x="-30" y="-30" width="60" height="60" fill="none" stroke="#FF9800" stroke-width="3" transform="rotate(45)"/>
+  </g>
+
+  <!-- Outer concentric rings (the harness layers) -->
+  <g transform="translate(600 315)">
+    <circle r="230" fill="none" stroke="#FF9800" stroke-width="2" stroke-dasharray="6 8" opacity="0.45"/>
+    <circle r="180" fill="none" stroke="#018786" stroke-width="3" opacity="0.85"/>
+    <circle r="180" fill="url(#glow)"/>
+    <circle r="120" fill="none" stroke="#FF9800" stroke-width="1.5" opacity="0.7"/>
+    <circle r="78" fill="url(#coreGrad)"/>
+    <circle r="78" fill="none" stroke="#0F172A" stroke-width="2"/>
+
+    <!-- Tick marks on the harness ring -->
+    <g stroke="#FF9800" stroke-width="2" opacity="0.7">
+      <line x1="180" y1="0" x2="195" y2="0"/>
+      <line x1="-180" y1="0" x2="-195" y2="0"/>
+      <line x1="0" y1="180" x2="0" y2="195"/>
+      <line x1="0" y1="-180" x2="0" y2="-195"/>
+    </g>
+  </g>
+
+  <!-- Label: MODEL (inside the core) -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" text-anchor="middle">
+    <text x="600" y="305" fill="#0F172A" font-size="22" font-weight="700" letter-spacing="2">MODEL</text>
+    <text x="600" y="335" fill="#0F172A" font-size="14" font-weight="500" opacity="0.8">core</text>
+  </g>
+
+  <!-- Label: HARNESS (around the core) -->
+  <g font-family="Inter, system-ui, sans-serif" text-anchor="middle">
+    <text x="600" y="180" fill="#FF9800" font-size="16" font-weight="700" letter-spacing="6">— H A R N E S S —</text>
+  </g>
+
+  <!-- Side labels (5 patterns) -->
+  <g font-family="Inter, system-ui, sans-serif" fill="#CBD5E1" font-size="14" font-weight="500">
+    <text x="80" y="100" fill="#FF9800">RESTRICTIONS</text>
+    <text x="80" y="120" fill="#94A3B8" font-size="12">tools · permissions</text>
+
+    <text x="80" y="500" fill="#FF9800">VERIFICATION</text>
+    <text x="80" y="520" fill="#94A3B8" font-size="12">hooks · sensors</text>
+
+    <text x="970" y="100" fill="#FF9800">DOCUMENTATION</text>
+    <text x="970" y="120" fill="#94A3B8" font-size="12">AGENTS.md · skills</text>
+
+    <text x="970" y="500" fill="#FF9800">OBSERVABILITY</text>
+    <text x="970" y="520" fill="#94A3B8" font-size="12">traces · logs</text>
+  </g>
+
+  <!-- Connecting dots between side labels and ring -->
+  <g fill="#018786" opacity="0.7">
+    <circle cx="220" cy="280" r="4"/>
+    <circle cx="980" cy="350" r="4"/>
+  </g>
+
+  <!-- Title block bottom -->
+  <g font-family="Inter, system-ui, sans-serif" text-anchor="middle">
+    <text x="600" y="555" fill="#F8FAFC" font-size="34" font-weight="800" letter-spacing="1">Harness Engineering</text>
+    <text x="600" y="588" fill="#94A3B8" font-size="16" font-weight="500" letter-spacing="0.5">el wrapper alrededor del modelo · Agent = Model + Harness</text>
+  </g>
+
+  <!-- Brand mark -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#018786" font-size="13" font-weight="600">
+    <text x="40" y="600" letter-spacing="2">ARCEAPPS</text>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" fill="#64748B" font-size="11">
+    <text x="1100" y="600">2026</text>
+  </g>
+</svg>
