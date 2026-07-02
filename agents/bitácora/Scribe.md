@@ -135,3 +135,25 @@ Harness Engineering como la nueva capa meta de la ingeniería de agentes: por qu
 **Calidad:** Cumple mínimo 2000 palabras (ES: 4086, EN: 3929), tono indie, sin jerga corporativa, citations verificadas con extracción de contenido (curl + python) de 5 fuentes primarias y análisis.
 
 **Investigación multi-fuente:** 8 web_search + 5 extracciones con curl (Mitchell Hashimoto, LangChain Anatomy, LangChain Improving, Haverin critique, Tunguz, Neira, Willison) + auditoría del prior art del blog (13 archivos con "harness", 31 con "wrapper", 4 con "context-engineering").
+
+---
+
+## 2026-07-02 - Ficha de Aplicación: RadioHub
+**Estado:** Completado
+**Análisis:**
+Se realizó la integración de la nueva aplicación "RadioHub" al portafolio estático de ArceApps, asegurando el soporte de internacionalización (ES + EN) y la paridad en la configuración de metadatos.
+
+**Assets integrados:**
+- Logo y 7 capturas de pantalla de la app en español en `/public/images/apps/radiohub/es/`.
+- Logo y 7 capturas de pantalla de la app en inglés en `/public/images/apps/radiohub/en/`.
+- Imagen de portada hero en formato SVG minimalista (`/public/images/radiohub-hero.svg`) utilizando los colores de la marca (Teal `#018786` y Orange `#FF9800`) con un diseño geométrico de sintonización de frecuencias de radio.
+
+**Fichas creadas:**
+- ES: `src/content/apps/es/radiohub.md`
+- EN: `src/content/apps/en/radiohub.md`
+
+**Retos de Ingeniería detallados (Detrás de la App):**
+Se documentó la trastienda técnica de RadioHub siguiendo el "Espíritu Indie" de la web: la gestión del balanceo y failover automático entre los 4 servidores espejo de `radio-browser.info` usando Ktor, la sincronización en segundo plano mediante MediaSession, y la aplicación reactiva del ecualizador sobre ExoPlayer.
+
+**Verificación:**
+Se ejecutó la validación final del esquema de contenidos con `pnpm build` de forma local, completando la generación estática sin errores.
