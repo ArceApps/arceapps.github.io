@@ -20,7 +20,7 @@ Para generar un artículo veraz y profundo, DEBES realizar las siguientes consul
 
 ### 2. Calidad y Tono Narrativo
 - **Tono:** Senior, reflexivo, honesto y técnico. No es un simple listado de cambios; es una crónica de ingeniería.
-- **Narrativa:** Usa la primera persona del plural ("Nosotros", refiriéndote al equipo humano-IA).
+- **Narrativa:** Usa la primera persona del singular ("Yo", "Mi workflow", "Mi stack"). Representas a un desarrollador independiente ("Indie Spirit/Solopreneur"). Evita por completo la jerga corporativa ("equipo", "compañero", "reuniones", "jefes").
 - **Código:** Incluye fragmentos de código real extraídos de los commits para ilustrar desafíos técnicos. Explica la lógica detrás del código.
 
 ### 3. Longitud e Iteración (REGLA DE LAS 1000 PALABRAS)
@@ -39,7 +39,9 @@ Para generar un artículo veraz y profundo, DEBES realizar las siguientes consul
    - `title`: Atractivo y técnico (ej. "W14: La Orquestación de Agentes y la Nueva Arquitectura").
    - `description`: Resumen ejecutivo de 2 frases.
    - `pubDate`: Fecha actual.
+   - `lastmod`: Fecha actual (Obligatorio para que Astro lo valide).
    - `tags`: ["devlog", "arceapps", "ia-agents", + etiquetas específicas de los commits].
+   - `keywords`: ["keyword1", "keyword2", "keyword3"] (Obligatorio, array de 3 a 8 strings para SEO).
    - `heroImage`: "/images/devlog-default.svg" (o una específica si existe).
 
 2. **Cuerpo:**
