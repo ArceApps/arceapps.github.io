@@ -3,7 +3,7 @@ title: 4Line for Color lines
 description: >-
   Un juego de lógica y rompecabezas colorido. Forma líneas de 4 o más fichas del
   mismo color para limpiar el tablero y obtener puntos.
-pubDate: '2023-11-15'
+pubDate: '2023-10-10'
 heroImage: >-
   https://play-lh.googleusercontent.com/9XaK3yLLNuHGQPETIzTqi0Hf3HtG5gXx73_MGVATC3w0JZJ-ARQ2zy-WWoYVQmvB9zI
 icon: linear_scale

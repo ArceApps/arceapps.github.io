@@ -3,7 +3,7 @@ title: 4Line for Color lines
 description: >-
   A colorful logic and puzzle game. Form lines of 4 or more tiles of the same
   color to clear the board and earn points.
-pubDate: '2023-11-15'
+pubDate: '2023-10-10'
 heroImage: >-
   https://play-lh.googleusercontent.com/AsU3mwLRmnil8O13dJju384ESb4e__Gew6DvWnMx0Cmm5pGCvflgDGH3kF0Xv0nQ7g
 icon: linear_scale
