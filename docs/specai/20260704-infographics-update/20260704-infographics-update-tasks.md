@@ -120,25 +120,25 @@
 
 **Steps:**
 
-- [ ] **Step 1: Generate Spanish infographic**
+- [x] **Step 1: Generate Spanish infographic**
   Use `generate_image` with prompt:
   "A modern, clean comparison infographic with a light gray slate background (#F8FAFC). Two distinct comparison panels side-by-side. Left panel labeled 'Superpowers (Basado en Habilidades)' with icons representing modular skill plugins. Right panel labeled 'OpenSpec (Guiado por Artefactos)' with icons representing structured text specifications under git control. Accent colors: teal (#018786) and orange (#FF9800). Main title: 'Comparativa de Metodologías'. Flat minimalist tech style, highly professional."
   Save as: `blog_superpowers_es` (and copy to `public/images/blog-superpowers-vs-openspec-es.png`)
 
-- [ ] **Step 2: Generate English infographic**
+- [x] **Step 2: Generate English infographic**
   Use `generate_image` with prompt:
   "A modern, clean comparison infographic with a light gray slate background (#F8FAFC). Two distinct comparison panels side-by-side. Left panel labeled 'Superpowers (Skill-Based)' with icons representing modular skill plugins. Right panel labeled 'OpenSpec (Artifact-Guided)' with icons representing structured text specifications under git control. Accent colors: teal (#018786) and orange (#FF9800). Main title: 'Methodologies Comparison'. Flat minimalist tech style, highly professional."
   Save as: `blog_superpowers_en` (and copy to `public/images/blog-superpowers-vs-openspec-en.png`)
 
-- [ ] **Step 3: Update blog post frontmatter**
+- [x] **Step 3: Update blog post frontmatter**
   Update `heroImage` in `src/content/blog/es/superpowers-vs-openspec.md` to `"/images/blog-superpowers-vs-openspec-es.png"`.
   Update `heroImage` in `src/content/blog/en/superpowers-vs-openspec.md` to `"/images/blog-superpowers-vs-openspec-en.png"`.
 
-- [ ] **Step 4: Verify the build**
+- [x] **Step 4: Verify the build**
   Run: `pnpm build`
   Expected: Successful build.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
   Run:
   ```bash
   git add public/images/blog-superpowers-vs-openspec-*.png src/content/blog/*/superpowers-vs-openspec.md

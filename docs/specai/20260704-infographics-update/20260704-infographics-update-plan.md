@@ -36,3 +36,7 @@ _Living record, updated by the documenter subagent. Do not edit by hand._
 ### [2026-07-04 23:45] Task 2: Specs-Driven Development (SDD) Infographics
 **Done:** Spanish and English infographics contrasting Vibe Coding and SDD generated at 1200x630px. Placed under public/images/ and blog posts frontmatter updated. Astro build successfully verified.
 **Outcome:** ✅ success
+
+### [2026-07-04 23:50] Task 3: Superpowers vs OpenSpec Infographics
+**Done:** Spanish and English infographics comparing Superpowers and OpenSpec generated at 1200x630px. Placed under public/images/ and blog posts frontmatter updated. Astro build successfully verified.
+**Outcome:** ✅ success
