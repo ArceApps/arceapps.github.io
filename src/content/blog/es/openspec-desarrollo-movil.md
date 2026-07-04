@@ -20,6 +20,15 @@ reference_id: "e7f82a1b-3c45-4d9e-8f1a-2b3c4d5e6f7g"
 
 > **Lecturas relacionadas:** [Análisis Profundo de Frameworks SDD: Spec Kit, OpenSpec y BMAD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) · [Desarrollo Impulsado por Especificaciones con IA Agéntica](/blog/specs-driven-development) · [Stack Completo para Construir Agentes IA en 2026](/blog/blog-stack-completo-agentes-ia-2026)
 
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 El desarrollo móvil tiene una disciplina particular que el desarrollo web no comparte: la **fragmentación de contextos técnicos**. Cada plataforma móvil — Android con Kotlin, iOS con Swift — tiene sus propios ciclos de release, restricciones de hardware, APIs nativas y patrones arquitectónicos. Cuando introduces agentes de IA en este ecosistema, el riesgo de desalineación se multiplica: el agente puede sugerirte una API de Android obsoleta, usar un patrón de concurrencia inadecuado para Kotlin, o implementar una característica ignorando las directrices de Material Design.
 
 OpenSpec fue diseñado con esta realidad en mente. Su modelo de propuestas de cambio y construcción retroactiva de especificaciones encaja naturalmente con el ciclo de desarrollo móvil: pequeñas iteraciones, cada una con un propósito claro y verificable.

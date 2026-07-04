@@ -26,11 +26,23 @@ related_posts:
 
 Matt Pocock tiene una observación que pega duro: métodos como GSD (Just Ship It), BMAD y Spec Kit "try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve."
 
+
+![Infografía GSD](/images/infographic-gsd.svg)
+
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
 Esa frase dice mucho. Lo que está diciendo es: cuando le pasas tu proyecto a un framework que controla el pipeline, también le pasas la responsabilidad del debugging. Y debuggear algo que no entiendes es un tipo especial de sufrimiento.
 
 Esta es la tesis central de [`mattpocock/skills`](https://github.com/mattpocock/skills) — una colección de skills para agentes de codificación (Claude Code, Codex y otros) que son pequeños, composables y expresamente *no* son una metodología de pila completa. Cada skill hace una cosa. Coges los que necesitas. Dejas el resto.
 
 Si has estado leyendo la [comparativa de frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) de este blog, sabes que dedicamos muchas palabras a qué hace Spec Kit, qué hace OpenSpec y qué hace BMAD. Skills es una respuesta diferente a la misma pregunta: "¿cómo hago que los agentes de IA sean realmente útiles en lugar de solo complacientes?"
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
 
 Vamos a ver qué lo hace genuinamente diferente.
 
@@ -43,6 +55,9 @@ npx skills@latest add mattpocock/skills
 ```
 
 Después de instalar, tu agente gana acceso a comandos como `/grill-me`, `/tdd`, `/diagnose`, `/zoom-out` y `/improve-codebase-architecture`. Los compones según los necesitas. No hay pipeline forzado, no hay secuencia obligatoria, no hay "debes empezar con X antes de Y".
+
+
+![Infografía Grill-me](/images/infographic-grill-me.svg)
 
 El README expone cuatro failure modes que los skills están diseñados para resolver:
 

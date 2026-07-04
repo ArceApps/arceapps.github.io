@@ -20,11 +20,29 @@ reference_id: "e9a3c571-2b4e-4f8d-93d1-7c0e2a5b8f16"
 
 > **Lectura relacionada:** [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Spec-Driven Development con IA Agéntica](/blog/specs-driven-development) · [Análisis de Frameworks SDD: Spec Kit, OpenSpec y BMAD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
 
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 Hay una frustración particular que te golpea alrededor del tercer día de un proyecto con asistencia de IA. La primera sesión fue gloriosa: el agente entendió el objetivo, generó código sensato, hizo las preguntas correctas. Pero para el tercer día ya estás empezando cada sesión con un prólogo largo: "Okay, el proyecto es una app de gestión de tareas, decidimos usar PostgreSQL en vez de SQLite porque X, eliminamos la capa de Redux porque Y, y la última vez nos atascamos en Z." El agente asiente educadamente y luego procede a regenerar el archivo de Redux.
 
 Esto es **context rot**: la erosión gradual del estado acumulado del proyecto a medida que los agentes de IA empiezan cada sesión con la memoria en blanco. No es un problema de alucinaciones en el sentido tradicional — el modelo funciona exactamente como fue diseñado. Es un **problema de infraestructura de workflow**. La solución no es un modelo más inteligente; es un arnés más inteligente.
 
 Este artículo cubre tres herramientas que atacan el context rot desde ángulos distintos: **Beads**, un rastreador de issues distribuido y nativo de git construido como un DAG para agentes de IA; **LeanSpec**, un sistema de workflow spec-driven minimalista con integración MCP; y **Taskmaster**, un motor de orquestación PRD-a-tareas que se conecta a los editores que ya usas. No son herramientas competidoras — son capas complementarias de un enfoque de desarrollo lean y task-first que mantiene a ti y a tus agentes orientados en cada paso.
+
+
+![Infografía Taskmaster](/images/infographic-taskmaster.svg)
+
+
+![Infografía LeanSpec](/images/infographic-leanspec.svg)
+
+
+![Infografía Beads](/images/infographic-beads.svg)
 
 ---
 

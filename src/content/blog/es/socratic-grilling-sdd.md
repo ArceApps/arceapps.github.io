@@ -49,6 +49,9 @@ El insight aquí es sobre *persistencia de contexto*. Una conversación de chat 
 
 **Skills' /grill-me** asume que la *conversación misma* es donde ocurre la desalineación. Ninguna de las partes ha resuelto completamente el árbol de diseño. La solución es conversacional: sigue haciendo preguntas hasta que el árbol esté resuelto.
 
+
+![Infografía Grill-me](/images/infographic-grill-me.svg)
+
 El insight clave del skill grill-me es la metáfora del "árbol de diseño": cada decisión tiene dependencias, y no puedes evaluar una decisión correctamente hasta que hayas evaluado las decisiones de las que depende. El skill lo enforce haciendo preguntas de una en una, siguiendo el árbol, resolviendo cada nodo antes de moverse a sus hijos.
 
 La diferencia clave en modelos de autoridad: **prompting socrático** trata al modelo como tu adversario (con autoridad para desafiarte). **SDD** trata al spec como la autoridad (el trabajo del modelo es seguirlo, no desafiarlo). **Grilling** trata a la *conversación* como la autoridad — lo que significa que ambas partes son responsables ante ella, y ninguna puede escapar diciendo "el spec lo decía" o "tú me lo pediste."
@@ -92,6 +95,12 @@ Código generado contra el spec
     ↓
 Evaluación socrática (el prompt adversario verifica: ¿esto realmente cumple el spec?)
 ```
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
 
 Nota que el prompting socrático aparece *dos veces*: una como forcing function pre-spec, y otra como evaluación post-generación.
 
@@ -197,6 +206,12 @@ Estos son todos failure modes legítimos. Y genuinamente entran en conflicto en 
 Esto es por qué el workflow fase-aware es la respuesta honesta. Cada metodología tiene un caso de uso legítimo. El error es aplicar cualquier metodología única a través de todas las fases.
 
 Los frameworks que han tratado de ser una solución única para todas las fases — BMAD, GSD (Just Ship It), SDD de pila completa — todos terminan forzando un pipeline que no encaja en todas las situaciones, o siendo tan lightweight que no enforce nada en las fronteras.
+
+
+![Infografía GSD](/images/infographic-gsd.svg)
+
+
+![Infografía BMAD](/images/infographic-bmad.svg)
 
 ## El Veredicto Sobre la Convivencia
 

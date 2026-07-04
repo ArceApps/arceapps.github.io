@@ -13,6 +13,12 @@ keywords: ["Superpowers", "AI Agents", "TDD", "Subagents", "Methodology", "Engin
 
 > **Related reads:** [Agentic Engineering Methodologies: Superpowers vs OpenSpec](/blog/blog-superpowers-vs-openspec) · [Subagents in OpenCode](/blog/blog-opencode-subagents) · [TDD and AI in Android Development](/blog/tdd-ai-android-development)
 
+
+![Infografía Superpowers](/images/infographic-superpowers.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 If you've spent any significant time building software with AI agents, you know the cycle. You start with a brilliant idea, write a detailed prompt, and hit enter. The agent writes 500 lines of code. You run it. It crashes. You paste the error back. It writes another 200 lines, fixing the error but silently breaking an unrelated feature. Two hours later, you are drowning in a sea of context-polluted chat history, manually reverting files and questioning why you didn't just write the code yourself.
 
 This is the reality of unconstrained AI generation. Large Language Models are probabilistic text engines; without strict guardrails, they drift. They hallucinate APIs, forget edge cases, and abandon architectural patterns the moment a bug appears.
@@ -26,6 +32,9 @@ In my previous article, I [compared Superpowers to OpenSpec](/blog/blog-superpow
 ## The Foundation: Composable Skills
 
 To understand Superpowers, you have to understand how it interfaces with the AI. Superpowers is designed to run *inside* an existing agent harness, such as Claude Code, Codex CLI, or Cursor.
+
+
+![Infografía Harness](/images/infographic-harness.svg)
 
 Instead of a single monolithic system prompt, Superpowers is built as a library of "Skills." Each skill is defined in a markdown file containing a name, a description of when to use it, and a highly detailed set of instructions.
 

@@ -36,14 +36,26 @@ The SDD ecosystem is not monolithic. Different tools approach the problem of man
 #### 1. Spec Kit (The Artifact-Centric Approach)
 Developed internally at GitHub, Spec Kit treats your project like a constitutional document. The primary unit of operation is a `.specify/memory/constitution.md` file. The interaction is characterized by explicit, deterministic commands to fill out templates. The output is a set of static design documents. Socratic dialogue here is structured around ensuring the proposed plan adheres to the constitution before any tasks are generated.
 
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
 #### 2. OpenSpec & ZenFlow (The Edge-Case Explorers)
 These frameworks focus intensely on data models, API contracts, and user interfaces. Their central philosophy is the deep exploration of edge cases. Their Socratic mechanism involves systematic questioning aimed at revealing design inconsistencies. If your spec says a user can have multiple email addresses, OpenSpec will relentlessly question how primary addresses are elected and what happens to in-flight verification flows during a change. The output is a highly robust specification ready for direct ingestion by coding agents.
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
 
 #### 3. BMAD (The Orchestration Approach)
 The Breakthrough Method for Agile AI-Driven Development (BMAD) isn't just about specs; it's about treating your organization as a multi-agent squad. You have an Analyst agent, an Architect agent, and a Developer agent. The spec (like a PRD or an Architecture Decision Record) is the handoff artifact between these agents. We will dive much deeper into BMAD's multi-agent orchestrations in Part 3.
 
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
 #### 4. Superpowers & Kiro (The Dynamic Synchronizers)
 These platforms focus on the interactive process. Superpowers integrates deeply with TDD and Git branches, using automatic conversational skills to question vague ideas in real-time. Kiro focuses on continuous bidirectional synchronization, translating informal descriptions into architectural diagrams and ensuring the "living documentation" updates automatically with code changes.
+
+
+![Infografía Superpowers](/images/infographic-superpowers.svg)
 
 ### The Socratic Planning Phase
 

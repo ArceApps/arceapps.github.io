@@ -61,6 +61,9 @@ The SDD ecosystem has matured significantly. Here is an expert overview of the m
 
 ### 1. GitHub Spec Kit (`github/spec-kit`)
 
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
 Released in September 2025 as an open-source MIT-licensed toolkit, **GitHub Spec Kit** codifies the four-phase workflow that the GitHub engineering team developed internally while building Copilot features.
 
 **The Four Phases:**
@@ -98,6 +101,9 @@ The genius of Spec Kit is its **phase gating**: an AI agent cannot skip to imple
 ---
 
 ### 2. BMAD Method (`bmad-code-org/BMAD-METHOD`)
+
+
+![Infografía BMAD](/images/infographic-bmad.svg)
 
 **BMAD** (Build More, Architect Dreams) is the most architecturally ambitious SDD framework available. Where Spec Kit is a four-step checklist, BMAD is a complete agentic organization chart.
 
@@ -161,6 +167,9 @@ Feature: User Authentication
 
 ### 3. OpenSpec (`Fission-AI/OpenSpec`)
 
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 **OpenSpec** takes a deliberately lightweight philosophy. It views specifications as living folders that travel alongside your code, not separate documentation silos.
 
 Each proposed change generates a new folder:
@@ -204,6 +213,9 @@ SPARC is less of a project-level framework and more of a **prompt engineering di
 ---
 
 ### 5. GSD-2 (`gsd-build/gsd-2`) and Forge Framework (`scottfeltham/forge-framework`)
+
+
+![Infografía GSD](/images/infographic-gsd.svg)
 
 **GSD-2** (Get Stuff Done) focuses on the operational side of SDD: it provides templates and CLI tooling to generate standardized task definitions that agents can pick up and execute reliably. Its philosophy is that the spec is valuable only if it translates into concrete, atomic, independently-verifiable tasks.
 

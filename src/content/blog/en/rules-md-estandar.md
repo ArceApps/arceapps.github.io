@@ -80,6 +80,12 @@ It is crucial to distinguish between engineering rules and design guidelines. In
 
 An advanced frontend agent (like Spec-Kitty or OpenSpec) will simultaneously read a rule from `compose.mdc` (telling it to use `Modifier.fillMaxWidth()`) and the `design.md` file (telling it primary buttons must have a corner radius of `16.dp`).
 
+
+![Infografía Spec-Kitty](/images/infographic-spec-kitty.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 ## 🧠 The Structural Anatomy of a Perfect `.mdc` File
 
 To fully leverage contextual routing capabilities in 2026, we must understand the deep anatomy of a modern `.mdc` file. Designing rules is not simply writing a wishlist; it is Prompt Engineering applied at the infrastructure level.

@@ -38,6 +38,9 @@ The insight here is about *context persistence*. A chat conversation is ephemera
 
 **Skills' /grill-me** assumes the *conversation itself* is where misalignment happens. Neither party has fully resolved the design tree. The fix is conversational: keep asking questions until the tree is resolved.
 
+
+![Infografía Grill-me](/images/infographic-grill-me.svg)
+
 The key insight from the grill-me skill is the "design tree" metaphor: every decision has dependencies, and you can't evaluate a decision correctly until you've evaluated the decisions it depends on. The skill enforces this by asking questions one at a time, following the tree, resolving each node before moving to its children.
 
 The key difference in authority models: **Socratic prompting** treats the model as your adversary (with authority to challenge you). **SDD** treats the spec as the authority (the model's job is to follow it, not to challenge it). **Grilling** treats the *conversation* as the authority — which means both you and the model are accountable to it, and neither can escape by saying "the spec said so" or "you asked me to."
@@ -81,6 +84,12 @@ Code generated against spec
     ↓
 Socratic evaluation (the adversarial prompt checks: does this actually meet the spec?)
 ```
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
 
 Notice that Socratic prompting appears *twice*: once as a pre-spec forcing function, and once as a post-generation evaluation layer.
 
@@ -227,6 +236,12 @@ These are all legitimate failure modes. And they genuinely conflict at the bound
 This is why the phase-aware workflow is the honest answer. Each methodology has a legitimate use case. The mistake is applying any single methodology across all phases.
 
 The frameworks that have tried to be a single solution to all phases — BMAD, GSD (Just Ship It), full-stack SDD — all end up either forcing a pipeline that doesn't fit all situations, or being so lightweight that they don't enforce anything at the boundaries.
+
+
+![Infografía GSD](/images/infographic-gsd.svg)
+
+
+![Infografía BMAD](/images/infographic-bmad.svg)
 
 ## The Verdict on Coexistence
 

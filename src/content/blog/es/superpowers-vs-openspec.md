@@ -20,11 +20,23 @@ reference_id: "e4d2a1c9-6f8b-4a3d-8e7c-2b1d9f4a5c6d"
 
 > **Lectura previa recomendada:** [Desarrollo Guiado por Especificaciones con IA Agéntica](/blog/specs-driven-development) · [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Análisis Profundo de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
 
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 Cuando comencé a incorporar agentes de programación con IA en mi flujo de trabajo diario para ArceApps, la fase de luna de miel no duró mucho. Al principio, parecía magia: dejabas un prompt en el chat, veías cómo el código brotaba de la nada y le dabas a commit. Pero a medida que las aplicaciones crecían en complejidad, también lo hacía la fricción. Los agentes alucinaban decisiones arquitectónicas, sobrescribían abstracciones perfectamente válidas con implementaciones ingenuas y, lo peor de todo, rompían comportamientos existentes en silencio porque carecían del contexto general de lo que estaba intentando construir.
 
 El problema central no era la capacidad de razonamiento del LLM; era la falta de una **metodología** estructurada. No dejaríamos suelto a un desarrollador junior en una base de código de producción sin una especificación técnica, un plan claro y un proceso de revisión de código. Sin embargo, habitualmente esperamos que los agentes de IA intuyan mágicamente nuestra intención arquitectónica a partir de un prompt de tres frases.
 
 Esta realización condujo al auge del Desarrollo Guiado por Especificaciones (SDD) y los frameworks agénticos. En un artículo anterior, analicé [GitHub Spec Kit, OpenSpec y BMAD-METHOD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad). Hoy quiero enfrentar a dos de los enfoques más fascinantes: [Superpowers](https://github.com/obra/superpowers) y [OpenSpec](https://github.com/Fission-AI/OpenSpec).
+
+
+![Infografía Superpowers](/images/infographic-superpowers.svg)
 
 Ambas herramientas pretenden resolver el mismo problema —mantener a los agentes de IA alineados y evitar el colapso de contexto—, pero lo abordan desde ángulos filosóficos completamente diferentes. Superpowers es una metodología prescriptiva basada en habilidades que impone prácticas de ingeniería estrictas como el Desarrollo Guiado por Pruebas (TDD). OpenSpec, por otro lado, es un flujo de trabajo guiado por artefactos que se centra en crear documentación viva antes de escribir cualquier código.
 
@@ -173,6 +185,9 @@ A medida que avanzamos hacia 2026, los desarrolladores que prosperen no serán l
 Para apreciar completamente la divergencia entre estos dos frameworks, debemos observar cómo se integran con el ecosistema existente del desarrollador. Esto no se trata solo de filosofía abstracta; se trata de lo que sucede en tu terminal y en tu IDE.
 
 ### Superpowers: La Dependencia del Entorno (Harness)
+
+
+![Infografía Harness](/images/infographic-harness.svg)
 
 Superpowers es fundamentalmente un conjunto de técnicas avanzadas de ingeniería de prompts y scripts de flujo de trabajo que deben inyectarse en un entorno o "harness" de agente existente. Soporta explícitamente herramientas como Claude Code, Codex CLI, Cursor y GitHub Copilot CLI.
 

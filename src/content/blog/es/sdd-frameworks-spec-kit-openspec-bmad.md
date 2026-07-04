@@ -22,6 +22,15 @@ reference_id: "a3f72b91-4c18-4e2d-9b5c-1d0e6f2a8c34"
 
 El ecosistema SDD ha producido tres frameworks que abordan el mismo problema fundamental —mantener a los agentes de IA alineados con tu intención arquitectónica— desde tres ángulos completamente diferentes. **GitHub Spec Kit** trata tu proyecto como un documento constitucional. **OpenSpec** trata cada cambio como una propuesta que necesita aprobación antes de que se toque una sola línea de código. **BMAD-METHOD** trata toda tu organización de desarrollo como un escuadrón multi-agente a orquestar.
 
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 Este artículo no es una tabla comparativa rápida. Es un análisis orientado a la investigación de lo que cada framework realmente hace bajo el capó, dónde destaca, dónde falla, y cómo un desarrollador independiente o un equipo pequeño podría pensar en elegir entre ellos.
 
 ---

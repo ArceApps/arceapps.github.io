@@ -24,6 +24,9 @@ Cuando un equipo de desarrollo móvil trabaja con un agente de codificación con
 
 **Spec Kitty** aborda esto tratando el repositorio como la única fuente de verdad para todo lo que los agentes de IA necesitan para mantenerse alineados. Es una CLI de código abierto (Python, Python 3.11+) que estructura el trabajo alrededor de **misiones** — unidades autocontenidas de funcionalidad con su propio ciclo de vida, paquetes de trabajo y estado de carril kanban. El flujo de trabajo central sigue siete fases:
 
+
+![Infografía Spec-Kitty](/images/infographic-spec-kitty.svg)
+
 ```
 spec -> plan -> tasks -> next -> review -> accept -> merge
 ```
@@ -190,6 +193,9 @@ Incluso para desarrolladores individuales, el dashboard proporciona progreso vis
 
 Spec Kitty no usa una constitución (como Spec Kit) ni documentación comprehensiva del proyecto. En su lugar, usa una **charter** — un pequeño conjunto de principios inmutables almacenados en `.kittify/memory/charter.md` que guían el comportamiento del agente sin intentar documentar el estado actual del sistema.
 
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
 La charter define principios como:
 
 - **Imperativo test-first**: Ningún código de implementación se escribirá antes de que los tests unitarios se escriban y confirmen que fallan
@@ -349,6 +355,9 @@ Spec Kit usa una **constitución** como el artefacto de contexto primario — do
 Spec Kitty elimina la constitución en favor de una **charter** (principios inmutables) más **código-como-verdad**. El agente siempre lee código real, no documentación. Esto es más robusto a medida que el sistema evoluciona.
 
 ### Spec Kitty vs OpenSpec
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
 
 OpenSpec trata cada modificación como una **propuesta de cambio formal** con construcción retroactiva de specs — las specs se acumulan en `main/specs/` a medida que los cambios se archivan. Proporciona trazabilidad excelente a nivel de cambio.
 
