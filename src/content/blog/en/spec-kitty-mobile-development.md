@@ -2,7 +2,7 @@
 title: "Spec Kitty: Spec-Driven Development for AI Coding Agents"
 description: A complete guide to Spec Kitty — the CLI that turns product intent into a repeatable agent workflow using git worktrees, a 9-lane kanban system, and repository-native mission artifacts.
 pubDate: 2026-05-19
-heroImage: /images/blog-spec-kitty-mobile-development.svg
+heroImage: "/images/blog-spec-kitty-mobile-development-en.png"
 tags: ["SDD", "Spec Kitty", "AI Agents", "Git Worktrees", "Spec-Driven Development", "Workflow", "Kanban", "Multi-Agent", "CLI", "Python"]
 reference_id: a8f92c3d-4e15-4b7a-9f2c-1d3e5f6a7b8c
 author: ArceApps

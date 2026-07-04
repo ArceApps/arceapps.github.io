@@ -11,7 +11,7 @@ keywords:
   - "Spec-Driven"
   - "IA"
 canonical: "https://arceapps.com/es/blog/spec-kitty-mobile-development/"
-heroImage: "/images/blog-spec-kitty-mobile-development.svg"
+heroImage: "/images/blog-spec-kitty-mobile-development-es.png"
 tags: ["SDD", "Spec Kitty", "Agentes IA", "Git Worktrees", "Desarrollo Impulsado por Especificaciones", "Workflow", "Kanban", "Multi-Agente", "CLI", "Python"]
 reference_id: "a8f92c3d-4e15-4b7a-9f2c-1d3e5f6a7b8c"
 ---
