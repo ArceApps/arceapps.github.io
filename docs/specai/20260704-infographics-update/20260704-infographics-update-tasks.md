@@ -24,25 +24,25 @@
 
 **Steps:**
 
-- [ ] **Step 1: Generate Spanish infographic**
+- [x] **Step 1: Generate Spanish infographic**
   Use `generate_image` with prompt:
   "A modern, clean technical infographic with a light gray slate background (#F8FAFC). Horizontal timeline layout showing a 3-step software development workflow. Accent colors are deep teal (#018786) and bright orange (#FF9800). Central nodes should feature clean vector icons: a document icon for step 1, a checkmark list icon for step 2, and a test verification shield icon for step 3. The main title is 'Flujo de OpenSpec'. Node labels are: '1. Propuesta de Cambio', '2. Tareas en Progreso (Archivo Vivo)', and '3. Verificación de Resultados'. Clear, readable typography, flat design, premium tech portfolio style."
   Save as: `blog_openspec_es` (and copy to `public/images/blog-openspec-mobile-development-es.png`)
 
-- [ ] **Step 2: Generate English infographic**
+- [x] **Step 2: Generate English infographic**
   Use `generate_image` with prompt:
   "A modern, clean technical infographic with a light gray slate background (#F8FAFC). Horizontal timeline layout showing a 3-step software development workflow. Accent colors are deep teal (#018786) and bright orange (#FF9800). Central nodes should feature clean vector icons: a document icon for step 1, a checkmark list icon for step 2, and a test verification shield icon for step 3. The main title is 'OpenSpec Workflow'. Node labels are: '1. Change Proposal', '2. Tasks in Progress (Living File)', and '3. Results Verification'. Clear, readable typography, flat design, premium tech portfolio style."
   Save as: `blog_openspec_en` (and copy to `public/images/blog-openspec-mobile-development-en.png`)
 
-- [ ] **Step 3: Update blog post frontmatter**
+- [x] **Step 3: Update blog post frontmatter**
   Update `heroImage` in `src/content/blog/es/openspec-desarrollo-movil.md` to `"/images/blog-openspec-mobile-development-es.png"`.
   Update `heroImage` in `src/content/blog/en/openspec-mobile-development.md` to `"/images/blog-openspec-mobile-development-en.png"`.
 
-- [ ] **Step 4: Verify the build**
+- [x] **Step 4: Verify the build**
   Run: `pnpm build`
   Expected: Successful build with no Zod frontmatter schema errors.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
   Run:
   ```bash
   git add public/images/blog-openspec-mobile-development-*.png src/content/blog/*/openspec-*.md

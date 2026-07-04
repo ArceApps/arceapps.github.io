@@ -28,3 +28,7 @@
 ## Execution Log
 
 _Living record, updated by the documenter subagent. Do not edit by hand._
+
+### [2026-07-04 23:40] Task 1: OpenSpec Workflow Infographics
+**Done:** Spanish and English infographics generated at 1200x630px with light slate background and brand colors. Copy placed in public/images/ and blog frontmatter updated for both language versions of the post. Build verified with `pnpm build`.
+**Outcome:** ✅ success
