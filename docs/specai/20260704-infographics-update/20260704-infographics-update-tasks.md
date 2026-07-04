@@ -72,25 +72,25 @@
 
 **Steps:**
 
-- [ ] **Step 1: Generate Spanish infographic**
+- [x] **Step 1: Generate Spanish infographic**
   Use `generate_image` with prompt:
   "A modern, clean comparative technical infographic with a light gray slate background (#F8FAFC). Two parallel vertical or horizontal paths contrasting development flows. Top path uses red accents (#EF4444) labeled 'Vibe Coding (Código Directo sin Plan)' showing chaotic lines leading to bugs. Bottom path uses teal (#018786) and orange (#FF9800) accents labeled 'Flujo SDD (Desarrollo Guiado por Especificaciones)' showing orderly blocks: Spec -> Branch -> Implement -> Verify leading to success. Main title is 'Vibe Coding vs. Desarrollo Guiado por Specs'. Clean vector style, highly readable text, professional look."
   Save as: `blog_sdd_es` (and copy to `public/images/blog-sdd-agentic-es.png`)
 
-- [ ] **Step 2: Generate English infographic**
+- [x] **Step 2: Generate English infographic**
   Use `generate_image` with prompt:
   "A modern, clean comparative technical infographic with a light gray slate background (#F8FAFC). Two parallel vertical or horizontal paths contrasting development flows. Top path uses red accents (#EF4444) labeled 'Vibe Coding (Direct Coding without Plan)' showing chaotic lines leading to bugs. Bottom path uses teal (#018786) and orange (#FF9800) accents labeled 'SDD Flow (Spec-Driven Development)' showing orderly blocks: Spec -> Branch -> Implement -> Verify leading to success. Main title is 'Vibe Coding vs. Spec-Driven Development'. Clean vector style, highly readable text, professional look."
   Save as: `blog_sdd_en` (and copy to `public/images/blog-sdd-agentic-en.png`)
 
-- [ ] **Step 3: Update blog post frontmatter**
+- [x] **Step 3: Update blog post frontmatter**
   Update `heroImage` in `src/content/blog/es/specs-driven-development.md` to `"/images/blog-sdd-agentic-es.png"`.
   Update `heroImage` in `src/content/blog/en/spec-driven-development-ai.md` to `"/images/blog-sdd-agentic-en.png"`.
 
-- [ ] **Step 4: Verify the build**
+- [x] **Step 4: Verify the build**
   Run: `pnpm build`
   Expected: Successful build.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
   Run:
   ```bash
   git add public/images/blog-sdd-agentic-*.png src/content/blog/*/spec*-driven-development*.md

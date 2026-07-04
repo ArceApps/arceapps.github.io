@@ -32,3 +32,7 @@ _Living record, updated by the documenter subagent. Do not edit by hand._
 ### [2026-07-04 23:40] Task 1: OpenSpec Workflow Infographics
 **Done:** Spanish and English infographics generated at 1200x630px with light slate background and brand colors. Copy placed in public/images/ and blog frontmatter updated for both language versions of the post. Build verified with `pnpm build`.
 **Outcome:** ✅ success
+
+### [2026-07-04 23:45] Task 2: Specs-Driven Development (SDD) Infographics
+**Done:** Spanish and English infographics contrasting Vibe Coding and SDD generated at 1200x630px. Placed under public/images/ and blog posts frontmatter updated. Astro build successfully verified.
+**Outcome:** ✅ success
