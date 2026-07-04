@@ -13,11 +13,32 @@ keywords: ["AI", "Workflow", "GSD", "Claude Code", "Spec-Driven Development", "C
 
 > **Related reading:** [SDD Frameworks Deep Dive: Spec Kit, OpenSpec, and BMAD-METHOD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) · [Lean, Task-First: Beads, LeanSpec, and Taskmaster](/blog/lean-task-first-beads-leanspec-taskmaster) · [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [Alternative Paradigms in AI-Assisted Engineering](/blog/alternative-paradigms-ai-software-engineering) · [Effective Context for AI](/blog/effective-context-ai)
 
+
+![Infografía Taskmaster](/images/infographic-taskmaster.svg)
+
+
+![Infografía LeanSpec](/images/infographic-leanspec.svg)
+
+
+![Infografía Beads](/images/infographic-beads.svg)
+
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 There was a Monday, a few months back, when I opened Claude Code with the best of intentions. The weekend project was a Kotlin invoice extractor: three screens, a basic parser, and the umpteenth iteration of a side project I had been dragging along for three months. I asked the agent to continue from where we left off. The first thing it did was regenerate a configuration file that already existed. I pointed it out. It regenerated it again. This time with a different name. I reminded it that we already had a working parser and it proposed "refactoring for better clarity." When I finally snapped out of it, I had spent forty minutes of a session and the new code was worse than Friday's.
 
 It was not a model problem. The model was the same. It was not a tooling problem, which was probably the best on the market. The problem was structural: I was trying to do serious development with an agent that forgot everything between sessions, and the "solution" I had been using — re-explaining the context at the start of each session — had stopped scaling.
 
 That same week I discovered **GSD Core**, and my way of working with agents changed forever.
+
+
+![Infografía GSD](/images/infographic-gsd.svg)
 
 This article is the one I wish I had read that Monday: what GSD is, how it is built, how to install it, how to use it on a real project, and honestly, when not to use it. It is not a surface-level tutorial or an apologetic review. It is the guide that a frustrated indie developer, tired of context rot and weary of enterprise jargon, needed.
 
@@ -588,6 +609,9 @@ Total time: 22 minutes. Without GSD, that same feature would have taken me an en
 Beyond the specific tool, GSD made me rethink several things about how I develop with agents:
 
 **1. The problem is not the model, it is the harness.** An Opus 4.6 with 100k used tokens produces worse code than a Sonnet 4.5 with 30k. The difference is not the model's intelligence, it is the discipline of the system orchestrating it. GSD forced me to think of the agent as a finite-capacity resource, not as an infinite oracle.
+
+
+![Infografía Harness](/images/infographic-harness.svg)
 
 **2. Persistent memory is more valuable than the perfect prompt.** I have spent hours fine-tuning prompts. GSD taught me that a versioned file system with atomic `STATE.md` and `PLAN.md` is worth more than any prompt engineering trick. Conversation is ephemeral; artifacts survive.
 

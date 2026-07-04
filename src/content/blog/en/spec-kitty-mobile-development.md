@@ -17,6 +17,9 @@ When a mobile development team works with one AI coding agent, the workflow feel
 
 **Spec Kitty** addresses this by treating the repository as the single source of truth for everything AI agents need to stay aligned. It is an open-source CLI (Python, Python 3.11+) that structures work around *missions* — self-contained units of functionality with their own lifecycle, work packages, and kanban lane state. The core workflow follows seven phases:
 
+
+![Infografía Spec-Kitty](/images/infographic-spec-kitty.svg)
+
 ```
 spec -> plan -> tasks -> next -> review -> accept -> merge
 ```
@@ -183,6 +186,9 @@ Even for solo developers, the dashboard provides visual progress, context recove
 
 Spec Kitty does not use a constitution (as Spec Kit does) or comprehensive project documentation. Instead, it uses a **charter** — a small set of immutable principles stored at `.kittify/memory/charter.md` that guide agent behavior without attempting to document the current system state.
 
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
 The charter defines principles like:
 
 - **Test-first imperative**: No implementation code shall be written before unit tests are written and confirmed to fail
@@ -342,6 +348,9 @@ Spec Kit uses a **constitution** as the primary context artifact — comprehensi
 Spec Kitty eliminates the constitution in favor of a **charter** (immutable principles) plus **code-as-truth**. The agent always reads actual code, not documentation. This is more robust as the system evolves.
 
 ### Spec Kitty vs OpenSpec
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
 
 OpenSpec treats each modification as a **formal change proposal** with retroactive spec building — specs accumulate in `main/specs/` as changes are archived. It provides excellent traceability at the change level.
 

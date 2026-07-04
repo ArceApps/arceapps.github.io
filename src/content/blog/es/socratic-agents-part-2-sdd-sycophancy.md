@@ -43,14 +43,26 @@ El ecosistema SDD no es monolítico. Diferentes herramientas abordan el problema
 #### 1. Spec Kit (El Enfoque Centrado en el Artefacto)
 Desarrollado internamente en GitHub, Spec Kit trata tu proyecto como un documento constitucional. La unidad principal de operación es un archivo `.specify/memory/constitution.md`. La interacción se caracteriza por comandos explícitos y deterministas para rellenar plantillas. El resultado es un conjunto de documentos de diseño estáticos. El diálogo socrático aquí se estructura en torno a asegurar que el plan propuesto se adhiera a la constitución antes de que se generen tareas.
 
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
 #### 2. OpenSpec & ZenFlow (Los Exploradores de Casos Extremos)
 Estos frameworks se centran intensamente en modelos de datos, contratos de API e interfaces de usuario. Su filosofía central es la exploración profunda de casos extremos. Su mecanismo socrático implica un cuestionamiento sistemático dirigido a revelar inconsistencias de diseño. Si tu especificación dice que un usuario puede tener múltiples direcciones de correo electrónico, OpenSpec cuestionará implacablemente cómo se eligen las direcciones principales y qué sucede con los flujos de verificación en curso durante un cambio. El resultado es una especificación altamente robusta lista para la ingesta directa por parte de agentes de codificación.
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
 
 #### 3. BMAD (El Enfoque de Orquestación)
 El Breakthrough Method for Agile AI-Driven Development (BMAD) no se trata solo de especificaciones; se trata de tratar a tu organización como un escuadrón multi-agente. Tienes un agente Analista, un agente Arquitecto y un agente Desarrollador. La especificación (como un PRD o un Registro de Decisiones de Arquitectura) es el artefacto de traspaso entre estos agentes. Profundizaremos mucho más en las orquestaciones multi-agente de BMAD en la Parte 3.
 
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
 #### 4. Superpowers & Kiro (Los Sincronizadores Dinámicos)
 Estas plataformas se centran en el proceso interactivo. Superpowers se integra profundamente con TDD y ramas de Git, usando habilidades conversacionales automáticas para cuestionar ideas vagas en tiempo real. Kiro se centra en la sincronización bidireccional continua, traduciendo descripciones informales en diagramas arquitectónicos y asegurando que la "documentación viva" se actualice automáticamente con los cambios de código.
+
+
+![Infografía Superpowers](/images/infographic-superpowers.svg)
 
 ### La Fase de Planificación Socrática
 

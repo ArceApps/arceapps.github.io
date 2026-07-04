@@ -87,6 +87,12 @@ Es crucial distinguir entre las reglas de ingeniería y las directrices de dise�
 
 Un agente frontend avanzado (como Spec-Kitty o OpenSpec) leerá simultáneamente una regla de `compose.mdc` (que le dirá que use `Modifier.fillMaxWidth()`) y el archivo `design.md` (que le dirá que los botones primarios deben tener un radio de esquina de `16.dp`).
 
+
+![Infografía Spec-Kitty](/images/infographic-spec-kitty.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 ## 🧠 La Anatomía Estructural de un Archivo `.mdc` Perfecto
 
 Para exprimir al máximo las capacidades de enrutamiento contextual en 2026, debemos entender la anatomía profunda de un archivo `.mdc` moderno. Diseñar reglas no es simplemente escribir una lista de deseos; es ingeniería de prompts (Prompt Engineering) aplicada a nivel de infraestructura.

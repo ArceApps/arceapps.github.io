@@ -221,6 +221,12 @@ But how does this fit into the broader software development lifecycle? What happ
 
 In **Part 2 of this series**, we will explore **Spec-Driven Development (SDD)** frameworks like Spec Kit and OpenSpec. We will dive into the dangerous phenomenon of **AI Sycophancy** (the "Yes-Man" problem) and how we can implement Socratic "Compuertas de Comprensión" (Understanding Gates) in our CI/CD pipelines to protect our codebase. Stay tuned.
 
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 ## Expanding the Socratic Engine: Advanced Entropy Management
 
 The simplified Socratic engine we built above is a great starting point, but production systems require more nuance. Let's explore how we can expand this to handle real-world complexity in Android applications.

@@ -13,6 +13,15 @@ keywords: ["SDD", "OpenSpec", "Android", "Kotlin", "AI Agents", "Mobile Developm
 
 > **Related readings:** [Deep Analysis of SDD Frameworks: Spec Kit, OpenSpec and BMAD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) · [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [Complete Guide: Stack Recommended for Building AI Agents in 2026](/blog/complete-beginners-guide-ai-agents-stack-2026)
 
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 Mobile development has a particular discipline that web development doesn't share: the **fragmentation of technical contexts**. Each mobile platform — Android with Kotlin, iOS with Swift — has its own release cycles, hardware constraints, native APIs, and architectural patterns. When you introduce AI agents into this ecosystem, the risk of misalignment multiplies: the agent might suggest a deprecated Android API, use an inadequate concurrency pattern for Kotlin, or implement a feature ignoring Material Design guidelines.
 
 OpenSpec was designed with this reality in mind. Its change proposal model and retroactive specification building fits naturally with the mobile development cycle: small iterations, each with a clear and verifiable purpose.

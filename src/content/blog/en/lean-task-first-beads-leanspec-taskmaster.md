@@ -13,11 +13,32 @@ keywords: ["AI", "Workflow", "Productivity", "Beads", "LeanSpec", "Taskmaster", 
 
 > **Related reading:** [Alternative Paradigms in AI-Assisted Engineering](/blog/alternative-paradigms-ai-software-engineering) · [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [SDD Frameworks Deep Dive: Spec Kit, OpenSpec, BMAD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) · [Effective Context for AI](/blog/effective-context-ai)
 
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 There is a particular kind of frustration that hits you around day three of an AI-assisted project. The first session was glorious — the agent understood the goal, generated sensible code, asked the right clarifying questions. By day three, you are starting each session with a long preamble: "Okay so the project is a task management app, we decided to use PostgreSQL instead of SQLite because of X, we dropped the Redux layer because of Y, and last time we got stuck on Z." The agent nods politely and then proceeds to regenerate a Redux file.
 
 This is **context rot**: the gradual erosion of accumulated project state as AI agents start each session with a blank memory. It is not a hallucination problem in the traditional sense — the model is working exactly as designed. It is a **workflow infrastructure problem**. The solution is not a smarter model; it is a smarter harness.
 
+
+![Infografía Harness](/images/infographic-harness.svg)
+
 This article covers three tools that attack context rot from different angles: **Beads**, a git-native distributed issue tracker built as a DAG for AI agents; **LeanSpec**, a minimalist spec-driven workflow system with MCP integration; and **Taskmaster**, a PRD-to-task orchestration engine that plugs into the editors you already use. They are not competing tools — they are complementary layers of a lean, task-first development approach that keeps both you and your agents oriented at every step.
+
+
+![Infografía Taskmaster](/images/infographic-taskmaster.svg)
+
+
+![Infografía LeanSpec](/images/infographic-leanspec.svg)
+
+
+![Infografía Beads](/images/infographic-beads.svg)
 
 ---
 

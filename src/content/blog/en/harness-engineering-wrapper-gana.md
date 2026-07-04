@@ -20,7 +20,13 @@ reference_id: "5fed4b93-ea15-411e-a6e6-2120934be487"
 
 > **Related reading on the blog:** If you're new to the topic, this post assumes you already know the basics of agents and context. To get up to speed, read first [Effective Context for AI in Android](/blog/effective-context-ai), [GSD Core: the anti-ceremony context engineering framework](/blog/gsd-core-context-engineering), and [Headroom: the compression layer your agent stack needs](/blog/headroom-compression-layer). If you've already read those, jump to "The 3 Eras" — this article is the **meta-layer** that ties the others together.
 
+
+![Infografía GSD](/images/infographic-gsd.svg)
+
 There's a number I keep saying out loud since I first read it: **+13.7 points on Terminal Bench 2.0 by changing ONLY the harness, with the exact same model (`gpt-5.2-codex`)**. The LangChain team published it in mid-March: their `deepagents-cli` agent went from Top 30 to Top 5 on the leaderboard (52.8% → 66.5%) without touching a single model parameter, just by rewriting the system prompt, tuning the tools, and adding middleware around the calls. Zero fine-tuning. Zero provider swap. Zero magic. Pure wrapper engineering.
+
+
+![Infografía Harness](/images/infographic-harness.svg)
 
 Then there's the Vercel data point that cinematically completed the picture: **they removed 80% of their agent's tools, left it with a flat filesystem + `grep`, and the results were better on almost every metric: 100% success (up from 80%), 3.5× faster, –40% tokens.** Again, the model didn't move a millimeter.
 
@@ -109,6 +115,9 @@ Nicolas Neira identified 78 moments of harness engineering in engineering videos
 ### 3. Documentation (19 moments)
 **Files that define how the system behaves.** This is where each project's **`AGENTS.md`** lives, the skills, the tool contracts, the constitution files from Spec-Kit. The rule I learned: **every line in an `AGENTS.md` should come from a real agent error.** If it didn't come from an error, it's noise. If it came from an error, it's gold.
 
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
 ### 4. Observability (5 moments)
 **If you can't see what the agent does, you don't have a harness.** LangSmith traces, OpenAI's 7 tmux panels, structured OpenTelemetry logs, session replay. Without observability, debugging an agent in production is witchcraft.
 
@@ -163,6 +172,18 @@ If you've been reading my articles for a while, you'll have noticed that I've sp
 - **Task decomposition** with kanban into small workers with clean context → "Orchestration & Loop".
 - **Memory stack** (Hipocampus, hmem, plugmem, PARA files) → "State & Persistence" with 4 different strategies.
 - **Spec-driven workflows** (OpenSpec, Spec-Kitty, BMAD) → feed the `AGENTS.md` and skills with verifiable contracts.
+
+
+![Infografía Spec-Kitty](/images/infographic-spec-kitty.svg)
+
+
+![Infografía Grill-me](/images/infographic-grill-me.svg)
+
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
 
 Mapped point by point, **my setup is a textbook harness** — I just built it by reading real errors from my agents over a year, which is exactly the methodology Hashimoto describes in his Step 5. It's not theoretical. It's not marketing. It's the direct consequence of treating every error as a hole in the harness and patching it with a rule, a tool, or a hook.
 
@@ -229,6 +250,9 @@ After two weeks reading everything published on the topic and mapping it against
 - [Alternative Paradigms in AI-Assisted Software Engineering](/blog/alternative-paradigms-ai-software-engineering) — the broader philosophical context.
 - [Production-Ready Agentic Frameworks: 6 Strategies](/blog/production-agentic-frameworks) — frameworks that already implement part of the harness.
 - [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) — specs as input to the harness.
+
+
+![Infografía Superpowers](/images/infographic-superpowers.svg)
 
 ---
 

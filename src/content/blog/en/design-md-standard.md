@@ -44,6 +44,9 @@ The consensus was simple: just as code has layers (Domain, Data, Presentation), 
 
 By mid-2026, agent orchestration platforms and tools like the *Multi-Agent Orchestrator (MAO)* or frameworks like *OpenSpec* natively recognized the presence of a `design.md` file in the root directory of projects, automatically injecting it when the agent operated on files related to the user interface.
 
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 ## ⚖️ The Difference Between agents.md and design.md
 
 To avoid overlaps and maximize the efficiency of tokens consumed by LLMs, it is crucial to understand what belongs in each file.
@@ -228,6 +231,9 @@ jobs:
           spec-kitty verify             --diff PR_DIFF             --rules design.md             --focus "accessibility, theming, compose-patterns"
 ```
 If the model detects that a PR introduced a button with an explicit `color = Color.Red`, ignoring `MaterialTheme.colorScheme.error` dictated in `design.md`, it will block the PR and automatically suggest the code change. This frees up immense amounts of human developer time during manual code reviews focused on visual aspects (the dreaded "pixel-pushing").
+
+
+![Infografía Spec-Kitty](/images/infographic-spec-kitty.svg)
 
 ## 🔮 Final Thoughts on the Future of AI-Assisted Design
 

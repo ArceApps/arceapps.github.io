@@ -15,6 +15,15 @@ keywords: ["SDD", "AI", "Workflow", "GitHub Copilot", "BMAD", "OpenSpec", "Spec 
 
 The SDD ecosystem has produced three frameworks that approach the same fundamental problem — keeping AI agents aligned with your architectural intent — from three very different angles. **GitHub Spec Kit** treats your project like a constitutional document. **OpenSpec** treats every change as a proposal that needs approval before a single line of code gets touched. **BMAD-METHOD** treats your entire development organization as a multi-agent squad to orchestrate.
 
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 This article is not a quick comparison table. It is a research-oriented analysis of what each framework actually does under the hood, where they shine, where they fall short, and how a solo developer or small indie team might think about choosing between them.
 
 ---

@@ -26,6 +26,9 @@ Esta tensión crea una paradoja para los desarrolladores. Si aplicas el "desafí
 
 En este artículo, analizaremos exhaustivamente cómo el reciente fenómeno viral **"Grill Me"** (un skill creado por Matt Pocock para Claude Code, con más de 13,000 estrellas en GitHub) resuelve este aparente conflicto. Veremos cómo esta herramienta se posiciona no como un reemplazo de SDD, sino como la pieza faltante del rompecabezas: el puente crítico entre la ideación ambigua y la especificación estricta.
 
+
+![Infografía Grill-me](/images/infographic-grill-me.svg)
+
 ## 1. Comprendiendo a los Jugadores del Tablero
 
 Antes de analizar la integración, debemos definir claramente los tres paradigmas en conflicto y qué problema intenta resolver cada uno.
@@ -35,6 +38,12 @@ Antes de analizar la integración, debemos definir claramente los tres paradigma
 Frameworks como **Spec Kit** y **OpenSpec** abogan por un flujo de trabajo lineal y determinista. Escribes un documento detallado (el SPEC.md), y el agente genera código en estricta conformidad.
 *   **Punto Fuerte:** Previene el "drift" (desvío), donde la implementación diverge lentamente de la intención original.
 *   **Punto Débil:** Asume que el humano sabe exactamente lo que quiere y ha considerado todos los modos de fallo. Sufre del síndrome "Basura entra, basura sale" (Garbage In, Garbage Out).
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
 
 ### El Método Socrático (Adversarial Prompting)
 
@@ -96,6 +105,9 @@ En el Workflow B, la "sicofancia" del modelo no pudo esconder los defectos arqui
 ## 6. Las Limitaciones y Cuándo Evitar "Grill Me"
 
 A pesar de nuestro entusiasmo, debemos ser rigurosamente honestos sobre cuándo esta herramienta no es adecuada. Como se ha discutido en la comparativa de frameworks SDD ([Comparativa de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)):
+
+
+![Infografía BMAD](/images/infographic-bmad.svg)
 
 1.  **Falta de Visión Inicial:** El skill no te va a decir "qué" construir. Es un interrogatorio sobre el "cómo". Si no tienes una visión fundamental del producto, el agente simplemente iterará sobre generalidades sin llegar a nada útil.
 2.  **Equipos de Alta Regulación:** En entornos altamente regulados (como finanzas o salud), el "Grill Me" es útil, pero no puede reemplazar el flujo SDD formal de un comité de arquitectura. La salida del interrogatorio *debe* formalizarse en un documento auditable que pasa por un flujo de aprobación tradicional.

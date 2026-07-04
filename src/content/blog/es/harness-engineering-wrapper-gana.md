@@ -20,7 +20,13 @@ reference_id: "5fed4b93-ea15-411e-a6e6-2120934be487"
 
 > **Lectura relacionada en el blog:** Si llegas de nuevas al tema, este artículo asume que ya sabes lo básico de agentes y contexto. Si quieres ponerte al día, lee antes [Contexto Efectivo para IA en Android](/blog/contexto-efectivo-ia), [GSD Core: framework anti-ceremonia para ingeniería de contexto](/blog/gsd-core-context-engineering) y [Headroom: la capa de compresión que tu stack de agentes necesita](/blog/headroom-compression-layer). Si ya has leído varios, baja a la sección "Las 3 eras" — la idea es que este artículo es la **capa meta** que une a los demás.
 
+
+![Infografía GSD](/images/infographic-gsd.svg)
+
 Hay un número que llevo repitiendo en voz alta desde que lo leí: **+13.7 puntos en Terminal Bench 2.0 cambiando SOLO el harness, con el mismo modelo exacto (`gpt-5.2-codex`)**. Lo publicó el equipo de LangChain a mediados de marzo: su agente `deepagents-cli` pasó de Top 30 a Top 5 del leaderboard (52.8% → 66.5%) sin tocar un solo parámetro del modelo, solo reescribiendo el prompt del sistema, ajustando las herramientas y añadiendo middleware alrededor de las llamadas. Cero fine-tuning. Cero cambio de proveedor. Cero magia. Pura ingeniería del wrapper.
+
+
+![Infografía Harness](/images/infographic-harness.svg)
 
 Y luego está el dato de Vercel que citéricamente completó la película: **quitaron el 80% de las herramientas de su agente, lo dejaron con un filesystem plano + `grep`, y los resultados fueron mejores en casi todas las métricas: 100% de éxito (antes 80%), 3.5× más rápido, –40% tokens**. Otra vez: el modelo no se movió un milímetro.
 
@@ -109,6 +115,9 @@ Nicolas Neira identificó 78 momentos de harness engineering en vídeos de engin
 ### 3. Documentation (19 momentos)
 **Archivos que definen cómo se comporta el sistema.** Aquí vive el **`AGENTS.md`** de cada proyecto, las skills, los contratos de tool, las constitution files de Spec-Kit. La regla que aprendí: **cada línea de un `AGENTS.md` debería venir de un error real del agente**. Si no nació de un error, es ruido. Si nació de un error, es oro.
 
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
 ### 4. Observability (5 momentos)
 **Si no puedes ver lo que hace el agente, no tienes harness.** Los traces de LangSmith, los 7 paneles de tmux de OpenAI, los logs estructurados de OpenTelemetry, el replay de sesiones. Sin observabilidad, depurar un agente en producción es como depurar un microservicio sin logs.
 
@@ -163,6 +172,18 @@ Si llevas meses leyendo mis artículos, habrás notado que llevo un año constru
 - **Descomposición de tareas** con kanban en workers pequeños con contexto limpio → "Orchestration & Loop".
 - **Memory stack** (Hipocampus, hmem, plugmem, archivos PARA) → "State & Persistence" con 4 estrategias diferentes.
 - **Spec-driven workflows** (OpenSpec, Spec-Kitty, BMAD) → alimentar el `AGENTS.md` y las skills con contratos verificables.
+
+
+![Infografía Spec-Kitty](/images/infographic-spec-kitty.svg)
+
+
+![Infografía Grill-me](/images/infographic-grill-me.svg)
+
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
 
 Mapeado punto por punto, **mi setup es un harness de manual** — solo que lo construí a base de leer errores reales de mis agentes durante un año, que es exactamente la metodología que Hashimoto describe en su Step 5. No es teórico. No es marketing. Es la consecuencia directa de tratar cada error como un agujero en el harness y parchearlo con una regla, una tool o un hook.
 
@@ -229,6 +250,9 @@ Después de dos semanas leyendo todo lo que se ha publicado sobre el tema y mape
 - [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/paradigmas-alternativos-ingenieria-software-ia) — el contexto filosófico más amplio.
 - [Production-Ready Agentic Frameworks: 6 Estrategias](/blog/production-agentic-frameworks) — los frameworks que ya implementan parte del harness.
 - [Spec-Driven Development con IA Agentic](/blog/specs-driven-development) — disciplina de specs como input al harness.
+
+
+![Infografía Superpowers](/images/infographic-superpowers.svg)
 
 ---
 

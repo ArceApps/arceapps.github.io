@@ -51,6 +51,9 @@ El consenso fue simple: de la misma forma que el código tiene capas (Dominio, D
 
 Para mediados de 2026, plataformas de orquestación de agentes y herramientas como el *MAO (Multi-Agent Orchestrator)* o frameworks como *OpenSpec* ya reconocían nativamente la presencia de un archivo `design.md` en el directorio raíz de los proyectos, inyectándolo automáticamente cuando el agente operaba sobre archivos relacionados con la interfaz de usuario.
 
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 ## ⚖️ Diferencia entre agents.md y design.md
 
 Para evitar solapamientos y maximizar la eficiencia de los tokens consumidos por los LLMs, es crucial entender qué corresponde a cada archivo.
@@ -235,6 +238,9 @@ jobs:
           spec-kitty verify             --diff PR_DIFF             --rules design.md             --focus "accessibility, theming, compose-patterns"
 ```
 Si el modelo detecta que el PR introdujo un botón con `color = Color.Red` explícito, ignorando `MaterialTheme.colorScheme.error` dictado en `design.md`, bloqueará el PR y sugerirá automáticamente el cambio de código. Esto libera tiempo inmenso a los desarrolladores humanos en las revisiones de código manuales enfocadas al aspecto visual (el temido "pixel-pushing").
+
+
+![Infografía Spec-Kitty](/images/infographic-spec-kitty.svg)
 
 ## 🔮 Reflexiones Finales sobre el Futuro del Diseño Asistido por IA
 

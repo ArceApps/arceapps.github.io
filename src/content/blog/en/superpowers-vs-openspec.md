@@ -13,11 +13,23 @@ keywords: ["SDD", "AI", "Superpowers", "OpenSpec", "Agentic AI", "Methodology", 
 
 > **Related reads:** [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [Alternative Paradigms in AI-Assisted Engineering](/blog/alternative-paradigms-ai-software-engineering) · [SDD Frameworks Deep Dive](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)
 
+
+![Infografía BMAD](/images/infographic-bmad.svg)
+
+
+![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 When I started bringing AI coding agents into my daily workflow for ArceApps, the honeymoon phase didn't last long. Initially, it felt like magic: drop a prompt into the chat, watch the code pour out, and hit commit. But as the applications grew in complexity, so did the friction. Agents would hallucinate architectural decisions, overwrite perfectly good abstractions with naive implementations, and worst of all, silently break existing behavior because they lacked the broader context of what I was trying to build.
 
 The core issue wasn't the LLM's reasoning capability; it was the lack of a structured **methodology**. We wouldn't let a junior developer loose on a production codebase without a technical spec, a clear plan, and a code review process. Yet, we routinely expect AI agents to magically intuit our architectural intent from a three-sentence prompt.
 
 This realization led to the rise of Spec-Driven Development (SDD) and agentic frameworks. In a previous article, I analyzed [GitHub Spec Kit, OpenSpec, and BMAD-METHOD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad). Today, I want to pit two of the most fascinating approaches against each other: [Superpowers](https://github.com/obra/superpowers) and [OpenSpec](https://github.com/Fission-AI/OpenSpec).
+
+
+![Infografía Superpowers](/images/infographic-superpowers.svg)
 
 Both tools aim to solve the same problem—keeping AI agents aligned and preventing context collapse—but they approach it from completely different philosophical angles. Superpowers is a prescriptive, skill-based methodology that enforces strict engineering practices like Test-Driven Development (TDD). OpenSpec, on the other hand, is an artifact-guided workflow that focuses on creating living documentation before any code is written.
 
@@ -75,6 +87,9 @@ The isolation provided by subagents and git worktrees is phenomenal. It treats A
 
 **The friction points:**
 Superpowers is heavy. It's an entire methodology imposed upon your workflow. If you just want a quick script or a CSS tweak, the brainstorming and planning phases feel like massive overkill. Furthermore, it relies heavily on the capabilities of the underlying agent harness (like Claude Code or Codex CLI). If the harness doesn't support subagents robustly, the entire methodology falls back to a much less effective sequential execution mode, which can quickly consume context windows.
+
+
+![Infografía Harness](/images/infographic-harness.svg)
 
 ## OpenSpec: The Artifact-Guided Workflow
 

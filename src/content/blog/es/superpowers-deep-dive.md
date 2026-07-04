@@ -20,6 +20,12 @@ reference_id: "b7c3e5d1-9a2f-4c8e-b1d6-8a9f2e3d4c5b"
 
 > **Lectura previa recomendada:** [Metodologías de Ingeniería Agéntica: Superpowers vs OpenSpec](/blog/blog-superpowers-vs-openspec) · [Subagentes en OpenCode](/blog/blog-opencode-subagents) · [TDD e IA en el Desarrollo Android](/blog/blog-ia-tdd-android)
 
+
+![Infografía Superpowers](/images/infographic-superpowers.svg)
+
+
+![Infografía OpenSpec](/images/infographic-openspec.svg)
+
 Si has pasado una cantidad significativa de tiempo construyendo software con agentes de IA, conoces el ciclo. Empiezas con una idea brillante, escribes un prompt detallado y presionas Enter. El agente escribe 500 líneas de código. Lo ejecutas. Falla. Pegas el error de vuelta. Escribe otras 200 líneas, arreglando el error pero rompiendo silenciosamente una funcionalidad no relacionada. Dos horas después, te estás ahogando en un mar de historial de chat contaminado por el contexto, revirtiendo archivos manualmente y preguntándote por qué no escribiste el código tú mismo desde el principio.
 
 Esta es la realidad de la generación con IA sin restricciones. Los Grandes Modelos de Lenguaje (LLMs) son motores probabilísticos de texto; sin barandillas estrictas, se desvían. Alucinan APIs, olvidan casos límite y abandonan patrones arquitectónicos en el instante en que aparece un error.
@@ -33,6 +39,9 @@ En mi artículo anterior, [comparé Superpowers con OpenSpec](/blog/blog-superpo
 ## Los Cimientos: Habilidades Componibles
 
 Para entender Superpowers, tienes que entender cómo interactúa con la IA. Superpowers está diseñado para ejecutarse *dentro* de un entorno o *harness* de agente existente, como Claude Code, Codex CLI o Cursor.
+
+
+![Infografía Harness](/images/infographic-harness.svg)
 
 En lugar de un único y monolítico prompt del sistema, Superpowers se construye como una biblioteca de "Habilidades" (*Skills*). Cada habilidad se define en un archivo markdown que contiene un nombre, una descripción de cuándo usarla y un conjunto de instrucciones altamente detalladas.
 
