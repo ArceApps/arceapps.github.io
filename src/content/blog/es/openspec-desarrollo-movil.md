@@ -11,7 +11,7 @@ keywords:
   - "Spec-Driven"
   - "IA"
 canonical: "https://arceapps.com/es/blog/openspec-desarrollo-movil/"
-heroImage: "/images/blog-openspec-mobile-development.svg"
+heroImage: "/images/blog-openspec-mobile-development-es.png"
 tags: ["SDD", "OpenSpec", "Android", "Kotlin", "IA Agéntica", "Desarrollo Móvil", "Spec-Driven Development", "Workflow", "Arquitectura"]
 reference_id: "e7f82a1b-3c45-4d9e-8f1a-2b3c4d5e6f7g"
 ---
