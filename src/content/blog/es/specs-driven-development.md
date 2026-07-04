@@ -11,7 +11,7 @@ keywords:
   - "Desarrollo"
   - "Automatización"
 canonical: "https://arceapps.com/es/blog/specs-driven-development/"
-heroImage: "/images/placeholder-article-sdd-agentic.svg"
+heroImage: "/images/blog-sdd-agentic-es.png"
 tags: ["AI", "Workflow", "SDD", "IA Agéntica", "Documentación", "Productividad", "GitHub Copilot", "BMAD", "OpenSpec"]
 reference_id: "d8152217-0875-4637-84fc-c004f535fb93"
 ---
