@@ -168,25 +168,25 @@
 
 **Steps:**
 
-- [ ] **Step 1: Generate Spanish infographic**
+- [x] **Step 1: Generate Spanish infographic**
   Use `generate_image` with prompt:
   "A modern, clean technical architecture infographic with a light gray slate background (#F8FAFC). A large triangle diagram in the center connecting three key vertices. Vertex 1 is labeled 'GitHub Spec Kit: Contratos Arquitectónicos'. Vertex 2 is labeled 'OpenSpec: Propuestas Ágiles'. Vertex 3 is labeled 'BMAD: Orquestación Multi-Agente'. Accent colors: teal (#018786) and orange (#FF9800). Main title is 'Ecosistema de Frameworks SDD'. Clean typography, flat tech layout."
   Save as: `blog_frameworks_es` (and copy to `public/images/blog-sdd-frameworks-analysis-es.png`)
 
-- [ ] **Step 2: Generate English infographic**
+- [x] **Step 2: Generate English infographic**
   Use `generate_image` with prompt:
   "A modern, clean technical architecture infographic with a light gray slate background (#F8FAFC). A large triangle diagram in the center connecting three key vertices. Vertex 1 is labeled 'GitHub Spec Kit: Architectural Contracts'. Vertex 2 is labeled 'OpenSpec: Agile Proposals'. Vertex 3 is labeled 'BMAD: Multi-Agent Orchestration'. Accent colors: teal (#018786) and orange (#FF9800). Main title is 'SDD Frameworks Ecosystem'. Clean typography, flat tech layout."
   Save as: `blog_frameworks_en` (and copy to `public/images/blog-sdd-frameworks-analysis-en.png`)
 
-- [ ] **Step 3: Update blog post frontmatter**
+- [x] **Step 3: Update blog post frontmatter**
   Update `heroImage` in `src/content/blog/es/sdd-frameworks-spec-kit-openspec-bmad.md` to `"/images/blog-sdd-frameworks-analysis-es.png"`.
   Update `heroImage` in `src/content/blog/en/sdd-frameworks-analysis-spec-kit-openspec-bmad.md` to `"/images/blog-sdd-frameworks-analysis-en.png"`.
 
-- [ ] **Step 4: Verify the build**
+- [x] **Step 4: Verify the build**
   Run: `pnpm build`
   Expected: Successful build.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
   Run:
   ```bash
   git add public/images/blog-sdd-frameworks-analysis-*.png src/content/blog/*/sdd-frameworks-*.md
