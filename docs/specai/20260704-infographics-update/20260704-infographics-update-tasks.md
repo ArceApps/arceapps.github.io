@@ -216,25 +216,25 @@
 
 **Steps:**
 
-- [ ] **Step 1: Generate Spanish infographic**
+- [x] **Step 1: Generate Spanish infographic**
   Use `generate_image` with prompt:
   "A modern, clean technical infographic with a light gray slate background (#F8FAFC). Center layout showing a developer terminal window labeled 'CLI de Control' connected to two branches labeled 'Git Worktrees Aislados', which in turn feed cards into a simplified 'Tablero Kanban de 9 Carriles'. Accent colors: teal (#018786) and orange (#FF9800). Main title is 'Spec Kitty: Automatización SDD'. Clean typography, modern developer tool illustration style."
   Save as: `blog_speckitty_es` (and copy to `public/images/blog-spec-kitty-mobile-development-es.png`)
 
-- [ ] **Step 2: Generate English infographic**
+- [x] **Step 2: Generate English infographic**
   Use `generate_image` with prompt:
   "A modern, clean technical infographic with a light gray slate background (#F8FAFC). Center layout showing a developer terminal window labeled 'Control CLI' connected to two branches labeled 'Isolated Git Worktrees', which in turn feed cards into a simplified '9-Lane Kanban Board'. Accent colors: teal (#018786) and orange (#FF9800). Main title is 'Spec Kitty: SDD Automation'. Clean typography, modern developer tool illustration style."
   Save as: `blog_speckitty_en` (and copy to `public/images/blog-spec-kitty-mobile-development-en.png`)
 
-- [ ] **Step 3: Update blog post frontmatter**
+- [x] **Step 3: Update blog post frontmatter**
   Update `heroImage` in `src/content/blog/es/spec-kitty-mobile-development.md` to `"/images/blog-spec-kitty-mobile-development-es.png"`.
   Update `heroImage` in `src/content/blog/en/spec-kitty-mobile-development.md` to `"/images/blog-spec-kitty-mobile-development-en.png"`.
 
-- [ ] **Step 4: Verify the build**
+- [x] **Step 4: Verify the build**
   Run: `pnpm build`
   Expected: Successful build.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
   Run:
   ```bash
   git add public/images/blog-spec-kitty-mobile-development-*.png src/content/blog/*/spec-kitty-*.md
