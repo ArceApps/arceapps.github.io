@@ -156,3 +156,59 @@ Se documentó la trastienda técnica de RadioHub siguiendo el "Espíritu Indie" 
 
 **Verificación:**
 Se ejecutó la validación final del esquema de contenidos con `pnpm build` de forma local, completando la generación estática sin errores y empleando los gráficos promocionales reales de la app.
+
+---
+
+## 2026-07-05 - Actualización: Infografías del Workflow de OpenSpec
+**Estado:** Completado
+**Análisis:**
+Se añadieron las infografías del flujo de trabajo de OpenSpec para el desarrollo móvil en ambos idiomas (ES/EN) y se actualizaron las referencias de `heroImage` en los artículos correspondientes.
+
+**Cambios realizados:**
+- Se copiaron las imágenes de infografía generadas:
+  - ES: `/public/images/blog-openspec-mobile-development-es.png`
+  - EN: `/public/images/blog-openspec-mobile-development-en.png`
+- Se actualizaron los campos `heroImage` en el frontmatter de los artículos:
+  - ES (`src/content/blog/es/openspec-desarrollo-movil.md`): `"/images/blog-openspec-mobile-development-es.png"`
+  - EN (`src/content/blog/en/openspec-mobile-development.md`): `"/images/blog-openspec-mobile-development-en.png"`
+
+**Verificación:**
+Se ejecutó `pnpm build` para asegurar la correcta compilación y validación del esquema del blog.
+
+---
+
+## 2026-07-05 - Actualización: Infografías de Análisis de Frameworks SDD
+**Estado:** Completado
+**Análisis:**
+Se añadieron las infografías del análisis comparativo de frameworks SDD (GitHub Spec Kit, OpenSpec y BMAD) en ambos idiomas (ES/EN) y se actualizaron las referencias de `heroImage` en los artículos correspondientes.
+
+**Cambios realizados:**
+- Se copiaron las imágenes de infografía comparativa de frameworks generadas:
+  - ES: `/public/images/blog-sdd-frameworks-analysis-es.png`
+  - EN: `/public/images/blog-sdd-frameworks-analysis-en.png`
+- Se actualizaron los campos `heroImage` en el frontmatter de los artículos:
+  - ES (`src/content/blog/es/sdd-frameworks-spec-kit-openspec-bmad.md`): `"/images/blog-sdd-frameworks-analysis-es.png"`
+  - EN (`src/content/blog/en/sdd-frameworks-analysis-spec-kit-openspec-bmad.md`): `"/images/blog-sdd-frameworks-analysis-en.png"`
+
+**Verificación:**
+Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatters de los artículos Markdown.
+
+---
+
+## 2026-07-05 - Actualización: Infografías de Spec Kitty
+**Estado:** Completado
+**Análisis:**
+Se añadieron las infografías del flujo de trabajo de Spec Kitty para el desarrollo móvil en ambos idiomas (ES/EN) y se actualizaron las referencias de `heroImage` en los artículos correspondientes.
+
+**Cambios realizados:**
+- Se copiaron las imágenes de infografía de Spec Kitty generadas:
+  - ES: `/public/images/blog-spec-kitty-mobile-development-es.png`
+  - EN: `/public/images/blog-spec-kitty-mobile-development-en.png`
+- Se actualizaron los campos `heroImage` en el frontmatter de los artículos:
+  - ES (`src/content/blog/es/spec-kitty-mobile-development.md`): `"/images/blog-spec-kitty-mobile-development-es.png"`
+  - EN (`src/content/blog/en/spec-kitty-mobile-development.md`): `"/images/blog-spec-kitty-mobile-development-en.png"`
+
+**Verificación:**
+Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatters de los artículos Markdown.
+
+

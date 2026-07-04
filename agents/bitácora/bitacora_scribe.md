@@ -406,3 +406,63 @@ Caveman, el skill viral de JuliusBrussee (75.1k estrellas, MIT) que enseña a lo
 **Issue encontrado y corregido:** El sistema reportó fecha local CEST `2026-06-21 01:27` pero UTC `2026-06-20 23:27`. El filtro `pubDate <= new Date()` de Astro compara en UTC, así que `2026-06-21` se interpretaba como futuro (00:00 UTC del día siguiente) y excluía el artículo del build sin error visible. **Solución:** usar la fecha UTC verificada (`2026-06-20`), que es lo que `date +%F` en UTC reporta. Build pasó inmediatamente.
 
 **Decisión editorial:** Mantuve el tono crítico-balanceado exigido por la skill (`write-blog`): incluí tanto el claim del 75% como la crítica que muestra que el ahorro real medido es 0.4% de factura, sin decantar hacia hype ni hacia descarte. El valor del artículo está en mostrar la asimetría entre el marketing del repo y los datos independientes.
+
+---
+
+## 2026-07-05 — Infografías de Specs-Driven Development (SDD)
+
+**Estado:** ✅ Infografías copiadas y vinculadas
+
+**Tema:**
+Actualización de los artículos bilingües sobre Spec-Driven Development (SDD) con las nuevas infografías generadas.
+
+**Entregables:**
+- `/public/images/blog-sdd-agentic-es.png` — Copiado desde la memoria del agente.
+- `/public/images/blog-sdd-agentic-en.png` — Copiado desde la memoria del agente.
+- `src/content/blog/es/specs-driven-development.md` — Campo `heroImage` actualizado a `/images/blog-sdd-agentic-es.png`.
+- `src/content/blog/en/spec-driven-development-ai.md` — Campo `heroImage` actualizado a `/images/blog-sdd-agentic-en.png`.
+
+**Verificación:**
+- Archivos de imagen copiados correctamente.
+- Frontmatter de ambos archivos Markdown actualizado.
+- Verificación de compilación: El comando de compilación no pudo ejecutarse localmente debido al tiempo de espera en el permiso de ejecución, pero los archivos se modificaron correctamente y respetan la estructura y tipado del frontmatter.
+
+---
+
+## 2026-07-05 — Infografías de Análisis de Frameworks SDD
+
+**Estado:** ✅ Infografías copiadas y vinculadas
+
+**Tema:**
+Actualización de los artículos bilingües sobre análisis de frameworks SDD (GitHub Spec Kit, OpenSpec y BMAD) con las nuevas infografías comparativas.
+
+**Entregables:**
+- `/public/images/blog-sdd-frameworks-analysis-es.png` — Copiado desde el directorio de cerebro del agente.
+- `/public/images/blog-sdd-frameworks-analysis-en.png` — Copiado desde el directorio de cerebro del agente.
+- `src/content/blog/es/sdd-frameworks-spec-kit-openspec-bmad.md` — Campo `heroImage` actualizado a `/images/blog-sdd-frameworks-analysis-es.png`.
+- `src/content/blog/en/sdd-frameworks-analysis-spec-kit-openspec-bmad.md` — Campo `heroImage` actualizado a `/images/blog-sdd-frameworks-analysis-en.png`.
+
+**Verificación:**
+- Archivos de imagen copiados correctamente.
+- Frontmatter de ambos archivos Markdown actualizado.
+
+---
+
+## 2026-07-05 — Infografías de Spec Kitty
+
+**Estado:** ✅ Infografías copiadas y vinculadas
+
+**Tema:**
+Actualización de los artículos bilingües sobre Spec Kitty con las nuevas infografías del flujo de trabajo.
+
+**Entregables:**
+- `/public/images/blog-spec-kitty-mobile-development-es.png` — Copiado desde el directorio de cerebro del agente.
+- `/public/images/blog-spec-kitty-mobile-development-en.png` — Copiado desde el directorio de cerebro del agente.
+- `src/content/blog/es/spec-kitty-mobile-development.md` — Campo `heroImage` actualizado a `/images/blog-spec-kitty-mobile-development-es.png`.
+- `src/content/blog/en/spec-kitty-mobile-development.md` — Campo `heroImage` actualizado a `/images/blog-spec-kitty-mobile-development-en.png`.
+
+**Verificación:**
+- Archivos de imagen copiados correctamente.
+- Frontmatter de ambos archivos Markdown actualizado.
+
+
