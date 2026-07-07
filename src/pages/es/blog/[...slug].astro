@@ -8,8 +8,10 @@ import PostNavigation from '../../../components/PostNavigation.astro';
 import { slugify } from '../../../utils/slugs';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'));
-  const enPosts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'));
+  const [posts, enPosts] = await Promise.all([
+    getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/')),
+    getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'))
+  ]);
 
   // Create a map for O(1) translation lookup
   const enPostsMap = new Map(enPosts.map(p => [p.data.reference_id, p]));

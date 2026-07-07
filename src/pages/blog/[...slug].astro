@@ -11,8 +11,10 @@ import { useTranslations } from '../../i18n/utils';
 const t = useTranslations('en');
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'));
-  const esPosts = await getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'));
+  const [posts, esPosts] = await Promise.all([
+    getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/')),
+    getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'))
+  ]);
 
   // Create a map for O(1) translation lookup
   const esPostsMap = new Map(esPosts.map(p => [p.data.reference_id, p]));
