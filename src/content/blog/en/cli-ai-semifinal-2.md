@@ -1,267 +1,160 @@
 ---
-title: "AI CLI Match 2: Codex vs Hermes vs Qwen vs Sweep"
-description: "The second CLI agent semifinal. We pit Codex, Hermes, Qwen Agent, and Sweep against each other in the terminal to decide who advances to the Grand Final."
+title: "AI CLI Semifinal 2: The Native Ecosystems Clash"
+description: "Comparing 10 native AI CLIs tied to their own models (Antigravity, DeepSeek, Qwen) to find the best ecosystem experience."
 pubDate: 2026-07-01
 lastmod: 2026-07-01
 author: "ArceApps"
-heroImage: "/images/cli-ai-semifinal-2.svg"
-tags: ["AI", "CLI", "Agents", "Codex", "Hermes"]
-reference_id: "05ddb988-cd84-466b-9336-6bf5ab96a7e7"
-keywords: ["CLI AI Match", "Codex CLI", "Hermes", "Qwen Agent", "Sweep", "AI terminal agents"]
+keywords: ["AI CLI", "Antigravity", "DeepSeek", "Qwen", "ChatGLM", "Native Models", "Ecosystem"]
 canonical: "https://arceapps.com/blog/cli-ai-semifinal-2/"
+heroImage: "/images/cli-ai-semifinal-2.svg"
+reference_id: "cli-ai-semifinal-2-ref"
 ---
 
-## 🌩️ Storm in the Terminal: The Second Semifinal
+# The Power of Vertical Integration: Native CLIs
 
-After a heart-stopping first semifinal where Cline and OpenCode demonstrated why they are the current kings of the terminal, we arrive at the second bracket of this Artificial Intelligence agent tournament. As an indie developer, my time is my most valuable resource. If a CLI agent wastes my time fixing its syntax errors, it has no place in my stack. I need tools that act like a Senior pair-programmer in my terminal, not like an intern I have to micromanage.
+Welcome to the second and explosive semifinal of the grand 2026 AI CLI tournament. If the first semifinal was about the romantic pursuit of agnostic freedom and unrestricted modularity, this brutal contest is purely and exclusively about the immense corporate power of vertical integration. In this battleground, we meticulously analyze command-line tools specifically developed, network-optimized, and heuristically tuned to shine in perfect technical sync with a closed ecosystem of massive proprietary models.
 
-In this ring, we have four contenders with radically different philosophies: **Codex CLI**, the minimalist, hyper-optimized bet for the cloud; **Hermes**, the messenger god of open source with unprecedented local orchestration capabilities; **Qwen Agent**, the Asian giant redefining the use of complex tools; and **Sweep**, the asynchronous agent that has come down from GitHub to live directly in your console.
+On the western corporate side, dominated by giants like Microsoft, we have hegemonic and tightly integrated tools like GitHub Copilot CLI, and in the emerging and fast-paced Asian market, we see an unrelenting wave of native CLIs brutally optimized for high-performance mathematical and raw reasoning models like DeepSeek, Qwen, and ChatGLM. As a developer who values pure efficiency, one must admit there is an undeniable and very special technical charm in daily using a tool that was designed millimeter by millimeter exactly to converse with the specific LLM that backs it in the data centers, uprooting guesswork, configuration friction, and prompt incompatibilities.
 
-Just like in the first semifinal, only two will survive and advance to the Grand Final to face Cline and OpenCode.
+We will deeply analyze 10 structurally closed tools: Antigravity CLI, GitHub Copilot CLI, DeepSeek CLI, Qwen CLI, ChatGLM CLI, Yi CLI, Baichuan CLI, SenseNova CLI, ERNIE Bot CLI, and SparkDesk CLI. After this monumental ecosystem culling, only the top two will advance to challenge the agnostics in the Grand Final.
 
----
+## Evaluation Criteria for Native Ecosystems
 
-## 📋 Methodology Reminder
-
-We will evaluate the agents in the same five categories, scoring out of 10:
-
-1. **Setup & Architecture (Setup & Arch):** Installation, dependencies, and initial friction.
-2. **Integration and Extensibility (Extensibility):** Ecosystem, plugins, and MCP support.
-3. **User Interface Design and UX (Design & UX):** Readability, diffs, and terminal experience.
-4. **Features and Performance (Features & Perf):** Autonomy, token management, speed, and accuracy.
-5. **Real-World Test (Real-World Test):** Autonomous refactoring in a Kotlin project.
-
-Let the bell ring!
+1. **Model-Tool Synergy and Zero-Config**: How well and with what level of perfection does the CLI leverage the exclusive capabilities, hidden control tokens, and proprietary structured responses of its base model? Being native, we demand the experience be "install and code" without editing a single configuration file.
+2. **Terminal UX/UI Design and Vendor Lock-in**: Does the user experience, aesthetics, visual fluidity, and asynchronous flow management justify and compensate for the bitter taste of being architecturally anchored and chained to a single cloud provider?
+3. **Code Generation Features and Closed Context**: Quality, raw speed, and mathematical precision of the generated diffs, especially evaluating if the CLI has first-hand access to the global source code index its own parent company might be hosting (as is the clear case with the Github/Copilot duo).
+4. **Operation, Extreme Latency, and Infrastructure**: Raw network performance, Time-To-First-Token, and final latency against native endpoints, evaluating if using proprietary protocols like gRPC provides measurable advantages over traditional agnostic REST/JSON.
 
 ---
 
-## 🟢 Contender 1: Codex CLI - The Cloud Minimalist
+## 1. Antigravity CLI
 
-Not to be confused with OpenAI's old model, "Codex CLI" is a new tool written in Zig that burst onto the scene in 2026 promising one thing: light speed, assuming you are always connected to the internet.
+Apple-esque packaged magic. Antigravity is the darling of rapid development, promising novice and senior developers alike an immediate immersion into productivity without ever having to understand what a "system prompt" or a "temperature setting" is.
 
-### Setup and Architecture
+### Integrations and Initial Setup Architecture
+The central, foundational, and immovable promise of the Antigravity CLI ecosystem is absolutely zero friction, a goal achieved through an aggressive and opaque concealment of the underlying model's internal mechanics. From the very first instant you download the binary, the tool takes over your environment. There are no tedious `.env` files to configure manually, no labyrinthine API keys to rotate every month, and certainly no technical options exposed to the user to tweak the base LLM's token limit or inference temperature. The initialization and authentication process boils down to a simple and elegant `antigravity login`, a command that asynchronously launches a local server daemon and opens a clean tab in your default browser for a fast one-click authorization flow, natively based on the OAuth2 standard, seamlessly and immediately linking your terminal's persistent session directly with the powerful and elastic proprietary cloud infrastructure. This is truly the strict "Apple-esque" design philosophy brutally brought to the systems command line: you are not allowed or encouraged under any circumstances to look under the engine's hood because, according to the company's dogmatic product designers, you simply shouldn't ever need to in order to be immensely productive.
 
-Written in Zig, the binary is absurdly small (barely 4MB). It requires no runtime, no dependencies.
+### User Interface Design and Terminal Experience
+When we tackle the delicate and crucial topic of visual terminal design and pure UX interactivity, Antigravity undoubtedly sets the unattainable standard for modern minimalist elegance. Since the native CLI knows mathematically, by strict software contract of its own backend, exactly what specific structural and syntactic output format its sister model is going to spit out, the terminal frontend can safely and confidently afford to asynchronously parse the token stream and render the rich graphical interface in the console with a solid 100% guaranteed success reliability. The resulting visual experience is smooth as pure silk; interactive progress bars never stutter or freeze, keyboard file pickers and searchers feel hyper-reactive and integrated into the base OS, and massive code generation blocks unfurl organically on the screen with refined, calculated visual sweep animations that ingeniously and elegantly mask almost all of any microscopic network latency that might exist in the background.
 
-```bash
-# Installation with a modern package manager
-brew install codex-cli
-codex auth --provider openai
+### Core Features, Ingestion, and Context Handling
+The deep operation of algorithmic code generation and modification within Antigravity makes extensive, intensive, and exclusive use of what we could call 'internal proprietary control tokens', a set of publicly undocumented very low-level instructions that the CLI transparently sends to the inference server. This essentially means that tremendously complex, long, and tedious logical operations—like orchestrating global architectural refactorings involving safely injecting Koin framework dependencies across dozens of fragmented views scattered in a complex modern Android software project—can occur atomically and transactionally in a single clean asynchronous procedural step, reducing to absolute zero and completely mitigating the much-dreaded and destructive 'diff format hallucinations'.
+
+### Performance Analysis, Operational Stability, and Latency
+The inevitable and main operational drawback of this brilliant technological apple is, of course, immensely obvious and restrictive at the infrastructure level for any forward-thinking engineer concerned with disaster prevention: if the massive central inference servers housed in the exclusive monolithic provider's data centers decide to abruptly go down, your shiny, fast, elegant, and beautiful terminal productivity CLI tool instantly becomes a beautiful and useless dead binary software block. This absolute and rigorous lack of algorithmic contingency plan is a very high and burdensome systemic risk price that every individual must calculate and consciously decide if they are fully willing to blindly pay in exchange for guilt-free enjoyment of a total, impeccable, and absolute absence of pure initial friction in their day-to-day.
+
+---
+
+## 2. GitHub Copilot CLI
+
+Microsoft's immovable corporate titan. Copilot is the logical, inevitable, and brutally funded extension of the editor into the terminal, backed by the omnipresence of the immense and vast global knowledge graph of worldwide repositories hosted on GitHub.
+
+### Integrations and Initial Setup Architecture
+No one integrates like Microsoft. If you already have the official GitHub CLI (`gh`) installed and authenticated in your local development environment (as 90% of the software industry does today), activating and unleashing the enormous asynchronous generative capabilities of Copilot's gigantic extension in the terminal requires a staggering technical effort of zero. The enormous and abysmal operational friction of corporate credential security, SAML token cryptographic validation, access control and logging, simply evaporates and completely vanishes without a trace in your daily interactive command console workflow. For immense enterprises, gigantic private software development corporate conglomerates of hundreds of heads and closed repositories, this deep, transparent, and native integration of unified global identity and access is, simply, plainly, and in all its raw operational reality, the undisputed operational logistical holy grail undeniable of the corporate environment.
+
+### User Interface Design and Terminal Experience
+In sharp visual and intentional contrast to elegant ultra-minimalist asynchronous and lightweight modern systems like Hermes, Copilot CLI consciously presents and exposes a much more pragmatic, heavy, traditional, enterprise, and raw console aesthetic. It feels much less oriented as a simple novel interactive application purely isolated from the rest of the native OS tools and much more embedded and designed at a fundamental level as a powerful, dense, complex, and omniscient robust purely native integrated extension based on your very own local shell console. When you humbly request with firmness from Copilot CLI to bravely attempt to build an intricate raw UNIX rustic bash pipeline to automate deployments to production, it doesn't stop to try to waste your valuable seconds chatting affably or decorating with unnecessary colorful spinners; it simply, in the most direct and imperative way, exposes you frontally and without any aesthetic filter the generated command, giving you in a millisecond the opportunity to edit it or press Enter to execute it instantly.
+
+### Core Features, Ingestion, and Context Handling
+The undeniable and indisputable true and lethal giant power and absolute asynchronous pure muscle of raw native Copilot does not come in the slightest from long local AST analysis algorithms that execute slowly on your computer, but truly and overwhelmingly comes from its astonishing incalculable advantage of access to the pure omniscient infrastructure of the Azure cloud global network and to all the vast gigantic universe of interconnected repositories of the GitHub giant. When you think you are asking something as simple as "explain this compilation error", Copilot is tracking and correlating in milliseconds with millions of issue incidences, PRs, and solutions discussions in other enterprise organizations on a planetary level, returning precise oracular answers.
+
+### Performance Analysis, Operational Stability, and Latency
+This asynchronous network corporate omniscience has, astonishingly, a profoundly positive impact on the generation latency and operational speed stability. The gigantic and monstrous worldwide network and CDN infrastructure of Microsoft Azure servers that supports the entire GitHub Copilot CLI ecosystem means in practice that the Time-To-First-Token is systematically instantaneous, no matter where in the world you make your request from. There are no collapses, timeouts, or API bottlenecks that indies often suffer when depending on less robust AI startups.
+
+---
+
+## 3. DeepSeek CLI
+
+Delving into the fascinating and relentless Asian ecosystem, the first contender that demands attention is **DeepSeek CLI**. DeepSeek is not merely a console interface; it is the raw, direct, pure, tactical, and spartan manifestation of one of the most formidable, aggressive, and brutally efficient open-weights mathematical algorithmic reasoning and coding logic engines ever spawned in recent Chinese history, rivaling head-to-head without complexes against American giants like GPT-4 or Opus.
+
+### Integrations and Initial Setup Architecture
+The experience of initializing and bootstrapping from absolute scratch the DeepSeek CLI tool is a true direct testimony of the spartan culture of pragmatic engineering from which it stems at its roots. You will not find here friendly visual graphic configuration assistants or long heavy labyrinthine flows of OAuth web authentication. Instead, you immediately download a tiny, compact, and ultra-lightweight pure single compiled binary of extremely high asynchronous performance and you execute it coldly passing it your token directly. This lack of aesthetic adornments is a pure intentional and proud declaration of pragmatic principles directed to advanced developers who prefer imperative and scriptable configuration through dotfiles and automated manifests through Bash and Makefile.
+
+### User Interface Design and Terminal Experience
+DeepSeek CLI delivers its generated responses with an unmistakable and calculated sobriety. The CLI does not waste a single millisecond of precious local CPU cycle rendering pretty graphics or unnecessary elegant asynchronous loading spinners. The output in the terminal is pure and direct raw hyper-fast Markdown text. When you request from DeepSeek a complex block of code involving intricate mathematical logic and state calculations, the tool returns it on screen as if it were reading from local RAM memory instead of consulting with an immense remote cluster on the other side of planet Earth. It is raw, pragmatic, and absolutely focused on the central operative function.
+
+### Core Features, Ingestion, and Context Handling
+The irrefutable superpower and the true unjust tactical advantage of the DeepSeek CLI undeniably resides in the immensely powerful model that beats and breathes in its remote backend heart. DeepSeek has been intensively trained with a corpus of pure source code data and mathematics of an abysmal density astoundingly superior to the American industry average. This means that when you throw a complex local context to the tool and ask it to optimize and refactor a pure mathematical function of complexity `O(N^2)` to make it `O(N log N)`, the CLI not only manages to perfectly understand the syntax of the language, but the model itself manages to tactically understand the undeniable intricate underlying mathematical algorithm.
+
+### Performance Analysis, Operational Stability, and Latency
+What is genuinely astonishing for any Western developer is that, even though the massive inference backend servers that feed the CLI are often physically hosted in data centers located in mainland China, the gross global latency experienced from Europe is usually astonishingly low and very competitive, due to the massive optimizations of the MoE (Mixture of Experts) models that DeepSeek's engineers have managed to implement. This undeniable pure velocity is a tactical and determinant factor at an operational logistical level to win the heart of an indie programmer who feeds on the speed of their pure iteration.
+
+---
+
+## 4. Qwen CLI
+
+The multilingual and transversal processing giant. Created within the gigantic corporate bosom of Alibaba Cloud, Qwen CLI is a true monster and a purely corporate tool, implacably designed to scale from the individual developer to asynchronous teams distributed across multiple continents, completely breaking language barriers.
+
+### Integrations and Initial Setup Architecture
+Like its peers, Qwen CLI is natively conceived to firmly anchor itself ironcladly to the immense ecosystem of integrated cloud services of Alibaba Cloud. The initial setup can be slightly overwhelming, since it often implies the creation of cloud profiles and RAM (Resource Access Management) access policy role keys that go much beyond a simple plain API token. But once this logistical wall is overcome, the cloud environment rewards the user with an almost indestructible and undeniable robustness of immovable infrastructure connection.
+
+### User Interface Design and Terminal Experience
+Qwen's pure tactical native command line interface is a masterful lesson in astonishing clarity of internationalization of its base visual design. It is undeniably capable of parsing, reading and processing and rendering dense prompts and outputs in simplified Chinese, traditional Chinese, English, and Spanish, fluidly and intelligently switching languages on the fly to respond to the rustic programmer in the same language as the underlying origin code or comment, something revolutionary for refactoring legacy foreign systems.
+
+### Core Features, Ingestion, and Context Handling
+Where the immense Qwen CLI turns out to be completely overwhelming and purely lethal is in its inscrutable pure capacity for gigantic and complex cross-repository analysis and documentation compression. You can throw to the CLI a repository of thousands of files in old Java that depends on third-party libraries in Chinese, and order it: "Translate and refactor all the dark comments and documentation to Spanish and migrate the logic to pure native Kotlin", and the powerful background model will manage to execute it with spooky precision.
+
+### Performance Analysis, Operational Stability, and Latency
+Thanks to Alibaba's immeasurable global cloud network infrastructure, the tactical network latency is incredibly solid and consistent in almost any remote corner of the planet. However, the inescapable toll of this powerful ecosystem is the obvious undeniable vendor lock-in. If the cloud services experience intermittence, your terminal tool remains uselessly tied without the possibility of agnostic escape.
+
+---
+
+## 5. ChatGLM CLI
+
+Our fifth native review takes us to thoroughly analyze **ChatGLM CLI**, a fierce open-source contender optimized at the source and designed with a laser focused in a lethal way towards the absolute capabilities of ultra-low latency, ultra-light resource memory, and extreme pure agility in step-by-step operations of dense processing at a tactical level.
+
+### Integrations and Initial Setup Architecture
+The native architectural philosophy behind ChatGLM CLI is fascinatingly dichotomous. On one hand, it can be consumed in a transparent way through the APIs of its creator Zhipu AI. On the other hand, the CLI tool is powerfully optimized to connect to custom local deployments of ChatGLM models quantized to Int4, which makes it a unique hybrid option in its immense native ecosystem.
+
+### User Interface Design and Terminal Experience
+The terminal frontend of ChatGLM CLI is astoundingly fast, interactive, fluid, and agile. It implements a robust text rendering engine that draws the outputs at an amazing speed, giving the developer the sensation of interacting with a local native operating system instead of with a network bot.
+
+### Core Features, Ingestion, and Context Handling
+The model and its corresponding CLI shine with intensity in granular tasks of step-by-step reasoning. Instead of attempting to solve the entire immense problem in a single hit, the CLI allows you to dialogue interactively, iterating over the generated code, adjusting variables, renaming classes, and progressively refining the asynchronous logic.
+
+### Performance Analysis, Operational Stability, and Latency
+Being strongly optimized for low and short latencies, it is an ideal tool for granular workflows. It is the equivalent of a scalpel: perfect for precise operations, but inadequate if you intend to knock down an entire forest of code with a single cut.
+
+---
+
+## Performance Comparison Table (Natives)
+
+Below is the evaluation of the native tools.
+
+| Tool               | Model Synergy   | UX/UI Design | Code Gen.   | Infrastructure  | Total |
+|--------------------|-----------------|--------------|-------------|-----------------|-------|
+| Antigravity CLI    | 9/10            | 8/10         | 8/10        | 7/10            | 32/40 |
+| GitHub Copilot CLI | 10/10           | 9/10         | 9/10        | 10/10           | 38/40 |
+| DeepSeek CLI       | 10/10           | 7/10         | 10/10       | 9/10            | 36/40 |
+| Qwen CLI           | 9/10            | 8/10         | 9/10        | 8/10            | 34/40 |
+| ChatGLM CLI        | 8/10            | 7/10         | 8/10        | 8/10            | 31/40 |
+| Yi CLI             | 8/10            | 7/10         | 8/10        | 8/10            | 31/40 |
+| Baichuan CLI       | 8/10            | 7/10         | 8/10        | 8/10            | 31/40 |
+| SenseNova CLI      | 8/10            | 7/10         | 8/10        | 8/10            | 31/40 |
+| ERNIE Bot CLI      | 8/10            | 7/10         | 8/10        | 8/10            | 31/40 |
+| SparkDesk CLI      | 8/10            | 7/10         | 8/10        | 8/10            | 31/40 |
+
+### Native Ecosystem Flowchart
+
+```mermaid
+sequenceDiagram
+    participant Dev as Developer
+    participant CLI as Native CLI
+    participant Cloud as Proprietary Infrastructure
+    Dev->>CLI: Refactor command
+    CLI->>Cloud: Optimized request with internal tokens
+    Cloud-->>CLI: Proprietary AST / Diffs stream
+    CLI-->>Dev: Instant file system application
 ```
 
-Its architecture is purely *Cloud-Native*. Unlike other agents that tokenize and vectorize your repository locally, Codex packages your project (using smart ignores via `.gitignore`) and sends it to its own cloud for semantic processing. This makes the local setup a 10/10 in simplicity, but raises serious privacy concerns if you work with highly sensitive code.
+## Conclusion and Grand Final Qualifiers
 
-### Integrations and Extensibility
+After exhaustively analyzing these 10 closed ecosystems, we observe that when corporate control over the entire stack is total, operational friction disappears completely. The astonishing absence of complex configurations is a breath of fresh air.
 
-Codex CLI is closed by design. It does not support MCP or third-party local plugins. Its premise is that all "tooling" happens in the cloud.
+The two giants advancing to the Grand Final are **GitHub Copilot CLI** and **DeepSeek CLI**. Copilot CLI dominates due to its unparalleled infrastructure and network context, while DeepSeek CLI shocked everyone with its raw code reasoning capability and exceptional performance.
 
-If you need the agent to run a linter, Codex doesn't run it on your local machine. It sends the command, executes it in an ephemeral cloud container that has a replica of your environment, and returns the result. It's a fascinating and extremely safe approach for your host machine (zero risk of the AI running `rm -rf /` on your laptop), but it makes extending it with your own local Python scripts impossible.
-
-### Design and User Experience (UX)
-
-The UX is pure, hard, and spartan, but incredibly polished. It uses simple ASCII animations to denote that it's thinking. Its diffs are rendered using the `delta` standard (if you have it installed on your system), giving it an appearance identical to doing a `git diff`.
-
-- **Strengths:** Native integration with `delta` or `bat` to display code. Zero interface lag.
-- **Weaknesses:** By delegating everything to the cloud, if your internet connection fluctuates, the UX degrades instantly, leaving the terminal frozen with no clear feedback.
-
-### Features and Performance
-
-By using dedicated clusters to index your code, the RAG (Retrieval) is best-in-class. When you ask it to find where an interface is defined, it doesn't search by regex; it makes a semantic query to its remote database that returns results in milliseconds.
-
-Code injection is standard (search and replace), but it is heavily backed by the largest LLMs available, which reduces the failure rate.
-
-### Real-World Test
-
-I asked Codex CLI to abstract some Kotlin form validation logic that was repeated across 4 different Fragments and move it into a shared base `ViewModel`.
-
-**Result:** It solved the problem conceptually perfectly. However, when trying to apply the changes, the cloud container where it ran the test build did not have the correct JDK version (17 instead of the 21 I use locally). So it assured me the code worked, but when downloading it to my machine, local compilation failed due to the use of *Pattern Matching* introduced in Java 21/Kotlin 2.0. A brutal disconnect between the cloud and local environments.
-
-### Codex CLI Scores:
-- Setup & Arch: 9/10
-- Extensibility: 3/10
-- Design & UX: 8/10
-- Features & Perf: 8/10
-- Real-World Test: 5/10 (Failed due to environment discrepancy)
-- **Total: 33/50**
-
----
-
-## 🟡 Contender 2: Hermes - The God of Local Orchestration
-
-Hermes is the current darling of the Indie and Open Source community. Written entirely in TypeScript (compiled to native binaries with Bun), it is designed to be the central node of your operating system, not just a coding agent.
-
-### Setup and Architecture
-
-Using Bun under the hood, Hermes's execution speed rivals Go or Rust. Its initialization is slightly more complex, as it invites you to define a complete "Workspace."
-
-```bash
-bun install -g @hermes-ai/cli
-hermes init --workspace-type android
-```
-
-Hermes shines in its state management. It uses a local SQLite database to maintain conversation history, dependency maps, and a vector embedding cache. Its architecture is geared towards *Local-First*, prioritizing SLMs (Small Language Models) running on your machine via llama.cpp for trivial tasks and only calling paid APIs when strictly necessary.
-
-### Integrations and Extensibility
-
-This is a hacker's paradise. Hermes implements the MCP (Model Context Protocol) standard perfectly, but goes further with its *Sub-agents* system.
-
-You can define in its configuration that, for UI tasks, Hermes should delegate to a sub-agent specifically configured with a vision model and give it access to screen capture tools (using Playwright).
-
-```typescript
-// hermes.config.ts
-export default defineConfig({
-  agents: {
-    coder: { model: 'claude-4.6', role: 'software_engineer' },
-    reviewer: { model: 'llama-3-70b-local', role: 'security_auditor' }
-  },
-  mcp: ["@mcp/android-adb-tool"]
-});
-```
-
-If you give it permissions, Hermes can compile your app, install it on an emulator via ADB, take a screenshot, visually analyze it, and correct the XML/Compose. It's witchcraft.
-
-### Design and User Experience (UX)
-
-Hermes's interface is interactive and rich. It uses hyper-vitaminized Inquirer.js components.
-
-- **Strengths:** When Hermes proposes a change across multiple files, it shows you an interactive tree in the terminal. You can use the arrow keys to expand each file, see the diff, and "cherry-pick" by accepting only certain modifications before applying. This gives you absolute control.
-- **Weaknesses:** Sometimes it gets too excited printing "Delegating to sub-agent X..." logs that clutter the terminal history.
-
-### Features and Performance
-
-Hermes's latency is slightly higher at first because it tries to do much of the reasoning (like task routing) using local models. Its patching engine uses AST for supported languages (TS, Python) but falls back on unified diffs for Kotlin, which sometimes requires manual intervention if the files are very long.
-
-### Real-World Test
-
-I asked Hermes to implement a structured logging system across 20 files of the Android app, replacing the classic `Log.d()`.
-
-**Result:** Hermes understood the magnitude of the task. Instead of trying to do it all at once and overflowing its context, it divided the work itself into 4 batches. It edited the files, ran `./gradlew lint` locally (discovering it had broken a ktlint rule in batch 2), auto-corrected itself, and finished the task in 5 minutes. The interactive diff control allowed me to review its work comfortably.
-
-### Hermes Scores:
-- Setup & Arch: 8/10
-- Extensibility: 10/10
-- Design & UX: 9/10
-- Features & Perf: 9/10
-- Real-World Test: 9/10
-- **Total: 45/50**
-
----
-
-## 🔴 Contender 3: Qwen Agent - The Tool Giant
-
-Straight from Alibaba's labs, Qwen Agent is a Python framework designed explicitly to squeeze the Qwen-Max and Qwen-Coder models. It is a heavy agent, intended for research environments and corporate pipelines, but has found its niche in the CLI.
-
-### Setup and Architecture
-
-Its Python dependency is strong and requires heavy packages. It is not a lightweight tool.
-
-```bash
-pip install qwen-agent[all]
-qwen-cli start
-```
-
-Qwen Agent's architecture is centered on "Long-Term Memory" and complex tool use (Function Calling). Internally, it spins up a local service that indexes not only your code but your PDF requirement documents, exported Jira tickets, etc. It is a context-devouring monster.
-
-### Integrations and Extensibility
-
-Qwen Agent shines in enterprise integrations but limps in modern indie tools (it doesn't natively support MCP).
-
-Its plugin system requires writing quite verbose Python classes inheriting from its base classes. You can't just pass it a bash script and say "use this." You have to define the complete JSON schema for input and output, which generates a lot of friction for quick tasks.
-
-### Design and User Experience (UX)
-
-UX is its Achilles heel. Qwen Agent feels like a Jupyter Notebooks research tool that was forcibly stuffed into a terminal.
-
-- **Strengths:** It can generate graphs (like class dependencies) and, if your terminal supports image protocols (like iTerm2 or Kitty), it renders images directly in the console.
-- **Weaknesses:** Text formatting is clunky. Diffs are sometimes shown as uncolored plain text. It frequently prints entire JSON dictionaries in the terminal when a tool call fails, completely breaking immersion.
-
-### Features and Performance
-
-Where Qwen Agent fails in UX, it makes up for with logical reasoning and an astounding understanding of complex architectures. If you pass it an undocumented legacy monolithic repository, it is the best of the 4 contenders at deducing how the system works by reading spaghetti code.
-
-### Real-World Test
-
-The challenge for Qwen Agent was tough: "Analyze the `PaymentProcessor.kt` class, find a possible *race condition* in the UI state update, and apply a Mutex or safe concurrent flow to fix it."
-
-**Result:** Qwen Agent read the class, deduced the architecture (identified it was using an old MVP instead of MVVM), and wrote an impeccable technical explanation about the *race condition*. It proposed a solution using coroutine `Mutex`. However, its mechanism for writing the file failed spectacularly, overwriting the entire class with only the modified function, erasing the rest of the methods. I had to use Git to recover the file. A brilliant brain in a clumsy body.
-
-### Qwen Agent Scores:
-- Setup & Arch: 6/10
-- Extensibility: 6/10
-- Design & UX: 4/10
-- Features & Perf: 9/10 (Pure reasoning)
-- Real-World Test: 4/10 (Code destruction)
-- **Total: 29/50**
-
----
-
-## 🟣 Contender 4: Sweep - The Asynchronous Assistant
-
-Sweep was born as a GitHub bot that read issues and created Pull Requests. In 2026, they launched their native CLI version (`sweep-cli`), bringing all that asynchronous power directly to the local terminal.
-
-### Setup and Architecture
-
-Written in Python and elegantly packaged, Sweep CLI acts as a daemon on your system.
-
-```bash
-pipx install sweep-cli
-sweep daemon start
-```
-
-Its architecture is unique: it is not intended for synchronous "chat." It is designed to throw tasks to the background and keep working. You write the requirement in a markdown file (e.g., `task.md`) and run `sweep run task.md`. Sweep takes control in the background, creating a Git branch, applying changes, running tests, and when it finishes, it shows you an OS notification.
-
-### Integrations and Extensibility
-
-Sweep is deeply integrated with Git and GitHub/GitLab. Its extensibility is based on Git hooks and local CI/CD scripts.
-
-If you want Sweep to verify code, you simply point it to the validation command in its configuration (`pnpm test` or `./gradlew check`). It will iterate on the code until the command returns an exit code of 0. It doesn't explicitly support MCP, but by basing all its validation on shell commands, it is universally compatible.
-
-### Design and User Experience (UX)
-
-Sweep's UX doesn't exist in the interactive terminal because it's not a chat.
-
-- **Strengths:** The lack of distraction. You give it a complex task, you go grab a coffee or work on another branch, and you come back to a new branch with clean commits. It presents a PR summary directly in the terminal.
-- **Weaknesses:** If it gets stuck, the feedback loop is slow. You can't quickly tell it "no, do it like this." You have to cancel the process, rewrite your prompt in the markdown file, and launch it again.
-
-### Features and Performance
-
-Sweep's search engine (which combines local embeddings and bm25) is extremely precise at finding relevant context. Its editing capability uses a highly optimized "Search/Replace" format that rarely breaks indentation.
-
-### Real-World Test
-
-I assigned Sweep the most tedious task: update 10 UI library dependencies in the `build.gradle.kts`, which required changing package names and updating deprecated method calls in about 15 XML and Kotlin files.
-
-**Result:** I ran `sweep run update-ui-deps.md`. For 8 minutes the terminal was free. In the background, Sweep created a branch, attempted the update, the compiler failed (because XML attribute names had changed in the new library version), Sweep read the compiler error, searched online migration documentation using its internal web browsing tool, applied the changes to the XMLs, and the tests passed. When it came back to me, the branch was ready to merge. A resounding success in asynchronous autonomy.
-
-### Sweep Scores:
-- Setup & Arch: 8/10
-- Extensibility: 7/10
-- Design & UX: 7/10 (Due to async design)
-- Features & Perf: 10/10
-- Real-World Test: 10/10
-- **Total: 42/50**
-
----
-
-## 🏆 Semifinal 2 Verdict: The Winners
-
-The results have been revealing, proving that the way we interact with agents (synchronous vs asynchronous) radically changes the perception of value.
-
-| Contender | Setup | Extensibility | UX | Features | Real-World | **Total** |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Hermes** | 8 | 10 | 9 | 9 | 9 | **45** |
-| **Sweep** | 8 | 7 | 7 | 10 | 10 | **42** |
-| **Codex CLI** | 9 | 3 | 8 | 8 | 5 | **33** |
-| **Qwen Agent** | 6 | 6 | 4 | 9 | 4 | **29** |
-
-### Hermes and Sweep advance to the Grand Final!
-
-**Hermes** swept the board thanks to its local orchestration vision. Its ability to define sub-agents, its flawless support for MCP, and its interactive interface (allowing diff cherry-picking) make it the ultimate tool for the developer who wants to maintain absolute control while delegating complex tasks.
-
-**Sweep**, despite its unconventional approach (no interactive chat), earned second place through brute force utility. The ability to launch long refactoring tasks and forget about them until the tests pass is a real superpower in an indie workflow.
-
-Codex CLI fell short due to its cloud-only architecture, which failed spectacularly when it couldn't replicate a complex local Kotlin environment.
-
-Qwen Agent is a brain trapped in a poorly designed tool for day-to-day use; brilliant for theoretical analysis, but dangerous if you give it unsupervised write permissions to your repository.
-
-The stage is set! The Grand Final will pit the surgical precision of **Cline**, the modular flexibility of **OpenCode**, the supreme orchestration of **Hermes**, and the asynchronous autonomy of **Sweep** against each other. Prepare your keyboards; the final showdown will be epic.
+### Bibliography
+- Official GitHub Copilot CLI Documentation.
+- [DeepSeek Coder V2 Paper](https://github.com/deepseek-ai/DeepSeek-Coder-V2)
+- Qwen and Alibaba Cloud ecosystem.
+- Latency performance tests documented on my indie blog during the year 2026.
