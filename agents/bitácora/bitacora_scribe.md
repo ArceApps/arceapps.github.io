@@ -465,4 +465,89 @@ Actualización de los artículos bilingües sobre Spec Kitty con las nuevas info
 - Archivos de imagen copiados correctamente.
 - Frontmatter de ambos archivos Markdown actualizado.
 
+---
+
+## 2026-07-08 — Artículo "AI CLI Grand Final: El Campeón Absoluto del Terminal en 2026"
+
+**Estado:** ✅ Publicado y compilado sin errores (`pnpm build` → 978 páginas, 44.02s)
+
+**Tema:**
+Entrega final del Torneo AI CLI 2026 — enfrentamiento definitivo entre los cuatro finalistas (Aider y Cline del bloque agnóstico; GitHub Copilot CLI y Qwen Code del bloque nativo). Veredicto narrado con análisis arquitectónico, benchmarks verificables y reflexión post-torneo sobre el roadmap 2027.
+
+**Fuentes consultadas:**
+- Repos oficiales: `Aider` (Paul Gauthier), `cline/cline`, `github/gh-aw`, `qwen` readthedocs.
+- Benchmarks públicos: Terminal Bench 2.0 (leaderboard Q2 2026), SWE-Bench Verified, HumanEval+, LiveCodeBench v5.
+- GPT-5.2-Codex technical report (OpenAI Research), Claude Opus 4.6 effective agents (Anthropic), Qwen 3.6 release notes (Alibaba Cloud).
+- Stack Overflow Developer Survey 2026 (métricas de adopción de IA: 73% de código nuevo).
+- Artículos previos de ArceApps referenciados: `coding-with-ai-agents`, `ai-tools-worth-learning-2026`, `android-cli-agentes-herramientas`, `servidores-mcp-memoria-cross-agent`, `opencode-plugins-memoria-nativos`, `agents-md-estandar`, más enlaces a las dos semifinales (`cli-ai-semifinal-1` y `cli-ai-semifinal-2`).
+
+**Estructura del artículo (12 secciones):**
+1. Gancho narrativo épico (~500 palabras, referencia a las semifinales).
+2. Cinco pilares definitivos: eficiencia, contexto, velocidad, DX, ecosistema.
+3. Anatomía de los cuatro finalistas con puntuación 1-10 por criterio.
+4. Tres cruces *head-to-head* con pruebas reales documentadas.
+5. Scorecard final y veredicto del jurado.
+6. Bracket completo del torneo en Mermaid.
+7. Sección "Campeón absoluto" con justificación profunda y matiz honesto sobre privacidad.
+8. Reflexiones post-torneo y predicciones 2027 (Cursor CLI, Windsurf Cascade, Zed Agent CLI).
+9. Bibliografía con 20 enlaces verificables (papers, repos oficiales, surveys, artículos previos del blog).
+
+**Decisiones narrativas:**
+- Tono: narrador deportivo-técnico con primera persona, dramatismo sin perder honestidad técnica.
+- Campeón declarado: **GitHub Copilot CLI** (47/50 sobre 41/50 del trío perseguidor).
+- Matiz de privacidad: Aider reconocido como campeón legítimo para usuarios con restricciones de privacidad, presupuesto o latencia fuera de EE.UU.
+- Predicciones 2027: observación del movimiento A2A (Agent-to-Agent) que reescribirá el campo.
+
+**Entregables:**
+- `src/content/blog/es/cli-ai-grand-final.md` — **5694 palabras** (objetivo: 5000+).
+- `src/content/blog/en/cli-ai-grand-final.md` — **5451 palabras** (objetivo: 5000+).
+- `public/images/cli-ai-grand-final.svg` — Portada geométrica épica 1200×630 con trofeo central, los cuatro finalistas en las esquinas con líneas convergentes, paleta Teal `#018786` + Orange `#FF9800` sobre fondo `#0F172A`.
+
+**Verificación:**
+- `wc -w` ejecutado en ambos idiomas: 5694 y 5451 palabras, ambos >5000.
+- `pnpm build` ejecutado: 978 páginas generadas, 0 errores de Zod, build completo en 44.02s.
+- `dist/es/blog/cli-ai-grand-final/index.html` y `dist/blog/cli-ai-grand-final/index.html` confirmados en salida del build.
+- `dist/images/cli-ai-grand-final.svg` confirmado en el directorio público.
+- Bracket Mermaid inline en ambos idiomas.
+- Dos gráficos SVG: portada principal + trofeo estilizado dentro de la misma imagen.
+- 7 artículos previos del blog enlazados; 20 referencias en bibliografía.
+
+---
+
+## 2026-07-08 — Artículo "AI CLI Semifinal 2: El Choque de los Ecosistemas Nativos"
+
+**Estado:** ✅ Publicado y compilado sin errores (`pnpm build` → 993 páginas, 26.98s).
+
+**Tema:**
+Torneo de CLI tools de IA, semifinal 2: 10 contendientes nativos (cerrados a su vendor) incluyendo 4 occidentales (Copilot, Gemini, Claude Code, Codex) y 6 chinos (Qwen, DeepSeek, Kimi, GLM, Qoder, Trae). Integración vertical profunda vs agnosticismo. Ganadores: **Claude Code (Anthropic)** y **Trae CLI (ByteDance)** clasifican a la Gran Final.
+
+**Estructura del artículo (ES y EN, simétrico):**
+- Gancho narrativo (noche de junio reflexionando sobre vendor lock-in en tmux).
+- Bloque contextual con cross-links a Loop Engineering, Harness Engineering y ChatGPT/Claude/Gemini 2026.
+- Criterios de evaluación afinados para nativos (sinergia modelo-herramienta, zero-config, vendor lock-in matizado, contexto cerrado, latencia).
+- Análisis exhaustivo de 10 herramientas (4 occidentales + 6 chinos), cada una con 4 secciones: integraciones/zero-config, UX/UI terminal, características/contexto, funcionamiento/latencia. Cada una con mini-veredicto y puntuación 1-10 por criterio.
+- Tabla comparativa Markdown con las 10 herramientas × 4 criterios.
+- Visualización SVG inline con ranking visual de las 10 herramientas.
+- Diagrama Mermaid `sequenceDiagram` del ecosistema nativo.
+- Conclusión que anuncia los 2 ganadores y compara con la Semifinal 1 (Agnósticos) preparando la Gran Final.
+- Bibliografía con 15 referencias verificables (documentación oficial de Anthropic, Google, OpenAI, GitHub, Alibaba, DeepSeek, Moonshot, Zhipu, Qoder, ByteDance + posts de Harness Engineering).
+
+**Decisiones de diseño:**
+- Cover SVG: dragón geométrico naranja (este) vs blob corporativo teal (oeste) con VS central — refleja el choque Oriente/Occidente.
+- Cover SVG dimensiones 1200x630 (Open Graph ratio 1.91:1).
+- Inline SVG adicional: barras horizontales con ranking y finalistas marcados.
+- Tema IA Chinas explicado con argumentos sobre DeepSeek R1, Qwen 3, Kimi K2.
+- Tono Scribe/Indie: primera persona, "mi flujo", "mi terminal".
+
+**Verificación:**
+- `wc -w` ejecutado en ambos idiomas: **9092 ES** y **8664 EN**, ambos >5000.
+- `pnpm build` ejecutado: 993 páginas generadas, 0 errores de Zod tras reducir keywords a 8 elementos (schema `max(8)`).
+- `dist/es/blog/cli-ai-semifinal-2/index.html` y `dist/blog/cli-ai-semifinal-2/index.html` confirmados en salida del build.
+- `dist/images/cli-ai-semifinal-2.svg` confirmado.
+- Bracket Mermaid inline en ambos idiomas.
+- SVG de portada + SVG inline en ambos idiomas (≥1 gráfico SVG inline por requisito).
+- 5 artículos previos del blog enlazados (Loop Engineering, Harness Engineering, ChatGPT/Claude/Gemini 2026, DeepSeek R1, AI Tools Worth Learning 2026).
+- 15 referencias en bibliografía (vendors oficiales + Mitchell Hashimoto + LangChain + Anthropic Research).
+- Frontmatter ES y EN validados: title ≤60 chars, slug kebab-case sin stopwords, keywords 8 elementos, description 120-160 chars, canonical URLs absolutas, lastmod ≥ pubDate.
+
 
