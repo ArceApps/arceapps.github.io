@@ -87,12 +87,12 @@
 - Run build tool and inspect terminal output.
 
 **Acceptance for this task:**
-- [ ] `pnpm build` finishes successfully without Zod schema errors or invalid route links.
+- [x] `pnpm build` finishes successfully without Zod schema errors or invalid route links.
 
 **Steps:**
-- [ ] **Step 1: Run production build**
+- [x] **Step 1: Run production build**
   ```bash
   pnpm build
   ```
-- [ ] **Step 2: Verify success output**
+- [x] **Step 2: Verify success output**
   Confirm the output says `Completed in ...` and `Complete!`.
