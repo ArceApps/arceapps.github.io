@@ -1,6 +1,6 @@
 ---
 title: "AI CLI Grand Final: El Campeón Absoluto del Terminal en 2026"
-description: "La Gran Final del torneo AI CLI 2026. 4 finalistas: OpenCode y Aider (agnósticos) vs Claude Code y Trae CLI (nativos). El veredicto final, los benchmarks y por qué uno de ellos dominará el flujo del desarrollador indie en los próximos 12 meses."
+description: "La Gran Final del torneo AI CLI 2026. Comparamos OpenCode, Aider, Claude Code y Trae CLI para elegir al campeón definitivo para desarrolladores indie."
 pubDate: 2026-07-01
 heroImage: "/images/cli-ai-grand-final.svg"
 tags: ["AI", "CLI", "Tournament", "Grand Final", "OpenCode", "Aider", "Claude Code", "Trae CLI", "2026"]
@@ -13,10 +13,10 @@ reference_id: "CLI-AI-FINAL-2026-CHAMPION-003-V2"
 
 > **Aviso de lectura**: este es el tercer y último artículo de la serie del Torneo AI CLI 2026. Si te perdiste los anteriores, aquí están los enlaces directos para ponerte en contexto antes de leer este veredicto:
 >
-> - **[Semifinal 1 — bloque agnóstico (ES)](/blog/cli-ai-semifinal-1/)** y **[Semifinal 1 — agnostic block (EN)](/blog/cli-ai-semifinal-1/)**: los 10 contendientes BYOK, con OpenCode (9.2/10) y Aider (9.0/10) clasificándose a esta final.
-> - **[Semifinal 2 — bloque nativo (ES)](/blog/cli-ai-semifinal-2/)** y **[Semifinal 2 — native block (EN)](/blog/cli-ai-semifinal-2/)**: los 10 contendientes cerrados a su vendor, con Claude Code (36/40) y Trae CLI (34/40) avanzando.
+> - **[Semifinal 1 — bloque agnóstico (ES)](/blog/cli-ai-semifinal-1/)** y **[Semifinal 1 — agnostic block (EN)](https://arceapps.com/blog/cli-ai-semifinal-1/)**: los 10 contendientes BYOK, con OpenCode (9.2/10) y Aider (9.0/10) clasificándose a esta final.
+> - **[Semifinal 2 — bloque nativo (ES)](/blog/cli-ai-semifinal-2/)** y **[Semifinal 2 — native block (EN)](https://arceapps.com/blog/cli-ai-semifinal-2/)**: los 10 contendientes cerrados a su vendor, con Claude Code (36/40) y Trae CLI (34/40) avanzando.
 >
-> Y si lo que quieres es entender el "por qué" del agnosticismo, el harness y la elección de modelos, tengo tres artículos que cubren el marco conceptual sobre el que se sostiene este torneo: **[AI Tools Worth Learning in 2026 (EN)](/blog/ai-tools-worth-learning-2026/)**, **[OpenCode Subagents: Workflows & Superpowers (EN)](/blog/opencode-subagents/)** y los **[Servidores MCP y memoria cross-agent (ES)](/blog/servidores-mcp-memoria-cross-agent/)** con su pieza gemela sobre **[plugins de memoria nativos en OpenCode (ES)](/blog/opencode-plugins-memoria-nativos/)**.
+> Y si lo que quieres es entender el "por qué" del agnosticismo, el harness y la elección de modelos, tengo tres artículos que cubren el marco conceptual sobre el que se sostiene este torneo: **[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/ai-tools-worth-learning-2026/)**, **[OpenCode Subagents: Workflows & Superpowers (EN)](https://arceapps.com/blog/opencode-subagents/)** y los **[Servidores MCP y memoria cross-agent (ES)](/blog/servidores-mcp-memoria-cross-agent/)** con su pieza gemela sobre **[plugins de memoria nativos en OpenCode (ES)](/blog/opencode-plugins-memoria-nativos/)**.
 
 ---
 
@@ -661,13 +661,13 @@ Nos vemos en el Torneo AI CLI 2027. Tengo la corazonada de que el campeón de en
 
 ### Artículos relacionados en ArceApps
 
-- **[Semifinal 1 — bloque agnóstico (ES)](/blog/cli-ai-semifinal-1/)** y **[Semifinal 1 — agnostic block (EN)](/blog/cli-ai-semifinal-1/)**: cómo OpenCode y Aider ganaron sus pases a esta final.
-- **[Semifinal 2 — bloque nativo (ES)](/blog/cli-ai-semifinal-2/)** y **[Semifinal 2 — native block (EN)](/blog/cli-ai-semifinal-2/)**: cómo Claude Code y Trae CLI se ganaron los suyos.
-- **[AI Tools Worth Learning in 2026 (EN)](/blog/ai-tools-worth-learning-2026/)**: el panorama completo de herramientas de agentes y por qué el agnosticismo importa.
-- **[OpenCode Subagents: Workflows & Superpowers (EN)](/blog/opencode-subagents/)**: análisis a fondo del ganador de la semifinal 1, su arquitectura de subagentes y el sistema de plugins JS.
+- **[Semifinal 1 — bloque agnóstico (ES)](/blog/cli-ai-semifinal-1/)** y **[Semifinal 1 — agnostic block (EN)](https://arceapps.com/blog/cli-ai-semifinal-1/)**: cómo OpenCode y Aider ganaron sus pases a esta final.
+- **[Semifinal 2 — bloque nativo (ES)](/blog/cli-ai-semifinal-2/)** y **[Semifinal 2 — native block (EN)](https://arceapps.com/blog/cli-ai-semifinal-2/)**: cómo Claude Code y Trae CLI se ganaron los suyos.
+- **[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/ai-tools-worth-learning-2026/)**: el panorama completo de herramientas de agentes y por qué el agnosticismo importa.
+- **[OpenCode Subagents: Workflows & Superpowers (EN)](https://arceapps.com/blog/opencode-subagents/)**: análisis a fondo del ganador de la semifinal 1, su arquitectura de subagentes y el sistema de plugins JS.
 - **[Servidores MCP y memoria cross-agent (ES)](/blog/servidores-mcp-memoria-cross-agent/)**: cómo MCP cambió el juego y por qué Claude Code es el cliente más maduro.
 - **[OpenCode plugins: memoria nativa (ES)](/blog/opencode-plugins-memoria-nativos/)**: el lado agnóstico de la memoria persistente, complementario al artículo sobre MCP.
-- **[Android CLI: Accelerating Development with AI Agents (EN)](/blog/android-cli-agentes-herramientas/)**: el precedente inmediato que motivó toda esta serie.
+- **[Android CLI: Accelerating Development with AI Agents (EN)](https://arceapps.com/blog/android-cli-agentes-herramientas/)**: el precedente inmediato que motivó toda esta serie.
 - **[Loop Engineering: de Prompts a Sistemas Autónomos (ES)](/blog/loop-engineering-desarrollo-movil)**: la arquitectura mental para diseñar bucles agénticos.
 - **[Harness Engineering: el wrapper que gana (ES)](/blog/harness-engineering-wrapper-gana)**: por qué el binomio modelo-herramienta sigue siendo decisivo.
 
