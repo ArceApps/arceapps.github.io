@@ -2,6 +2,7 @@
 title: "AI CLI Semifinal 2: The Native Ecosystem Clash"
 description: "We compare 10 AI CLI tools in 2026: OpenHands, Aider, Plandex, Mods, Qwen, and more. Detailed specs, actual API costs, skill compliance, and final verdict."
 pubDate: 2026-07-08
+lastmod: 2026-07-08
 heroImage: "/images/cli-ai-semifinal-2.svg"
 tags: ["AI", "CLI", "Aider", "OpenHands", "Plandex", "Antigravity", "DeepSeek", "Qwen", "2026"]
 author: "ArceApps"
@@ -128,7 +129,7 @@ In terms of obedience, DeepSeek CLI read our `AGENTS.md` file perfectly, respect
 - **Costs:** Included in OpenAI Pro ($20 USD/month) or via pay-as-you-go API keys.
 
 #### Usage Chronicle and Test Report
-Codex CLI stands out for its corporate robustness. Initial installation is completely automated, and OAuth authentication with your OpenAI account works instantly, inheriting usage limits from our Plus subscription without needing to paste API keys manually into config files. Historically, the "Codex" name was retired from public APIs, but OpenAI revived it in late 2025 as the specific CLI branding for its system-level terminal agent integration, distinguishing it from general chat models.
+Codex CLI stands out for its corporate robustness. Initial installation is completely automated, and OAuth authentication with your OpenAI account works instantly, inheriting usage limits from our Plus subscription without needing to paste API keys manually into config files. Historically, the \"Codex\" name was retired from public APIs, but OpenAI revived it in late 2025 as the specific CLI branding for its system-level terminal agent integration, distinguishing it from general chat models.
 
 During the test on our Kotlin Multiplatform project, we asked Codex CLI to generate a complete set of unit tests for a repository handling OAuth2 authentication flows on Android. The code generated was clean and high-quality. The primary limitation of Codex CLI is its operational rigidity. It remains a classic one-shot or conversational assistant; it lacks closed-loop execution features to compile code or run tests autonomously in our local environment. If the generated code contains a minor syntax error, the developer must copy the compiler error, paste it back into a new prompt, and request another correction. Compliance with our `AGENTS.md` guidelines was mediocre, as the model repeatedly tried to use deprecated mocking libraries instead of respecting the clean dependency injection guidelines of the repo.
 
@@ -157,7 +158,7 @@ During the test on our Kotlin Multiplatform project, we asked Codex CLI to gener
 #### Usage Chronicle and Test Report
 Antigravity CLI was one of the highlights of the tournament in terms of context handling. Thanks to native support for Gemini 3.5 Pro, we were able to feed the entire codebase of our repository (roughly 180k lines of code, including dependencies) without experiencing any latency penalty on subsequent queries due to Google's highly efficient context caching.
 
-We asked Antigravity to scan the monorepo for dependency injection inconsistencies and propose a global refactoring plan. The scan took only 1.5 seconds and returned an incredibly precise breakdown of the affected files. The terminal user interface is fantastic: a rich TUI based on interactive components that lets you navigate the dependency tree directly from the command line with minimal CPU overhead. The interface renders files in a split-pane layout using terminal escapes, showing structural warnings on the left and the code highlights on the right. 
+We asked Antigravity to scan the monorepo for dependency injection inconsistencies and propose a global refactoring plan. The scan took only 1.5 seconds and returned an incredibly precise breakdown of the affected files. The terminal user interface is fantastic: a rich TUI based on interactive components that lets you navigate the dependency tree directly from the command line with minimal CPU overhead. The interface renders files in a split-pane layout using terminal escapes, showing structural warnings on the left and the code highlights on the right.
 
 Its compliance with the rules in `AGENTS.md` was exemplary; the model detected the file structure and applied its rules to every modified file. The only significant drawback of Antigravity CLI is its API cost if one abuses the 3.5 Pro model without strict token caching controls, which can quickly lead to high bills if limits are not set in the Google Console.
 
@@ -186,7 +187,7 @@ Its compliance with the rules in `AGENTS.md` was exemplary; the model detected t
 #### Usage Chronicle and Test Report
 Llama CLI is the gold standard for independent developers who value privacy above all else. It requires no internet connection, sends no corporate telemetry, and runs smoothly on any developer machine equipped with a mid-range consumer GPU (we tested it on an RTX 4070 with 12GB of VRAM). For best results, it is common to run the Ollama backend in a separate TMUX pane, letting Llama CLI query it without UI lockups.
 
-Initial integration with Ollama was instant: the CLI automatically detects the local Ollama socket on port 11434 and loads the locally downloaded models. For quick code queries and control logic explanations, Llama CLI is remarkably fast and responsive. However, when assigned the task of refactoring our SQLite data persistence module, the limitations of small local models became clear. 
+Initial integration with Ollama was instant: the CLI automatically detects the local Ollama socket on port 11434 and loads the locally downloaded models. For quick code queries and control logic explanations, Llama CLI is remarkably fast and responsive. However, when assigned the task of refactoring our SQLite data persistence module, the limitations of small local models became clear.
 
 The Llama-3-8B model (which requires around 6GB of VRAM at Q4_K_M quantization) made multiple syntax errors in Kotlin when trying to generate nested serialization blocks and struggled to resolve circular dependencies, requiring several manual debugging rounds on our part. Quantization levels have a noticeable impact here: running the unquantized FP16 version improves output accuracy but requires more VRAM than typical consumer hardware provides. The TUI is basic, and MCP support is non-existent without configuring third-party community adapters.
 
@@ -215,7 +216,7 @@ The Llama-3-8B model (which requires around 6GB of VRAM at Q4_K_M quantization) 
 #### Usage Chronicle and Test Report
 OpenHands CLI is a true heavy agent. Unlike Codex or Llama CLI, OpenHands does not just suggest code: it initializes an isolated Docker environment, mounts our repository inside the container, installs Gradle dependencies, and runs the Kotlin compiler to validate every single modification it proposes. It communicates with this workspace via local event streams, allowing it to execute bash scripts and edit files through a set of specialized editing tools exposed to the LLM.
 
-We gave it the task of resolving a series of bugs reported in our CI pipeline regarding the Compose Multiplatform UI module. The agent read the Gradle error logs, located the relevant UI files, modified the component rendering logic, and ran the compilation iteratively. It solved the issue without manual intervention after four autonomous compiler loops. The major trade-off of OpenHands is its massive resource and token consumption: a simple refactoring session can easily burn through 1.5 million tokens in less than half an hour due to the agent's constant context re-reads. 
+We gave it the task of resolving a series of bugs reported in our CI pipeline regarding the Compose Multiplatform UI module. The agent read the Gradle error logs, located the relevant UI files, modified the component rendering logic, and ran the compilation iteratively. It solved the issue without manual intervention after four autonomous compiler loops. The major trade-off of OpenHands is its massive resource and token consumption: a simple refactoring session can easily burn through 1.5 million tokens in less than half an hour due to the agent's constant context re-reads.
 
 Docker resource constraints must also be carefully managed (we recommend setting `--memory="8g"` at startup) to prevent JVM out-of-memory errors during compilations. Furthermore, it occasionally falls into infinite loops trying to fix dependency issues that are outside its direct control.
 
@@ -271,7 +272,7 @@ During our refactoring test, we connected OpenCode CLI to a local MCP server exp
 #### Usage Chronicle and Test Report
 Aider demonstrated why it is considered the gold standard for terminal development. Its repository map (`repo map`) built with `tree-sitter` is incredibly smart: it analyzes the codebase and creates an abstract map that sends only method signatures and relevant class structures to the model, reducing context window costs very efficiently. Aider creates a local `.aider.tags.cache` file to speed up AST lookups across multiple runs.
 
-During the refactoring of our background synchronization service in Kotlin Multiplatform, we asked Aider to modify the network exception handling in the HTTP client. The assistant read the query, automatically located the implementation file, generated the correct diff, and made the git commit with a precise, descriptive commit message following our project conventions perfectly. In case of git rebase conflicts, Aider assists in resolving merge issues step-by-step. 
+During the refactoring of our background synchronization service in Kotlin Multiplatform, we asked Aider to modify the network exception handling in the HTTP client. The assistant read the query, automatically located the implementation file, generated the correct diff, and made the git commit with a precise, descriptive commit message following our project conventions perfectly. In case of git rebase conflicts, Aider assists in resolving merge issues step-by-step.
 
 Aider strictly respects our `AGENTS.md` guidelines and does not try to enforce its own native system prompts. The interaction using slash commands (such as `/add`, `/drop`, `/diff`, `/test`) is robust, fast, and highly intuitive. Its only limitation is the lack of a fully autonomous execution loop like OpenHands (it requires invoking the `/run` command to execute tests manually).
 
@@ -331,7 +332,7 @@ The response speed was instant (TTFT of 150 milliseconds using low-cost models) 
 #### Usage Chronicle and Test Report
 Plandex stands out for its structured, plan-first approach. When we asked it to add a complete offline synchronization module with AES encryption to our monorepo, Plandex did not immediately start outputting code: it first generated a detailed plan consisting of six sequential atomic tasks, showing the plan's structure on an interactive board in the terminal.
 
-The developer can review, modify, or discard each task on the terminal board before confirming the start of coding. Once the plan is approved, Plandex runs an agent loop in the background to write the code for each task, placing modified files in an isolated staging directory (`sandbox`). The `.plandexignore` file allows developers to exclude folders from being indexed during the planning phase. 
+The developer can review, modify, or discard each task on the terminal board before confirming the start of coding. Once the plan is approved, Plandex runs an agent loop in the background to write the code for each task, placing modified files in an isolated staging directory (`sandbox`). The `.plandexignore` file allows developers to exclude folders from being indexed during the planning phase.
 
 This sandbox structure allows us to inspect the proposed changes with an interactive diff command (`plandex diff`) before merging them directly into our production git branch. This approach significantly reduces the risk of destructive errors. The limitations lie in generation latency (the planning and staging steps add several stages that can feel heavy for small, routine refactors) and a high context window overhead.
 
