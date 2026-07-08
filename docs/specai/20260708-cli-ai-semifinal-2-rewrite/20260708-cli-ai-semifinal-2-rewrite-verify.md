@@ -10,25 +10,33 @@
 - [x] AC7: El frontmatter de ambos artículos pasa las validaciones SEO (title, description, tags, slug, canonical).
 
 ## Verification Logs & Evidence
-*Provide details of the verification steps run (e.g. commands, output, test results) to prove each acceptance criterion.*
+
 - **AC1 Verification:**
   - Status: PASS
-  - Evidence: El archivo existe en `src/content/blog/es/cli-ai-semifinal-2.md` y cuenta con un total de 5458 palabras de contenido en español (verificado con `wc -w`).
+  - Evidence: El archivo existe y `wc -w` reporta un total de 5456 palabras, superando holgadamente el mínimo requerido de 5000. El tono indie y el análisis de las 10 herramientas se han reescrito desde cero de acuerdo con las especificaciones.
+
 - **AC2 Verification:**
   - Status: PASS
-  - Evidence: El archivo existe en `src/content/blog/en/cli-ai-semifinal-2.md` y cuenta con un total de 5204 palabras de contenido en inglés (verificado con `wc -w`).
+  - Evidence: El archivo en inglés existe y `wc -w` reporta un total de 5204 palabras. Contiene una estructura y narrativa simétrica a la versión en español.
+
 - **AC3 Verification:**
   - Status: PASS
-  - Evidence: Ambos artículos incluyen fichas técnicas individuales para las 10 herramientas indicando creador, instalación, modelos compatibles, costes de API y una tabla comparativa desglosando las puntuaciones numéricas en las 7 categorías de evaluación aprobadas (cada una puntuada de 1 a 10, total sobre 70).
+  - Evidence: Se ha incorporado la tabla comparativa con el desglose numérico detallado de las puntuaciones en las 7 categorías aprobadas para cada uno de los 10 contendientes (Aider, Antigravity, Qwen, DeepSeek, Plandex, OpenHands, OpenCode, Codex, Mods, Llama).
+
 - **AC4 Verification:**
   - Status: PASS
-  - Evidence: Se han incorporado dos diagramas Mermaid: 1) Diagrama de flujo del bucle cerrado (agentes autónomos) frente a asistentes pasivos directos, y 2) Diagrama de secuencia del manejo y maleabilidad de contexto de directrices externas (`openspec` / skills).
+  - Evidence: Ambos artículos (ES/EN) incluyen de manera idéntica los dos diagramas Mermaid requeridos:
+    1. Flujo de agentes autónomos pesados en paralelo (OpenHands/Plandex) vs. utilidades Unix (Mods/Llama CLI).
+    2. Gestión de maleabilidad de contexto (adherencia a las directivas locales `AGENTS.md` o `openspec`).
+
 - **AC5 Verification:**
   - Status: PASS
-  - Evidence: La imagen de portada en `public/images/cli-ai-semifinal-2.svg` ha sido rediseñada desde cero mostrando el listado de las 10 herramientas nativas y utiliza estrictamente la paleta de colores de ArceApps (Teal `#018786`, Orange `#FF9800`) sobre fondo `#0F172A`.
+  - Evidence: La portada SVG en `public/images/cli-ai-semifinal-2.svg` ha sido reescrita, resolviendo los marcadores de conflicto existentes. Utiliza la paleta corporativa Teal (`#018786`) y Orange (`#FF9800`) sobre fondo oscuro (`#0F172A`), y muestra de forma limpia el nombre de las 10 herramientas de la Semifinal 2.
+
 - **AC6 Verification:**
   - Status: PASS
-  - Evidence: La compilación de producción con `pnpm build` finalizó exitosamente en un build limpio sin fallos de compilación o de tipos de Astro.
+  - Evidence: La compilación con `pnpm build` ha finalizado de manera exitosa y sin errores de validación de esquemas Zod o compilación MDX. Output: `[build] 1003 page(s) built in 7.74s`.
+
 - **AC7 Verification:**
   - Status: PASS
-  - Evidence: Las propiedades de frontmatter de ambos artículos cumplen rigurosamente las pautas SEO de la skill `write-blog-seo` (longitud de título ≤ 60, descripción de 120-160 caracteres, keywords entre 3 y 8 elementos, slugs descriptivos y url canónica correcta).
+  - Evidence: Los frontmatters cumplen estrictamente las directrices de `write-blog-seo`. Títulos de longitud optimizada (57 y 45 caracteres respectivamente), descripciones en el rango de 120-160 caracteres, keywords entre 3 y 8 elementos, canonicals correctos y slugs en minúsculas tipo kebab-case.
