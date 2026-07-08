@@ -2,6 +2,7 @@
 title: "AI CLI Semifinal 2: La Batalla de los Ecosistemas Nativos"
 description: "Comparamos 10 herramientas CLI de IA en 2026: OpenHands, Aider, Plandex, Mods, Qwen y más. Fichas técnicas, costo real de API, obediencia a las skills y veredicto."
 pubDate: 2026-07-08
+lastmod: 2026-07-08
 heroImage: "/images/cli-ai-semifinal-2.svg"
 tags: ["AI", "CLI", "Aider", "OpenHands", "Plandex", "Antigravity", "DeepSeek", "Qwen", "2026"]
 author: "ArceApps"
