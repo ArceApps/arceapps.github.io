@@ -1,6 +1,6 @@
 ---
 title: "AI CLI Grand Final: El Campeón Absoluto del Terminal en 2026"
-description: "La Gran Final del torneo AI CLI 2026. 4 finalistas: OpenCode y Aider (agnósticos) vs Claude Code y Trae CLI (nativos). El veredicto final, los benchmarks y por qué uno de ellos dominará el flujo del desarrollador indie en los próximos 12 meses."
+description: "La Gran Final del torneo AI CLI 2026. Comparamos OpenCode, Aider, Claude Code y Trae CLI para elegir al campeón definitivo para desarrolladores indie."
 pubDate: 2026-07-01
 heroImage: "/images/cli-ai-grand-final.svg"
 tags: ["AI", "CLI", "Tournament", "Grand Final", "OpenCode", "Aider", "Claude Code", "Trae CLI", "2026"]
