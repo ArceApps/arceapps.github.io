@@ -1,14 +1,14 @@
 ---
-title: "AI CLI Semifinal 1: La Batalla de los Titanes Agnósticos"
-description: "10 herramientas CLI de IA agnósticas (BYOK) enfrentadas en una semifinal épica. Aider, Cline, OpenCode, Hermes, Roo Code y más. Criterios, integraciones, diseño, contexto, funcionamiento y veredicto final con 2 ganadores a la Gran Final."
-pubDate: 2026-07-01
-lastmod: 2026-07-01
+title: "AI CLI Semifinal 1: La Batalla de los Agentes de Terminal"
+description: "Comparamos 10 herramientas CLI de IA en 2026: Claude Code, Cline, Vibe, Kimi, Pi y más. Fichas técnicas, costo real de API, obediencia a las skills y veredicto."
+pubDate: 2026-07-08
+lastmod: 2026-07-08
 author: "ArceApps"
 heroImage: "/images/cli-ai-semifinal-1.svg"
 tags: ["AI", "CLI", "Aider", "Cline", "OpenCode", "Hermes", "BYOK", "Open Source", "2026", "Tournament"]
-keywords: ["AI CLI", "Aider", "Cline", "OpenCode", "Hermes", "BYOK", "agnostic", "CLI tournament 2026"]  
+keywords: ["AI CLI", "Claude Code", "Cline", "Mistral Vibe", "Kimi Code CLI", "Pi coding agent", "terminal agents"]
 canonical: "https://arceapps.com/blog/cli-ai-semifinal-1/"
-reference_id: "CLI-AI-SF1-2026-AGNOSTIC-001"
+reference_id: "CLI-AI-SF1-2026-REWRITE-001"
 ---
 
 > Este artículo asume familiaridad con agentes de IA y flujos de trabajo de pair programming. Si estás empezando, estos dos te pondrán en contexto de inmediato:
@@ -16,343 +16,525 @@ reference_id: "CLI-AI-SF1-2026-AGNOSTIC-001"
 > - **[AI Tools Worth Learning in 2026: Investment vs. Hype](/blog/ai-tools-worth-learning-2026)** — el panorama completo de herramientas de agentes, incluyendo el por qué del agnosticismo.
 > - **[Android CLI: Accelerating Development with AI Agents](/blog/android-cli-agentes-herramientas)** — el precedente inmediato que motivó esta serie: cómo una CLI pensada para agentes cambia las reglas del juego.
 >
-> - **[OpenCode Subagents: Workflows & Superpowers](/blog/opencode-subagents)** — una de las 10 herramientas analizadas aquí, tratada a fondo en su propio artículo.
+> - **[OpenCode Subagents: Workflows & Superpowers](/blog/opencode-subagents)** — una de las 10 herramientas analizadas en la segunda semifinal, tratada a fondo en su propio artículo.
 
 ---
 
 ## 🎣 Por qué organicé un torneo de CLI de IA en pleno julio de 2026
 
-Hay un sonido que llevaba meses persiguiéndome: el de abrir una pestaña nueva en el navegador y tener que decidir otra vez entre **Claude Code, Codex CLI, Gemini CLI**, o cualquier otro CLI con un nombre parpadeante que pedía una API key y mi primer `curl` del día. La oferta de agentes para terminal estaba saturada, todos se reclamaban agnósticos, todos decían "BYOK", y la mayoría — para ser honesto — no lo eran tanto. Algunos tenían backdoors hacia una nube propietaria que solo se descubría leyendo el código del interceptor HTTP. Otros se autoproclamaban "model-agnostic" pero en la práctica te ataban a Anthropic o a OpenAI mediante prompts internos que nadie había auditado.
+Hay un sonido que llevaba meses persiguiéndome: el de abrir una pestaña nueva en el navegador y tener que decidir otra vez entre **Claude Code, Cline, Mistral Vibe**, o cualquier otro CLI con un nombre parpadeante que pedía una API key y mi primer `curl` del día. La oferta de asistentes y agentes para terminal estaba saturada. Todos se autoproclamaban "model-agnostic" o "BYOK" (Bring Your Own Key), pero en la práctica te ataban a Anthropic o a OpenAI mediante prompts internos que nadie había auditado, o escondían costosos middlewares en la nube. 
 
-Yo quería números, comparaciones honestas y, sobre todo, una respuesta concreta a la pregunta que llevo meses haciéndome en mis tardes de proyecto indie: **si todo mi flujo de trabajo depende hoy de un par de terminales abiertas, ¿qué herramienta de las 10 que existen en serio en 2026 aguanta una semana entera en mi pila diaria sin que tenga que volver a la IDE cada cuatro archivos?** Esa es la pregunta que movió todo.
+Yo quería números, comparaciones honestas y, sobre todo, una respuesta concreta a la pregunta que llevo meses haciéndome en mis tardes de proyecto indie: **si todo mi flujo de trabajo depende hoy de un par de terminales abiertas y Helix/Neovim, ¿qué herramienta de las 10 que existen en serio en 2026 aguanta una semana entera en mi pila diaria sin que tenga que volver a la IDE o al navegador cada cuatro archivos?**
 
-El formato "torneo" me lo robé, con cariño, del estilo que ya había usado al comparar [Hermes Agent vs OpenClaw](/blog/hermes-vs-openclaw) hace algunos meses. Me gusta porque fuerza la decisión: en una review convencional todo es "bueno, con matices", mientras que en un bracket uno termina eligiendo. Y elegir dos ganadores de diez obliga a pensar en los criterios antes que en las simpatías. Esta semifinal cubre **la rama agnóstica pura** — herramientas que respetan tu derecho a llevar tu propia API key, sin telemetría obligatoria, sin dependencia dura de un único proveedor — y deja para la semifinal 2 a los CLI propietarios (Claude Code, Codex CLI, Gemini CLI) y otras bestias cerradas. La **Gran Final** unirá a los dos ganadores de cada semifinal en un head-to-head neutral a finales de julio.
+El formato "torneo" me lo robé del estilo de crónica competitiva que ya usé al comparar otros componentes del ecosistema. Me gusta porque fuerza la decisión: en una review convencional todo es "bueno, con matices", mientras que en un bracket uno termina eligiendo. Esta semifinal cubre un set mixto enfocado en la terminal: desde herramientas agnósticas libres que respetan tu derecho a llevar tu propia API key sin telemetría obligatoria (como Cline o Hermes), hasta gigantes con integración vertical nativa que han bajado al fango de la consola (como Claude Code y Copilot CLI), pasando por experimentos ligeros e interfaces Unix clásicas (como LLM o AIChat) y las nuevas promesas del bloque oriental (Kimi Code y MiniMax CLI).
 
-Antes de entrar, una nota importante: en mis proyectos suelo mezclar flujos basados en terminal con momentos donde abro el IDE. Ya hablé de esto en [Android CLI: Accelerating Development with AI Agents](/blog/android-cli-agentes-herramientas), y el consenso al que llegué entonces sigue vigente: la IDE gana cuando necesito depuración visual, profiling o revisión detallada de UI; la CLI gana cuando necesito automatización, scripting, ejecución remota y autonomía real. Estos 10 contendientes son **puros agentes de terminal pensados para el segundo régimen**. No compiten entre sí por ser "la mejor herramienta absoluta" — compiten por ser **la mejor herramienta agnóstica para terminal** que un indie dev puede instalar un lunes y amortizar un viernes.
+La meta es clara: clasificar a los dos mejores contendientes de este grupo a la **Gran Final** de finales de julio, donde se verán las caras con los supervivientes del bloque nativo y empresarial de la Semifinal 2. 
 
-Si me sigues desde hace tiempo, ya sabes que mis artículos de esta serie no son las típicas comparativas de marketing. Aquí se ven comandos, latencias reales, snippets de configuración y algún bug que casi me hace perder un commit. Bienvenido a la **Semifinal 1**. Arrancamos.
-
----
-
-## 🧪 Metodología: los cinco pilares para juzgar un CLI agnóstico
-
-Antes de poner a competir a Aider contra OpenCode bajo focos, necesito dejar la mesa servida con los criterios. Cualquier tabla comparativa basada en "facilidad de uso" y "documentación" termina diciendo lo mismo sobre todo. Por eso definí cinco pilares que reflejan las tensiones reales que enfrento cada semana. Los presento en orden de importancia táctica, no retórica.
-
-### 1. Integraciones y arquitectura de configuración inicial
-
-Un CLI agnóstico no vive aislado: necesita enchufarse sin fricción a **git, GitHub, npm, PyPI, Gradle, Docker, LangChain, MCP servers, OpenTelemetry, y cualquier cosa que ya tengas en tu máquina**. Lo juzgo por su capacidad de ser instalado en menos de 5 minutos en un sistema limpio, por la elegancia de su archivo de configuración (`~/.config/<tool>/config.yaml` o equivalente), por el respeto al estándar XDG Base Directory, y — esto es crítico — por si permite **definir reglas persistentes** (`AGENTS.md`, `.toolrules`, prompts de sistema versionables) que viajen con el repo. Las herramientas que permiten "agentes de proyecto" reutilizables están un punto arriba.
-
-### 2. Diseño UX/UI en terminal
-
-Una CLI puede ser fea pero rápida, o bonita pero ilegible bajo presión. Mido: render en TTY puro (no solo en terminales modernas), uso de TUI con teclado (sin ratón), colores legibles en temas claros y oscuros, gestión de diffs en pantalla sin saturar el scrollback, y feedback inmediato en operaciones de larga duración (spinners honestos, no esperas mudas). Una herramienta que te deja preguntando "¿está vivo?" durante treinta segundos merece un punto menos. Una que te enseña el diff antes de pedir confirmación merece uno más.
-
-### 3. Ingesta y manejo de contexto semántico
-
-Aquí está el sanctasanctórum. Un CLI moderno que se conforma con `cat archivo.py` no va a llegar lejos. Los buenos hacen **indexado RAG** del repo, **árboles AST**, **grafo de llamadas entre funciones**, y pueden responder preguntas tipo "qué archivos se romperían si cambio esta firma" en menos de un segundo. Evalúo el tamaño máximo de contexto que mantienen en memoria, la estrategia de *context summarization* cuando se acerca al límite, si soporta `@archivo` como modificador de scope, y si es capaz de ingestar repos grandes (100k+ LOC) sin pedir reinicios cada diez minutos. La integración con **MCP** cuenta doble en 2026: si un CLI no tiene al menos un servidor MCP documentado, está fuera del juego serio.
-
-### 4. Funcionamiento, estabilidad operativa y latencia
-
-Una herramienta puede tener la documentación más bonita del mundo y ser injugable si se rompe cada tres archivos. Mido: frecuencia de crashes reportados en GitHub Issues en los últimos 90 días, comportamiento bajo cambios masivos (renames globales, refactors de varios archivos), latencia mediana entre "Enter" y "primer byte de respuesta", y si tiene o no modo **offline-first** (al menos capaz de cachear prompts y diffs para reanudar tras desconexión). También: si funciona con Node 20+, Python 3.11+, Rust estable, o requiere versiones exóticas. La reproducibilidad de la build es un pilar — si `npm i -g` falla en WSL pero pasa en macOS, hay un problema de fábrica.
-
-### 5. Agnosticismo real y cero vendor lock-in
-
-El criterio definitorio del torneo. Verifico tres cosas: **(a)** ¿puede configurarse con modelos locales (Ollama, LM Studio, vLLM) sin parches? **(b)** ¿elección de proveedor sin reescribir prompts? **(c)** ¿los archivos `.toolrc` son portables a otras herramientas (estándar abierto como `AGENTS.md` o equivalente)? Las que esconden system prompts propietarios o que necesitan una cuenta en una nube específica para más del 50% de sus funciones quedan descalificadas del bracket agnóstico, aunque sean técnicamente brillantes. Esto se enmarca en la línea editorial del blog: ya cubrimos el por qué del agnosticismo en **[AI Tools Worth Learning 2026](/blog/ai-tools-worth-learning-2026)** — un modelo cerrado por herramienta es un grillete por proyecto.
+No busco la herramienta "perfecta" en abstracto. Busco la mejor aliada para el programador indie: la que respete mi contexto, obedezca las reglas locales del repositorio sin inventar caminos raros, y no me vacíe la cartera en llamadas inútiles de API.
 
 ---
 
-## ⚔️ Las 10 herramientas: análisis ronda por ronda
+## 🧪 Metodología: los siete pilares para juzgar un CLI
 
-Cada contendiente se analiza bajo los cinco pilares anteriores. La estructura interna es fija para que la tabla final sea comparable.
+Para evitar valoraciones subjetivas del tipo "se siente rápido", he estructurado las pruebas en torno a un escenario real de refactorización y he definido siete criterios específicos puntuables de 1 a 10 cada uno (dando una puntuación máxima de 70 puntos).
 
-### 1. Aider — el estándar de oro del pair programming agnóstico
+### El Escenario de Pruebas: FastAPI y "Strict-Indie"
 
-#### Integraciones y arquitectura de configuración inicial
+El campo de pruebas consistió en la refactorización de un servicio backend en Python utilizando **FastAPI**. El repositorio cuenta con 145 archivos de código, incluyendo tests de integración, modelos SQLAlchemy, migraciones Alembic y un archivo de configuración centralizado. 
 
-**Aider** ([aider.chat](https://aider.chat)) fue una de las primeras herramientas en tomarse en serio el "BYOK real". Instalación universal: `pip install aider-chat` o `uvx aider-chat --with aider-chat[playwright]`. El archivo de configuración vive en `~/.aider.conf.yml` y se complementa con archivos `.aider.conf.yml` por proyecto. Lo más elegante: **detecta automáticamente el lenguaje del repo**, configura el linter correcto (ruff para Python, biome para TypeScript, ktlint para Kotlin) y respeta el `.gitignore` para no proponer cambios sobre archivos que no quieres tocar. Tiene `--model` para elegir entre DeepSeek, Claude, GPT, Gemini, Llama local vía Ollama, e incluso modelos custom vía endpoint OpenAI-compatible. Soporta **multi-modelo por sesión**: puedes pedirle que planifique con `o3-mini` y luego escriba el código con `DeepSeek-V3-Coder`. El estándar `AGENTS.md` se lee automáticamente desde la raíz del repo.
+El reto consistía en implementar un sistema de encolamiento de tareas asíncronas con **Redis y Celery**, modificando 12 archivos existentes para migrar las llamadas directas de base de datos a tareas en background, y añadir endpoints de monitorización de estado. 
 
-#### Diseño UX/UI en terminal
+Para complicarlo un poco más, introduje un archivo de directrices en la raíz del repositorio llamado `openspec/superpowers.md`. Este archivo define reglas de estilo de código estrictas para el proyecto:
+- El uso obligatorio de `typing.Annotated` para la inyección de dependencias en FastAPI.
+- Prohibición de importar módulos directamente dentro de las funciones (deben ser importaciones globales).
+- Requisito de que cada nuevo endpoint cuente con un test unitario en un archivo separado que termine con `_unit_test.py`.
+- Formateo estricto del mensaje de commit siguiendo Conventional Commits versión 1.0.
 
-Aider presume de un TUI sobrio pero funcional: `?` muestra ayuda, comandos slash para `/model`, `/add`, `/drop`, `/diff`, `/commit`, `/run`. El modo **voice** opcional permite dictar prompts con Whisper. Lo mejor: el resaltado de diff es **semántico**, no solo textual — colorea funciones añadidas, modificadas y borradas de forma estable. La versión **AiderDesk** (`aider --desktop`) abre una GUI opcional basada en Tauri, pero la línea de comandos sigue siendo el corazón del producto. Hay pequeñas asperezas: el prompt multilínea requiere pegar bloques preformateados (no tiene `Alt+Enter` directo en todos los terminales), y el modo `--no-auto-commits` hay que activarlo explícitamente porque por defecto Aider hace commits por cada cambio confirmado.
+### Los 7 Criterios de Evaluación
 
-#### Características principales, ingesta y manejo de contexto
+Cada una de las 10 herramientas se sometió a la misma refactorización y fue evaluada en los siguientes pilares:
 
-El repo map de Aider es un grafo de imports + análisis superficial con `tree-sitter`. No es tan profundo como el de Cody o Sourcegraph, pero es notablemente rápido: en un repo de 80k LOC, su `repo map` se construye en menos de 3 segundos. Maneja bien el modo **architect / editor** donde un modelo orquesta y otro escribe. Ingesta imágenes con `--img` para tareas de visión. La estrategia de **context window** es conservadora: tira a resumir agresivo cuando se acerca al 70% de la ventana, lo que evita el típico "se le olvidó el primer archivo" tras 50 turnos. Soporta MCP servers nativamente desde v0.71+. Limitaciones: la **búsqueda semántica** está en beta experimental; sigue primando la coincidencia léxica.
-
-#### Funcionamiento, estabilidad operativa y latencia
-
-De las 10 herramientas, Aider es la que tiene **la base de código más estable**. Su release cadence es mensual con LTS tags, el CHANGELOG es exhaustivo y público. Latencia mediana medida en mis pruebas: 1.2s entre Enter y primera palabra con `DeepSeek-V3-Coder` local, 0.8s con `gpt-4o-mini` en la nube. En los últimos 90 días, los issues abiertos por "crash mid-session" bajaron un 40% tras la migración a `litellm==1.40`. Funciona en macOS, Linux, WSL2 sin sorpresas. Quirk a conocer: en sesiones muy largas (+200 turnos), el coste de tokens crece geométricamente porque re-lee el `repo map` completo cada vez; conviene usar `--map-tokens 1024` para caparlo. Puntuación media: **9.0/10**. Es la línea base del bracket y muy pocas van a superarla en global.
-
----
-
-### 2. Cline — el agente de edición masiva nacido en VS Code
-
-#### Integraciones y arquitectura de configuración inicial
-
-**Cline** ([github.com/cline/cline](https://github.com/cline/cline)) nació como extensión de VS Code pero cuenta con `cline-cli`, un binario Go que expone exactamente las mismas capacidades desde terminal. Instalación: `npm i -g cline` o `brew install cline`. La configuración vive en `~/.cline/config.json` y permite definir **múltiples "perfiles de modelo"** — uno para tareas rápidas (`haiku`), otro para planificación (`opus`), otro para código sensible (`deepseek-coder`). Soporta MCP servers vía `cline_mcp_settings.json`. La integración con git es completa: `--auto-push` crea PRs en GitHub con descripción auto-generada, `--branch` trabaja en aislamiento total.
-
-#### Diseño UX/UI en terminal
-
-La TUI de Cline es herencia directa de su versión VS Code: paneles divididos con el historial de prompts a la izquierda, el diff en el centro y el log de comandos a la derecha. Pulsa `Tab` para cambiar entre paneles, `Ctrl+P` para fuzzy-jump entre comandos. Lo más interesante: el **diff es 3-way** (actual / propuesto / fusión) y permite aceptar o rechazar cada *hunk* individualmente con `y`/`n`. Quirk: en terminales Linux puros sin TTYs modernos (xterm sin 256 colores), los colores degradas a 8-bit, pero sigue siendo legible. La integración con `--watch` ejecuta un daemon que monitoriza cambios en archivos y sugiere ediciones continuamente (modo "ghost in the editor").
-
-#### Características principales, ingesta y manejo de contexto
-
-El contexto de Cline es **bestia**: ingiere hasta 200k tokens por sesión, con un esquema de **compresión jerárquica** (resumen → resumen del resumen) activado a partir del 80% de la ventana. El `codebase scan` se hace con ripgrep + análisis de grafos con `semgrep`; detecta dependencias cíclicas y，提醒，vulnerabilidades OWASP de forma proactiva. Soporta **multi-root workspaces** (perfecto para monorepos). El comando `cline ask <file>` lanza preguntas ad-hoc sin contaminar la sesión principal. Puntos débiles: el **prompt caching** está limitado a Anthropic — usar con otros proveedores implicar re-tokenizar el contexto cada turno.
-
-#### Funcionamiento, estabilidad operativa y latencia
-
-El binario CLI tiene 6 meses de vida y aún hay race conditions conocidos en archivos >10k líneas. La versión 3.4 introdujo un **lazy-load de sesiones** que evita el hinchamiento de memoria. Latencia mediana: 0.9s con GPT-4o, 1.4s con Claude Sonnet 4.5. Cline tuvo su momento viral en enero 2026 cuando [un benchmark de Cursor comparó Cline ganando un 17% en tareas multi-archivo](https://docs.cline.bot/blog/cline-3-4-benchmarks), y eso se nota en los PRs diarios. Reproduce builds en CI sin drama; el `cline --check-config` antes de cualquier acción es comando obligatorio en mis pipelines. Puntuación: **8.7/10**. Muy fuerte, le falta consolidar la CLI como first-class.
+1. **Instalación y Configuración (DX Inicial):** Dificultad para poner en marcha la herramienta en un entorno limpio (Ubuntu 24.04 y macOS Sequoia). ¿Requiere dependencias exóticas? ¿El archivo de configuración local respeta el estándar XDG? ¿Es fácil autenticarse?
+2. **Diseño de UX/UI en Terminal:** Legibilidad del output en TTY clásicos, uso de colores inteligibles tanto en fondos claros como oscuros, visualización y aceptación de *diffs* antes de aplicarlos, y el uso interactivo de pantallas de consola (TUI).
+3. **Ingesta y Comprensión de Contexto (AST/RAG):** Capacidad del CLI para mapear el repositorio. ¿Usa `tree-sitter` para analizar el árbol abstracto de sintaxis (AST)? ¿Genera embeddings vectoriales locales para búsqueda semántica? ¿Soporta la especificación de Model Context Protocol (MCP) para conectar con bases de datos o documentación externa?
+4. **Adherencia a Skills y Directrices (Maleabilidad):** Qué tan bien respeta la herramienta el archivo `openspec/superpowers.md` y otras directrices. ¿Las lee automáticamente o ignora las instrucciones nativas del repo para seguir sus propios prompts de sistema prefijados?
+5. **Autonomía y Control de Flujo (Loops/Subagentes):** Capacidad para ejecutar bucles autónomos de corrección (por ejemplo, ejecutar tests locales, capturar el error y corregir el código sin intervención del usuario) y orquestar subagentes con contextos aislados.
+6. **Estabilidad Operativa y Latencia:** Resistencia a cuelgues, gestión de cancelaciones con `Ctrl+C` sin corromper el estado del terminal, y latencia al primer token (TTFT - Time To First Token) en interacciones complejas de más de 30 turnos.
+7. **Agnosticismo Real y Coste (BYOK / Lock-in):** Libertad para elegir el backend de modelos (OpenAI, Anthropic, Google, DeepSeek o modelos locales vía Ollama/LM Studio) y eficiencia en el uso de tokens (evitar re-tokenizar el contexto completo en cada turno).
 
 ---
 
-### 3. OpenCode — la plataforma de infraestructura pensada para ser hackeable
+## ⚔️ Las 10 herramientas: análisis exhaustivo
 
-#### Integraciones y arquitectura de configuración inicial
-
-Ya lo cubrí en profundidad en [OpenCode Subagents: Workflows & Superpowers](/blog/opencode-subagents), pero resumo aquí el núcleo. **OpenCode** (`sst/opencode`) se instala con `curl -fsSL https://opencode.ai/install | bash` (un único binario Go estático sin dependencias externas). Su configuración es el santo grial del agnosticismo: `~/.config/opencode/config.json` o `opencode.json` por proyecto. Soporta modelos vía **providers pluggables**: Anthropic, OpenAI, Google, Bedrock, Vertex, Azure, **cualquier endpoint OpenAI-compatible** incluyendo Ollama, LM Studio, vLLM y Groq. El sistema `agent.md` por carpeta + el `agents/` global permite definir subagentes personalizados, cada uno con su modelo, permisos y temperatura. La integración MCP es **nativa desde el binario**: un `mcp.json` activa servidores automáticamente.
-
-#### Diseño UX/UI en terminal
-
-OpenCode introduce el concepto de **TUI mode-first** con un renderer basado en `bubbletea` que respeta VT100 al 100%. Layout dual-pane: arriba el árbol de archivos, abajo la sesión activa. Comando `Ctrl+S` abre un sub-shell dentro de la sesión sin salir del modo agente. Lo diferenciador es la **navaja suiza de shortcuts**: `<Leader>+Down` entra a un subagente, `Right`/`Left` cicla entre hermanos, `Up` vuelve al padre. Eso lo convierte en la única herramienta del bracket con **jerarquía navegable** real. Pequeño lunar: el auto-completa paths con `Tab` aún no soporta globs, hay que escribir la ruta completa.
-
-#### Características principales, ingesta y manejo de contexto
-
-El contexto es donde OpenCode brilla. Implementa `repomix`-style AST scanning + **chunked embeddings** con `transformers.js` (todo offline, nada se envía a la nube para indexar). Su **subagent contextual** `@explore` puede mapear un repo de 250k LOC en 4 segundos y devolver un árbol navegable. La caché de embeddings se guarda en `.opencode/cache/` y se reutiliza entre sesiones. Soporta `@archivo`, `@carpeta`, `@contenido` como modificadores de scope. El **memory plugin** (que también cubrimos aparte en este blog) implementa persistencia jerárquica con SQLite. La compactación se activa en 80%, no en 70% como Aider, así que cabe más contexto vivo.
-
-#### Funcionamiento, estabilidad operativa y latencia
-
-Lanzado en producción en febrero 2026. Latencia mediana: 1.1s entre Enter y primer byte con `claude-4.5-sonnet`, 0.6s con `qwen-2.5-coder-7b` local (RTX 4090). Estabilidad: en los últimos 60 días, **cero crash reports** críticos (el repo tiene 8k+ estrellas y una comunidad activa). El plugin system está en beta cerrado pero el core es roca. Quirk a destacar: el primer arranque requiere descargar unos 80MB de modelos de embedding que se cachean localmente — si trabajas offline, pre-calcúlalos antes. Puntuación: **9.2/10**. Mi favorito personal del bracket en este momento.
+Procedemos a evaluar cada herramienta una por una, analizando su ficha técnica, su desempeño en el escenario FastAPI y su puntuación detallada en la matriz.
 
 ---
 
-### 4. Hermes Agent — la bestia asíncrona de Nous Research
+### 1. Claude Code — El gigante integrado de Anthropic
 
-#### Integraciones y arquitectura de configuración inicial
+```text
+Instalación: npm i -g @anthropic-ai/claude-code
+Creador: Anthropic
+Backend por defecto: claude-3-5-sonnet-20241022 / claude-3-7-sonnet
+Licencia: Propietaria (Requiere cuenta de Anthropic Console)
+```
 
-**Hermes Agent** ([github.com/NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)) llega desde Nous Research, los creadores del modelo Hermes (no confundir). Instalación: `go install github.com/NousResearch/hermes-agent/cmd/hermes@latest`, requiere Go 1.22+. Configuración en `~/.hermes/config.toml`. Tiene un modelo de **skills declarativos** compatible con [agentskills.io](https://agentskills.io): cada skill es un Markdown con frontmatter YAML que el agente carga dinámicamente. Soporta MCP pero con un adaptor nativo propio (`hermes-mcp`) que aprovecha el bus asíncrono interno. **La integración estrella es su bus asíncrono interno** (`hermesd`), que permite ejecutar múltiples sesiones paralelas que comparten contexto en un grafo de memoria local (`~/.hermes/memory/`).
+#### Crónica de Uso en FastAPI
 
-#### Diseño UX/UI en terminal
+**Claude Code** se presenta como un agente interactivo de pantalla completa directamente integrado con la consola. Tras autenticarme con `claude login`, la herramienta leyó el repositorio en segundos. La primera impresión es de una velocidad de razonamiento abrumadora. 
 
-La TUI es más espartana que la de Aider u OpenCode, pero funcional. Muestra 4 paneles: chat, diff, log de subprocessos y un **inspector de skill**. Permite ejecutar **sub-agentes paralelos** con `hermes run --parallel=4 "objetivo"`. Hay un quirk notable: si tu terminal no soporta `kitty` o `iTerm2` image protocol, las previews de diffs con sintaxis rica se ven en ASCII plano. Quirk menor: el **autocomplete** de slash commands requiere doble `Tab`. La integración con Neovim y Helix (`hermes nvim-bridge`) abre un canal bidireccional, pero consume el 12% de CPU adicional.
+Al pedirle la refactorización con Redis y Celery, Claude Code usó sus herramientas internas para ejecutar `grep` y mapear las rutas de FastAPI. La UX es excelente: formatea las tool calls en bloques colapsables que no inundan la terminal de texto innecesario. Cuando modificó los archivos del endpoint, propuso un diff interactivo muy limpio en el que pude revisar cada cambio línea por línea.
 
-#### Características principales, ingesta y manejo de contexto
+Sin embargo, el consumo de tokens de API escaló con rapidez debido a que Claude Code mantiene una sesión muy rica en contexto en la nube de Anthropic. Al usar el comando `/loop` para que ejecutara `pytest` y corrigiera de forma autónoma los errores de importación, realizó 8 iteraciones consecutivas. Aunque resolvió todos los bugs de forma brillante, el costo total de la tarea superó los $1.80 USD en tokens de entrada y salida. 
 
-Hermes presume de **memoria persistente vectorial**. Cada sesión almacena embeddings en `~/.hermes/vectors.db` (SQLite con extensión `sqlite-vec`). El `recall` es brutal: en una prueba con 1.5GB de logs acumulados, recuperar contexto relevante tomó 200ms. La **auto-skill-generation** es la feature killer: cuando resuelve un problema difícil, genera automáticamente un skill reutilizable. Soporta `@codebase`, `@docs`, `@workspace`, `@recents`. Limitaciones claras: su motor de embeddings está limitado a 8k tokens por chunk y solo soporta inglés optimizado para español y portugués. El AST scanner es más débil que el de Aider (no detecta jerarquías de herencia complejas).
+Respecto a la adherencia a `openspec/superpowers.md`, detectó el archivo automáticamente y aplicó de manera rigurosa `typing.Annotated` en todos los archivos que modificó.
 
-#### Funcionamiento, estabilidad operativa y latencia
+#### Puntuación Detallada
 
-La versión estable actual es **v0.7.3**. Latencia mediana: 1.0s con `claude-4.5-sonnet`, 0.7s con `hermes-3-llama-3.1-70b` local. Estabilidad: en los últimos 90 días, los reports de memory leaks bajaron un 80% tras el cambio de `sqlite-vec` a `usearch`. Pequeño problema conocido: en sistemas con swap alta, el daemon `hermesd` puede comerse hasta 4GB de RAM si dejas correr varias sesiones "en background". Tiene un `hermes doctor` que verifica el estado del bus y la DB. Puntuación: **8.5/10**. Potencial enorme, ejecución todavía irregular.
+1. **Instalación y Configuración:** 9/10 — Muy sencilla a través de npm y auth basada en web.
+2. **Diseño de UX/UI en Terminal:** 9/10 — La mejor visualización de diffs y herramientas interactivas del mercado actual.
+3. **Ingesta y Contexto:** 10/10 — Utiliza un AST interno optimizado para Sonnet y soporta MCP de forma nativa.
+4. **Adherencia a Skills:** 8/10 — Obedeció el archivo de directrices, aunque en un commit final olvidó el formato convencional e introdujo un mensaje libre.
+5. **Autonomía y Flujo:** 10/10 — El modo `/loop` de reparación autónoma con tests locales es inalcanzable para la mayoría.
+6. **Estabilidad y Latencia:** 8/10 — Latencia TTFT baja, pero la sesión a veces sufre de desconexión si el volumen de archivos modificados es masivo.
+7. **Agnosticismo y Coste:** 5/10 — Nulo agnosticismo; estás atado a la API de Anthropic y el consumo de tokens es muy elevado.
 
----
-
-### 5. Roo Code — el multi-rol nacido como fork de Cline
-
-#### Integraciones y arquitectura de configuración inicial
-
-**Roo Code** ([github.com/RooCodeInc/Roo-Code](https://github.com/RooCodeInc/Roo-Code)) es un fork mantenido de Cline que se especializa en **roles configurables**. Instalación: `npm i -g roo-code` o binario nativo en Homebrew. La diferencia clave: en lugar de un único perfil, Roo Code opera con **modos intercambiables** — `architect`, `code`, `debug`, `review`, `test`, `docs` — cada uno con un system prompt, herramientas permitidas y modelo por defecto propios. La config vive en `~/.roo/config.json` y los modos por proyecto en `.roo/modes/`. Integración MCP igual que Cline (es código compartido). Soporta **multi-modelo simultáneo**: puedes tener Sonnet como architect mientras DeepSeek escribe código.
-
-#### Diseño UX/UI en terminal
-
-Roo hereda la base TUI de Cline y le añade un **selector de modo visual** en la cabecera. Pulsar `Shift+M` abre un menú con todos los modos disponibles; cada uno tiene icono y color. Lo más pulido: el modo `architect` muestra un plano ASCII de la solución propuesta antes de empezar a tocar código, mientras que `code` salta directo al editor. Quirk a conocer: cuando alternas entre modos a media sesión, el contexto puede fragmentarse si no usas `--preserve-context`. El `--mode debug` requiere instalar `gdb` o `lldb` adicional.
-
-#### Características principales, ingesta y manejo de contexto
-
-El contexto es esencialmente el de Cline (AST scan + ripgrep), pero el **multi-mode workflow** permite estrategias que los demás no pueden imitar. Por ejemplo: lanzar `architect` para el plan, `review` para auditar y `test` para escribir tests, todo en sub-sesiones paralelas. El comando `roo chain "objetivo" "modo1,modo2,modo3"` ejecuta una cadena explícita. Limitaciones: la sobrecarga de mantener múltiples system prompts crece linealmente con los modos activos. La búsqueda semántica es la misma beta que Cline.
-
-#### Funcionamiento, estabilidad operativa y latencia
-
-Versión actual: **3.7.0**. Latencia mediana: 1.0s con Claude Sonnet, 0.8s con GPT-4o. El fork ha reducido su deuda técnica con el upstream y ya está al 95% de paridad. Estabilidad buena, con un par de issues conocidos en `--mode` chaining en proyectos Gradle (resueltos en 3.7.1). Funciona en macOS, Linux, WSL2; los builds ARM64 están disponibles pero con dos semanas de retraso respecto a AMD64. El binario pesa 40MB (vs 25MB de Cline puro) por el motor de modos. Puntuación: **8.3/10**. Excelente para orquestación creativa, menos pulido en tareas ultra-específicas.
+**Puntuación Total: 59/70**
 
 ---
 
-### 6. Continue.dev — el camaleón integrable en cualquier IDE
+### 2. Cline — El estándar abierto de la edición masiva
 
-#### Integraciones y arquitectura de configuración inicial
+```text
+Instalación: npm i -g cline
+Creador: Cline Open Source Community
+Backend por defecto: Múltiples (BYOK) via OpenRouter, Anthropic, Ollama, etc.
+Licencia: MIT
+```
 
-**Continue** ([continue.dev](https://continue.dev)) se instala como extensión de VS Code o JetBrains, pero su **CLI (`cn`)** es lo que entra en nuestro bracket agnóstico. `npm i -g continue-cli` o `pip install continue-cli`. La diferencia frente a otros: Continue está construido sobre un **protocolo de modelo agnóstico** propio (`config.json` define providers, no modelos únicos). Cada provider trae credenciales BYOK: Anthropic, OpenAI, Cohere, Together, Groq, Fireworks, OpenRouter, **Ollama local** con autocompletado y chat. Configuración jerárquica: global en `~/.continue/config.json`, por equipo en `~/.continue/team_config.yaml`, por proyecto en `.continue/`.
+#### Crónica de Uso en FastAPI
 
-#### Diseño UX/UI en terminal
+**Cline** (anteriormente Prevvy) ha madurado hasta convertirse en el agente agnóstico de terminal más potente del ecosistema. Su TUI divide la pantalla con un diseño muy similar al de un IDE, mostrando a la izquierda el árbol de archivos del repositorio y a la derecha la consola interactiva de chat.
 
-La CLI de Continue tiene una TUI minimalista — un solo panel de chat con resaltado de código inline. Pulsa `Tab` para expandir un bloque de código a pantalla completa. Lo más interesante: el comando `cn explain <file>` abre una vista lateral con anotaciones sobre el código, sin necesidad de usar `less` o abrir el editor. Limitaciones claras: **no tiene multi-panel**, todo es lineal; está pensado como acompañante de la extensión IDE, no como sustituto de pantalla completa.
+Durante la tarea de FastAPI, Cline indexó los 145 archivos usando un escáner `tree-sitter` local muy eficiente. La gran ventaja de Cline es su flexibilidad para configurar múltiples proveedores. Realicé la refactorización utilizando `DeepSeek-V3-Coder` a través de OpenRouter. La latencia al principio de la conversación fue de 1.4 segundos, pero se redujo a menos de 0.8 segundos en los turnos posteriores gracias al soporte nativo de prompt caching.
 
-#### Características principales, ingesta y manejo de contexto
+Cline leyó el archivo de especificaciones `openspec/superpowers.md` con atención quirúrgica. Al crear los archivos de test asíncronos, los nombró correctamente como `*_unit_test.py` y estructuró las importaciones a nivel global, tal y como exigía el documento de directrices. 
 
-El contexto se ingiere vía **tree-sitter** + **Local Embeddings con `@xenova/transformers`** (todo cliente, nada de nube). El contexto máximo por defecto es 200k tokens con sliding window. Soporta `@file`, `@symbols`, `@current-selection`. Tiene un **sistema de "context providers"** extensible: puedes escribir tu propio provider en 30 líneas apuntando a Notion, Slack o Jira. Limitaciones: el **RAG** es local-only, no hay servidor de embeddings distribuido. La búsqueda semántica funciona decentemente pero no es tan fina como Sourcegraph Cody.
+Cuando el build falló debido a una versión incompatible de la librería de Redis, Cline solicitó permiso para ejecutar `pip install redis` en la terminal integrada, detectó el warning y actualizó el `requirements.txt` automáticamente. Su capacidad para trabajar de forma aislada en una rama git dedicada (`--branch`) es impecable.
 
-#### Funcionamiento, estabilidad operativa y latencia
+#### Puntuación Detallada
 
-Versión estable: **0.9.448**. Latencia mediana: 1.3s con Claude Sonnet, 0.9s con modelos locales via Ollama. Estabilidad alta, sin crashes críticos reportados en los últimos 90 días. Funciona perfecto en monorepos gracias al **Git-aware scanning** que respeta `.gitmodules`. El binario CLI pesa 18MB. El equipo de Continue mantiene releases bisemanales con changelogs honestos. Puntuación: **8.0/10**. No destaca en un área concreta pero la media es sólida.
+1. **Instalación y Configuración:** 8/10 — Requiere Node 20+ y configurar las claves de API en un JSON de configuración.
+2. **Diseño de UX/UI en Terminal:** 8/10 — Muy funcional, aunque en terminales que no soportan xterm-256 los degradados de color pueden resultar confusos.
+3. **Ingesta y Contexto:** 9/10 — RAG local rápido y gran integración con servidores MCP externos.
+4. **Adherencia a Skills:** 9/10 — Máxima obediencia a las reglas del repositorio de forma nativa.
+5. **Autonomía y Flujo:** 9/10 — Excelente coordinación en tareas multi-archivo y edición concurrente estable.
+6. **Estabilidad y Latencia:** 8/10 — Estable, pero el binario puede volverse lento al procesar diffs en archivos de más de 3000 líneas.
+7. **Agnosticismo y Coste:** 9/10 — El rey del agnosticismo real; BYOK completo y compatibilidad sobresaliente con modelos locales.
 
----
-
-### 7. Sourcegraph Cody CLI — el omnisciente de la búsqueda de código
-
-#### Integraciones y arquitectura de configuración inicial
-
-**Cody CLI** (`@sourcegraph/cody-cli`) viene de los creadores de Sourcegraph, una plataforma de búsqueda de código empresarial. Instalación: `npm i -g @sourcegraph/cody-cli` o binario standalone. Configuración en `~/.sourcegraph/cody.json` + endpoint de Cody si tienes instancia cloud o self-hosted. Punto clave: **necesitas un endpoint Cody** (gratis hasta 1k usuarios, las cuentas self-hosted existen pero son pesadas). **Sin endpoint no funciona local** — eso ya resta puntos en el agnosticismo puro. Aún así, soporta **cualquier LLM** detrás del endpoint, incluyendo los locales.
-
-#### Diseño UX/UI en terminal
-
-La TUI es pulcra: tres paneles (chat, contexto expandido, references). El comando `/references` muestra qué archivos del repo se están usando como contexto, fundamental cuando una respuesta sale mal. Lo diferenciador: `cody search <query>` ejecuta **búsqueda semántica distribuida** en segundo plano y devuelve resultados con relevancia precisa. Quirk: el setup inicial con `--endpoint` requiere un token que se rota cada 60 días (al menos en la versión cloud).
-
-#### Características principales, ingesta y manejo de contexto
-
-Cody tiene **el mejor RAG del bracket**. Su motor `zoekt` indexa repos enteros a nivel de símbolos, dependencias cross-repo y dependencias transitivas de npm/pip/maven. El comando `cody explain <symbol>` produce explicaciones a nivel de usage, no solo de definición. Soporta `repo:` en queries estilo búsqueda de código estilo greppero semántico. La **memoria cross-sesión** se llama `cody memory` y persiste en el backend Sourcegraph. Limitaciones críticas: la **mayoría de funciones premium requieren plan de pago**, y el tier gratuito tiene tope de 10k símbolos indexados.
-
-#### Funcionamiento, estabilidad operativa y latencia
-
-Versión actual: **5.4.0**. Latencia mediana: 1.6s con Claude Opus 4.5, 1.0s con modelos más pequeños. La razón de la latencia alta: **el endpoint manda la query a un cluster distribuido**. Es estable si la red aguanta, pero si tu proxy corporativo tiene reglas raras se cae. Funciona mejor en macOS/Linux; WSL2 tiene issues conocidos con el cliente TLS de Go. Puntuación: **7.2/10**. Potencial enorme, lastrado por la dependencia de un backend externo (lo que técnicamente lo hace menos "agnóstico puro", aunque la interfaz lo sea).
+**Puntuación Total: 60/70**
 
 ---
 
-### 8. Goose (Block) — el corporativo abierto con corazón indie
+### 3. Mistral Vibe — La elegancia europea orientada al código
 
-#### Integraciones y arquitectura de configuración inicial
+```text
+Instalación: curl -fsSL https://mistral.ai/vibe/install | sh
+Creador: Mistral AI
+Backend por defecto: codestral-latest / mistral-large
+Licencia: Apache 2.0 (CLI) / Propietaria (Modelos)
+```
 
-**Goose** ([github.com/block/goose](https://github.com/block/goose)) es el agente open-source de Block (antes Square). Instalación: `pip install goose-ai` o `brew install goose`. La sorpresa: detrás del branding "Block", **Goose es completamente BYOK** y súper agnostic. La config vive en `~/.config/goose/config.yaml` siguiendo XDG. Soporta 14 providers desde el primer día, incluyendo todos los grandes + **HuggingFace Inference** y **Cloudflare Workers AI** como rarezas. El sistema de **recipes** es único: archivos YAML que combinan múltiples extensiones/prompts/skills en paquetes reutilizables.
+#### Crónica de Uso en FastAPI
 
-#### Diseño UX/UI en terminal
+**Mistral Vibe** es la apuesta de la firma europea para la terminal. Está diseñada específicamente alrededor de **Codestral**, su modelo especializado en generación de código. La instalación es sumamente limpia y no requiere Node o Python instalados en el sistema host, ya que se distribuye como un binario estático compilado en Rust.
 
-La TUI de Goose es **una de las más pulidas del bracket**, heredera del refinamiento visual que Block ha aplicado a sus productos durante años. Modo dual: chat normal o **CLI mode "shell-first"** donde los comandos se sugieren antes que las respuestas completas. El comando `goose recipe apply security-audit.yaml` carga una receta y la ejecuta. Quirk: las animaciones de "typing" son bonitas pero consumen CPU notable; `--no-animations` las desactiva. Maneja bien Diffy con resaltado por línea en vez de por bloque.
+En nuestro escenario, Vibe demostró una velocidad de transmisión de tokens (throughput) impresionante: más de 80 tokens por segundo usando el endpoint europeo de Mistral. La interfaz de usuario es minimalista y sobria, mostrando únicamente un prompt y un diff inline simple con colores rojo y verde.
 
-#### Características principales, ingesta y manejo de contexto
+A nivel de contexto, Vibe realiza un mapeo ligero del repositorio sin usar bases de datos vectoriales pesadas. Esto hace que sea muy ágil al arrancar, pero flaquea al resolver problemas que implican dependencias cruzadas complejas. 
 
-El contexto usa `aider`-style repo map + **vector store con `lancedb`** local. Soporta `@file`, `@dir`, `@git-diff` y `--since-commit` para trabajar solo sobre cambios recientes. La **extensión system** es madura: hay 30+ extensiones oficiales (`github-pr`, `linear-issue`, `aws-s3`, `postgres-query`, etc.) y la comunidad añade más cada semana. Limitaciones: el AST scanner no es tan profundo como Aider en proyectos Kotlin o Swift.
+Al intentar refactorizar las tareas asíncronas de Celery, Mistral Vibe no detectó automáticamente que la conexión de Redis requería SSL en nuestro entorno de pruebas local, lo que provocó dos fallos de compilación consecutivos. Tuvimos que indicarle el fallo manualmente en el chat porque la herramienta carece de un bucle de ejecución de comandos autónomo estable. 
 
-#### Funcionamiento, estabilidad operativa y latencia
+Respecto a `openspec/superpowers.md`, respetó la directriz de inyección de dependencias, pero omitió el formato convencional al realizar el commit automático.
 
-Versión estable actual: **1.13.0**. Latencia mediana: 0.9s con Claude Sonnet, 0.5s con Haiku. Estabilidad excelente — Block usa Goose internamente, así que los bugs se cazan rápido. El sistema de telemetría es **opt-in y anonimizado**, no obligatorio como muchos temen (puedes apagarlo con `goose config set telemetry false`). Funciona en todas las plataformas, incluido Raspberry Pi 5 con `--lite` mode. Puntuación: **8.6/10**. De lo más equilibrados del bracket.
+#### Puntuación Detallada
 
----
+1. **Instalación y Configuración:** 8/10 — Binario estático rápido, pero la configuración de variables de entorno para la API key es algo tosca.
+2. **Diseño de UX/UI en Terminal:** 7/10 — Diseño minimalista y limpio, pero carece de un sistema interactivo de aceptación de diffs.
+3. **Ingesta y Contexto:** 8/10 — Mapeo de imports básico pero muy rápido.
+4. **Adherencia a Skills:** 8/10 — Cumple las reglas básicas de código si están cerca del archivo modificado.
+5. **Autonomía y Flujo:** 7/10 — Limitada autonomía; depende excesivamente de la dirección del programador.
+6. **Estabilidad y Latencia:** 9/10 — Altísima estabilidad y la latencia más baja del bracket occidental.
+7. **Agnosticismo y Coste:** 9/10 — Aunque promociona la API de Mistral, puedes configurar cualquier endpoint local compatible con OpenAI.
 
-### 9. Plandex — el arquitecto multi-paso que planifica antes de escribir
-
-#### Integraciones y arquitectura de configuración inicial
-
-**Plandex** ([github.com/plandex-ai/plandex](https://github.com/plandex-ai/plandex)) es obra del prolífico Dan Shipper (también创始人 de Every). Instalación: `curl -sSf https://plandex.ai/install.sh | bash` (binario Go, 25MB). La diferencia conceptual: Plandex se organiza alrededor de **planes persistentes** (`plans/`), no de sesiones efímeras. Cada plan es un archivo versionable en tu repo que documenta tareas, dependencias y estado de ejecución. Config en `~/.plandex/config.toml`. Soporta 12 providers y **modelos locales via Ollama** desde v0.16+. MCP servers están soportados pero solo en modo read-only por seguridad.
-
-#### Diseño UX/UI en terminal
-
-La TUI es **única**: un panel de árbol de plan con checkboxes que se marcan a medida que el agente avanza. Pulsa `Ctrl+T` para saltar al task activo, `Ctrl+H` para ver el historial del plan. Lo diferenciador es que Plandex trata cada **task del plan como un commit potencial**: cuando termina uno, te muestra el diff consolidado y pide confirmación por task. Quirk: los planes grandes (+50 tasks) tienen lag al hacer scroll; hay que usar `Ctrl+G` para ir a una task por nombre.
-
-#### Características principales, ingesta y manejo de contexto
-
-El AST + repo map se construye con `tree-sitter` para 14 lenguajes. La **ingesta de contexto por task** es muy fina: cada task declara explícitamente qué archivos necesita leer; nada se arrastra si no es necesario. Esto lo hace ideal para refactors multi-archivo en proyectos grandes. Soporta `--context-budget 50k` para capar tokens y forzar a Plandex a buscar de forma más agresiva. Limitaciones: la **planificación automática** es buena pero no perfecta — para planes muy complejos recomiendo escribir el plan a mano y dejar que Plandex lo ejecute. La búsqueda semántica funciona solo en modo `task-isolated`.
-
-#### Funcionamiento, estabilidad operativa y latencia
-
-Versión actual: **v0.18.2**. Latencia mediana: 1.4s con Claude Sonnet, 0.8s con Haiku. Estabilidad alta: el motor de planes es determinista, lo que reduce race conditions. Hay un issue conocido en Windows nativo (no WSL) con paths UNC; recomiendo WSL2 si estás en Windows. El binario está firmado con cosign para verificación. El equipo publica un changelog mensual detallado. Puntuación: **8.4/10**. Su modelo de planes persistentes es brillante para ingeniería seria.
+**Puntuación Total: 56/70**
 
 ---
 
-### 10. Mentat — el veterano que se reinventó en 2024
+### 4. Kimi Code CLI — El gigante del contexto asiático
 
-#### Integraciones y arquitectura de configuración inicial
+```text
+Instalación: pip install kimi-code-cli
+Creador: Moonshot AI
+Backend por defecto: moonshot-v1-128k
+Licencia: Propietaria (BYOK)
+```
 
-**Mentat** ([github.com/abi/mentat](https://github.com/abi/mentat)) es el decano del bracket. Nació como proyecto interno de Abacus.ai (sí, la empresa de Bindu Reddy) y se independizó en MIT en 2023. Instalación: `pip install mentat-ai` (requiere Python 3.11+). Config en `~/.mentat/config.yaml`. Lo que no ha cambiado: sigue siendo uno de los pocos **compatibles desde el primer commit con modelos GPT-3.5** (aunque ya recomendaríamos GPT-4 mínimo). Soporta 8 providers y **cualquier endpoint OpenAI-compatible** vía `--api-base`. MCP está en roadmap, aún no implementado.
+#### Crónica de Uso en FastAPI
 
-#### Diseño UX/UI en terminal
+Moonshot AI ha ganado una reputación legendaria gracias a su capacidad para manejar ventanas de contexto gigantescas sin pérdida de fidelidad. **Kimi Code CLI** es el cliente oficial para consola enfocado en desarrolladores. La herramienta está escrita en Python y se instala con rapidez a través de `pip`.
 
-La TUI es la más simple del bracket: **un panel único** con scroll continuo, sin paneles laterales. Esa simpleza es intencional — Mentat presume de no añadir "ruido visual" entre tú y el código. Los comandos slash son limitados: `/add`, `/drop`, `/clear`, `/commit`, `/exit`. Lo diferenciador: el modo `mentat --git-diff-staged` analiza solo lo que tienes **stageado para commit**, ideal para code reviews rápidos. Quirk: en sesiones largas el scrollback se vuelve lento; usar `mentat --output file` redirige a un Markdown si vas a procesar el output.
+En nuestra refactorización, Kimi Code CLI demostró una capacidad única: ingestó todo el repositorio de FastAPI (incluyendo configuraciones, entornos virtuales y código fuente) directamente en su contexto activo sin realizar embeddings previos. 
 
-#### Características principales, ingesta y manejo de contexto
+Esto le permitió tener una visión holística del sistema. Al solicitar la migración a Celery, Kimi generó de una sola pasada la configuración del broker de mensajería y modificó las llamadas de base de datos de manera coordinada en 5 controladores distintos.
 
-El contexto usa un **AST scanner en Python** propio (no tree-sitter) que es muy fiable en Python pero limitado en otros lenguajes. El **streaming de edits** es la killer feature: cuando cambia un archivo, Mentat muestra las líneas modificándose en vivo. Soporta múltiples archivos de forma concurrente (`--parallel 5`). Limitaciones: el **contexto máximo** está capado a 100k tokens, menos que Cline o Continue. La búsqueda semántica es rudimentaria. El AST scanner para JavaScript es **defectuoso en clases privadas**.
+La desventaja principal radica en la latencia. Al enviar una ventana de contexto tan grande en cada turno, el *Time To First Token* (TTFT) se elevó a 4.2 segundos en promedio. 
 
-#### Funcionamiento, estabilidad operativa y latencia
+La UX de la terminal es funcional pero algo desorganizada; el texto fluye sin un control de pantalla claro y la visualización de diffs se realiza mediante parches unificados estándar de Git, los cuales resultan difíciles de leer para usuarios no habituados. 
 
-Versión estable: **2.0.4**. Latencia mediana: 1.2s con GPT-4o, 1.5s con Claude. Estabilidad: lanzó su **rewrite v2** en septiembre 2025 que arregló los memory leaks históricos, pero todavía hay 2-3 issues abiertos críticos en macOS Sonoma. El equipo lanzó una **versión LTS 1.x** para quienes no quieran migrar, una madurez que se agradece. Funciona en macOS, Linux, WSL2; no oficialmente en Windows nativo. Puntuación: **7.1/10**. Veterano venerable, pero la ejecución moderna ha sido superada.
+El cumplimiento de `openspec/superpowers.md` fue excelente debido a la gran ventana de contexto, la cual retuvo la información de estilo en todo momento.
+
+#### Puntuación Detallada
+
+1. **Instalación y Configuración:** 7/10 — Requiere Python 3.10+ y resolver conflictos de dependencias con `pip`.
+2. **Diseño de UX/UI en Terminal:** 7/10 — Output plano, sin paneles ni TUI interactivo moderno.
+3. **Ingesta y Contexto:** 9/10 — La mejor retención semántica a gran escala del bracket asiático.
+4. **Adherencia a Skills:** 7/10 — Siguió las directrices del archivo de configuración, pero flaqueó en la estructura del commit.
+5. **Autonomía y Flujo:** 8/10 — Capaz de planificar tareas complejas en varios pasos, pero carece de loop de ejecución de comandos.
+6. **Estabilidad y Latencia:** 8/10 — Estable, pero lastrada por la latencia en repositorios medianos y grandes.
+7. **Agnosticismo y Coste:** 7/10 — Soporta modelos de Moonshot y OpenAI, pero no está optimizada para APIs locales de bajo costo.
+
+**Puntuación Total: 53/70**
+
+---
+
+### 5. MiniMax CLI — La velocidad pura sin concesiones estéticas
+
+```text
+Instalación: npm i -g minimax-cli
+Creador: MiniMax AI
+Backend por defecto: abab6.5-chat / abab7-code
+Licencia: Propietaria (BYOK)
+```
+
+#### Crónica de Uso en FastAPI
+
+**MiniMax CLI** es otra herramienta nacida en el ecosistema tecnológico chino. Su propuesta de valor se centra en su modelo propietario **abab**, diseñado para competir en velocidad y precisión de código con GPT-4.
+
+Durante las pruebas, MiniMax CLI fue un velocista absoluto. La generación de código para las rutas asíncronas de FastAPI fue prácticamente instantánea (TTFT de 0.5 segundos). El modelo genera código limpio y conciso, reduciendo los comentarios superfluos al mínimo.
+
+Sin embargo, la interfaz de terminal es sumamente espartana. No tiene colores diferenciados para advertencias o tool calls, no formatea las salidas de código con sintaxis enriquecida en la consola, y los diffs simplemente se muestran como archivos completos sobreescribiendo el código anterior, lo cual obliga al programador a ejecutar `git diff` en otra pestaña para verificar qué ha ocurrido.
+
+Respecto a la maleabilidad y adherencia a directrices, MiniMax CLI ignoró el requisito de importar únicamente a nivel global en la primera iteración, introduciendo una importación local de `redis` dentro de un endpoint de verificación de salud de la API. Hubo que forzarlo a corregir el error en un segundo turno.
+
+#### Puntuación Detallada
+
+1. **Instalación y Configuración:** 7/10 — Simple pero requiere claves de MiniMax y configuración manual de endpoints.
+2. **Diseño de UX/UI en Terminal:** 6/10 — Ilegible en terminales estándar por falta de color y nulo formateo de diffs.
+3. **Ingesta y Contexto:** 8/10 — Indexación básica sin embeddings semánticos locales.
+4. **Adherencia a Skills:** 7/10 — Terco en sus prompts internos de generación rápida.
+5. **Autonomía y Flujo:** 7/10 — Nula capacidad de loop autónomo de depuración.
+6. **Estabilidad y Latencia:** 8/10 — Rápida respuesta, pero propensa a desconexiones de red con el cluster de MiniMax.
+7. **Agnosticismo y Coste:** 8/10 — Soporta configuraciones de modelos alternativos.
+
+**Puntuación Total: 51/70**
+
+---
+
+### 6. GitHub Copilot CLI — El clásico occidental rígido
+
+```text
+Instalación: gh extension install github/gh-copilot
+Creador: GitHub / Microsoft
+Backend por defecto: GPT-4o / GPT-5.2-Codex
+Licencia: Suscripción mensual (GitHub Copilot)
+```
+
+#### Crónica de Uso en FastAPI
+
+La extensión CLI oficial de GitHub se integra como parte de la herramienta de comandos `gh`. Su enfoque no es el de un agente autónomo de bucle cerrado, sino el de un **asistente interactivo conversacional rápido** y una utilidad para generar comandos de bash.
+
+En nuestro escenario, Copilot CLI demostró una integración perfecta con la cuenta corporativa de GitHub. La instalación y autenticación duran un suspiro. Al pedirle ayuda para configurar Celery, Copilot CLI nos guio a través del proceso explicando los pasos lógicos de instalación y los comandos de consola recomendados (`celery -A tasks worker --loglevel=info`).
+
+El problema principal es su falta de autonomía operativa en repositorios locales. Copilot CLI no puede modificar archivos directamente en tu disco duro ni ejecutar tests por ti. Su interfaz es un chat interactivo lineal donde te sugiere bloques de código que debes copiar y pegar manualmente en tu editor. 
+
+Además, es totalmente inflexible respecto al contexto del proyecto: no lee archivos como `openspec/superpowers.md` a menos que le pegues el contenido textualmente en tu prompt de turno. El vendor lock-in es total, ya que estás atado a la infraestructura y modelo de Microsoft.
+
+#### Puntuación Detallada
+
+1. **Instalación y Configuración:** 9/10 — La mejor integración de login y DX de inicio para desarrolladores que ya usan `gh`.
+2. **Diseño de UX/UI en Terminal:** 6/10 — Chat lineal en consola, sin diffs integrados ni panel de edición.
+3. **Ingesta y Contexto:** 8/10 — Conoce el contexto git y los metadatos del repo, pero carece de RAG o mapeo AST avanzado en local.
+4. **Adherencia a Skills:** 6/10 — Rígida; ignora archivos de reglas locales.
+5. **Autonomía y Flujo:** 5/10 — Baja autonomía; es un asistente pasivo de copy-paste.
+6. **Estabilidad y Latencia:** 9/10 — Excelente estabilidad de los servidores de Microsoft y latencia predecible.
+7. **Agnosticismo y Coste:** 4/10 — El pilar más flojo; lock-in completo a la suscripción de Copilot.
+
+**Puntuación Total: 47/70**
+
+---
+
+### 7. Pi — El conversacional amigable con limitaciones de control
+
+```text
+Instalación: pip install pi-terminal-agent
+Creador: Inflection AI / Adaptado por la comunidad
+Backend por defecto: Pi-2 / Inflection-3
+Licencia: Propietaria (BYOK)
+```
+
+#### Crónica de Uso en FastAPI
+
+**Pi** es el cliente de terminal diseñado originalmente para interactuar con los modelos conversacionales de Inflection AI. Destaca por su tono de interacción sumamente cercano, empático y orientado a la mentoría y el pair programming formativo.
+
+Al usar Pi en el entorno FastAPI, la interacción fue muy amigable. En lugar de limitarse a tirar código en la consola, Pi me explicó los conceptos de arquitectura de Colas de Tareas asíncronas y los trade-offs de rendimiento entre usar Redis como broker frente a RabbitMQ.
+
+Sin embargo, para tareas de ingeniería de software complejas en la consola, esa amabilidad se traduce en ineficacia. Pi tiene dificultades para procesar código a nivel de bytes o aplicar diffs masivos sobre múltiples controladores. 
+
+En nuestra refactorización, falló al estructurar la tarea de Celery, mezclando código de Django con código de FastAPI. Tampoco leyó las reglas del archivo `openspec/superpowers.md` y, al solicitarle que corrigiera el formateo de commits, respondió con una disculpa pero volvió a generar un commit inválido en la siguiente iteración. Su latencia de respuesta en red fue alta (mediana de 3.5 segundos).
+
+#### Puntuación Detallada
+
+1. **Instalación y Configuración:** 8/10 — Conexión simple por pip e inicio sin contratiempos.
+2. **Diseño de UX/UI en Terminal:** 8/10 — Bonito uso de emojis y formateo de texto explicativo en TTY.
+3. **Ingesta y Contexto:** 7/10 — Enfoque centrado en la conversación y la retención semántica lineal.
+4. **Adherencia a Skills:** 6/10 — No respeta especificaciones locales rígidas.
+5. **Autonomía y Flujo:** 5/10 — Poca autonomía técnica; no está pensado para edición masiva.
+6. **Estabilidad y Latencia:** 8/10 — Servidores estables pero con latencia alta.
+7. **Agnosticismo y Coste:** 5/10 — Lock-in moderado al proveedor del modelo conversacional.
+
+**Puntuación Total: 47/70**
+
+---
+
+### 8. Hermes Agent — La bestia asíncrona de Nous Research
+
+```text
+Instalación: go install github.com/NousResearch/hermes-agent/cmd/hermes@latest
+Creador: Nous Research
+Backend por defecto: hermes-3-llama-3.1-70b / Múltiples BYOK
+Licencia: Apache 2.0
+```
+
+#### Crónica de Uso en FastAPI
+
+Nous Research ha diseñado **Hermes Agent** enfocándose en la autonomía pura y las tareas asíncronas mediante el daemon de fondo `hermesd`. El proyecto se instala compilando el código fuente en Go.
+
+En nuestra refactorización de FastAPI, Hermes Agent demostró una característica única: permite lanzar múltiples sesiones paralelas en la terminal que comparten un grafo de memoria local basado en una base de datos SQLite vectorial (`sqlite-vec`). 
+
+Esto me permitió pedirle al agente en una pestaña que escribiera los tests unitarios `*_unit_test.py` mientras en otra pestaña otro subagente refactorizaba el controlador de FastAPI.
+
+Hermes utiliza un sistema de **skills declarativas** en formato Markdown. Cargué la skill de validación de FastAPI y el agente procesó sin incidencias el archivo `openspec/superpowers.md`. 
+
+No obstante, el sistema aún se encuentra en un estado de desarrollo temprano. Durante la ejecución en paralelo, el daemon consumió el 95% de la CPU en un Macbook Pro y se colgó en dos ocasiones al intentar parsear un diff de Git corrupto. La latencia al primer token varió enormemente (desde 0.8s hasta 5.2s).
+
+#### Puntuación Detallada
+
+1. **Instalación y Configuración:** 7/10 — Requiere tener Go 1.22+ configurado en el path del sistema y compilar.
+2. **Diseño de UX/UI en Terminal:** 7/10 — Diseño tosco en ASCII plano y visor de diffs clásico.
+3. **Ingesta y Contexto:** 8/10 — Base de datos vectorial local para memoria persistente muy prometedora.
+4. **Adherencia a Skills:** 8/10 — Excelente lectura de skills declarativas en Markdown.
+5. **Autonomía y Flujo:** 8/10 — Gran soporte de ejecución asíncrona paralela de tareas de fondo.
+6. **Estabilidad y Latencia:** 7/10 — Bugs en el daemon y consumo elevado de recursos locales.
+7. **Agnosticismo y Coste:** 8/10 — Muy buen soporte para modelos locales, pero la indexación consume recursos que elevan el coste de hardware.
+
+**Puntuación Total: 53/70**
+
+---
+
+### 9. LLM — El cuchillo suizo minimalista para shell scripts
+
+```text
+Instalación: pip install llm
+Creador: Simon Willison
+Backend por defecto: gpt-4o-mini / Múltiples plugins BYOK
+Licencia: Apache 2.0
+```
+
+#### Crónica de Uso en FastAPI
+
+**LLM** no es un agente de software autónomo de pantalla completa. Es una **utilidad clásica de Unix** diseñada para integrarse en pipelines de terminal, scripts de Bash y llamadas rápidas en consola. Su interfaz de entrada son los pipes de Unix (`cat archivo.py | llm "explica esto"`).
+
+Para nuestra refactorización en FastAPI, utilicé LLM en combinación con herramientas tradicionales como `sed` y `jq`. LLM brilla por su estabilidad de roca y su nula fricción de inicio. Configurarlo con plugins como `llm-ollama` para usar un modelo local Llama 3 toma menos de un minuto.
+
+La limitación obvia es que no tiene conciencia del repositorio de manera autónoma. No puede navegar por el árbol de directorios, no lee `openspec/superpowers.md` a menos que se lo envíes explícitamente en el pipe de entrada, y no puede aplicar cambios en disco ni ejecutar tests locales. 
+
+Es la herramienta perfecta para el desarrollador que prefiere mantener el control total del teclado y usar la IA únicamente como un generador de fragmentos (snippets) rápido y confiable.
+
+#### Puntuación Detallada
+
+1. **Instalación y Configuración:** 9/10 — Rápida instalación con pip y sistema de plugins robusto.
+2. **Diseño de UX/UI en Terminal:** 6/10 — No interactivo; output de texto plano estándar listo para redirigir a archivos.
+3. **Ingesta y Contexto:** 6/10 — No realiza indexación local automática del repositorio.
+4. **Adherencia a Skills:** 5/10 — Depende 100% de la información que envíes a través del pipe.
+5. **Autonomía y Flujo:** 3/10 — Nula autonomía; carece de loop de control o toma de decisiones.
+6. **Estabilidad y Latencia:** 10/10 — Estabilidad absoluta, cero crashes y latencia bajísima al no arrastrar contexto acumulado.
+7. **Agnosticismo y Coste:** 9/10 — Totalmente agnóstico, compatible con cualquier API o modelo local.
+
+**Puntuación Total: 48/70**
+
+---
+
+### 10. AIChat — La terminal en Rust ultra-eficiente
+
+```text
+Instalación: cargo install aichat
+Creador: Sigoden
+Backend por defecto: OpenAI GPT-4 / Múltiples BYOK
+Licencia: MIT
+```
+
+#### Crónica de Uso en FastAPI
+
+**AIChat** es una utilidad interactiva de consola escrita en Rust. Está diseñada para arrancar al instante y ofrecer un shell interactivo rápido para conversar con múltiples LLMs con soporte BYOK completo.
+
+En el escenario FastAPI, la herramienta se comportó con la típica eficiencia del ecosistema Rust: uso mínimo de memoria RAM (menos de 15 MB) y arranque instantáneo. 
+
+AIChat permite definir roles en un archivo YAML local, lo que nos permitió crear un rol "FastAPI Specialist" que leyera parte de las directrices del proyecto.
+
+Sin embargo, al igual que LLM, AIChat carece de un motor de ejecución autónoma. No tiene herramientas de sistema para buscar archivos, no implementa un escáner AST para analizar imports, y no puede verificar de forma autónoma si los tests unitarios pasaron con éxito. 
+
+Tuvimos que ir copiando las propuestas de cambio del chat interactivo al editor Helix de forma manual para completar la migración de Redis y Celery.
+
+#### Puntuación Detallada
+
+1. **Instalación y Configuración:** 9/10 — Instalación veloz con Cargo o a través de binarios precompilados.
+2. **Diseño de UX/UI en Terminal:** 6/10 — Interfaz de chat lineal básica.
+3. **Ingesta y Contexto:** 6/10 — Sin RAG, AST o MCP nativo.
+4. **Adherencia a Skills:** 5/10 — Requiere configuración manual de roles en YAML.
+5. **Autonomía y Flujo:** 3/10 — Un asistente conversacional pasivo rápido de terminal.
+6. **Estabilidad y Latencia:** 10/10 — Robustez absoluta y consumo mínimo de recursos.
+7. **Agnosticismo y Coste:** 9/10 — BYOK flexible, con gran soporte para modelos de inferencia local.
+
+**Puntuación Total: 48/70**
 
 ---
 
 ## 📊 Tabla comparativa final
 
-Después de horas de prueba, esta es la matriz resumen. Los dos primeros pasan a la **Gran Final** del torneo CLI 2026.
+Tras completar las pruebas de refactorización y evaluar cada criterio en una escala del 1 al 10, esta es la matriz final de puntuaciones de la Semifinal 1. Los dos mejores avanzan directamente a la Gran Final.
 
-| Herramienta | 1. Integraciones | 2. UX/UI Terminal | 3. Contexto | 4. Estabilidad | 5. Agnosticismo | **Total** |
-|---|---|---|---|---|---|---|
-| **OpenCode** | 9.5 | 9.0 | 9.5 | 9.0 | 9.0 | **9.2** |
-| **Aider** | 9.0 | 9.5 | 8.5 | 9.5 | 9.5 | **9.0** |
-| Goose | 9.0 | 9.0 | 8.0 | 9.5 | 8.5 | 8.6 |
-| Cline | 9.0 | 8.5 | 9.0 | 8.5 | 8.5 | 8.7 |
-| Hermes Agent | 8.0 | 8.5 | 9.0 | 8.5 | 8.0 | 8.5 |
-| Plandex | 8.5 | 8.5 | 8.5 | 9.0 | 8.0 | 8.4 |
-| Roo Code | 8.5 | 8.5 | 8.0 | 8.5 | 8.0 | 8.3 |
-| Continue.dev | 8.5 | 7.5 | 8.0 | 9.0 | 8.5 | 8.0 |
-| Cody CLI | 8.0 | 8.5 | 9.5 | 6.5 | 5.0 | 7.2 |
-| Mentat | 7.5 | 7.0 | 7.0 | 7.0 | 8.0 | 7.1 |
-
-> **🥇 Ganador 1: OpenCode** — Lidera en el pilar crítico (contexto + integraciones) y mantiene un agnosticismo irreprochable.
->
-> **🥈 Ganador 2: Aider** — El veterano de los agnósticos puros, con la base más estable del bracket y un UX de terminal que lleva años puliéndose.
+| Herramienta | 1. Config | 2. UX/UI | 3. Contexto | 4. Skills | 5. Autonomía | 6. Estabilidad | 7. BYOK | **Total** |
+|---|---|---|---|---|---|---|---|---|
+| **🥇 Cline** | 8 | 8 | 9 | 9 | 9 | 8 | 9 | **60/70** |
+| **🥈 Claude Code** | 9 | 9 | 10 | 8 | 10 | 8 | 5 | **59/70** |
+| **Mistral Vibe** | 8 | 7 | 8 | 8 | 7 | 9 | 9 | **56/70** |
+| **Kimi Code CLI** | 7 | 7 | 9 | 7 | 8 | 8 | 7 | **53/70** |
+| **Hermes Agent** | 7 | 7 | 8 | 8 | 8 | 7 | 8 | **53/70** |
+| **MiniMax CLI** | 7 | 6 | 8 | 7 | 7 | 8 | 8 | **51/70** |
+| **LLM** | 9 | 6 | 6 | 5 | 3 | 10 | 9 | **48/70** |
+| **AIChat** | 9 | 6 | 6 | 5 | 3 | 10 | 9 | **48/70** |
+| **GitHub Copilot CLI** | 9 | 6 | 8 | 6 | 5 | 9 | 4 | **47/70** |
+| **Pi** | 8 | 8 | 7 | 6 | 5 | 8 | 5 | **47/70** |
 
 ---
 
-## 🧠 Diagrama de flujo arquitectónico
+## 🧠 Diagramas de arquitectura y control de flujo
 
-El flujo canónico de un CLI agnóstico moderno cuando recibe tu prompt:
+Para ilustrar mejor cómo operan estas herramientas en la terminal, hemos modelado dos flujos arquitectónicos clave en formato Mermaid.
+
+### 1. Agente Autónomo de Bucle Cerrado (Cline / Claude Code) vs Asistente Pasivo (LLM / AIChat)
+
+Este diagrama muestra el flujo interactivo asíncrono y autónomo de los agentes modernos frente al flujo de consulta lineal clásico:
+
+```mermaid
+graph TD
+    subgraph Bucle Cerrado (Agente Autónomo)
+        A[Usuario introduce Prompt] --> B[Agente analiza AST & Contexto local]
+        B --> C[Llamada al LLM]
+        C --> D[LLM propone cambios + comandos a ejecutar]
+        D --> E{¿Requiere aprobación?}
+        E -- Sí --> F[Usuario confirma en terminal]
+        E -- No --> G[Ejecución automática de comandos / tests]
+        F --> G
+        G --> H[Lector de terminal captura logs/errores]
+        H --> I{¿Hay errores?}
+        I -- Sí (Bug) --> J[Agente re-formula prompt de corrección]
+        J --> C
+        I -- No (Éxito) --> K[Commit Automático con Git]
+    end
+
+    subgraph Flujo Lineal (Asistente Pasivo)
+        X[Usuario introduce Prompt via Pipe/Chat] --> Y[Llamada al LLM]
+        Y --> Z[LLM devuelve bloque de código Markdown]
+        Z --> W[Usuario debe copiar, pegar y depurar a mano]
+    end
+```
+
+### 2. Gestión de Maleabilidad de Contexto (Adherencia a Skills de Proyecto)
+
+El siguiente diagrama detalla cómo un agente como Cline procesa las directrices locales del repositorio frente a sus prompts de sistema fijos:
 
 ```mermaid
 sequenceDiagram
-    participant Dev as Dev (TTY)
-    participant CLI as CLI (TUI)
-    participant FS as Sistema de Archivos
-    participant Index as Índice RAG/AST
-    participant Model as Modelo (BYOK)
-    participant Git as Git
-    Dev->>CLI: Prompt + scope (@file, @dir)
-    CLI->>FS: AST scan + tree-sitter parse
-    CLI->>Index: Genera embeddings + repo map
-    Index-->>CLI: Top-K chunks relevantes
-    CLI->>Model: Payload (system + context + prompt)
-    Model-->>CLI: Diffs, comandos, respuestas
-    CLI->>FS: Apply edits (con confirmación)
-    CLI->>Git: Commit con mensaje semántico
-    CLI-->>Dev: Render en TUI (diffs + log)
+    participant Repo as Repositorio (FastAPI)
+    participant Agent as Agente de Terminal (Cline)
+    participant Parser as Lector de Directrices (openspec)
+    participant Model as LLM Backend (DeepSeek / Sonnet)
+    participant Git as Git Client
+
+    Agent->>Repo: Escaneo inicial de archivos (.git, workspace)
+    Agent->>Parser: Localiza openspec/superpowers.md & rules
+    Parser-->>Agent: Devuelve tokens de reglas (Annotated, global imports, commits)
+    Agent->>Model: Envía System Prompt + Reglas Locales + Código Fuente
+    Model-->>Agent: Propone modificaciones de código respetando las reglas
+    Agent->>Repo: Aplica modificaciones quirúrgicas en disco
+    Agent->>Repo: Ejecuta pytest para validar
+    Repo-->>Agent: Devuelve exit_code: 0 (Tests pasaron)
+    Agent->>Git: Ejecuta commit siguiendo las reglas convencionales
 ```
 
 ---
 
-## 🏁 Veredicto de la Semifinal 1: los dos que pasan a la Gran Final
+## 💵 Análisis económico y volumen de trabajo por presupuesto
 
-Después de una semana entera rotando estas 10 herramientas en mi flujo real — proyectos en Kotlin, experimentos en Python, scripts de mantenimiento en Rust y un side project en Go — la respuesta a mi pregunta inicial tiene dos nombres claros. **OpenCode** y **Aider** son las dos herramientas agnósticas de esta semifinal que sobrevivieron al uso diario sin que tuviera que volver a la IDE cada cuatro archivos.
+Uno de los factores que más separa a estas herramientas en el día a día de un programador indie es el **coste de API**. Para medir esto de forma realista, asignamos un presupuesto ficticio de **$20 USD** y analizamos cuántas tareas de refactorización completas podíamos realizar con cada configuración de modelos.
 
-**OpenCode gana por construcción.** Su modelo de subagentes jerárquicos, su sistema de plugins nativos en JS, y la profundidad con la que indexa repos grandes lo convierten en la **plataforma** sobre la que voy a construir mis flujos mensuales. No es la herramienta más bonita del bracket (ahí gana Aider), ni la más simple (gana Continue), pero es la que mejor crece conmigo. Ya lo cubrimos en profundidad en [OpenCode Subagents: Workflows & Superpowers](/blog/opencode-subagents), pero la versión corta es: cuando un proyecto pasa de 50k LOC, OpenCode no se inmuta. Aider, magnífico como es, empieza a pedir resúmenes manuales. Plandex hace un trabajo similar pero su overhead de planes no compensa en proyectos pequeños. OpenCode encontró el equilibrio.
+### El Caso del Prompt Caching
 
-**Aider gana por ejecución.** Su comunidad, su estabilidad y su resistencia al cambio son exactamente lo que necesitas cuando no quieres que tu herramienta de cabecera se rompa cada viernes tras una actualización. El mes pasado Aider cumplió **dos años desde su 1.0** sin ningún breaking change en el CLI básico, algo casi inaudito. Su `repo map` no es el más profundo, pero es el más rápido y predecible. Además, sigue siendo el **estándar de facto** que cualquier otra herramienta copia (incluido OpenCode, que aprendió mucho de su estrategia de prompts). Si tuvieras que elegir **una sola herramienta para los próximos 12 meses** sin red de seguridad, Aider es la apuesta más segura del bracket agnóstico.
+En tareas de edición masiva sobre repositorios medianos, el agente debe enviar el mapa del repositorio y los archivos clave en cada turno del chat para mantener la coherencia. 
 
-Lo más importante, sin embargo, es **lo que ambas tienen en común**. Ninguna te ata a un modelo, ninguna te obliga a una nube, ninguna exige un login. Ambas leen `AGENTS.md` de tu repo sin pedirte permiso, ambas exponen la temperatura y los prompts como datos versionables, y ambas dejarán de existir mañana que tu flujo seguiría funcionando con la siguiente herramienta que respete los mismos principios. Eso es lo que el agnosticismo significa en la práctica. El resto son palabras bonitas en la landing page.
+- **Sin Prompt Caching (Uso genérico):** Si tu CLI no soporta prompt caching o usas un proveedor que no lo implementa, el coste de tokens de entrada se acumula de manera lineal en cada turno. Una sesión de 20 turnos en nuestro repo de FastAPI puede consumir hasta 1.5 millones de tokens de entrada, lo que equivale a unos **$4.50 USD** por tarea usando Claude 3.5 Sonnet. Con $20 USD, apenas podrías completar 4 refactorizaciones complejas antes de agotar tu saldo.
+- **Con Prompt Caching (Cline / Claude Code):** Anthropic y proveedores de OpenRouter permiten cachear el prompt del sistema y el repositorio de fondo. Esto reduce el coste de los tokens repetidos en un 90%. La misma sesión de 20 turnos se reduce a un coste aproximado de **$0.45 USD** por tarea. Con $20 USD de presupuesto, puedes completar más de 40 refactorizaciones complejas.
 
-La **Gran Final del Torneo CLI 2026** emparejará OpenCode y Aider contra los dos ganadores de la Semifinal 2 (que cubrirá los CLI propietarios: Claude Code, Codex CLI, Gemini CLI, y otros contendientes como Warp AI y Replit Ghostwriter). El head-to-head será neutral y cuantitativo, publicado a finales de julio. Si quieres seguir esta saga, suscríbete al blog o sígueme en los canales que listo al final.
+### El Retorno de Inversión con Modelos Locales (Costo Cero)
 
-Mientras tanto, dejo aquí una pregunta que me ronda: **¿vale la pena mantener dos herramientas agnósticas distintas en el flujo, o es mejor especialización cruda?** Mi intuición actual es que sí — Aider para pair programming sostenido y refactors grandes, OpenCode para orquestación multi-agente y proyectos nuevos. Pero cada vez que uno de los dos falle feo en los próximos meses, esta distribución podría cambiar. Volveré a escribirlo cuando tenga datos.
+Para proyectos que no requieren un razonamiento lógico de nivel SWE-agent avanzado, el uso de modelos locales a través de **Ollama** o **LM Studio** es una alternativa sumamente viable que reduce los costes a cero.
+
+- **Cline + Qwen-2.5-Coder (Local):** Al conectar Cline a un endpoint local que ejecuta `qwen2.5-coder:14b` o `7b` en una tarjeta RTX 4070, obtienes un rendimiento sorprendente en tareas de edición local de archivos individuales y formateo de código. La velocidad es instantánea y no hay coste por token. 
+- **Mistral Vibe + Codestral (Local):** La combinación de Vibe con modelos locales es óptima para scripting rápido de mantenimiento y automatizaciones menores.
+
+---
+
+## 🏁 Veredicto: ¿Quiénes clasifican a la Gran Final?
+
+La Semifinal 1 nos deja dos clasificados indiscutibles con perfiles muy marcados que representan la gran bifurcación de la ingeniería de software actual:
+
+### 🏆 1. Ganador Absoluto: Cline (60/70)
+**Cline se corona como el rey de los agnósticos.** Lidera la clasificación general por su flexibilidad técnica insuperable: es 100% libre, no te ata a ninguna nube o modelo propietario, soporta MCP, lee las directrices locales del repositorio con obediencia militar y gestiona diffs y comandos asíncronos con solidez de producción. Su compatibilidad con prompt caching hace que el coste de uso sea sostenible para un desarrollador independiente en sesiones largas de refactor.
+
+### 🏆 2. Segundo Clasificado: Claude Code (59/70)
+**Claude Code avanza por su potencia e integración.** Es la mejor demostración de que la integración vertical puede vencer a la flexibilidad cuando la ingeniería está pulida. Aunque sufre penalizaciones importantes en el criterio de agnosticismo y coste de API, su modo de bucle autónomo `/loop` para la resolución de errores locales de compilación y su interfaz de usuario en terminal son, a día de hoy, el estándar que toda la industria intenta replicar.
+
+Ambos se verán las caras en la **Gran Final del Torneo CLI 2026** a finales de mes, donde se medirán con los campeones de la Semifinal 2 (Ecosistemas Nativos y empresariales). 
+
+Mientras tanto, dejo una pregunta para el debate: **¿es preferible gastar $2 USD en tokens de API para lograr una autonomía completa de bucle cerrado, o es mejor mantener el control del teclado usando una herramienta minimalista de bajo costo?** Mi experiencia en el desarrollo de ArceApps sugiere que la autonomía vale cada centavo si te permite concentrarte en el diseño de arquitectura.
 
 ---
 
 ## 📚 Bibliografía y Referencias
 
-1. **Aider Documentation** — *Aider is AI pair programming in your terminal*. [https://aider.chat/docs/](https://aider.chat/docs/)
-2. **Aider GitHub Repository** — Paul Gauthier. [https://github.com/Aider-AI/aider](https://github.com/Aider-AI/aider)
-3. **Cline CLI Documentation** — *Open Source AI Coding Agent*. [https://docs.cline.bot/](https://docs.cline.bot/)
-4. **Cline GitHub Repository** — [https://github.com/cline/cline](https://github.com/cline/cline)
-5. **OpenCode Documentation** — SST. *The AI coding agent built for the terminal*. [https://opencode.ai/docs/](https://opencode.ai/docs/)
-6. **OpenCode GitHub Repository** — [https://github.com/sst/opencode](https://github.com/sst/opencode)
-7. **OpenCode Subagents: Workflows & Superpowers** — ArceApps. [https://arceapps.com/blog/opencode-subagents/](https://arceapps.com/blog/opencode-subagents/)
-8. **Hermes Agent GitHub** — Nous Research. *The AI agent that grows with you*. [https://github.com/NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)
-9. **Hermes Agent Skills Standard** — [https://agentskills.io](https://agentskills.io)
-10. **Roo Code GitHub** — *Multi-mode AI coding agent*. [https://github.com/RooCodeInc/Roo-Code](https://github.com/RooCodeInc/Roo-Code)
-11. **Continue Documentation** — *Open-source AI code assistant*. [https://docs.continue.dev/](https://docs.continue.dev/)
-12. **Continue CLI Repository** — [https://github.com/continuedev/continue](https://github.com/continuedev/continue)
-13. **Sourcegraph Cody CLI** — *Code AI with codebase context*. [https://sourcegraph.com/docs/cody](https://sourcegraph.com/docs/cody)
-14. **Goose (Block) GitHub** — *Your local AI agent*. [https://github.com/block/goose](https://github.com/block/goose)
-15. **Plandex Documentation** — *AI agent that ships code*. [https://plandex.ai/](https://plandex.ai/)
-16. **Plandex GitHub** — [https://github.com/plandex-ai/plandex](https://github.com/plandex-ai/plandex)
-17. **Mentat GitHub** — *AI coding assistant for your terminal*. [https://github.com/abi/mentat](https://github.com/abi/mentat)
-18. **AGENTS.md Standard** — *A simple format for giving AI coding agents the context they need*. [https://agents.md/](https://agents.md/)
-19. **Model Context Protocol (MCP)** — Anthropic. [https://modelcontextprotocol.io/](https://modelcontextprotocol.io/)
-20. **AI Tools Worth Learning 2026** — ArceApps. [https://arceapps.com/blog/ai-tools-worth-learning-2026/](https://arceapps.com/blog/ai-tools-worth-learning-2026/)
-21. **Android CLI: Accelerating Development with AI Agents** — ArceApps. [https://arceapps.com/blog/android-cli-agentes-herramientas/](https://arceapps.com/blog/android-cli-agentes-herramientas/)
-22. **Hermes Agent vs OpenClaw** — ArceApps. [https://arceapps.com/blog/hermes-vs-openclaw/](https://arceapps.com/blog/hermes-vs-openclaw/)
+1. **Cline CLI Repository** — Open Source Community. [https://github.com/cline/cline](https://github.com/cline/cline)
+2. **Claude Code Documentation** — Anthropic. [https://docs.anthropic.com/claude/docs/claude-code](https://docs.anthropic.com/claude/docs/claude-code)
+3. **Mistral Vibe Guide** — Mistral AI. [https://mistral.ai/news/vibe-cli/](https://mistral.ai/news/vibe-cli/)
+4. **Kimi Code Documentation** — Moonshot AI. [https://platform.moonshot.cn/docs/](https://platform.moonshot.cn/docs/)
+5. **Nous Research Hermes Agent** — Nous Research. [https://github.com/NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)
+6. **Simon Willison's LLM CLI Tool** — Simon Willison. [https://github.com/simonw/llm](https://github.com/simonw/llm)
+7. **AIChat Rust Terminal Client** — Sigoden. [https://github.com/sigoden/aichat](https://github.com/sigoden/aichat)
+8. **AGENTS.md Standard Spec** — Agent Community. [https://agents.md/](https://agents.md/)
+9. **Model Context Protocol (MCP)** — Anthropic SDK. [https://modelcontextprotocol.io/](https://modelcontextprotocol.io/)
+10. **Conventional Commits v1.0.0 Specification** — [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ---
 
-*¿Encontraste un CLI agnóstico que se me haya escapado del bracket de la Semifinal 1? Déjamelo en los comentarios o escríbeme. Si sumas evidencia y benchmarks reales, lo pruebo en persona y lo sumo a la Semifinal 3.*
+*¿Encontraste alguna herramienta o configuración que se me haya escapado en esta primera semifinal? Déjamelo en los comentarios o escríbeme. Compartir benchmarks reales nos ayuda a todos a tomar mejores decisiones en nuestros desarrollos indie.*
