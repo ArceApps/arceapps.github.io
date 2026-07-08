@@ -30,10 +30,10 @@
 - Modify: [es/cli-ai-grand-final.md](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/content/blog/es/cli-ai-grand-final.md)
 
 **Acceptance for this task:**
-- [ ] All English version links in the Spanish article use absolute URLs `https://arceapps.com/...` to bypass link rewriting.
+- [x] All English version links in the Spanish article use absolute URLs `https://arceapps.com/...` to bypass link rewriting.
 
 **Steps:**
-- [ ] **Step 1: Replace relative links to English versions with absolute URLs**
+- [x] **Step 1: Replace relative links to English versions with absolute URLs**
   - Line 16: `[Semifinal 1 — agnostic block (EN)](/blog/cli-ai-semifinal-1/)` -> `[Semifinal 1 — agnostic block (EN)](https://arceapps.com/blog/cli-ai-semifinal-1/)`
   - Line 17: `[Semifinal 2 — native block (EN)](/blog/cli-ai-semifinal-2/)` -> `[Semifinal 2 — native block (EN)](https://arceapps.com/blog/cli-ai-semifinal-2/)`
   - Line 19: `[AI Tools Worth Learning in 2026 (EN)](/blog/ai-tools-worth-learning-2026/)` -> `[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/ai-tools-worth-learning-2026/)`
@@ -43,7 +43,7 @@
   - Line 666: `[AI Tools Worth Learning in 2026 (EN)](/blog/ai-tools-worth-learning-2026/)` -> `[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/ai-tools-worth-learning-2026/)`
   - Line 667: `[OpenCode Subagents: Workflows & Superpowers (EN)](/blog/opencode-subagents/)` -> `[OpenCode Subagents: Workflows & Superpowers (EN)](https://arceapps.com/blog/opencode-subagents/)`
   - Line 670: `[Android CLI: Accelerating Development with AI Agents (EN)](/blog/android-cli-agentes-herramientas/)` -> `[Android CLI: Accelerating Development with AI Agents (EN)](https://arceapps.com/blog/android-cli-agentes-herramientas/)`
-- [ ] **Step 2: Commit Spanish link corrections**
+- [x] **Step 2: Commit Spanish link corrections**
   ```bash
   git add src/content/blog/es/cli-ai-grand-final.md
   git commit -m "fix: correct English target links in Spanish final article"
