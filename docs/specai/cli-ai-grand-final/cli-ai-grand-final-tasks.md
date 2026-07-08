@@ -57,10 +57,10 @@
 - Modify: [en/cli-ai-grand-final.md](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/content/blog/en/cli-ai-grand-final.md)
 
 **Acceptance for this task:**
-- [ ] Related articles' slugs and labels/titles are fully corrected to match English versions.
+- [x] Related articles' slugs and labels/titles are fully corrected to match English versions.
 
 **Steps:**
-- [ ] **Step 1: Replace Spanish slugs in English links**
+- [x] **Step 1: Replace Spanish slugs in English links**
   - Line 19: `/blog/servidores-mcp-memoria-cross-agent/` -> `/blog/mcp-servers-memory-cross-agent/`
   - Line 19: `/blog/opencode-plugins-memoria-nativos/` -> `/blog/opencode-memory-plugins-native/`
   - Line 98: `/blog/servidores-mcp-memoria-cross-agent/` -> `/blog/mcp-servers-memory-cross-agent/`
@@ -70,10 +70,10 @@
   - Line 668: `/blog/servidores-mcp-memoria-cross-agent/` -> `/blog/mcp-servers-memory-cross-agent/`
   - Line 669: `/blog/opencode-plugins-memoria-nativos/` -> `/blog/opencode-memory-plugins-native/`
   - Line 671: `/blog/loop-engineering-desarrollo-movil` -> `/blog/loop-engineering-mobile-development/`
-- [ ] **Step 2: Translate Spanish Related Article titles/labels**
+- [x] **Step 2: Translate Spanish Related Article titles/labels**
   - Line 671: `[Loop Engineering: de Prompts a Sistemas Autónomos]` -> `[Loop Engineering: From Prompts to Autonomous Systems]`
   - Line 672: `[Harness Engineering: el wrapper que gana]` -> `[Harness Engineering: The Wrapper that Wins]`
-- [ ] **Step 3: Commit English link and translation fixes**
+- [x] **Step 3: Commit English link and translation fixes**
   ```bash
   git add src/content/blog/en/cli-ai-grand-final.md
   git commit -m "fix: correct slugs and labels in English final article"

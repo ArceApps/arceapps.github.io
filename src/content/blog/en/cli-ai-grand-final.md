@@ -16,7 +16,7 @@ reference_id: "CLI-AI-FINAL-2026-CHAMPION-003-V2"
 > - **[Semifinal 1 — the agnostic block](/blog/cli-ai-semifinal-1/)**: the 10 BYOK contenders, with OpenCode (9.2/10) and Aider (9.0/10) advancing to this final.
 > - **[Semifinal 2 — the native block](/blog/cli-ai-semifinal-2/)**: the 10 vendor-locked contenders, with Claude Code (36/40) and Trae CLI (34/40) advancing.
 >
-> And if you want to understand the "why" behind agnosticism, harnesses, and model choice, I have three articles that cover the conceptual framework on which this tournament rests: **[AI Tools Worth Learning in 2026](/blog/ai-tools-worth-learning-2026/)**, **[OpenCode Subagents: Workflows & Superpowers](/blog/opencode-subagents/)** and the **[MCP servers and cross-agent memory](/blog/servidores-mcp-memoria-cross-agent/)** piece with its twin on **[OpenCode native memory plugins](/blog/opencode-plugins-memoria-nativos/)**.
+> And if you want to understand the "why" behind agnosticism, harnesses, and model choice, I have three articles that cover the conceptual framework on which this tournament rests: **[AI Tools Worth Learning in 2026](/blog/ai-tools-worth-learning-2026/)**, **[OpenCode Subagents: Workflows & Superpowers](/blog/opencode-subagents/)** and the **[MCP servers and cross-agent memory](/blog/mcp-servers-memory-cross-agent/)** piece with its twin on **[OpenCode native memory plugins](/blog/opencode-memory-plugins-native/)**.
 
 ---
 
@@ -95,7 +95,7 @@ What makes it unique in the bracket is the **isolated-context subagent model**: 
 
 OpenCode's context is **the deepest of the agnostic block**. It implements `repomix`-style AST scanning with `tree-sitter`, local embeddings with `transformers.js` (all offline, nothing is sent to the cloud for indexing), and a hierarchical chunk engine that respects the repository structure. In my tests with a 312-file Kotlin Multiplatform monorepo, `@explore` mapped the full tree in 4.1 seconds and returned a navigable graph of 2,847 symbols. The embedding cache lives in `.opencode/cache/` and is reused between sessions.
 
-It supports the scope modifiers `@file`, `@dir`, `@symbol`, `@git-diff`, and the —still beta— `@cross-file` for reasoning about signatures shared across multiple files. Compaction activates at 80% of the window, not 70% like Aider, so more live context fits. MCP server integration is native from the binary: a `mcp.json` activates servers automatically without needing an external wrapper. And here I connect with what we covered in **[MCP servers and cross-agent memory](/blog/servidores-mcp-memoria-cross-agent/)**: OpenCode is probably the most comfortable MCP client in the agnostic block.
+It supports the scope modifiers `@file`, `@dir`, `@symbol`, `@git-diff`, and the —still beta— `@cross-file` for reasoning about signatures shared across multiple files. Compaction activates at 80% of the window, not 70% like Aider, so more live context fits. MCP server integration is native from the binary: a `mcp.json` activates servers automatically without needing an external wrapper. And here I connect with what we covered in **[MCP servers and cross-agent memory](/blog/mcp-servers-memory-cross-agent/)**: OpenCode is probably the most comfortable MCP client in the agnostic block.
 
 #### Generation quality and diff handling
 
@@ -246,8 +246,8 @@ This is Claude Code's true ground. Anthropic has invested heavily in **long-dura
 
 - **Automatic compaction**: when the context approaches the limit, Claude summarizes previous turns intelligently, preserving architectural decisions and discarding conversational noise. Compaction activates at 80% of the window.
 - **Subagents with isolated context**: each subagent has its own window, avoiding contaminating the main context. This is exactly the same philosophy that OpenCode implements in the agnostic block, but here it's tuned for Claude 4.6.
-- **Dynamic skills**: `.claude/skills/<name>/SKILL.md` files that Claude discovers and loads on demand when it detects the task requires them. If you want to understand the "dynamic skills" pattern well, look at **[OpenCode plugins: native memory](/blog/opencode-plugins-memoria-nativos/)** which covers the same concept from the agnostic side.
-- **MCP (Model Context Protocol)**: Anthropic's open standard for connecting external tools. Claude Code is **the most mature MCP client on the market**, and that connects directly with what we covered in **[MCP servers and cross-agent memory](/blog/servidores-mcp-memoria-cross-agent/)**.
+- **Dynamic skills**: `.claude/skills/<name>/SKILL.md` files that Claude discovers and loads on demand when it detects the task requires them. If you want to understand the "dynamic skills" pattern well, look at **[OpenCode plugins: native memory](/blog/opencode-memory-plugins-native/)** which covers the same concept from the agnostic side.
+- **MCP (Model Context Protocol)**: Anthropic's open standard for connecting external tools. Claude Code is **the most mature MCP client on the market**, and that connects directly with what we covered in **[MCP servers and cross-agent memory](/blog/mcp-servers-memory-cross-agent/)**.
 
 In the private "Repository of Shame" benchmark, Claude Code was the only tool that, after 73 turns, still remembered the exact name of the `validateCashFloatAtMidnight()` function defined at turn 14, without needing to re-read the file. That's the signature of intelligent compaction.
 
@@ -548,7 +548,7 @@ Because **the best tool isn't the purest, it's the one you'll still be using twe
 
 1. **Mature automatic compaction**: Claude 4.6 Opus summarizes previous turns while preserving architectural decisions, and it does it better than any other model on the market. In the private "Repository of Shame" benchmark, after 73 turns Claude Code still remembered the exact name of a function defined at turn 14 without re-reading anything. OpenCode got to 58 turns before starting to lose symbols.
 
-2. **Most polished MCP client**: we already covered the theory of MCP in **[MCP servers and cross-agent memory](/blog/servidores-mcp-memoria-cross-agent/)**, but Claude Code's native implementation is the most polished on the market. It connects to GitHub, to databases, to internal services, to remote filesystems — all with human confirmation by default and a granular permission system. OpenCode also supports MCP, but the client is more recent and still has rough edges.
+2. **Most polished MCP client**: we already covered the theory of MCP in **[MCP servers and cross-agent memory](/blog/mcp-servers-memory-cross-agent/)**, but Claude Code's native implementation is the most polished on the market. It connects to GitHub, to databases, to internal services, to remote filesystems — all with human confirmation by default and a granular permission system. OpenCode also supports MCP, but the client is more recent and still has rough edges.
 
 3. **Real model-tool synergy**: when Anthropic designed Claude Code, they didn't design a generic wrapper. They designed the tool from line one with Claude's reasoning model in mind. That synergy is what shows up in the 81% first-attempt accuracy —vs OpenCode's 72% with the same Sonnet 4.6—. The native harness isn't garnish: it is half the product.
 
@@ -613,7 +613,7 @@ We tend to celebrate the champion as if the tournament were over. Mistake. **In 
 
 ### The movement we're missing
 
-Beyond brands, **the movement that really matters in 2026-2027 is the standardization of protocols**. **Model Context Protocol (MCP)** is already a de facto standard —we covered it in depth in [MCP servers and cross-agent memory](/blog/servidores-mcp-memoria-cross-agent/)—. What's missing is **Agent-to-Agent Protocol (A2A)** so that different agents can negotiate tasks among themselves. When that arrives, **the question will no longer be "which CLI do I use?" but "which agent orchestrator do I use?"**. And there the field is wide open again.
+Beyond brands, **the movement that really matters in 2026-2027 is the standardization of protocols**. **Model Context Protocol (MCP)** is already a de facto standard —we covered it in depth in [MCP servers and cross-agent memory](/blog/mcp-servers-memory-cross-agent/)—. What's missing is **Agent-to-Agent Protocol (A2A)** so that different agents can negotiate tasks among themselves. When that arrives, **the question will no longer be "which CLI do I use?" but "which agent orchestrator do I use?"**. And there the field is wide open again.
 
 ### What I've learned
 
@@ -665,11 +665,11 @@ See you at the AI CLI Tournament 2027. I have a hunch that the champion then wil
 - **[Semifinal 2 — the native block](/blog/cli-ai-semifinal-2/)**: how Claude Code and Trae CLI earned theirs.
 - **[AI Tools Worth Learning in 2026](/blog/ai-tools-worth-learning-2026/)**: the full landscape of agent tools and why agnosticism matters.
 - **[OpenCode Subagents: Workflows & Superpowers](/blog/opencode-subagents/)**: in-depth analysis of the Semifinal 1 winner, its subagent architecture, and the JS plugin system.
-- **[MCP servers and cross-agent memory](/blog/servidores-mcp-memoria-cross-agent/)**: how MCP changed the game and why Claude Code is the most mature client.
-- **[OpenCode plugins: native memory](/blog/opencode-plugins-memoria-nativos/)**: the agnostic side of persistent memory, complementary to the MCP article.
+- **[MCP servers and cross-agent memory](/blog/mcp-servers-memory-cross-agent/)**: how MCP changed the game and why Claude Code is the most mature client.
+- **[OpenCode plugins: native memory](/blog/opencode-memory-plugins-native/)**: the agnostic side of persistent memory, complementary to the MCP article.
 - **[Android CLI: Accelerating Development with AI Agents](/blog/android-cli-agentes-herramientas/)**: the immediate precedent that motivated this whole series.
-- **[Loop Engineering: de Prompts a Sistemas Autónomos](/blog/loop-engineering-desarrollo-movil)**: the mental architecture for designing agentic loops.
-- **[Harness Engineering: el wrapper que gana](/blog/harness-engineering-wrapper-gana)**: why the model-tool binomial is still decisive.
+- **[Loop Engineering: From Prompts to Autonomous Systems](/blog/loop-engineering-mobile-development/)**: the mental architecture for designing agentic loops.
+- **[Harness Engineering: The Wrapper that Wins](/blog/harness-engineering-wrapper-gana/)**: why the model-tool binomial is still decisive.
 
 ---
 
