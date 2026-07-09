@@ -19,37 +19,37 @@
 
 ---
 
-## Task 2: Create Spanish Semifinal Article
+## Task 2: Create Spanish Semifinal Article [x]
 
 **Files:**
 - Create: `src/content/blog/es/open-source-ai-ides-semifinal.md`
 
 **Acceptance for this task:**
-- [ ] Article is written in Spanish (indie creator tone, voseo when referring to the reader, but matching the persona scope constraints).
-- [ ] Frontmatter matches the Astro Zod schema (`title`, `description`, `pubDate`, `lastmod`, `keywords`, `canonical`, `heroImage`, `tags`, `reference_id`).
-- [ ] Content exceeds 1500 words and follows the structure: Gancho, Contexto, Deep Dive (evaluating 10 tools), Lecciones Aprendidas, Bibliografía, Cierre.
-- [ ] Enlaces to existing related posts in the blog (e.g., `opencode-subagents` or other articles discovered).
+- [x] Article is written in Spanish (indie creator tone, voseo when referring to the reader, but matching the persona scope constraints).
+- [x] Frontmatter matches the Astro Zod schema (`title`, `description`, `pubDate`, `lastmod`, `keywords`, `canonical`, `heroImage`, `tags`, `reference_id`).
+- [x] Content exceeds 1500 words and follows the structure: Gancho, Contexto, Deep Dive (evaluating 10 tools), Lecciones Aprendidas, Bibliografía, Cierre.
+- [x] Enlaces to existing related posts in the blog (e.g., `opencode-subagents` or other articles discovered).
 
 **Steps:**
-- [ ] **Step 1: Write the article in Spanish**
+- [x] **Step 1: Write the article in Spanish**
   Create `src/content/blog/es/open-source-ai-ides-semifinal.md` using the research report.
-- [ ] **Step 2: Generate reference_id**
+- [x] **Step 2: Generate reference_id**
   Generate a unique UUID v4 and assign it to the `reference_id` field in the frontmatter.
 
 ---
 
-## Task 3: Create English Semifinal Article
+## Task 3: Create English Semifinal Article [x]
 
 **Files:**
 - Create: `src/content/blog/en/open-source-ai-ides-semifinal.md`
 
 **Acceptance for this task:**
-- [ ] English version is a symmetrical translation of the Spanish version (indie creator tone, natural English).
-- [ ] Frontmatter matches the Zod schema and uses the exact same `reference_id`, `pubDate`, `lastmod`, and slug.
-- [ ] Content exceeds 1500 words and follows the identical narrative structure.
+- [x] English version is a symmetrical translation of the Spanish version (indie creator tone, natural English).
+- [x] Frontmatter matches the Zod schema and uses the exact same `reference_id`, `pubDate`, `lastmod`, and slug.
+- [x] Content exceeds 1500 words and follows the identical narrative structure.
 
 **Steps:**
-- [ ] **Step 1: Translate and write the article in English**
+- [x] **Step 1: Translate and write the article in English**
   Create `src/content/blog/en/open-source-ai-ides-semifinal.md`.
 
 ---
