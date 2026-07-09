@@ -1,0 +1,26 @@
+=== SORTEO TORNEO GUI IA 2026 ===
+Fecha del sorteo: 2026-07-08
+Semilla: sha256("2026-07-08")[0..8] = 3471074006 (hex cee462d6)
+Algoritmo: Fisher-Yates sembrado con PRNG Mulberry32
+PRNG reproducible: ejecutar este script devuelve el mismo orden.
+Formato del torneo: round-robin todos contra todos en cada semifinal.
+Final: 2 ganadores de SF1 + 2 ganadores de SF2, comparativa real sin bracket.
+
+Nota: el round-robin implica que los cruces de a pares solo son para
+orden narrativo. Todas las apps se enfrentan entre si en cada semifinal.
+
+--- SF1 Occidental ---
+Orden barajado: W2(Windsurf), W5(Claude Desktop), W3(Zed), W7(JetBrains AI Assistant), W1(Cursor), W6(ChatGPT Desktop), W8(Cline), W4(GitHub Copilot)
+Bloques narrativos (orden de presentacion):
+  Bloque 1: Windsurf [W2] vs Claude Desktop [W5]
+  Bloque 2: Zed [W3] vs JetBrains AI Assistant [W7]
+  Bloque 3: Cursor [W1] vs ChatGPT Desktop [W6]
+  Bloque 4: Cline [W8] vs GitHub Copilot [W4]
+
+--- SF2 Chino ---
+Orden barajado: C8(iFlyCode), C4(MiniMax), C1(DeepSeek Desktop), C3(Qwen / Tongyi Yuanbao), C2(Kimi), C6(Doubao), C5(Mimo), C7(Lingma)
+Bloques narrativos (orden de presentacion):
+  Bloque 1: iFlyCode [C8] vs MiniMax [C4]
+  Bloque 2: DeepSeek Desktop [C1] vs Qwen / Tongyi Yuanbao [C3]
+  Bloque 3: Kimi [C2] vs Doubao [C6]
+  Bloque 4: Mimo [C5] vs Lingma [C7]
