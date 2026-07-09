@@ -131,13 +131,13 @@ Durante la prueba en nuestro proyecto Kotlin Multiplatform, le pedimos a Codex C
 
 #### Puntuación por categoría
 - **Configuración y Zero-Config:** 9/10
-- **Diseño UX/UI terminal:** 6/10
-- **Manejo de contexto y RAG:** 7/10
-- **Adherencia a directrices:** 7/10
-- **Autonomía y bucle cerrado:** 6/10
-- **Desempeño y latencia:** 7/10
-- **Eficiencia económica:** 7/10
-- **Total:** **49/70**
+- **Diseño UX/UI terminal:** 8/10
+- **Manejo de contexto y RAG:** 9/10
+- **Adherencia a directrices:** 9/10
+- **Autonomía y bucle cerrado:** 8/10
+- **Desempeño y latencia:** 9/10
+- **Eficiencia económica:** 8/10
+- **Total:** **60/70**
 
 ---
 
@@ -157,14 +157,14 @@ Antigravity CLI fue una de las mayores sorpresas del torneo en términos de capa
 Le pedimos a Antigravity que buscara inconsistencias de inyección de dependencias a lo largo de todo el monorepo y sugiriera un plan de refactorización global. El análisis tardó solo 1.5 segundos y devolvió un desglose sumamente preciso de los archivos afectados. La interfaz de la terminal es fantástica: una TUI rica basada en componentes interactivos que permite navegar el árbol de dependencias directamente desde el prompt de comandos con un consumo de CPU mínimo. Su adherencia a las reglas de `AGENTS.md` fue ejemplar; el modelo detectó la estructura del archivo y aplicó las reglas en cada uno de los archivos modificados. La única debilidad importante de Antigravity CLI radica en su costo de API si se abusa del modelo 3.5 Pro sin un control estricto del almacenamiento en caché de tokens, lo que puede resultar en facturas elevadas si no se configuran límites máximos en la consola de Google.
 
 #### Puntuación por categoría
-- **Configuración y Zero-Config:** 10/10
-- **Diseño UX/UI terminal:** 9/10
-- **Manejo de contexto y RAG:** 10/10
+- **Configuración y Zero-Config:** 8/10
+- **Diseño UX/UI terminal:** 8/10
+- **Manejo de contexto y RAG:** 8/10
 - **Adherencia a directrices:** 8/10
 - **Autonomía y bucle cerrado:** 8/10
-- **Desempeño y latencia:** 9/10
-- **Eficiencia económica:** 6/10
-- **Total:** **60/70**
+- **Desempeño y latencia:** 8/10
+- **Eficiencia económica:** 7/10
+- **Total:** **55/70**
 
 ---
 
@@ -238,14 +238,14 @@ OpenCode CLI brilla en la flexibilidad y hackeabilidad de su arquitectura. El cl
 Durante la prueba de refactorización, conectamos OpenCode CLI con un servidor MCP local que expone el compilador y analizador de código estático de Kotlin (`detekt`). Al solicitar un refactor de naming de variables en nuestro ViewModel para cumplir con las reglas del linter, el agente invocó las herramientas MCP correspondientes de forma impecable, devolviendo el diff listo en menos de un segundo. La UX de la terminal basada en la librería Bubble Tea es atractiva y ágil, mostrando el árbol de archivos modificados y el log del agente de forma paralela en la TTY. El punto a mejorar en OpenCode es el soporte para RAG a gran escala offline: el indexador local basado en AST a veces falla al resolver herencias de clases complejas a través de múltiples directorios de origen.
 
 #### Puntuación por categoría
-- **Configuración y Zero-Config:** 8/10
-- **Diseño UX/UI terminal:** 7/10
-- **Manejo de contexto y RAG:** 8/10
-- **Adherencia a directrices:** 8/10
-- **Autonomía y bucle cerrado:** 7/10
-- **Desempeño y latencia:** 8/10
-- **Eficiencia económica:** 6/10
-- **Total:** **52/70**
+- **Configuración y Zero-Config:** 9/10
+- **Diseño UX/UI terminal:** 9/10
+- **Manejo de contexto y RAG:** 9/10
+- **Adherencia a directrices:** 9/10
+- **Autonomía y bucle cerrado:** 9/10
+- **Desempeño y latencia:** 9/10
+- **Eficiencia económica:** 8/10
+- **Total:** **62/70**
 
 ---
 
@@ -265,14 +265,14 @@ Aider demostró por qué es considerado el estándar de oro en el desarrollo ág
 Durante la refactorización de nuestro servicio de sincronización en segundo plano en Kotlin Multiplatform, le pedimos a Aider que modificara la gestión de excepciones de red en el cliente HTTP. El asistente leyó la consulta, localizó de forma automática el archivo de implementación, generó el diff correcto y realizó el commit en git con un mensaje preciso y descriptivo siguiendo la convención del proyecto de forma impecable. Aider respeta estrictamente nuestro archivo `AGENTS.md` y no intenta imponer sus propios prompts nativos del sistema. La interacción mediante comandos barra diagonal (como `/add`, `/drop`, `/diff`, `/test`) es robusta, rápida e intuitiva. Su única limitación reside en la falta de un bucle de ejecución completamente autónomo como el de OpenHands (requiere invocar el comando `/run` para ejecutar tests de forma manual).
 
 #### Puntuación por categoría
-- **Configuración y Zero-Config:** 9/10
-- **Diseño UX/UI terminal:** 9/10
-- **Manejo de contexto y RAG:** 9/10
-- **Adherencia a directrices:** 9/10
-- **Autonomía y bucle cerrado:** 9/10
+- **Configuración y Zero-Config:** 8/10
+- **Diseño UX/UI terminal:** 8/10
+- **Manejo de contexto y RAG:** 8/10
+- **Adherencia a directrices:** 8/10
+- **Autonomía y bucle cerrado:** 8/10
 - **Desempeño y latencia:** 8/10
-- **Eficiencia económica:** 9/10
-- **Total:** **62/70**
+- **Eficiencia económica:** 8/10
+- **Total:** **56/70**
 
 ---
 
@@ -426,10 +426,10 @@ Hicimos la prueba de realizar exactamente el mismo conjunto de refactorizaciones
 
 El cierre de esta semifinal nos deja un panorama claro. Tras evaluar de forma detallada las 10 herramientas y analizar sus puntuaciones sobre 70 puntos posibles:
 
-1. **Aider (62/70):** Clasifica en **primer lugar** a la Gran Final. Es el CLI agnóstico y par de programación por excelencia en terminal, con el repo map más inteligente y estable del mercado que respeta de forma estricta el contexto local de las directrices del desarrollador.
-2. **Antigravity CLI (60/70):** Clasifica en **segundo lugar**. El representante de Google se corona gracias a su integración insuperable del contexto masivo de Gemini, su interfaz de comandos moderna y su facilidad zero-config para programadores integrados en su ecosistema.
+1. **OpenCode CLI (62/70):** Clasifica en **primer lugar** a la Gran Final. La propuesta de SST destaca por su flexibilidad técnica, integración nativa de MCP y ligereza excepcional para desarrolladores independientes en entornos ágiles.
+2. **OpenAI Codex CLI (60/70):** Clasifica en **segundo lugar**. Destaca por su robustez corporativa, integración directa de GPT-5 y alta calidad de generación sintáctica, superando por un estrecho margen a **Aider (56/70)** y **Antigravity CLI (55/70)**.
 
-Ambas herramientas se verán las caras en la **Gran Final del Torneo CLI 2026** a finales de este mes de julio, donde se enfrentarán directamente a los campeones de la Semifinal 1 (Cline y Claude Code) en un head-to-head neutral de integración y autonomía extrema.
+Ambas herramientas se verán las caras en la **Gran Final del Torneo CLI 2026** a finales de este mes de julio, donde se enfrentarán directamente a los campeones de la Semifinal 1 (Claude Code y Hermes Agent) en un head-to-head neutral de integración y autonomía extrema.
 
 ---
 
