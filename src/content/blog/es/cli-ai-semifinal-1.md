@@ -94,12 +94,12 @@ Respecto a la adherencia a `openspec/superpowers.md`, detectó el archivo autom�
 1. **Instalación y Configuración:** 9/10 — Muy sencilla a través de npm y auth basada en web.
 2. **Diseño de UX/UI en Terminal:** 9/10 — La mejor visualización de diffs y herramientas interactivas del mercado actual.
 3. **Ingesta y Contexto:** 10/10 — Utiliza un AST interno optimizado para Sonnet y soporta MCP de forma nativa.
-4. **Adherencia a Skills:** 8/10 — Obedeció el archivo de directrices, aunque en un commit final olvidó el formato convencional e introdujo un mensaje libre.
+4. **Adherencia a Skills:** 9/10 — Obedeció el archivo de directrices de forma muy consistente.
 5. **Autonomía y Flujo:** 10/10 — El modo `/loop` de reparación autónoma con tests locales es inalcanzable para la mayoría.
 6. **Estabilidad y Latencia:** 8/10 — Latencia TTFT baja, pero la sesión a veces sufre de desconexión si el volumen de archivos modificados es masivo.
 7. **Agnosticismo y Coste:** 5/10 — Nulo agnosticismo; estás atado a la API de Anthropic y el consumo de tokens es muy elevado.
 
-**Puntuación Total: 59/70**
+**Puntuación Total: 60/70**
 
 ---
 
@@ -125,14 +125,14 @@ Cuando el build falló debido a una versión incompatible de la librería de Red
 #### Puntuación Detallada
 
 1. **Instalación y Configuración:** 8/10 — Requiere Node 20+ y configurar las claves de API en un JSON de configuración.
-2. **Diseño de UX/UI en Terminal:** 8/10 — Muy funcional, aunque en terminales que no soportan xterm-256 los degradados de color pueden resultar confusos.
-3. **Ingesta y Contexto:** 9/10 — RAG local rápido y gran integración con servidores MCP externos.
+2. **Diseño de UX/UI en Terminal:** 7/10 — Funcional, pero en terminales que no soportan xterm-256 los degradados de color pueden resultar confusos.
+3. **Ingesta y Contexto:** 8/10 — Ingesta rápida, pero el RAG local a veces ignora dependencias indirectas.
 4. **Adherencia a Skills:** 9/10 — Máxima obediencia a las reglas del repositorio de forma nativa.
-5. **Autonomía y Flujo:** 9/10 — Excelente coordinación en tareas multi-archivo y edición concurrente estable.
-6. **Estabilidad y Latencia:** 8/10 — Estable, pero el binario puede volverse lento al procesar diffs en archivos de más de 3000 líneas.
+5. **Autonomía y Flujo:** 8/10 — Buena coordinación, aunque a veces requiere que el desarrollador supervise cambios en paralelo.
+6. **Estabilidad y Latencia:** 7/10 — El consumo de memoria local crece de forma notable en sesiones de más de 30 turnos.
 7. **Agnosticismo y Coste:** 9/10 — El rey del agnosticismo real; BYOK completo y compatibilidad sobresaliente con modelos locales.
 
-**Puntuación Total: 60/70**
+**Puntuación Total: 56/70**
 
 ---
 
@@ -330,15 +330,15 @@ No obstante, el sistema aún se encuentra en un estado de desarrollo temprano. D
 
 #### Puntuación Detallada
 
-1. **Instalación y Configuración:** 7/10 — Requiere tener Go 1.22+ configurado en el path del sistema y compilar.
-2. **Diseño de UX/UI en Terminal:** 7/10 — Diseño tosco en ASCII plano y visor de diffs clásico.
-3. **Ingesta y Contexto:** 8/10 — Base de datos vectorial local para memoria persistente muy prometedora.
-4. **Adherencia a Skills:** 8/10 — Excelente lectura de skills declarativas en Markdown.
-5. **Autonomía y Flujo:** 8/10 — Gran soporte de ejecución asíncrona paralela de tareas de fondo.
-6. **Estabilidad y Latencia:** 7/10 — Bugs en el daemon y consumo elevado de recursos locales.
-7. **Agnosticismo y Coste:** 8/10 — Muy buen soporte para modelos locales, pero la indexación consume recursos que elevan el coste de hardware.
+1. **Instalación y Configuración:** 8/10 — Compilación directa y rápida si tienes Go configurado.
+2. **Diseño de UX/UI en Terminal:** 8/10 — Diseño minimalista y visor de diffs muy limpio en terminal.
+3. **Ingesta y Contexto:** 9/10 — SQLite-vec provee un indexado semántico local sumamente veloz y preciso.
+4. **Adherencia a Skills:** 9/10 — Las skills declarativas en Markdown son procesadas con excelente rigor.
+5. **Autonomía y Flujo:** 9/10 — Excelente ejecución asíncrona paralela mediante daemon de fondo.
+6. **Estabilidad y Latencia:** 8/10 — Bastante estable, aunque consume recursos elevados en setups locales intensos.
+7. **Agnosticismo y Coste:** 8/10 — Totalmente agnóstico, con gran optimización para modelos open-weights.
 
-**Puntuación Total: 53/70**
+**Puntuación Total: 59/70**
 
 ---
 
@@ -416,11 +416,11 @@ Tras completar las pruebas de refactorización y evaluar cada criterio en una es
 
 | Herramienta | 1. Config | 2. UX/UI | 3. Contexto | 4. Skills | 5. Autonomía | 6. Estabilidad | 7. BYOK | **Total** |
 |---|---|---|---|---|---|---|---|---|
-| **🥇 Cline** | 8 | 8 | 9 | 9 | 9 | 8 | 9 | **60/70** |
-| **🥈 Claude Code** | 9 | 9 | 10 | 8 | 10 | 8 | 5 | **59/70** |
+| **🥇 Claude Code** | 9 | 9 | 10 | 9 | 10 | 8 | 5 | **60/70** |
+| **🥈 Hermes Agent** | 8 | 8 | 9 | 9 | 9 | 8 | 8 | **59/70** |
 | **Mistral Vibe** | 8 | 7 | 8 | 8 | 7 | 9 | 9 | **56/70** |
+| **Cline** | 8 | 7 | 8 | 9 | 8 | 7 | 9 | **56/70** |
 | **Kimi Code CLI** | 7 | 7 | 9 | 7 | 8 | 8 | 7 | **53/70** |
-| **Hermes Agent** | 7 | 7 | 8 | 8 | 8 | 7 | 8 | **53/70** |
 | **MiniMax CLI** | 7 | 6 | 8 | 7 | 7 | 8 | 8 | **51/70** |
 | **LLM** | 9 | 6 | 6 | 5 | 3 | 10 | 9 | **48/70** |
 | **AIChat** | 9 | 6 | 6 | 5 | 3 | 10 | 9 | **48/70** |
@@ -510,15 +510,15 @@ Para proyectos que no requieren un razonamiento lógico de nivel SWE-agent avanz
 
 La Semifinal 1 nos deja dos clasificados indiscutibles con perfiles muy marcados que representan la gran bifurcación de la ingeniería de software actual:
 
-### 🏆 1. Ganador Absoluto: Cline (60/70)
-**Cline se corona como el rey de los agnósticos.** Lidera la clasificación general por su flexibilidad técnica insuperable: es 100% libre, no te ata a ninguna nube o modelo propietario, soporta MCP, lee las directrices locales del repositorio con obediencia militar y gestiona diffs y comandos asíncronos con solidez de producción. Su compatibilidad con prompt caching hace que el coste de uso sea sostenible para un desarrollador independiente en sesiones largas de refactor.
+### 🏆 1. Ganador Absoluto: Claude Code (60/70)
+**Claude Code avanza por su potencia e integración.** Es la mejor demostración de que la integración de herramientas nativas de primer nivel puede vencer a la flexibilidad cuando la ingeniería está pulida. Aunque sufre penalizaciones en el criterio de coste directo, su modo de bucle autónomo `/loop` para la resolución de errores locales de compilación y su interfaz de usuario en terminal son el estándar absoluto de la industria.
 
-### 🏆 2. Segundo Clasificado: Claude Code (59/70)
-**Claude Code avanza por su potencia e integración.** Es la mejor demostración de que la integración vertical puede vencer a la flexibilidad cuando la ingeniería está pulida. Aunque sufre penalizaciones importantes en el criterio de agnosticismo y coste de API, su modo de bucle autónomo `/loop` para la resolución de errores locales de compilación y su interfaz de usuario en terminal son, a día de hoy, el estándar que toda la industria intenta replicar.
+### 🏆 2. Segundo Clasificado: Hermes Agent (59/70)
+**Hermes Agent se corona como el rey de los agnósticos.** El desarrollo de Nous Research avanza a la final gracias a su arquitectura asíncrona mediante daemon de fondo (`hermesd`), su persistencia basada en SQLite-vec local y su maleabilidad mediante skills declarativas en Markdown. Supera por un estrecho margen a **Cline (56/70)**, que queda en tercer lugar debido a un mayor consumo de recursos en sesiones prolongadas.
 
-Ambos se verán las caras en la **Gran Final del Torneo CLI 2026** a finales de mes, donde se medirán con los campeones de la Semifinal 2 (Ecosistemas Nativos y empresariales). 
+Ambos se verán las caras en la **Gran Final del Torneo CLI 2026** a finales de mes, donde se medirán con los campeones de la Semifinal 2.
 
-Mientras tanto, dejo una pregunta para el debate: **¿es preferible gastar $2 USD en tokens de API para lograr una autonomía completa de bucle cerrado, o es mejor mantener el control del teclado usando una herramienta minimalista de bajo costo?** Mi experiencia en el desarrollo de ArceApps sugiere que la autonomía vale cada centavo si te permite concentrarte en el diseño de arquitectura.
+Mientras tanto, dejo una pregunta para el debate: **¿es preferible gastar un poco más en tokens para lograr una autonomía completa de bucle cerrado o priorizar el control y procesamiento asíncrono local?** Mi experiencia en el desarrollo de ArceApps sugiere que la combinación de ambas filosofías es el verdadero camino del dev indie.
 
 ---
 

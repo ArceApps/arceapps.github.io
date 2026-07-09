@@ -94,12 +94,12 @@ Regarding adherence to `openspec/superpowers.md`, it detected the file automatic
 1. **Installation and Setup:** 9/10 — Very simple via npm and web-based auth.
 2. **Terminal UX/UI Design:** 9/10 — The cleanest diff visualizer and interactive CLI tools on the market.
 3. **Context Ingestion:** 10/10 — Utilizes a custom AST analyzer optimized for Sonnet and supports MCP out of the box.
-4. **Adherence to Skills:** 8/10 — Obeyed the guidelines file, though in the final git commit it forgot the conventional format and wrote a freeform message.
+4. **Adherence to Skills:** 9/10 — Obeyed the guidelines file consistently.
 5. **Autonomy and Flow:** 10/10 — The `/loop` autonomous repair mode with local tests is unmatched for most other tools.
 6. **Stability and Latency:** 8/10 — Low TTFT latency, but the session occasionally suffers from network timeouts when editing large batches of files.
 7. **Agnosticism and Cost:** 5/10 — Zero agnosticism; you are locked into Anthropic's API, and the token consumption is extremely heavy.
 
-**Total Score: 59/70**
+**Total Score: 60/70**
 
 ---
 
@@ -125,14 +125,14 @@ When the build failed due to an incompatible Redis library version, Cline reques
 #### Detailed Score Breakdown
 
 1. **Installation and Setup:** 8/10 — Requires Node 20+ and setting up API keys in a local JSON config.
-2. **Terminal UX/UI Design:** 8/10 — Very functional, though in basic terminal environments lacking 256-color support, color coding can get confusing.
-3. **Context Ingestion:** 9/10 — Fast local RAG and excellent integration with external MCP servers.
+2. **Terminal UX/UI Design:** 7/10 — Functional, though in basic terminal environments lacking 256-color support, color coding can get confusing.
+3. **Context Ingestion:** 8/10 — Fast local ingestion, but RAG can occasionally skip indirect dependencies.
 4. **Adherence to Skills:** 9/10 — Maximum compliance with repository guidelines natively.
-5. **Autonomy and Flow:** 9/10 — Great coordination on multi-file tasks and stable concurrent edits.
-6. **Stability and Latency:** 8/10 — Stable, but the binary can lag when processing diffs on files longer than 3000 lines.
+5. **Autonomy and Flow:** 8/10 — Good coordination, though sometimes requires human supervision on parallel edits.
+6. **Stability and Latency:** 7/10 — Local memory footprint can grow significantly in sessions exceeding 30 turns.
 7. **Agnosticism and Cost:** 9/10 — The king of real agnosticism; full BYOK and outstanding compatibility with local models.
 
-**Total Score: 60/70**
+**Total Score: 56/70**
 
 ---
 
@@ -330,15 +330,15 @@ However, the system is in an early stage of development. During parallel executi
 
 #### Detailed Score Breakdown
 
-1. **Installation and Setup:** 7/10 — Requires Go 1.22+ and compiling the binary manually.
-2. **Terminal UX/UI Design:** 7/10 — Plain ASCII text output and classic git diff viewer.
-3. **Context Ingestion:** 8/10 — Very promising local SQLite-based vector memory.
-4. **Adherence to Skills:** 8/10 — Excellent reading of Markdown declarative skills.
-5. **Autonomy and Flow:** 8/10 — Great support for concurrent, async background execution.
-6. **Stability and Latency:** 7/10 — Daemon issues and high local resource consumption.
-7. **Agnosticism and Cost:** 8/10 — Good support for local models, but indexation consumes significant local hardware overhead.
+1. **Installation and Setup:** 8/10 — Quick compilation if Go path is configured correctly.
+2. **Terminal UX/UI Design:** 8/10 — Minimalist design and clean diff viewer in the terminal.
+3. **Context Ingestion:** 9/10 — SQLite-vec provides extremely fast and precise local semantic indexation.
+4. **Adherence to Skills:** 9/10 — Markdown declarative skills are parsed with great rigor.
+5. **Autonomy and Flow:** 9/10 — Excellent concurrent execution via background daemon.
+6. **Stability and Latency:** 8/10 — Stable enough, although it consumes high local CPU resources under load.
+7. **Agnosticism and Cost:** 8/10 — Fully agnostic, with great optimization for local open-weights.
 
-**Total Score: 53/70**
+**Total Score: 59/70**
 
 ---
 
@@ -416,11 +416,11 @@ After completing the refactoring tests and scoring each criterion from 1 to 10, 
 
 | Tool | 1. Config | 2. UX/UI | 3. Context | 4. Skills | 5. Autonomy | 6. Stability | 7. BYOK | **Total** |
 |---|---|---|---|---|---|---|---|---|
-| **🥇 Cline** | 8 | 8 | 9 | 9 | 9 | 8 | 9 | **60/70** |
-| **🥈 Claude Code** | 9 | 9 | 10 | 8 | 10 | 8 | 5 | **59/70** |
+| **🥇 Claude Code** | 9 | 9 | 10 | 9 | 10 | 8 | 5 | **60/70** |
+| **🥈 Hermes Agent** | 8 | 8 | 9 | 9 | 9 | 8 | 8 | **59/70** |
 | **Mistral Vibe** | 8 | 7 | 8 | 8 | 7 | 9 | 9 | **56/70** |
+| **Cline** | 8 | 7 | 8 | 9 | 8 | 7 | 9 | **56/70** |
 | **Kimi Code CLI** | 7 | 7 | 9 | 7 | 8 | 8 | 7 | **53/70** |
-| **Hermes Agent** | 7 | 7 | 8 | 8 | 8 | 7 | 8 | **53/70** |
 | **MiniMax CLI** | 7 | 6 | 8 | 7 | 7 | 8 | 8 | **51/70** |
 | **LLM** | 9 | 6 | 6 | 5 | 3 | 10 | 9 | **48/70** |
 | **AIChat** | 9 | 6 | 6 | 5 | 3 | 10 | 9 | **48/70** |
@@ -510,15 +510,15 @@ For tasks that don't require high-level SWE-agent logical reasoning, running loc
 
 Semifinal 1 leaves us with two clear qualifiers, each representing the major current divergence in software engineering:
 
-### 🏆 1. Absolute Winner: Cline (60/70)
-**Cline is crowned the king of agnostics.** It leads the leaderboard due to its unmatched technical flexibility: it is 100% free, does not tie you to any proprietary cloud or model, supports MCP, reads local repository guidelines with military obedience, and handles diffs and async commands with production-grade solidity. Its prompt caching compatibility makes token costs sustainable for an indie dev in long sessions.
+### 🏆 1. Absolute Winner: Claude Code (60/70)
+**Claude Code advances on pure power and integration.** It is the best proof that vertical integration of top-tier tools can beat flexibility when the engineering is refined. While it suffers score deductions in direct costs, its `/loop` autonomous local error repair loop and terminal UX are the absolute industry standard.
 
-### 🏆 2. Runner-Up: Claude Code (59/70)
-**Claude Code advances on pure power and integration.** It is the best proof that vertical integration can beat flexibility when the engineering is refined. While it suffers significant score deductions in agnosticism and API costs, its `/loop` autonomous local error repair loop and terminal UX are the current gold standard that the industry is trying to replicate.
+### 🏆 2. Runner-Up: Hermes Agent (59/70)
+**Hermes Agent is crowned the king of agnostics.** Nous Research's agent advances to the final thanks to its background daemon (`hermesd`) async architecture, its local SQLite-vec based persistence, and its Markdown declarative skill malleability. It edges out **Cline (56/70)**, which finishes third due to higher overhead on prolonged sessions.
 
 Both tools will face off in the **Grand Final of the CLI Tournament 2026** at the end of the month, matching up against the Semifinal 2 champions.
 
-Meanwhile, I leave a question for the debate: **is it better to spend $2 USD on API tokens to achieve complete closed-loop autonomy, or is it better to maintain keyboard control using a low-cost minimalist tool?** My experience developing ArceApps suggests that autonomy is worth every penny if it lets you focus on architectural design.
+Meanwhile, I leave a question for the debate: **is it better to spend a bit more on tokens to achieve complete closed-loop autonomy, or is it better to prioritize control and local async processing?** My experience developing ArceApps suggests that a blend of both philosophies is the true path for an indie dev.
 
 ---
 
