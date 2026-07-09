@@ -3,7 +3,7 @@
 **Goal:** Delete obsolete desktop IDE articles and write a new, high-quality, bilingual blog article (5000+ words per language) about the Desktop AI Agents Semifinal A.
 **Architecture:** Content Collections (`src/content/blog/`) integrated with Astro static generation and Tailwind CSS.
 **Tech Stack:** Astro, Markdown, SVG, Vitest/npm scripts.
-**Status:** 🟡 IN PROGRESS
+**Status:** ✅ DONE
 
 ---
 

@@ -211,4 +211,25 @@ Se añadieron las infografías del flujo de trabajo de Spec Kitty para el desarr
 **Verificación:**
 Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatters de los artículos Markdown.
 
+---
 
+## 2026-07-09 - Artículo: Gran Final del Torneo de Agentes de Escritorio 2026
+**Estado:** ✅ Publicado y compilado sin errores (`pnpm build` -> 995 páginas, 15.86s)
+
+**Artículos creados:**
+- ES: `src/content/blog/es/desktop-ai-grand-final.md` (8122 palabras)
+- EN: `src/content/blog/en/desktop-ai-grand-final.md` (8105 palabras)
+
+**Imagen generada:** `/public/images/desktop-ai-grand-final.svg` (minimalista, geométrica, usando Teal `#018786` y Orange `#FF9800`)
+
+**Estructura del artículo:**
+1. Introducción al veredicto final y contexto indie de la comparativa de agentes de escritorio.
+2. Benchmark de 10 tareas detallado (Flutter, Kotlin thread safety/memory leaks, Python 2 a 3 migration, OAuth2 PKCE Keychain wrappers, Go backend tests, OpenAPI specs, Git conflict resolutions, MCP servers, Docker Compose systems, real-time Web Scraping).
+3. Deep Dive de arquitecturas de sandboxing y terminal local de los agentes (Docker sandbox de Codex, Wrapper Agent Manager de Google, interactive prompts de OpenCode y daemon `hermesd` local de Hermes).
+4. Matriz comparativa de 19 categorías técnicas.
+5. Clasificación y premios oficiales.
+6. Apéndice técnico de reproducibilidad de hardware y red.
+
+**Verificación:**
+- Recuento de palabras superior a 8000 en ambos idiomas (ES: 8122, EN: 8105).
+- Validación estática exitosa con `pnpm build` tras limpiar la caché local `.astro` para prevenir el error `ENOENT` con `404.astro.mjs`.
