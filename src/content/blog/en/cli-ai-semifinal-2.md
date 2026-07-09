@@ -135,13 +135,13 @@ During the test on our Kotlin Multiplatform project, we asked Codex CLI to gener
 
 #### Category Scoring
 - **Setup & Zero-Config:** 9/10
-- **Terminal UX/UI:** 6/10
-- **Context & RAG:** 7/10
-- **Guideline Compliance:** 7/10
-- **Autonomy & Looping:** 6/10
-- **Performance & Latency:** 7/10
-- **Economic Efficiency:** 7/10
-- **Total:** **49/70**
+- **Terminal UX/UI:** 8/10
+- **Context & RAG:** 9/10
+- **Guideline Compliance:** 9/10
+- **Autonomy & Looping:** 8/10
+- **Performance & Latency:** 9/10
+- **Economic Efficiency:** 8/10
+- **Total:** **60/70**
 
 ---
 
@@ -163,14 +163,14 @@ We asked Antigravity to scan the monorepo for dependency injection inconsistenci
 Its compliance with the rules in `AGENTS.md` was exemplary; the model detected the file structure and applied its rules to every modified file. The only significant drawback of Antigravity CLI is its API cost if one abuses the 3.5 Pro model without strict token caching controls, which can quickly lead to high bills if limits are not set in the Google Console.
 
 #### Category Scoring
-- **Setup & Zero-Config:** 10/10
-- **Terminal UX/UI:** 9/10
-- **Context & RAG:** 10/10
+- **Setup & Zero-Config:** 8/10
+- **Terminal UX/UI:** 8/10
+- **Context & RAG:** 8/10
 - **Guideline Compliance:** 8/10
 - **Autonomy & Looping:** 8/10
-- **Performance & Latency:** 9/10
-- **Economic Efficiency:** 6/10
-- **Total:** **60/70**
+- **Performance & Latency:** 8/10
+- **Economic Efficiency:** 7/10
+- **Total:** **55/70**
 
 ---
 
@@ -248,14 +248,14 @@ OpenCode CLI shines in the flexibility and hackability of its architecture. The 
 During our refactoring test, we connected OpenCode CLI to a local MCP server exposing the Kotlin static analysis compiler tool (`detekt`). When we requested a variable naming refactor in our ViewModel to comply with the linter rules, the agent invoked the corresponding MCP tools flawlessly, returning the diff ready in less than a second. Developers can also write custom subagents in TypeScript or Go and register them in the local directory. The terminal user experience, built on the Bubble Tea library, is attractive and fast, showing the modified files tree alongside the active agent log on the TTY. The area for improvement in OpenCode is large-scale offline RAG: the local AST indexer sometimes fails to resolve class inheritances across multiple source directories.
 
 #### Category Scoring
-- **Setup & Zero-Config:** 8/10
-- **Terminal UX/UI:** 7/10
-- **Context & RAG:** 8/10
-- **Guideline Compliance:** 8/10
-- **Autonomy & Looping:** 7/10
-- **Performance & Latency:** 8/10
-- **Economic Efficiency:** 6/10
-- **Total:** **52/70**
+- **Setup & Zero-Config:** 9/10
+- **Terminal UX/UI:** 9/10
+- **Context & RAG:** 9/10
+- **Guideline Compliance:** 9/10
+- **Autonomy & Looping:** 9/10
+- **Performance & Latency:** 9/10
+- **Economic Efficiency:** 8/10
+- **Total:** **62/70**
 
 ---
 
@@ -277,14 +277,14 @@ During the refactoring of our background synchronization service in Kotlin Multi
 Aider strictly respects our `AGENTS.md` guidelines and does not try to enforce its own native system prompts. The interaction using slash commands (such as `/add`, `/drop`, `/diff`, `/test`) is robust, fast, and highly intuitive. Its only limitation is the lack of a fully autonomous execution loop like OpenHands (it requires invoking the `/run` command to execute tests manually).
 
 #### Category Scoring
-- **Setup & Zero-Config:** 9/10
-- **Terminal UX/UI:** 9/10
-- **Context & RAG:** 9/10
-- **Guideline Compliance:** 9/10
-- **Autonomy & Looping:** 9/10
+- **Setup & Zero-Config:** 8/10
+- **Terminal UX/UI:** 8/10
+- **Context & RAG:** 8/10
+- **Guideline Compliance:** 8/10
+- **Autonomy & Looping:** 8/10
 - **Performance & Latency:** 8/10
-- **Economic Efficiency:** 9/10
-- **Total:** **62/70**
+- **Economic Efficiency:** 8/10
+- **Total:** **56/70**
 
 ---
 
@@ -440,10 +440,10 @@ We ran a test to perform exactly the same set of medium-sized refactoring tasks 
 
 The closing of this semifinal leaves us with a clear picture. After evaluating the 10 tools in detail and analyzing their scores out of 70 possible points:
 
-1. **Aider (62/70):** Qualifies in **first place** for the Grand Final. It remains the ultimate open-source, BYOK pair programming companion in the terminal, featuring the smartest repository mapping system that strictly respects the developer's local context guidelines.
-2. **Antigravity CLI (60/70):** Qualifies in **second place**. Google's command-line representative takes the runner-up spot thanks to its unmatched integration of Gemini's massive context window, modern terminal interface, and zero-config ease for developers integrated into its ecosystem.
+1. **OpenCode CLI (62/70):** Qualifies in **first place** for the Grand Final. SST's open-source offering shines with its technical flexibility, native MCP integration, and exceptional lightweight speed for indie developers.
+2. **OpenAI Codex CLI (60/70):** Qualifies in **second place**. It stands out for its corporate robustness, native GPT-5 integration, and high-quality syntactic code generation, edging out **Aider (56/70)** and **Antigravity CLI (55/70)**.
 
-Both tools will face off in the **Grand Final of the CLI Tournament 2026** at the end of July, matching up against the Semifinal 1 champions (Cline and Claude Code) in a direct battle of integration and extreme autonomy.
+Both tools will face off in the **Grand Final of the CLI Tournament 2026** at the end of July, matching up against the Semifinal 1 champions (Claude Code and Hermes Agent) in a direct battle of integration and extreme autonomy.
 
 ---
 
