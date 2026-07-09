@@ -4,6 +4,54 @@ Registro de actividades del redactor técnico del blog de ArceApps. Producción 
 
 ---
 
+## 2026-07-09 — Artículo "OKF de Google: Qué es y por qué te importa"
+
+**Estado:** ✅ Publicado y compilado sin errores (`pnpm build` → 1008 páginas, 7.98s)
+
+**Tema:**
+Open Knowledge Format (OKF) lanzado por Google Cloud el 12 de junio de 2026: especificación v0.1 (Draft) bajo Apache 2.0 que formaliza el patrón 'LLM-wiki' usando Markdown y metadatos YAML. Análisis profundo del problema de contexto, anatomía de un bundle, linaje histórico (de Obsidian a Karpathy) y trade-offs técnicos (RAG vs OKF).
+
+**Fuentes consultadas:**
+- GitHub — `GoogleCloudPlatform/knowledge-catalog` repo oficial (especificación `SPEC.md` + herramientas de referencia).
+- Google Cloud Blog — Post oficial de lanzamiento de Open Knowledge Format (12 de junio de 2026).
+- Gist oficial de Andrej Karpathy sobre el "LLM Wiki pattern" (Diciembre de 2024).
+- Hacker News & Reddit — hilos de discusión del ecosistema sobre portabilidad del contexto.
+
+**Estructura del artículo (14 secciones):**
+1. Apertura / Gancho narrativo (becario brillante en soporte).
+2. Por qué este tema ahora (draft reciente, ventana de oportunidad).
+3. Problema de fondo (desorden del conocimiento, LLM listos pero ignorantes, islas).
+4. Qué es OKF exactamente (draft v0.1, Apache 2.0).
+5. Anatomía de un Bundle (concepts, metadata, frontmatter, grafos).
+6. Tres principios (Just Markdown, Just files, Just YAML).
+7. Linaje (Obsidian, Karpathy, Markdown 2004).
+8. Ejemplo práctico paso a paso (CLI gen, enricher, visualizer).
+9. Comparativa (OKF vs RAG, agents.md, Notion, ontologías RDF).
+10. Anti-hype (no afecta SEO, no crawling automático, inestable, no mágico).
+11. A quién le sirve hoy (data teams, app developers, OSS, makers).
+12. Críticas y riesgos (adopción, vendor lock-in encubierto, simplicidad).
+13. Opinión extendida (apertura, gobernanza independiente, predicción).
+14. Cierre, CTA y preguntas abiertas.
+
+**Prior Art enlazado (3 artículos previos del blog):**
+- `agents-md-estandar.md` / `agents-md-estandar` (ES + EN)
+- `contexto-efectivo-ia.md` / `effective-context-ai` (ES + EN)
+- `obsidian-desarrolladores.md` / `obsidian-para-desarrolladores` (ES + EN)
+
+**Entregables:**
+- `src/content/blog/es/open-knowledge-format-google.md` — **5666 palabras**.
+- `src/content/blog/en/open-knowledge-format-google.md` — **4983 palabras**.
+- `public/images/open-knowledge-format-google.svg` — hero image geométrica 1200×630 con la paleta de marca (Teal `#018786`, Orange `#FF9800`) sobre fondo `#0F172A`. Concepto: un grafo de conceptos y metadatos con visualización de la estructura de archivos `.okf/`.
+- Mismo `reference_id` (`71e626cc-df23-455b-9b88-124b8989f6bb`) en ambos frontmatter para enlazado bilingüe.
+
+**Verificación:**
+- Conteo de palabras: 5666 (ES) y 4983 (EN) palabras, ambos superando con creces la meta de 3200-3500 palabras.
+- `pnpm build` ejecutado: 1008 páginas generadas en 7.98s con cero errores de Zod o Astro.
+- Auditoría SEO local: PASS en ambos idiomas. Títulos de frontmatter por debajo del límite estricto de 60 caracteres.
+- Tres diagramas Mermaid insertados inline y validados en el build.
+
+---
+
 ## 2026-06-18 — Artículo "GitHub Agentic Workflows: la automatización con criterio"
 
 **Estado:** ✅ Publicado y compilado sin errores (`pnpm build` → 878 páginas, 6.53s)
