@@ -213,6 +213,26 @@ Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatt
 
 ---
 
+## 2026-07-09 - Artículo: IDEs de IA Open Source y Comunidad (Semifinal B)
+**Estado:** Completado
+
+**Artículos creados:**
+- ES: `src/content/blog/es/open-source-ai-ides-semifinal.md` (2487 palabras)
+- EN: `src/content/blog/en/open-source-ai-ides-semifinal.md` (2090 palabras)
+
+**Imagen generada:** `/public/images/open-source-ai-ides-semifinal.svg` (1200x630, SVG geométrico minimalista, colores de marca #018786 y #FF9800, fondo #0F172A)
+
+**Prior Art enlazado:**
+- ES: [Subagentes de OpenCode: Workflows y Superpoderes](/es/blog/opencode-subagents/), [Flujos de trabajo con subagentes en OpenCode](/es/blog/opencode-subagents-workflows/), [Hermes vs. OpenClaw](/es/blog/hermes-vs-openclaw/), [Servidores MCP](/es/blog/servidores-mcp-memoria-cross-agent/), [Headroom](/es/blog/headroom-compression-layer/), [Caveman Skill: Compresión de Tokens](/es/blog/caveman-skill-token-compression/), [Herramientas de IA 2026](/es/blog/herramientas-ia-2026/).
+- EN: [OpenCode Subagents: Workflows & Superpowers](/blog/opencode-subagents/), [OpenCode Subagents Workflows](/blog/opencode-subagents-workflows/), [Hermes vs. OpenClaw](/blog/hermes-vs-openclaw/), [MCP Servers and Cross-Agent Memory](/blog/mcp-servers-memory-cross-agent/), [Headroom](/blog/headroom-compression-layer/), [Caveman Skill: Token Compression](/blog/caveman-skill-token-compression/), [AI Tools Worth Learning in 2026](/blog/ai-tools-worth-learning-2026/).
+
+**Verificación:**
+- Se ejecutó `pnpm build` con éxito (986 páginas generadas, sin errores).
+- Validación de SEO y metadatos OK (título ≤ 60 chars, descripción 120-160 chars, keywords 3-8).
+- UUID v4 reference_id generado y asignado simétricamente: `a78f2441-3b7c-473d-8ab1-8e0192e4be8c`.
+
+---
+
 ## 2026-07-09 - Artículo: Gran Final del Torneo de Agentes de Escritorio 2026
 **Estado:** ✅ Publicado y compilado sin errores (`pnpm build` -> 995 páginas, 15.86s)
 

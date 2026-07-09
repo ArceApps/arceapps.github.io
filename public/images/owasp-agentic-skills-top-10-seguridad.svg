@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="OWASP Agentic Skills Top 10 — Skill security abstract cover">
+  <defs>
+    <!-- Background gradient: dark navy with subtle teal undertone -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#13262e"/>
+    </linearGradient>
+    <!-- Glow filter for the shield -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Subtle grid pattern -->
+    <pattern id="grid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0 L0 0 0 48" fill="none" stroke="#1c2f3a" stroke-width="1" opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Diagonal accent bars (orange) -->
+  <g opacity="0.18">
+    <rect x="900" y="-40" width="120" height="800" fill="#FF9800" transform="rotate(15 960 360)"/>
+    <rect x="80" y="500" width="380" height="22" fill="#FF9800" transform="rotate(-8 270 511)"/>
+  </g>
+
+  <!-- Top label -->
+  <g transform="translate(60,72)">
+    <rect x="0" y="0" width="170" height="32" rx="6" fill="none" stroke="#018786" stroke-width="2"/>
+    <text x="14" y="22" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#018786">OWASP · AST10</text>
+  </g>
+
+  <!-- Shield outline (geometric, defense metaphor) centered-left -->
+  <g transform="translate(150,200)" filter="url(#glow)">
+    <!-- Shield silhouette in teal -->
+    <path d="M180 0 L360 60 L360 220 Q360 360 180 460 Q0 360 0 220 L0 60 Z"
+          fill="none" stroke="#018786" stroke-width="3"/>
+    <!-- Inner inset shield in orange -->
+    <path d="M180 60 L300 102 L300 222 Q300 320 180 396 Q60 320 60 222 L60 102 Z"
+          fill="none" stroke="#FF9800" stroke-width="2" opacity="0.85"/>
+    <!-- Check mark centered -->
+    <path d="M120 220 L168 268 L246 178" fill="none" stroke="#FF9800" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Title block -->
+  <g transform="translate(540,200)">
+    <text x="0" y="0" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif" font-size="64" font-weight="800" fill="#F8FAFC" letter-spacing="-1">
+      <tspan x="0" dy="0">Agentic Skills</tspan>
+      <tspan x="0" dy="78">Top 10</tspan>
+    </text>
+    <!-- Subtitle -->
+    <text x="2" y="200" font-family="ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="500" fill="#cbd5e1">
+      <tspan x="2" dy="0">Skills, the new weak link</tspan>
+    </text>
+    <!-- Supporting tag -->
+    <text x="2" y="252" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="18" fill="#018786">
+      <tspan x="2" dy="0">98,380 skills audited · 157 malicious · CVSS 9.9 (CVE-2026-28363)</tspan>
+    </text>
+  </g>
+
+  <!-- Bottom bar -->
+  <g transform="translate(0,560)">
+    <rect x="0" y="0" width="1200" height="70" fill="#0b1620"/>
+    <line x1="0" y1="0" x2="1200" y2="0" stroke="#018786" stroke-width="2" opacity="0.6"/>
+    <text x="60" y="42" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="600" fill="#94a3b8">
+      OWASP Agentic Skills Top 10 (AST10) · v1.0 · March 2026
+    </text>
+    <text x="1140" y="42" text-anchor="end" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="600" fill="#FF9800">
+      arceapps.com / blog
+    </text>
+  </g>
+
+  <!-- Decorative corner ticks -->
+  <g stroke="#018786" stroke-width="3" fill="none" opacity="0.7">
+    <path d="M40 40 L40 90 M40 40 L90 40"/>
+    <path d="M1160 40 L1160 90 M1160 40 L1110 40"/>
+    <path d="M40 590 L40 540 M40 590 L90 590"/>
+    <path d="M1160 590 L1160 540 M1160 590 L1110 590"/>
+  </g>
+</svg>
