@@ -70,30 +70,30 @@
 
 ---
 
-## Task 5: SEO Audit & Verification
+## Task 5: SEO Audit & Verification [x]
 
 **Files:**
 - Run build tool and count words.
 
 **Acceptance for this task:**
-- [ ] SEO audit check passes:
+- [x] SEO audit check passes:
   - Title ≤ 60 chars.
   - Tool/subject name in the first 5 words of title.
   - Description 120-160 chars.
   - Keywords array size is 3 to 8.
-- [ ] `pnpm build` runs successfully.
-- [ ] Word counts for both articles are verified to be above 1500 words.
+- [x] `pnpm build` runs successfully.
+- [x] Word counts for both articles are verified to be above 1500 words.
 
 **Steps:**
-- [ ] **Step 1: Run SEO validation script/checks**
+- [x] **Step 1: Run SEO validation script/checks**
   Double check all metadata constraints.
-- [ ] **Step 2: Run production build**
+- [x] **Step 2: Run production build**
   ```bash
   pnpm build
   ```
-- [ ] **Step 3: Verify word counts**
+- [x] **Step 3: Verify word counts**
   Run `wc -w` on both markdown files.
-- [ ] **Step 4: Commit changes**
+- [x] **Step 4: Commit changes**
   ```bash
   git add docs/specai/open-source-ai-ides-semifinal/ src/content/blog/ public/images/
   git commit -m "feat(blog): add open source AI IDEs semifinal articles (ES + EN) and cover image"
