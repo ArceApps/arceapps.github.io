@@ -54,18 +54,18 @@
 
 ---
 
-## Task 4: Generate SVG Cover Image
+## Task 4: Generate SVG Cover Image [x]
 
 **Files:**
 - Create: `public/images/open-source-ai-ides-semifinal.svg`
 
 **Acceptance for this task:**
-- [ ] File exists at `public/images/open-source-ai-ides-semifinal.svg`.
-- [ ] Valid geometric minimal SVG with 1200x630px dimensions.
-- [ ] Employs primary teal (`#018786`), secondary orange (`#FF9800`), and dark slate (`#0F172A`) for styling.
+- [x] File exists at `public/images/open-source-ai-ides-semifinal.svg`.
+- [x] Valid geometric minimal SVG with 1200x630px dimensions.
+- [x] Employs primary teal (`#018786`), secondary orange (`#FF9800`), and dark slate (`#0F172A`) for styling.
 
 **Steps:**
-- [ ] **Step 1: Create the SVG file**
+- [x] **Step 1: Create the SVG file**
   Write the SVG XML code to `public/images/open-source-ai-ides-semifinal.svg`.
 
 ---
