@@ -3,7 +3,7 @@
 **Goal:** Create the technical blog post "Semifinal B – Open Source y Comunidad" for ArceApps in both Spanish and English, evaluating the 10 community/open source AI tools and selecting OpenCode Desktop and Hermes Desktop as finalists.
 **Architecture:** Markdown content collections (`src/content/blog/`).
 **Tech Stack:** Astro, Markdown, SVG.
-**Status:** 🟡 IN PROGRESS
+**Status:** ✅ DONE
 
 ---
 
