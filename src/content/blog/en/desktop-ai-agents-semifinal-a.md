@@ -91,7 +91,7 @@ In practice, Codex App excels at resolving complex architectural refactorings. I
 Anthropic approaches the problem of agents in two ways: its visual desktop client (Claude Desktop) stands out for its Computer Use functionality, which allows the agent to take virtual control of the mouse, keyboard, and screen; on the other hand, Claude Code provides a high-speed terminal command engine optimized for complex software architectures. Its contextual reasoning capability remains the industry standard.
 
 #### Computer Use: The Differentiating Factor of Claude Desktop
-The most innovative feature of Claude Desktop is undoubtedly its ability to interact with general graphical interfaces through computer vision. When the agent needs to test a desktop application or validate a change in the GUI of an Android simulator, it takes sequential screenshots, detects the coordinates of visual components through image analysis, and emits click and keypress events.
+The most innovative feature of Claude Desktop is undoubtedly its ability to interact with general graphical interfaces through computer vision. Instead of relying on APIs or backend systems, the agent operates just like a human user would, observing the display directly. When the agent needs to test a desktop application or validate a change in the GUI of an Android simulator, it takes sequential screenshots, detects the coordinates of visual components through image analysis, and emits click and keypress events to control the desktop environment autonomously.
 
 The Computer Use execution loop works as follows:
 1.  **Screenshot:** Captures the desktop or selected window.
