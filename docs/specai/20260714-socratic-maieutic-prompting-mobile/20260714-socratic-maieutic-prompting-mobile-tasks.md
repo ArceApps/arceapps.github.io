@@ -7,7 +7,7 @@ Este es el listado de tareas atómicas para la redacción de los artículos y el
   - *Verify seam:* `ls -la public/images/socratic-maieutic-prompting-mobile-*-es.png` devuelve exactamente 5 archivos.
 - [x] **Task 1.2:** Crear la imagen SVG de la portada en inglés `public/images/socratic-maieutic-prompting-mobile-hero-en.svg` (Smartphone con circuito/redes, texto traducido).
   - *Verify seam:* El archivo SVG existe y se renderiza correctamente.
-- [ ] **Task 1.3:** Crear las 4 infografías en inglés en formato SVG (`socratic-maieutic-prompting-mobile-fases-en.svg`, `socratic-maieutic-prompting-mobile-arbol-en.svg`, `socratic-maieutic-prompting-mobile-preguntas-en.svg`, `socratic-maieutic-prompting-mobile-cuando-en.svg`).
+- [x] **Task 1.3:** Crear las 4 infografías en inglés en formato SVG (`socratic-maieutic-prompting-mobile-fases-en.svg`, `socratic-maieutic-prompting-mobile-arbol-en.svg`, `socratic-maieutic-prompting-mobile-preguntas-en.svg`, `socratic-maieutic-prompting-mobile-cuando-en.svg`).
   - *Verify seam:* Todos los textos están correctamente traducidos al inglés y no se solapan.
 
 ## Phase 2: Español Article Writing (ES)
