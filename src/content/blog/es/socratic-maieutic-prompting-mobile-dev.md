@@ -1,7 +1,7 @@
 ---
 title: "Prompting Socrático: Razonamiento Maiéutico en Mobile"
 description: "Evita el código casi correcto en Android e iOS. Domina el prompting socrático y maiéutico con Gemini, Copilot y Cursor mediante guías de diálogo y código."
-pubDate: 2026-07-14
+pubDate: 2026-07-13
 lastmod: 2026-07-14
 author: ArceApps
 keywords:
