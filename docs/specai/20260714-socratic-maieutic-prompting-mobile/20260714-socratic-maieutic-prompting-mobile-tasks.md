@@ -11,13 +11,13 @@ Este es el listado de tareas atómicas para la redacción de los artículos y el
   - *Verify seam:* Todos los textos están correctamente traducidos al inglés y no se solapan.
 
 ## Phase 2: Español Article Writing (ES)
-- [ ] **Task 2.1:** Escribir Frontmatter y Secciones 1 a 4 en `src/content/blog/es/socratic-maieutic-prompting-mobile-dev.md` (Resumen, Problema de prompts directos, Método socrático en LLMs, Tres fases).
+- [x] **Task 2.1:** Escribir Frontmatter y Secciones 1 a 4 en `src/content/blog/es/socratic-maieutic-prompting-mobile-dev.md` (Resumen, Problema de prompts directos, Método socrático en LLMs, Tres fases).
   - *Verify seam:* El archivo de blog ES se crea y el texto preliminar es legible.
-- [ ] **Task 2.2:** Escribir Secciones 5 y 6 (Caso de estudio de Android en Compose/Room/WorkManager y Caso de estudio de iOS en Swift 6/SwiftUI/Concurrency).
+- [x] **Task 2.2:** Escribir Secciones 5 y 6 (Caso de estudio de Android en Compose/Room/WorkManager y Caso de estudio de iOS en Swift 6/SwiftUI/Concurrency).
   - *Verify seam:* El código compila mentalmente y las plantillas de prompts multiturno están estructuradas correctamente.
-- [ ] **Task 2.3:** Escribir Secciones 7 a 11 (Maieutic Prompting, Casos de uso de alta tensión, Taxonomía de Paul, Stack IA 2025-2026, Comparativa de técnicas).
+- [x] **Task 2.3:** Escribir Secciones 7 a 11 (Maieutic Prompting, Casos de uso de alta tensión, Taxonomía de Paul, Stack IA 2025-2026, Comparativa de técnicas).
   - *Verify seam:* Incluye referencias cruzadas a otros posts como `socratic-method-prompts-kotlin-android.md`.
-- [ ] **Task 2.4:** Escribir Secciones 12 a 16 (Patrones avanzados, Límites y crisis de confianza, Horizonte y agentes dialécticos, Conclusión, Referencias).
+- [x] **Task 2.4:** Escribir Secciones 12 a 16 (Patrones avanzados, Límites y crisis de confianza, Horizonte y agentes dialécticos, Conclusión, Referencias).
   - *Verify seam:* El recuento total de palabras supera las 4000 palabras (`wc -w src/content/blog/es/socratic-maieutic-prompting-mobile-dev.md`).
 
 ## Phase 3: Inglés Article Writing (EN)
