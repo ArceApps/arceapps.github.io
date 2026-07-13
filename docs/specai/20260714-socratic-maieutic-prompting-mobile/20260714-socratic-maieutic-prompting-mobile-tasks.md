@@ -21,13 +21,13 @@ Este es el listado de tareas atómicas para la redacción de los artículos y el
   - *Verify seam:* El recuento total de palabras supera las 4000 palabras (`wc -w src/content/blog/es/socratic-maieutic-prompting-mobile-dev.md`).
 
 ## Phase 3: Inglés Article Writing (EN)
-- [ ] **Task 3.1:** Escribir Frontmatter y Secciones 1 a 4 en `src/content/blog/en/socratic-maieutic-prompting-mobile-dev.md`.
+- [x] **Task 3.1:** Escribir Frontmatter y Secciones 1 a 4 en `src/content/blog/en/socratic-maieutic-prompting-mobile-dev.md`.
   - *Verify seam:* La traducción conceptual es sólida y respeta el tono técnico.
-- [ ] **Task 3.2:** Escribir Secciones 5 y 6 en inglés (Casos de estudio Android e iOS).
+- [x] **Task 3.2:** Escribir Secciones 5 y 6 en inglés (Casos de estudio Android e iOS).
   - *Verify seam:* El código fuente de Compose y SwiftUI coincide con la versión española pero con comentarios en inglés.
-- [ ] **Task 3.3:** Escribir Secciones 7 a 11 en inglés.
+- [x] **Task 3.3:** Escribir Secciones 7 a 11 en inglés.
   - *Verify seam:* Las referencias cruzadas apuntan a las versiones en inglés correspondientes (en el path `en/`).
-- [ ] **Task 3.4:** Escribir Secciones 12 a 16 en inglés.
+- [x] **Task 3.4:** Escribir Secciones 12 a 16 en inglés.
   - *Verify seam:* El recuento total de palabras en inglés supera las 4000 palabras (`wc -w src/content/blog/en/socratic-maieutic-prompting-mobile-dev.md`).
 
 ## Phase 4: Validation & Quality Assurance
