@@ -599,3 +599,64 @@ Torneo de CLI tools de IA, semifinal 2: 10 contendientes nativos (cerrados a su 
 - Frontmatter ES y EN validados: title ≤60 chars, slug kebab-case sin stopwords, keywords 8 elementos, description 120-160 chars, canonical URLs absolutas, lastmod ≥ pubDate.
 
 
+## 2026-07-14 — Artículo "Prompting Socrático: Razonamiento Maiéutico en Mobile"
+
+**Estado:** ✅ Publicado y compilado sin errores (`pnpm build` → 1013 páginas)
+
+**Tema:**
+El impacto del Prompting Socrático (Chang 2023) y del Maieutic Prompting (Jung et al. EMNLP 2022) en el desarrollo de software móvil para mitigar el código "casi correcto". Guías prácticas con casos de estudio y código de producción en Android (Kotlin/Compose/Room/WorkManager) e iOS (Swift 6/SwiftUI/Concurrency) y diálogos multiturno.
+
+**Fuentes consultadas:**
+- Chang, E. Y. (2023). *Prompting Large Language Models With the Socratic Method*. IEEE CCWC.
+- Jung, J. et al. (2022). *Maieutic Prompting: Logically Consistent Reasoning with Recursive Explanations*. EMNLP.
+- Paul, R. & Elder, L. *The Thinker's Guide to Socratic Questioning*.
+- Stack Overflow. (2025). *2025 Developer Survey — AI Section*.
+
+**Prior art enlazado:**
+- `socratic-method-prompts-kotlin-android.md` (ES) / `socratic-method-prompts-kotlin-android.md` (EN) — Se complementa enlazando los fundamentos teóricos socráticos y el patrón antinsicofancia presentados previamente.
+
+**Estructura del artículo (16 secciones, ~4.600 palabras ES / ~4.100 palabras EN):**
+1. Resumen Ejecutivo (Clínica vs. Google Search).
+2. El problema de los prompts directos (LazyColumn/LazyVStack lag).
+3. El método socrático en LLMs (Chang's 6 techniques).
+4. Las tres fases operativas (Questions Only / Verification / Response).
+5. Caso de estudio Android (Compose + Room + WorkManager).
+6. Caso de estudio iOS (Swift 6 actor + SwiftUI @Observable ViewModel).
+7. Maieutic Prompting y árbol abdutivo (MAX-SAT consistency check).
+8. Casos de uso de alta tensión (cifrado, paginación, caché).
+9. Seis tipos de preguntas socráticas (R.W. Paul taxonomy).
+10. El stack de IA mobile 2025-2026 (Copilot, Cursor Composer, Claude Code, Gemini).
+11. Selección de técnica (Zero-shot vs. Few-shot vs. CoT vs. Socratic vs. Maieutic).
+12. Patrones avanzados (Living Spec, Socratic Reviewer).
+13. Límites y crisis de confianza.
+14. Horizonte (Dialectical Agents, verification).
+15. Conclusión y CTA.
+16. Referencias completas.
+
+**Auditoría SEO (write-blog-seo):**
+
+| Campo | EN | ES | Estado |
+|---|---|---|---|
+| Title | 53 chars | 53 chars | ✅ ≤ 60 |
+| Tool name en primeras 5 palabras | "Socratic Prompting" | "Prompting Socrático" | ✅ |
+| Slug | `socratic-maieutic-prompting-mobile-dev` | (mismo) | ✅ kebab-case sin stopwords |
+| Keywords | 7 elementos | 7 elementos | ✅ 3-8 |
+| Description | 154 chars | 154 chars | ✅ 120-160 |
+| Canonical | `https://arceapps.com/blog/...` | `https://arceapps.com/es/blog/...` | ✅ |
+| pubDate | 2026-07-14 | 2026-07-14 | ✅ |
+
+**Entregables de imágenes:**
+- `/public/images/socratic-maieutic-prompting-mobile-hero-es.png` (copiado)
+- `/public/images/socratic-maieutic-prompting-mobile-fases-es.png` (copiado)
+- `/public/images/socratic-maieutic-prompting-mobile-arbol-es.png` (copiado)
+- `/images/socratic-maieutic-prompting-mobile-preguntas-es.png` (copiado)
+- `/images/socratic-maieutic-prompting-mobile-cuando-es.png` (copiado)
+- `/images/socratic-maieutic-prompting-mobile-hero-en.svg` (generado, SVG, translated)
+- `/images/socratic-maieutic-prompting-mobile-fases-en.svg` (generado, SVG, translated)
+- `/images/socratic-maieutic-prompting-mobile-arbol-en.svg` (generado, SVG, translated)
+- `/images/socratic-maieutic-prompting-mobile-preguntas-en.svg` (generado, SVG, translated)
+- `/images/socratic-maieutic-prompting-mobile-cuando-en.svg` (generado, SVG, translated)
+
+**Verificación:**
+- `wc -w` ejecutado: 4623 ES, 4120 EN.
+- `pnpm build` compila con éxito: 1013 páginas generadas.

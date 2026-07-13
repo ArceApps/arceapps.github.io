@@ -31,9 +31,9 @@ Este es el listado de tareas atómicas para la redacción de los artículos y el
   - *Verify seam:* El recuento total de palabras en inglés supera las 4000 palabras (`wc -w src/content/blog/en/socratic-maieutic-prompting-mobile-dev.md`).
 
 ## Phase 4: Validation & Quality Assurance
-- [ ] **Task 4.1:** Ejecutar la validación SEO para asegurar metadatos correctos (Title, Description, Keywords, Canonical, etc.).
+- [x] **Task 4.1:** Ejecutar la validación SEO para asegurar metadatos correctos (Title, Description, Keywords, Canonical, etc.).
   - *Verify seam:* Los metadatos de Frontmatter son correctos en ambos archivos.
-- [ ] **Task 4.2:** Ejecutar la compilación del proyecto Astro para validar que no haya errores de esquemas Zod o tipados.
+- [x] **Task 4.2:** Ejecutar la compilación del proyecto Astro para validar que no haya errores de esquemas Zod o tipados.
   - *Verify seam:* `pnpm build` se ejecuta y finaliza con éxito.
-- [ ] **Task 4.3:** Registrar la actividad en la bitácora del agente `agents/bitácora/bitacora_scribe.md` (o `agents/bitacora/...`).
+- [x] **Task 4.3:** Registrar la actividad en la bitácora del agente `agents/bitácora/bitacora_scribe.md` (o `agents/bitacora/...`).
   - *Verify seam:* El archivo log en la bitácora refleja fielmente los cambios realizados y la fecha actual del sistema.
