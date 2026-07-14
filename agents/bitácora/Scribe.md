@@ -253,3 +253,55 @@ Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatt
 **Verificación:**
 - Recuento de palabras superior a 8000 en ambos idiomas (ES: 8122, EN: 8105).
 - Validación estática exitosa con `pnpm build` tras limpiar la caché local `.astro` para prevenir el error `ENOENT` con `404.astro.mjs`.
+## 2026-07-15 - Artículo: HyperFrames vs Remotion 2026 — Comparativa Definitiva
+**Estado:** ✅ Publicado, compilado y verificado en producción
+
+**Artículos creados:**
+- ES: `src/content/blog/es/hyperframes-vs-remotion-2026.md` (6.306 palabras)
+- EN: `src/content/blog/en/hyperframes-vs-remotion-2026.md` (5.892 palabras)
+
+**Imágenes:**用户提供 6 PNG × 2 idiomas (cover, infographic-comparison, chart-performance, diagram-architecture, decision-tree, agents-comparison) → `public/images/hyperframes-vs-remotion-2026/{es,en}/`
+
+**Estructura (15 secciones):**
+1. Por qué importa en 2026 + contexto agentic
+2. Remotion: idea central, ejemplo, ecosistema, cifras, casos
+3. HyperFrames: idea central, composición HTML/GSAP, determinismo, catálogo 50+, superpoderes (HDR, alpha, TTS local Kokoro-82M)
+4. Diferencia nuclear React vs HTML + problema del reloj wall-clock vs seek-driven
+5. Benchmarks: time-to-first-video (7s vs 50s), render (7-10s vs 16-20s), tamaño MP4 (4MB vs 14MB), coste Lambda
+6. Licencias: Apache 2.0 vs Remotion custom freemium ($100/mes mínimo)
+7. Agent Skills: 18 HyperFrames vs 8 Remotion + comparativa agentes compatibles
+8. Tabla técnica profunda (17 capacidades)
+9. Casos de uso: árbol de decisión + híbridos
+10. Output creativo: benchmarks HyperFrames vs Remotion con Claude Opus 4.7
+11. Pricing real: 3 escenarios (individual, pyme, enterprise)
+12. Futuro: roadmap ambos + convergencia probable
+13. Veredicto: 80% HyperFrames / escala Remotion / usar ambos
+14. Recursos: repos, docs, vídeos, blogposts relacionados
+15. Conclusión + Bibliografía con quotes verbatim de fuentes primarias
+
+**Prior art enlazado (ES + EN):**
+- [AGENTS.md Standard](https://arceapps.com/es/blog/agents-md-estandar/) / [agents-md-standard](https://arceapps.com/blog/agents-md-standard/)
+- [AI Skills: Contexto Dinámico](https://arceapps.com/es/blog/agent-skills-contexto-dinamico/) / [ai-agent-skills-dynamic-context](https://arceapps.com/blog/ai-agent-skills-dynamic-context/)
+- [AI Tools Worth Learning 2026](https://arceapps.com/blog/ai-tools-worth-learning-2026/) (EN link usado en ambos idiomas)
+- [Clean Architecture for AI](https://arceapps.com/es/blog/clean-architecture-ia/) / [clean-architecture-ai](https://arceapps.com/blog/clean-architecture-ai/)
+
+**Diferenciación vs prior art:** Este artículo es la **primera comparativa bilingüe HyperFrames vs Remotion** en el blog. Los posts previos cubren AI Agent Skills genéricos o el stack AI indie 2026; este es la capa de **vídeo programático** que faltaba para cerrar el bucle "agente → output creativo" y se complementa con el catálogo de herramientas en AI Tools Worth Learning 2026.
+
+**Investigación primaria (curl + strip_html fallback):**
+- Remotion repo: confirmado 53.2k stars, 3.8k forks, 648 releases, v4.0.489 (12 jul 2026)
+- Remotion license (remotion.dev/license): confirmado Free License para individuals/small companies, Company License para for-profit organizations
+- HyperFrames repo: confirmado Apache 2.0, "no per-render fees or commercial-use thresholds"
+
+**Verificación:**
+- SEO audit script (`/tmp/audit.py`) PASS en ambos idiomas: title ≤60 (52/55), slug kebab sin stopwords, keywords 3-8 (7/7), description 120-160 (138/141)
+- Build: `npx astro build` → **1041 páginas en 39.84s**, sin errores Zod
+- Step 6.5 (dist verify): `dist/es/blog/hyperframes-vs-remotion-2026/index.html` ✓ + `dist/blog/hyperframes-vs-remotion-2026/index.html` ✓ + sitemap con ambas URLs ✓
+- Post-deploy (Step 7.5): ES 200 + EN 200 tras ~80s de rebuild de Pages (primeros 4 intentos 404, luego 200, patrón documentado)
+- Body size: ES 148.5 KB / EN 145.5 KB
+
+**PITFALL evitado (memory):** Hoy 2026-07-15 CEST = 2026-07-14 UTC → **trampa pubDate UTC activa**. Usé `pubDate: 2026-07-14` + `lastmod: 2026-07-15` para que el filtro `pubDate <= new Date()` pase seguro en cualquier ventana de UTC.
+
+**Innovación técnica:** Cuando `web_extract` falló (DuckDuckGo backend, ya documentado en la umbrella skill), recurrí al patrón `curl | python3 /tmp/strip_html.py` documentado para extraer las claims verbatim de `remotion.dev/license` y `github.com/heygen-com/hyperframes` antes de redactar el artículo.
+
+---
+
