@@ -48,3 +48,12 @@ Validate overall dark mode elements visually and ensure the build succeeds.
 **Acceptance for this task:**
 - Compiles successfully using `pnpm build`.
 - Verification checklist passes.
+
+---
+
+## Execution Log
+
+### Iteration 1: 2026-07-15
+- **Feedback**: The user reported that tables (especially column headers) are still unreadable in dark mode because the text is dark on a dark background. The user requested setting the text color of column headers to the brand green/teal color for high visibility.
+- **Root Cause**: The `@tailwindcss/typography` plugin has styles with higher specificity or custom properties (like `--tw-prose-th` and `--tw-prose-body`) that override standard text colors in `.prose` elements if not explicitly overridden using `!important` or by modifying the typography custom variables.
+- **Solution**: We will change `.dark .prose th` and `.dark .prose td` in [global.css](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/styles/global.css) to force high contrast using `!important` declarations, setting `th` text to a highly visible bright Teal color (`#00bfa5` or `#03dac6`) matching the brand, and setting `td` text to `#F5F5F5` (off-white).

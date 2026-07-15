@@ -14,3 +14,11 @@
   - [x] Step 3: Create the final verification report [dark-mode-tables-verify.md](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/docs/specai/dark-mode-tables/dark-mode-tables-verify.md).
   - [x] Step 4: Build project in production mode with `pnpm build` to confirm output validity.
   - [x] Step 5: Commit the verification report with `git commit -m "docs: add dark mode verification report"`.
+
+## Iteration Tasks
+
+- [x] **Task 3: Refine Table Headers & Cells Contrast in `global.css` (Iteration 1)**
+  - [x] Step 1: Modify [global.css](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/styles/global.css) applying `!important` to `.dark .prose th` and `.dark .prose td` table overrides. Set `th` text color to bright Teal (`#00bfa5` or `#03dac6`) and `td` to `#F5F5F5` (off-white).
+  - [x] Step 2: Compile CSS with `pnpm build` to verify syntax.
+  - [x] Step 3: Verify the generated CSS file in `dist/_astro/` contains the forced styles.
+  - [x] Step 4: Commit the changes with `git commit -m "style: force high-contrast brand Teal text on dark mode table headers"`.

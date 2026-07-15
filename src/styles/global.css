@@ -269,15 +269,17 @@
 
   /* Dark mode table overrides */
   .dark .prose table {
-    @apply text-dark-on-surface;
+    color: var(--color-dark-on-surface) !important;
   }
   .dark .prose thead {
     @apply bg-gray-800/60;
   }
   .dark .prose th {
-    @apply text-dark-on-surface border-b-2 border-primary/50;
+    color: #00bfa5 !important; /* Brand high-contrast Teal green */
+    @apply border-b-2 border-primary/50;
   }
   .dark .prose td {
+    color: var(--color-dark-on-surface) !important;
     @apply border-b border-gray-700/60;
   }
   .dark .prose tbody tr {
