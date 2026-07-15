@@ -17,8 +17,15 @@
 
 ## Iteration Tasks
 
-- [x] **Task 3: Refine Table Headers & Cells Contrast in `global.css` (Iteration 1)**
-  - [x] Step 1: Modify [global.css](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/styles/global.css) applying `!important` to `.dark .prose th` and `.dark .prose td` table overrides. Set `th` text color to bright Teal (`#00bfa5` or `#03dac6`) and `td` to `#F5F5F5` (off-white).
-  - [x] Step 2: Compile CSS with `pnpm build` to verify syntax.
-  - [x] Step 3: Verify the generated CSS file in `dist/_astro/` contains the forced styles.
-  - [x] Step 4: Commit the changes with `git commit -m "style: force high-contrast brand Teal text on dark mode table headers"`.
+- [x] **Task 3: Refine Table Headers & Cells Contrast in Templates and CSS (Iteration 1)**
+  - [x] Step 1: Add `dark:prose-invert` class to prose wrapper elements in:
+    - [src/pages/apps/[...slug].astro](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/pages/apps/[...slug].astro)
+    - [src/pages/es/apps/[...slug].astro](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/pages/es/apps/[...slug].astro)
+    - [src/pages/blog/[...slug].astro](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/pages/blog/[...slug].astro)
+    - [src/pages/es/blog/[...slug].astro](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/pages/es/blog/[...slug].astro)
+    - [src/pages/devlog/[...slug].astro](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/pages/devlog/[...slug].astro)
+    - [src/pages/es/devlog/[...slug].astro](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/pages/es/devlog/[...slug].astro)
+  - [x] Step 2: Refine [global.css](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/styles/global.css) by setting `.dark .prose th { color: #00bfa5 !important; }` and clean up explicit overrides that are now covered by `dark:prose-invert`.
+  - [x] Step 3: Run `pnpm build` to compile the CSS assets and HTML pages.
+  - [x] Step 4: Verify the output files (`dist/` and `dist/_astro/*.css`) have the correct styles.
+  - [x] Step 5: Commit the changes with `git commit -m "style: add dark:prose-invert to templates and force high-contrast brand Teal text on table headers"`.

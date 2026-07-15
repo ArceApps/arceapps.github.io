@@ -268,9 +268,6 @@
   }
 
   /* Dark mode table overrides */
-  .dark .prose table {
-    color: var(--color-dark-on-surface) !important;
-  }
   .dark .prose thead {
     @apply bg-gray-800/60;
   }
@@ -279,7 +276,6 @@
     @apply border-b-2 border-primary/50;
   }
   .dark .prose td {
-    color: var(--color-dark-on-surface) !important;
     @apply border-b border-gray-700/60;
   }
   .dark .prose tbody tr {
