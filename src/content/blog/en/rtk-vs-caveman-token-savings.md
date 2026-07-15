@@ -1,7 +1,7 @@
 ---
 title: "RTK vs Caveman: real token savings in AI agents"
 description: "RTK and Caveman promise 60-90% token cuts in agents. I measure both with real data: JetBrains' 8.5% finding, a 614M-token replay and the output-vs-prose gap."
-pubDate: 2026-07-14
+pubDate: 2026-07-15
 lastmod: 2026-07-15
 author: ArceApps
 keywords:

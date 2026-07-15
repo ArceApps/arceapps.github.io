@@ -1,7 +1,7 @@
 ---
 title: "RTK vs Caveman: el ahorro real de tokens en agentes"
 description: "RTK y Caveman prometen 60-90% menos tokens en agentes. Mido los dos con datos: JetBrains 8,5%, replay 614M tokens y qué cambia entre comprimir output y prosa."
-pubDate: 2026-07-14
+pubDate: 2026-07-15
 lastmod: 2026-07-15
 author: ArceApps
 keywords:
