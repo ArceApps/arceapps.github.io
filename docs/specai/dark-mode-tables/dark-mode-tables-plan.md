@@ -60,3 +60,8 @@ Validate overall dark mode elements visually and ensure the build succeeds.
   1. Add the `dark:prose-invert` class to the prose wrapper divs in all content-rendering templates: blog posts, apps pages, and devlog pages (both Spanish and English routes).
   2. Set `.dark .prose th` in [global.css](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/styles/global.css) with a high-contrast brand Teal color (`color: #00bfa5 !important`) to satisfy the user design request.
   3. Clean up the explicit overrides in [global.css](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/styles/global.css) that are no longer needed due to `dark:prose-invert` handling them natively.
+
+### Iteration 2: 2026-07-15
+- **Feedback**: The user reported that table column headers still render incorrectly (dark on dark) and suspects a filter, shadow, or overlay is applied.
+- **Root Cause**: The website does not define the standard CSS `color-scheme` property. In its absence, mobile browsers and desktop browsers with system-level dark mode active (or extensions like Dark Reader) apply an automatic heuristic "Auto Dark Mode" or smart inversion filters. This causes custom CSS colors (like our Teal `#00bfa5`) to be automatically inverted, darkened, or dimmed to avoid blinding the user. This creates the "filter or shadow" effect.
+- **Solution**: Define the `color-scheme` property explicitly in `src/styles/global.css` at the `:root` level (`color-scheme: light;`) and override it inside the `.dark` class (`color-scheme: dark;`). This explicitly declares to the browser engine that the website has manual, fully optimized dark styles, disabling any automatic browser-level inversion filters or dimmed overlays.

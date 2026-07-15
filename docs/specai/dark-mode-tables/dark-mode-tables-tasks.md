@@ -29,3 +29,9 @@
   - [x] Step 3: Run `pnpm build` to compile the CSS assets and HTML pages.
   - [x] Step 4: Verify the output files (`dist/` and `dist/_astro/*.css`) have the correct styles.
   - [x] Step 5: Commit the changes with `git commit -m "style: add dark:prose-invert to templates and force high-contrast brand Teal text on table headers"`.
+
+- [x] **Task 4: Add `color-scheme` Property to Disable Auto Dark Mode Filters (Iteration 2)**
+  - [x] Step 1: Modify [global.css](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/styles/global.css) adding `color-scheme: light;` inside `:root` (or globally in `@layer base`) and `color-scheme: dark;` inside `.dark` selector (or `:root.dark`).
+  - [x] Step 2: Compile resources using `pnpm build`.
+  - [x] Step 3: Verify style sheet output.
+  - [x] Step 4: Commit the changes with `git commit -m "style: define light/dark color-scheme to disable auto-darkening browser filters"`.

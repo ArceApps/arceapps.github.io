@@ -10,12 +10,12 @@
 ## Verification Logs & Evidence
 
 - **AC1 Verification:**
-  - Status: VERIFIED (Iteration 1)
-  - Evidence: Verified that `global.css` overrides the default specificity behavior. The CSS output in `dist/_astro/index.DycZDl6K.css` compiles `.dark .prose th` to apply `color: #00bfa5 !important`. This forces the column headers to a highly visible bright Teal color, resolving contrast issues with `@tailwindcss/typography`.
+  - Status: VERIFIED (Iteration 2)
+  - Evidence: Verified that `global.css` overrides the default specificity behavior. The CSS output in `dist/_astro/index.Z9alAW4s.css` compiles `.dark .prose th` to apply `color: #00bfa5 !important`. Added `:root { color-scheme: light; }` and `:root.dark { color-scheme: dark; }` to the base styles to force the browser engine to disable auto-darkening overlays and filters.
 
 - **AC2 Verification:**
-  - Status: VERIFIED (Iteration 1)
-  - Evidence: Verified that `global.css` overrides `.dark .prose td` to use `color: var(--color-dark-on-surface) !important` (mapped to `#F5F5F5`) and `border-b border-gray-700/60`, ensuring body text visibility and avoiding overrides by the typography plugin.
+  - Status: VERIFIED (Iteration 2)
+  - Evidence: Converted all content-rendering markdown templates to utilize `.prose dark:prose-invert` which natively maps body fonts to high-contrast variables, avoiding manual overrides. The CSS output confirms `color-scheme: dark` is set globally on `:root.dark`, ensuring normal system rendering.
 
 - **AC3 Verification:**
   - Status: VERIFIED
