@@ -253,3 +253,110 @@ Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatt
 **Verificación:**
 - Recuento de palabras superior a 8000 en ambos idiomas (ES: 8122, EN: 8105).
 - Validación estática exitosa con `pnpm build` tras limpiar la caché local `.astro` para prevenir el error `ENOENT` con `404.astro.mjs`.
+## 2026-07-15 - Artículo: HyperFrames vs Remotion 2026 — Comparativa Definitiva
+**Estado:** ✅ Publicado, compilado y verificado en producción
+
+**Artículos creados:**
+- ES: `src/content/blog/es/hyperframes-vs-remotion-2026.md` (6.306 palabras)
+- EN: `src/content/blog/en/hyperframes-vs-remotion-2026.md` (5.892 palabras)
+
+**Imágenes:**用户提供 6 PNG × 2 idiomas (cover, infographic-comparison, chart-performance, diagram-architecture, decision-tree, agents-comparison) → `public/images/hyperframes-vs-remotion-2026/{es,en}/`
+
+**Estructura (15 secciones):**
+1. Por qué importa en 2026 + contexto agentic
+2. Remotion: idea central, ejemplo, ecosistema, cifras, casos
+3. HyperFrames: idea central, composición HTML/GSAP, determinismo, catálogo 50+, superpoderes (HDR, alpha, TTS local Kokoro-82M)
+4. Diferencia nuclear React vs HTML + problema del reloj wall-clock vs seek-driven
+5. Benchmarks: time-to-first-video (7s vs 50s), render (7-10s vs 16-20s), tamaño MP4 (4MB vs 14MB), coste Lambda
+6. Licencias: Apache 2.0 vs Remotion custom freemium ($100/mes mínimo)
+7. Agent Skills: 18 HyperFrames vs 8 Remotion + comparativa agentes compatibles
+8. Tabla técnica profunda (17 capacidades)
+9. Casos de uso: árbol de decisión + híbridos
+10. Output creativo: benchmarks HyperFrames vs Remotion con Claude Opus 4.7
+11. Pricing real: 3 escenarios (individual, pyme, enterprise)
+12. Futuro: roadmap ambos + convergencia probable
+13. Veredicto: 80% HyperFrames / escala Remotion / usar ambos
+14. Recursos: repos, docs, vídeos, blogposts relacionados
+15. Conclusión + Bibliografía con quotes verbatim de fuentes primarias
+
+**Prior art enlazado (ES + EN):**
+- [AGENTS.md Standard](https://arceapps.com/es/blog/agents-md-estandar/) / [agents-md-standard](https://arceapps.com/blog/agents-md-standard/)
+- [AI Skills: Contexto Dinámico](https://arceapps.com/es/blog/agent-skills-contexto-dinamico/) / [ai-agent-skills-dynamic-context](https://arceapps.com/blog/ai-agent-skills-dynamic-context/)
+- [AI Tools Worth Learning 2026](https://arceapps.com/blog/ai-tools-worth-learning-2026/) (EN link usado en ambos idiomas)
+- [Clean Architecture for AI](https://arceapps.com/es/blog/clean-architecture-ia/) / [clean-architecture-ai](https://arceapps.com/blog/clean-architecture-ai/)
+
+**Diferenciación vs prior art:** Este artículo es la **primera comparativa bilingüe HyperFrames vs Remotion** en el blog. Los posts previos cubren AI Agent Skills genéricos o el stack AI indie 2026; este es la capa de **vídeo programático** que faltaba para cerrar el bucle "agente → output creativo" y se complementa con el catálogo de herramientas en AI Tools Worth Learning 2026.
+
+**Investigación primaria (curl + strip_html fallback):**
+- Remotion repo: confirmado 53.2k stars, 3.8k forks, 648 releases, v4.0.489 (12 jul 2026)
+- Remotion license (remotion.dev/license): confirmado Free License para individuals/small companies, Company License para for-profit organizations
+- HyperFrames repo: confirmado Apache 2.0, "no per-render fees or commercial-use thresholds"
+
+**Verificación:**
+- SEO audit script (`/tmp/audit.py`) PASS en ambos idiomas: title ≤60 (52/55), slug kebab sin stopwords, keywords 3-8 (7/7), description 120-160 (138/141)
+- Build: `npx astro build` → **1041 páginas en 39.84s**, sin errores Zod
+- Step 6.5 (dist verify): `dist/es/blog/hyperframes-vs-remotion-2026/index.html` ✓ + `dist/blog/hyperframes-vs-remotion-2026/index.html` ✓ + sitemap con ambas URLs ✓
+- Post-deploy (Step 7.5): ES 200 + EN 200 tras ~80s de rebuild de Pages (primeros 4 intentos 404, luego 200, patrón documentado)
+- Body size: ES 148.5 KB / EN 145.5 KB
+
+**PITFALL evitado (memory):** Hoy 2026-07-15 CEST = 2026-07-14 UTC → **trampa pubDate UTC activa**. Usé `pubDate: 2026-07-14` + `lastmod: 2026-07-15` para que el filtro `pubDate <= new Date()` pase seguro en cualquier ventana de UTC.
+
+**Innovación técnica:** Cuando `web_extract` falló (DuckDuckGo backend, ya documentado en la umbrella skill), recurrí al patrón `curl | python3 /tmp/strip_html.py` documentado para extraer las claims verbatim de `remotion.dev/license` y `github.com/heygen-com/hyperframes` antes de redactar el artículo.
+
+---
+
+## 2026-07-15 - Artículo: RTK vs Caveman (deep-research contrastación con datos)
+**Estado:** Completado y publicado (ES+EN, ~5k palabras cada uno).
+**Fuentes investigadas (multi-source, sin delegación, estrategia curl+strip_html ante web_extract=DuckDuckGo):**
+- RTK README oficial (github.com/rtk-ai/rtk/master/README.md): confirmado 60-90% por comando, 4 estrategias (filter/group/truncation/dedup), 100+ comandos, 14 agentes.
+- Caveman repo (github.com/JuliusBrussee/caveman): confirmado 89.826 stars (consultado vía `gh api` 15 jul 2026), claim "65% output token saved".
+- JetBrains benchmark A/B (blog.jetbrains.com/ai/2026/07/speak-to-ai-agents-like-cavemen-tosave-tokens/): confirmado **8.5% output-token saving** (vs. -29.5% en k=1, -6.7% en k=3, -8.5% final con 82 paired tasks de SkillsBench), **p=0.82** en sign test, brazo Caveman **11.6% más caro en términos absolutos** ($40.60 vs $36.39) por outlier long-context ($8.29 vs $0.33).
+- Codepointer replay (codepointer.substack.com/p/cutting-llm-token-costs-with-rtk): confirmado **614M tokens**, **$926 de gasto**, ahorro combinado de las tres herramientas (RTK + Headroom + Caveman) = **3,7% del gasto real**. RTK en sesión real = 0,5%, Caveman = 0,4%.
+- RTK vs Caveman stars (vía `gh api`): RTK 71.209, Caveman 89.826 (15 jul 2026).
+
+**Artículos creados:**
+- ES: `src/content/blog/es/rtk-vs-caveman-token-savings.md` (5.611 palabras, 35 KB)
+- EN: `src/content/blog/en/rtk-vs-caveman-token-savings.md` (5.205 palabras, 33 KB)
+
+**Imágenes:**用户提供 5 PNG → 8 archivos en `public/images/rtk-vs-caveman-token-savings/{es,en}/` (cover, cover-linkedin, infographic-comparison, benchmark-chart × 2 idiomas). 3 referencias inline en el cuerpo ES, 3 en el cuerpo EN, todas resueltas.
+
+**Slug / SEO:**
+- Slug: `rtk-vs-caveman-token-savings` (kebab-case, sin stopwords, sin prefijo `blog-`)
+- Title ES: "RTK vs Caveman: el ahorro real de tokens en agentes" (51 chars, tool name en palabras 1-3 ✓)
+- Title EN: "RTK vs Caveman: real token savings in AI agents" (47 chars ✓)
+- Description ES: 158 chars ✓ (rango 120-160 PASS)
+- Description EN: 157 chars ✓ (rango 120-160 PASS)
+- Keywords: 7 cada uno (rango 3-8 PASS)
+
+**Estructura (8 secciones):**
+1. Apertura: la factura "ya estaba bien" y la que volvió a picar (tono indie honesto, matiza el playbook previo)
+2. Por qué importa el ahorro de tokens en 2026 (coste triangular, lost-in-the-middle, output agentic no es prosa)
+3. Las dos filosofías: comprimir output vs. acortar prosa — tabla clave del artículo
+4. RTK: qué es, 4 estrategias (filter/group/truncation/dedup), instalación en 14 agentes, telemetría `rtk gain`, críticas honestas (cache invalidation, fragilidad, hook vs plugin)
+5. Caveman: el problema real (benchmark JetBrains 8.5% p=0.82, replay codepointer 3,7%, el patrón viral "hack system prompt + número grande", qué sí hace bien)
+6. Comparativa con datos: misma tarea/distinto enfoque, expectativas honestas (RTK 35-80% session, Caveman 8.5%), por qué marketing ≠ realidad
+7. Mi recomendación con datos: orden de instalación, cuidado con prompt cache, caveman-compress sí vale, no apilar capas
+8. Lo que enseña esta guerra de herramientas: dos filosofías, RTK ataca causa vs síntoma, Caveman es moda
+
+**Prior art enlazado (ES + EN):** los tres artículos previos del blog sobre el mismo dominio, con diferenciación explícita:
+- [AI Token Savings Strategies](/blog/ai-token-savings-strategies) — playbook optimista previo, base conceptual
+- [Caveman: el skill viral](/blog/caveman-skill-token-compression) — análisis original de Caveman
+- [Headroom: la capa de compresión](/blog/headroom-compression-layer) — el tercer proyecto de la comparación triple
+
+**Diferenciación vs prior art:** Este NO es un playbook de técnicas (eso ya existe en `ai-token-savings-strategies.md`). Es la **primera contrastación crítica bilingüe de las dos herramientas virales del verano de 2026** con datos duros de terceros (JetBrains 8,5%, codepointer 3,7% combinado). El tono cambia: pasa de "ahorra el 99%" a "el 8,5% es lo que ves si lo mides, no el 65% del README". Es el lado crítico que faltaba en el grafo de conocimiento del blog.
+
+**Verificación:**
+- SEO audit (manual): ambos PASS en title/desc/keywords/slug/canonical/lastmod
+- Build: `npx astro build` → **1043 páginas en 29.49s**, sin errores Zod
+- Step 6.5 (dist verify): `dist/es/blog/rtk-vs-caveman-token-savings/index.html` ✓ + `dist/blog/rtk-vs-caveman-token-savings/index.html` ✓ + sitemap con ambas URLs ✓
+- Step 6.5 (images verify): 8 PNG en `dist/images/rtk-vs-caveman-token-savings/{es,en}/` (cover, cover-linkedin, infographic-comparison, benchmark-chart) ✓
+- Post-deploy (Step 7.5): intento 1-4 404, intento 5 (a los ~80s) **ES 200 + EN 200**. Patrón idéntico al HyperFrames 2026-07-15 post.
+- Commit: `b3ecb3e` (mensaje "Add RTK vs Caveman token savings blog (ES/EN, 5k+ words each)", 10 archivos, +702 líneas)
+
+**Decisión de diseño notable — backdate `pubDate`:** Hoy 2026-07-15 CEST = 2026-07-14 UTC. Como el build corre en CEST y la skill `arceapps-content-publishing` documenta la trampa, usé `pubDate: 2026-07-14` + `lastmod: 2026-07-15`. Resultado: build verde, sitemap correcto, 200 OK sin 404 fantasma en producción.
+
+**Innovación técnica / divergencia con la skill write-blog:** La skill load (`write-blog` + `umbrella arceapps-content-publishing`) recomienda **delegar la Fase 1 investigación a un subagente**. Decidí NO delegar y hacer la investigación multi-source yo mismo (5 fuentes primarias consultadas vía `curl` + strip_html, ante `web_extract` fallando por DuckDuckGo backend) por dos motivos: (1) la voz editorial Scribe indie requiere cross-checking de claims verbatim en el cuerpo del artículo; (2) sin vision en mi contexto, las imágenes adjuntas se asignaron por asunción informada (cover/infografía/chart) sin poder verificar visualmente el contenido — esto se compensó con alt-text descriptivo y se documentó como caveat en el primer banner.
+
+**Caveat honesto sobre las imágenes:** Las 5 imágenes adjuntas (3 wide 2752×1536 PNG + 2 cuadradas 2048×2048 LinkedIn) fueron asignadas a secciones por **asunción informada** al no tener herramienta vision_analyze en mi contexto. Si alguna no encaja temáticamente con la sección donde la ubiqué (cover→intro, infographic-comparison→"dos filosofías", benchmark-chart→"tabla benchmarks"), el user puede renombrar/swapear manualmente sin tocar el body markdown.
+
+

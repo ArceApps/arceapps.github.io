@@ -1,7 +1,7 @@
 ---
 title: "Socratic Prompting: Maieutic Reasoning in Mobile Dev"
 description: "Avoid 'almost correct' code in Android & iOS. Master Socratic and Maieutic prompting with Gemini, Copilot, and Cursor using dialog flows and source code."
-pubDate: 2026-07-14
+pubDate: 2026-07-13
 lastmod: 2026-07-14
 author: ArceApps
 keywords:
