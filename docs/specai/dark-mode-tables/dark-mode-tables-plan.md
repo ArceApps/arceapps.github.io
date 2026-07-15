@@ -48,3 +48,15 @@ Validate overall dark mode elements visually and ensure the build succeeds.
 **Acceptance for this task:**
 - Compiles successfully using `pnpm build`.
 - Verification checklist passes.
+
+---
+
+## Execution Log
+
+### Iteration 1: 2026-07-15
+- **Feedback**: The user reported that tables (especially column headers) are still unreadable in dark mode because the text is dark on a dark background. The user requested setting the text color of column headers to the brand green/teal color for high visibility.
+- **Root Cause**: The `@tailwindcss/typography` plugin styles (`.prose`) assume a light background by default. Because the pages render content inside `.prose` wrappers without the `.dark:prose-invert` utility, the plugin internally sets dark custom properties (e.g., `--tw-prose-th`, `--tw-prose-body`) even when the theme is toggled to dark. This forces browser elements to render dark text on a dark background.
+- **Solution**: 
+  1. Add the `dark:prose-invert` class to the prose wrapper divs in all content-rendering templates: blog posts, apps pages, and devlog pages (both Spanish and English routes).
+  2. Set `.dark .prose th` in [global.css](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/styles/global.css) with a high-contrast brand Teal color (`color: #00bfa5 !important`) to satisfy the user design request.
+  3. Clean up the explicit overrides in [global.css](file:///home/arceappspc/Projects/ArceApps/arceapps.github.io/src/styles/global.css) that are no longer needed due to `dark:prose-invert` handling them natively.
