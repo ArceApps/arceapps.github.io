@@ -1,0 +1,22 @@
+# Tasks Checklist — Clean Issues and Features
+
+- [x] **Task 1: Initialize Development Branch**
+    - [x] Step 1: Create and checkout branch `feature/arceapps_clean-issues-and-features`
+- [ ] **Task 2: Remove Target Files**
+    - [ ] Step 1: Delete `create-issues.sh`
+    - [ ] Step 2: Delete `QUICK_START.md`
+    - [ ] Step 3: Delete `GITHUB_ISSUES_README.md`
+    - [ ] Step 4: Delete `ISSUES_CREATION_GUIDE.md`
+    - [ ] Step 5: Delete `ISSUES_LIST.md`
+    - [ ] Step 6: Delete `ISSUE_SUMMARY.md`
+    - [ ] Step 7: Delete `IMPLEMENTATION_SUMMARY.md`
+    - [ ] Step 8: Delete `ANALISIS_WEB.md`
+    - [ ] Step 9: Stage deletions in Git and verify with `git status`
+    - [ ] Step 10: Commit deletions with message: `chore: remove obsolete issue creation and web analysis files`
+- [ ] **Task 3: Verify and Clean References in AGENTS.md**
+    - [ ] Step 1: Search `AGENTS.md` for references
+    - [ ] Step 2: Clean `AGENTS.md` if any references are found
+    - [ ] Step 3: Commit `AGENTS.md` changes if modified
+- [ ] **Task 4: Verify Project Compilation**
+    - [ ] Step 1: Run `pnpm build`
+    - [ ] Step 2: Confirm successful build
