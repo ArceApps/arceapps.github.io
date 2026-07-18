@@ -46,7 +46,9 @@ La causa raíz es el **colapso de contexto**: el agente no tiene acceso duradero
 
 Los tres frameworks intentan resolver esto exteriorizando tu intención arquitectónica en artefactos persistentes y versionados que los agentes pueden consultar antes de generar cualquier cosa. Difieren radicalmente en *cómo* estructuran esos artefactos y *cuándo* los hacen cumplir.
 
----
+acceder al código base. Crean una "constitución" que los agentes deben seguir antes de generar cualquier cosa.
+
+![Panorama de Frameworks SDD](/images/diagrams/sdd-frameworks-landscape.svg)
 
 ## 1. GitHub Spec Kit — El Enfoque Constitucional
 

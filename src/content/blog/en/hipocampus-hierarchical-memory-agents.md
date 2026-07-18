@@ -40,7 +40,9 @@ That one command creates the directory structure, generates skill files for your
 
 It is compatible with the current generation of AI coding tools: Claude Code, OpenCode, and OpenClaw. And its design reflects a specific philosophy: infrastructure you do not control is infrastructure that can fail, cost money, or lock you in. Markdown files are readable by humans, editable in any text editor, portable across machines, and version-controllable with standard git.
 
----
+Hipocampus solves it with an elegantly simple file-based protocol.
+
+![Memory Architectures Comparison](/images/diagrams/memory-architectures.svg)
 
 ## The Architecture: 3-Tier Memory
 

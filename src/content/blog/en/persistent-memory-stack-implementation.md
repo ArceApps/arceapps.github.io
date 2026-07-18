@@ -61,7 +61,9 @@ The logic of the three layers:
 
 This separation is not dogma. The practical reason: each layer has a different update cycle, token cost, and failure mode. Mixing them in a single tool sounds elegant but in practice forces you to accept trade-offs in every dimension.
 
----
+This is what the full stack looks like — pragmatic, iterable, open-source.
+
+![Persistent Memory Stack Architecture](/images/diagrams/persistent-memory-stack.svg)
 
 ## Layer 1: basic-memory as Main Memory
 

@@ -1,0 +1,25 @@
+graph TD
+  Agent["🤖 AI Agent"] --> ShortTerm["🧠 Short-term\n(conversation history)"]
+  Agent --> WorkingMem["📝 Working Memory\n(current task context)"]
+  Agent --> LongTerm["💾 Long-term Memory\n(persistent, indexed)"]
+
+  LongTerm --> Hipocampus["🏛️ Hipocampus\n(SQLite FTS5)"]
+  LongTerm --> HMEM["🗄️ HMEM\n(hierarchical SQLite)"]
+  LongTerm --> PlugMem["🔌 PlugMem\n(Microsoft Research)"]
+  LongTerm --> PARA["📂 PARA Method\n(file-based)"]
+
+  Hipocampus --> FTS5["FTS5 search"]
+  Hipocampus --> Episodic["episodic storage"]
+  HMEM --> Hierarchical["3-level hierarchy"]
+  HMEM --> Context["context windows"]
+  PlugMem --> Cognitive["cognitive architecture"]
+  PlugMem --> Processes["process-aware"]
+  PARA --> Projects["Projects/Areas/Resources/Archive"]
+  PARA --> Files["plain markdown files"]
+
+  style Agent fill:#018786,color:#fff,stroke:#018786
+  style LongTerm fill:#FF9800,color:#000,stroke:#FF9800
+  style Hipocampus fill:#018786,color:#fff,stroke:#018786
+  style HMEM fill:#018786,color:#fff,stroke:#018786
+  style PlugMem fill:#018786,color:#fff,stroke:#018786
+  style PARA fill:#018786,color:#fff,stroke:#018786

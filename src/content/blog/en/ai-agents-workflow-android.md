@@ -28,7 +28,9 @@ With **Bolt** (my performance agent), the story was different but equally frustr
 
 And finally **Palette** (my UI/UX agent). At first, Palette was a bit too "creative." I would give it a Figma design and ask it to create the *Composables*. Its code was functional, but it had a bad habit of hardcoding colors (`Color(0xFFE5E5E5)`) instead of using my `MaterialTheme.colorScheme`. I spent weeks fighting rejected PRs until I learned to feed it my design tokens as initial context in every prompt.
 
-Today, these three agents are a fundamental part of my team. We understand each other. I provide precise context, and they execute deep analyses. I no longer expect magic; I expect computational rigor. And that is exactly what they are giving me. Let's see then, with this fine-tuned setup, how they behave in real-world cases.
+Here's a concrete walkthrough of my workflow today.
+
+![AI Agent Workflow in Android](/images/diagrams/agent-workflow-android.svg)
 
 ## Case 1: Sentinel vs. The Insecure AndroidManifest 🛡️
 

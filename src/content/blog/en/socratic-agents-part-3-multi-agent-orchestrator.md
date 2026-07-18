@@ -45,7 +45,9 @@ Here is the typical distribution of functions in a Socratic orchestration librar
 
 If you are an indie developer, you don't need a massive Kubernetes cluster to run this. You can run this entire squad locally or via lightweight cloud functions, coordinated by Kotlin Coroutines on your dev machine.
 
----
+Let's deconstruct this ecosystem and look ahead.
+
+![Multi-Agent Orchestrator Flow](/images/diagrams/multi-agent-orchestrator.svg)
 
 ## Advanced Dialectical Interaction Patterns
 

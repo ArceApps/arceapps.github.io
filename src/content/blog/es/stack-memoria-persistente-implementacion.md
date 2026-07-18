@@ -68,7 +68,9 @@ La lógica de las tres capas:
 
 Esta separación no es dogma. La razón práctica: cada capa tiene un ciclo de actualización, un coste de tokens y un modo de fallo distinto. Mezclarlas en una sola herramienta suena elegante pero en la práctica te obliga a aceptar compromisos en cada dimensión.
 
----
+forzarte a aceptar trade-offs en cada dimensión.
+
+![Arquitectura del Stack de Memoria Persistente](/images/diagrams/persistent-memory-stack.svg)
 
 ## Capa 1: basic-memory como Memoria Principal
 

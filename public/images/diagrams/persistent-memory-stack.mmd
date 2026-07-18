@@ -1,0 +1,19 @@
+graph TD
+  Stack["🧱 Persistent Memory Stack"]
+  Stack --> Layer1["1️⃣ Fast Cache\n(LRU in-memory)"]
+  Stack --> Layer2["2️⃣ Indexed Store\n(SQLite FTS5 + embeddings)"]
+  Stack --> Layer3["3️⃣ Cold Storage\n(markdown files on disk)"]
+  Stack --> Layer4["4️⃣ Sync Layer\n(Git-based versioning)"]
+
+  Layer1 -->|"cache miss"| Layer2
+  Layer2 -->|"archive threshold"| Layer3
+  Layer3 -->|"commit + push"| Layer4
+
+  Layer1 --> Evict["LRU eviction"]
+  Layer2 --> Search["semantic search"]
+  Layer3 --> GitOps["git ops per entry"]
+  Layer4 --> Conflict["merge conflict resolution"]
+
+  style Stack fill:#018786,color:#fff,stroke:#018786
+  style Layer1 fill:#FF9800,color:#000,stroke:#FF9800
+  style Layer4 fill:#018786,color:#fff,stroke:#018786

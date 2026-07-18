@@ -1,0 +1,21 @@
+graph LR
+  User["👤 Human Prompt"] --> Orchestrator["🧠 Multi-Agent Orchestrator"]
+  Orchestrator --> Decompose["✂️ Task Decomposition"]
+  Decompose --> SpecAgent["📋 Spec Agent\n(writes specs)"]
+  Decompose --> CodeAgent["💻 Code Agent\n(implements)"]
+  Decompose --> ReviewAgent["🔍 Review Agent\n(grills output)"]
+
+  SpecAgent --> SpecDoc["📄 Spec Doc"]
+  CodeAgent --> CodeOutput["📦 Implementation"]
+  ReviewAgent --> ReviewReport["📊 Review Report"]
+
+  SpecDoc --> Consensus["🤝 Consensus Loop"]
+  CodeOutput --> Consensus
+  ReviewReport --> Consensus
+
+  Consensus -->|"issues found"| Orchestrator
+  Consensus -->|"approved"| Merge["✅ Merge to main"]
+
+  style User fill:#FF9800,color:#000,stroke:#FF9800
+  style Orchestrator fill:#018786,color:#fff,stroke:#018786
+  style Merge fill:#018786,color:#fff,stroke:#018786

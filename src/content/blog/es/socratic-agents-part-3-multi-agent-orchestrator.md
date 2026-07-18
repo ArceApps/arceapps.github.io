@@ -52,7 +52,9 @@ Aquí está la distribución típica de funciones en una biblioteca de orquestac
 
 Si eres un desarrollador indie, no necesitas un clúster de Kubernetes masivo para ejecutar esto. Puedes ejecutar todo este escuadrón localmente o mediante funciones en la nube ligeras, coordinadas por Kotlin Coroutines en tu máquina de desarrollo.
 
----
+corrutinas de Kotlin en tu máquina de desarrollo.
+
+![Flujo del Orquestador Multi-Agente](/images/diagrams/multi-agent-orchestrator.svg)
 
 ## Patrones Avanzados de Interacción Dialéctica
 

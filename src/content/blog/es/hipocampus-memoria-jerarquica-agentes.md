@@ -47,7 +47,9 @@ Ese único comando crea la estructura de directorios, genera los ficheros de hab
 
 Es compatible con la generación actual de herramientas de codificación IA: Claude Code, OpenCode y OpenClaw. Su diseño refleja una filosofía concreta: la infraestructura que no controlas es infraestructura que puede fallar, costar dinero o atraparte en un lock-in. Los ficheros markdown son legibles por humanos, editables en cualquier editor de texto, portátiles entre máquinas y versionables con git estándar.
 
----
+control de versiones con git estándar.
+
+![Comparativa de Arquitecturas de Memoria](/images/diagrams/memory-architectures.svg)
 
 ## La Arquitectura: Memoria en 3 Capas
 

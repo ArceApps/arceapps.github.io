@@ -39,7 +39,9 @@ The root cause is **context collapse**: the agent has no durable, structured acc
 
 All three frameworks attempt to solve this by externalizing your architectural intent into persistent, version-controlled artifacts that agents can query before generating anything. They differ radically in *how* they structure those artifacts and *when* they enforce them.
 
----
+This article is the first in a series that confronts them head to head.
+
+![SDD Frameworks Landscape](/images/diagrams/sdd-frameworks-landscape.svg)
 
 ## 1. GitHub Spec Kit — The Constitutional Approach
 
