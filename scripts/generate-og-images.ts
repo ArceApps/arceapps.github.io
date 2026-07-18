@@ -25,6 +25,7 @@ interface OGEntry {
   type: 'blog' | 'apps' | 'devlog';
   lang: 'en' | 'es';
   slug: string;
+  heroImage?: string;
 }
 
 function escapeXml(text: string): string {
@@ -40,7 +41,7 @@ function escapeXml(text: string): string {
  * Creates SVG string for an OG image
  */
 function createOGSVG(entry: OGEntry): string {
-  const { title, date, type, lang } = entry;
+  const { title, date, type, lang, heroImage } = entry;
   
   const typeLabels = {
     blog: lang === 'es' ? 'Blog' : 'Blog',
@@ -56,7 +57,7 @@ function createOGSVG(entry: OGEntry): string {
   });
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:${TEAL};stop-opacity:1" />
@@ -70,6 +71,9 @@ function createOGSVG(entry: OGEntry): string {
   
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bgGrad)" />
+  
+  <!-- Hero Image overlay (if available) -->
+  ${heroImage ? `<image href="${heroImage}" x="0" y="0" width="1200" height="630" preserveAspectRatio="xMidYMid slice" opacity="0.25" />` : ''}
   
   <!-- Decorative circles -->
   <circle cx="1100" cy="100" r="300" fill="${ORANGE}" opacity="0.1" />
@@ -159,6 +163,7 @@ async function getContentEntries(): Promise<OGEntry[]> {
             const titleMatch = fm.match(/title:\s*["'](.*)["']/);
             const dateMatch = fm.match(/pubDate:\s*(.*)/);
             const draftMatch = fm.match(/draft:\s*(?:true|false)/);
+            const heroMatch = fm.match(/heroImage:\s*(.+)/);
             
             if (titleMatch && !draftMatch?.input?.includes('draft: true')) {
               const slug = file.replace(/\.mdx?$/, '');
@@ -168,6 +173,7 @@ async function getContentEntries(): Promise<OGEntry[]> {
                 type: 'blog',
                 lang: 'en',
                 slug: `blog-en-${slug}`,
+                heroImage: heroMatch ? heroMatch[1].trim().replace(/["']/g, '') : undefined,
               });
             }
           }
@@ -185,6 +191,7 @@ async function getContentEntries(): Promise<OGEntry[]> {
             const titleMatch = fm.match(/title:\s*["'](.*?)["']/);
             const dateMatch = fm.match(/pubDate:\s*(.*)/);
             const draftMatch = fm.match(/draft:\s*(?:true|false)/);
+            const heroMatch = fm.match(/heroImage:\s*(.+)/);
             
             if (titleMatch && !draftMatch?.input?.includes('draft: true')) {
               const slug = file.replace(/\.mdx?$/, '');
@@ -194,6 +201,7 @@ async function getContentEntries(): Promise<OGEntry[]> {
                 type: 'blog',
                 lang: 'es',
                 slug: `blog-es-${slug}`,
+                heroImage: heroMatch ? heroMatch[1].trim().replace(/["']/g, '') : undefined,
               });
             }
           }
@@ -221,6 +229,7 @@ async function getContentEntries(): Promise<OGEntry[]> {
               const titleMatch = fm.match(/title:\s*["'](.*)["']/);
               const dateMatch = fm.match(/pubDate:\s*(.*)/);
               const draftMatch = fm.match(/draft:\s*(?:true|false)/);
+              const heroMatch = fm.match(/heroImage:\s*(.+)/);
               
               if (titleMatch && !draftMatch?.input?.includes('draft: true')) {
                 const slug = file.replace(/\.mdx?$/, '');
@@ -230,6 +239,7 @@ async function getContentEntries(): Promise<OGEntry[]> {
                   type: 'devlog',
                   lang,
                   slug: `devlog-${lang}-${slug}`,
+                  heroImage: heroMatch ? heroMatch[1].trim().replace(/["']/g, '') : undefined,
                 });
               }
             }
@@ -258,6 +268,7 @@ async function getContentEntries(): Promise<OGEntry[]> {
               const titleMatch = fm.match(/title:\s*["'](.*)["']/);
               const dateMatch = fm.match(/pubDate:\s*(.*)/);
               const draftMatch = fm.match(/draft:\s*(?:true|false)/);
+              const heroMatch = fm.match(/heroImage:\s*(.+)/);
               
               if (titleMatch && !draftMatch?.input?.includes('draft: true')) {
                 const slug = file.replace(/\.mdx?$/, '');
@@ -267,6 +278,7 @@ async function getContentEntries(): Promise<OGEntry[]> {
                   type: 'apps',
                   lang,
                   slug: `apps-${lang}-${slug}`,
+                  heroImage: heroMatch ? heroMatch[1].trim().replace(/["']/g, '') : undefined,
                 });
               }
             }
