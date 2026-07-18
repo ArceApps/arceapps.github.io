@@ -407,13 +407,11 @@ Hemos discutido la lógica de las pruebas unitarias y la comprobación de los es
 
 import { test, expect } from '@playwright/test';
 
-test('verify devlog redirects and images', async ({ page }) => {
-  // 1. Verify Redirect for specific article
-  // We navigate to the old URL
-  await page.goto('http://localhost:4321/mi-historia/refinando-la-experiencia');
+test('verify devlog article renders and images load', async ({ page }) => {
+  // 1. Verify the canonical devlog URL renders correctly
+  await page.goto('http://localhost:4321/es/devlog/refinando-la-experiencia');
 
-  // Expect to land on the new URL
-  await expect(page).toHaveURL(/\/devlog\/refinando-la-experiencia/);
+  await expect(page).toHaveURL(/\/es\/devlog\/refinando-la-experiencia/);
   await expect(page).toHaveTitle(/Refinando la Experiencia/);
 
   // 2. Verify Image Loading on Detail Page
@@ -442,7 +440,7 @@ test('verify devlog redirects and images', async ({ page }) => {
 
 ```
 
-Esta especificación de Playwright es fascinante porque prueba redirecciones heredadas. La plataforma ArceApps migró recientemente las URL de las bitácoras. En lugar de arriesgar una penalización de SEO y enlaces externos rotos, este script verifica que el tráfico que llega a las rutas antiguas de \`/mi-historia\` se redirige exitosamente a la nueva arquitectura de \`/devlog\` mediante redirección 301. Además, evalúa explícitamente el ancho natural (naturalWidth) de las imágenes de héroe SVG generadas por nuestros agentes de IA para garantizar que no solo estén presentes en el DOM, sino que se hayan renderizado con éxito a través de la red.
+Esta especificación de Playwright valida la ruta canónica del devlog directamente. Anteriormente, el script verificaba que las rutas heredadas de `/mi-historia/*` redirigieran a la nueva arquitectura `/devlog/*`; esas redirecciones se eliminaron en julio de 2026 cuando el cambio de URL quedó suficientemente consolidado (más de un año en producción). Ahora el test navega directo a la URL canónica y verifica que tanto el contenido como las imágenes de héroe SVG renderizan correctamente. La evaluación explícita del ancho natural (`naturalWidth`) garantiza que las imágenes no solo están presentes en el DOM, sino que se han renderizado con éxito a través de la red.
 
 ## Verificando los Enlaces de Contenido
 El script final en nuestro arsenal de pruebas es la utilidad de validación de enlaces. Esta es una prueba personalizada de Vitest diseñada específicamente para nuestro proyecto Astro.
