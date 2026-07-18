@@ -1,0 +1,81 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import { getCollection } from "astro:content";
+import seriesData from "../../../data/series.json";
+
+const { slug } = Astro.params;
+const series = seriesData.series.find(s => s.slug === slug);
+
+if (!series) return Astro.redirect("/es/404");
+
+const allPosts = await getCollection("blog", ({ data }) => !data.draft && data.pubDate <= new Date());
+const esPosts = allPosts.filter(p => p.id.startsWith("es/"));
+
+const seriesPosts = series.posts
+  .map(postSlug => esPosts.find(p => p.id === `es/${postSlug}.md` || p.id === `es/${postSlug}` || p.slug.endsWith(postSlug)))
+  .filter(Boolean);
+
+const title = `${series.name} — ArceApps`;
+
+const breadcrumbItems = [
+  { label: "Inicio", href: "/es/" },
+  { label: "Blog", href: "/es/blog" },
+  { label: series.name, href: `/es/series/${slug}` },
+];
+
+export async function getStaticPaths() {
+  return seriesData.series.map(s => ({ params: { slug: s.slug } }));
+}
+---
+
+<Layout title={title} description={series.description}>
+  <div class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-on-surface dark:text-dark-on-surface mb-4">
+        {series.name}
+      </h1>
+      <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto">
+        {series.description}
+      </p>
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4 max-w-4xl py-16">
+    <Breadcrumbs items={breadcrumbItems} />
+
+    <div class="mt-8 space-y-6">
+      {seriesPosts.map((post) => {
+        const cleanSlug = post.id.replace("es/", "").replace(".md", "");
+        return (
+          <a
+            href={`/es/blog/${cleanSlug}`}
+            data-astro-prefetch
+            class="block bg-surface dark:bg-dark-surface rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md hover:border-primary/30 dark:hover:border-primary/30 transition-all group"
+          >
+            <h2 class="text-xl font-bold text-on-surface dark:text-dark-on-surface mb-2 group-hover:text-primary transition-colors">
+              {post.data.title}
+            </h2>
+            <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2 mb-3">
+              {post.data.description}
+            </p>
+            <div class="flex items-center justify-between">
+              <time class="text-xs text-on-surface-variant/60 dark:text-dark-on-surface-variant/60" datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString("es-ES", { year: "numeric", month: "short", day: "numeric" })}
+              </time>
+              <span class="text-sm font-medium text-primary">
+                Leer →
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    {seriesPosts.length === 0 && (
+      <p class="text-center text-on-surface-variant dark:text-dark-on-surface-variant py-12">
+        No se encontraron posts en esta serie.
+      </p>
+    )}
+  </div>
+</Layout>

@@ -1,0 +1,91 @@
+{
+  "series": [
+    {
+      "slug": "socratic-agents",
+      "name": "Agentes Socráticos",
+      "name_en": "Socratic Agents",
+      "description": "Una exploración en profundidad de cómo aplicar el método socrático a agentes de IA para SDD.",
+      "description_en": "A deep exploration of applying the Socratic method to AI agents for Spec-Driven Development.",
+      "posts": [
+        "socratic-agents-part-1-induction-entropy",
+        "socratic-agents-part-2-sdd-sycophancy",
+        "socratic-agents-part-3-multi-agent-orchestrator",
+        "socratic-grilling-sdd",
+        "grill-me-sdd-adversarial-workflow-comparison",
+        "grill-me-claude-skill-deep-dive"
+      ]
+    },
+    {
+      "slug": "tournament-cli-ai",
+      "name": "Tournament: CLI AI",
+      "name_en": "Tournament: CLI AI",
+      "description": "Análisis comparativo en formato torneo de las herramientas CLI de IA: Claude Code, Codex, Gemini CLI y más.",
+      "description_en": "Tournament-style comparative analysis of AI CLI tools: Claude Code, Codex, Gemini CLI, and more.",
+      "posts": [
+        "cli-ai-semifinal-1",
+        "cli-ai-semifinal-2",
+        "cli-ai-grand-final"
+      ]
+    },
+    {
+      "slug": "tournament-desktop-ai",
+      "name": "Tournament: Desktop AI IDEs",
+      "name_en": "Tournament: Desktop AI IDEs",
+      "description": "Ronda final del torneo de entornos de desarrollo con IA integrada: Cursor, Windsurf, VS Code + Copilot y alternativas open-source.",
+      "description_en": "Final round of the AI-integrated IDE tournament: Cursor, Windsurf, VS Code + Copilot, and open-source alternatives.",
+      "posts": [
+        "desktop-ai-agents-semifinal-a",
+        "desktop-ai-grand-final",
+        "open-source-ai-ides-semifinal"
+      ]
+    },
+    {
+      "slug": "persistent-memory",
+      "name": "Memoria Persistente para Agentes",
+      "name_en": "Persistent Memory for Agents",
+      "description": "Todas las arquitecturas y protocolos para dotar de memoria a largo plazo a agentes de IA: Hipocampus, HMEM, PlugMem, MCP, PARA, OpenCode.",
+      "description_en": "All architectures and protocols for giving long-term memory to AI agents: Hipocampus, HMEM, PlugMem, MCP, PARA, OpenCode.",
+      "posts": [
+        "opencode-memory-plugins-native",
+        "hipocampus-hierarchical-memory-agents",
+        "hmem-sqlite-hierarchical-memory-agents",
+        "plugmem-microsoft-agent-memory",
+        "para-method-file-based-ai-memory",
+        "persistent-memory-stack-implementation",
+        "ai-agent-memory-persistence-guide",
+        "mcp-servers-memory-cross-agent"
+      ]
+    },
+    {
+      "slug": "sdd-frameworks",
+      "name": "SDD Frameworks",
+      "name_en": "SDD Frameworks",
+      "description": "Comparativa y análisis de herramientas de Spec-Driven Development: GitHub Spec Kit, OpenSpec, BMAD, Spec Kitty, LeanSpec y el método Grill-me.",
+      "description_en": "Comparison and analysis of Spec-Driven Development tools: GitHub Spec Kit, OpenSpec, BMAD, Spec Kitty, LeanSpec, and the Grill-me method.",
+      "posts": [
+        "sdd-frameworks-analysis-spec-kit-openspec-bmad",
+        "openspec-mobile-development",
+        "spec-kitty-mobile-development",
+        "lean-task-first-beads-leanspec-taskmaster",
+        "gsd-core-context-engineering",
+        "spec-driven-development-ai"
+      ]
+    },
+    {
+      "slug": "ai-tools-2026",
+      "name": "Herramientas IA 2026",
+      "name_en": "AI Tools 2026",
+      "description": "El ecosistema de herramientas de IA que todo desarrollador debería conocer en 2026: modelos, IDEs, agentes y flujos de trabajo.",
+      "description_en": "The AI tool ecosystem every developer should know in 2026: models, IDEs, agents, and workflows.",
+      "posts": [
+        "ai-tools-worth-learning-2026",
+        "chatgpt-claude-gemini-2026",
+        "claude-4-6-sonnet-opus-review",
+        "claude-4-6-enterprise-launch",
+        "chatgpt-5-3-codex-review",
+        "deepseek-r1-coding-review",
+        "gemini-3-1-release"
+      ]
+    }
+  ]
+}
