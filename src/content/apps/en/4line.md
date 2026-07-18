@@ -12,6 +12,7 @@ tags:
   - Strategy
   - Brain Training
 googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.a4line'
+repoUrl: 'https://github.com/ArceApps/4Line.git'
 realIconUrl: >-
   https://play-lh.googleusercontent.com/6rGaNE9lQxno4idyUqPCu5XkCDxz3mkS6HxUX-E9U4oXxGzzB2YooGgeJe96m7g8mQ
 screenshots:

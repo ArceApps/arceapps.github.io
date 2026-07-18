@@ -12,6 +12,7 @@ tags:
   - Logic
   - Classic
 googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.sudoku'
+repoUrl: 'https://github.com/ArceApps/Sudoku.git'
 realIconUrl: >-
   https://play-lh.googleusercontent.com/P7oN8lIV9cP_B6nZkhtDILrZ2wZ2n8nCmarLRSm2Ed-7jpRb_LUgZkNFad6J_W9BHhPrxs_MQQGzfvFTQwIjjw
 screenshots:

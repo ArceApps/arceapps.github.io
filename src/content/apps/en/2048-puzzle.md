@@ -12,6 +12,7 @@ tags:
   - Logic
   - Casual
 googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.a2048'
+repoUrl: 'https://github.com/ArceApps/2048Challenge.git'
 realIconUrl: >-
   https://play-lh.googleusercontent.com/Hp8a3SgsuK8CObY9Q5_VPhaSBpRGiE38lVWaoFIi-4Kf6Phznl78VNyEtfLVSXyTkQ
 screenshots:

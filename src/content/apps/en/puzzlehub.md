@@ -12,6 +12,7 @@ tags:
   - Collection
   - Logic
 googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.puzzlesuite'
+repoUrl: 'https://github.com/ArceApps/PuzzleSuite.git'
 realIconUrl: >-
   https://play-lh.googleusercontent.com/x7fgE7nKdp2LoyMdHSEIzEWTfRrhqlYky6K_TEmeAhqPWZb7v-qD-y8_NK4w0poOIWYsXMv1j7u-womc_fmCFg
 screenshots:

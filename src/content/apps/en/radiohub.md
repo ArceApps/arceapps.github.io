@@ -11,6 +11,7 @@ tags:
   - Radio
   - Streaming
 googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.radiohub'
+repoUrl: 'https://github.com/ArceApps/PodcastRadio.git'
 screenshots:
   - /images/apps/radiohub/en/screenshot_player.png
   - /images/apps/radiohub/en/screenshot_explore.png
