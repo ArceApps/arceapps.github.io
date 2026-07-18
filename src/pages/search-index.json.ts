@@ -1,6 +1,24 @@
 import { getCollection } from 'astro:content';
 import { sanitizeForSearch } from '../utils/sanitizer';
 
+// Strip markdown to clean text for search indexing
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/^#{1,6}\s+/gm, '')       // headings
+    .replace(/\*\*(.*?)\*\*/g, '$1')    // bold
+    .replace(/\*(.*?)\*/g, '$1')        // italic
+    .replace(/~~(.*?)~~/g, '$1')        // strikethrough
+    .replace(/`{1,3}[^`]*`{1,3}/g, '') // inline/code blocks
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // links -> text
+    .replace(/!\[.*?\]\(.*?\)/g, ' ')   // images
+    .replace(/[>\-*+|]/g, ' ')          // blockquote/markdown symbols
+    .replace(/<[^>]*>/g, ' ')           // HTML tags
+    .replace(/&[a-z]+;/g, ' ')          // HTML entities
+    .replace(/\s+/g, ' ')               // collapse whitespace
+    .replace(/\.{3,}/g, ' ')            // trailing dots
+    .trim();
+}
+
 export async function GET() {
   const [posts, apps] = await Promise.all([
     getCollection('blog', ({ data }) => !data.draft),
@@ -18,7 +36,8 @@ export async function GET() {
         slug: `${urlPrefix}${cleanSlug}`,
         type: 'Blog',
         tags: post.data.tags || [],
-        lang: isSpanish ? 'es' : 'en'
+        lang: isSpanish ? 'es' : 'en',
+        body: stripMarkdown(post.body || '').slice(0, 600),
       };
     }),
     ...apps.map((app) => {
@@ -31,7 +50,8 @@ export async function GET() {
         slug: `${urlPrefix}${cleanSlug}`,
         type: 'App',
         tags: app.data.tags || [],
-        lang: isSpanish ? 'es' : 'en'
+        lang: isSpanish ? 'es' : 'en',
+        body: stripMarkdown(app.body || '').slice(0, 600),
       };
     }),
   ];

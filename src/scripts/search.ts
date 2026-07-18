@@ -8,6 +8,7 @@ export interface SearchItem {
   type: "Blog" | "App";
   tags: string[];
   lang: "es" | "en";
+  body?: string;
 }
 
 // Module-level state (persists across View Transitions)
@@ -132,9 +133,10 @@ export async function initFuse() {
 
       fuse = new Fuse(searchIndex, {
         keys: [
-          { name: "title", weight: 0.7 },
+          { name: "title", weight: 0.6 },
           { name: "description", weight: 0.3 },
           { name: "tags", weight: 0.2 },
+          { name: "body", weight: 0.2 },
         ],
         includeScore: true,
         threshold: 0.4,
