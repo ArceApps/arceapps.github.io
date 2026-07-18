@@ -6,7 +6,7 @@ lastmod: 2026-05-22
 author: "ArceApps"
 keywords: ["SDD", "AI", "Socratic Method", "Spec-Driven Development", "mattpocock", "Prompt Engineering", "Skills", "Architecture"]
 canonical: "https://arceapps.com/blog/grill-me-sdd-adversarial-workflow-comparison/"
-heroImage: "/images/grill-me-sdd-comparison.svg"
+heroImage: "/images/grill-me-sdd-comparison-en.svg"
 tags: ["SDD", "AI", "Socratic Method", "Spec-Driven Development", "mattpocock", "Prompt Engineering", "Skills", "Architecture"]
 category: sdd
 reference_id: "grill-me-sdd-comparison-002"
@@ -21,7 +21,7 @@ This tension creates a paradox for developers. If you apply the "challenge every
 In this article, we will comprehensively analyze how the recent viral phenomenon **"Grill Me"** (a skill created by Matt Pocock for Claude Code, boasting over 13,000 stars on GitHub) resolves this apparent conflict. We will explore how this tool positions itself not as a replacement for SDD, but as the missing piece of the puzzle: the critical bridge between ambiguous ideation and strict specification.
 
 
-![Infografía Grill-me](/images/infographic-grill-me.svg)
+![Infografía Grill-me](/images/infographic-grill-me-en.svg)
 
 ## 1. Understanding the Players on the Board
 
@@ -34,10 +34,10 @@ Frameworks like **Spec Kit** and **OpenSpec** advocate for a linear, determinist
 *   **Weakness:** Assumes the human knows exactly what they want and has considered all failure modes. Suffers heavily from "Garbage In, Garbage Out."
 
 
-![Infografía Spec-Kit](/images/infographic-spec-kit.svg)
+![Infografía Spec-Kit](/images/infographic-spec-kit-en.svg)
 
 
-![Infografía OpenSpec](/images/infographic-openspec.svg)
+![Infografía OpenSpec](/images/infographic-openspec-en.svg)
 
 ### The Socratic Method (Adversarial Prompting)
 
@@ -101,7 +101,7 @@ In Workflow B, the model's "sycophancy" could not hide architectural flaws. The 
 Despite our enthusiasm, we must be rigorously honest about when this tool is not appropriate. As discussed in our SDD framework comparison ([SDD Frameworks Comparison](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)):
 
 
-![Infografía BMAD](/images/infographic-bmad.svg)
+![Infografía BMAD](/images/infographic-bmad-en.svg)
 
 1.  **Lack of Initial Vision:** The skill is not going to tell you "what" to build. It is an interrogation about the "how." If you lack a fundamental product vision, the agent will simply iterate on generalities without arriving at anything useful.
 2.  **Highly Regulated Teams:** In heavily regulated environments (like finance or healthcare), "Grill Me" is useful, but it cannot replace the formal SDD flow of an architectural review board. The output of the interrogation *must* be formalized into an auditable document that passes through a traditional approval flow.
@@ -163,7 +163,7 @@ One aspect that cannot be understated is the role of context in making Socratic 
 Socratic prompting and SDD can and must coexist. Their relationship is not mutually exclusive, but symbiotic. "Grill Me" is the missing link that allows us to harness the deductive and critical capabilities of LLMs without sacrificing the discipline and traceability of Spec-Driven Development.
 
 
-![Infografía Harness](/images/infographic-harness.svg)
+![Infografía Harness](/images/infographic-harness-en.svg)
 
 If you are the kind of developer who appreciates classical software engineering principles (as described in books like *The Pragmatic Programmer* or *A Philosophy of Software Design*), the `mattpocock/skills` toolset will feel like a natural extension of your brain. It forces deliberate and careful design steps every single day.
 

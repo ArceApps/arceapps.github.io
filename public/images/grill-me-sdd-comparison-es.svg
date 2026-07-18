@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0F172A"/><stop offset="100%" stop-color="#121826"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1e293b" stroke-width="0.5" opacity="0.4"/></pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="48" text-anchor="middle" font-family="monospace" font-size="26" font-weight="bold" fill="#f8fafc" filter="url(#glow)">'Grill Me' vs Método Socrático vs Spec-Driven Dev</text>
+  <text x="600" y="71" text-anchor="middle" font-family="monospace" font-size="12" fill="#64748b">La resolución por fases — interrogación adversarial + ejecución determinista</text>
+  <line x1="200" y1="83" x2="1000" y2="83" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- === COLUMN 1: Socrático / Grill-Me === -->
+  <rect x="30" y="100" width="360" height="510" rx="14" fill="#1a1430" stroke="#6366f1" stroke-width="2.5"/>
+  <rect x="30" y="100" width="360" height="44" rx="14" fill="#6366f1" opacity="0.3"/>
+  <text x="210" y="129" text-anchor="middle" font-family="monospace" font-size="17" font-weight="bold" fill="#a5b4fc">⚡ Socrático / Grill-Me</text>
+
+  <rect x="55" y="160" width="310" height="40" rx="8" fill="#6366f1" opacity="0.1" stroke="#6366f1" stroke-width="1"/>
+  <text x="210" y="186" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#818cf8">Filosofía: "Cuestiona todo"</text>
+
+  <circle cx="70" cy="225" r="5" fill="#818cf8"/><text x="86" y="229" font-family="monospace" font-size="10" fill="#cbd5e1">Bucle de preguntas adversarial</text>
+  <circle cx="70" cy="250" r="5" fill="#818cf8"/><text x="86" y="254" font-family="monospace" font-size="10" fill="#cbd5e1">Rompe la sicofancia de la IA</text>
+  <circle cx="70" cy="275" r="5" fill="#818cf8"/><text x="86" y="279" font-family="monospace" font-size="10" fill="#cbd5e1">Expone suposiciones ocultas</text>
+  <circle cx="70" cy="300" r="5" fill="#818cf8"/><text x="86" y="304" font-family="monospace" font-size="10" fill="#cbd5e1">Interrogación pre-spec</text>
+  <circle cx="70" cy="325" r="5" fill="#818cf8"/><text x="86" y="329" font-family="monospace" font-size="10" fill="#cbd5e1">/grill-me + /grill-with-docs</text>
+
+  <rect x="55" y="355" width="310" height="35" rx="6" fill="#7c3aed" opacity="0.1" stroke="#7c3aed" stroke-width="1"/>
+  <text x="210" y="378" text-anchor="middle" font-family="monospace" font-size="10" fill="#a78bfa">🎯 Dominio: Fase 1 — Pre-Spec</text>
+
+  <text x="210" y="410" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#94a3b8">Flujo</text>
+  <text x="210" y="430" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">Idea → /grill-me → Preguntas →</text>
+  <text x="210" y="446" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">Respuestas → Entendimiento →</text>
+  <text x="210" y="462" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">GLOSARIO.md → SPEC.md</text>
+
+  <rect x="55" y="485" width="310" height="45" rx="8" fill="#0F172A" stroke="#1e293b" stroke-width="1"/>
+  <text x="210" y="507" text-anchor="middle" font-family="monospace" font-size="9" fill="#818cf8" font-style="italic">"La documentación emerge</text>
+  <text x="210" y="521" text-anchor="middle" font-family="monospace" font-size="9" fill="#818cf8" font-style="italic">de la fricción de la interrogación"</text>
+
+  <text x="210" y="556" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">⚠️ Riesgo: fatiga de debate, sin gobernanza</text>
+  <text x="210" y="575" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">⚠️ Requiere disciplina del desarrollador</text>
+
+  <!-- === CENTER === -->
+  <text x="410" y="355" text-anchor="middle" font-family="monospace" font-size="22" font-weight="bold" fill="#475569">↔</text>
+  <text x="410" y="375" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">simbiótico</text>
+  <text x="410" y="390" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">no</text>
+  <text x="410" y="405" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">adversarial</text>
+
+  <!-- === COLUMN 2: SDD === -->
+  <rect x="430" y="100" width="360" height="510" rx="14" fill="#0a1a16" stroke="#34d399" stroke-width="2.5"/>
+  <rect x="430" y="100" width="360" height="44" rx="14" fill="#34d399" opacity="0.15"/>
+  <text x="610" y="129" text-anchor="middle" font-family="monospace" font-size="17" font-weight="bold" fill="#6ee7b7">📋 Spec-Driven Development</text>
+
+  <rect x="455" y="160" width="310" height="40" rx="8" fill="#34d399" opacity="0.08" stroke="#34d399" stroke-width="1"/>
+  <text x="610" y="186" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#34d399">Filosofía: "El spec es sagrado"</text>
+
+  <circle cx="470" cy="225" r="5" fill="#34d399"/><text x="486" y="229" font-family="monospace" font-size="10" fill="#cbd5e1">Pipeline determinista y lineal</text>
+  <circle cx="470" cy="250" r="5" fill="#34d399"/><text x="486" y="254" font-family="monospace" font-size="10" fill="#cbd5e1">SPEC.md como contrato inmutable</text>
+  <circle cx="470" cy="275" r="5" fill="#34d399"/><text x="486" y="279" font-family="monospace" font-size="10" fill="#cbd5e1">Previene el "spec drift"</text>
+  <circle cx="470" cy="300" r="5" fill="#34d399"/><text x="486" y="304" font-family="monospace" font-size="10" fill="#cbd5e1">Auditable, reproducible</text>
+  <circle cx="470" cy="325" r="5" fill="#34d399"/><text x="486" y="329" font-family="monospace" font-size="10" fill="#cbd5e1">Spec Kit · OpenSpec · BMAD</text>
+
+  <rect x="455" y="355" width="310" height="35" rx="6" fill="#018786" opacity="0.15" stroke="#018786" stroke-width="1"/>
+  <text x="610" y="378" text-anchor="middle" font-family="monospace" font-size="10" fill="#34d399">🎯 Dominio: Fase 2 — Build</text>
+
+  <text x="610" y="410" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#94a3b8">Flujo</text>
+  <text x="610" y="430" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">SPEC.md → Gen Código → Validar →</text>
+  <text x="610" y="446" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">Test → Lint → Review → Publicar</text>
+  <text x="610" y="462" text-anchor="middle" font-family="monospace" font-size="9" fill="#64748b">(Sin desviarse del spec)</text>
+
+  <rect x="455" y="485" width="310" height="45" rx="8" fill="#0F172A" stroke="#1e293b" stroke-width="1"/>
+  <text x="610" y="507" text-anchor="middle" font-family="monospace" font-size="9" fill="#34d399" font-style="italic">"Ejecución perfecta de un spec</text>
+  <text x="610" y="521" text-anchor="middle" font-family="monospace" font-size="9" fill="#34d399" font-style="italic">defectuoso = software perfectamente mal"</text>
+
+  <text x="610" y="556" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">⚠️ Riesgo: Basura entra → Basura sale</text>
+  <text x="610" y="575" text-anchor="middle" font-family="monospace" font-size="9" fill="#ef4444">⚠️ Asume que el spec humano es perfecto</text>
+
+  <!-- === COLUMN 3: Híbrido === -->
+  <rect x="830" y="100" width="340" height="510" rx="14" fill="#1a1200" stroke="#FF9800" stroke-width="3"/>
+  <rect x="830" y="100" width="340" height="44" rx="14" fill="#FF9800" opacity="0.2"/>
+  <text x="1000" y="129" text-anchor="middle" font-family="monospace" font-size="17" font-weight="bold" fill="#FFB74D">🔗 Híbrido por Fases</text>
+
+  <rect x="855" y="160" width="290" height="40" rx="8" fill="#FF9800" opacity="0.08" stroke="#FF9800" stroke-width="1"/>
+  <text x="1000" y="186" text-anchor="middle" font-family="monospace" font-size="11" font-weight="bold" fill="#FFB74D">Resolución: "Fase sobre dogma"</text>
+
+  <rect x="855" y="215" width="290" height="30" rx="6" fill="#6366f1" opacity="0.12"/>
+  <text x="870" y="235" font-family="monospace" font-size="9" fill="#818cf8">Fase 1: Pre-Spec → dominio /grill-me</text>
+  <rect x="855" y="252" width="290" height="30" rx="6" fill="#34d399" opacity="0.12"/>
+  <text x="870" y="272" font-family="monospace" font-size="9" fill="#34d399">Fase 2: Build → dominio SDD</text>
+  <rect x="855" y="289" width="290" height="30" rx="6" fill="#ef4444" opacity="0.1"/>
+  <text x="870" y="309" font-family="monospace" font-size="9" fill="#ef4444">Fase 3: Post-Fallo → /diagnose</text>
+
+  <text x="1000" y="345" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#94a3b8">Flujo Resuelto</text>
+  <rect x="865" y="358" width="270" height="130" rx="10" fill="#0F172A" stroke="#1e293b" stroke-width="1"/>
+  <rect x="880" y="370" width="110" height="30" rx="6" fill="#6366f1" opacity="0.15"/><text x="935" y="390" text-anchor="middle" font-family="monospace" font-size="8" fill="#818cf8">/grill-me</text>
+  <text x="995" y="390" font-family="monospace" font-size="12" fill="#475569">→</text>
+  <rect x="1015" y="370" width="100" height="30" rx="6" fill="#34d399" opacity="0.15"/><text x="1065" y="390" text-anchor="middle" font-family="monospace" font-size="8" fill="#34d399">SPEC.md</text>
+  <text x="935" y="420" font-family="monospace" font-size="12" fill="#475569">↓</text>
+  <rect x="900" y="430" width="200" height="30" rx="6" fill="#FF9800" opacity="0.15"/><text x="1000" y="450" text-anchor="middle" font-family="monospace" font-size="9" fill="#FFB74D">Build + TDD + Verificar</text>
+
+  <text x="1000" y="510" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#94a3b8">Dialéctica Hegeliana</text>
+  <text x="1000" y="530" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">Tesis (Idea) → Antítesis (Grill)</text>
+  <text x="1000" y="546" text-anchor="middle" font-family="monospace" font-size="8" fill="#64748b">→ Síntesis (SPEC.md)</text>
+  <text x="1000" y="575" text-anchor="middle" font-family="monospace" font-size="9" font-weight="bold" fill="#34d399">✅ Lo mejor de los dos mundos</text>
+
+  <rect x="0" y="600" width="1200" height="30" fill="#018786" opacity="0.12"/>
+  <text x="600" y="619" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">La resolución por fases — Pre-Spec adversarial + Build determinista. La era del "Yes Man" terminó.</text>
+</svg>
