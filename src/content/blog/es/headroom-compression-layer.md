@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/headroom-compression-layer/"
 heroImage: "/images/blog-headroom-compression-layer.svg"
 tags: ["Headroom", "LLM", "Context Compression", "AI Agents", "Token Optimization", "MCP", "Indie Dev"]
+category: ai-agents
 reference_id: "8f3a2c1e-9b4d-4e7a-a1c5-7e9d8b2f4c6b"
 ---
 

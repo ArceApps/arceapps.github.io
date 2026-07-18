@@ -6,6 +6,7 @@ lastmod: 2026-07-08
 author: "ArceApps"
 heroImage: "/images/cli-ai-semifinal-1.svg"
 tags: ["AI", "CLI", "Aider", "Cline", "OpenCode", "Hermes", "BYOK", "Open Source", "2026", "Tournament"]
+category: ai-agents
 keywords: ["AI CLI", "Claude Code", "Cline", "Mistral Vibe", "Kimi Code CLI", "Pi coding agent", "terminal agents"]
 canonical: "https://arceapps.com/blog/cli-ai-semifinal-1/"
 reference_id: "CLI-AI-SF1-2026-REWRITE-001"

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/blog/imposter-syndrome-developer-2026/"
 heroImage: "/images/career-imposter-syndrome.svg"
 tags: ["Career", "Mental Health", "Imposter Syndrome", "Developer Life", "AI"]
+category: career
 ---
 
 

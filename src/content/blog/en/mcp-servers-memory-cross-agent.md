@@ -4,6 +4,7 @@ description: "Exhaustive technical comparison of three cross-platform MCP server
 pubDate: 2026-06-12
 heroImage: /images/mcp-servers-memory-cross-agent.svg
 tags: ["AI", "Agents", "Memory", "MCP", "Claude Code", "Codex", "Cursor", "Indie Dev"]
+category: ai-agents
 reference_id: 0d6b1f5a-4b2e-7a8d-bf0b-6e9c5d2f7a4b
 author: ArceApps
 lastmod: 2026-06-12

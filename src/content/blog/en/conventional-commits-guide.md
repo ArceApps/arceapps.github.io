@@ -4,6 +4,7 @@ description: Why your commit messages matter. A guide to Conventional Commits fo
 pubDate: 2025-06-21
 heroImage: /images/placeholder-article-conventional-commits.svg
 tags: ["Git", "Best Practices", "Conventional Commits", "DevOps", "Communication"]
+category: cicd
 reference_id: c81d684b-4edf-4881-afb5-722e474a8980
 author: ArceApps
 lastmod: 2025-06-21

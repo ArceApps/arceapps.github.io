@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/automated-versioning/"
 heroImage: "/images/placeholder-article-automated-versioning.svg"
 tags: ["Android", "GitHub Actions", "CI/CD", "Automatización", "Versionado", "DevOps"]
+category: cicd
 reference_id: "f0d36318-91ed-4f7c-a447-f460ea56e7a0"
 ---
 

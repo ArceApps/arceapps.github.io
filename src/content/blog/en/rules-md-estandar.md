@@ -4,6 +4,7 @@ description: "Discover how rules.md, .cursorrules, and the .mdc format have revo
 pubDate: 2026-06-14
 heroImage: /images/placeholder-article-rules-md.svg
 tags: ["AI", "rules.md", "Android", "Kotlin", "Cursor", "Prompt Engineering"]
+category: android-kotlin
 reference_id: rules-md-standard-2026
 author: ArceApps
 lastmod: 2026-06-14

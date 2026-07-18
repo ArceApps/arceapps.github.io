@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/clawdbot-android-node-build/"
 heroImage: "/images/clawdbot-android-node.svg"
 tags: ["Android", "Clawdbot", "Kotlin", "Build", "Gradle", "IA"]
+category: android-kotlin
 reference_id: "3eb5c086-8be4-48c6-a348-5973806f84e9"
 ---
 

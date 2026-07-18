@@ -5,6 +5,7 @@ pubDate: 2026-07-08
 lastmod: 2026-07-08
 heroImage: "/images/cli-ai-semifinal-2.svg"
 tags: ["AI", "CLI", "Aider", "OpenHands", "Plandex", "Antigravity", "DeepSeek", "Qwen", "2026"]
+category: ai-agents
 author: "ArceApps"
 keywords: ["AI CLI", "OpenHands", "Aider", "Plandex", "Mods CLI", "Qwen Code", "terminal agents"]
 canonical: "https://arceapps.com/blog/cli-ai-semifinal-2/"

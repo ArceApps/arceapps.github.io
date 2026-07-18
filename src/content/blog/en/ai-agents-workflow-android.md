@@ -7,6 +7,7 @@ author: ArceApps
 keywords: ["AI", "Kotlin", "Workflow", "Use Cases", "Android"]
 canonical: "https://arceapps.com/blog/ai-agents-workflow-android/"
 tags: ["AI", "Kotlin", "Workflow", "Use Cases", "Android"]
+category: android-kotlin
 heroImage: /images/placeholder-article-ai-workflow.svg
 reference_id: 0ce33761-8899-4d89-aff7-39579c3bca46
 ---

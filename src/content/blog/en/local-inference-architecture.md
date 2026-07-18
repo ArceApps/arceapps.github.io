@@ -4,6 +4,7 @@ description: A guide to decoupling on-device AI models like Gemini Nano using Cl
 pubDate: 2026-02-05
 heroImage: /images/tech-edge-ai-arch.svg
 tags: ["Android", "AI", "Clean Architecture", "LiteRT", "Gemini Nano", "On-Device AI"]
+category: ai-agents
 author: ArceApps
 lastmod: 2026-02-05
 canonical: "https://arceapps.com/blog/local-inference-architecture/"

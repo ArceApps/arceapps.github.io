@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/socratic-grilling-sdd/"
 heroImage: "/images/blog-socratic-grilling-sdd.svg"
 tags: ["SDD", "IA", "Método Socrático", "Spec-Driven Development", "mattpocock", "Prompt Engineering", "Skills"]
+category: sdd
 reference_id: "c8a2f3d5-7e1b-4c9d-8f0a-3e6b9d2c1a0d"
 related_posts:
   - blog-mattpocock-skills

@@ -4,6 +4,7 @@ description: Generate and deploy your Android documentation automatically. How t
 pubDate: 2025-10-18
 heroImage: /images/placeholder-article-automated-docs.svg
 tags: ["Documentation", "CI/CD", "Dokka", "GitHub Actions", "Android", "MkDocs"]
+category: cicd
 reference_id: 1299d2ab-5ddf-49e3-b1dc-6c4925f7f5fd
 author: ArceApps
 lastmod: 2025-10-18

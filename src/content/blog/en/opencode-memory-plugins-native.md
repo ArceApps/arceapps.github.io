@@ -4,6 +4,7 @@ description: "Comparative technical analysis of three native OpenCode plugins to
 pubDate: 2026-06-16
 heroImage: /images/opencode-memory-plugins-native.svg
 tags: ["AI", "Agents", "Memory", "OpenCode", "Plugins", "MCP", "Indie Dev"]
+category: ai-agents
 reference_id: 8b4f9d3e-2f0c-5e6b-9d8f-4c7a3b0d5e2f
 author: ArceApps
 lastmod: 2026-06-16

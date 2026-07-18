@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/grill-me-claude-skill-deep-dive/"
 heroImage: "/images/grill-me-hero.svg"
 tags: ["IA", "Claude Code", "Skills", "mattpocock", "Arquitectura", "Socratic Method", "Grill Me"]
+category: ai-agents
 reference_id: "grill-me-deep-dive-001"
 ---
 

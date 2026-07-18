@@ -4,6 +4,7 @@ description: Why Use Cases matter in Clean Architecture. How to implement them e
 pubDate: 2025-06-21
 heroImage: /images/placeholder-article-use-cases.svg
 tags: ["Architecture", "Clean Code", "Use Cases", "Android", "Domain"]
+category: sdd
 reference_id: 2eddc21e-4c8f-4f39-859d-e4c1fc1066bc
 author: ArceApps
 lastmod: 2025-06-21

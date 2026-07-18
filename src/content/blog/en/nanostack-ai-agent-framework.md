@@ -4,6 +4,7 @@ description: Discover NanoStack, the open-source, zero-dependency framework that
 pubDate: 2026-03-29
 heroImage: /images/nanostack-hero.svg
 tags: ["AI Agents", "NanoStack", "Gemini CLI", "Claude Code", "OpenAI", "Productivity", "Open Source"]
+category: ai-agents
 reference_id: f8a3d12e-4b7c-4e9a-a5f2-c8d6e9b0f123
 author: ArceApps
 lastmod: 2026-03-29

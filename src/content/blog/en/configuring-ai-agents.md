@@ -4,6 +4,7 @@ description: Practical step-by-step guide to implementing an agent architecture 
 pubDate: 2025-05-21
 heroImage: /images/placeholder-article-ai-setup.svg
 tags: ["AI", "Tutorial", "Configuration", "Android", "Agents"]
+category: ai-agents
 reference_id: b0624ec0-08af-4dad-bc3f-7dce6d88c8ea
 author: ArceApps
 lastmod: 2025-05-21

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/opencode-plugins-memoria-nativos/"
 heroImage: "/images/blog-opencode-plugins-memoria-nativos.svg"
 tags: ["IA", "Agentes", "Memoria", "OpenCode", "Plugins", "MCP", "Indie Dev"]
+category: ai-agents
 reference_id: "8b4f9d3e-2f0c-5e6b-9d8f-4c7a3b0d5e2f"
 ---
 

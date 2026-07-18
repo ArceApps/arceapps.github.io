@@ -4,6 +4,7 @@ description: How to craft prompts that work. From simple instructions to complex
 pubDate: 2025-10-25
 heroImage: /images/placeholder-article-prompt-context.svg
 tags: ["AI", "Prompt Engineering", "Context", "Productivity", "GitHub Copilot", "Gemini", "Android"]
+category: ai-agents
 reference_id: 0f3f40cf-3a5d-481d-b211-b372ac4a2298
 author: ArceApps
 lastmod: 2025-10-25

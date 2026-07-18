@@ -4,6 +4,7 @@ description: A technical deep-dive into Hipocampus, a drop-in memory harness for
 pubDate: 2026-03-27
 heroImage: /images/blog-hipocampus-memoria-jerarquica.svg
 tags: ["AI", "Memory", "Agents", "Architecture", "Open Source", "Context Window", "Markdown"]
+category: memory
 reference_id: d3f7a2b1-9c5e-4d8a-b2f6-1e3c7d5a8b4e
 author: ArceApps
 lastmod: 2026-03-27

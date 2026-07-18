@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/plugmem-microsoft-memoria-agentes/"
 heroImage: "/images/plugmem-microsoft-memory.svg"
 tags: ["IA", "Memoria", "Agentes", "LLM", "Microsoft Research", "Grafo de Conocimiento", "Arquitectura"]
+category: ai-agents
 reference_id: "a8c3d5e7-2f1b-4a9c-b6d0-7e4f2c8a1b5d"
 ---
 

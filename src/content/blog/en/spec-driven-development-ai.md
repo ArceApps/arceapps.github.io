@@ -4,6 +4,7 @@ description: "A senior engineer's guide to SDD for agentic AI: from vibe coding 
 pubDate: 2026-03-24
 heroImage: "/images/blog-sdd-agentic-en.png"
 tags: ["AI", "Workflow", "SDD", "Agentic AI", "Documentation", "Productivity", "GitHub Copilot", "BMAD", "OpenSpec"]
+category: ai-agents
 reference_id: d8152217-0875-4637-84fc-c004f535fb93
 author: ArceApps
 lastmod: 2026-03-24

@@ -8,6 +8,7 @@ keywords: ["AI", "Standard", "Agents", "Documentation", "Productivity", "Workflo
 canonical: "https://arceapps.com/blog/agents-md-standard/"
 heroImage: /images/placeholder-article-agents-md.svg
 tags: ["AI", "Standard", "Agents", "Documentation", "Productivity", "Workflow"]
+category: ai-agents
 reference_id: 18f8fad7-3b63-4ea6-a8b2-bf9e057ed125
 ---
 ## 📜 The Problem: Context Amnesia

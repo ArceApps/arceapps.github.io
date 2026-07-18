@@ -4,6 +4,7 @@ description: Connecting your self-hosted Clawdbot to Telegram. How to build a pr
 pubDate: 2025-10-31
 heroImage: /images/placeholder-article-clawdbot-telegram.svg
 tags: ["AI", "Telegram", "Bot", "Node.js", "Self-hosting", "Clawdbot", "Productivity"]
+category: ai-agents
 reference_id: a799021c-02cb-427a-ae6e-cd63360b833b
 author: ArceApps
 lastmod: 2025-10-31

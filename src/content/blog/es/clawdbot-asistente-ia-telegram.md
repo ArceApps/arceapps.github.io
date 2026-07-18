@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/clawdbot-asistente-ia-telegram/"
 heroImage: "/images/clawdbot-telegram-gemini.svg"
 tags: ["IA", "Clawdbot", "Telegram", "Gemini", "GitHub Copilot", "Productividad", "Android"]
+category: ai-agents
 reference_id: "a799021c-02cb-427a-ae6e-cd63360b833b"
 ---
 

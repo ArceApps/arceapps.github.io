@@ -4,6 +4,7 @@ description: Discover how Artificial Intelligence and Clean Architecture empower
 pubDate: 2025-11-20
 heroImage: /images/placeholder-article-clean-arch-ia.svg
 tags: ["AI", "Clean Architecture", "Android", "Productivity", "GitHub Copilot"]
+category: cicd
 reference_id: c9acb2b0-8aaf-44b4-aae3-8c2c810df46c
 author: ArceApps
 lastmod: 2025-11-20

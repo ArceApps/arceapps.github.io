@@ -4,6 +4,7 @@ description: How to implement the View layer in MVVM with Jetpack Compose. State
 pubDate: 2025-10-15
 heroImage: /images/placeholder-article-mvvm-view.svg
 tags: ["MVVM", "View", "Android", "Jetpack Compose", "Architecture", "Clean Code"]
+category: android-kotlin
 reference_id: 0b7b5c3e-9982-4ee9-a47d-02edb4be618d
 author: ArceApps
 lastmod: 2025-10-15

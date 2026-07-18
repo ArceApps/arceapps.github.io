@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/chatgpt-5-3-codex-review/"
 heroImage: "/images/chatgpt-5-3-placeholder.svg"
 tags: ["AI", "ChatGPT", "Codex", "Android", "Productividad", "Gemini"]
+category: ai-agents
 reference_id: "a0debc84-8829-4713-8c1c-bbc4c5f46004"
 ---
 

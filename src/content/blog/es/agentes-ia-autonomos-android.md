@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/agentes-ia-autonomos-android/"
 heroImage: "/images/blog-agentes-autonomos-android.svg"
 tags: ["IA", "Android", "Agentes", "Multi-Agent", "Automatización"]
+category: ai-agents
 draft: false
 ---
 

@@ -22,6 +22,7 @@ tags:
   - "Agent Skills"
   - "Indie Dev"
 reference_id: "8b2f6d51-7c4a-4e2f-9d3b-5e8a1c9f0b21"
+category: ai-agents
 ---
 
 # HyperFrames vs Remotion: La Comparativa Definitiva 2026 para Crear Vídeos con Agentes de IA

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/android-16-baklava/"
 heroImage: "/images/placeholder-article-android-16.svg"
 tags: ["Android", "Android 16", "Baklava", "Privacy", "Health Connect", "News"]
+category: android-kotlin
 reference_id: "be5f8f27-9428-4735-a643-d081c334aeee"
 ---
 

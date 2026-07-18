@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/solid-principles/"
 heroImage: "/images/placeholder-article-solid.svg"
 tags: ["Android", "SOLID", "Architecture", "Design Patterns", "Clean Code"]
+category: architecture
 reference_id: "23245d12-f1a0-4c90-a479-5054040d07f3"
 ---
 

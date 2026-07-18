@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/agentes-ia-android-teoria/"
 heroImage: "/images/placeholder-article-ai-evolution.svg"
 tags: ["IA", "Productividad", "Android", "Agentes", "Workflow"]
+category: ai-agents
 reference_id: "fbbc92f4-c19e-4618-b57c-697983574014"
 ---
 

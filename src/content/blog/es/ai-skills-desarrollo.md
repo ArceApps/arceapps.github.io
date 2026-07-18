@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/ai-skills-desarrollo/"
 heroImage: "/images/placeholder-article-ai-skills.svg"
 tags: ["IA", "Android", "Desarrollo", "Skills", "Gemini", "GitHub Copilot"]
+category: ai-agents
 reference_id: "f6063ef7-ac6b-4ff3-88cf-55681f3eb150"
 ---
 

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/blog/kmp-advanced-ui-strategies/"
 heroImage: "/images/tech-kmp-ui-sync.svg"
 tags: ["Kotlin Multiplatform", "KMP", "Compose Multiplatform", "iOS", "Android", "Architecture"]
+category: android-kotlin
 ---
 
 

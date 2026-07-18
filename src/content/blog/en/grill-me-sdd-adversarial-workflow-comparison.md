@@ -8,6 +8,7 @@ keywords: ["SDD", "AI", "Socratic Method", "Spec-Driven Development", "mattpococ
 canonical: "https://arceapps.com/blog/grill-me-sdd-adversarial-workflow-comparison/"
 heroImage: "/images/grill-me-sdd-comparison.svg"
 tags: ["SDD", "AI", "Socratic Method", "Spec-Driven Development", "mattpocock", "Prompt Engineering", "Skills", "Architecture"]
+category: sdd
 reference_id: "grill-me-sdd-comparison-002"
 ---
 

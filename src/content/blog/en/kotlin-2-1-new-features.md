@@ -4,6 +4,7 @@ description: Kotlin 2.1 arrives to consolidate the K2 compiler revolution. We an
 pubDate: 2025-01-28
 heroImage: /images/placeholder-article-kotlin-2-1.svg
 tags: ["Kotlin", "K2", "Compiler", "Performance", "Language Features", "Updates"]
+category: android-kotlin
 reference_id: 3c516e3b-a58e-440b-b7b5-6b0446996231
 author: ArceApps
 lastmod: 2025-01-28

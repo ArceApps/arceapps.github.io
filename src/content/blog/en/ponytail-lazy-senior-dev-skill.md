@@ -4,6 +4,7 @@ description: "34k stars in six days. A skill that forces Claude Code, Codex, Cur
 pubDate: 2026-06-19
 heroImage: /images/ponytail-skill-senior-perezoso.svg
 tags: ["AI Agents", "Skills", "YAGNI", "Ponytail", "Claude Code", "Codex", "Cursor", "Minimalism", "Indie"]
+category: ai-agents
 reference_id: f3a1b8d2-4e7c-4a9b-b1c3-7d8e9f0a1b2c
 author: ArceApps
 lastmod: 2026-06-19

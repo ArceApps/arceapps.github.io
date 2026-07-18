@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/paperclip-ai-empresa-cero-humanos/"
 heroImage: "/images/blog-paperclip-ai-empresa-cero-humanos.svg"
 tags: ["IA", "Paperclip", "Agentes", "Automatización", "Multi-Agent", "Gobernanza"]
+category: ai-agents
 draft: false
 ---
 

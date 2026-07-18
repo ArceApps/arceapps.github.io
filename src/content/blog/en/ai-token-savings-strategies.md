@@ -15,6 +15,7 @@ keywords:
 canonical: "https://arceapps.com/blog/ai-token-savings-strategies/"
 heroImage: "/images/ai-token-savings-strategies.png"
 tags: ["AI Agents", "Tokens", "Cost Optimization", "Prompt Caching", "Model Routing", "LLMLingua", "RTK", "Indie"]
+category: ai-agents
 reference_id: "d372e2d1-04b0-4bd9-b89f-28d46cc910a4"
 ---
 

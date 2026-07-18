@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/contexto-efectivo-ia/"
 heroImage: "/images/placeholder-article-ai-context.svg"
 tags: ["IA", "Android", "Prompt Engineering", "Contexto", "Productividad", "GitHub Copilot", "Gemini"]
+category: ai-agents
 reference_id: "0f3f40cf-3a5d-481d-b211-b372ac4a2298"
 ---
 

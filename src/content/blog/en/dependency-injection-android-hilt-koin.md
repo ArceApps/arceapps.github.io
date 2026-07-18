@@ -4,6 +4,7 @@ description: Choosing the right DI framework. Performance, compile time, and eas
 pubDate: 2025-06-21
 heroImage: /images/placeholder-article-di-android.svg
 tags: ["Dependency Injection", "Hilt", "Koin", "Android", "Architecture", "Dagger"]
+category: architecture
 reference_id: 7d7872d5-d5a9-46b7-a078-648ffda0ae6b
 author: ArceApps
 lastmod: 2025-06-21

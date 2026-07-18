@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/refactoring-ia/"
 heroImage: "/images/placeholder-article-refactoring-ia.svg"
 tags: ["IA", "Refactoring", "Clean Code", "Legacy Code", "Android"]
+category: sdd
 reference_id: "e61a0a9d-7846-43f0-a99a-932ed9a26d43"
 ---
 

@@ -4,6 +4,7 @@ description: A developer's take on DeepSeek R1 for coding tasks. From impressive
 pubDate: 2025-01-31
 heroImage: /images/placeholder-article-deepseek.svg
 tags: ["AI", "DeepSeek", "Coding", "Review", "LLM", "Reasoning", "R1"]
+category: ai-agents
 reference_id: c26054d9-7de7-4f6f-849a-25f376da73a4
 author: ArceApps
 lastmod: 2025-01-31

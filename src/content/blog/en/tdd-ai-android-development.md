@@ -4,6 +4,7 @@ description: How Test-Driven Development (TDD) pairs with AI coding assistants. 
 pubDate: 2025-10-21
 heroImage: /images/placeholder-article-tdd-ai.svg
 tags: ["TDD", "AI", "Testing", "Android", "Productivity", "GitHub Copilot"]
+category: cicd
 reference_id: 0ac2ca01-c1c4-42cc-b392-40461065750c
 author: ArceApps
 lastmod: 2025-10-21

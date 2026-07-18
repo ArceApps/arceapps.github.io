@@ -8,6 +8,7 @@ keywords: ["AI", "Android", "Agents", "LLM", "Theory", "Architecture"]
 canonical: "https://arceapps.com/blog/ai-agents-android-theory/"
 heroImage: /images/placeholder-article-ai-agents.svg
 tags: ["AI", "Android", "Agents", "LLM", "Theory", "Architecture"]
+category: ai-agents
 reference_id: fbbc92f4-c19e-4618-b57c-697983574014
 ---
 ## 🤖 What is an AI Agent?

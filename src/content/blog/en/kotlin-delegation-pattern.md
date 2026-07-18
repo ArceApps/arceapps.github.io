@@ -4,6 +4,7 @@ description: Master the Delegation pattern in Kotlin. Use `by` keyword to replac
 pubDate: 2025-10-15
 heroImage: /images/placeholder-article-delegation.svg
 tags: ["Kotlin", "Delegation", "Design Patterns", "Clean Code", "Android"]
+category: android-kotlin
 reference_id: f80704ef-54c1-481a-9d85-bd50b43cabc2
 author: ArceApps
 lastmod: 2025-10-15

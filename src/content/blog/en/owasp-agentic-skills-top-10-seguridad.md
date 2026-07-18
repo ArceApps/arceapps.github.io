@@ -15,6 +15,7 @@ keywords:
 canonical: "https://arceapps.com/blog/owasp-agentic-skills-top-10-seguridad/"
 heroImage: "/images/owasp-agentic-skills-top-10-seguridad.svg"
 tags: ["OWASP", "Security", "Agent Skills", "Supply Chain", "Slopsquatting", "Indie"]
+category: security
 draft: false
 reference_id: "3b8e9f2e-0d5c-4f4b-9f7e-2c6d8b0f3a5e"
 ---

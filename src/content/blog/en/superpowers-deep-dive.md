@@ -4,6 +4,7 @@ description: A comprehensive technical deep dive into the Superpowers methodolog
 pubDate: 2026-04-19
 heroImage: /images/placeholder-article-ai-workflow.svg
 tags: ["Superpowers", "AI Agents", "TDD", "Subagents", "Methodology", "Engineering", "Workflow", "Deep Dive"]
+category: ai-agents
 reference_id: b7c3e5d1-9a2f-4c8e-b1d6-8a9f2e3d4c5b
 author: ArceApps
 lastmod: 2026-04-19

@@ -4,6 +4,7 @@ description: Stop manually bumping `versionCode`. Use GitHub Actions and SemVer 
 pubDate: 2025-10-18
 heroImage: /images/placeholder-article-automated-versioning.svg
 tags: ["Android", "Versioning", "Gradle", "CI/CD", "Semantic Versioning", "GitHub Actions"]
+category: cicd
 reference_id: f0d36318-91ed-4f7c-a447-f460ea56e7a0
 author: ArceApps
 lastmod: 2025-10-18

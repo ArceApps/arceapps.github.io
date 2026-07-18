@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/superpowers-vs-openspec/"
 heroImage: "/images/blog-superpowers-vs-openspec-es.png"
 tags: ["SDD", "IA", "Superpowers", "OpenSpec", "IA Agéntica", "Metodología", "Workflow", "Productividad"]
+category: sdd
 reference_id: "e4d2a1c9-6f8b-4a3d-8e7c-2b1d9f4a5c6d"
 ---
 

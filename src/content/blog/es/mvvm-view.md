@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/mvvm-view/"
 heroImage: "/images/placeholder-article-view-layer.svg"
 tags: ["Android", "MVVM", "UI", "Jetpack Compose", "XML"]
+category: android-kotlin
 reference_id: "0b7b5c3e-9982-4ee9-a47d-02edb4be618d"
 ---
 

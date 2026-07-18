@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/repository-pattern/"
 heroImage: "/images/placeholder-article-repository.svg"
 tags: ["Architecture", "Design Patterns", "Android", "Data Layer"]
+category: architecture
 reference_id: "e1498656-14e2-4b0b-9914-752ae17e6062"
 ---
 

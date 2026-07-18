@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/blog/use-cases/"
 heroImage: "/images/placeholder-article-use-cases.svg"
 tags: ["Architecture", "Clean Architecture", "Android", "Best Practices"]
+category: architecture
 reference_id: "2eddc21e-4c8f-4f39-859d-e4c1fc1066bc"
 ---
 

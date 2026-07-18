@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/github-copilot-android/"
 heroImage: "/images/placeholder-article-copilot-android.svg"
 tags: ["IA", "GitHub Copilot", "Android", "Productividad", "IDE"]
+category: cicd
 reference_id: "f43f93b9-d757-4cd9-a01d-0662a05e1b55"
 ---
 

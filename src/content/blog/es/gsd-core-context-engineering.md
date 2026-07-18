@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/gsd-core-context-engineering/"
 heroImage: "/images/gsd-core-context-engineering.svg"
 tags: ["AI", "Workflow", "GSD", "Claude Code", "Spec-Driven Development", "Context Engineering", "Agentic AI", "Productivity", "Open Source", "Indie Dev"]
+category: ai-agents
 reference_id: "f8a4d6c2-7e3b-4a1f-9d5e-2c8b6a4f1e94"
 ---
 

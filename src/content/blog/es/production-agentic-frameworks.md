@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/production-agentic-frameworks/"
 heroImage: "/images/placeholder-article-ai-agents.svg"
 tags: ["IA", "Agentes", "LangGraph", "CrewAI", "PydanticAI", "Python", "Arquitectura"]
+category: ai-agents
 reference_id: "c63a672f-79e5-45d1-ae7a-f25cf3027f7b"
 ---
 

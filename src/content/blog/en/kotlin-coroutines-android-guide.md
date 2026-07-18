@@ -4,6 +4,7 @@ description: Mastering Kotlin Coroutines on Android. Dispatchers, structured con
 pubDate: 2025-10-15
 heroImage: /images/placeholder-article-coroutines.svg
 tags: ["Kotlin", "Coroutines", "Android", "Async", "Concurrency", "Best Practices"]
+category: android-kotlin
 reference_id: 68c16e5f-eccc-4903-bd42-f5c5dd0d19f6
 author: ArceApps
 lastmod: 2025-10-15

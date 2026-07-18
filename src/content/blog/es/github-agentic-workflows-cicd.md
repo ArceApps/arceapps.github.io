@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/github-agentic-workflows-cicd/"
 heroImage: "/images/github-agentic-workflows-cicd.svg"
 tags: ["CI/CD", "GitHub Actions", "IA", "Agents", "Automatización", "DevOps", "Indie"]
+category: cicd
 draft: false
 reference_id: "27a53d69-538e-496c-8531-58adb79629f4"
 ---

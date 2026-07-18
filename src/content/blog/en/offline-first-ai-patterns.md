@@ -4,6 +4,7 @@ description: Revolutionizing data synchronization and conflict resolution using 
 pubDate: 2026-02-07
 heroImage: /images/tech-offline-ai.svg
 tags: ["Offline-First", "AI", "Synchronization", "Room", "Data Management", "Architecture"]
+category: architecture
 author: ArceApps
 lastmod: 2026-02-07
 canonical: "https://arceapps.com/blog/offline-first-ai-patterns/"

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/kmp-2025-state/"
 heroImage: "/images/placeholder-article-kmp-state.svg"
 tags: ["Kotlin", "KMP", "Multiplatform", "iOS", "Android", "Compose"]
+category: android-kotlin
 reference_id: "b0454438-8d0c-4998-abc2-3dd70aa5bf3d"
 ---
 

@@ -8,6 +8,7 @@ keywords: ["AI", "Security", "Agents", "Red-Team", "Memory", "Research", "Vulner
 canonical: "https://arceapps.com/blog/agents-chaos-ai-security/"
 heroImage: "/images/blog-agents-of-chaos.svg"
 tags: ["AI", "Security", "Agents", "Red-Team", "Memory", "Research", "Vulnerabilities"]
+category: ai-agents
 draft: false
 reference_id: "d8f5c3b2-4a0e-5f9d-b6c7-2e3f4a5b6c7d"
 ---

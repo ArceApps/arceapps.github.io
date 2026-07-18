@@ -4,6 +4,7 @@ description: A deep dive into using the PARA method (Projects, Areas, Resources,
 pubDate: 2026-03-26
 heroImage: /images/para-method-ai-memory.svg
 tags: ["AI", "Memory", "PARA", "Obsidian", "Logseq", "MCP", "PKM", "Markdown", "Agents"]
+category: ai-agents
 reference_id: a3f8d2c1-9e4b-47f3-b812-6c5a1d8e0f3b
 author: ArceApps
 lastmod: 2026-03-26

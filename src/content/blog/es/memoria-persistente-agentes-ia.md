@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/memoria-persistente-agentes-ia/"
 heroImage: "/images/placeholder-article-ai-memory.svg"
 tags: ["IA", "Agentes", "Memoria", "PKM", "Arquitectura", "OpenClaw", "RAG", "Grafo de Conocimiento"]
+category: ai-agents
 reference_id: "c16722cd-c33d-43fe-9e47-e2961095fac5"
 ---
 

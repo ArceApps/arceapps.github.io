@@ -4,6 +4,7 @@ description: Why technical skills are only half the battle. Learn how to manage 
 pubDate: 2026-02-08
 heroImage: /images/career-junior-to-senior.svg
 tags: ["Career", "Soft Skills", "Seniority", "Productivity", "Leadership"]
+category: career
 author: ArceApps
 lastmod: 2026-02-08
 canonical: "https://arceapps.com/blog/junior-senior-prioritization/"

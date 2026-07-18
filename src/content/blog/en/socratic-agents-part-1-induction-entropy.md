@@ -4,6 +4,7 @@ description: Why LLM hallucinations aren't bugs, but features of prediction. Dis
 pubDate: 2026-05-15
 heroImage: /images/blog-socratic-agents-part1.svg
 tags: ["AI", "Socratic Agents", "Math", "Kotlin", "Android", "Information Theory", "LLM"]
+category: ai-agents
 reference_id: 7f08fd2c-854c-4980-8e44-ddfbdd11cfa2
 author: ArceApps
 lastmod: 2026-05-15

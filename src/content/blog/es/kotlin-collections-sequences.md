@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/kotlin-collections-sequences/"
 heroImage: "/images/placeholder-article-collections.svg"
 tags: ["Kotlin", "Performance", "Collections", "Functional Programming", "Android"]
+category: android-kotlin
 reference_id: "ec02d167-8e20-4ac3-8964-25d5c7be83cd"
 ---
 

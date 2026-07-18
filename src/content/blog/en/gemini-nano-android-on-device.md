@@ -4,6 +4,7 @@ description: Learn to integrate Gemini Nano in Android via Android AI Core. Real
 pubDate: 2026-03-08
 heroImage: /images/blog-gemini-nano-on-device.svg
 tags: ["Android", "AI", "Gemini Nano", "On-Device AI", "Android AI Core", "LiteRT"]
+category: ai-agents
 draft: false
 author: ArceApps
 lastmod: 2026-03-08

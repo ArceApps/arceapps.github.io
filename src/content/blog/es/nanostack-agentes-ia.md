@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/nanostack-agentes-ia/"
 heroImage: "/images/nanostack-hero.svg"
 tags: ["Agentes IA", "NanoStack", "Gemini CLI", "Claude Code", "OpenAI", "Productividad", "Open Source"]
+category: ai-agents
 reference_id: "f8a3d12e-4b7c-4e9a-a5f2-c8d6e9b0f123"
 ---
 

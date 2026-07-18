@@ -4,6 +4,7 @@ description: "Demystifying Clean Architecture: A deep dive into layers, dependen
 pubDate: 2025-10-15
 heroImage: /images/placeholder-article-clean-architecture.svg
 tags: ["Architecture", "Android", "Clean Architecture", "Kotlin", "Best Practices"]
+category: architecture
 reference_id: 0564583c-c60b-45b0-ba43-1e6337ce476d
 author: ArceApps
 lastmod: 2025-10-15

@@ -7,6 +7,7 @@ author: "ArceApps"
 keywords: ["jetpack compose", "android", "navgraph", "skydoves", "navigation"]
 heroImage: "/images/compose-nav-graph-plugin.svg"
 tags: ["android", "jetpack compose", "kotlin", "herramientas"]
+category: android-kotlin
 reference_id: "compose-nav-graph-plugin-visualization"
 ---
 

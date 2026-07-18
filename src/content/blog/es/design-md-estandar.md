@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/design-md-estandar/"
 heroImage: "/images/placeholder-article-design-md.svg"
 tags: ["IA", "design.md", "Android", "Kotlin", "UI/UX", "Jetpack Compose"]
+category: android-kotlin
 reference_id: "6a9e1b2c-8f4d-4e9b-b3c1-7d5a0f2e9d8f"
 ---
 

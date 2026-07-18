@@ -8,6 +8,7 @@ keywords: ["AI", "Agents", "Memory", "PKM", "Architecture", "OpenClaw", "RAG", "
 canonical: "https://arceapps.com/blog/ai-agent-memory-persistence-guide/"
 heroImage: /images/placeholder-article-ai-memory.svg
 tags: ["AI", "Agents", "Memory", "PKM", "Architecture", "OpenClaw", "RAG", "Knowledge Graph"]
+category: memory
 reference_id: c16722cd-c33d-43fe-9e47-e2961095fac5
 ---
 

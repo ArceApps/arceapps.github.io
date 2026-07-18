@@ -4,6 +4,7 @@ description: Discover how Loop Engineering is replacing traditional prompting. L
 pubDate: 2026-06-15
 heroImage: /images/placeholder-article-ai-agents.svg
 tags: ["AI", "Agents", "Loop Engineering", "Kotlin", "Android", "Productivity"]
+category: android-kotlin
 reference_id: 41a8f1cb-8cc6-4568-8631-8e463ca1dc65
 author: ArceApps
 lastmod: 2026-06-15

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/stack-memoria-persistente-implementacion/"
 heroImage: "/images/blog-stack-memoria-persistente-implementacion.svg"
 tags: ["IA", "Agentes", "Memoria", "MCP", "OpenCode", "Claude Code", "Codex", "Cursor", "Workflow"]
+category: ai-agents
 reference_id: "2f8d3b7c-6d4a-9c0f-df2d-8a1e7f4b9c6d"
 ---
 

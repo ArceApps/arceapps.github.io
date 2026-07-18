@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/blog/effective-mentorship-ai-era/"
 heroImage: "/images/career-mentorship.svg"
 tags: ["Mentorship", "Leadership", "Team Building", "AI", "Seniority"]
+category: career
 ---
 
 

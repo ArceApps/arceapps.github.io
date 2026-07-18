@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/mvvm-architecture/"
 heroImage: "/images/placeholder-article-mvvm.svg"
 tags: ["Android", "MVVM", "Architecture", "Kotlin", "Best Practices"]
+category: architecture
 reference_id: "4a17203c-115d-4548-bad9-4c67698de707"
 ---
 

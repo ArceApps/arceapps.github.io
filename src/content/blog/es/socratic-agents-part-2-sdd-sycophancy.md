@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/socratic-agents-part-2-sdd-sycophancy/"
 heroImage: "/images/blog-socratic-agents-part2.svg"
 tags: ["IA", "SDD", "Desarrollo Dirigido por Especificaciones", "Sicofancia", "CI/CD", "Kotlin", "Android", "GitHub Actions"]
+category: cicd
 reference_id: "ed6af514-ca96-4c41-9269-aaa520358f69"
 ---
 

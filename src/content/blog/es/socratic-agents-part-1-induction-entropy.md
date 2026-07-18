@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/socratic-agents-part-1-induction-entropy/"
 heroImage: "/images/blog-socratic-agents-part1.svg"
 tags: ["IA", "Agentes Socráticos", "Matemáticas", "Kotlin", "Android", "Teoría de la Información", "LLM"]
+category: ai-agents
 reference_id: "7f08fd2c-854c-4980-8e44-ddfbdd11cfa2"
 ---
 

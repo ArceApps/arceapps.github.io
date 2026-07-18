@@ -5,6 +5,7 @@ pubDate: 2026-07-09
 lastmod: 2026-07-09
 heroImage: "/images/open-source-ai-ides-semifinal.svg"
 tags: ["Open Source", "AI Agents", "IDEs", "BYOK"]
+category: ai-agents
 keywords: ["open source ai ides", "opencode", "hermes desktop", "cline", "roo code", "aider"]
 canonical: "https://arceapps.com/blog/open-source-ai-ides-semifinal/"
 reference_id: "a78f2441-3b7c-473d-8ab1-8e0192e4be8c"

@@ -4,6 +4,7 @@ description: Learn how to deploy this very blog, library documentation, or app l
 pubDate: 2025-11-15
 heroImage: /images/placeholder-article-github-pages.svg
 tags: ["GitHub Pages", "Web", "Portfolio", "Astro", "Personal Branding"]
+category: web
 reference_id: 45210925-fcbf-46d8-a343-f68613cf8526
 author: ArceApps
 lastmod: 2025-11-15

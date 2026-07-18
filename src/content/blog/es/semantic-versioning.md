@@ -12,6 +12,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/semantic-versioning/"
 heroImage: "/images/placeholder-article-versioning.svg"
 tags: ["Android", "Versionado", "Gradle", "CI/CD"]
+category: cicd
 reference_id: "ec7574e0-504b-474c-902b-fb10c1fde1d3"
 ---
 

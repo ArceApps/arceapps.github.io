@@ -14,6 +14,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/socratic-maieutic-prompting-mobile-dev/"
 heroImage: "/images/socratic-maieutic-prompting-mobile-hero-es.png"
 tags: ["IA", "Prompt Engineering", "Android", "iOS", "Kotlin", "Swift", "Maieutic Prompting"]
+category: android-kotlin
 reference_id: "c87a5611-d102-475f-b52e-d815b83d3d76"
 ---
 

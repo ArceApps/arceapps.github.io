@@ -4,6 +4,7 @@ description: A deep dive into ChatGPT 5.3 Codex, its new dedicated app, and what
 pubDate: 2026-02-18
 heroImage: /images/chatgpt-5-3-placeholder.svg
 tags: ["AI", "ChatGPT", "Codex", "Android", "Productivity", "Gemini"]
+category: ai-agents
 reference_id: a0debc84-8829-4713-8c1c-bbc4c5f46004
 author: ArceApps
 lastmod: 2026-02-18

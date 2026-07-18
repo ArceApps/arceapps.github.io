@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/lean-task-first-beads-leanspec-taskmaster/"
 heroImage: "/images/blog-lean-task-first-beads-leanspec-taskmaster.svg"
 tags: ["AI", "Workflow", "Productividad", "Beads", "LeanSpec", "Taskmaster", "SDD", "Gestión de Tareas", "Context Rot", "Agentic AI"]
+category: ai-agents
 reference_id: "e9a3c571-2b4e-4f8d-93d1-7c0e2a5b8f16"
 ---
 

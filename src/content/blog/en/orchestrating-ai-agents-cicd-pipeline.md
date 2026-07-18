@@ -4,6 +4,7 @@ description: Learn how to integrate specialized AI agents (code review, document
 pubDate: 2026-03-09
 heroImage: /images/blog-multiagente-pipeline-cicd.svg
 tags: ["AI", "Android", "CI/CD", "GitHub Actions", "Agents", "Multi-Agent", "Automation"]
+category: cicd
 draft: false
 author: ArceApps
 lastmod: 2026-03-09

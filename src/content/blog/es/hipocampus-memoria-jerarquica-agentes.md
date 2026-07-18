@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/hipocampus-memoria-jerarquica-agentes/"
 heroImage: "/images/blog-hipocampus-memoria-jerarquica.svg"
 tags: ["IA", "Memoria", "Agentes", "Arquitectura", "Open Source", "Ventana de Contexto", "Markdown"]
+category: ai-agents
 reference_id: "d3f7a2b1-9c5e-4d8a-b2f6-1e3c7d5a8b4e"
 ---
 

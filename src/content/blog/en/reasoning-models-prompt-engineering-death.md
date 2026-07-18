@@ -4,6 +4,7 @@ description: The arrival of OpenAI o1 and DeepSeek R1 marks the end of complex '
 pubDate: 2025-02-15
 heroImage: /images/placeholder-article-reasoning-models.svg
 tags: ["AI", "Reasoning", "Chain of Thought", "Prompt Engineering", "o1", "R1", "Productivity"]
+category: ai-agents
 reference_id: 5acd5694-2afb-466c-8cca-66af438be57a
 author: ArceApps
 lastmod: 2025-02-15

@@ -4,6 +4,7 @@ description: Google's Gemini 3.1 Pro arrives with a verified 77.1% ARC-AGI-2 sco
 pubDate: 2026-02-20
 heroImage: /images/gemini-3-1-placeholder.svg
 tags: ["AI", "Google", "Gemini", "Reasoning", "Creative Coding", "Music"]
+category: ai-agents
 reference_id: 1d85a4d4-d55e-4891-9f86-afd0d56ac893
 author: ArceApps
 lastmod: 2026-02-20

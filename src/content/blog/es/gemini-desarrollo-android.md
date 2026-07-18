@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/gemini-desarrollo-android/"
 heroImage: "/images/placeholder-article-gemini.svg"
 tags: ["IA", "Gemini", "Android", "Machine Learning", "Google Cloud"]
+category: ai-agents
 reference_id: "4f64ccd2-e466-43b5-93df-f29d2de5eb91"
 ---
 

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/kotlin-2-1-features/"
 heroImage: "/images/placeholder-article-kotlin-2-1.svg"
 tags: ["Kotlin", "K2", "Compiler", "Performance", "Language Features", "Updates"]
+category: android-kotlin
 reference_id: "3c516e3b-a58e-440b-b7b5-6b0446996231"
 ---
 

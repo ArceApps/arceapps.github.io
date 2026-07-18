@@ -8,6 +8,7 @@ heroImage: "/images/android-cli-agentes-herramientas.svg"
 keywords: ["android cli", "ai agents", "mobile development", "productivity", "tools"]
 canonical: "https://arceapps.com/en/blog/android-cli-agentes-herramientas/"
 tags: ["Android", "AI", "CLI", "Tools", "Productivity"]
+category: android-kotlin
 reference_id: "0cacec48-ee8b-4453-866f-c598eff790cf"
 ---
 

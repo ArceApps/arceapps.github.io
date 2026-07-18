@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/agentes-ia-skills/"
 heroImage: "/images/agent-skills-gemini.svg"
 tags: ["IA", "Gemini", "GitHub Copilot", "Android", "Kotlin", "Productividad"]
+category: ai-agents
 reference_id: "3754f165-251e-4411-a2fd-b6b2d5e4fc02"
 ---
 

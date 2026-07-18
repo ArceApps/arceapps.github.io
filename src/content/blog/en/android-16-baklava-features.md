@@ -4,6 +4,7 @@ description: Everything developers need to know about Android 16 (Baklava). Priv
 pubDate: 2025-06-21
 heroImage: /images/placeholder-article-baklava.svg
 tags: ["Android", "Android 16", "Baklava", "Features", "Roadmap", "Privacy", "Health Connect"]
+category: android-kotlin
 reference_id: be5f8f27-9428-4735-a643-d081c334aeee
 author: ArceApps
 lastmod: 2025-06-21

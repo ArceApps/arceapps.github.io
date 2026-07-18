@@ -4,6 +4,7 @@ description: "Discover how to choose between Koin and Hilt for your next Android
 pubDate: 2026-06-28
 heroImage: "/images/koin-vs-hilt-architecture-2026.svg"
 tags: ["Kotlin", "Android", "Dependency Injection", "Koin", "Hilt"]
+category: android-kotlin
 reference_id: "755490a6-574a-4467-bc5b-cb8dbdb4237d"
 author: "ArceApps"
 lastmod: 2026-06-28

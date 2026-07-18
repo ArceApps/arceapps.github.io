@@ -4,6 +4,7 @@ description: "La Gran Final del torneo AI CLI 2026. Comparamos OpenCode, OpenAI 
 pubDate: 2026-07-01
 heroImage: "/images/cli-ai-grand-final.svg"
 tags: ["AI", "CLI", "Tournament", "Grand Final", "OpenCode", "Codex", "Claude Code", "Hermes Agent", "2026"]
+category: ai-agents
 author: "ArceApps"
 lastmod: 2026-07-01
 keywords: ["AI CLI", "tournament", "grand final", "OpenCode", "Codex", "Claude Code", "Hermes Agent", "winner 2026"]

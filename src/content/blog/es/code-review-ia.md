@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/code-review-ia/"
 heroImage: "/images/placeholder-article-code-review-ia.svg"
 tags: ["IA", "Code Review", "DevOps", "Quality Assurance", "GitHub Actions"]
+category: cicd
 reference_id: "5b17aef6-0aca-453a-a030-06f848e5c51e"
 ---
 

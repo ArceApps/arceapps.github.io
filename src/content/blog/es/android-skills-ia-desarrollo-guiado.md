@@ -8,6 +8,7 @@ heroImage: "/images/android-skills-ia-desarrollo-guiado.svg"
 keywords: ["android skills", "agentes ia", "desarrollo móvil", "buenas prácticas", "arquitectura"]
 canonical: "https://arceapps.com/blog/android-skills-ia-desarrollo-guiado/"
 tags: ["Android", "IA", "Skills", "Desarrollo", "Agentes"]
+category: ai-agents
 reference_id: "80246b39-3920-4042-9723-f2ca7508f219"
 ---
 

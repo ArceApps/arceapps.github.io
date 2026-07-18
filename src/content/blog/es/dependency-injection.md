@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/dependency-injection/"
 heroImage: "/images/placeholder-article-dependency-injection.svg"
 tags: ["Android", "Dependency Injection", "Hilt", "Koin", "Dagger", "Architecture"]
+category: architecture
 reference_id: "7d7872d5-d5a9-46b7-a078-648ffda0ae6b"
 ---
 

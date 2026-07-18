@@ -4,6 +4,7 @@ description: Review of Anthropic's Claude 4.6 family. How 'Adaptive Thinking' an
 pubDate: 2026-02-18
 heroImage: /images/claude-4-6-placeholder.svg
 tags: ["AI", "Anthropic", "Claude", "DevOps", "Testing", "Gemini"]
+category: ai-agents
 reference_id: 2c9b3fa3-363e-4a03-bc11-63179088168b
 author: ArceApps
 lastmod: 2026-02-18

@@ -4,6 +4,7 @@ description: A technical deep-dive into hmem (Humanlike Memory), an MCP server t
 pubDate: 2026-03-27
 heroImage: /images/blog-hmem-sqlite-memoria-jerarquica.svg
 tags: ["AI", "Memory", "Agents", "MCP", "SQLite", "FTS5", "Architecture", "Open Source"]
+category: memory
 reference_id: c7d4e2f1-8b3a-4c9e-a5f7-2d1e8c6b4a3f
 author: ArceApps
 lastmod: 2026-03-27

@@ -4,6 +4,7 @@ description: Discover how Paperclip AI revolutionizes business management with a
 pubDate: 2026-04-04
 heroImage: /images/blog-paperclip-ai-zero-human-company.svg
 tags: ["AI", "Paperclip", "Agents", "Automation", "Multi-Agent", "Governance"]
+category: ai-agents
 draft: false
 author: ArceApps
 lastmod: 2026-04-04

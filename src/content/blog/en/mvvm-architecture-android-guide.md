@@ -4,6 +4,7 @@ description: Master the Model-View-ViewModel pattern from basic concepts to adva
 pubDate: 2025-10-01
 heroImage: /images/placeholder-article-mvvm.svg
 tags: ["Android", "MVVM", "Architecture", "Kotlin", "Best Practices"]
+category: architecture
 reference_id: 4a17203c-115d-4548-bad9-4c67698de707
 author: ArceApps
 lastmod: 2025-10-01

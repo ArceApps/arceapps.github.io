@@ -4,6 +4,7 @@ description: "How autonomous AI agents transform Android development: from multi
 pubDate: 2026-03-08
 heroImage: /images/blog-agentes-autonomos-android.svg
 tags: ["AI", "Android", "Agents", "Multi-Agent", "Automation"]
+category: ai-agents
 draft: false
 author: ArceApps
 lastmod: 2026-03-08

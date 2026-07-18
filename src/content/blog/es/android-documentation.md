@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/android-documentation/"
 heroImage: "/images/placeholder-article-android-documentation.svg"
 tags: ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Workflow", "GitHub Actions", "Best Practices", "Productividad"]
+category: cicd
 reference_id: "3cb651cb-7e90-47b2-aff0-77bc2cf41808"
 ---
 

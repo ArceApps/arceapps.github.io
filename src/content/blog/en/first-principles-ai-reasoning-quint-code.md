@@ -4,6 +4,7 @@ description: How the First Principles Framework (FPF) and Quint Code enforce str
 pubDate: 2026-03-25
 heroImage: /images/quint-code-fpf-reasoning.svg
 tags: ["AI", "Reasoning", "First Principles", "Quint Code", "FPF", "Agents", "Decision Making", "Workflow", "Audit"]
+category: ai-agents
 reference_id: 5031f97d-df40-43f0-a398-2c6a58557c4a
 author: ArceApps
 lastmod: 2026-03-25

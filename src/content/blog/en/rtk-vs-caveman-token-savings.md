@@ -15,6 +15,7 @@ keywords:
 canonical: "https://arceapps.com/blog/rtk-vs-caveman-token-savings/"
 heroImage: "/images/rtk-vs-caveman-token-savings/en/cover.png"
 tags: ["RTK", "Caveman", "AI Agents", "Tokens", "Cost Optimization", "Claude Code", "CLI", "Indie Dev"]
+category: ai-agents
 reference_id: "795ac6e1-8883-4831-874e-d1e35d3d4e1c"
 ---
 

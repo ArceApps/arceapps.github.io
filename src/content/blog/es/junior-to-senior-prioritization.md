@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/junior-to-senior-prioritization/"
 heroImage: "/images/career-junior-to-senior.svg"
 tags: ["Carrera", "Soft Skills", "Seniority", "Productividad", "Liderazgo"]
+category: career
 ---
 
 

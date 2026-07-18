@@ -4,6 +4,7 @@ description: LangGraph, CrewAI, n8n, AutoGen, Cursor, Claude Code, OpenAI Agents
 pubDate: 2026-04-03
 heroImage: /images/blog-ai-tools-2026.svg
 tags: ["AI", "Agents", "LangGraph", "CrewAI", "n8n", "AutoGen", "Cursor", "Tools", "2026"]
+category: ai-agents
 reference_id: 36aa3a31-4e48-4a60-9af8-9424cfcd9e9e
 author: ArceApps
 lastmod: 2026-04-03

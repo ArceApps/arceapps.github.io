@@ -4,6 +4,7 @@ description: Discover how Google Stitch, powered by Gemini, is transforming UI d
 pubDate: 2026-06-13
 heroImage: /images/google-stitch-hero.svg
 tags: ["AI", "Google Stitch", "Android", "Jetpack Compose", "Kotlin", "UI/UX"]
+category: android-kotlin
 reference_id: dd55d5f0-1ac1-4f8b-ac2d-9e6baa28e81d
 author: ArceApps
 lastmod: 2026-06-13

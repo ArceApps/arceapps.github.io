@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/opencode-subagents/"
 heroImage: /images/blog-opencode-subagents.svg
 tags: ["ia","opencode","agents"]
+category: ai-agents
 reference_id: "bd0a8de2-6772-4a99-8ef2-c2947c7edfa9"
 ---
 

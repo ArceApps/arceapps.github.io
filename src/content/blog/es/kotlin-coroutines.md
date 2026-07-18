@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/kotlin-coroutines/"
 heroImage: "/images/placeholder-article-coroutines.svg"
 tags: ["Android", "Kotlin", "Coroutines", "MVVM", "Clean Architecture", "Async Programming", "Flow", "Testing"]
+category: architecture
 reference_id: "68c16e5f-eccc-4903-bd42-f5c5dd0d19f6"
 ---
 

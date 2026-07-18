@@ -5,6 +5,7 @@ pubDate: 2026-07-12
 lastmod: 2026-07-12
 heroImage: "/images/open-knowledge-format-google.svg"
 tags: ["OKF", "Google Cloud", "AI Agents", "Context Engineering", "Markdown"]
+category: ai-agents
 keywords: ["OKF", "Open Knowledge Format", "AI agents", "context engineering", "LLM wiki", "Google Cloud"]
 author: "ArceApps"
 canonical: "https://arceapps.github.io/blog/open-knowledge-format-google/"

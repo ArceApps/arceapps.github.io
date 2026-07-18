@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/socratic-method-prompts-kotlin-android/"
 heroImage: "/images/blog-socratic-prompts-kotlin.svg"
 tags: ["IA", "Método Socrático", "Prompt Engineering", "Kotlin", "Android", "Arquitectura", "Spec-Driven Development"]
+category: android-kotlin
 reference_id: "15ad11b7-aac2-475f-a9df-d815b83d3d75"
 ---
 

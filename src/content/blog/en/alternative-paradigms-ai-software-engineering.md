@@ -4,6 +4,7 @@ description: "A deep dive into IDD, Lean SDD, BEADS Workflow, Agent OS, and the 
 pubDate: 2026-03-24
 heroImage: /images/blog-paradigmas-alternativos-ia.svg
 tags: ["AI", "Methodology", "IDD", "SDD", "BEADS", "Dark Factory", "Software Engineering", "Agents", "Workflow"]
+category: ai-agents
 draft: false
 author: ArceApps
 lastmod: 2026-03-24

@@ -15,6 +15,7 @@ keywords:
 canonical: "https://arceapps.com/blog/harness-engineering-wrapper-gana/"
 heroImage: "/images/harness-engineering-wrapper-gana.svg"
 tags: ["Harness Engineering", "AI Agents", "Claude Code", "AGENTS.md", "Indie Dev", "Architecture", "Agentic AI", "2026"]
+category: ai-agents
 reference_id: "5fed4b93-ea15-411e-a6e6-2120934be487"
 ---
 

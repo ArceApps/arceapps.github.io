@@ -4,6 +4,7 @@ description: "A deep analysis of the critical risks surrounding persistent memor
 pubDate: 2026-03-25
 heroImage: /images/blog-memoria-seguridad-agentica.svg
 tags: ["AI", "Security", "Privacy", "Memory", "Agents", "GDPR", "Homomorphic Encryption", "Architecture"]
+category: security
 reference_id: b7e3f1a2-0d4c-5b8e-c6g2-9d3f7e5b2a0c
 author: ArceApps
 lastmod: 2026-03-25

@@ -15,6 +15,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/kotlin-let/"
 heroImage: "/images/placeholder-article-kotlin-let.svg"
 tags: ["Kotlin", "Best Practices", "Language Design", "Refactoring", "Clean Code"]
+category: sdd
 reference_id: "6e4f7984-b5f6-41f8-b34c-46e8b41076c5"
 ---
 

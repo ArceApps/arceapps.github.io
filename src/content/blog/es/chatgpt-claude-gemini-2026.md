@@ -5,6 +5,7 @@ pubDate: 2026-06-28
 lastmod: 2026-06-28
 heroImage: "/images/chatgpt-claude-gemini-2026.svg"
 tags: ["AI", "ChatGPT", "Claude", "Gemini", "Productividad"]
+category: ai-agents
 reference_id: "c8f2a1b3-4d5e-6f7a-8b9c-0d1e2f3a4b5c"
 author: "ArceApps"
 keywords: ["ChatGPT Plus", "Claude Pro", "Gemini Advanced", "suscripciones IA", "modelos IA 2026"]

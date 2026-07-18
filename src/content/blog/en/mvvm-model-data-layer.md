@@ -4,6 +4,7 @@ description: The 'Model' in MVVM is much more than data classes. Learn to design
 pubDate: 2025-10-02
 heroImage: /images/placeholder-article-model-layer.svg
 tags: ["Android", "MVVM", "Architecture", "Data Layer", "Clean Code"]
+category: architecture
 reference_id: 83cba2ba-03c4-4134-9fd0-9325d395ea17
 author: ArceApps
 lastmod: 2025-10-02

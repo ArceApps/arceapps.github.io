@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/memoria-seguridad-privacidad-agentica/"
 heroImage: "/images/blog-memoria-seguridad-agentica.svg"
 tags: ["IA", "Seguridad", "Privacidad", "Memoria", "Agentes", "GDPR", "Cifrado Homomórfico", "Arquitectura"]
+category: ai-agents
 draft: false
 reference_id: "b7e3f1a2-0d4c-5b8e-c6g2-9d3f7e5b2a0c"
 ---

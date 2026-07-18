@@ -14,6 +14,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/caveman-skill-token-compression/"
 heroImage: "/images/caveman-skill-token-compression.svg"
 tags: ["AI Agents", "Skills", "Tokens", "Caveman", "Claude Code", "Compresión", "Indie"]
+category: ai-agents
 reference_id: "f9e0f666-5787-498c-8c04-c1f9531b88d5"
 ---
 

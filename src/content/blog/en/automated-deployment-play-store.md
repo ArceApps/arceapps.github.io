@@ -4,6 +4,7 @@ description: Learn how to configure a robust Continuous Deployment pipeline that
 pubDate: 2025-10-30
 heroImage: /images/placeholder-article-github-actions-play-store.svg
 tags: ["GitHub Actions", "Android", "Google Play Store", "CI/CD", "DevOps"]
+category: cicd
 reference_id: 7fbdb277-a5a6-4e77-8436-8d6a6ccc4831
 author: ArceApps
 lastmod: 2025-10-30

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/offline-first-ai-patterns/"
 heroImage: "/images/tech-offline-ai.svg"
 tags: ["Offline-First", "AI", "Sincronización", "Room", "Gestión de Datos", "Arquitectura"]
+category: cicd
 ---
 
 

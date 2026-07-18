@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/orquestar-agentes-pipeline-cicd/"
 heroImage: "/images/blog-multiagente-pipeline-cicd.svg"
 tags: ["IA", "Android", "CI/CD", "GitHub Actions", "Agentes", "Multi-Agent", "Automatización"]
+category: cicd
 draft: false
 ---
 

@@ -4,6 +4,7 @@ description: "The Grand Final of the 2026 Desktop AI tournament. Comparing Codex
 pubDate: 2026-07-09
 heroImage: "/images/desktop-ai-grand-final.svg"
 tags: ["AI", "Desktop", "Tournament", "Grand Final", "Codex App", "Antigravity", "OpenCode", "Hermes", "2026"]
+category: ai-agents
 author: "ArceApps"
 lastmod: 2026-07-09
 keywords: ["Desktop AI", "tournament", "grand final", "Codex App", "Antigravity", "OpenCode Desktop", "Hermes Desktop", "winner 2026"]

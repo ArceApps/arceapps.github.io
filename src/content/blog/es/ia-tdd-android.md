@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/ia-tdd-android/"
 heroImage: "/images/placeholder-article-tdd-ia.svg"
 tags: ["IA", "TDD", "Testing", "Android", "Best Practices"]
+category: android-kotlin
 reference_id: "0ac2ca01-c1c4-42cc-b392-40461065750c"
 ---
 

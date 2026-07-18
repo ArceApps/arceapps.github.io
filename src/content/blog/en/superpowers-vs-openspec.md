@@ -4,6 +4,7 @@ description: "A deep dive comparison of two distinct approaches to AI software d
 pubDate: 2026-04-12
 heroImage: /images/blog-superpowers-vs-openspec-en.png
 tags: ["SDD", "AI", "Superpowers", "OpenSpec", "Agentic AI", "Methodology", "Workflow", "Productivity"]
+category: ai-agents
 reference_id: e4d2a1c9-6f8b-4a3d-8e7c-2b1d9f4a5c6d
 author: ArceApps
 lastmod: 2026-04-12

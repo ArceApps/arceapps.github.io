@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/opencode-subagents-workflows/"
 heroImage: "/images/opencode-subagents-workflows.svg"
 tags: ["ia", "opencode", "agents", "arquitectura"]
+category: ai-agents
 reference_id: "e5a3c9b7-1f2d-4e8a-b9c0-8d7e6f5a4b3c"
 ---
 

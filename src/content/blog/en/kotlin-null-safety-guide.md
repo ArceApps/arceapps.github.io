@@ -4,6 +4,7 @@ description: Deeply understand Kotlin's type system, how it eliminates NullPoint
 pubDate: 2025-09-10
 heroImage: /images/placeholder-article-null-safety.svg
 tags: ["Kotlin", "Null Safety", "Best Practices", "Clean Code", "Java Interop"]
+category: sdd
 reference_id: 5765a71d-efe1-414d-af77-a67913131024
 author: ArceApps
 lastmod: 2025-09-10

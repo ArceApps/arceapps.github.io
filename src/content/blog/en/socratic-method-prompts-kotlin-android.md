@@ -4,6 +4,7 @@ description: Learn how to stop LLMs from being compliant assistants and turn the
 pubDate: 2026-05-17
 heroImage: /images/blog-socratic-prompts-kotlin.svg
 tags: ["AI", "Socratic Method", "Prompt Engineering", "Kotlin", "Android", "Architecture", "Spec-Driven Development"]
+category: android-kotlin
 reference_id: 15ad11b7-aac2-475f-a9df-d815b83d3d75
 author: ArceApps
 lastmod: 2026-05-17

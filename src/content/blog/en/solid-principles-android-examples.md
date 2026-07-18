@@ -4,6 +4,7 @@ description: Understanding SOLID principles in modern Android. Examples using Ko
 pubDate: 2025-06-21
 heroImage: /images/placeholder-article-solid-android.svg
 tags: ["SOLID", "Principles", "Android", "Kotlin", "Clean Code", "Architecture"]
+category: architecture
 reference_id: 23245d12-f1a0-4c90-a479-5054040d07f3
 author: ArceApps
 lastmod: 2025-06-21

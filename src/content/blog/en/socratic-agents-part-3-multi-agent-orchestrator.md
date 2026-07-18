@@ -4,6 +4,7 @@ description: A pragmatic guide to building advanced multi-agent interactions usi
 pubDate: 2026-05-17
 heroImage: /images/blog-socratic-agents-part3.svg
 tags: ["AI", "Socratic Agents", "Orchestration", "Kotlin", "Android", "Coroutines", "StateFlow", "Multi-Agent"]
+category: ai-agents
 reference_id: c3b10009-cc21-4612-81e9-d527a8c64e95
 author: ArceApps
 lastmod: 2026-05-17

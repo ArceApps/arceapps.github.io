@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/gemini-3-1-release/"
 heroImage: "/images/gemini-3-1-placeholder.svg"
 tags: ["IA", "Google", "Gemini", "Razonamiento", "Código Creativo", "Música"]
+category: ai-agents
 reference_id: "1d85a4d4-d55e-4891-9f86-afd0d56ac893"
 ---
 

@@ -4,6 +4,7 @@ description: "Deep dive into GSD Core (formerly Get Shit Done): 33 agents, wave 
 pubDate: 2026-06-05
 heroImage: /images/gsd-core-context-engineering.svg
 tags: ["AI", "Workflow", "GSD", "Claude Code", "Spec-Driven Development", "Context Engineering", "Agentic AI", "Productivity", "Open Source", "Indie Dev"]
+category: ai-agents
 reference_id: f8a4d6c2-7e3b-4a1f-9d5e-2c8b6a4f1e94
 author: ArceApps
 lastmod: 2026-06-05

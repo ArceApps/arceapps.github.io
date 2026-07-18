@@ -4,6 +4,7 @@ description: Master the art of documenting Android projects. From KDoc to GitHub
 pubDate: 2025-10-14
 heroImage: /images/placeholder-article-documentation.svg
 tags: ["Documentation", "Android", "Dokka", "MkDocs", "Best Practices", "KDoc", "Kotlin", "Workflow", "GitHub Actions"]
+category: cicd
 reference_id: 3cb651cb-7e90-47b2-aff0-77bc2cf41808
 author: ArceApps
 lastmod: 2025-10-14

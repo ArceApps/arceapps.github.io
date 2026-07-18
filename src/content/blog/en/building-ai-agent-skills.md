@@ -4,6 +4,7 @@ description: Discover how to transform your generalist AI assistant into a team 
 pubDate: 2025-05-24
 heroImage: /images/agent-skills-gemini.svg
 tags: ["AI", "Gemini", "GitHub Copilot", "Android", "Kotlin", "Productivity"]
+category: ai-agents
 reference_id: 3754f165-251e-4411-a2fd-b6b2d5e4fc02
 author: ArceApps
 lastmod: 2025-05-24

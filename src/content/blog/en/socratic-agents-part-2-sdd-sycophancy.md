@@ -4,6 +4,7 @@ description: How AI's desire to please you is destroying your codebase. We explo
 pubDate: 2026-05-16
 heroImage: /images/blog-socratic-agents-part2.svg
 tags: ["AI", "SDD", "Spec-Driven Development", "Sycophancy", "CI/CD", "Kotlin", "Android", "GitHub Actions"]
+category: cicd
 reference_id: ed6af514-ca96-4c41-9269-aaa520358f69
 author: ArceApps
 lastmod: 2026-05-16

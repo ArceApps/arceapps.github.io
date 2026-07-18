@@ -4,6 +4,7 @@ description: "Discover the hidden performance issues when scaling Room Database 
 pubDate: 2026-06-25
 heroImage: "/images/room-performance-issues.svg"
 tags: ["Android", "Room", "Database", "Performance", "SQLDelight", "Realm"]
+category: android-kotlin
 reference_id: "c9ac5949-5451-4b6a-af4f-5c90b4d4d60b"
 author: "ArceApps"
 lastmod: 2026-06-25

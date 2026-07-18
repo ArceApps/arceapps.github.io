@@ -4,6 +4,7 @@ description: A comprehensive comparison of CocoIndex Code and CodeGraph — two 
 pubDate: 2026-05-19
 heroImage: /images/blog-semantic-code-search.svg
 tags: ["AI", "Code Search", "Claude Code", "Development Tools", "CocoIndex", "CodeGraph", "Semantic Search", "Android", "Kotlin", "Productivity"]
+category: android-kotlin
 reference_id: b4c5d6e7-8f9a-0b1c-2d3e-4f5a6b7c8d9e
 author: ArceApps
 lastmod: 2026-05-19

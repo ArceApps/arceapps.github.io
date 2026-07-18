@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/ai-agents-coding/"
 heroImage: "/images/placeholder-article-ai-agents.svg"
 tags: ["AI", "Agents", "Cursor", "Cline", "Coding", "Productivity", "MCP"]
+category: ai-agents
 reference_id: "5709cbd1-2213-462b-9ecd-43b7e9f6ef68"
 ---
 

@@ -4,6 +4,7 @@ description: "Learn the fundamentals of GitHub Actions to automate your Android 
 pubDate: 2025-10-25
 heroImage: /images/placeholder-article-github-actions.svg
 tags: ["GitHub Actions", "CI/CD", "DevOps", "Automation", "Workflow"]
+category: cicd
 reference_id: 944bdacb-c6dc-4b89-b7de-0a6633738244
 author: ArceApps
 lastmod: 2025-10-25

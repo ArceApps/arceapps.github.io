@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/semantic-code-search-tools/"
 heroImage: "/images/blog-semantic-code-search.svg"
 tags: ["IA", "Búsqueda de Código", "Claude Code", "Herramientas de Desarrollo", "CocoIndex", "CodeGraph", "Búsqueda Semántica", "Android", "Kotlin", "Productividad"]
+category: android-kotlin
 reference_id: "b4c5d6e7-8f9a-0b1c-2d3e-4f5a6b7c8d9e"
 ---
 

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/blog/github-pages/"
 heroImage: "/images/placeholder-article-github-pages.svg"
 tags: ["GitHub Pages", "Web", "Portfolio", "Astro", "Personal Branding"]
+category: web
 reference_id: "45210925-fcbf-46d8-a343-f68613cf8526"
 ---
 

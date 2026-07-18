@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/gemini-nano-android-on-device/"
 heroImage: "/images/blog-gemini-nano-on-device.svg"
 tags: ["Android", "IA", "Gemini Nano", "On-Device AI", "Android AI Core", "LiteRT"]
+category: ai-agents
 draft: false
 ---
 

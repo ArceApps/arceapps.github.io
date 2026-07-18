@@ -4,6 +4,7 @@ description: Discover how Matt Pocock's viral skill is transforming AI-assisted 
 pubDate: 2026-05-20
 heroImage: /images/grill-me-hero.svg
 tags: ["AI", "Claude Code", "Skills", "mattpocock", "Architecture", "Socratic Method", "Grill Me"]
+category: ai-agents
 reference_id: grill-me-deep-dive-001
 author: ArceApps
 lastmod: 2026-05-20

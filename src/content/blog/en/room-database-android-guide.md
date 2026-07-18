@@ -4,6 +4,7 @@ description: "Complete guide to Room: from entities and DAOs to complex migratio
 pubDate: 2025-10-12
 heroImage: /images/placeholder-article-room.svg
 tags: ["Android", "Room", "Database", "SQL", "Persistence"]
+category: memory
 reference_id: 33bf7911-98a8-491c-b685-eb741eda08b5
 author: ArceApps
 lastmod: 2025-10-12

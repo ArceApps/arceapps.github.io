@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/blog/stateflow-sharedflow/"
 heroImage: "/images/placeholder-article-stateflow-sharedflow.svg"
 tags: ["Kotlin", "Coroutines", "Flow", "Android", "State Management"]
+category: android-kotlin
 reference_id: "4f809146-8583-4075-ade0-d55d8523f8d9"
 ---
 

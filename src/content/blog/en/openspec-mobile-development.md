@@ -4,6 +4,7 @@ description: How to apply OpenSpec in Android and Kotlin projects to keep AI age
 pubDate: 2026-05-17
 heroImage: "/images/blog-openspec-mobile-development-en.png"
 tags: ["SDD", "OpenSpec", "Android", "Kotlin", "AI Agents", "Mobile Development", "Spec-Driven Development", "Workflow", "Architecture"]
+category: sdd
 reference_id: e7f82a1b-3c45-4d9e-8f1a-2b3c4d5e6f7g
 author: ArceApps
 lastmod: 2026-05-17

@@ -5,6 +5,7 @@ pubDate: 2026-07-09
 lastmod: 2026-07-09
 heroImage: "/images/desktop-ai-agents-semifinal-a.svg"
 tags: ["Agentes IA", "Antigravity", "Codex App", "Desarrollo"]
+category: ai-agents
 reference_id: "9d8a57df-2f3b-489e-9311-c918ef779fa2"
 keywords: ["Agentes IA", "Agentes de escritorio", "Antigravity", "Codex App", "Cursor"]
 canonical: "https://arceapps.com/blog/desktop-ai-agents-semifinal-a/"

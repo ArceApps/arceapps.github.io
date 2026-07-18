@@ -4,6 +4,7 @@ description: Move from reactive to proactive. Configure Firebase Crashlytics to 
 pubDate: 2025-09-25
 heroImage: /images/placeholder-article-firebase.svg
 tags: ["Firebase", "Crashlytics", "Monitoring", "DevOps", "Quality"]
+category: cicd
 reference_id: d50cb3e0-09c6-48eb-a2e9-cb9758d2f149
 author: ArceApps
 lastmod: 2025-09-25

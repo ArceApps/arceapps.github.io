@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/automated-documentation/"
 heroImage: "/images/placeholder-article-kdoc-dokka.svg"
 tags: ["Android", "Kotlin", "KDoc", "Dokka", "Documentación", "Desarrollo"]
+category: android-kotlin
 reference_id: "1299d2ab-5ddf-49e3-b1dc-6c4925f7f5fd"
 ---
 

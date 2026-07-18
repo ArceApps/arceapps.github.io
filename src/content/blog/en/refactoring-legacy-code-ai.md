@@ -4,6 +4,7 @@ description: Strategies for tackling legacy code (Java, Spaghetti) using AI tool
 pubDate: 2025-11-10
 heroImage: /images/placeholder-article-refactoring-ia.svg
 tags: ["AI", "Refactoring", "Legacy Code", "Kotlin Migration", "Strategy"]
+category: android-kotlin
 reference_id: e61a0a9d-7846-43f0-a99a-932ed9a26d43
 author: ArceApps
 lastmod: 2025-11-10

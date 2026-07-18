@@ -4,6 +4,7 @@ description: The evolution of reasoning in AI. How OpenAI's o1 and DeepSeek's R1
 pubDate: 2025-01-31
 heroImage: /images/placeholder-article-reasoning.svg
 tags: ["AI", "OpenAI o1", "DeepSeek", "Reasoning", "CoT", "R1", "Productivity"]
+category: ai-agents
 reference_id: 0ece5566-9f7e-40e6-8548-8b6163eba96d
 author: ArceApps
 lastmod: 2025-01-31

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/agents-of-chaos-seguridad-agentica/"
 heroImage: "/images/blog-agents-of-chaos.svg"
 tags: ["IA", "Seguridad", "Agentes", "Red-Team", "Memoria", "Investigación", "Vulnerabilidades"]
+category: ai-agents
 draft: false
 reference_id: "d8f5c3b2-4a0e-5f9d-b6c7-2e3f4a5b6c7d"
 ---

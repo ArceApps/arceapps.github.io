@@ -4,6 +4,7 @@ description: "CI/CD already automates builds and deploys, but we still spend hou
 pubDate: 2026-06-10
 heroImage: /images/github-agentic-workflows-cicd.svg
 tags: ["CI/CD", "GitHub Actions", "AI", "Agents", "Automation", "DevOps", "Indie"]
+category: cicd
 draft: false
 reference_id: 27a53d69-538e-496c-8531-58adb79629f4
 author: ArceApps

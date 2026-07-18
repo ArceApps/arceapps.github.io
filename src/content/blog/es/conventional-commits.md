@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/conventional-commits/"
 heroImage: "/images/placeholder-article-commits.svg"
 tags: ["Git", "Best Practices", "DevOps", "Conventional Commits", "Communication"]
+category: cicd
 reference_id: "c81d684b-4edf-4881-afb5-722e474a8980"
 ---
 

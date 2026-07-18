@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/null-safety/"
 heroImage: "/images/placeholder-article-null-safety.svg"
 tags: ["Kotlin", "Null Safety", "Best Practices", "Clean Code", "Java Interop"]
+category: sdd
 reference_id: "5765a71d-efe1-414d-af77-a67913131024"
 ---
 

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/local-inference-architecture/"
 heroImage: "/images/tech-edge-ai-arch.svg"
 tags: ["Android", "AI", "Clean Architecture", "LiteRT", "Gemini Nano", "On-Device AI"]
+category: ai-agents
 ---
 
 

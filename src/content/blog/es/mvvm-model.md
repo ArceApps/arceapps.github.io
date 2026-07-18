@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/mvvm-model/"
 heroImage: "/images/placeholder-article-model-layer.svg"
 tags: ["Android", "MVVM", "Architecture", "Data Layer", "Clean Code"]
+category: architecture
 reference_id: "83cba2ba-03c4-4134-9fd0-9325d395ea17"
 ---
 

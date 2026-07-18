@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/github-actions-play-store/"
 heroImage: "/images/placeholder-article-github-actions-play-store.svg"
 tags: ["GitHub Actions", "Android", "Google Play Store", "CI/CD", "DevOps"]
+category: cicd
 reference_id: "7fbdb277-a5a6-4e77-8436-8d6a6ccc4831"
 ---
 

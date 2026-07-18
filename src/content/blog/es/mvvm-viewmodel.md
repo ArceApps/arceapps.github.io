@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/mvvm-viewmodel/"
 heroImage: "/images/placeholder-article-viewmodel.svg"
 tags: ["Android", "MVVM", "ViewModel", "StateFlow", "Coroutines"]
+category: architecture
 reference_id: "b1b0835b-d0cc-4efd-bbd4-853257664f56"
 ---
 

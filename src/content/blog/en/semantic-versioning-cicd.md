@@ -4,6 +4,7 @@ description: Master semantic versioning in CI/CD pipelines. Learn to calculate v
 pubDate: 2025-12-05
 heroImage: /images/placeholder-article-cde-semver.svg
 tags: ["DevOps", "CI/CD", "Semantic Versioning", "Android", "GitHub Actions"]
+category: cicd
 reference_id: 0d37152d-08bf-43c6-8f5d-3372660e90a5
 author: ArceApps
 lastmod: 2025-12-05

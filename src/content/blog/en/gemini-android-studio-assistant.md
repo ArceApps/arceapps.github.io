@@ -4,6 +4,7 @@ description: Review of Gemini Code Assist for Android developers. How does it co
 pubDate: 2025-10-15
 heroImage: /images/placeholder-article-gemini.svg
 tags: ["Android", "Gemini", "Android Studio", "AI", "Productivity", "Copilot"]
+category: ai-agents
 reference_id: 4f64ccd2-e466-43b5-93df-f29d2de5eb91
 author: ArceApps
 lastmod: 2025-10-15

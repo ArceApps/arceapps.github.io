@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/stack-completo-agentes-ia-2026/"
 heroImage: "/images/blog-agent-stack-2026.svg"
 tags: ["IA", "Agentes", "OpenClaw", "Vercel", "Next.js", "MCP", "Cursor", "Claude Code", "Stack", "2026"]
+category: ai-agents
 reference_id: "b7c3d91e-5a2f-4e8c-9d1f-6a8b0c3d2e4f"
 ---
 

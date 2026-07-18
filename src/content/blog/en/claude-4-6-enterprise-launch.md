@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/blog/claude-4-6-enterprise-launch/"
 heroImage: "/images/claude-4-6-launch-placeholder.svg"
 tags: ["AI", "Anthropic", "Claude", "Enterprise", "Azure", "Context Window"]
+category: ai-agents
 reference_id: "06e62ddc-a7d2-4269-83ff-251f931fd773"
 ---
 

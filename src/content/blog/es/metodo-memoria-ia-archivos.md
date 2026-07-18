@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/metodo-memoria-ia-archivos/"
 heroImage: "/images/para-method-ai-memory.svg"
 tags: ["IA", "Memoria", "PARA", "Obsidian", "Logseq", "MCP", "PKM", "Markdown", "Agentes"]
+category: ai-agents
 reference_id: "a3f8d2c1-9e4b-47f3-b812-6c5a1d8e0f3b"
 ---
 

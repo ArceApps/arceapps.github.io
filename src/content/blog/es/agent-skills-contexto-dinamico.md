@@ -14,6 +14,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/agent-skills-contexto-dinamico/"
 heroImage: "/images/agent-skills-context.svg"
 tags: ["IA", "Productividad", "Workflow", "Agent-Skills", "Android", "Skills"]
+category: ai-agents
 reference_id: "c8b07a57-31a7-459e-94af-fc4d60d827e7"
 ---
 

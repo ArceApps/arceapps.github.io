@@ -4,6 +4,7 @@ description: A technical deep-dive into PlugMem, Microsoft Research's plugin mem
 pubDate: 2026-03-26
 heroImage: /images/plugmem-microsoft-memory.svg
 tags: ["AI", "Memory", "Agents", "LLM", "Microsoft Research", "Knowledge Graph", "Architecture"]
+category: ai-agents
 reference_id: a8c3d5e7-2f1b-4a9c-b6d0-7e4f2c8a1b5d
 author: ArceApps
 lastmod: 2026-03-26

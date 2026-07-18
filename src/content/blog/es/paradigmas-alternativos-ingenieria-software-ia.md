@@ -12,6 +12,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/paradigmas-alternativos-ingenieria-software-ia/"
 heroImage: "/images/blog-paradigmas-alternativos-ia.svg"
 tags: ["IA", "Metodología", "IDD", "SDD", "BEADS", "Dark Factory", "Ingeniería de Software", "Agentes", "Workflow"]
+category: ai-agents
 draft: false
 ---
 

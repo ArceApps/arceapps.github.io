@@ -4,6 +4,7 @@ description: "Honest technical deep dive into the persistent memory stack I comb
 pubDate: 2026-06-18
 heroImage: /images/persistent-memory-stack-implementation.svg
 tags: ["AI", "Agents", "Memory", "MCP", "OpenCode", "Claude Code", "Codex", "Cursor", "Workflow"]
+category: ai-agents
 reference_id: 2f8d3b7c-6d4a-9c0f-df2d-8a1e7f4b9c6d
 author: ArceApps
 lastmod: 2026-06-18

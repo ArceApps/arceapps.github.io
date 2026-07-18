@@ -8,6 +8,7 @@ keywords: ["AI", "Context", "Agents", "Memory", "LLM", "Prompt Engineering"]
 canonical: "https://arceapps.com/blog/ai-agent-skills-dynamic-context/"
 heroImage: /images/placeholder-article-ai-skills.svg
 tags: ["AI", "Context", "Agents", "Memory", "LLM", "Prompt Engineering"]
+category: ai-agents
 reference_id: c8b07a57-31a7-459e-94af-fc4d60d827e7
 ---
 ## 🧠 The Context Limit Problem

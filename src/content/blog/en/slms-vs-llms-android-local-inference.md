@@ -4,6 +4,7 @@ description: "Practical guide for Android developers to choose between on-device
 pubDate: 2026-03-09
 heroImage: /images/blog-slms-vs-llms-android.svg
 tags: ["Android", "AI", "SLM", "LLM", "On-Device AI", "Gemini Nano", "LiteRT", "Efficiency"]
+category: ai-agents
 draft: false
 author: ArceApps
 lastmod: 2026-03-09

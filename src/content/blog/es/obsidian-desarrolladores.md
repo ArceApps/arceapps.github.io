@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/obsidian-desarrolladores/"
 heroImage: "/images/obsidian-dev-hero.svg"
 tags: ["productividad", "workflow", "herramientas", "documentación"]
+category: cicd
 reference_id: "5bcc1a10-55fd-4f2b-9285-f9b72f5fdcad"
 ---
 

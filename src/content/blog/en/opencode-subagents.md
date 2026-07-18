@@ -5,6 +5,7 @@ pubDate: 2026-05-20
 author: ArceApps
 heroImage: /images/blog-opencode-subagents.svg
 tags: ["ia", "opencode", "agents"]
+category: ai-agents
 reference_id: bd0a8de2-6772-4a99-8ef2-c2947c7edfa9
 lastmod: 2026-05-20
 canonical: "https://arceapps.com/blog/opencode-subagents/"

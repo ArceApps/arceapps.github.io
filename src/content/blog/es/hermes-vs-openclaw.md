@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/hermes-vs-openclaw/"
 heroImage: "/images/placeholder-article-hermes-openclaw.svg"
 tags: ["AI", "Agents", "Hermes Agent", "OpenClaw", "Autonomous", "Coding", "2026"]
+category: ai-agents
 reference_id: "hermes-vs-openclaw-es-001"
 ---
 

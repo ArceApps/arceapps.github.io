@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/primeros-principios-razonamiento-ia-quint-code/"
 heroImage: "/images/quint-code-fpf-reasoning.svg"
 tags: ["IA", "Razonamiento", "Primeros Principios", "Quint Code", "FPF", "Agentes", "Toma de Decisiones", "Workflow", "Auditoría"]
+category: ai-agents
 reference_id: "5031f97d-df40-43f0-a398-2c6a58557c4a"
 ---
 

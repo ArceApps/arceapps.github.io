@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/socratic-agents-part-3-multi-agent-orchestrator/"
 heroImage: "/images/blog-socratic-agents-part3.svg"
 tags: ["IA", "Agentes Socráticos", "Orquestación", "Kotlin", "Android", "Coroutines", "StateFlow", "Multi-Agente"]
+category: ai-agents
 reference_id: "c3b10009-cc21-4612-81e9-d527a8c64e95"
 ---
 

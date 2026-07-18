@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/room-database/"
 heroImage: "/images/placeholder-article-room.svg"
 tags: ["Android", "Room", "Database", "SQL", "Persistence"]
+category: memory
 reference_id: "33bf7911-98a8-491c-b685-eb741eda08b5"
 ---
 

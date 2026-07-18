@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/flujos-trabajo-agentes-android/"
 heroImage: "/images/placeholder-article-ai-workflow.svg"
 tags: ["IA", "Kotlin", "Workflow", "Casos de Uso", "Android"]
+category: android-kotlin
 reference_id: "0ce33761-8899-4d89-aff7-39579c3bca46"
 ---
 

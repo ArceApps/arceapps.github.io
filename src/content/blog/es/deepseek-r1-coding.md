@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/deepseek-r1-coding/"
 heroImage: "/images/placeholder-article-deepseek-r1.svg"
 tags: ["AI", "DeepSeek", "LLM", "Open Source", "Reasoning", "R1", "Coding"]
+category: ai-agents
 reference_id: "c26054d9-7de7-4f6f-849a-25f376da73a4"
 ---
 

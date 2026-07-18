@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/agents-md-estandar/"
 heroImage: "/images/placeholder-article-agents-md.svg"
 tags: ["IA", "agents.md", "Android", "Desarrollo", "GitHub Copilot", "Gemini"]
+category: ai-agents
 reference_id: "18f8fad7-3b63-4ea6-a8b2-bf9e057ed125"
 ---
 

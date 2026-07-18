@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/kotlin-flow-advanced/"
 heroImage: "/images/placeholder-article-flow-advanced.svg"
 tags: ["Kotlin", "Flow", "Reactive Programming", "Android", "Coroutines"]
+category: android-kotlin
 reference_id: "bbab8f8a-8eba-4227-988a-15f5c7ec0ad4"
 ---
 

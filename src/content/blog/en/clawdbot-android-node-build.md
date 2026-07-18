@@ -4,6 +4,7 @@ description: How to deploy Clawdbot on Android. A self-hosted, open-source AI as
 pubDate: 2025-10-31
 heroImage: /images/placeholder-article-clawdbot.svg
 tags: ["Android", "AI", "Open Source", "Clawdbot", "Self-hosting", "Privacy"]
+category: security
 reference_id: 3eb5c086-8be4-48c6-a348-5973806f84e9
 author: ArceApps
 lastmod: 2025-10-31

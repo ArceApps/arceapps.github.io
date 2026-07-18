@@ -4,6 +4,7 @@ description: Matt Pocock's /grill-me skill forces adversarial alignment before c
 pubDate: 2026-05-20
 heroImage: /images/blog-socratic-grilling-sdd.svg
 tags: ["SDD", "AI", "Socratic Method", "Spec-Driven Development", "mattpocock", "Prompt Engineering", "Skills"]
+category: sdd
 reference_id: c8a2f3d5-7e1b-4c9d-8f0a-3e6b9d2c1a0d
 related_posts: 
 author: ArceApps

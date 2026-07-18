@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/clean-architecture-ia/"
 heroImage: "/images/placeholder-article-clean-arch-ia.svg"
 tags: ["IA", "Clean Architecture", "Android", "Productividad", "GitHub Copilot"]
+category: cicd
 reference_id: "c9acb2b0-8aaf-44b4-aae3-8c2c810df46c"
 ---
 

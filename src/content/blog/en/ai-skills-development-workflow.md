@@ -4,6 +4,7 @@ description: Discover how AI Skills transform modern development, automating com
 pubDate: 2025-12-29
 heroImage: /images/placeholder-article-ai-skills.svg
 tags: ["AI", "Android", "Development", "Skills", "Gemini", "GitHub Copilot"]
+category: ai-agents
 reference_id: f6063ef7-ac6b-4ff3-88cf-55681f3eb150
 author: ArceApps
 lastmod: 2025-12-29

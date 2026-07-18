@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/hmem-sqlite-memoria-jerarquica-agentes/"
 heroImage: "/images/blog-hmem-sqlite-memoria-jerarquica.svg"
 tags: ["IA", "Memoria", "Agentes", "MCP", "SQLite", "FTS5", "Arquitectura", "Open Source"]
+category: ai-agents
 reference_id: "c7d4e2f1-8b3a-4c9e-a5f7-2d1e8c6b4a3f"
 ---
 

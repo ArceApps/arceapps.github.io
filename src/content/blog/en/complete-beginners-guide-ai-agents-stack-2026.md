@@ -4,6 +4,7 @@ description: OpenClaw for ready-to-use agents, Vercel AI SDK with Next.js for cu
 pubDate: 2026-04-23
 heroImage: /images/blog-agent-stack-2026.svg
 tags: ["AI", "Agents", "OpenClaw", "Vercel", "Next.js", "MCP", "Cursor", "Claude Code", "Stack", "2026"]
+category: ai-agents
 reference_id: b7c3d91e-5a2f-4e8c-9d1f-6a8b0c3d2e4f
 author: ArceApps
 lastmod: 2026-04-23

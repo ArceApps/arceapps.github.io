@@ -4,6 +4,7 @@ description: Autocomplete is a thing of the past. Discover how AI Agents like Cl
 pubDate: 2025-02-02
 heroImage: /images/placeholder-article-ai-agents.svg
 tags: ["AI", "Agents", "Cursor", "Cline", "Coding", "Productivity", "MCP"]
+category: ai-agents
 reference_id: 5709cbd1-2213-462b-9ecd-43b7e9f6ef68
 author: ArceApps
 lastmod: 2025-02-02

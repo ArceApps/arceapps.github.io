@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/slms-vs-llms-android-inferencia-local/"
 heroImage: "/images/blog-slms-vs-llms-android.svg"
 tags: ["Android", "IA", "SLM", "LLM", "On-Device AI", "Gemini Nano", "LiteRT", "Eficiencia"]
+category: ai-agents
 draft: false
 ---
 

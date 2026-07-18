@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/sdd-frameworks-spec-kit-openspec-bmad/"
 heroImage: "/images/blog-sdd-frameworks-analysis-es.png"
 tags: ["SDD", "IA", "Workflow", "GitHub Copilot", "BMAD", "OpenSpec", "Spec Kit", "Metodología", "IA Agéntica", "Productividad"]
+category: sdd
 reference_id: "a3f72b91-4c18-4e2d-9b5c-1d0e6f2a8c34"
 ---
 

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/reasoning-models-o1-r1/"
 heroImage: "/images/placeholder-article-reasoning-models.svg"
 tags: ["AI", "Reasoning", "Chain of Thought", "Prompt Engineering", "o1", "R1", "Productivity"]
+category: ai-agents
 reference_id: "0ece5566-9f7e-40e6-8548-8b6163eba96d"
 ---
 

@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/cde-semantic-versioning/"
 heroImage: "/images/placeholder-article-cde-semver.svg"
 tags: ["DevOps", "CI/CD", "Semantic Versioning", "Android", "GitHub Actions"]
+category: cicd
 reference_id: "0d37152d-08bf-43c6-8f5d-3372660e90a5"
 ---
 

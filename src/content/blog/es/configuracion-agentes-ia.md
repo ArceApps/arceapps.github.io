@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/configuracion-agentes-ia/"
 heroImage: "/images/placeholder-article-ai-setup.svg"
 tags: ["IA", "Tutorial", "Configuración", "Android", "Agentes"]
+category: ai-agents
 reference_id: "b0624ec0-08af-4dad-bc3f-7dce6d88c8ea"
 ---
 

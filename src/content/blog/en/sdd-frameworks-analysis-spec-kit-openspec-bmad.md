@@ -4,6 +4,7 @@ description: "A thorough analysis of the three leading Spec-Driven Development f
 pubDate: 2026-03-28
 heroImage: "/images/blog-sdd-frameworks-analysis-en.png"
 tags: ["SDD", "AI", "Workflow", "GitHub Copilot", "BMAD", "OpenSpec", "Spec Kit", "Methodology", "Agentic AI", "Productivity"]
+category: ai-agents
 reference_id: a3f72b91-4c18-4e2d-9b5c-1d0e6f2a8c34
 author: ArceApps
 lastmod: 2026-03-28

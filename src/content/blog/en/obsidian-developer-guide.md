@@ -4,6 +4,7 @@ description: Transform Obsidian into a Knowledge IDE. Learn to integrate Git, Da
 pubDate: 2025-05-27
 heroImage: /images/obsidian-dev-hero.svg
 tags: ["productivity", "workflow", "tools", "documentation"]
+category: ai-agents
 reference_id: 5bcc1a10-55fd-4f2b-9285-f9b72f5fdcad
 author: ArceApps
 lastmod: 2025-05-27

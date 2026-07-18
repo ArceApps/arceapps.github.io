@@ -4,6 +4,7 @@ description: Why Matt Pocock's skills are small, composable, and opinionated —
 pubDate: 2026-05-20
 heroImage: /images/blog-mattpocock-skills.svg
 tags: ["SDD", "AI", "Skills", "Claude Code", "mattpocock", "Architecture"]
+category: ai-agents
 reference_id: b4e7c9a1-5f2d-4e8c-9b3a-7d6e1f2c8a0b
 related_posts: 
 author: ArceApps

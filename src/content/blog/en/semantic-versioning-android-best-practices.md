@@ -4,6 +4,7 @@ description: How to apply Semantic Versioning (SemVer) to Android. Managing `ver
 pubDate: 2025-10-18
 heroImage: /images/placeholder-article-semantic-versioning.svg
 tags: ["Semantic Versioning", "Android", "Best Practices", "Versioning", "Release Management"]
+category: cicd
 reference_id: ec7574e0-504b-474c-902b-fb10c1fde1d3
 author: ArceApps
 lastmod: 2025-10-18

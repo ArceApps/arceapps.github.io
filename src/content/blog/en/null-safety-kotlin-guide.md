@@ -4,6 +4,7 @@ description: Why is 'null' so dangerous? Discover how Kotlin solves the NullPoin
 pubDate: 2025-09-10
 heroImage: /images/placeholder-article-null-safety.svg
 tags: ["Kotlin", "Java", "Null Safety", "Language Design", "Clean Code"]
+category: sdd
 reference_id: 77f7f9fe-81a6-4367-93d9-8d52830301d9
 author: ArceApps
 lastmod: 2025-09-10

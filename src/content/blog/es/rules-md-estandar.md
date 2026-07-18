@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/rules-md-estandar/"
 heroImage: "/images/placeholder-article-rules-md.svg"
 tags: ["IA", "rules.md", "Android", "Kotlin", "Cursor", "Prompt Engineering"]
+category: android-kotlin
 reference_id: "rules-md-standard-2026"
 ---
 

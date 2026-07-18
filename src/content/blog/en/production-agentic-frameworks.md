@@ -4,6 +4,7 @@ description: A comprehensive deep dive into the de facto standards for orchestra
 pubDate: 2025-10-25
 heroImage: /images/placeholder-article-ai-agents.svg
 tags: ["AI", "Agents", "LangGraph", "CrewAI", "PydanticAI", "Python", "Architecture"]
+category: ai-agents
 reference_id: c63a672f-79e5-45d1-ae7a-f25cf3027f7b
 author: ArceApps
 lastmod: 2025-10-25

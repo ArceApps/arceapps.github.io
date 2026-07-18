@@ -4,6 +4,7 @@ description: KMP has moved from a promise to the de facto standard. We analyze t
 pubDate: 2025-02-10
 heroImage: /images/placeholder-article-kmp-state.svg
 tags: ["Kotlin", "KMP", "Multiplatform", "iOS", "Android", "Compose"]
+category: android-kotlin
 reference_id: b0454438-8d0c-4998-abc2-3dd70aa5bf3d
 author: ArceApps
 lastmod: 2025-02-10

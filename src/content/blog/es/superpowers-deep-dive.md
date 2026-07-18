@@ -13,6 +13,7 @@ keywords:
 canonical: "https://arceapps.com/es/blog/superpowers-deep-dive/"
 heroImage: "/images/placeholder-article-ai-workflow.svg"
 tags: ["Superpowers", "Agentes IA", "TDD", "Subagentes", "Metodología", "Ingeniería", "Workflow", "Análisis Profundo"]
+category: ai-agents
 reference_id: "b7c3e5d1-9a2f-4c8e-b1d6-8a9f2e3d4c5b"
 ---
 
