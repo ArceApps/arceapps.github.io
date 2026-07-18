@@ -1,0 +1,120 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { getCollection } from "astro:content";
+import projectsData from "../../data/projects.json";
+
+const title = "Proyectos — ArceApps";
+const description = "Una colección curada de apps, juegos y herramientas open-source que he construido en mi tiempo libre.";
+
+const breadcrumbItems = [
+  { label: "Inicio", href: "/es/" },
+  { label: "Proyectos", href: "/es/projects" },
+];
+
+const apps = await getCollection("apps", ({ data }) => !data.draft && data.pubDate <= new Date());
+const esApps = apps.filter(a => a.id.startsWith("es/"));
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero -->
+  <div class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-on-surface dark:text-dark-on-surface mb-4">
+        <span class="material-icons text-primary text-4xl mr-2 align-middle" aria-hidden="true">code</span>
+        Proyectos
+      </h1>
+      <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto">
+        Una selección de aplicaciones, juegos y herramientas open-source que he construido en solitario, por diversión y siempre aprendiendo.
+      </p>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="container mx-auto px-4 max-w-6xl py-16">
+    <div class="mb-8">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+      {projectsData.projects.map((project) => (
+        <a
+          href={project.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group bg-surface dark:bg-dark-surface rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-primary/30 dark:hover:border-primary/30 hover:scale-[1.02] motion-reduce:transform-none transition-all block focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+        >
+          <h3 class="text-xl font-bold text-on-surface dark:text-dark-on-surface mb-2 group-hover:text-primary transition-colors">
+            {project.name}
+          </h3>
+          <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant mb-4 line-clamp-3">
+            {project.description}
+          </p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            {project.tags.slice(0, 3).map(tag => (
+              <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
+            <span class="text-xs text-on-surface-variant/60 dark:text-dark-on-surface-variant/60">{project.year}</span>
+            <span class="flex items-center gap-1 text-sm font-medium text-primary group-hover:translate-x-1 motion-reduce:transform-none transition-transform">
+              <span class="material-icons text-base">code</span>
+              Ver código
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Published Apps Section -->
+    {esApps.length > 0 && (
+      <section class="mt-16 pt-16 border-t border-gray-200 dark:border-gray-800">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-on-surface dark:text-dark-on-surface mb-4">
+            <span class="material-icons text-primary text-3xl mr-2 align-middle" aria-hidden="true">play_circle</span>
+            Publicadas en Google Play
+          </h2>
+          <p class="text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto">
+            Estas son mis apps publicadas en Google Play, con diseño Material 3, screenshots y usuarios activos.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {esApps.map((app) => {
+            const cleanSlug = app.id.replace("es/", "");
+            return (
+              <a
+                href={`/es/apps/${cleanSlug}`}
+                data-astro-prefetch
+                class="group bg-surface dark:bg-dark-surface rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-xl hover:border-primary/30 dark:hover:border-primary/30 hover:scale-[1.02] motion-reduce:transform-none transition-all block focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              >
+                <h3 class="text-xl font-bold text-on-surface dark:text-dark-on-surface mb-2 group-hover:text-primary transition-colors">
+                  {app.data.title}
+                </h3>
+                <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant mb-4 line-clamp-3">
+                  {app.data.description}
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {(app.data.tags || []).slice(0, 3).map(tag => (
+                    <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-secondary/10 text-secondary border border-secondary/20">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
+                  <span class="flex items-center gap-1 text-sm font-medium text-primary group-hover:translate-x-1 motion-reduce:transform-none transition-transform">
+                    <span class="material-icons text-base">open_in_new</span>
+                    Ver detalle
+                  </span>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )}
+  </div>
+</Layout>

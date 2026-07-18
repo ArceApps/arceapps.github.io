@@ -1,0 +1,130 @@
+{
+  "projects": [
+    {
+      "slug": "retrobrick",
+      "name": "RetroBrick",
+      "description": "Classic brick breaker with retro pixel-art style, built in Kotlin with custom Canvas physics engine and 50+ levels.",
+      "tags": ["Kotlin", "Android", "Canvas", "Game", "Solo"],
+      "githubUrl": "https://github.com/ArceApps/RetroBrick",
+      "playStoreUrl": null,
+      "year": 2023
+    },
+    {
+      "slug": "puzzlesuite",
+      "name": "PuzzleSuite (PuzzleHub)",
+      "description": "Collection of 12 logic puzzles — Sudoku, Kakuro, Hitori, Dominosa, Minesweeper — with undo/redo, teacher mode, and Material 3 design.",
+      "tags": ["Kotlin", "Android", "Jetpack Compose", "Game", "Solo"],
+      "githubUrl": "https://github.com/ArceApps/PuzzleSuite",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.arceapps.puzzlesuite",
+      "year": 2024
+    },
+    {
+      "slug": "radiohub",
+      "name": "RadioHub",
+      "description": "Stream 30,000+ live radio stations worldwide. Built-in equalizer, sleep timer, Material 3 UI, zero ads, privacy-first.",
+      "tags": ["Kotlin", "Android", "ExoPlayer", "Radio", "Solo"],
+      "githubUrl": "https://github.com/ArceApps/PodcastRadio",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.arceapps.radiohub",
+      "year": 2026
+    },
+    {
+      "slug": "4line",
+      "name": "4Line",
+      "description": "Color-matching puzzle: place same-color balls in lines of 4+ to clear the board. Classic arcade with modern Android design.",
+      "tags": ["Kotlin", "Android", "Canvas", "Game", "Solo"],
+      "githubUrl": "https://github.com/ArceApps/4Line",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.arceapps.a4line",
+      "year": 2023
+    },
+    {
+      "slug": "2048",
+      "name": "2048 Puzzle Challenge",
+      "description": "The classic sliding puzzle — swipe to merge tiles and reach 2048. Material 3 with haptic feedback and stats tracking.",
+      "tags": ["Kotlin", "Android", "Jetpack Compose", "Game", "Solo"],
+      "githubUrl": "https://github.com/ArceApps/2048Challenge",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.arceapps.a2048",
+      "year": 2023
+    },
+    {
+      "slug": "sudoku",
+      "name": "Sudoku+",
+      "description": "Sudoku with 4 difficulty levels, pencil marks, highlight hints, and timer. Clean interface, no distractions.",
+      "tags": ["Kotlin", "Android", "Jetpack Compose", "Game", "Solo"],
+      "githubUrl": "https://github.com/ArceApps/Sudoku",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.arceapps.sudoku",
+      "year": 2023
+    },
+    {
+      "slug": "feedreader",
+      "name": "FeedReader",
+      "description": "RSS reader with offline caching, dark mode, and Material Design. Aggregates blogs and news in one unified feed.",
+      "tags": ["Kotlin", "Android", "RSS", "Reading", "Learning"],
+      "githubUrl": "https://github.com/ArceApps/FeedReader",
+      "playStoreUrl": null,
+      "year": 2022
+    },
+    {
+      "slug": "bookreader",
+      "name": "BookReader",
+      "description": "EPUB/PDF reader with night mode, font scaling, and bookmarks. Built to scratch my own itch: no good free reader in 2022.",
+      "tags": ["Kotlin", "Android", "Reading", "Learning"],
+      "githubUrl": "https://github.com/ArceApps/BookReader",
+      "playStoreUrl": null,
+      "year": 2022
+    },
+    {
+      "slug": "artostudio",
+      "name": "ArtoStudio",
+      "description": "Creative tool for pixel-art drawing with layers, undo/redo, color picker, and export. Made for my own game dev needs.",
+      "tags": ["Kotlin", "Android", "Canvas", "Design", "Tool"],
+      "githubUrl": "https://github.com/ArceApps/ArtoStudio",
+      "playStoreUrl": null,
+      "year": 2023
+    },
+    {
+      "slug": "liketopaint",
+      "name": "LikeToPaint",
+      "description": "Kid-friendly coloring book app with touch-to-fill, undo, and color palette. Designed for my niece, went open-source.",
+      "tags": ["Kotlin", "Android", "Canvas", "Design", "Kids"],
+      "githubUrl": "https://github.com/ArceApps/LikeToPaint",
+      "playStoreUrl": null,
+      "year": 2022
+    },
+    {
+      "slug": "spaceshooter",
+      "name": "SpaceShooter",
+      "description": "2D space shooter with touch controls, particle effects, and 20 waves. My first real game, built from scratch in Kotlin.",
+      "tags": ["Kotlin", "Android", "Canvas", "Game", "Learning"],
+      "githubUrl": "https://github.com/ArceApps/SpaceShooter",
+      "playStoreUrl": null,
+      "year": 2021
+    },
+    {
+      "slug": "qrcanner",
+      "name": "QR Scanner",
+      "description": "Fast QR/barcode scanner using CameraX + ML Kit. Offline-capable, no ads, minimal permissions.",
+      "tags": ["Kotlin", "Android", "CameraX", "Tool", "Solo"],
+      "githubUrl": "https://github.com/ArceApps/QrScanner",
+      "playStoreUrl": null,
+      "year": 2023
+    },
+    {
+      "slug": "podcastradio",
+      "name": "PodcastRadio",
+      "description": "My first app on Play Store. Podcast player with categories, search, favorites, and background playback.",
+      "tags": ["Kotlin", "Android", "Podcast", "Media", "Learning"],
+      "githubUrl": "https://github.com/ArceApps/PodcastRadio",
+      "playStoreUrl": null,
+      "year": 2020
+    },
+    {
+      "slug": "iabot",
+      "name": "iAbot",
+      "description": "AI assistant prototype with local chat history, prompt templates, and context-aware responses. My playground for LLM integration.",
+      "tags": ["Kotlin", "AI", "LLM", "Tool", "Solo"],
+      "githubUrl": "https://github.com/ArceApps/iabot",
+      "playStoreUrl": null,
+      "year": 2025
+    }
+  ]
+}
