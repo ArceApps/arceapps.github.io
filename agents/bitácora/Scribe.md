@@ -359,4 +359,48 @@ Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatt
 
 **Caveat honesto sobre las imágenes:** Las 5 imágenes adjuntas (3 wide 2752×1536 PNG + 2 cuadradas 2048×2048 LinkedIn) fueron asignadas a secciones por **asunción informada** al no tener herramienta vision_analyze en mi contexto. Si alguna no encaja temáticamente con la sección donde la ubiqué (cover→intro, infographic-comparison→"dos filosofías", benchmark-chart→"tabla benchmarks"), el user puede renombrar/swapear manualmente sin tocar el body markdown.
 
+---
+
+## 2026-07-18 — Engorde de 11 posts cortos + traducción al EN
+
+**Estado:** Completado y publicado en producción.
+**Origen:** Auditoría `AUDIT_WEB_2026-07-18.md` (también en este commit) que detectó 11 posts del blog ES por debajo del umbral `write-blog` de 1500 palabras. El usuario aprobó el plan: "Empezar ya: engordar los 9 sin conflictos, dejar los 2 conflictivos (claude-4-6, room) para después".
+
+**Decisiones tomadas en los 2 conflictivos (después):**
+- `claude-4-6-enterprise-launch.md`: el usuario confirmó que el modelo actual es **Claude 4.8 Opus**. Añadí "Nota editorial (julio 2026)" al inicio + sección "Actualización julio 2026: Claude 4.8 Opus" cubriendo 4.7 (mayo) y 4.8 (julio). Tabla de qué partes del artículo original siguen vigentes.
+- `room-database.md`: coexistía con `room-performance-issues.md` (junio 2026). Diferenciados como **intro + avanzado**. El de octubre es intro declarativa; el de junio cubre índices, query plans, SQLDelight, Realm. Enlazados entre sí.
+
+**Engorde (ES, 11 posts):**
+| Slug | Antes | Después |
+|---|--:|--:|
+| effective-mentorship-ai-era | 355w | 1832w |
+| imposter-syndrome-developer-2026 | 366w | 1664w |
+| github-pages | 381w | 1575w |
+| stateflow-sharedflow | 424w | 1517w |
+| junior-to-senior-prioritization | 434w | 1626w |
+| use-cases | 441w | 1650w |
+| kmp-advanced-ui-strategies | 455w | 1565w |
+| ia-tdd-android | 462w | 1736w |
+| repository-pattern | 469w | 1637w |
+| claude-4-6-enterprise-launch | 437w | 2058w |
+| room-database | 483w | 1513w |
+| **TOTAL** | **4707w** | **18373w** (+13666) |
+
+**Traducción técnica adaptativa al EN (11 posts, 18.440 palabras):**
+- 4 EN counterparts cortos reemplazados (effective-mentorship, imposter-syndrome, kmp-ui, claude-4-6)
+- 7 EN nuevos creados (github-pages, stateflow-sharedflow, junior-to-senior, use-cases, ia-tdd-android, repository-pattern, room-database)
+- Enlaces internos en `/blog/...` (no `/es/blog/...`) para mantener al lector en su idioma
+- Secciones extra en algunos EN para audiencia angloparlante (Compose patterns en stateflow-sharedflow, KMP testing, Room testing)
+
+**Comando final (operación completa):**
+1. `git stash` → `git pull --rebase origin main` (8 commits remotos sobre dark mode tables) → `git stash pop`
+2. `git add` selectivo (22 posts + 1 auditoría; excluido `.npmrc` local)
+3. Build validación: `npx astro build` → **1052 páginas, 0 errores Zod**
+4. `git commit` con mensaje detallado (`6dd5ef3`, 23 archivos, +4456/-218)
+5. `git push origin main` → `4cb799a..6dd5ef3 main -> main`
+6. Verificación post-deploy (Step 7.5): loop con 8 intentos × 15s. **22/22 URLs en 200 OK** (11 ES + 11 EN). Los 6 EN nuevos tardaron ~45s en propagarse; los 5 EN que ya tenían counterpart corto aparecieron en 200 desde el primer intento.
+
+**Innovación técnica / decisión notable:** Los 7 posts EN nuevos (`github-pages`, `stateflow-sharedflow`, `junior-to-senior-prioritization`, `use-cases`, `ia-tdd-android`, `repository-pattern`, `room-database`) pasaron de 0 a ≥1500 palabras en una sola sesión sin tener contraparte previa. La auditoría previa identificó el problema (paridad i18n ~73%); este commit la mejora pero no la cierra (siguen existiendo los 35 EN sin ES que la auditoría mencionó, en otra dirección).
+
+**Pendiente para próxima sesión:** Quedan 35 posts EN sin contraparte ES detectados en la auditoría original. Si el usuario quiere paridad completa en el otro sentido, sería otra sesión de engorde (35 posts × 1500w).
 
