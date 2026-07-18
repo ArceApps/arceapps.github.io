@@ -404,3 +404,38 @@ Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatt
 
 **Pendiente para próxima sesión:** Quedan 35 posts EN sin contraparte ES detectados en la auditoría original. Si el usuario quiere paridad completa en el otro sentido, sería otra sesión de engorde (35 posts × 1500w).
 
+---
+
+## 2026-07-18 — Suite de 8 features de mejora del sitio (specai)
+
+**Estado:** Completado y pusheado a producción.
+**Origen:** Plan specai en `docs/specai/20260718-content-improvements-suite/` (PRD + plan + tasks + verify). El usuario pidió "todos esos puntos" de una lista de 15 mejoras, acotando las imágenes de agentes a posts de flujos (SDD, orquestación, memoria). Se seleccionaron 8 features, ejecutadas en orden de más baratas a más complejas siguiendo flujo specai: plan → tasks → verify.
+
+### Resumen por feature
+
+| FX | Commit | Descripción |
+|---|---|---|
+| FX8 | `22c055d` | Apps metadata: `repoUrl` a 5 apps (EN+ES) |
+| FX3 | `199ee37` | Página `/contact` (EN+ES) con Breadcrumbs + form. `_next` URL arreglada a dominio canónico `arceapps.com`. Link "Contacto"/"Contact" en Header. |
+| FX4 | `55817a6` | Página `/projects` con 14 proyectos curados en `src/data/projects.json` + sección "Published on Google Play" iterando automáticamente sobre apps Markdown. Link "Projects"/"Proyectos" en Header. |
+| FX2 | `b8da215` | Taxonomía de categorías: `category:` en frontmatter de los 265 posts sin categoría (asignación automática basada en tags). Schema Zod actualizado (`category: z.string().optional()`). Distribución: ai-agents (129), android-kotlin (49), cicd (32), architecture (19), sdd (16), career (7), memory (6), security (4), web (3). |
+| FX5 | `9947d40` | Search body: `stripMarkdown()` en `search-index.json.ts` extrae 600 chars del body de cada post/app. `search.ts` actualizado con `body?: string` en Interface + weight 0.2 en Fuse (title baja a 0.6). |
+| FX6 | `d98fe3a` | Hubs de series: 6 series en `src/data/series.json` (socratic-agents, tournament-cli-ai, tournament-desktop-ai, persistent-memory, sdd-frameworks, ai-tools-2026). Páginas `/series/[slug]` y `/es/series/[slug]` con `getStaticPaths()`. |
+| FX7 | `09b1c03` | OG images v2: `heroImage` extraído del frontmatter en las 4 secciones (blog EN, blog ES, devlog, apps) y usado como capa semitransparente (`opacity="0.25"`) en el SVG generado. Si no hay heroImage, se mantiene el gradiente Teal+Orange original. |
+| FX1 | `5f701e9` | Mermaid diagrams: 5 diagramas SVG (SDD landscape, multi-agent orchestrator, memory architectures, persistent memory stack, agent workflow Android) insertados en 10 posts (5 EN + 5 ES). Dependencia nueva: `@mermaid-js/mermaid-cli 11.16.0` + Puppeteer Chromium. Script `scripts/render-diagrams.sh` para regenerar en prebuild. |
+
+### Métricas finales
+
+- **Build:** 991 páginas, 0 errores Zod
+- **Archivos modificados:** ~310 (265 categorías + 22 edits posts + 15 páginas/scripts/config)
+- **Dependencias nuevas:** 1 (`@mermaid-js/mermaid-cli`)
+- **Push:** `729ce49..5f701e9 main -> main`
+- **Tiempo neto:** ~2h30m
+
+### Decisiones notables
+
+- **Mermaid con Chromium sin sandbox:** Puppeteer falla en este entorno Linux por AppArmor. Solución: `.puppeteerrc.json` con `--no-sandbox` + `--disable-setuid-sandbox`. Chromium descargado a `~/.cache/puppeteer/`.
+- **Categorías sin páginas `/category/[slug]`:** El dato `category:` está en los 265 frontmatters, pero las páginas de navegación por categoría no se crearon. Es follow-up de ~1h.
+- **Diagramas Mermaid:** Sólo 5 posts diagramados de ~25 posibles. La infraestructura de renderizado (`render-diagrams.sh` + `.mmd` sources) está lista para añadir más incrementalmente sin tocar código.
+- **No se tocaron los posts de comparativas SDD que el usuario pidió mantener como están.**
+- **Bitácora Scribe anterior (11 posts engordados + traducción EN):** ya estaba documentada en entrada `2026-07-18` previa.
