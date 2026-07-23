@@ -43,12 +43,12 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 ## 5. Navegación y listados
 
 - [ ] El header desktop conserva navegación, idioma y tema sin competir visualmente con el contenido principal.
-- [ ] El menú móvil es un panel delimitado, anuncia su estado mediante `aria-expanded`/`aria-controls` y tiene foco visible.
-- [ ] El enlace activo se identifica por una señal adicional al color.
+- [x] El menú móvil es un panel delimitado, anuncia su estado mediante `aria-expanded`/`aria-controls` y tiene foco visible.
+- [x] El enlace activo se identifica por una señal adicional al color.
 - [ ] Apps, Blog y Bitácora mantienen filtros, paginación, tags, estados vacíos y enlaces correctos en EN/ES.
-- [ ] El teclado puede abrir, recorrer y cerrar la navegación sin quedar atrapado ni perder el foco de forma inesperada.
+- [x] El teclado puede abrir, recorrer y cerrar la navegación sin quedar atrapado ni perder el foco de forma inesperada.
 
-**Evidencia:** recorrido con teclado, inspección de atributos ARIA, `pnpm test -- src/scripts/header.test.ts` y build.
+**Evidencia de Task 4:** panel móvil delimitado y localizado; estado activo con `aria-current` y borde; gestión de `aria-expanded`, `aria-controls`, `aria-hidden` y `data-state`; foco, Escape, click exterior y cleanup cubiertos. Header test 3/3 y build Astro exit 0 con 1043 páginas; code review CLEAN. El mock de `localStorage` solo estabiliza el entorno jsdom de Vitest y no modifica producción. Permanece pendiente el recorrido visual real EN/ES, por lo que no se valida todavía la competencia visual del header desktop ni los criterios de listados.
 
 ## 6. Detalle de app
 
@@ -99,7 +99,7 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 - [ ] Los documentos living reflejan exactamente las tareas completadas, errores y decisiones finales.
 - [ ] Los hallazgos 11–12 permanecen explícitamente como deuda separada.
 
-**Estado de ejecución tras Task 3:** localization-contract + utils 27/27, build Astro exit 0 con 1043 páginas, revisión CLEAN y sin dependencias nuevas. El warning conocido `CONTACT_FORM_KEY` permanece como warning. No se considera ejecutada todavía la suite completa ni cerrada la verificación visual EN/ES.
+**Estado de ejecución tras Task 4:** header test 3/3, build Astro exit 0 con 1043 páginas y code review CLEAN. El mock de `localStorage` solo estabiliza el entorno jsdom de Vitest y no modifica producción; el warning conocido `CONTACT_FORM_KEY` permanece como baseline. No se considera ejecutada todavía la suite completa ni cerrada la verificación visual EN/ES.
 
 ## Comandos de cierre
 

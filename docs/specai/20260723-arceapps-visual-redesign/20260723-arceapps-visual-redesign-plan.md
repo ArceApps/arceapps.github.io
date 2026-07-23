@@ -9,7 +9,7 @@
 
 **Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
 
-**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1, 2 y 3 completadas y resto del rediseño pendiente.
+**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1, 2, 3 y 4 completadas y resto del rediseño pendiente.
 
 ## Dependency & Package Validation
 
@@ -136,5 +136,17 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Code review:** CLEAN.
 
 **Dependencias y baseline:** No se introdujeron dependencias nuevas. Permanece el warning conocido `CONTACT_FORM_KEY`.
+
+**Outcome:** success
+
+### [2026-07-23] Task 4: Rediseñar header y navegación móvil
+
+**Header y navegación:** Se implementó un panel móvil delimitado y localizado, estado activo con `aria-current` y borde, y gestión coherente de `aria-hidden`/`data-state`. La interacción cubre foco, Escape, click exterior y cleanup.
+
+**Pruebas:** header test 3/3; `pnpm build` termina con Astro exit 0 y genera 1043 páginas.
+
+**Code review:** CLEAN.
+
+**Entorno de pruebas y baseline:** El mock de `localStorage` solo estabiliza el entorno jsdom de Vitest y no modifica producción. Permanece el warning conocido `CONTACT_FORM_KEY`.
 
 **Outcome:** success

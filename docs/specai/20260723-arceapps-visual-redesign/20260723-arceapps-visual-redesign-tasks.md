@@ -95,13 +95,17 @@
 
 **Metadata:** Complexity 5/10 · Risk Medium · Checkpoint No
 
+**Status:** ✅ DONE
+
 **Steps:**
 
-- [ ] Dibujar el orden de navegación desktop/móvil y mapear cada control a su clave de traducción.
-- [ ] Convertir el menú móvil en un panel delimitado con atributos de estado y clases de tema claro/oscuro.
-- [ ] Revisar cierre, foco, `aria-expanded`, `aria-controls` y navegación por teclado.
-- [ ] Añadir estado activo inequívoco sin depender solo del color.
-- [ ] Ejecutar las pruebas específicas del header y `pnpm build`; registrar cualquier fallo baseline separado.
+- [x] Dibujar el orden de navegación desktop/móvil y mapear cada control a su clave de traducción.
+- [x] Convertir el menú móvil en un panel delimitado con atributos de estado y clases de tema claro/oscuro.
+- [x] Revisar cierre, foco, `aria-expanded`, `aria-controls` y navegación por teclado.
+- [x] Añadir estado activo inequívoco sin depender solo del color.
+- [x] Ejecutar las pruebas específicas del header y `pnpm build`; registrar cualquier fallo baseline separado.
+
+**Resultado:** panel móvil delimitado y localizado; estado activo con `aria-current` y borde; gestión de `aria-hidden`/`data-state`; foco, Escape, click exterior y cleanup cubiertos. Header test 3/3, build Astro exit 0 con 1043 páginas y code review CLEAN. El mock de `localStorage` solo estabiliza el entorno jsdom de Vitest y no modifica producción; el warning conocido `CONTACT_FORM_KEY` permanece como baseline.
 
 ## Task 5: Simplificar hero y portada
 
