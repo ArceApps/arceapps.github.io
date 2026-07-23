@@ -9,7 +9,7 @@
 
 **Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
 
-**Status:** 🟢 BACKLOG — documentación preparada; requiere aprobación explícita del usuario antes de iniciar la ejecución.
+**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1 y 2 completadas y resto del rediseño pendiente.
 
 ## Dependency & Package Validation
 
@@ -110,5 +110,19 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Code review:** CLEAN.
 
 **Problemas/Fixes:** Se corrigieron los hallazgos del code review. Permanece el warning conocido `CONTACT_FORM_KEY`.
+
+**Outcome:** success
+
+### [2026-07-23] Task 2: Crear las primitivas de superficie y migrar cards
+
+**Archivos implementados:** `src/components/Card.astro` y `src/components/PageIntro.astro`.
+
+**Archivos migrados:** `src/components/BlogCard.astro`, `src/components/ProjectCard.astro` y `src/components/AppCard.astro`, conservando sus enlaces y datos.
+
+**Pruebas:** `pnpm exec vitest run src/components/card-contract.test.ts` pasa 3/3; `pnpm build` termina con Astro exit 0 y genera 1043 páginas.
+
+**Code review:** revisión independiente CLEAN.
+
+**Dependencias y baseline:** No se introdujeron dependencias. El warning conocido `CONTACT_FORM_KEY` permanece sin cambios como baseline.
 
 **Outcome:** success

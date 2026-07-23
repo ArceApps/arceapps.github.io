@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { slugify } from "../utils/slugs";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Card from "./Card.astro";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -23,9 +24,7 @@ const href = lang === 'es' ? `/es/blog/${slug}/` : `/blog/${slug}/`;
 const firstTag = post.data.tags?.[0];
 ---
 
-<article
-  class="h-full spatial-card rounded-xl flex flex-col hover:shadow-xl hover:scale-[1.02] motion-reduce:transform-none group transform-gpu"
->
+<Card variant="article">
   <a
     href={href}
     data-astro-prefetch
@@ -90,4 +89,4 @@ const firstTag = post.data.tags?.[0];
       >
     </div>
   </div>
-</article>
+</Card>

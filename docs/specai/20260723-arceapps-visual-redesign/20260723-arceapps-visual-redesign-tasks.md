@@ -42,14 +42,18 @@
 
 **Metadata:** Complexity 6/10 · Risk Medium · Checkpoint Yes
 
+**Status:** ✅ DONE
+
 **Steps:**
 
-- [ ] Definir props tipadas para `variant`, `href`, `ariaLabel` y clases adicionales sin romper las APIs de datos existentes.
-- [ ] Implementar la superficie accesible con estados hover/focus discretos y fallback compatible con tema oscuro.
-- [ ] Migrar `BlogCard`, `ProjectCard` y `AppCard` a las variantes correspondientes conservando sus enlaces y datos.
-- [ ] Implementar `PageIntro` con título, descripción y ancho responsive sin textos hardcodeados.
-- [ ] Ejecutar `pnpm build` y revisar que las páginas que consumen las cards sigan generándose.
-- [ ] Solicitar checkpoint humano antes de continuar si la migración exige cambiar la jerarquía aprobada.
+- [x] Definir props tipadas para `variant`, `href`, `ariaLabel` y clases adicionales sin romper las APIs de datos existentes.
+- [x] Implementar la superficie accesible con estados hover/focus discretos y fallback compatible con tema oscuro.
+- [x] Migrar `BlogCard`, `ProjectCard` y `AppCard` a las variantes correspondientes conservando sus enlaces y datos.
+- [x] Implementar `PageIntro` con título, descripción y ancho responsive sin textos hardcodeados.
+- [x] Ejecutar `pnpm build` y revisar que las páginas que consumen las cards sigan generándose.
+- [x] Checkpoint revisado: no se requirió cambiar la jerarquía aprobada.
+
+**Resultado:** contrato de `Card` 3/3, build Astro exit 0 con 1043 páginas y code review independiente CLEAN; permanece el warning conocido `CONTACT_FORM_KEY`.
 
 ## Task 3: Completar strings y rutas localizadas
 

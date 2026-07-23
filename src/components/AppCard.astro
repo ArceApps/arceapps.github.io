@@ -22,17 +22,17 @@ const {
 } = Astro.props;
 
 import { optimizeGooglePlayImage } from "../utils/image-optimization";
+import Card from "./Card.astro";
 ---
 
-<a
+<Card
   href={link}
   target={isExternal ? "_blank" : undefined}
   rel={isExternal ? "noopener noreferrer" : undefined}
-  class="group block h-full"
+  variant="app"
+  ariaLabel={title}
 >
-  <article
-    class="h-full spatial-card rounded-2xl p-6 flex flex-col hover:shadow-2xl hover:scale-[1.02] transform-gpu"
-  >
+  <div class="flex h-full flex-col p-6">
     <!-- Icon -->
     <div
       class={`w-14 h-14 rounded-2xl ${!realIconUrl ? color : "bg-white"} flex items-center justify-center text-white shadow-md mb-6 group-hover:scale-110 transition-transform duration-300 overflow-hidden`}
@@ -80,5 +80,5 @@ import { optimizeGooglePlayImage } from "../utils/image-optimization";
       class="absolute -right-10 -bottom-10 w-32 h-32 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500 pointer-events-none"
     >
     </div>
-  </article>
-</a>
+  </div>
+</Card>

@@ -22,13 +22,13 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 
 ## 3. Cards y composición
 
-- [ ] Existe `src/components/Card.astro` con variantes `article`, `app` y `feature`, props tipadas y estados de foco accesibles.
-- [ ] `BlogCard.astro`, `ProjectCard.astro` y `AppCard.astro` consumen la gramática común sin perder sus enlaces, imágenes, metadatos o datos de colección.
+- [x] Existe `src/components/Card.astro` con variantes `article`, `app` y `feature`, props tipadas y estados de foco accesibles.
+- [x] `BlogCard.astro`, `ProjectCard.astro` y `AppCard.astro` consumen la gramática común sin perder sus enlaces, imágenes, metadatos o datos de colección.
 - [ ] Existe `src/components/PageIntro.astro` y los listados de Apps, Blog y Bitácora comparten su estructura de encabezado.
 - [ ] Las cards no dependen de hover para revelar título, CTA o información necesaria.
 - [ ] No se observa overflow horizontal en retículas, tags, galerías o botones en widths móvil, tablet y desktop.
 
-**Evidencia:** inspección de archivos, `pnpm build` y recorrido de portada/listados en ambos idiomas.
+**Evidencia:** inspección estática de los componentes, `pnpm exec vitest run src/components/card-contract.test.ts` (3/3), `pnpm build` (Astro exit 0, 1043 páginas) y revisión independiente CLEAN. Quedan pendientes el recorrido de portada/listados en ambos idiomas y las comprobaciones visuales de hover y overflow.
 
 ## 4. Portada
 
