@@ -6,19 +6,44 @@
 @theme {
   /* Brand Colors */
   --color-primary: #018786; /* Teal */
+  --color-primary-strong: #006b6a;
   --color-secondary: #FF9800; /* Orange */
 
-  /* Material Design Colors */
+  /* Semantic Light Theme Tokens */
   --color-surface: #FFFFFF;
+  --color-surface-subtle: #F4F5F7;
+  --color-surface-raised: #FFFFFF;
   --color-surface-variant: #F4F5F7;
+  --color-content: #1C1B1F;
+  --color-content-muted: #49454F;
   --color-on-surface: #1C1B1F;
   --color-on-surface-variant: #49454F;
+  --color-border: #E2E3E5;
+  --color-border-strong: #C7C9CC;
+  --color-focus: #018786;
+  --color-focus-contrast: #FFFFFF;
 
-  /* Dark Mode Colors */
+  /* Semantic Dark Theme Tokens */
   --color-dark-surface: #121212;
+  --color-dark-surface-subtle: #1C1C1E;
+  --color-dark-surface-raised: #242426;
   --color-dark-surface-variant: #1C1C1E;
+  --color-dark-content: #F5F5F5;
+  --color-dark-content-muted: #E0E0E0;
   --color-dark-on-surface: #F5F5F5;
   --color-dark-on-surface-variant: #E0E0E0;
+  --color-dark-border: #3A3A3C;
+  --color-dark-border-strong: #5B5B60;
+  --color-dark-focus: #4FD1C5;
+  --color-dark-focus-contrast: #082F2E;
+
+  /* Semantic Elevation Tokens */
+  --shadow-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  --shadow-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+  --shadow-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+  --shadow-dark-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.35), 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
+  --shadow-dark-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.35), 0px 1px 2px 0px rgba(0, 0, 0, 0.45);
+  --shadow-dark-elevation-3: 0px 4px 8px 3px rgba(0, 0, 0, 0.35), 0px 1px 3px 0px rgba(0, 0, 0, 0.45);
 
   /* Fonts */
   --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, sans-serif;
@@ -28,17 +53,27 @@
 /* Material Design 3 Utilities */
 @layer utilities {
   .elevation-1 {
-    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: var(--shadow-elevation-1);
   }
   .elevation-2 {
-    box-shadow: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: var(--shadow-elevation-2);
   }
   .elevation-3 {
-    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.30);
+    box-shadow: var(--shadow-elevation-3);
+  }
+
+  .dark .elevation-1 {
+    box-shadow: var(--shadow-dark-elevation-1);
+  }
+  .dark .elevation-2 {
+    box-shadow: var(--shadow-dark-elevation-2);
+  }
+  .dark .elevation-3 {
+    box-shadow: var(--shadow-dark-elevation-3);
   }
 
   .material-card {
-    @apply rounded-xl bg-surface dark:bg-dark-surface-variant border border-gray-200 dark:border-gray-800 transition-all duration-300;
+    @apply rounded-xl bg-surface-raised dark:bg-dark-surface-raised border border-border dark:border-dark-border transition-all duration-300;
   }
 
   .cv-auto {
@@ -92,7 +127,6 @@
     @apply font-heading font-medium tracking-tight;
     /* Default weight for headings is Medium (500) */
     font-variation-settings: 'wght' 500;
-    transition: font-variation-settings 0.3s ease-out;
   }
 }
 
@@ -102,46 +136,24 @@
   }
 }
 
-@media (hover: hover) {
-  h1:hover, h2:hover, h3:hover, h4:hover, h5:hover, h6:hover {
-    font-variation-settings: 'wght' 650;
-  }
-}
-
 /*
    Variable Font Weight Overrides
-   Ensures Tailwind weight utilities work with font-variation-settings
-   and provide appropriate hover animations.
+   Ensures Tailwind weight utilities work with font-variation-settings.
 */
 
-/* Semibold (600) -> Hover 700 */
+/* Semibold (600) */
 .font-semibold {
   font-variation-settings: 'wght' 600 !important;
 }
-@media (hover: hover) {
-  .font-semibold:hover {
-    font-variation-settings: 'wght' 700 !important;
-  }
-}
 
-/* Bold (700) -> Hover 800 */
+/* Bold (700) */
 .font-bold {
   font-variation-settings: 'wght' 700 !important;
 }
-@media (hover: hover) {
-  .font-bold:hover {
-    font-variation-settings: 'wght' 800 !important;
-  }
-}
 
-/* Extra Bold (800) -> Hover 900 */
+/* Extra Bold (800) */
 .font-extrabold {
   font-variation-settings: 'wght' 800 !important;
-}
-@media (hover: hover) {
-  .font-extrabold:hover {
-    font-variation-settings: 'wght' 900 !important;
-  }
 }
 
 /* Prose Customization */
@@ -157,18 +169,11 @@
   /* Ensure prose headings also support variable weight animation */
   .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
       font-variation-settings: 'wght' 700; /* Start bold as per prose-headings:font-bold */
-      transition: font-variation-settings 0.3s ease-out;
   }
 
   /* Force dark mode color for headings and bold text to ensure high contrast */
   :is(.dark .prose) :is(h1, h2, h3, h4, h5, h6, strong) {
       color: var(--color-dark-on-surface) !important;
-  }
-
-  @media (hover: hover) {
-      .prose h1:hover, .prose h2:hover, .prose h3:hover, .prose h4:hover, .prose h5:hover, .prose h6:hover {
-          font-variation-settings: 'wght' 800; /* Extra Bold on hover */
-      }
   }
 
   /* Specific Heading Sizes & Spacing */
