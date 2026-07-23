@@ -120,14 +120,20 @@
 
 **Metadata:** Complexity 6/10 · Risk High · Checkpoint Yes
 
+**Status:** ✅ DONE
+
+**Nota:** El checkpoint de riesgo alto y el checkpoint final de Task 5 fueron aprobados explícitamente por el usuario el 2026-07-23. Se mantuvo el alcance: retirar el mockup y las métricas ficticias, y conservar el contenido real, los anchors y EN/ES.
+
 **Steps:**
 
-- [ ] Identificar qué app, devlog o artículo actual puede representar contenido real sin inventar datos.
-- [ ] Reescribir `Hero` como composición editorial con CTA principal y CTA secundaria localizados.
-- [ ] Reordenar `HomePage` para usar `feature`, `app` y `article`, manteniendo filtros y límites de colección.
-- [ ] Revisar el comportamiento de ambos idiomas y los anchors públicos (`#apps` y enlaces existentes).
-- [ ] Ejecutar `pnpm build` y revisar una versión desktop/móvil en `pnpm dev` o `pnpm preview`.
-- [ ] Solicitar checkpoint humano antes de continuar si la nueva jerarquía cambia la pieza destacada aprobada.
+- [x] Elegir la última entrada real de Bitácora y las tres apps actuales como contenido destacado, sin inventar datos.
+- [x] Reescribir `Hero` como composición editorial con CTA principal y CTA secundaria localizados.
+- [x] Reordenar `HomePage` para usar `Card` en variante `feature`, `apps.map` con `ProjectCard` y artículos, manteniendo filtros y límites de colección.
+- [x] Revisar el comportamiento de ambos idiomas y los anchors públicos (`#apps` y enlaces existentes).
+- [x] Ejecutar `pnpm build` y revisar la portada EN/ES en desktop y la portada ES en móvil a 360px.
+- [x] Completar el checkpoint humano final, aprobado explícitamente por el usuario.
+
+**Resultado:** Hero editorial sin mockup, métricas, glows ni gradientes; `HomePage` usa `Card` en variante `feature`, `apps.map` con `ProjectCard` y un CTA sólido. Contrato de portada 3/3; build Astro exit 0 con 1043 páginas; inspección visual EN/ES en desktop y ES móvil a 360px sin overflow horizontal; code review CLEAN. El warning conocido `CONTACT_FORM_KEY` permanece como baseline.
 
 ## Task 6: Homogeneizar listados de Apps, Blog y Bitácora
 

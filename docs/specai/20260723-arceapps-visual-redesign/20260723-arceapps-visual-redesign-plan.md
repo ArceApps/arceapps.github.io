@@ -9,7 +9,7 @@
 
 **Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
 
-**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1, 2, 3 y 4 completadas y resto del rediseño pendiente.
+**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1, 2, 3, 4 y 5 completadas y resto del rediseño pendiente.
 
 ## Dependency & Package Validation
 
@@ -148,5 +148,21 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Code review:** CLEAN.
 
 **Entorno de pruebas y baseline:** El mock de `localStorage` solo estabiliza el entorno jsdom de Vitest y no modifica producción. Permanece el warning conocido `CONTACT_FORM_KEY`.
+
+**Outcome:** success
+
+### [2026-07-23] Task 5: Simplificar hero y portada
+
+**Archivos principales:** `src/components/Hero.astro`, `src/components/pages/HomePage.astro` y `src/i18n/ui.ts`.
+
+**Decisiones:** Se eligieron la última entrada real de Bitácora y las tres apps actuales. El hero pasó a una composición editorial sin mockup, métricas, glows ni gradientes; `HomePage` usa `Card` en variante `feature`, `apps.map` con `ProjectCard` y un CTA sólido. Se conservaron el contenido real, los anchors y la composición localizada EN/ES. El checkpoint final fue aprobado explícitamente por el usuario.
+
+**Pruebas:** contrato de portada 3/3.
+
+**Build:** Astro exit 0, 1043 páginas generadas; permanece el warning conocido `CONTACT_FORM_KEY` como baseline.
+
+**Code review:** CLEAN.
+
+**Inspección visual:** portada EN/ES revisada en desktop y portada ES revisada en móvil a 360px, sin overflow horizontal.
 
 **Outcome:** success

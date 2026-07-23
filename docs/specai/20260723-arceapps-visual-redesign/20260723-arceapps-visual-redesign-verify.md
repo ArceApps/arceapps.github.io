@@ -32,13 +32,13 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 
 ## 4. Portada
 
-- [ ] La jerarquía visible es hero editorial, construcción real, apps destacadas, artículos recientes y CTA final.
-- [ ] El hero no contiene el mockup ficticio de teléfono, estadísticas simuladas ni textos de producto inventados.
-- [ ] La portada muestra contenido real de las colecciones actuales y conserva los anchors/enlaces públicos existentes.
-- [ ] La portada EN y ES usa la misma composición visual, con copy y rutas localizadas.
-- [ ] El CTA principal se distingue visualmente y conserva un nombre accesible.
+- [x] La jerarquía visible es hero editorial, construcción real, apps destacadas, artículos recientes y CTA final.
+- [x] El hero no contiene el mockup ficticio de teléfono, estadísticas simuladas ni textos de producto inventados.
+- [x] La portada muestra contenido real de las colecciones actuales y conserva los anchors/enlaces públicos existentes.
+- [x] La portada EN y ES usa la misma composición visual, con copy y rutas localizadas.
+- [x] El CTA principal se distingue visualmente y conserva un nombre accesible.
 
-**Evidencia:** inspección de `Hero.astro`/`HomePage.astro`, visita de `/` y `/es/`, y build estático.
+**Evidencia de Task 5:** contrato de portada 3/3; build Astro exit 0 con 1043 páginas; recorrido visual de la portada EN/ES en desktop y de la portada ES en móvil a 360px, sin overflow horizontal. La inspección confirmó la jerarquía hero → construcción → apps → artículos → CTA, el contenido real y los anchors, la composición localizada y el CTA accesible. Esta evidencia se limita a la portada: siguen pendientes los criterios globales de responsive y las comprobaciones de listados y detalles que requieren más pantallas.
 
 ## 5. Navegación y listados
 
