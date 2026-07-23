@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import BlogCard from "../../components/BlogCard.astro";
+import PageIntro from "../../components/PageIntro.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import type { Page } from "astro";
 import { slugify } from "../../utils/slugs";
@@ -38,49 +39,52 @@ const { page, allTags } = Astro.props;
       ],
     }).replace(/</g, "\\u003C")}
   />
-  <div class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16 md:py-24 fade-in-section">
-    <div class="container mx-auto px-4 text-center">
-      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-on-surface dark:text-dark-on-surface">{t('blog.title')}</h1>
-      <p class="text-xl text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto">
-        {t('blog.subtitle')}
-      </p>
-    </div>
-  </div>
-
-  <section class="py-16 md:py-24">
-    <div class="container mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {page.data.map((post) => (
-          <BlogCard post={post} />
-        ))}
-      </div>
-
-      <!-- Pagination Controls -->
-      <div class="flex justify-center mt-12 gap-4">
-        {page.url.prev && (
-          <a href={page.url.prev} class="inline-flex items-center px-6 py-2 rounded-lg bg-surface dark:bg-dark-surface border border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
-            <span class="material-icons mr-2 text-base" aria-hidden="true">arrow_back</span>
-            Previous
-          </a>
-        )}
-        {page.url.next && (
-          <a href={page.url.next} class="inline-flex items-center px-6 py-2 rounded-lg bg-surface dark:bg-dark-surface border border-primary text-primary font-medium hover:bg-primary hover:text-white transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
-            Next
-            <span class="material-icons ml-2 text-base" aria-hidden="true">arrow_forward</span>
-          </a>
-        )}
-      </div>
+  <section class="border-b border-border bg-surface px-4 py-14 dark:border-dark-border dark:bg-dark-surface md:py-20">
+    <div class="container mx-auto">
+      <PageIntro title={t('blog.title')} description={t('blog.subtitle')} />
     </div>
   </section>
 
-  <section class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16 md:py-24">
+  <section class="py-14 md:py-20">
+    <div class="container mx-auto px-4">
+      {page.data.length > 0 ? (
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
+          {page.data.map((post) => (
+            <BlogCard post={post} />
+          ))}
+        </div>
+      ) : (
+        <div class="rounded-2xl border border-border bg-surface-raised px-6 py-14 text-center dark:border-dark-border dark:bg-dark-surface-raised">
+          <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant">{t('blog.empty')}</p>
+        </div>
+      )}
+
+      <!-- Pagination Controls -->
+      <nav class="mt-12 flex justify-center gap-4" aria-label={t('blog.pagination')} data-pagination>
+        {page.url.prev && (
+          <a href={page.url.prev} class="inline-flex items-center rounded-xl border border-border bg-surface-raised px-5 py-2.5 font-medium text-primary transition-colors hover:border-primary hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/50 motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-raised">
+            <span class="material-icons mr-2 text-base" aria-hidden="true">arrow_back</span>
+            {t('blog.previous')}
+          </a>
+        )}
+        {page.url.next && (
+          <a href={page.url.next} class="inline-flex items-center rounded-xl border border-border bg-surface-raised px-5 py-2.5 font-medium text-primary transition-colors hover:border-primary hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/50 motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-raised">
+            {t('blog.next')}
+            <span class="material-icons ml-2 text-base" aria-hidden="true">arrow_forward</span>
+          </a>
+        )}
+      </nav>
+    </div>
+  </section>
+
+  <section class="border-t border-border bg-surface-variant/30 py-14 dark:border-dark-border dark:bg-dark-surface-variant/30 md:py-20">
     <div class="container mx-auto px-4 text-center">
-      <h2 class="text-2xl font-bold mb-6 text-on-surface dark:text-dark-on-surface">Filter by tags</h2>
-      <div class="flex flex-wrap justify-center gap-3 animate-fade-in-up">
+      <h2 class="mb-6 text-2xl font-bold text-on-surface dark:text-dark-on-surface">{t('blog.filter_tags')}</h2>
+      <div class="flex flex-wrap justify-center gap-3">
         {allTags.map((tag) => (
           <a
             href={`/blog/tag/${slugify(tag)}/`}
-            class="px-4 py-2 rounded-full bg-surface dark:bg-dark-surface border border-primary/20 hover:border-primary text-on-surface dark:text-dark-on-surface hover:bg-primary hover:text-white transition-all duration-300 text-sm font-medium shadow-sm hover:shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+            class="rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/50 motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface"
           >
             #{tag}
           </a>

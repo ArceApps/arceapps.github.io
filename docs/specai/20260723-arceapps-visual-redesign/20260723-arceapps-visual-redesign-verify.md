@@ -24,11 +24,11 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 
 - [x] Existe `src/components/Card.astro` con variantes `article`, `app` y `feature`, props tipadas y estados de foco accesibles.
 - [x] `BlogCard.astro`, `ProjectCard.astro` y `AppCard.astro` consumen la gramática común sin perder sus enlaces, imágenes, metadatos o datos de colección.
-- [ ] Existe `src/components/PageIntro.astro` y los listados de Apps, Blog y Bitácora comparten su estructura de encabezado.
+- [x] Existe `src/components/PageIntro.astro` y los listados de Apps, Blog y Bitácora comparten su estructura de encabezado.
 - [ ] Las cards no dependen de hover para revelar título, CTA o información necesaria.
 - [ ] No se observa overflow horizontal en retículas, tags, galerías o botones en widths móvil, tablet y desktop.
 
-**Evidencia:** inspección estática de los componentes, `pnpm exec vitest run src/components/card-contract.test.ts` (3/3), `pnpm build` (Astro exit 0, 1043 páginas) y revisión independiente CLEAN. Quedan pendientes el recorrido de portada/listados en ambos idiomas y las comprobaciones visuales de hover y overflow.
+**Evidencia:** inspección estática de los componentes, `pnpm exec vitest run src/components/card-contract.test.ts` (3/3), contrato de listados 4/4, `pnpm build` (Astro exit 0, 1043 páginas), recorrido visual de listados EN/ES y revisión independiente CLEAN. La evidencia de esta tarea cubre encabezados y tarjetas de listados; permanecen pendientes las comprobaciones globales de hover, overflow y páginas de detalle.
 
 ## 4. Portada
 
@@ -45,10 +45,12 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 - [ ] El header desktop conserva navegación, idioma y tema sin competir visualmente con el contenido principal.
 - [x] El menú móvil es un panel delimitado, anuncia su estado mediante `aria-expanded`/`aria-controls` y tiene foco visible.
 - [x] El enlace activo se identifica por una señal adicional al color.
-- [ ] Apps, Blog y Bitácora mantienen filtros, paginación, tags, estados vacíos y enlaces correctos en EN/ES.
+- [x] Apps, Blog y Bitácora mantienen filtros, paginación, tags, estados vacíos y enlaces correctos en EN/ES.
 - [x] El teclado puede abrir, recorrer y cerrar la navegación sin quedar atrapado ni perder el foco de forma inesperada.
 
 **Evidencia de Task 4:** panel móvil delimitado y localizado; estado activo con `aria-current` y borde; gestión de `aria-expanded`, `aria-controls`, `aria-hidden` y `data-state`; foco, Escape, click exterior y cleanup cubiertos. Header test 3/3 y build Astro exit 0 con 1043 páginas; code review CLEAN. El mock de `localStorage` solo estabiliza el entorno jsdom de Vitest y no modifica producción. Permanece pendiente el recorrido visual real EN/ES, por lo que no se valida todavía la competencia visual del header desktop ni los criterios de listados.
+
+**Evidencia de Task 6:** Se conservaron `getCollection`, filtros de draft/fecha/locale, orden, paginación, tags, `slugify` y prefijos `/es`. Se localizaron filtros, etiquetas, contador de resultados, estados vacíos, paginación, `aria-label` y alt de portada. El contrato `src/components/listings-contract.test.ts` pasa 4/4; la revisión visual cubrió Apps EN, Blog EN/ES y Bitácora EN/ES en desktop, además de Bitácora ES a 360 px sin overflow (`scrollWidth=346`, `viewport=361`).
 
 ## 6. Detalle de app
 

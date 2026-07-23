@@ -166,3 +166,11 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Inspección visual:** portada EN/ES revisada en desktop y portada ES revisada en móvil a 360px, sin overflow horizontal.
 
 **Outcome:** success
+
+### [2026-07-23] Task 6: Homogeneizar listados de Apps, Blog y Bitácora
+
+**Resultado:** Se completó la actualización visual, localizada y responsive de Apps, Blog y Bitácora EN/ES, incluida la migración de la Bitácora a tarjetas tipo `Card`.
+
+**Evidencia:** Contrato de listados 4/4; `pnpm build` termina con Astro exit 0 y genera 1043 páginas; `git diff --check` pasa; revisión visual desktop/móvil y revisión independiente CLEAN. Permanecen pendientes los criterios globales de detalles, header desktop y responsive completo.
+
+**Outcome:** success

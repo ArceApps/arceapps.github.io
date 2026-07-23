@@ -151,13 +151,19 @@
 
 **Metadata:** Complexity 5/10 · Risk Medium · Checkpoint No
 
+**Status:** ✅ DONE
+
 **Steps:**
 
-- [ ] Mapear cada listado a `PageIntro` y a la variante de card correcta.
-- [ ] Migrar retículas y espaciado sin cambiar el orden ni el número de entradas mostradas.
-- [ ] Alinear estados de carga/vacío, tags, paginación y enlaces de retorno en EN/ES.
-- [ ] Comprobar que ninguna ruta crea enlaces raíz desde contenido español.
-- [ ] Ejecutar `pnpm build` y revisar las rutas de listado generadas.
+- [x] Mapear cada listado a `PageIntro` y a la variante de card correcta.
+- [x] Migrar retículas y espaciado sin cambiar el orden ni el número de entradas mostradas.
+- [x] Alinear estados de carga/vacío, tags, paginación y enlaces de retorno en EN/ES.
+- [x] Comprobar que ninguna ruta crea enlaces raíz desde contenido español.
+- [x] Ejecutar `pnpm build` y revisar las rutas de listado generadas.
+
+**Resultado:** Apps, Blog y Bitácora EN/ES comparten una presentación consistente, localizada y responsive. Bitácora conserva su orden, fechas, imágenes, descripciones y enlaces tras migrar de timeline a tarjetas.
+
+**Evidencia:** `src/components/listings-contract.test.ts` pasa 4/4; `pnpm build` termina con Astro exit 0 y genera 1043 páginas; `git diff --check` pasa; revisión visual desktop de Apps EN, Blog EN/ES y Bitácora EN/ES; Bitácora ES a 360 px sin overflow (`scrollWidth=346`, `viewport=361`), con 38 cards y headings/CTA visibles; revisión independiente CLEAN. Los criterios globales de detalles, header desktop y responsive completo permanecen pendientes.
 
 ## Task 7: Reordenar el detalle de app
 
