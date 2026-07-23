@@ -9,7 +9,7 @@
 
 **Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
 
-**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1 y 2 completadas y resto del rediseño pendiente.
+**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1, 2 y 3 completadas y resto del rediseño pendiente.
 
 ## Dependency & Package Validation
 
@@ -124,5 +124,17 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Code review:** revisión independiente CLEAN.
 
 **Dependencias y baseline:** No se introdujeron dependencias. El warning conocido `CONTACT_FORM_KEY` permanece sin cambios como baseline.
+
+**Outcome:** success
+
+### [2026-07-23] Task 3: Completar strings y rutas localizadas
+
+**Localización:** Se añadieron claves de UI equivalentes en EN/ES y se localizaron el `Header` y las páginas dinámicas de Apps y Blog en ambos idiomas.
+
+**Pruebas:** localization-contract + utils pasan 27/27; `pnpm build` termina con Astro exit 0 y genera 1043 páginas.
+
+**Code review:** CLEAN.
+
+**Dependencias y baseline:** No se introdujeron dependencias nuevas. Permanece el warning conocido `CONTACT_FORM_KEY`.
 
 **Outcome:** success

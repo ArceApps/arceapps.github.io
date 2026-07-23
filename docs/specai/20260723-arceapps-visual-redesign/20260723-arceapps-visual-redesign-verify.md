@@ -73,11 +73,11 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 ## 8. Internacionalización
 
 - [ ] No quedan strings de UI hardcodeados para `Gallery`, `Live Demo`, `Code`, `Updated`, `No Image Available`, `Filter by tags`, `Contact`, `Table of Contents` o equivalentes ARIA.
-- [ ] Cada nueva clave de `src/i18n/ui.ts` existe en `en` y `es`, salvo nombres propios o datos editoriales.
+- [x] Cada nueva clave de `src/i18n/ui.ts` existe en `en` y `es`, salvo nombres propios o datos editoriales.
 - [ ] `useTranslations` recibe el idioma correcto en `/` y `/es/`, listados y detalles.
 - [ ] Las rutas, enlaces de retorno y toggles de idioma no se mezclan entre raíz y `/es`.
 
-**Evidencia:** `rg` de strings, inspección de `ui.ts`, recorrido EN/ES y pruebas de utilidades.
+**Evidencia de Task 3:** localization-contract + utils pasan 27/27 y el build Astro termina con exit 0 generando 1043 páginas. La implementación incorpora claves de UI equivalentes en EN/ES y localiza el `Header` y las páginas dinámicas de Apps y Blog. Quedan pendientes el barrido completo de strings, los listados y el recorrido funcional integral de rutas y toggles.
 
 ## 9. Responsive, accesibilidad y motion
 
@@ -91,13 +91,15 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 
 ## 10. Verificación automatizada final
 
-- [ ] `pnpm build` termina correctamente y conserva el warning conocido de `CONTACT_FORM_KEY` como warning, no como error.
+- [x] `pnpm build` termina correctamente y conserva el warning conocido de `CONTACT_FORM_KEY` como warning, no como error.
 - [ ] `pnpm test` se ejecuta y sus fallos se comparan con el baseline; no aparecen fallos nuevos atribuibles al rediseño.
-- [ ] `pnpm test -- src/i18n/utils.test.ts` termina correctamente.
+- [x] `pnpm test -- src/i18n/utils.test.ts` termina correctamente.
 - [ ] `git diff --check` termina correctamente.
 - [ ] `rg --files docs/specai/20260723-arceapps-visual-redesign` lista designs, plan, tasks y verify.
 - [ ] Los documentos living reflejan exactamente las tareas completadas, errores y decisiones finales.
 - [ ] Los hallazgos 11–12 permanecen explícitamente como deuda separada.
+
+**Estado de ejecución tras Task 3:** localization-contract + utils 27/27, build Astro exit 0 con 1043 páginas, revisión CLEAN y sin dependencias nuevas. El warning conocido `CONTACT_FORM_KEY` permanece como warning. No se considera ejecutada todavía la suite completa ni cerrada la verificación visual EN/ES.
 
 ## Comandos de cierre
 

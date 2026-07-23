@@ -71,13 +71,17 @@
 
 **Metadata:** Complexity 4/10 · Risk Medium · Checkpoint No
 
+**Status:** ✅ DONE
+
 **Steps:**
 
-- [ ] Localizar strings hardcodeados con `rg` para `Gallery|Live Demo|Code|Updated|No Image Available|Filter by tags|Contact|Table of Contents|Home|Blog`.
-- [ ] Añadir claves equivalentes en `en` y `es` de `src/i18n/ui.ts` con nombres agrupados por área.
-- [ ] Sustituir textos visibles, placeholders, `aria-label`, `alt` de UI y estados vacíos por `t(...)`.
-- [ ] Comprobar que `useTranslations` recibe el idioma correcto en las rutas dinámicas EN/ES.
-- [ ] Ejecutar `pnpm test -- src/i18n/utils.test.ts` y `pnpm build`.
+- [x] Localizar strings hardcodeados con `rg` para `Gallery|Live Demo|Code|Updated|No Image Available|Filter by tags|Contact|Table of Contents|Home|Blog`.
+- [x] Añadir claves equivalentes en `en` y `es` de `src/i18n/ui.ts` con nombres agrupados por área.
+- [x] Sustituir textos visibles, placeholders, `aria-label`, `alt` de UI y estados vacíos por `t(...)`.
+- [x] Comprobar que `useTranslations` recibe el idioma correcto en las rutas dinámicas EN/ES.
+- [x] Ejecutar `pnpm test -- src/i18n/utils.test.ts` y `pnpm build`.
+
+**Resultado:** localization-contract + utils 27/27, build Astro exit 0 con 1043 páginas y code review CLEAN; permanece el warning conocido `CONTACT_FORM_KEY`.
 
 ## Task 4: Rediseñar header y navegación móvil
 

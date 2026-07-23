@@ -6,6 +6,9 @@ import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import SocialShare from '../../../components/SocialShare.astro';
 import PostNavigation from '../../../components/PostNavigation.astro';
 import { slugify } from '../../../utils/slugs';
+import { useTranslations } from '../../../i18n/utils';
+
+const t = useTranslations('es');
 
 export async function getStaticPaths() {
   const [posts, enPosts] = await Promise.all([
@@ -100,8 +103,8 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
 // Filter headings for TOC (H2 and H3 only)
 const tocHeadings = headings.filter(h => h.depth === 2 || h.depth === 3);
 const breadcrumbItems = [
-  { label: 'Inicio', href: '/es' },
-  { label: 'Blog', href: '/es/blog' },
+  { label: t('common.home'), href: '/es' },
+  { label: t('nav.blog'), href: '/es/blog' },
   { label: post.data.title, href: Astro.url.pathname }
 ];
 ---
@@ -142,7 +145,7 @@ const breadcrumbItems = [
           </div>
           <div class="flex items-center">
             <span class="material-icons mr-2 text-primary" aria-hidden="true">schedule</span>
-            <span>{readingTime} min de lectura</span>
+            <span>{readingTime} {t('blog.reading_time')}</span>
           </div>
         </div>
       </div>
@@ -176,7 +179,7 @@ const breadcrumbItems = [
               <nav class="p-4 bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800">
                 <h2 class="text-lg font-bold mb-4 text-on-surface dark:text-gray-100 flex items-center">
                   <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
-                  Índice
+                  {t('blog.table_of_contents')}
                 </h2>
                 <ul class="space-y-2 text-sm">
                   {tocHeadings.map(heading => (
@@ -199,7 +202,7 @@ const breadcrumbItems = [
             <div class="mt-8">
                <a href="/es/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-gray-300 hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
                   <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
-                  Volver al Blog
+                  {t('blog.back_to_blog')}
                </a>
             </div>
           </div>
@@ -215,7 +218,7 @@ const breadcrumbItems = [
                    <summary class="p-4 flex items-center justify-between cursor-pointer font-bold text-on-surface dark:text-gray-100 list-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-xl">
                       <div class="flex items-center">
                          <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
-                         Índice de contenidos
+                         {t('blog.table_of_contents')}
                       </div>
                       <span class="material-icons group-open:rotate-180 transition-transform" aria-hidden="true">expand_more</span>
                    </summary>
@@ -253,7 +256,7 @@ const breadcrumbItems = [
           <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 lg:hidden">
              <a href="/es/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-gray-300 hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
                 <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
-                Volver al Blog
+                {t('blog.back_to_blog')}
              </a>
           </div>
 
@@ -267,7 +270,7 @@ const breadcrumbItems = [
          <div class="container mx-auto px-4 max-w-6xl">
             <h2 class="text-3xl font-bold mb-10 text-on-surface dark:text-gray-100 text-center flex items-center justify-center gap-3">
                <span class="material-icons text-primary text-4xl" aria-hidden="true">style</span>
-               También te puede interesar
+               {t('blog.related')}
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                {relatedPosts.map((post) => (
@@ -280,5 +283,4 @@ const breadcrumbItems = [
 
   </article>
 </Layout>
-
 
