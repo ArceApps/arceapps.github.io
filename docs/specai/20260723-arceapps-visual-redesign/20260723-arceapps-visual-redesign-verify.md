@@ -54,13 +54,13 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 
 ## 6. Detalle de app
 
-- [ ] El orden visual prioriza nombre, propuesta de valor, icono/hero, Google Play y prueba visual.
-- [ ] Rating, versión, fecha, tags y repositorio permanecen disponibles como metadatos secundarios.
-- [ ] Google Play es la acción primaria en las rutas EN y ES; los CTAs secundarios no la eclipsan.
-- [ ] Galería e imágenes se leen sin inclinación obligatoria, sin recorte inesperado y sin overflow horizontal.
-- [ ] `alt`, enlaces externos, foco y estados de tema son correctos.
+- [x] El orden visual prioriza nombre, propuesta de valor, icono/hero, Google Play y prueba visual.
+- [x] Rating, versión, fecha, tags y repositorio permanecen disponibles como metadatos secundarios.
+- [x] Google Play es la acción primaria en las rutas EN y ES; los CTAs secundarios no la eclipsan.
+- [x] Galería e imágenes se leen sin inclinación obligatoria, sin recorte inesperado y sin overflow horizontal.
+- [x] `alt`, enlaces externos, foco y estados de tema son correctos.
 
-**Evidencia:** visita de un detalle EN y uno ES en desktop y móvil, inspección de HTML y build.
+**Evidencia de Task 7:** `src/components/app-detail-contract.test.ts` pasa 3/3. La revisión visual EN/ES en desktop y móvil confirma la secuencia nombre → propuesta de valor → hero → Google Play → prueba visual, con tags y metadatos agrupados como información secundaria. La revisión detectó y corrigió el orden visual alterado por reglas `order`, además del recorte inesperado del hero. La galería quedó estable, sin inclinación obligatoria ni overflow horizontal. Se comprobaron labels, `alt`, enlaces externos, foco, tema claro/oscuro y prefijos `/es`. `pnpm build` termina con Astro exit 0 y genera 1043 páginas; `git diff --check` pasa; revisión final CLEAN. El warning conocido `CONTACT_FORM_KEY` permanece como baseline.
 
 ## 7. Detalle de artículo y lectura
 

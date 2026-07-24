@@ -9,7 +9,7 @@
 
 **Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
 
-**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1, 2, 3, 4 y 5 completadas y resto del rediseño pendiente.
+**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1, 2, 3, 4, 5, 6 y 7 completadas. Task 8 y la verificación global permanecen pendientes.
 
 ## Dependency & Package Validation
 
@@ -180,3 +180,23 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 - Commit: `1041e95` — `feat: unify localized listing layouts`
 - Outcome: **success**
 - Evidencia: contrato listings 4/4, `pnpm build` exitoso con 1043 páginas, `git diff --check`, revisión independiente CLEAN y revisión visual EN/ES sin overflow.
+
+### [2026-07-24] Task 7: Reordenar el detalle de app
+
+**Archivos implementados:** `src/pages/apps/[...slug].astro`, `src/pages/es/apps/[...slug].astro` y `src/components/app-detail-contract.test.ts`.
+
+**Implementación:** Se separó el contenido primario de los metadatos secundarios y se priorizó la secuencia nombre → propuesta de valor → hero → Google Play → prueba visual en EN y ES.
+
+**Correcciones tras revisión:** La revisión detectó un orden visual incorrecto provocado por reglas `order` y tags demasiado prominentes. Se corrigió el orden visual y se reagruparon los tags junto a los metadatos secundarios. También se corrigió el recorte inesperado del hero y se sustituyó la galería inclinada por una composición estable sin overflow horizontal. Finalmente, rating, versión, fecha y tags quedaron después de Google Play dentro del panel secundario.
+
+**Pruebas:** `src/components/app-detail-contract.test.ts` pasa 3/3.
+
+**Build:** `pnpm build` termina con Astro exit 0 y genera 1043 páginas.
+
+**Verificación adicional:** `git diff --check` pasa; revisión visual de detalles EN/ES en desktop y móvil; labels, `alt`, enlaces externos, foco, tema y rutas `/es` comprobados.
+
+**Code review:** revisión final CLEAN.
+
+**Baseline:** El warning conocido `CONTACT_FORM_KEY` permanece sin cambios.
+
+**Outcome:** success

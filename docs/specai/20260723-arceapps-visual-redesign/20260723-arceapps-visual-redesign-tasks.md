@@ -176,14 +176,22 @@
 
 **Metadata:** Complexity 6/10 · Risk High · Checkpoint Yes
 
+**Status:** ✅ DONE
+
+**Nota:** El checkpoint humano del 2026-07-24 aprobó alterar el orden de CTAs e información de descarga.
+
 **Steps:**
 
-- [ ] Auditar el orden actual de campos y separar contenido primario de metadatos secundarios.
-- [ ] Reestructurar el hero de detalle para que Google Play sea la acción primaria en ambos idiomas.
-- [ ] Migrar imagen y galería a una secuencia estable sin rotación obligatoria ni overflow horizontal.
-- [ ] Revisar labels, `alt`, enlaces externos, foco y el comportamiento de pantalla pequeña.
-- [ ] Ejecutar `pnpm build` y abrir al menos un detalle EN y uno ES en vista desktop/móvil.
-- [ ] Solicitar checkpoint humano antes de continuar si se altera el orden de CTAs o la información de descarga.
+- [x] Auditar el orden actual de campos y separar contenido primario de metadatos secundarios.
+- [x] Reestructurar el hero de detalle para que Google Play sea la acción primaria en ambos idiomas.
+- [x] Migrar imagen y galería a una secuencia estable sin rotación obligatoria ni overflow horizontal.
+- [x] Revisar labels, `alt`, enlaces externos, foco y el comportamiento de pantalla pequeña.
+- [x] Ejecutar `pnpm build` y abrir al menos un detalle EN y uno ES en vista desktop/móvil.
+- [x] Solicitar checkpoint humano antes de continuar si se altera el orden de CTAs o la información de descarga.
+
+**Resultado:** El detalle de app prioriza nombre, propuesta de valor, hero, Google Play y prueba visual. Los metadatos permanecen agrupados como información secundaria y la galería usa una composición estable y responsive.
+
+**Evidencia:** `src/components/app-detail-contract.test.ts` pasa 3/3; `pnpm build` termina con Astro exit 0 y genera 1043 páginas; `git diff --check` pasa; revisión visual de detalles EN/ES en desktop y móvil sin overflow horizontal; revisión final CLEAN. El warning conocido `CONTACT_FORM_KEY` permanece como baseline.
 
 ## Task 8: Convertir el detalle de artículo en lectura editorial
 
