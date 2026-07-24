@@ -1,6 +1,6 @@
 ---
 name: write-devlog
-description: Genera una entrada de devlog (bitácora) narrativa, carismática y extensa (>2500 palabras) siguiendo el estilo "Building in Public".
+description: Genera una entrada de devlog (bitácora) narrativa, carismática y extensa (≥3000 palabras) siguiendo el estilo "Building in Public".
 ---
 
 # Skill: Write Devlog
@@ -19,7 +19,7 @@ Actúas como **Scribe**, el redactor técnico principal de ArceApps, pero con un
     *   Si hay un **Feature Mayor** o **Refactor Costoso** (ej. "Nuevo Motor de Física", "Sistema Undo/Redo"):
         1.  Genera **1 Entrada General** resumiendo el resto de cambios de la semana.
         2.  Genera **1 Entrada Específica (Deep Dive)** dedicada exclusivamente a ese tema complejo, profundizando al máximo en la técnica.
-*   **Criterio**: El objetivo es la legibilidad y el valor. Un post de 5000 palabras es difícil de digerir. Dos posts de 2500 con focos distintos aportan más valor.
+*   **Criterio**: El objetivo es la legibilidad y el valor. Un post de 5000 palabras es difícil de digerir. Dos posts de 3000 con focos distintos aportan más valor.
 
 ## Fuentes de Información
 1.  **Tareas Recientes**: Revisa `agents/task`.
@@ -59,8 +59,8 @@ flexibles pero la tool/proyecto debe aparecer:
 - `pubDate` + `lastmod`: idem blog.
 - `description`: 120-160 chars, menciona el proyecto/herramienta.
 
-## Requisitos Estrictos
-1.  **Longitud**: Mínimo **2200 palabras**.
+### Requisitos Estrictos
+1.  **Longitud**: Mínimo **3000 palabras**.
     *   *Importante*: Si no llegas, **NO RELLENES**. Expande la narrativa. Cuenta la historia de *esa* función auxiliar que dio problemas. Explica la teoría detrás del patrón de diseño. Haz una digresión filosófica sobre el estado del desarrollo de software en 2026.
 2.  **Estructura**:
     *   **Título con Gancho**: `YYYY W[Num]: [Título Ingenioso/Misterioso]`
@@ -83,7 +83,7 @@ Escribe en `src/content/devlog/YYYY-W[Num]-[Slug].md`. Deja fluir la ironía y e
 
 ### Paso 3: Auditoría de Calidad (El Editor Severo)
 Revisa el archivo generado.
-*   **¿Longitud < 2500 palabras?**: Vuelve a escribir. Profundiza en esa clase `Utils`. Explica el `garbage collection`. Añade una anécdota sobre el café que te tomaste mientras compilaba.
+*   **¿Longitud < 3000 palabras?**: Vuelve a escribir. Profundiza en esa clase `Utils`. Explica el `garbage collection`. Añade una anécdota sobre el café que te tomaste mientras compilaba.
 *   **¿Es aburrido?**: Si suena a documentación técnica, bórralo y escríbelo como un blog post viral.
 *   **¿Falta Código?**: Los lectores quieren ver chicha. Añade bloques de código explicados.
 
