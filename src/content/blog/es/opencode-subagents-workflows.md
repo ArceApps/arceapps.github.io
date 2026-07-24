@@ -2,7 +2,7 @@
 title: "OpenCode Subagentes: Workflows, Casos de Uso y Superpowers"
 description: "Aprende a diseñar flujos de trabajo con subagentes en OpenCode. Descubre cómo combinar modelos baratos y de frontera para automatizar tareas complejas."
 pubDate: 2026-06-26
-lastmod: 2026-06-26
+lastmod: 2026-07-24
 author: ArceApps
 keywords:
   - "opencode"
@@ -44,6 +44,12 @@ Modelos como Claude 3.5 Sonnet o GPT-4o se reservan para las **tareas intensivas
 1. **El arquitecto (Plan Agent):** Diseña la estructura de la solución y divide el problema en pasos.
 2. **El revisor de seguridad (SecOps Agent):** Analiza dependencias y código en busca de vulnerabilidades complejas.
 3. **El generador de código núcleo (Build Agent):** Escribe la lógica de negocio real.
+
+Aquí tienes el desglose visual de los dos bandos y la lógica de enrutamiento entre ellos:
+
+![Economía de subagentes: comparación entre cheap agents (Haiku, Flash, Llama) y frontier agents (Sonnet, GPT-4o) con roles, costes y criterios de enrutamiento](/images/infographic-workflows-economy-es.svg)
+
+La conclusión práctica: el enrutador analiza cuatro señales —complejidad de la tarea, coste estimado, tamaño del contexto y criticidad— y dispara cada llamada al modelo más barato que pueda resolverla. El 80% de las llamadas van a cheap agents; el 20% restante, a frontier agents. Cuando una llamada barata no es suficiente, se escala. Esto se ve muy claro en el caso de Superpowers que viene a continuación.
 
 ---
 
@@ -101,6 +107,12 @@ En lugar de hacer todo de una vez, el flujo funciona así:
 3. Finalmente, invocamos a `@super-code`. Su única directiva es: *"Lee el output de los tests fallidos y escribe el código mínimo necesario para que pasen"*.
 
 Al dividir el problema, evitamos el clásico problema del agente que escribe el código y los tests a la vez, creando "tests felices" que siempre pasan pero no verifican nada real.
+
+La siguiente infografía muestra el pipeline de extremo a extremo, con los permisos por fase, los gates entre agentes, y el bucle de feedback que garantiza que solo se commitea código respaldado por tests reales:
+
+![Pipeline Superpowers: 3 subagentes (super-plan, super-test, super-code) con gates entre fases, permisos diferenciados y bucle de feedback test-código](/images/infographic-workflows-superpowers-es.svg)
+
+La idea clave que se ve en la infografía: cada subagente tiene permisos explícitamente distintos. `@super-plan` no puede escribir archivos ni ejecutar comandos — solo planifica. `@super-test` sí puede, pero su salida es por diseño tests que **deben fallar** antes de la implementación. `@super-code` recibe el output de los tests rojos y escribe el código mínimo. El loop se cierra solo cuando los tests pasan, y solo entonces se commitea.
 
 ---
 

@@ -2,7 +2,7 @@
 title: "OpenCode Subagents: Workflows, Use Cases, and Superpowers"
 description: "Learn how to design agentic workflows with OpenCode subagents. Discover how to combine cheap and frontier AI models to automate tasks like Superpowers."
 pubDate: 2026-06-26
-lastmod: 2026-06-26
+lastmod: 2026-07-24
 author: ArceApps
 keywords:
   - "opencode"
@@ -44,6 +44,12 @@ Models like Claude 3.5 Sonnet or GPT-4o are reserved for **intensive tasks**:
 1. **The Architect (Plan Agent):** Designs the solution structure and breaks the problem down into steps.
 2. **The Security Reviewer (SecOps Agent):** Analyzes dependencies and code for complex vulnerabilities.
 3. **The Core Code Generator (Build Agent):** Writes the actual business logic.
+
+Here's the visual breakdown of both camps and the routing logic between them:
+
+![Subagent economics: cheap agents (Haiku, Flash, Llama) vs frontier agents (Sonnet, GPT-4o) with roles, costs, and routing criteria](/images/infographic-workflows-economy-en.svg)
+
+The practical conclusion: the router analyzes four signals —task complexity, estimated cost, context size, and criticality— and fires each call at the cheapest model that can solve it. 80% of calls go to cheap agents; the remaining 20% to frontier agents. When a cheap call isn't enough, you escalate. This is very clear in the Superpowers case coming up next.
 
 ---
 
@@ -101,6 +107,12 @@ Instead of doing everything at once, the flow works like this:
 3. Finally, we invoke `@super-code`. Its only directive is: *"Read the output of the failing tests and write the minimum code necessary to make them pass"*.
 
 By splitting the problem, we avoid the classic issue of the agent writing the code and tests at the same time, creating "happy path tests" that always pass but don't verify anything real.
+
+The next infographic shows the pipeline end-to-end, with per-phase permissions, gates between agents, and the feedback loop that guarantees only code backed by real tests gets committed:
+
+![Superpowers pipeline: 3 subagents (super-plan, super-test, super-code) with phase gates, differentiated permissions, and test-code feedback loop](/images/infographic-workflows-superpowers-en.svg)
+
+The key idea visible in the infographic: each subagent has explicitly different permissions. `@super-plan` cannot write files or run commands — it only plans. `@super-test` can, but its output is by design tests that **must fail** before the implementation. `@super-code` receives the red tests' output and writes the minimum code. The loop only closes when the tests pass, and only then do you commit.
 
 ---
 
