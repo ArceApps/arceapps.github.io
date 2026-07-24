@@ -9,7 +9,7 @@
 
 **Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
 
-**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1–8 completadas. Tasks 9–10 y la verificación global permanecen pendientes.
+**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1–9 completadas. Task 10 y la verificación global permanecen pendientes.
 
 ## Dependency & Package Validation
 
@@ -232,3 +232,19 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 - **Verificación:** Build Astro: 1043 páginas/301 OG; contrato 3/3; diff check y code review CLEAN.
 - **Pendiente:** Tasks 9–10 y verificación global.
 - **Outcome:** `success`
+
+### 2026-07-24 — Task 9: Auditoría transversal de responsive, accesibilidad y motion
+
+**Auditoría inicial:** Se buscaron y clasificaron usos de `hover`, `scale`, `rotate`, `blur` y `animation`.
+
+**TDD:** La fase RED produjo los 2 fallos esperados. La fase GREEN quedó en 3/3 mediante `src/components/cross-cutting-contract.test.ts`.
+
+**Cambios y corrección:** `global.css` incorpora el fallback global de `prefers-reduced-motion: reduce`. `AppCard`, `BlogCard`, `ProjectCard`, `PostNavigation` y `SocialShare` eliminan escalados, desplazamientos y adornos decorativos sin valor informativo, conservando transiciones cromáticas, `focus-visible`, ARIA y URLs. Se corrigió el hallazgo de especificidad eliminando transforms y se reforzó el contrato contra `transform` en hover.
+
+**Revisión visual y estructural:** Se revisaron las rutas EN/ES a 360, 768 y 1280 px en portada, listados, detalle de app y artículo, sin overflow. Se verificó `main=1`, controles `aria-expanded`/`aria-controls` válidos y 0 focos sin nombre tras excluir checkboxes disabled de listas Markdown.
+
+**Verificación:** `pnpm build` termina con exit 0 y genera 1043 páginas y 301 OG. `git diff --check` pasa. Code review final CLEAN tras comprobar foco y ARIA por control.
+
+**Baseline:** El warning `CONTACT_FORM_KEY` permanece sin cambios.
+
+**Outcome:** success

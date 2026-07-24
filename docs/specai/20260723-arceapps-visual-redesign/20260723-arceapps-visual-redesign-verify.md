@@ -83,13 +83,13 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 
 ## 9. Responsive, accesibilidad y motion
 
-- [ ] Todos los controles interactivos tienen nombre accesible, foco visible y orden de teclado lógico.
-- [ ] El contenido esencial funciona sin hover, blur, scale, rotate ni animación.
-- [ ] `prefers-reduced-motion: reduce` elimina las animaciones no esenciales y no oculta contenido.
-- [ ] No hay cambios de ancho causados por hover tipográfico ni layout shift visual evidente en headings.
-- [ ] Se revisan al menos 360px, 768px y 1280px en portada, listado, detalle de app y artículo.
+- [x] Todos los controles interactivos tienen nombre accesible, foco visible y orden de teclado lógico.
+- [x] El contenido esencial funciona sin hover, blur, scale, rotate ni animación.
+- [x] `prefers-reduced-motion: reduce` elimina las animaciones no esenciales y no oculta contenido.
+- [x] No hay cambios de ancho causados por hover tipográfico ni layout shift visual evidente en headings.
+- [x] Se revisan al menos 360px, 768px y 1280px en portada, listado, detalle de app y artículo.
 
-**Evidencia:** DevTools/preview, recorrido con teclado y búsqueda de clases de motion en `src`.
+**Evidencia de Task 9:** El contrato `src/components/cross-cutting-contract.test.ts` pasa 3/3. Se auditó la búsqueda y clasificación de motion, incluida la eliminación de transforms, y se verificó el fallback global de `prefers-reduced-motion: reduce`. La revisión visual y estructural EN/ES a 360, 768 y 1280 px cubrió portada, listados, detalle de app y artículo sin overflow. Se confirmó un único `main`, headings con un `h1`, controles localizados y nombrados, foco visible y relaciones coherentes entre `aria-expanded` y `aria-controls`. Code review CLEAN.
 
 ## 10. Verificación automatizada final
 

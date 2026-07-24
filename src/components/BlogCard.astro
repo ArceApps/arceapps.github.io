@@ -28,7 +28,7 @@ const firstTag = post.data.tags?.[0];
   <a
     href={href}
     data-astro-prefetch
-    class="absolute inset-0 z-10 rounded-xl focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none transition-shadow"
+    class="absolute inset-0 z-10 rounded-xl focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none transition-shadow motion-reduce:transition-none"
     aria-label={`${t('common.read_more')} ${post.data.title}`}></a>
 
   {
@@ -37,7 +37,7 @@ const firstTag = post.data.tags?.[0];
         <img
           src={post.data.heroImage}
           alt={post.data.title}
-          class="w-full h-full object-cover group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500"
+          class="w-full h-full object-cover"
           loading="lazy"
           decoding="async"
           width="800"
@@ -54,7 +54,7 @@ const firstTag = post.data.tags?.[0];
           <a
             href={lang === 'es' ? `/es/blog/tag/${slugify(firstTag)}/` : `/blog/tag/${slugify(firstTag)}/`}
             data-astro-prefetch
-            class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+            class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors motion-reduce:transition-none relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
           >
             {firstTag}
           </a>
@@ -68,7 +68,7 @@ const firstTag = post.data.tags?.[0];
     </div>
 
     <h3
-      class="text-xl font-bold mb-3 text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors line-clamp-2 pointer-events-none"
+      class="text-xl font-bold mb-3 text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors motion-reduce:transition-none line-clamp-2 pointer-events-none"
     >
       {post.data.title}
     </h3>
@@ -84,7 +84,7 @@ const firstTag = post.data.tags?.[0];
     >
       {t('common.read_more')}
       <span
-        class="material-icons text-base ml-1 group-hover:translate-x-1 motion-reduce:transform-none transition-transform"
+        class="material-icons text-base ml-1"
         aria-hidden="true">arrow_forward</span
       >
     </div>

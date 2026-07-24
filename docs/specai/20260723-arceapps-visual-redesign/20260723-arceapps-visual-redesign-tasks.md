@@ -234,13 +234,19 @@
 
 **Metadata:** Complexity 6/10 · Risk Medium · Checkpoint No
 
+**Status:** ✅ DONE
+
 **Steps:**
 
-- [ ] Ejecutar búsquedas de clases de hover, scale, rotate, blur y animation y clasificar cada uso por necesidad.
-- [ ] Mantener solo transiciones de interacción/entrada justificadas y completar `prefers-reduced-motion`.
-- [ ] Recorrer teclado, foco, contraste, orden de headings, landmarks, `aria-expanded` y labels en rutas EN/ES.
-- [ ] Probar widths móvil, tablet y desktop en portada, listado, detalle de app y artículo.
-- [ ] Ejecutar `git diff --check`, `pnpm test` y `pnpm build`; separar fallos preexistentes de regresiones nuevas.
+- [x] Ejecutar búsquedas de clases de hover, scale, rotate, blur y animation y clasificar cada uso por necesidad.
+- [x] Mantener solo transiciones de interacción/entrada justificadas y completar `prefers-reduced-motion`.
+- [x] Recorrer teclado, foco, contraste, orden de headings, landmarks, `aria-expanded` y labels en rutas EN/ES.
+- [x] Probar widths móvil, tablet y desktop en portada, listado, detalle de app y artículo.
+- [x] Ejecutar `git diff --check`, `pnpm test` y `pnpm build`; separar fallos preexistentes de regresiones nuevas.
+
+**Resultado:** `global.css` añade un fallback global para `prefers-reduced-motion: reduce`. `AppCard`, `BlogCard`, `ProjectCard`, `PostNavigation` y `SocialShare` eliminan escalados, desplazamientos y adornos decorativos sin valor informativo, conservando transiciones cromáticas, `focus-visible`, atributos ARIA y URLs. El contrato `src/components/cross-cutting-contract.test.ts` pasa 3/3. `pnpm build` termina con exit 0, genera 1043 páginas y 301 OG, y mantiene el warning conocido `CONTACT_FORM_KEY`. `git diff --check` pasa y el code review final queda CLEAN tras reforzar el contrato contra `transform` en hover y comprobar foco/ARIA por control.
+
+**Evidencia:** Auditoría inicial de usos de `hover`, `scale`, `rotate`, `blur` y `animation`; RED TDD con 2 fallos esperados y GREEN 3/3. Se corrigió el hallazgo de especificidad eliminando transforms. La revisión visual EN/ES a 360, 768 y 1280 px cubrió portada, listados, detalle de app y artículo sin overflow. Se verificó `main=1`, controles `aria-expanded`/`aria-controls` válidos y 0 focos sin nombre tras excluir checkboxes disabled de listas Markdown. Build, `git diff --check` y code review CLEAN.
 
 ## Task 10: Verificación final y cierre documental
 
