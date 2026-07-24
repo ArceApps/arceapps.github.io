@@ -439,3 +439,40 @@ Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatt
 - **Diagramas Mermaid:** Sólo 5 posts diagramados de ~25 posibles. La infraestructura de renderizado (`render-diagrams.sh` + `.mmd` sources) está lista para añadir más incrementalmente sin tocar código.
 - **No se tocaron los posts de comparativas SDD que el usuario pidió mantener como están.**
 - **Bitácora Scribe anterior (11 posts engordados + traducción EN):** ya estaba documentada en entrada `2026-07-18` previa.
+
+---
+
+## 2026-07-24 - Actualización: opencode-subagents con 2 infografías inline + limpieza
+
+**Estado:** Completado
+**Tipo:** Update de post existente (no creación)
+
+**Post actualizado:**
+- ES: `src/content/blog/es/opencode-subagents.md` (4074 palabras, era ~3760)
+- EN: `src/content/blog/en/opencode-subagents.md` (3844 palabras)
+
+**Assets nuevos (4 SVG + 2 symlinks):**
+- `public/images/infographic-subagents-when-es.svg` (7.6 KB) — Hub-spoke: decisión "general vs explore vs scout"
+- `public/images/infographic-subagents-when-en.svg` (7.4 KB) — Idem en EN
+- `public/images/infographic-subagents-flow-es.svg` (9.3 KB) — Linear pipeline: 5 pasos de invocación (prompt → primario evalúa → spawn hijo → trabajo aislado → resultado vuelve)
+- `public/images/infographic-subagents-flow-en.svg` (9.2 KB) — Idem en EN
+- Symlinks `infographic-subagents-when.svg` y `infographic-subagents-flow.svg` → variantes EN (compat con patrón de la skill)
+
+**Estructura nueva:** Sección "Cuándo y cómo funcionan (visual)" entre "Agentes de sistema ocultos" y "Cómo invocar subagentes", con dos subsecciones (cuándo / cómo) cada una con una infografía + 2-3 párrafos editoriales.
+
+**Limpieza del texto ES:** Eliminados glitches de generación: `如愿`, `帮你`, `循环`, `担心`, `另一个`, `brilian`, `often`, `sequentially`, `placed`, `cycling`, `duplicated`, `stk de-platform engineers`. Verificado con regex CJK exhaustive: 0 caracteres chinos restantes.
+
+**Diferenciación vs prior art:** El post hermano `opencode-subagents-workflows` (26 jun) cubre workflows avanzados y combinación con Superpowers. Esta actualización añade **lo que le faltaba al post base**: un árbol de decisión visual y la mecánica de invocación de extremo a extremo. No canibaliza — el workflows sigue siendo "cómo combinar agentes en pipelines", este es "cuándo y cómo invocar uno".
+
+**lastmod bumped:** `2026-05-20` → `2026-07-24`. `pubDate` preservado (regla de oro: no inventar fechas).
+
+**Build:** `npx astro build` → 991 páginas, 15.15s, 0 errores Zod. Verificación post-deploy: ES y EN 200 OK a la primera. SVGs 200 OK tras cache busting.
+
+**Commit:** `9888333` — 8 files changed, 465 insertions(+), 16 deletions(-). Push a `https://github.com/ArceApps/arceapps.github.io.git` (remote movido ya configurado con A mayúscula).
+
+**Decisiones notables:**
+- **No se regeneraron OG images** porque el `prebuild` las regeneró todas para posts pre-existentes, pero no para los míos (cuya heroImage no cambió). Decidí **no commitear OG images de otros posts** aunque estuvieran modificadas — solo mis 8 archivos.
+- **Symlinks apuntan a EN** para backward compat con posts viejos que referencian el bare name (patrón establecido en `grill-me-sdd-comparison.svg`).
+- **No actualicé `description`/`keywords` del frontmatter** porque el alcance del cambio es visual, no temático. Las descripciones siguen precisas.
+
+**Tarea futura:** Si el usuario decide añadir más subagentes custom a este post (security-audit, doc-gen, migration), el patrón está documentado en el diff.
