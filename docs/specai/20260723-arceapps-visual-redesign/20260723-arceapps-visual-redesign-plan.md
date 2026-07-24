@@ -9,7 +9,7 @@
 
 **Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
 
-**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1–9 completadas. Task 10 y la verificación global permanecen pendientes.
+**Status:** ✅ COMPLETADO — Tasks 1–10 completadas; queda deuda técnica no bloqueante en los hallazgos 11–12.
 
 ## Dependency & Package Validation
 
@@ -85,7 +85,7 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 
 **Done:** Auditoría visual y arquitectónica completada; se documentó el alcance de los hallazgos 1–10 y se separó la deuda 11–12. Se prepararon los diseños, el plan, las tareas y la verificación sin implementar código.
 
-**Baseline:** `pnpm build` pasa y genera 1.043 páginas estáticas/301 imágenes OG con el warning conocido de `CONTACT_FORM_KEY`. `pnpm test` queda como baseline fallido: 2 ficheros, 276 fallos y 111 tests correctos de 387.
+**Baseline histórico (previo a Tasks 4–9):** `pnpm build` pasa y genera 1.043 páginas estáticas/301 imágenes OG con el warning conocido de `CONTACT_FORM_KEY`. `pnpm test` tenía entonces 2 ficheros, 276 fallos y 111 tests correctos de 387. El recuento final de cierre queda actualizado en la verificación final: 1 fichero, 274 fallos y 139 tests correctos de 413.
 
 **Outcome:** 🟡 Pendiente de aprobación del usuario.
 
@@ -93,7 +93,7 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 
 ### [2026-07-23 22:40] Verificación del baseline después de crear documentación
 
-**Done:** `pnpm build` volvió a pasar con 1.043 páginas y 301 imágenes OG. `pnpm test` mantiene exactamente el baseline conocido: 2 ficheros fallidos, 276 tests fallidos y 111 correctos de 387. `git diff --check` pasa.
+**Done:** `pnpm build` volvió a pasar con 1.043 páginas y 301 imágenes OG. Este registro conserva el baseline histórico previo a Tasks 4–9: 2 ficheros fallidos, 276 tests fallidos y 111 correctos de 387. El cierre final registra 1 fichero fallido, 274 fallos y 139 correctos de 413. `git diff --check` pasa.
 
 **Outcome:** ✅ Proyecto sin regresión atribuible a la documentación.
 
@@ -248,3 +248,21 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Baseline:** El warning `CONTACT_FORM_KEY` permanece sin cambios.
 
 **Outcome:** success
+
+### 2026-07-24 — Commit de Task 9
+
+- Commit: `a4e9055` — `feat: audit responsive accessibility and motion`
+- Contenido: fallback global reduced motion, eliminación de transforms y adornos decorativos en `AppCard`, `BlogCard`, `ProjectCard`, `PostNavigation` y `SocialShare`, contrato cross-cutting 3/3 y documentos living.
+- Verificación: build Astro con 1043 páginas/301 OG; suite completa mantiene baseline de `links-validation` con 274 fallos; `git diff --check` y code review CLEAN.
+- Pendiente: Task 10 y verificación global.
+- Outcome: **success**
+
+### 2026-07-25 — Task 10: Verificación final y cierre documental
+
+**Done:** Se actualizaron los tres documentos living de la feature sin cambiar código ni decisiones de diseño. Task 10 queda marcada como DONE con sus cinco pasos completos; la deuda de los hallazgos 11 (`.material-card` sin uso) y 12 (`CONTACT_FORM_KEY` y fallos existentes de tests/enlaces) permanece separada y no bloqueante.
+
+**Verificación observable:** `pnpm build` exit 0, 1043 páginas y 301 imágenes OG; warning conocido `CONTACT_FORM_KEY` ausente. `pnpm test` exit 1 únicamente en `src/utils/links-validation.test.ts`, con 274 fallos, 139 pasados de 413; se mantiene como baseline/out-of-scope y la suite global no se marca verde. `pnpm exec vitest run src/i18n/utils.test.ts` exit 0, 24/24. `git diff --check` exit 0. `rg --files docs/specai/20260723-arceapps-visual-redesign` confirma designs, plan, tasks y verify.
+
+**Revisiones:** `spec-compliance-reviewer PASS`; `verifier PASS`, autorizando el cierre.
+
+**Outcome:** ✅ success — cierre documental autorizado con deuda técnica no bloqueante.

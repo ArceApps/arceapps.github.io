@@ -261,10 +261,18 @@
 
 **Metadata:** Complexity 3/10 · Risk Low · Checkpoint Yes
 
+**Status:** ✅ DONE
+
+**Nota:** Cierre documental completado el 2026-07-25 tras completar Tasks 1–9 y obtener `spec-compliance-reviewer PASS` y `verifier PASS` autorizando el cierre. Los hallazgos 11–12 permanecen como deuda técnica separada y no bloqueante.
+
 **Steps:**
 
-- [ ] Marcar únicamente tareas y criterios realmente verificados, con comandos y resultados observables.
-- [ ] Añadir al execution log los cambios, errores, causas y correcciones relevantes.
-- [ ] Confirmar que 11–12 siguen registrados como deuda separada y no como éxito del rediseño.
-- [ ] Ejecutar por última vez `pnpm build`, `pnpm test` y `git diff --check`.
-- [ ] Presentar el resultado al usuario para decidir merge, PR o siguiente iteración.
+- [x] Marcar únicamente tareas y criterios realmente verificados, con comandos y resultados observables.
+- [x] Añadir al execution log los cambios, errores, causas y correcciones relevantes.
+- [x] Confirmar que 11–12 siguen registrados como deuda separada y no como éxito del rediseño.
+- [x] Ejecutar por última vez `pnpm build`, `pnpm test` y `git diff --check`.
+- [x] Presentar el resultado al usuario para decidir merge, PR o siguiente iteración.
+
+**Resultado:** Cierre documental completado sin tocar código ni archivos fuera de esta carpeta. El plan queda completado con deuda no bloqueante.
+
+**Evidencia:** `pnpm build` exit 0 con 1043 páginas y 301 imágenes OG, manteniendo únicamente el warning conocido por ausencia de `CONTACT_FORM_KEY`; `pnpm test` exit 1 únicamente en `src/utils/links-validation.test.ts`, con 274 fallos y 139 pasados de 413, registrado como baseline/out-of-scope y no como suite verde; `pnpm exec vitest run src/i18n/utils.test.ts` exit 0 con 24/24; `git diff --check` exit 0; los cuatro documentos living existen. `spec-compliance-reviewer PASS` y `verifier PASS` autorizan el cierre.
