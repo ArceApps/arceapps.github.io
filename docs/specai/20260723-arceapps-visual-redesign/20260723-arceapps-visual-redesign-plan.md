@@ -200,3 +200,11 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Baseline:** El warning conocido `CONTACT_FORM_KEY` permanece sin cambios.
 
 **Outcome:** success
+
+### 2026-07-24 — Commit de Task 7
+
+- Commit: `2b5ac85` — `feat: reorder app detail presentation`
+- Contenido: páginas de detalle EN/ES, contrato 3/3 y documentación living.
+- Verificación: build Astro con 1043 páginas, `git diff --check` y revisión CLEAN.
+- Pendiente: Task 8 y la verificación global.
+- Outcome: **success**
