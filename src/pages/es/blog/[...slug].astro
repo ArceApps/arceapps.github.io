@@ -110,35 +110,33 @@ const breadcrumbItems = [
 ---
 
 <Layout title={`${post.data.title} - ArceApps Blog`} description={post.data.description} translatedPath={translatedPath} hreflangPath={hreflangPath} type="article" publishDate={post.data.pubDate} image={`/images/og/blog-es-${post.slug.split('/').pop()}.png`}>
-  <!-- Progress Bar -->
-  <div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-[100] bg-transparent">
-    <div id="progress-bar" class="scroll-progress-bar h-full bg-secondary w-full origin-left"></div>
+  <div id="progress-container" class="fixed top-0 left-0 z-[100] h-1 w-full bg-transparent" aria-hidden="true">
+    <div id="progress-bar" class="scroll-progress-bar h-full w-full origin-left bg-secondary"></div>
   </div>
 
-  <article class="pt-24 pb-20">
-    <!-- Header -->
-    <header class="container mx-auto px-4 mb-12 max-w-4xl">
+  <article class="article-detail pt-24 pb-20" data-article-progress>
+    <header class="article-header mx-auto w-full max-w-[760px] px-4 pb-12">
       <div class="mb-8 flex justify-center">
         <Breadcrumbs items={breadcrumbItems} />
       </div>
 
       <div class="text-center">
-        <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
+        <div class="mb-6 flex flex-wrap items-center justify-center gap-2">
           {post.data.tags && post.data.tags.map((tag: string) => (
-             <a
-               href={`/es/blog/tag/${slugify(tag)}/`}
-               class="px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-             >
-               #{tag}
-             </a>
+            <a
+              href={`/es/blog/tag/${slugify(tag)}/`}
+              class="rounded-full bg-primary/10 px-3 py-1 text-sm font-bold uppercase tracking-wider text-primary whitespace-nowrap transition-colors hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              #{tag}
+            </a>
           ))}
         </div>
 
-        <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 text-on-surface dark:text-teal-200 leading-tight">
+        <h1 class="mb-6 text-3xl font-bold leading-tight text-on-surface dark:text-dark-on-surface md:text-5xl lg:text-6xl">
           {post.data.title}
         </h1>
 
-        <div class="flex items-center justify-center gap-6 text-on-surface-variant dark:text-gray-200 text-lg">
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-lg text-on-surface-variant dark:text-dark-on-surface-variant">
           <div class="flex items-center">
             <span class="material-icons mr-2 text-primary" aria-hidden="true">calendar_today</span>
             <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
@@ -151,44 +149,76 @@ const breadcrumbItems = [
       </div>
     </header>
 
-    <!-- Hero Image -->
     {post.data.heroImage && (
-      <div class="container mx-auto px-4 mb-16 max-w-5xl">
-        <div class="aspect-video rounded-2xl overflow-hidden shadow-xl elevation-2">
+      <figure class="article-hero mx-auto mb-16 w-full max-w-[1080px] px-4">
+        <div class="overflow-hidden rounded-2xl border border-border bg-surface-subtle elevation-1 dark:border-dark-border dark:bg-dark-surface-subtle">
           <img
             src={post.data.heroImage}
             alt={post.data.title}
-            class="w-full h-full object-cover"
+            class="block h-auto w-full object-contain"
             loading="eager"
             fetchpriority="high"
             width="1280"
             height="720"
           />
         </div>
-      </div>
+      </figure>
     )}
 
-    <!-- Main Grid Layout -->
-    <div class="container mx-auto px-4 max-w-6xl">
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <div class="article-reading-layout mx-auto grid w-full max-w-[1080px] grid-cols-1 gap-8 px-4 lg:grid-cols-[minmax(0,200px)_minmax(0,760px)] lg:items-start lg:gap-12">
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          {tocHeadings.length > 0 && (
+            <nav class="rounded-xl border border-border bg-surface-raised p-4 dark:border-dark-border dark:bg-dark-surface-raised" aria-label={t('blog.table_of_contents')}>
+              <h2 class="mb-4 flex items-center text-lg font-bold text-on-surface dark:text-dark-on-surface">
+                <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
+                {t('blog.table_of_contents')}
+              </h2>
+              <ul class="space-y-2 text-sm">
+                {tocHeadings.map(heading => (
+                  <li>
+                    <a
+                      href={`#${heading.slug}`}
+                      class:list={[
+                        "block rounded py-1 text-on-surface-variant transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant",
+                        { "pl-0": heading.depth === 2, "pl-3": heading.depth === 3 }
+                      ]}
+                    >
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
 
-        <!-- Sidebar (Desktop TOC) -->
-        <aside class="hidden lg:block lg:col-span-1">
-          <div class="sticky top-24">
-            {tocHeadings.length > 0 && (
-              <nav class="p-4 bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800">
-                <h2 class="text-lg font-bold mb-4 text-on-surface dark:text-gray-100 flex items-center">
+          <a href="/es/blog" class="mt-8 inline-flex items-center rounded font-medium text-on-surface-variant transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant">
+            <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
+            {t('blog.back_to_blog')}
+          </a>
+        </div>
+      </aside>
+
+      <section class="article-reading-column min-w-0 w-full">
+        <div class="mb-8 lg:hidden">
+          {tocHeadings.length > 0 && (
+            <details class="overflow-hidden rounded-xl border border-border bg-surface-raised dark:border-dark-border dark:bg-dark-surface-raised">
+              <summary class="flex cursor-pointer list-none items-center justify-between rounded-xl p-4 font-bold text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface">
+                <span class="flex items-center">
                   <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
                   {t('blog.table_of_contents')}
-                </h2>
-                <ul class="space-y-2 text-sm">
+                </span>
+                <span class="material-icons" aria-hidden="true">expand_more</span>
+              </summary>
+              <nav class="px-4 pb-4" aria-label={t('blog.table_of_contents')}>
+                <ul class="space-y-2 border-t border-border pt-3 text-sm dark:border-dark-border">
                   {tocHeadings.map(heading => (
                     <li>
                       <a
                         href={`#${heading.slug}`}
                         class:list={[
-                          "text-on-surface-variant dark:text-gray-300 hover:text-primary transition-colors block py-1 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded",
-                          { "pl-0": heading.depth === 2, "pl-3": heading.depth === 3 }
+                          "block rounded py-1 text-on-surface-variant transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant",
+                          { "pl-0": heading.depth === 2, "pl-4": heading.depth === 3 }
                         ]}
                       >
                         {heading.text}
@@ -197,90 +227,40 @@ const breadcrumbItems = [
                   ))}
                 </ul>
               </nav>
-            )}
-
-            <div class="mt-8">
-               <a href="/es/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-gray-300 hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
-                  <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
-                  {t('blog.back_to_blog')}
-               </a>
-            </div>
-          </div>
-        </aside>
-
-        <!-- Content Column -->
-        <div class="lg:col-span-3">
-
-          <!-- Mobile TOC -->
-          <div class="lg:hidden mb-8">
-             {tocHeadings.length > 0 && (
-                <details class="bg-surface dark:bg-dark-surface rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden group">
-                   <summary class="p-4 flex items-center justify-between cursor-pointer font-bold text-on-surface dark:text-gray-100 list-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-xl">
-                      <div class="flex items-center">
-                         <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
-                         {t('blog.table_of_contents')}
-                      </div>
-                      <span class="material-icons group-open:rotate-180 transition-transform" aria-hidden="true">expand_more</span>
-                   </summary>
-                   <nav class="px-4 pb-4">
-                      <ul class="space-y-2 text-sm pt-2 border-t border-gray-100 dark:border-gray-700">
-                         {tocHeadings.map(heading => (
-                            <li>
-                               <a
-                                  href={`#${heading.slug}`}
-                                  class:list={[
-                                    "text-on-surface-variant dark:text-gray-300 hover:text-primary transition-colors block py-1 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded",
-                                    { "pl-0": heading.depth === 2, "pl-4": heading.depth === 3 }
-                                  ]}
-                               >
-                                  {heading.text}
-                               </a>
-                            </li>
-                         ))}
-                      </ul>
-                   </nav>
-                </details>
-             )}
-          </div>
-
-          <!-- Article Content -->
-          <div class="prose dark:prose-invert md:prose-lg max-w-none">
-            <Content />
-          </div>
-
-          <SocialShare url={Astro.url.href} title={post.data.title} />
-
-          <PostNavigation prevPost={prevPost} nextPost={nextPost} lang="es" />
-
-          <!-- Share / Back (Mobile only) -->
-          <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 lg:hidden">
-             <a href="/es/blog" class="inline-flex items-center font-medium text-on-surface-variant dark:text-gray-300 hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
-                <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
-                {t('blog.back_to_blog')}
-             </a>
-          </div>
-
+            </details>
+          )}
         </div>
-      </div>
+
+        <div class="article-prose prose prose-lg min-w-0 max-w-none dark:prose-invert">
+          <Content />
+        </div>
+
+        <SocialShare url={Astro.url.href} title={post.data.title} lang="es" />
+        <PostNavigation prevPost={prevPost} nextPost={nextPost} lang="es" />
+
+        <div class="mt-8 border-t border-border pt-8 dark:border-dark-border lg:hidden">
+          <a href="/es/blog" class="inline-flex items-center rounded font-medium text-on-surface-variant transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant">
+            <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
+            {t('blog.back_to_blog')}
+          </a>
+        </div>
+      </section>
     </div>
 
-    <!-- Related Articles -->
     {relatedPosts.length > 0 && (
-      <div class="mt-20 py-16 bg-surface-variant/30 dark:bg-dark-surface-variant/30 fade-in-section">
-         <div class="container mx-auto px-4 max-w-6xl">
-            <h2 class="text-3xl font-bold mb-10 text-on-surface dark:text-gray-100 text-center flex items-center justify-center gap-3">
-               <span class="material-icons text-primary text-4xl" aria-hidden="true">style</span>
-               {t('blog.related')}
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-               {relatedPosts.map((post) => (
-                  <BlogCard post={post} />
-               ))}
-            </div>
-         </div>
-      </div>
+      <section class="mt-20 bg-surface-subtle py-16 dark:bg-dark-surface-subtle fade-in-section" aria-labelledby="related-articles-title">
+        <div class="mx-auto max-w-6xl px-4">
+          <h2 id="related-articles-title" class="mb-10 flex items-center justify-center gap-3 text-center text-3xl font-bold text-on-surface dark:text-dark-on-surface">
+            <span class="material-icons text-4xl text-primary" aria-hidden="true">style</span>
+            {t('blog.related')}
+          </h2>
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {relatedPosts.map((post) => (
+              <BlogCard post={post} />
+            ))}
+          </div>
+        </div>
+      </section>
     )}
-
   </article>
 </Layout>
-

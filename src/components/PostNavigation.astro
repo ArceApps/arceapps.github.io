@@ -33,7 +33,7 @@ const prefix = lang === 'es' ? '/es/blog' : '/blog';
 ---
 
 {(prevPost || nextPost) && (
-  <nav class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 mb-12 border-t border-b border-gray-200 dark:border-gray-800 py-8" aria-label="Post navigation">
+  <nav class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 mb-12 border-t border-b border-gray-200 dark:border-gray-800 py-8" aria-label={lang === 'es' ? 'Navegación de artículos' : 'Post navigation'}>
     {/* Previous Post */}
     <div class="flex flex-col items-start justify-center">
       {prevPost ? (

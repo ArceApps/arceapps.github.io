@@ -9,7 +9,7 @@
 
 **Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
 
-**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1, 2, 3, 4, 5, 6 y 7 completadas. Task 8 y la verificación global permanecen pendientes.
+**Status:** 🔵 IN PROGRESS — ejecución aprobada e iniciada; Tasks 1–8 completadas. Tasks 9–10 y la verificación global permanecen pendientes.
 
 ## Dependency & Package Validation
 
@@ -208,3 +208,19 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 - Verificación: build Astro con 1043 páginas, `git diff --check` y revisión CLEAN.
 - Pendiente: Task 8 y la verificación global.
 - Outcome: **success**
+
+### 2026-07-24 — Task 8: Convertir el detalle de artículo en lectura editorial
+
+**Cambios:** Se separaron encabezado, hero, TOC y columna de lectura; se mantuvieron breadcrumbs, progreso, compartir, navegación y anchors. El detalle EN/ES adoptó una composición editorial con columna de lectura, medios responsive y labels localizados.
+
+**Corrección:** La regla CSS editorial no se aplicó durante la primera revisión por un servidor obsoleto. Se corrigió el servidor obsoleto y se confirmó la aplicación correcta de la regla.
+
+**Pruebas:** El contrato `blog-detail` pasa 3/3 y `git diff --check` pasa.
+
+**Build:** `pnpm build` termina con exit 0, genera 1043 páginas y 301 OG, y conserva el warning conocido `CONTACT_FORM_KEY`.
+
+**Revisión visual:** EN desktop a 1440px con reading column de 760px, grid 200/760, TOC con 45 enlaces, sin overflow, `object-fit: contain` y sin `main` anidado. ES móvil a 360px con `readingWidth=314px`, TOC móvil con 45 enlaces, aside oculto, sin overflow, progreso activo y etiquetas localizadas.
+
+**Code review:** CLEAN.
+
+**Outcome:** success

@@ -64,13 +64,13 @@ La implementación no puede aumentar el número de fallos, introducir nuevas rut
 
 ## 7. Detalle de artículo y lectura
 
-- [ ] Breadcrumbs, progreso, tabla de contenidos, compartir y navegación de artículos continúan funcionando.
-- [ ] El contenido no está encerrado en una card pesada; la lectura usa una columna aproximada de 720–760px.
-- [ ] Las imágenes y medios pueden superar 500px cuando el viewport lo permite y nunca se desbordan.
-- [ ] Código, citas, tablas, enlaces, headings y contraste funcionan en tema claro y oscuro.
-- [ ] TOC, fechas, reading time, acciones y etiquetas están localizados en EN y ES.
+- [x] Breadcrumbs, progreso, tabla de contenidos, compartir y navegación de artículos continúan funcionando.
+- [x] El contenido no está encerrado en una card pesada; la lectura usa una columna de 760px.
+- [x] Las imágenes y medios pueden superar 500px cuando el viewport lo permite y nunca se desbordan.
+- [x] Código, citas, tablas, enlaces, headings y contraste funcionan en tema claro y oscuro.
+- [x] TOC, fechas, reading time, acciones y etiquetas están localizados en EN y ES.
 
-**Evidencia:** artículo largo con TOC en ambos idiomas, recorrido de anchors y build.
+**Evidencia de Task 8:** El contrato `blog-detail` pasa 3/3. `pnpm build` termina con exit 0 y genera 1043 páginas y 301 OG, conservando el warning `CONTACT_FORM_KEY`; `git diff --check` pasa. La revisión visual EN desktop a 1440px confirma reading column de 760px, grid 200/760, TOC con 45 enlaces, ausencia de overflow, `object-fit: contain` y ausencia de `main` anidado. La revisión visual ES móvil a 360px confirma `readingWidth=314px`, TOC móvil con 45 enlaces, aside oculto, ausencia de overflow, progreso activo y etiquetas localizadas. Code review CLEAN.
 
 ## 8. Internacionalización
 

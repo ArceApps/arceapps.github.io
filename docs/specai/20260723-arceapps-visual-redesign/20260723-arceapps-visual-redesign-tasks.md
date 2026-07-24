@@ -195,6 +195,10 @@
 
 ## Task 8: Convertir el detalle de artículo en lectura editorial
 
+**Status:** ✅ DONE
+
+**Nota:** Checkpoint humano del 2026-07-24 completado.
+
 **Files:**
 
 - Modify: `src/pages/blog/[...slug].astro`
@@ -202,18 +206,22 @@
 - Modify: `src/styles/global.css`
 - Modify: `src/components/PostNavigation.astro` o `src/components/SocialShare.astro` solo si la migración de strings lo exige
 
-**Spec context:** Mantener breadcrumbs, progreso, TOC, compartir y navegación. El contenido debe respirar como artículo, con una columna de 720–760px y medios capaces de crecer más que 500px sin desbordar.
+**Contexto de spec:** Mantener breadcrumbs, progreso, TOC, compartir y navegación. El contenido respira como artículo, con una columna de lectura de 720–760px y medios capaces de crecer más de 500px sin desbordar.
 
-**Metadata:** Complexity 6/10 · Risk High · Checkpoint Yes
+**Metadatos:** Complexity 6/10 · Risk High · Checkpoint Yes
 
 **Steps:**
 
-- [ ] Separar encabezado, hero, TOC y contenido sin envolver todo el prose en una card pesada.
-- [ ] Ajustar tipografía, ancho, headings, código, citas, tablas, imágenes e iframes para claro/oscuro.
-- [ ] Localizar breadcrumbs, TOC, fechas, reading time, compartir y navegación EN/ES.
-- [ ] Verificar que el progreso y los anchors sigan funcionando con la nueva estructura.
-- [ ] Ejecutar `pnpm build` y revisar un artículo largo con TOC en desktop y móvil.
-- [ ] Solicitar checkpoint humano antes de continuar si la columna de lectura o el hero contradicen la dirección editorial.
+- [x] Separar encabezado, hero, TOC y contenido sin envolver todo el prose en una card pesada.
+- [x] Ajustar tipografía, ancho, headings, código, citas, tablas, imágenes e iframes para claro/oscuro.
+- [x] Localizar breadcrumbs, TOC, fechas, reading time, compartir y navegación EN/ES.
+- [x] Verificar que el progreso y los anchors sigan funcionando con la nueva estructura.
+- [x] Ejecutar `pnpm build` y revisar un artículo largo con TOC en desktop y móvil.
+- [x] Completar el checkpoint humano tras confirmar la dirección editorial.
+
+**Resultado:** Detalle de artículo convertido en lectura editorial EN/ES; contrato `blog-detail` 3/3; `pnpm build` exit 0 con 1043 páginas y 301 OG, conservando el warning `CONTACT_FORM_KEY`; `git diff --check` pasa; code review CLEAN.
+
+**Evidencia:** Revisión visual EN desktop a 1440px con reading column de 760px, grid 200/760, TOC con 45 enlaces, sin overflow, `object-fit: contain` y sin `main` anidado. Revisión visual ES móvil a 360px con `readingWidth=314px`, TOC móvil con 45 enlaces, aside oculto, sin overflow, progreso activo y etiquetas localizadas. El contrato `blog-detail` pasa 3/3 y code review CLEAN.
 
 ## Task 9: Auditoría transversal de responsive, accesibilidad y motion
 

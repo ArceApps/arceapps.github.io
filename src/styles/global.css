@@ -238,7 +238,7 @@
     @apply rounded-2xl shadow-lg block;
     margin-block: 2.5rem;
     margin-inline: auto;
-    max-inline-size: min(100%, 500px); /* Fix: Responsive Visual Hierarchy to avoid "exploding" media on tablets/desktop */
+    max-inline-size: 100%;
   }
 
   .prose :where(img, video) {
@@ -298,6 +298,69 @@
   /* HR */
   .prose hr {
     @apply border-gray-200 dark:border-gray-800 my-12;
+  }
+
+  /* Editorial article layout */
+  .article-detail {
+    min-inline-size: 0;
+  }
+
+  .article-reading-layout {
+    min-inline-size: 0;
+  }
+
+  .article-reading-column {
+    inline-size: 100%;
+    max-inline-size: 760px;
+    min-inline-size: 0;
+  }
+
+  .article-prose {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .article-prose :where(img, video, iframe) {
+    max-inline-size: 100%;
+  }
+
+  .article-prose :where(img, video) {
+    block-size: auto;
+  }
+
+  .article-prose iframe {
+    inline-size: 100%;
+  }
+
+  .article-prose :where(pre, code, kbd, samp) {
+    max-inline-size: 100%;
+  }
+
+  .article-prose pre {
+    overflow-x: auto;
+  }
+
+  .article-prose table {
+    display: block;
+    max-inline-size: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  .article-prose :where(p, li, blockquote, td, th) {
+    overflow-wrap: anywhere;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .article-detail *,
+    .article-detail *::before,
+    .article-detail *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   /* Copy Button Styles */
@@ -415,5 +478,23 @@
       animation: scale-progress linear;
       animation-timeline: scroll();
     }
+  }
+}
+
+/* Keep editorial article columns stable when utility classes are composed. */
+.article-reading-column {
+  inline-size: 100%;
+  max-inline-size: min(100%, 760px);
+}
+
+@media (min-width: 1024px) {
+  .article-reading-layout {
+    grid-template-columns: minmax(0, 200px) minmax(0, 760px);
+    column-gap: 3rem;
+    justify-items: start;
+  }
+
+  .article-reading-column {
+    max-inline-size: 760px;
   }
 }
