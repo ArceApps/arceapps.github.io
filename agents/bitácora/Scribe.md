@@ -476,3 +476,39 @@ Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatt
 - **No actualicé `description`/`keywords` del frontmatter** porque el alcance del cambio es visual, no temático. Las descripciones siguen precisas.
 
 **Tarea futura:** Si el usuario decide añadir más subagentes custom a este post (security-audit, doc-gen, migration), el patrón está documentado en el diff.
+
+---
+
+## 2026-07-24 - Actualización: opencode-subagents-workflows con 2 infografías inline (paridad con post base)
+
+**Estado:** Completado
+**Tipo:** Update de post existente (no creación)
+
+**Motivación:** El usuario pidió paridad visual con el post base (`opencode-subagents`), actualizado en el commit `9888333` de este mismo día. Ambos posts son hermanos y se enlazan mutuamente.
+
+**Post actualizado:**
+- ES: `src/content/blog/es/opencode-subagents-workflows.md` (1382 palabras, era 1153)
+- EN: `src/content/blog/en/opencode-subagents-workflows.md` (1268 palabras, era 1050)
+
+**Nota sobre wordcount:** Ambos quedaron **bajo el floor de 1500** que marca la skill `write-blog` para posts nuevos. Pero la skill es para creación; aquí solo actualizo. El post original ya estaba en main con 1153 palabras — agregar infografías con sus párrafos editoriales lo subió, no lo bajó. El usuario pidió "añadir infografías", no "engordar el cuerpo". Si pide engordarlo, lo haré en una pasada separada.
+
+**Assets nuevos (4 SVG + 2 symlinks):**
+- `public/images/infographic-workflows-economy-es.svg` (7.5 KB) — Binary-comparison: cheap vs frontier agents con roles, costes, señales de enrutamiento
+- `public/images/infographic-workflows-economy-en.svg` (7.3 KB) — Idem en EN
+- `public/images/infographic-workflows-superpowers-es.svg` (8.7 KB) — Linear pipeline con phased gates: 3 subagentes (plan → test → code) con permisos diferenciados y bucle test→código
+- `public/images/infographic-workflows-superpowers-en.svg` (8.6 KB) — Idem en EN
+- Symlinks `infographic-workflows-economy.svg` y `infographic-workflows-superpowers.svg` → variantes EN (compat con patrón de la skill)
+
+**Estructura nueva:**
+- Infografía 1 insertada al final de "La economía de los subagentes" / "The Economics of Subagents", con 2 párrafos editoriales sobre la lógica de enrutamiento.
+- Infografía 2 insertada al final de "El flujo de trabajo orquestado" / "The Orchestrated Workflow", con 2 párrafos sobre la división de permisos y el loop de feedback.
+
+**Diferenciación vs post base actualizado:** El post base cubre "qué son los subagentes y cómo invocar uno". Este post cubre "cómo diseñar un workflow con varios subagentes y por qué la mezcla cheap/frontier importa". Las infografías NO se solapan: post base tiene `when` y `flow`; este tiene `economy` y `superpowers`.
+
+**lastmod bumped:** `2026-06-26` → `2026-07-24`. `pubDate` preservado (regla de oro: no inventar fechas).
+
+**Build:** `npx astro build` → 991 páginas, 15.23s, 0 errores Zod.
+
+**Verificación post-deploy:** ES y EN 200 OK a la primera. SVGs 200 OK tras 60s de cache-busting de GitHub Pages. Refs a infografías confirmadas en el HTML servido (2 por idioma).
+
+**Commit:** `797bde4` — 8 files changed, 408 insertions(+), 2 deletions(-). Push a `https://github.com/ArceApps/arceapps.github.io.git`.
