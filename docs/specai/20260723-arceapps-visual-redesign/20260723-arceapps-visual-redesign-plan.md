@@ -224,3 +224,11 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Code review:** CLEAN.
 
 **Outcome:** success
+
+### 2026-07-24 — Commit de Task 8
+
+- **Commit:** `25675f6` — `feat: reshape article detail reading layout`
+- **Contenido:** Páginas EN/ES de detalle de artículo, estilos editoriales, `SocialShare`/`PostNavigation`, contrato `blog-detail` y documentos living.
+- **Verificación:** Build Astro: 1043 páginas/301 OG; contrato 3/3; diff check y code review CLEAN.
+- **Pendiente:** Tasks 9–10 y verificación global.
+- **Outcome:** `success`
