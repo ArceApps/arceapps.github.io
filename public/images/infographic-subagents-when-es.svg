@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1a2820"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#018786" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#018786" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1e293b" stroke-width="0.5" opacity="0.4"/></pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="48" text-anchor="middle" font-family="monospace" font-size="26" font-weight="bold" fill="#f8fafc" filter="url(#glow)">OpenCode Subagentes: ¿Cuándo usar cada uno?</text>
+  <text x="600" y="72" text-anchor="middle" font-family="monospace" font-size="13" fill="#64748b">3 subagentes integrados · 3 alcances distintos · Una decisión clave</text>
+  <line x1="350" y1="84" x2="850" y2="84" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Centro: cuándo decidir -->
+  <circle cx="600" cy="340" r="180" fill="url(#hubGlow)"/>
+  <circle cx="600" cy="340" r="95" fill="#0F172A" stroke="#018786" stroke-width="2.5"/>
+  <text x="600" y="320" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#018786">¿DÓNDE</text>
+  <text x="600" y="340" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#018786">TRABAJO?</text>
+  <text x="600" y="372" text-anchor="middle" font-family="monospace" font-size="11" fill="#94a3b8">Pregunta de</text>
+  <text x="600" y="388" text-anchor="middle" font-family="monospace" font-size="11" fill="#94a3b8">selección</text>
+
+  <!-- Líneas dashed del hub a cada satélite -->
+  <line x1="600" y1="245" x2="240" y2="180" stroke="#FBBF24" stroke-width="2" stroke-dasharray="6,4"/>
+  <line x1="600" y1="340" x2="240" y2="340" stroke="#34d399" stroke-width="2" stroke-dasharray="6,4"/>
+  <line x1="600" y1="435" x2="240" y2="500" stroke="#a78bfa" stroke-width="2" stroke-dasharray="6,4"/>
+
+  <!-- Satellite 1: General (top-left) -->
+  <rect x="60" y="130" width="360" height="105" rx="14" fill="#0F172A" stroke="#FF9800" stroke-width="2.5"/>
+  <rect x="76" y="148" width="40" height="40" rx="8" fill="#FF9800" opacity="0.18"/>
+  <text x="96" y="176" text-anchor="middle" font-family="monospace" font-size="22" font-weight="bold" fill="#FF9800">⚙</text>
+  <text x="130" y="166" font-family="monospace" font-size="16" font-weight="bold" fill="#FF9800">@general</text>
+  <text x="130" y="184" font-family="monospace" font-size="11" fill="#fbbf24">El todoterreno — herramientas completas</text>
+  <text x="76" y="210" font-family="monospace" font-size="11" fill="#cbd5e1">▸ Tareas multi-paso en paralelo</text>
+  <text x="76" y="226" font-family="monospace" font-size="11" fill="#cbd5e1">▸ Cuando delegas trabajo largo sin</text>
+  <text x="100" y="226" font-family="monospace" font-size="11" fill="#cbd5e1"></text>
+  <text x="76" y="226" font-family="monospace" font-size="11" fill="#cbd5e1">▸ Puede ESCRIBIR y EJECUTAR comandos</text>
+
+  <!-- Satellite 2: Explore (center-left) -->
+  <rect x="60" y="290" width="360" height="105" rx="14" fill="#0F172A" stroke="#34d399" stroke-width="2.5"/>
+  <rect x="76" y="308" width="40" height="40" rx="8" fill="#34d399" opacity="0.18"/>
+  <text x="96" y="336" text-anchor="middle" font-family="monospace" font-size="22" font-weight="bold" fill="#34d399">⌕</text>
+  <text x="130" y="326" font-family="monospace" font-size="16" font-weight="bold" fill="#34d399">@explore</text>
+  <text x="130" y="344" font-family="monospace" font-size="11" fill="#6ee7b7">El cartógrafo — solo lectura LOCAL</text>
+  <text x="76" y="370" font-family="monospace" font-size="11" fill="#cbd5e1">▸ Buscar archivos, keywords, patrones</text>
+  <text x="76" y="386" font-family="monospace" font-size="11" fill="#cbd5e1">▸ Entender código desconocido sin riesgo</text>
+
+  <!-- Satellite 3: Scout (bottom-left) -->
+  <rect x="60" y="450" width="360" height="105" rx="14" fill="#0F172A" stroke="#a78bfa" stroke-width="2.5"/>
+  <rect x="76" y="468" width="40" height="40" rx="8" fill="#a78bfa" opacity="0.18"/>
+  <text x="96" y="496" text-anchor="middle" font-family="monospace" font-size="22" font-weight="bold" fill="#a78bfa">⌖</text>
+  <text x="130" y="486" font-family="monospace" font-size="16" font-weight="bold" fill="#a78bfa">@scout</text>
+  <text x="130" y="504" font-family="monospace" font-size="11" fill="#c4b5fd">El arqueólogo — solo lectura EXTERNA</text>
+  <text x="76" y="530" font-family="monospace" font-size="11" fill="#cbd5e1">▸ Clonar repos de dependencias, leer source</text>
+  <text x="76" y="546" font-family="monospace" font-size="11" fill="#cbd5e1">▸ Breaking changes, código upstream</text>
+
+  <!-- Panel derecho: Atajos de decisión -->
+  <rect x="780" y="130" width="360" height="425" rx="14" fill="#0F172A" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="960" y="160" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#f8fafc">ÁRBOL DE DECISIÓN RÁPIDO</text>
+  <line x1="820" y1="172" x2="1100" y2="172" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="800" y="200" font-family="monospace" font-size="11" fill="#94a3b8">¿Necesito MODIFICAR archivos?</text>
+  <text x="800" y="220" font-family="monospace" font-size="11" fill="#FF9800">▸ SÍ → @general</text>
+  <text x="800" y="240" font-family="monospace" font-size="11" fill="#94a3b8">¿Estoy mirando código LOCAL?</text>
+  <text x="800" y="260" font-family="monospace" font-size="11" fill="#34d399">▸ SÍ → @explore</text>
+  <text x="800" y="280" font-family="monospace" font-size="11" fill="#94a3b8">¿Es una DEPENDENCIA externa?</text>
+  <text x="800" y="300" font-family="monospace" font-size="11" fill="#a78bfa">▸ SÍ → @scout</text>
+
+  <line x1="820" y1="320" x2="1100" y2="320" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="800" y="345" font-family="monospace" font-size="12" font-weight="bold" fill="#f8fafc">Permisos por defecto</text>
+  <text x="800" y="370" font-family="monospace" font-size="11" fill="#FF9800">@general</text>
+  <text x="800" y="388" font-family="monospace" font-size="10" fill="#cbd5e1">edit: allow · bash: allow</text>
+  <text x="800" y="412" font-family="monospace" font-size="11" fill="#34d399">@explore</text>
+  <text x="800" y="430" font-family="monospace" font-size="10" fill="#cbd5e1">solo lectura total</text>
+  <text x="800" y="454" font-family="monospace" font-size="11" fill="#a78bfa">@scout</text>
+  <text x="800" y="472" font-family="monospace" font-size="10" fill="#cbd5e1">solo lectura + caché externa</text>
+
+  <line x1="820" y1="495" x2="1100" y2="495" stroke="#1e293b" stroke-width="1"/>
+  <text x="960" y="520" text-anchor="middle" font-family="monospace" font-size="11" font-style="italic" fill="#64748b">«El agente correcto para la tarea correcta»</text>
+  <text x="960" y="540" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">reduce ruido y coste en el contexto</text>
+
+  <!-- Footer -->
+  <text x="600" y="610" text-anchor="middle" font-family="monospace" font-size="10" fill="#475569">ARCEAPPS · opencode-subagents · 2026</text>
+</svg>

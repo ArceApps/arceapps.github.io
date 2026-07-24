@@ -7,7 +7,7 @@ heroImage: /images/blog-opencode-subagents.svg
 tags: ["ia", "opencode", "agents"]
 category: ai-agents
 reference_id: bd0a8de2-6772-4a99-8ef2-c2947c7edfa9
-lastmod: 2026-05-20
+lastmod: 2026-07-24
 canonical: "https://arceapps.com/blog/opencode-subagents/"
 keywords: ["ia", "opencode", "agents"]
 ---
@@ -73,6 +73,28 @@ In addition to the subagents you can invoke manually, OpenCode includes three sy
 - **Summary** (mode: primary, hidden): creates session summaries. Also runs automatically.
 
 These agents aren't selectable in the UI. OpenCode invokes them internally when it detects they're necessary — for example, when a session has become too long and needs to be summarized to maintain performance.
+
+---
+
+## When and how they work (visual)
+
+Text and tables help, but the decision of which subagent to invoke and the mechanics of how an invocation actually plays out are much easier to grasp in a diagram. Here are the two pieces that took me the longest to understand at first.
+
+### When do I use each subagent?
+
+The key question isn't "what model should I use?" but **where am I working and what do I need to do?** Local vs. external, read vs. write, fast vs. multi-step. This infographic condenses the decision tree into a single page:
+
+![When to use each OpenCode subagent: general for multi-step with writes, explore for local code, scout for external dependencies](/images/infographic-subagents-when-en.svg)
+
+The underlying idea: `@general` is the exception, not the rule. By default I prefer `@explore` (fast, local, cheap on tokens) or `@scout` (when the code I care about lives in another repository). I only escalate to `@general` when the task requires modifying files or running commands, and even then I make sure its permissions are scoped to the minimum necessary.
+
+### How does an invocation actually run?
+
+Behind a simple `@scout …` there are five steps that involve the primary agent, an isolated child session, and a result that flows back into the parent's context. This is the real mechanics:
+
+![Subagent invocation flow diagram: prompt → primary agent evaluates → spawn child session → isolated work → result returns to parent](/images/infographic-subagents-flow-en.svg)
+
+If you take a single idea from this diagram, let it be this: the subagent **does not share your context 100%**. It inherits part of the parent's context (prompt + prior work), but runs in its own session with a clean system prompt and filtered permissions. That's why `@scout` can touch external dependencies without touching your code.
 
 ---
 

@@ -2,7 +2,7 @@
 title: "OpenCode Subagentes: Workflows y Superpowers"
 description: "Descubre mi flujo de trabajo con subagentes en OpenCode para automatizar tareas, crear pipelines en paralelo y resolver problemas complejos en la terminal."
 pubDate: 2026-05-20
-lastmod: 2026-05-20
+lastmod: 2026-07-24
 author: ArceApps
 keywords:
   - "OpenCode"
@@ -21,9 +21,9 @@ reference_id: "bd0a8de2-6772-4a99-8ef2-c2947c7edfa9"
 
 ## Introducción
 
-En mi día a día como desarrollador independiente, raramente tienes una sola tarea limpia y delimitada. Normalmente estás leyendo código en varios archivos a la vez, planificando una refactorización, implementando una funcionalidad y revisando el trabajo hecho. Cada una de esas actividades requiere un modo de pensar distinto, herramientas distintas y niveles distintos de permiso. Hacer todo eso con un solo agente es como pedirme a mí mismo que sea al mismo tiempo arquitecto, escritor de tests, DBA y especialista en seguridad: funciona, pero no如愿 (ni es eficiente).
+En mi día a día como desarrollador independiente, raramente tienes una sola tarea limpia y delimitada. Normalmente estás leyendo código en varios archivos a la vez, planificando una refactorización, implementando una funcionalidad y revisando el trabajo hecho. Cada una de esas actividades requiere un modo de pensar distinto, herramientas distintas y niveles distintos de permiso. Hacer todo eso con un solo agente es como pedirme a mí mismo que sea al mismo tiempo arquitecto, escritor de tests, DBA y especialista en seguridad: funciona, pero no es eficiente (ni descansado).
 
-OpenCode resuelve esto con un sistema de **agentes** que incluye dos roles fundamentales: **agentes primarios** y **subagentes**. Los agentes primarios son los asistentes principales con los que interactúas directamente. Los subagentes son asistentes especializados que pueden invocarse para tareas concretas, trabajar en paralelo o帮你 (a ti, al agente primario) con investigación, exploración o análisis sin interrumpir el flujo de trabajo principal.
+OpenCode resuelve esto con un sistema de **agentes** que incluye dos roles fundamentales: **agentes primarios** y **subagentes**. Los agentes primarios son los asistentes principales con los que interactúas directamente. Los subagentes son asistentes especializados que pueden invocarse para tareas concretas, trabajar en paralelo o echarte una mano (a ti, al agente primario) con investigación, exploración o análisis sin interrumpir el flujo de trabajo principal.
 
 En este artículo vamos a profundizar en los subagentes: qué son, cómo funcionan los que vienen integrados en OpenCode, cómo invocarlos, cómo configurarlos y cómo crear tus propios subagentes personalizados para adaptar OpenCode a tu flujo de trabajo como desarrollador indie.
 
@@ -33,7 +33,7 @@ En este artículo vamos a profundizar en los subagentes: qué son, cómo funcion
 
 OpenCode distingue entre dos tipos de agentes:
 
-**Agentes primarios** son los asistentes principales. Cuando inicias una sesión en OpenCode, estás hablando con un agente primario. Estos agentes manejan tu conversación principal y pueden invocar subagentes cuando detectan que una tarea se beneficiaría de un especializado. Los agentes primarios se cycling (循环) con la tecla Tab o con el keybind `switch_agent` configurado. OpenCode trae dos agentes primarios integrados: **Build** (con todas las herramientas habilitadas) y **Plan** (restringido, solo para análisis y planificación, sin permisos de escritura ni ejecución de comandos bash por defecto).
+**Agentes primarios** son los asistentes principales. Cuando inicias una sesión en OpenCode, estás hablando con un agente primario. Estos agentes manejan tu conversación principal y pueden invocar subagentes cuando detectan que una tarea se beneficiaría de un especializado. Los agentes primarios se cambian con la tecla Tab o con el keybind `switch_agent` configurado. OpenCode trae dos agentes primarios integrados: **Build** (con todas las herramientas habilitadas) y **Plan** (restringido, solo para análisis y planificación, sin permisos de escritura ni ejecución de comandos bash por defecto).
 
 **Subagentes** son asistentes especializados que corren en sesiones hijos (child sessions) vinculadas a la sesión principal. Un agente primario puede decidir invocarlos automáticamente cuando necesita realizar una tarea que encaja mejor con las capacidades de un subagente. También puedes invocarlos manualmente mencionándolos con `@` en tu mensaje: por ejemplo, `@explore analízame la estructura de este proyecto`.
 
@@ -59,7 +59,7 @@ Usa General cuando necesites ejecutar múltiples unidades de trabajo en paralelo
 
 El subagente **Explore** es un agente de solo lectura diseñado para explorar bases de código con rapidez. No puede modificar archivos. Su especialidad es encontrar archivos por patrones, buscar palabras clave en el código o responder preguntas sobre la estructura de un proyecto.
 
-Usa Explore cuando necesites entender un código base desconocido sin riesgo de modificar nada. Es perfecto para responder preguntas como «¿dónde se define la clase User?» o «¿qué archivos tocaría esta migración de base de datos?». Como no tiene permisos de escritura, puedes usarlo con total tranquilidad sin担心 (sin preocupación) de que vaya a alterar tu código.
+Usa Explore cuando necesites entender un código base desconocido sin riesgo de modificar nada. Es perfecto para responder preguntas como «¿dónde se define la clase User?» o «¿qué archivos tocaría esta migración de base de datos?». Como no tiene permisos de escritura, puedes usarlo con total tranquilidad, sin miedo a que vaya a alterar tu código.
 
 ### Scout: el investigador externo
 
@@ -67,7 +67,7 @@ Usa Explore cuando necesites entender un código base desconocido sin riesgo de 
 
 El subagente **Scout** es un agente de solo lectura especializado en documentación externa e investigación de dependencias. A diferencia de Explore, que trabaja únicamente con tu código local, Scout puede clonar repositorios de dependencias en la caché gestionada por OpenCode, inspeccionar el código fuente de librerías y cruzar-referenciar tu código local con las implementaciones upstream.
 
-Usa Scout cuando necesites entender cómo funciona una librería que estás usando, verificar los cambios entre versiones de una dependencia, o investigar una implementación específica en el código fuente de un paquete npm o de un módulo Python. Es especialmente útil en proyectos indie donde no tienes un stack de-platform engineers (ingenieros de plataforma) dedicado pero necesitas entender profundamente las herramientas que usas.
+Usa Scout cuando necesites entender cómo funciona una librería que estás usando, verificar los cambios entre versiones de una dependencia, o investigar una implementación específica en el código fuente de un paquete npm o de un módulo Python. Es especialmente útil en proyectos indie donde no tienes un equipo de platform engineers dedicado pero necesitas entender profundamente las herramientas que usas.
 
 ---
 
@@ -80,6 +80,28 @@ Además de los subagentes que puedes invocar manualmente, OpenCode incluye tres 
 - **Summary** (modo: primary, oculto): crea resúmenes de sesión. También corre de forma automática.
 
 Estos agentes no son seleccionables en la interfaz. OpenCode los invoca internamente cuando detecta que son necesarios, por ejemplo, cuando una sesión se ha vuelto demasiado larga y necesita ser resumida para mantener el rendimiento.
+
+---
+
+## Cuándo y cómo funcionan (visual)
+
+Texto y tablas ayudan, pero la decisión de qué subagente invocar y la mecánica de cómo se invoca se ven mucho mejor en un diagrama. Aquí tienes las dos piezas que más me costó entender al principio.
+
+### ¿Cuándo uso cada subagente?
+
+La pregunta clave no es "¿qué modelo uso?" sino **¿dónde estoy trabajando y qué necesito hacer?** Local vs. externo, lectura vs. escritura, rápido vs. multi-paso. Esta infografía condensa el árbol de decisión en una sola página:
+
+![Cuándo usar cada subagente de OpenCode: general para multi-paso con escritura, explore para código local, scout para dependencias externas](/images/infographic-subagents-when-es.svg)
+
+La idea de fondo: `@general` es la excepción, no la regla. Por defecto, prefiero `@explore` (rápido, local, gratis en tokens) o `@scout` (cuando el código que me interesa está en otro repositorio). Solo escalo a `@general` cuando la tarea requiere modificar archivos o ejecutar comandos, y aun así me aseguro de que sus permisos son los mínimos necesarios.
+
+### ¿Cómo se ejecuta una invocación?
+
+Detrás de un simple `@scout …` hay cinco pasos que involucran al agente primario, una sesión hija aislada y un resultado que vuelve al contexto del padre. Esta es la mecánica real:
+
+![Diagrama de flujo de invocación de un subagente: prompt → agente primario evalúa → spawn sesión hijo → trabajo aislado → resultado vuelve al padre](/images/infographic-subagents-flow-es.svg)
+
+Si te quedas con una sola idea de este diagrama, que sea esta: el subagente **no comparte tu contexto** al 100%. Heredar parte del contexto del padre (prompt + trabajo previo), pero corre en su propia sesión con un system prompt limpio y permisos filtrados. Por eso `@scout` puede tocar dependencias externas sin tocar tu código.
 
 ---
 
@@ -114,7 +136,7 @@ Cuando un subagente crea una sesión hijo, OpenCode permite navegar entre la ses
 Los atajos relevantes son:
 
 - **session_child_first** (por defecto: `<Leader>+Down`): entra en la primera sesión hijo desde la sesión padre.
-- **session_child_cycle** (por defecto: `Right`): Cycle al siguiente sibling session (hermana) cuando estás dentro de una sesión hijo.
+- **session_child_cycle** (por defecto: `Right`): cicla al siguiente sibling session (hermana) cuando estás dentro de una sesión hijo.
 - **session_child_cycle_reverse** (por defecto: `Left`): Cycle en dirección inversa.
 - **session_parent** (por defecto: `Up`): vuelve a la sesión padre.
 
@@ -124,11 +146,11 @@ Con `<Leader>+Down` entras en la primera sesión hijo creada por un subagente. U
 
 ## Configurar subagentes existentes
 
-OpenCode permite personalizar los subagentes integrados o crear los tuyos propios. La configuración se puede hacer de dos formas: en JSON dentro de tu archivo `opencode.json` o en archivos Markdown placed (colocados) en un directorio de agentes.
+OpenCode permite personalizar los subagentes integrados o crear los tuyos propios. La configuración se puede hacer de dos formas: en JSON dentro de tu archivo `opencode.json` o en archivos Markdown en un directorio de agentes.
 
 ### Configuración en JSON
 
-Abre tu archivo `opencode.json` y añade una sección `agent`. Aquí puedes personalizar el modelo, el prompt, los permisos y otras opciones:
+Abre tu archivo `opencode.json` y añade una sección `agent`. Aquí puedes personalizar el modelo, el prompt, los permisos y otras opciones.
 
 ```json
 {
@@ -166,7 +188,7 @@ Abre tu archivo `opencode.json` y añade una sección `agent`. Aquí puedes pers
 
 ### Configuración en Markdown
 
-También puedes definir agentes usando archivos Markdown placed (colocados) en:
+También puedes definir agentes usando archivos Markdown en:
 
 - Global: `~/.config/opencode/agents/`
 - Per-project: `.opencode/agents/`
@@ -345,11 +367,11 @@ Este agente de seguridad puede hacer preguntas (webfetch con ask, que pide confi
 
 ## Casos de uso prácticos
 
-Vamos a ver escenarios reales donde los subagentes brilian (destacan).
+Vamos a ver escenarios reales donde los subagentes brillan.
 
 ### Investigación en paralelo
 
-Imagina que necesitas implementar una nueva funcionalidad que depende de investigar tres librerías distintas. En lugar de hacer tres sesiones sequentially (secuencialmente), puedes iniciar tres subagentes General en paralelo, cada uno investigando una librería diferente:
+Imagina que necesitas implementar una nueva funcionalidad que depende de investigar tres librerías distintas. En lugar de hacer tres sesiones secuenciales, puedes iniciar tres subagentes General en paralelo, cada uno investigando una librería diferente:
 
 ```
 @general Investiga las opciones de autenticación OAuth2 disponibles para Node.js
@@ -361,7 +383,7 @@ Cada subagente trabaja de forma independiente y luego puedes revisar los resulta
 
 ### Code review sin interrupciones
 
-Cuando estás en medio de una tarea de implementación, es tentador ignorar el code review hasta el final. Pero往往 (muchas veces) las bugs se atrapan más fácilmente en el momento. Un subagente reviewer dedicado te permite pedir feedback sin cambiar de contexto:
+Cuando estás en medio de una tarea de implementación, es tentador ignorar el code review hasta el final. Pero muchas veces los bugs se atrapan más fácilmente en el momento. Un subagente reviewer dedicado te permite pedir feedback sin cambiar de contexto:
 
 ```
 @review Revisa el archivo src/auth/login.ts por vulnerabilidades
@@ -409,9 +431,9 @@ Basándome en mi experiencia con OpenCode y los patrones que mejor funcionan, aq
 
 ## Limitaciones y consideraciones
 
-Los subagentes no son procesos completamente aislados. Comparten el contexto de la sesión padre de forma limitada: el padre conoce el resultado del trabajo del hijo, pero el hijo no necesariamente conoce todo el contexto del padre. Esto puede llevar a duplicated esfuerzo si no eres explícito en los prompts.
+Los subagentes no son procesos completamente aislados. Comparten el contexto de la sesión padre de forma limitada: el padre conoce el resultado del trabajo del hijo, pero el hijo no necesariamente conoce todo el contexto del padre. Esto puede llevar a esfuerzo duplicado si no eres explícito en los prompts.
 
-另一个 (otro) punto a considerar: los subagentes consumen recursos del modelo que estés usando. Cada subagente corre en su propia sesión y genera sus propios tokens de entrada y salida. En proyectos grandes con muchos subagentes, el coste en tokens puede crecer significativamente. Usa `maxSteps` para poner límites.
+Otro punto a considerar: los subagentes consumen recursos del modelo que estés usando. Cada subagente corre en su propia sesión y genera sus propios tokens de entrada y salida. En proyectos grandes con muchos subagentes, el coste en tokens puede crecer significativamente. Usa `maxSteps` para poner límites.
 
 Finalmente, la invocación automática de subagentes depende del modelo de lenguaje. No todos los modelos deciden invocar subagentes de la misma forma. Modelos más recientes y capaces tienden a usar subagentes de forma más inteligente.
 
