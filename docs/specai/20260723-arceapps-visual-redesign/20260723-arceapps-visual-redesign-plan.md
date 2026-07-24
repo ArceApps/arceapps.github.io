@@ -266,3 +266,13 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Revisiones:** `spec-compliance-reviewer PASS`; `verifier PASS`, autorizando el cierre.
 
 **Outcome:** ✅ success — cierre documental autorizado con deuda técnica no bloqueante.
+
+### 2026-07-25T00:06:40+02:00 — Aceptación del usuario y comprobación de finalización
+
+**Aceptación explícita:** `acepto`.
+
+**Finishing-a-development-branch:** La comprobación obligatoria de la suite completa devuelve `pnpm test` exit 1: 1 fichero fallido (`src/utils/links-validation.test.ts`), 274 fallos y 139 pasados de 413. Por tanto, el Gate F1 (tests completos con 0 fallos) no se cumple.
+
+**Integración:** No se hace merge ni PR. El estado global del rediseño permanece `✅ COMPLETADO`, pero la integración queda bloqueada hasta resolver la suite completa. No se realizó commit.
+
+**Outcome:** ⚠️ Cierre aceptado; integración pendiente por Gate F1 no cumplido.
