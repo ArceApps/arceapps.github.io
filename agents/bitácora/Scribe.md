@@ -512,3 +512,103 @@ Se copiaron los archivos de imagen correctamente y se actualizaron los frontmatt
 **Verificación post-deploy:** ES y EN 200 OK a la primera. SVGs 200 OK tras 60s de cache-busting de GitHub Pages. Refs a infografías confirmadas en el HTML servido (2 por idioma).
 
 **Commit:** `797bde4` — 8 files changed, 408 insertions(+), 2 deletions(-). Push a `https://github.com/ArceApps/arceapps.github.io.git`.
+
+---
+
+## 2026-07-26 — Artículo: Model Routing for Subagents (Brick + 3 stacks + infografías bilingües)
+
+**Estado:** ✅ Publicado y verificado en producción
+**Tipo:** Creación de post bilingüe ES+EN con prior art research multi-source
+
+**Tema:**
+Model routing aplicado a subagentes de coding agents. Cada subagente (planner, coder, explorer, reviewer) hereda el modelo del orchestrator por defecto, lo que significa pagar a Opus por ejecutar tareas que un modelo de 9B resuelve en 4 segundos. Routing inteligente puede bajar el coste un 30-80%. Tres arquitecturas comparadas: Brick (Regolo MoM gateway, Apache-2.0 Go), opencode-subagent-router (hook nativo OpenCode), y DIY con `agent.model` estático. Análisis crítico del titular "80% de ahorro" de Regolo: la cifra real está entre 25-50%, el 80% es techo teórico.
+
+**Fuentes consultadas (10+ fuentes primarias y secundarias):**
+- Regolo — *"Opencode + Brick for Multi Agent Coding and optimize costs up to 80%"* (14 jul 2026). El post de marketing que disparó la investigación.
+- Regolo AI — *[`regolo-ai/brick-SR1`](https://github.com/regolo-ai/brick-SR1)* (Apache-2.0, Go-based gateway). El repo con la realidad del producto: 5 modos, sticky routing, CLI `brick route` y `brick codex status`.
+- ashutoshsinghpr7 — *[`opencode-subagent-router`](https://github.com/ashutoshsinghpr7/opencode-subagent-router)* (2 jul 2026). La alternativa portable, provider-agnostic, sin infra externa.
+- OpenCode — [docs/agents](https://opencode.ai/docs/agents/). La realidad oficial: 2 primary agents (Build, Plan) + 3 subagents built-in (General, Explore, Scout) + 3 system agents ocultos.
+- orq.ai — *"LLM Cost Optimization: How Smart Routing Cuts API Spend by 75%"*. Contexto histórico del routing.
+- zylos.ai — *"LLM Routing: Intelligent Model Selection for Cost and Quality"* (29 ene 2026).
+- bestaiweb.ai — *"OpenRouter, Martian, and Not Diamond: The 2026 LLM Router Race"* (12 may 2026).
+- Hacker News — Show HN: Smart model routing directly in Claude, Codex and Cursor (jun 2026).
+- Reddit — r/opencode *"How have you set up your sub agents to keep costs down?"* + r/ClaudeAI Fable 5 benchmark (96% perf, 46% cost).
+
+**Artículos creados:**
+- ES: `src/content/blog/es/model-routing-subagents-coding-agents.md` (**4000 palabras**)
+- EN: `src/content/blog/en/model-routing-subagents-coding-agents.md` (**3931 palabras**)
+
+Ambos pasan el floor de 3000 palabras que el commit `7e72cd3` acaba de imponer en la skill `write-blog`. ES y EN simétricos en calidad, no traducción literal (ejemplos adaptados, prosa ajustada).
+
+**Assets SVG bilingües (6 archivos + 1 symlink):**
+- `public/images/model-routing-subagents-coding-agents-es.svg` (9.0 KB) — Hero ES: orchestrator Brick + 6 subagentes con sus modelos y costes, banda inferior con 3 cards de ahorro (baseline $0.046 / routing $0.032 / ceiling $0.009).
+- `public/images/model-routing-subagents-coding-agents-en.svg` (8.8 KB) — Hero EN, mismo layout.
+- Symlink `model-routing-subagents-coding-agents.svg` → `-en.svg` (compat con bare-name, patrón del post `grill-me-sdd`).
+- `public/images/model-routing-subagents-coding-agents-infographic-1-es.svg` (9.2 KB) — Diagrama de flujo: prompt → clasificador (6 dimensiones) → router → modelo. Con panel de las 6 dimensiones y panel de tiers de salida.
+- `public/images/model-routing-subagents-coding-agents-infographic-1-en.svg` (8.9 KB) — Idem en EN.
+- `public/images/model-routing-subagents-coding-agents-infographic-2-es.svg` (8.9 KB) — Comparativa lado a lado de los 3 stacks (Brick / opencode-subagent-router / DIY) con pros, contras, ideal para, tiempo de setup.
+- `public/images/model-routing-subagents-coding-agents-infographic-2-en.svg` (8.9 KB) — Idem en EN.
+
+Todos self-contained (sin assets externos), brand colors Teal `#018786` + Orange `#FF9800`, fondo `#0F172A`, monospace font, 1200×630. **Verificación idioma**: cada SVG EN/ES tiene texto en su idioma (chequeado con grep + extracción `<text>`).
+
+**Prior art enlazado (regla AGENTS.md "Prior Art CRÍTICO"):**
+- ES: [GSD: la ingeniería del contexto limpio](/es/blog/gsd-core-context-engineering) + [Gran Final del torneo de IDEs AI](/es/blog/desktop-ai-grand-final) + [Stack completo de agentes IA 2026](/es/blog/stack-completo-agentes-ia-2026)
+- EN: [GSD: the engineering of clean context](/blog/gsd-core-context-engineering) + [The Grand Final of AI IDEs](/blog/desktop-ai-grand-final) + [Full AI coding agent stack 2026](/blog/stack-completo-agentes-ia-2026)
+
+**Diferenciador vs prior art (1 bullet en la introducción, regla del skill):**
+> *"`gsd-core-context-engineering.md` respondió a cómo no se degrada un agente cuando crecen los tokens. `desktop-ai-grand-final.md` comparó asistentes. `stack-completo-agentes-ia-2026.md` inventarió frameworks. Este artículo cubre el siguiente eje: cómo reducir drásticamente el coste de cada subagente eligiendo bien el modelo, sin perder calidad."*
+
+**Estructura del artículo:**
+1. Gancho cuantitativo: el coste mensual de un coding agent con subagentes
+2. Qué es exactamente el model routing
+3. Brick: el Mixture-of-Models de Regolo (con JSON del orchestrator)
+4. opencode-subagent-router: la alternativa portable
+5. La opción DIY: hook `chat.message` con tres reglas
+6. La matemática honesta (sesión típica: 50K input + 10K output)
+7. El contexto que me hizo darme cuenta (GSD + routing = ortogonales)
+8. Lo que no funciona (todavía): 3 problemas abiertos
+9. **El asterisco matemático del 80%** (sección crítica, derivada de la contradicción entre el titular y los números internos)
+10. FAQ técnica (9 preguntas: Codex/Claude compat, fallback, combinación de stacks, calidad, amortización, equipo, errores en cascada, classifier fail, empezar mañana)
+11. Lo que recomendaría hoy (3 paths según perfil)
+12. Bibliografía (10+ fuentes)
+13. Cierre con call to action
+
+**Innovative technique used:** Bilingual research synthesis con matemática verificada (extracción de costes del repo de Brick vía `curl` + Python HTML strip) + cita crítica del asterisco del 80% (contraste entre titular de marketing y número real del propio post). El post NO es un tutorial de Regolo — es un meta-análisis del estado del routing por subagente con crítica honesta.
+
+**Frontmatter compliance:**
+- Title 58 chars (≤60 ✓), "Model Routing" en las primeras 5 palabras ✓
+- description 149 chars (entre 120-160 ✓)
+- pubDate 2026-07-25 (backdate 1 día para evitar UTC trap en CEST, pitfall #1)
+- lastmod 2026-07-26 (real)
+- keywords 7 items (3-8 ✓)
+- reference_id UUID v4 (ES: `de222b4d-...`, EN: `f0446317-...`)
+- canonical URLs absolute con/sin `/es/`
+- heroImage con sufijo `-es.svg` / `-en.svg` (pitfall #16)
+
+**Build:** `npx astro build` → **1038 páginas**, 11.56s, 0 errores Zod.
+
+**Verificación pre-deploy (Step 6.5):**
+- `find dist -path "*model-routing-subagents-coding-agents*"` → 2 hits: `dist/es/blog/.../index.html` + `dist/blog/.../index.html` ✓
+- `grep -oE '<loc>[^<]*model-routing[^<]*</loc>' dist/sitemap-0.xml` → 2 entries (ES + EN) ✓
+
+**Trampas evitadas (todas):**
+- ✅ #1 pubDate backdate a 2026-07-25
+- ✅ #3a pnpm 11 ERR_PNPM_LOCKFILE_CONFIG_MISMATCH → `pnpm install --no-frozen-lockfile` + `git checkout -- pnpm-lock.yaml` (descartado antes de staging)
+- ✅ #16 idioma correcto en cada SVG (verificado con grep)
+- ✅ #18 staging explícito sin OG image churn (prebuild no tocó mis archivos; staged solo 9 míos)
+- ✅ #17 cache-bust verify en producción (4 hits "Model Routing for Subagents" en ES, 5 hits "Mixture-of-Models" en EN)
+- ✅ Remote URL arreglada con A mayúscula (sin warning "remote moved")
+- ✅ CJK slippage cleanup: 2 frases con CJK en ES original (`得出的结论`, `给我们`) corregidas antes de finalizar
+
+**Verificación post-deploy (Step 7.5):**
+- ES: 200 OK en attempt 5 (4× 404 durante Pages rebuild, 200 en 75s)
+- EN: 200 OK en attempt 1 (inmediato)
+- Cache-bust probe: 4 hits en ES, 5 hits en EN para las strings clave
+
+**Commit:** `de77e4b` — 9 files changed, 1238 insertions(+). Push a `https://github.com/ArceApps/arceapps.github.io.git` (sin warnings).
+
+**Aprendizaje de sesión:**
+- El claim "80% de ahorro" del post de Regolo es marketing con matemática verificada: 30% real, 80% techo. Crítica honesta gana credibilidad.
+- Brick (Apache-2.0) tiene más capacidades que las que el post de marketing menciona: 5 modos, sticky routing, CLI inspectable. El post de marketing subestima su propio producto.
+- El routing por subagente en coding agents es territorio nuevo (jul 2026). El primer análisis público sólido de los 3 stacks con números reales.
+- Para el skill: 3000 palabras mínimo en deep-research posts es sostenible cuando se hace investigación multi-source real (no relleno). El floor elevado no se traduce en contenido inflado si el tema da para ello.
