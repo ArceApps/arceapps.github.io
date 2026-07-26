@@ -1,5 +1,5 @@
 ---
-title: "Model Routing for Subagents: Cut Coding Agent Costs 30-80%"
+title: "Model Routing para Subagentes: 30-80% Menos Coste"
 description: "Routea cada subagente al modelo adecuado: explore a 9B, planner a 122B. Comparamos Brick, OpenCode-subagent-router y un hook DIY con las matemáticas reales."
 pubDate: 2026-07-25
 lastmod: 2026-07-26
