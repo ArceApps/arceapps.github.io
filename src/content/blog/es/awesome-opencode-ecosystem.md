@@ -1,5 +1,5 @@
 ---
-title: "Awesome OpenCode: El Zoo del Ecosistema"
+title: "Awesome OpenCode: El Mapa del Ecosistema"
 description: "Mapa curado del ecosistema OpenCode en 2026: 10 plugins de memoria persistente que ningún blog te ha enseñado, las 4 críticas reales del HN y las respuestas de la comunidad indie."
 pubDate: 2026-07-26
 lastmod: 2026-07-27
@@ -19,21 +19,21 @@ category: "ai-agents"
 reference_id: "7c4e1d2a-3f6b-4e8a-9c5d-2b1a8f4e7d9c"
 ---
 
-> **Lectura previa recomendada:** ya cubrimos OpenCode desde varios ángulos en este blog — el [torneo de CLIs de IA](/es/blog/cli-ai-semifinal-1/) donde quedó campeón, los [fundamentos de subagentes](/es/blog/opencode-subagents/), la [serie de tres artículos sobre memoria persistente](/es/blog/opencode-plugins-memoria-nativos/) y el [stack final que combino en mi flujo diario](/es/blog/stack-memoria-persistente-implementacion/). Lo que no había hecho todavía es **mirar el zoo desde arriba**: el catálogo curado que la comunidad ha construido alrededor del agente.
+> **Lectura previa recomendada:** ya cubrimos OpenCode desde varios ángulos en este blog — el [torneo de CLIs de IA](/es/blog/cli-ai-semifinal-1/) donde quedó campeón, los [fundamentos de subagentes](/es/blog/opencode-subagents/), la [serie de tres artículos sobre memoria persistente](/es/blog/opencode-plugins-memoria-nativos/) y el [stack final que combino en mi flujo diario](/es/blog/stack-memoria-persistente-implementacion/). Lo que no había hecho todavía es **mirar el mapa desde arriba**: el catálogo curado que la comunidad ha construido alrededor del agente.
 
 ## 🎣 El día que la awesome-list me devolvió una hora de domingo
 
 Tengo un vicio confesable. Cada domingo por la tarde, cuando ya he cerrado el laptop del trabajo serio, abro un café solo, abro [github.com/awesome-opencode/awesome-opencode](https://github.com/awesome-opencode/awesome-opencode) y me pongo a leer PRs. Es un repositorio con **223 entradas** distribuidas en seis categorías, mantenido por una comunidad separada de Anomaly, con licencia CC0-1.0, **9.169 estrellas y 681 forks** según el contador de GitHub a fecha de este artículo. La última vez que lo abrí en serio fue hace tres meses, cuando escribí la serie de memoria persistente. Esa tarde me juré que iba a volver y mirar **todo lo que se había quedado fuera de mi radar**.
 
-El resultado es este artículo. Es un **catálogo curado y comentado** del ecosistema OpenCode en 2026, con un foco muy concreto: **los plugins de memoria persistente que la comunidad ha construido y que mi serie de tres posts no cubrió**. Y ya que estaba mirando el zoo desde arriba, no podía evitar ver también el lado incómodo: **las críticas reales que ha recibido el agente en Hacker News**, las que el equipo core ya reconoció como "necessary evil", y la respuesta defensiva que la propia comunidad indie ha montado plugin a plugin. Esto va a ser largo. Tómate otro café.
+El resultado es este artículo. Es un **catálogo curado y comentado** del ecosistema OpenCode en 2026, con un foco muy concreto: **los plugins de memoria persistente que la comunidad ha construido y que mi serie de tres posts no cubrió**. Y ya que estaba mirando el mapa desde arriba, no podía evitar ver también el lado incómodo: **las críticas reales que ha recibido el agente en Hacker News**, las que el equipo core ya reconoció como "necessary evil", y la respuesta defensiva que la propia comunidad indie ha montado plugin a plugin. Esto va a ser largo. Tómate otro café.
 
-## 🧭 Primero, situémonos: ¿qué es OpenCode en 2026 y por qué tiene zoo?
+## 🧭 Primero, situémonos: ¿qué es OpenCode en 2026 y por qué tiene mapa?
 
-Antes de meternos en el zoo, una nota de orientación para el lector que llegue de nuevas. OpenCode es un **agente de codificación con IA, open source bajo licencia MIT**, mantenido por la organización **Anomaly** ([github.com/anomalyco/opencode](https://github.com/anomalyco/opencode)) y construido mayoritariamente en TypeScript con Bun como runtime. A día de hoy ronda las **190.000 estrellas en GitHub**, declara soportar **75+ proveedores LLM** (Anthropic, OpenAI, Google Gemini, AWS Bedrock, Groq, Azure, OpenRouter, GitHub Copilot, xAI/Grok, Ollama local, llama.cpp y un largo etc.) y según su propia landing ronda los **7,5 millones de desarrolladores activos al mes**. Lo cubrimos en detalle cuando ganó la semifinal del [torneo de CLIs](/es/blog/cli-ai-semifinal-1/) y, otra vez, en la [gran final](/es/blog/cli-ai-grand-final/). Lo que quiero remarcar aquí es la **razón de que exista un zoo**: cuando un agente es open source, model-agnostic y tiene una API de plugins razonable, la comunidad se pone a construir encima. Es la dinámica que ya vimos con los launchers de Vim, con los plugins de VSCode, con los índices de Awesome-List en general. OpenCode no es la excepción; es el caso de libro.
+Antes de meternos en el mapa, una nota de orientación para el lector que llegue de nuevas. OpenCode es un **agente de codificación con IA, open source bajo licencia MIT**, mantenido por la organización **Anomaly** ([github.com/anomalyco/opencode](https://github.com/anomalyco/opencode)) y construido mayoritariamente en TypeScript con Bun como runtime. A día de hoy ronda las **190.000 estrellas en GitHub**, declara soportar **75+ proveedores LLM** (Anthropic, OpenAI, Google Gemini, AWS Bedrock, Groq, Azure, OpenRouter, GitHub Copilot, xAI/Grok, Ollama local, llama.cpp y un largo etc.) y según su propia landing ronda los **7,5 millones de desarrolladores activos al mes**. Lo cubrimos en detalle cuando ganó la semifinal del [torneo de CLIs](/es/blog/cli-ai-semifinal-1/) y, otra vez, en la [gran final](/es/blog/cli-ai-grand-final/). Lo que quiero remarcar aquí es la **razón de que exista un mapa**: cuando un agente es open source, model-agnostic y tiene una API de plugins razonable, la comunidad se pone a construir encima. Es la dinámica que ya vimos con los launchers de Vim, con los plugins de VSCode, con los índices de Awesome-List en general. OpenCode no es la excepción; es el caso de libro.
 
 Una advertencia de honestidad cronológica antes de seguir: el repo que aparece en el primer puesto de muchas búsquedas, `opencode-ai/opencode`, está **archivado desde septiembre de 2025** y redirige a [charmbracelet/crush](https://github.com/charmbracelet/crush) (que es Go, no TypeScript, y es un proyecto distinto). El repo vivo es `anomalyco/opencode`. La confusión es comprensible: la organización que lo mantenía antes se llamaba SST (Serverless Stack), pivotó a Anomaly en abril-mayo de 2026, y el handle de la org en GitHub quedó como `anomalyco`. Si citan un artículo viejo, es probable que vean la URL vieja. **Cuidado con los datos cruzados**.
 
-## 📚 Las seis categorías del zoo, contadas sin adornos
+## 📚 Las seis categorías del mapa, contadas sin adornos
 
 La [awesome-list curada](https://github.com/awesome-opencode/awesome-opencode) ordena el ecosistema en seis bloques que conviene tener en la cabeza antes de bajar al detalle:
 
@@ -48,7 +48,7 @@ La [awesome-list curada](https://github.com/awesome-opencode/awesome-opencode) o
 
 De las 223 entradas, **136 son plugins**. Esa asimetría es la pista: lo que la comunidad ha decidido construir masivamente son **plugins**, no forks ni clientes. Y dentro de los 136, **el subdominio más denso con diferencia es el de memoria y contexto persistente**, con al menos 15 piezas activas que mi serie anterior no cubrió. Ahí vamos.
 
-![Anatomía del zoo · 6 categorías · 223 entradas](/images/awesome-opencode-taxonomy-es.svg)
+![Anatomía del mapa · 6 categorías · 223 entradas](/images/awesome-opencode-taxonomy-es.svg)
 
 ## 🧠 Diez plugins de memoria persistente que mi serie no cubrió (y por qué existen)
 
@@ -146,7 +146,7 @@ Para fijar ideas, una tabla con las dimensiones que importan a la hora de elegir
 
 ## 🌑 El ángulo oscuro: cuatro críticas reales y las respuestas de la comunidad
 
-Mirar el zoo desde arriba tiene una ventaja incómoda: también ves lo que **no funciona**. En el mismo hilo de Hacker News que dio la cita del core team, aparecen críticas que vale la pena reproducir verbatim porque son las que un dev indie debe conocer antes de instalar el primer plugin. **No las reproduzco para hacer alarmismo, sino porque la comunidad ya tiene respuestas técnicas para cada una**.
+Mirar el mapa desde arriba tiene una ventaja incómoda: también ves lo que **no funciona**. En el mismo hilo de Hacker News que dio la cita del core team, aparecen críticas que vale la pena reproducir verbatim porque son las que un dev indie debe conocer antes de instalar el primer plugin. **No las reproduzco para hacer alarmismo, sino porque la comunidad ya tiene respuestas técnicas para cada una**.
 
 ### 1. "Big Pickle" y el default que envía tus prompts a una nube gratis
 
@@ -200,13 +200,13 @@ La crítica es interesante porque **no es al agente sino al servicio comercial a
 
 ## 🧪 Tres instalaciones que te montas esta tarde, en orden de retorno
 
-Para cerrar con algo accionable, mi recomendación personal si vienes del artículo anterior sobre [memoria persistente](/es/blog/stack-memoria-persistente-implementacion/) y quieres extender ese stack con piezas del zoo:
+Para cerrar con algo accionable, mi recomendación personal si vienes del artículo anterior sobre [memoria persistente](/es/blog/stack-memoria-persistente-implementacion/) y quieres extender ese stack con piezas del mapa:
 
 **1. Instala OCX (15 minutos).** OCX ([github.com/kdcokenny/ocx](https://github.com/kdcokenny/ocx), 879 ⭐) es el **package manager de facto** para OpenCode. Te permite manejar perfiles portables y aislados. `bunx ocx add <plugin>` o `npm i -g ocx` y luego `ocx add <paquete>`. Una vez que lo tienes, todo lo demás se vuelve reproducible.
 
 **2. Añade `opencode-mem` (30 minutos).** Es el plugin de memoria con mejor equilibrio entre funcionalidad, tracción y filosofía local-first. Empieza con `Xenova/all-MiniLM-L6-v2` como embedding, enciende la web UI, observa una semana lo que captura, ajusta `memory.defaultScope` y `compaction.memoryLimit` a tu gusto.
 
-**3. Añade `opencode-ignore` y `opencode-log-sanitizer` (10 minutos).** Aunque no te interese la memoria persistente, estos dos son **insurance plugins**: cuesta poco instalarlos y te protegen del 90% de los disgustos de seguridad que vio la comunidad en 2026. Después de esto ya tienes el setup base para experimentar con el resto del zoo.
+**3. Añade `opencode-ignore` y `opencode-log-sanitizer` (10 minutos).** Aunque no te interese la memoria persistente, estos dos son **insurance plugins**: cuesta poco instalarlos y te protegen del 90% de los disgustos de seguridad que vio la comunidad en 2026. Después de esto ya tienes el setup base para experimentar con el resto del mapa.
 
 ## 📚 Referencias y bibliografía
 
@@ -256,8 +256,8 @@ Para cerrar con algo accionable, mi recomendación personal si vienes del artíc
 
 ## 🪶 Cierre
 
-El zoo es grande, pero no es infinito. De las 223 entradas que tiene la awesome-list, **una docena componen el núcleo que un dev indie realmente va a tocar**: un package manager (OCX), un par de plugins de memoria bien elegidos, dos o tres de seguridad, y el sub-agent que prefieras. El resto son piezas que vale la pena conocer para saber qué existe, no necesariamente para instalar mañana. **La señal de que un plugin ha "madurado" es que su último commit es de esta semana y su autor responde a issues en días, no en meses**. De los 10 que he cubierto, 7 cumplen ese listón a 27 de julio de 2026.
+El mapa es grande, pero no es infinito. De las 223 entradas que tiene la awesome-list, **una docena componen el núcleo que un dev indie realmente va a tocar**: un package manager (OCX), un par de plugins de memoria bien elegidos, dos o tres de seguridad, y el sub-agent que prefieras. El resto son piezas que vale la pena conocer para saber qué existe, no necesariamente para instalar mañana. **La señal de que un plugin ha "madurado" es que su último commit es de esta semana y su autor responde a issues en días, no en meses**. De los 10 que he cubierto, 7 cumplen ese listón a 27 de julio de 2026.
 
-Si te ha gustado el formato "índice comentado con veredicto", tengo otros 7 posts cubriendo los otros ángulos del ecosistema OpenCode (subagentes, memoria, skills, workflows, IDE integrations) — la serie completa forma, junto con este, **el mapa del zoo desde todos los ángulos posibles**. Cuéntame en los comentarios cuál de los 10 plugins te ha picado más la curiosidad y por qué — me interesa saber qué prioriza la comunidad en la práctica, no solo en la tracción de GitHub.
+Si te ha gustado el formato "índice comentado con veredicto", tengo otros 7 posts cubriendo los otros ángulos del ecosistema OpenCode (subagentes, memoria, skills, workflows, IDE integrations) — la serie completa forma, junto con este, **el mapa del ecosistema desde todos los ángulos posibles**. Cuéntame en los comentarios cuál de los 10 plugins te ha picado más la curiosidad y por qué — me interesa saber qué prioriza la comunidad en la práctica, no solo en la tracción de GitHub.
 
 — *ArceApps*
