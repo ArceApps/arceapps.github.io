@@ -1,5 +1,5 @@
 ---
-title: "OpenCode visual: comparativa honesta de 4 frontends (OpenChamber, CodeNomad, nomacode, mobile)"
+title: "OpenChamber, CodeNomad, nomacode y opencode-mobile: comparativa honesta para OpenCode"
 description: "Cuatro clientes visuales para OpenCode puestos a prueba en escritorio y móvil. Comparamos instalación, experiencia diaria, soporte de trabajo remoto y los puntos donde cada uno cojea, con datos primarios de sus repos."
 pubDate: 2026-07-26
 lastmod: 2026-07-27
