@@ -612,3 +612,80 @@ Todos self-contained (sin assets externos), brand colors Teal `#018786` + Orange
 - Brick (Apache-2.0) tiene más capacidades que las que el post de marketing menciona: 5 modos, sticky routing, CLI inspectable. El post de marketing subestima su propio producto.
 - El routing por subagente en coding agents es territorio nuevo (jul 2026). El primer análisis público sólido de los 3 stacks con números reales.
 - Para el skill: 3000 palabras mínimo en deep-research posts es sostenible cuando se hace investigación multi-source real (no relleno). El floor elevado no se traduce en contenido inflado si el tema da para ello.
+
+---
+
+## 2026-07-27 - Artículo: Awesome OpenCode — El Zoo del Ecosistema
+**Estado:** Completado y publicado en producción.
+**Fuente(s):** Investigación multi-source con 2 subagentes en paralelo + web search:
+- `awesome-opencode/awesome-opencode` README (223 entradas, 6 categorías, 9.169 ⭐ a 2026-07-27)
+- `anomalyco/opencode` README canónico (190k ⭐, MIT, TypeScript, 75+ providers, 7.5M devs/mes)
+- 8 hilos Hacker News con citas verbatim (k-langton del core team + denis4inet, scosman, vitamark, BSWEN, graeber_28927, otros)
+- Review externa kd05.com sobre opencode-mem
+- 10 repos de plugins con stars verificados a 2026-07-27
+- Blog prior art: 7+ posts sobre OpenCode ya publicados (cli-ai-semifinal-1, cli-ai-grand-final, opencode-subagents, opencode-subagents-workflows, opencode-plugins-memoria-nativos, servidores-mcp-memoria-cross-agent, stack-memoria-persistente-implementacion)
+
+**Artículos creados:**
+- ES: `src/content/blog/es/awesome-opencode-ecosystem.md` — **4.455 palabras**
+- EN: `src/content/blog/en/awesome-opencode-ecosystem.md` — **4.318 palabras**
+- Slug: `awesome-opencode-ecosystem`
+- Titles: ES="Awesome OpenCode: El Zoo del Ecosistema" (35 chars) / EN="Awesome OpenCode: The Ecosystem Zoo" (36 chars) — bilingües pero DIFERENTES (pitfall #21)
+
+**Estructura del artículo (5 secciones, 2 inline infographics):**
+1. 🎣 Gancho: domingo con café y la awesome-list (contexto personal)
+2. 🧭 Orientación: qué es OpenCode en 2026 + nota crítica sobre el repo archivado `opencode-ai/opencode` (que ahora es Crush)
+3. 📚 Las 6 categorías del zoo (con counts reales: 136/64/9/7/7/4) + **inline #1: taxonomy infographic**
+4. 🧠 Diez plugins de memoria persistente NO cubiertos en posts previos, con cita del core team (k-langton) reconociendo que "compaction is a necessary evil" + tabla comparativa + **inline #2: comparativa de 10 plugins**
+5. 🌑 El ángulo oscuro: 4 críticas reales del HN con citas verbatim + respuestas de la comunidad (Envsitter Guard, CC Safety Net, brood-box, jailoc, opencode-ignore, opencode-log-sanitizer, Cupcake)
+6. 🧪 Tres instalaciones accionables esta tarde (OCX, opencode-mem, insurance plugins)
+7. 📚 Referencias (10 primarios + 10 plugins + 6 security + 6 prior art del blog)
+8. 🪶 Cierre editorial
+
+**Diferenciación vs prior art (bitácora regla):**
+El post NO repite `opencode-plugins-memoria-nativos` (cubría supermemory/basic-memory/forgetful), ni `mcp-servers-memory-cross-agent` (cubría 3 MCP cross-tool), ni `stack-memoria-persistente-implementacion` (cubría el stack real combinado). El nuevo es el **"índice comentado" del zoo desde arriba**: 10 plugins NUEVOS que esos posts no vieron (magic-context, opencode-mem, vestige, agent-memory, simple-memory, lemma, opencode-claude-memory, honcho, harness-memory, hipocampo) + 4 críticas del HN que ningún post previo abordó. Es la **capa meta** que une los posts previos de la serie de OpenCode.
+
+**Innovative technique used:** Catálogo curado de awesome-list (no tour comercial) + investigación multi-subagente en paralelo (delegación batch) + cita honesta del core team reconociendo el hueco + 4 críticas verbatim con respuestas de la comunidad. El formato "índice comentado con veredicto indie" es el diferenciador.
+
+**Frontmatter compliance:**
+- Title ES 35 chars (≤60 ✓), EN 36 chars (≤60 ✓) — DIFERENTES (pitfall #21)
+- Tool name en primeras 5 palabras ✓ (Awesome OpenCode)
+- description ES 159 chars (entre 120-160 ✓), EN 158 chars ✓
+- pubDate 2026-07-26 (backdate 1 día para evitar UTC trap, pitfall #1)
+- lastmod 2026-07-27 (real)
+- keywords 7 items (3-8 ✓)
+- reference_id UUID v4 distintos (ES: `7c4e1d2a-...`, EN: `9d2f7c4e-...`)
+- canonical URLs absolute con/sin `/es/`
+- heroImage con sufijo `-es.svg` / `-en.svg` + symlink `awesome-opencode-ecosystem.svg` → `-en.svg` (pitfall #16)
+
+**Build:** `npx astro build` → **997 páginas**, 13.98s, 0 errores Zod.
+
+**Verificación pre-deploy (Step 6.5):**
+- `find dist -path "*awesome-opencode-ecosystem*"` → 2 hits: `dist/es/blog/.../index.html` + `dist/blog/.../index.html` ✓
+- `grep -oE "awesome-opencode-ecosystem" dist/sitemap-0.xml` → 2 entries (ES + EN) ✓
+
+**Trampas evitadas (todas):**
+- ✅ #1 pubDate backdate a 2026-07-26 (ayer), hoy 2026-07-27
+- ✅ #3a `package.json` y `pnpm-workspace.yaml` modificados por pnpm install → `git checkout --` antes de staging
+- ✅ #16 idioma correcto en cada SVG (verificado con grep + extraído de texto — 0 hits EN en ES, 0 hits ES en EN, falso positivo aceptable en comentario HTML)
+- ✅ #18 staging explícito sin OG image churn (prebuild tocó 6 OG images preexistentes + 9 nuevos `??`; git reset HEAD public/images/og/ los sacó del stage)
+- ✅ #17 cache-bust verify en producción (1 hit "cortexkit/magic-context" en ES con cache-buster confirma contenido real, no cache de build anterior)
+- ✅ #19 CJK slippage cleanup: 4 caracteres `排名第一` en ES original corregidos a "en el primer puesto" antes de finalizar (la línea entera se reescribió por fuzzy match fail)
+- ✅ #20 SVG text cross-language: verificado con grep + Python re.findall — ES files contienen stopwords ES, EN files contienen stopwords EN, sin cruces
+- ✅ #21 titles bilingües DIFERENTES (ES "El Zoo del Ecosistema" vs EN "The Ecosystem Zoo") — patrón "head inglés + gancho localizado"
+- ✅ Remote URL arreglada con A mayúscula (sin warning "remote moved" en push)
+- ✅ Rebase contra 3 commits remotos ahead (model-routing-subagents) antes de push, sin conflictos
+
+**Verificación post-deploy (Step 7.5):**
+- ES: 200 OK en attempt 4 (3× 404 durante Pages rebuild, 200 en ~75s)
+- EN: 200 OK en attempt 1 (inmediato, Pages ya había rebuildeado)
+- Cache-bust probe: 1 hit "cortexkit/magic-context" en ES con `?nocache=<ts>` confirma contenido real
+
+**Commit:** `1057655` — 9 files changed (2 .md + 6 SVGs + 1 symlink). Push a `https://github.com/ArceApps/arceapps.github.io.git` (sin warnings).
+
+**Aprendizaje de sesión:**
+- El repo `opencode-ai/opencode` (que aparece排名第一 en muchas búsquedas) está **archivado** desde sep 2025 y renombró a Crush. El canónico vivo es `anomalyco/opencode`. Confusión histórica de marca: SST → Anomaly → Crush.
+- El ecosistema de plugins de memoria de OpenCode es **denso y fragmentado pero convergiendo en MCP + skills + filesystem conventions**. No hay "Memory API" formal todavía — los plugins usan el hook system v2 + MCP + skills.
+- El core team reconoce públicamente que "compaction is a necessary evil for the time being" (k-langton, HN 48978112). Eso legitima el nicho de plugins de memoria.
+- "Big Pickle" como default de Grok free tier fue una sorpresa para la comunidad indie; las respuestas (Envsitter Guard, CC Safety Net, brood-box, jailoc) muestran que **la seguridad en OpenCode se construye plugin a plugin desde la base**, no se impone desde arriba.
+- La delegación batch de 2 subagentes en paralelo fue eficiente: trajeron ~10.000 palabras de investigación bruta cada uno, de las cuales destilé ~6.000 palabras finales por idioma. Ratio útil: ~60%.
+- El floor de 3000 palabras se cumplió sin padding porque el tema da para 4.500+ naturalmente cuando hay 10 plugins con datos cuantitativos + 4 críticas verbatim + 6 referencias a prior art interno.
