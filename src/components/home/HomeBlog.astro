@@ -1,0 +1,38 @@
+---
+import HomeSectionHeader from "./HomeSectionHeader.astro";
+import BlogCard from "../BlogCard.astro";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+  lang: 'en' | 'es';
+  linkPrefix: string;
+  posts: any[];
+}
+
+const { lang, linkPrefix, posts } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="border-t border-border/50 bg-surface py-16 cv-auto fade-in-section dark:border-dark-border/50 dark:bg-dark-surface md:py-24" style="contain-intrinsic-size: 700px;">
+  <div class="container mx-auto max-w-7xl px-4 md:px-6">
+    <HomeSectionHeader
+      number="02"
+      title={t('home.tech_articles')}
+      id="section-blog"
+      href={`${linkPrefix}/blog`}
+      linkText={t('home.view_all_articles')}
+    />
+
+    <p class="mb-10 max-w-2xl text-base text-on-surface-variant dark:text-dark-on-surface-variant md:text-lg">
+      {t('home.tech_articles_desc')}
+    </p>
+
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      {posts.map((post) => (
+        <div class="transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none">
+          <BlogCard post={post} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
