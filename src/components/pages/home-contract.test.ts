@@ -9,56 +9,67 @@ const readSource = (relativePath: string) =>
   fs.readFileSync(path.join(ROOT_DIR, relativePath), 'utf8');
 
 describe('contrato editorial de portada', () => {
-  it('usa un hero editorial sin mockup ni métricas inventadas', () => {
-    const hero = readSource('src/components/Hero.astro');
+  it('el hero es editorial: marca gigante, manifiesto y sin Bento', () => {
+    const hero = readSource('src/components/home/HomeHero.astro');
 
-    expect(hero).not.toContain('phone-mockup');
-    expect(hero).not.toContain('phone-body');
-    expect(hero).not.toContain('60 FPS');
-    expect(hero).not.toContain('12:00');
-    expect(hero).not.toContain('ArceApps Hub');
-    expect(hero).not.toContain('Rendimiento (Kotlin)');
-    expect(hero).not.toContain('blur-3xl');
+    expect(hero).toContain('ArceApps');
+    expect(hero).toContain("t('home.manifesto')");
+    expect(hero).not.toContain('Bento');
     expect(hero).not.toContain('bg-gradient');
-    expect(hero).toContain("t('home.hero.eyebrow')");
-    expect(hero).toContain("t('home.hero.prefix')");
-    expect(hero).toContain("t('home.hero.note')");
+    expect(hero).not.toContain('animate-bounce');
+    expect(hero).toContain('keyboard_arrow_down');
   });
 
-  it('mantiene contenido real, anchors públicos y composición por superficies', () => {
+  it('la home compone las cuatro secciones numeradas en orden editorial', () => {
     const home = readSource('src/components/pages/HomePage.astro');
 
-    expect(home).toContain('latestDevlog.data.title');
-    expect(home).toContain('<Card variant="feature"');
-    expect(home).toContain('href={`${linkPrefix}/devlog/${devlogSlug}`}');
-    expect(home).toContain('id="apps"');
-    expect(home).toContain('apps.map');
-    expect(home).toContain('<ProjectCard');
-    expect(home).not.toContain('spatial-card');
-    expect(home).not.toContain('radial-gradient');
+    const devlog = home.indexOf('<HomeDevlog');
+    const blog = home.indexOf('<HomeBlog');
+    const work = home.indexOf('<HomeFeaturedWork');
+    const cta = home.indexOf('<HomeCta');
+
+    expect(devlog).toBeGreaterThan(-1);
+    expect(blog).toBeGreaterThan(devlog);
+    expect(work).toBeGreaterThan(blog);
+    expect(cta).toBeGreaterThan(work);
+
     expect(home).not.toContain('Bento');
+    expect(home).not.toContain('home.tech_articles');
+    expect(home).toContain('useTranslations');
   });
 
-  it('combina Apps y Projects por fecha y muestra solo tres trabajos recientes', () => {
-    const home = readSource('src/components/pages/HomePage.astro');
+  it('las secciones usan la cabecera numerada compartida', () => {
+    const sectionNames = [
+      'HomeDevlog',
+      'HomeBlog',
+      'HomeFeaturedWork',
+      'HomeCta',
+    ] as const;
 
-    expect(home).toContain("getCollection(\"projects\"");
-    expect(home).toContain('recentWork');
-    expect(home).toContain('.sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf())');
-    expect(home).toContain('.slice(0, 3)');
+    for (const name of sectionNames) {
+      const source = readSource(`src/components/home/${name}.astro`);
+
+      expect(source, `${name} debe usar HomeSectionHeader`).toContain(
+        'HomeSectionHeader',
+      );
+      expect(source, `${name} debe pasar prop number=`).toMatch(/number=/);
+    }
+
+    const header = readSource('src/components/home/HomeSectionHeader.astro');
+    expect(header).toContain('aria-hidden');
+    expect(header).toContain('number');
   });
 
-  it('envía el trabajo más reciente al hero para convertirlo en una entrada visual', () => {
-    const home = readSource('src/components/pages/HomePage.astro');
+  it('declara el copy editorial nuevo en ambos idiomas', () => {
+    const requiredKeys = [
+      'home.manifesto',
+      'home.scroll_hint',
+      'home.work.title',
+      'home.work.cta',
+      'home.devlog.all',
+    ] as const;
 
-    expect(home).toContain('const featuredWork = recentWork[0]');
-    expect(home).toContain('<Hero featuredWork={featuredWork} />');
-  });
-
-  it('declara el copy editorial del hero en ambos idiomas', () => {
-    const heroKeys = ['home.hero.eyebrow', 'home.hero.prefix', 'home.hero.note'] as const;
-
-    for (const key of heroKeys) {
+    for (const key of requiredKeys) {
       expect(ui.en[key], `Falta ${key} en inglés`).toBeTruthy();
       expect(ui.es[key], `Falta ${key} en español`).toBeTruthy();
     }

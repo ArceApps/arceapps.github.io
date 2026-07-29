@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Editorial home redesign">
+  <rect width="1200" height="630" fill="#018786"/>
+  <circle cx="900" cy="315" r="180" fill="#FF9800" opacity="0.9"/>
+  <rect x="60" y="200" width="60" height="60" fill="#FFFFFF" opacity="0.9"/>
+  <text x="60" y="380" font-family="Roboto, sans-serif" font-size="120" font-weight="900" fill="#FFFFFF">ArceApps</text>
+  <text x="60" y="500" font-family="Roboto, sans-serif" font-size="32" font-weight="300" fill="#FFFFFF" opacity="0.9">Editorial home, week 30</text>
+</svg>
