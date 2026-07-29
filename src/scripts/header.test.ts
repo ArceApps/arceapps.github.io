@@ -30,21 +30,21 @@ describe('Header Script', () => {
     localStorage.clear();
   });
 
-  it('should initialize theme toggle listener', () => {
+  it('should initialize theme toggle listener and toggle theme back and forth', () => {
     initHeader();
 
     const themeToggle = document.getElementById('theme-toggle');
     expect(themeToggle).not.toBeNull();
 
-    // Simulate click
+    // First click: light -> dark
     themeToggle?.click();
-
-    // Check if dark mode is toggled (defaults to light usually, so adds dark)
-    // Actually initHeader sets up listener.
-    // The listener does: element.classList.toggle("dark");
-    // Default classList is empty.
     expect(document.documentElement.classList.contains('dark')).toBe(true);
     expect(localStorage.getItem('theme')).toBe('dark');
+
+    // Second click: dark -> light
+    themeToggle?.click();
+    expect(document.documentElement.classList.contains('dark')).toBe(false);
+    expect(localStorage.getItem('theme')).toBe('light');
   });
 
   it('should initialize mobile menu listeners', () => {

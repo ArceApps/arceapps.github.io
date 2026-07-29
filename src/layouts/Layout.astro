@@ -245,9 +245,6 @@ const socialImageURL = new URL(image, Astro.url);
         ) {
           return localStorage.getItem("theme");
         }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
         return "light";
       }
 
@@ -257,10 +254,6 @@ const socialImageURL = new URL(image, Astro.url);
           doc.documentElement.classList.add("dark");
         } else {
           doc.documentElement.classList.remove("dark");
-        }
-        // Ensure localStorage is synced (optional but good for consistency)
-        if (typeof localStorage !== "undefined") {
-          localStorage.setItem("theme", theme);
         }
       }
 

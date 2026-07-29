@@ -121,6 +121,11 @@ export function initHeader() {
   };
 }
 
-// Run on view transitions (fires on initial load too)
+// Run on view transitions and initial DOM load
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initHeader);
+} else {
+  initHeader();
+}
 document.addEventListener("astro:page-load", initHeader);
 document.addEventListener("astro:before-swap", runCleanup);
