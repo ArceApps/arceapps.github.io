@@ -1,6 +1,7 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import BlogCard from "../../../components/BlogCard.astro";
+import PageIntro from "../../../components/PageIntro.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { slugify } from "../../../utils/slugs";
 import { useTranslations } from "../../../i18n/utils";
@@ -62,35 +63,31 @@ export async function getStaticPaths() {
 const { posts, tagName } = Astro.props;
 ---
 
-<Layout title={`Tag: ${tagName} - Blog ArceApps`}>
-  <div class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16 md:py-24">
-    <div class="container mx-auto px-4 text-center">
-      <a href="/blog" class="inline-flex items-center text-primary hover:text-primary/80 transition-colors mb-6 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+<Layout title={t('blog.tag_page_title').replace('{tag}', tagName)}>
+  <section class="border-b border-border bg-surface px-4 py-14 dark:border-dark-border dark:bg-dark-surface md:py-20">
+    <div class="container mx-auto">
+      <a href="/blog" class="mb-8 inline-flex items-center rounded text-primary transition-colors hover:text-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/50 motion-reduce:transition-none">
         <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
         {t('common.back')}
       </a>
-      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-on-surface dark:text-dark-on-surface">
-        Articles with tag: <span class="text-primary">{tagName}</span>
-      </h1>
-      <p class="text-xl text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto">
-        {posts.length} {posts.length === 1 ? 'article found' : 'articles found'}
-      </p>
+      <PageIntro
+        title={t('blog.tag_title').replace('{tag}', tagName)}
+        description={(posts.length === 1 ? t('blog.tag_count_one') : t('blog.tag_count_many')).replace('{count}', String(posts.length))}
+      />
     </div>
-  </div>
+  </section>
 
-  <section class="py-16 md:py-24">
+  <section class="py-14 md:py-20">
     <div class="container mx-auto px-4">
       {posts.length > 0 ? (
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
           {posts.map((post: CollectionEntry<'blog'>) => (
             <BlogCard post={post} />
           ))}
         </div>
       ) : (
-        <div class="text-center py-12">
-          <p class="text-xl text-on-surface-variant dark:text-dark-on-surface-variant">
-            No articles found with this tag.
-          </p>
+        <div class="rounded-2xl border border-border bg-surface-raised px-6 py-14 text-center dark:border-dark-border dark:bg-dark-surface-raised">
+          <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant">{t('blog.tag_empty')}</p>
         </div>
       )}
     </div>

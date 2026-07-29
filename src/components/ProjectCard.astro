@@ -1,6 +1,7 @@
 ---
 import { optimizeGooglePlayImage } from "../utils/image-optimization";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Card from "./Card.astro";
 
 interface Props {
   title: string;
@@ -27,10 +28,11 @@ const t = useTranslations(lang);
 const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
 ---
 
-<a
+<Card
   href={href}
   data-astro-prefetch
-  class="group h-full spatial-card rounded-3xl flex flex-col shadow-sm hover:shadow-2xl hover:scale-[1.02] motion-reduce:transform-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none transform-gpu"
+  variant="app"
+  ariaLabel={title}
 >
   <!-- Image Area -->
   <div class="relative h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -43,7 +45,7 @@ const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
           height="224"
           loading="lazy"
           decoding="async"
-          class="w-full h-full object-cover transform group-hover:scale-110 group-focus-visible:scale-110 motion-reduce:transform-none transition-transform duration-700"
+          class="w-full h-full object-cover"
         />
       ) : (
         <div
@@ -55,7 +57,7 @@ const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
       )
     }
     <div
-      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"
+      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity motion-reduce:transition-none"
       aria-hidden="true"
     >
     </div>
@@ -92,15 +94,8 @@ const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
 
   <!-- Content Area -->
   <div class="p-8 flex flex-col flex-grow relative">
-    <!-- Decorative glow -->
-    <div
-      class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full -mr-4 -mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-      aria-hidden="true"
-    >
-    </div>
-
     <h2
-      class="text-2xl font-bold mb-3 text-on-surface dark:text-gray-100 group-hover:text-primary group-focus-visible:text-primary transition-colors"
+      class="text-2xl font-bold mb-3 text-on-surface dark:text-gray-100 group-hover:text-primary group-focus-visible:text-primary transition-colors motion-reduce:transition-none"
     >
       {title}
     </h2>
@@ -119,7 +114,7 @@ const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
         {pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US')}
       </span>
       <span
-        class="flex items-center text-primary font-bold text-sm group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transform-none transition-transform"
+        class="flex items-center text-primary font-bold text-sm"
       >
         {t('common.read_more')}
         <span class="material-icons ml-1 text-base" aria-hidden="true"
@@ -128,4 +123,4 @@ const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
       </span>
     </div>
   </div>
-</a>
+</Card>

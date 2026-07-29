@@ -19,7 +19,7 @@ reference_id: "f3a1b8d2-4e7c-4a9b-b1c3-7d8e9f0a1b2c"
 
 
 
-> **Lecturas relacionadas en el blog:** [Inside Superpowers: el framework que fuerza a la IA a ingenierizar](/blog/blog-superpowers-deep-dive) · [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/blog-mattpocock-skills) · [Power Up Your AI Agents with Skills](/blog/building-ai-agent-skills) · [Dynamic Context: el coste oculto de los skills siempre activos](/blog/ai-agent-skills-dynamic-context) · [AI Code Reviews: revisando código generado por agentes](/blog/ai-code-reviews)
+> **Lecturas relacionadas en el blog:** [Inside Superpowers: el framework que fuerza a la IA a ingenierizar](/blog/blog-superpowers-deep-dive) · [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/blog-mattpocock-skills) · [Power Up Your AI Agents with Skills](/blog/agentes-ia-skills) · [Dynamic Context: el coste oculto de los skills siempre activos](/blog/agent-skills-contexto-dinamico) · [AI Code Reviews: revisando código generado por agentes](/blog/code-review-ia)
 
 ## Conoces a ese compañero. El de la coleta larga, las gafas ovaladas, el que lleva en la empresa más tiempo que el control de versiones
 
@@ -35,9 +35,9 @@ En este artículo voy a hacer lo que no se ve en LinkedIn: voy a leer el reposit
 
 Si llevas meses programando con Claude Code, Codex, Cursor, Cline o Windsurf, ya conoces la escena. Pides un validador de email y recibes una clase de 27 líneas con un envoltorio, un regex que casca y, si tienes mala suerte, una discusión sobre cómo manejar Unicode. Pides un contador y te montan un *dashboard* con animaciones. Pides una caché y te construyen una clase de 120 líneas con TTL, eviction policy y tests de concurrencia. Tú querías `lru_cache`. Te han dado una arquitectura.
 
-No es un bug. Es el comportamiento por defecto de los modelos entrenados para complacer. Ya lo analizamos hace tiempo en [From Copilot to Autonomous Agents](/blog/coding-with-ai-agents): la diferencia entre sugerir y actuar cambió el rol del desarrollador, pero también cambió la cantidad de código que se genera por interacción. Cada prompt dispara un sesgo de "más completo es mejor" que el modelo difícilmente va a corregir solo.
+No es un bug. Es el comportamiento por defecto de los modelos entrenados para complacer. Ya lo analizamos hace tiempo en [From Copilot to Autonomous Agents](/blog/ai-agents-coding): la diferencia entre sugerir y actuar cambió el rol del desarrollador, pero también cambió la cantidad de código que se genera por interacción. Cada prompt dispara un sesgo de "más completo es mejor" que el modelo difícilmente va a corregir solo.
 
-> **Lectura recomendada:** [Effective Context for AI: Prompt Engineering](/blog/effective-context-ai) cubre las 4 C's del contexto (capacidad, contexto, constraints, chain-of-thought) y por qué poner "sé minimalista" en un prompt no funciona tan bien como crees.
+> **Lectura recomendada:** [Effective Context for AI: Prompt Engineering](/blog/contexto-efectivo-ia) cubre las 4 C's del contexto (capacidad, contexto, constraints, chain-of-thought) y por qué poner "sé minimalista" en un prompt no funciona tan bien como crees.
 
 Aquí es donde Ponytail entra a hacer el trabajo sucio: en lugar de pedirle al modelo que sea minimalista (que ignora), le inyecta una escalera de decisión persistente que el agente recorre **antes de escribir una sola línea**. No es prompt engineering. Es un *skill* —un archivo markdown con instrucciones siempre activas— que sobrevive a toda la conversación.
 
@@ -295,9 +295,9 @@ Y si alguien te dice que esto es solo un prompt muy bien escrito, dile que sí. 
 ### Artículos previos del blog (Prior Art enlazado)
 - [Inside Superpowers: el framework que fuerza a la IA a ingenierizar](/blog/blog-superpowers-deep-dive)
 - [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/blog-mattpocock-skills)
-- [Power Up Your AI Agents with Skills: de Gemini a Copilot](/blog/building-ai-agent-skills)
-- [Effective Context for AI: Prompt Engineering](/blog/effective-context-ai)
-- [AI Code Reviews: revisando código generado por agentes](/blog/ai-code-reviews)
-- [Dynamic Context: el coste oculto de los skills siempre activos](/blog/ai-agent-skills-dynamic-context)
-- [From Copilot to Autonomous Agents: el flujo en 2025](/blog/coding-with-ai-agents)
-- [Refactoring Legacy Code con IA](/blog/refactoring-legacy-code-ai)
+- [Power Up Your AI Agents with Skills: de Gemini a Copilot](/blog/agentes-ia-skills)
+- [Effective Context for AI: Prompt Engineering](/blog/contexto-efectivo-ia)
+- [AI Code Reviews: revisando código generado por agentes](/blog/code-review-ia)
+- [Dynamic Context: el coste oculto de los skills siempre activos](/blog/agent-skills-contexto-dinamico)
+- [From Copilot to Autonomous Agents: el flujo en 2025](/blog/ai-agents-coding)
+- [Refactoring Legacy Code con IA](/blog/refactoring-ia)

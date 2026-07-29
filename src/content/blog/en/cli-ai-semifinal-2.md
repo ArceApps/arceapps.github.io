@@ -12,7 +12,7 @@ canonical: "https://arceapps.com/blog/cli-ai-semifinal-2/"
 reference_id: "CLI-AI-SF2-2026-REWRITE-002"
 ---
 
-> **Continuation of the AI CLI Tools Tournament**. After testing the pure agnostic contenders in Semifinal 1 (where Cline and Claude Code earned their direct tickets to the final), we dive straight into the second block. This Semifinal 2 pits tools that prioritize vertical integration and dedicated ecosystems against each other. If you want to understand how we got here, I recommend reading about [Loop Engineering](/blog/loop-engineering-desarrollo-movil) and reviewing our comparative analysis in [ChatGPT, Claude, or Gemini in 2026](/blog/chatgpt-claude-gemini-2026).
+> **Continuation of the AI CLI Tools Tournament**. After testing the pure agnostic contenders in Semifinal 1 (where Cline and Claude Code earned their direct tickets to the final), we dive straight into the second block. This Semifinal 2 pits tools that prioritize vertical integration and dedicated ecosystems against each other. If you want to understand how we got here, I recommend reading about [Loop Engineering](/blog/loop-engineering-mobile-development) and reviewing our comparative analysis in [ChatGPT, Claude, or Gemini in 2026](/blog/chatgpt-claude-gemini-2026).
 
 ---
 

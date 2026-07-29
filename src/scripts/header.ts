@@ -2,8 +2,13 @@ import { triggerHapticFeedback } from "./haptics";
 
 let cleanup: (() => void) | undefined;
 
+function runCleanup() {
+  cleanup?.();
+  cleanup = undefined;
+}
+
 export function initHeader() {
-  if (cleanup) cleanup();
+  runCleanup();
 
   // Theme Toggle Logic
   const themeToggle = document.getElementById("theme-toggle");
@@ -25,64 +30,65 @@ export function initHeader() {
   const menuToggle = document.getElementById("menu-toggle");
   const mobileMenu = document.getElementById("mobile-menu");
 
-  let cleanupMenuListeners: (() => void) | undefined;
   let handleLinkClick: (() => void) | undefined;
-  let toggleMenu: ((e: Event) => void) | undefined;
+  let handleMenuToggle: ((event: Event) => void) | undefined;
+  let handleOutsideClick: ((event: MouseEvent) => void) | undefined;
+  let handleEscape: ((event: KeyboardEvent) => void) | undefined;
 
   if (menuToggle && mobileMenu) {
     const closeMenu = () => {
       mobileMenu.classList.add("hidden");
       menuToggle.setAttribute("aria-expanded", "false");
+      mobileMenu.setAttribute("aria-hidden", "true");
+      mobileMenu.setAttribute("data-state", "closed");
       const icon = menuToggle.querySelector(".material-icons");
       if (icon) icon.textContent = "menu";
-
-      if (cleanupMenuListeners) {
-        cleanupMenuListeners();
-        cleanupMenuListeners = undefined;
-      }
+      menuToggle.focus();
     };
 
     const openMenu = () => {
       mobileMenu.classList.remove("hidden");
       menuToggle.setAttribute("aria-expanded", "true");
+      mobileMenu.setAttribute("aria-hidden", "false");
+      mobileMenu.setAttribute("data-state", "open");
       const icon = menuToggle.querySelector(".material-icons");
       if (icon) icon.textContent = "close";
-
-      // Add close-on interaction listeners
-      const handleOutsideClick = (e: MouseEvent) => {
-        if (
-          !mobileMenu.contains(e.target as Node) &&
-          !menuToggle.contains(e.target as Node)
-        ) {
-          closeMenu();
-        }
-      };
-
-      const handleEscape = (e: KeyboardEvent) => {
-        if (e.key === "Escape") closeMenu();
-      };
-
-      // Use requestAnimationFrame to avoid immediate trigger from the toggle click
-      requestAnimationFrame(() => {
-        document.addEventListener("click", handleOutsideClick);
-        document.addEventListener("keydown", handleEscape);
-      });
-
-      cleanupMenuListeners = () => {
-        document.removeEventListener("click", handleOutsideClick);
-        document.removeEventListener("keydown", handleEscape);
-      };
+      mobileMenu.querySelector<HTMLAnchorElement>("a[href]")?.focus();
     };
 
-    toggleMenu = (e: Event) => {
-      e.stopPropagation();
+    handleMenuToggle = (event: Event) => {
+      event.stopPropagation();
       triggerHapticFeedback();
-      const isHidden = mobileMenu.classList.contains("hidden");
-      if (isHidden) openMenu();
-      else closeMenu();
+      const isOpen = mobileMenu.getAttribute("data-state") === "open";
+      if (isOpen) closeMenu();
+      else openMenu();
     };
 
-    menuToggle.addEventListener("click", toggleMenu);
+    handleOutsideClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (
+        mobileMenu.getAttribute("data-state") === "open" &&
+        target instanceof Node &&
+        !mobileMenu.contains(target) &&
+        !menuToggle.contains(target)
+      ) {
+        closeMenu();
+      }
+    };
+
+    handleEscape = (event: KeyboardEvent) => {
+      if (
+        event.key === "Escape" &&
+        mobileMenu.getAttribute("data-state") === "open"
+      ) {
+        event.preventDefault();
+        closeMenu();
+      }
+    };
+
+    menuToggle.addEventListener("click", handleMenuToggle);
+    document.addEventListener("click", handleOutsideClick);
+    document.addEventListener("keydown", handleEscape);
 
     // Close on navigation (link click)
     const menuLinks = mobileMenu.querySelectorAll("a");
@@ -96,10 +102,15 @@ export function initHeader() {
   cleanup = () => {
     themeToggle?.removeEventListener("click", handleThemeToggle);
 
-    if (menuToggle && toggleMenu) {
-      menuToggle.removeEventListener("click", toggleMenu);
+    if (menuToggle && handleMenuToggle) {
+      menuToggle.removeEventListener("click", handleMenuToggle);
     }
-    if (cleanupMenuListeners) cleanupMenuListeners();
+    if (handleOutsideClick) {
+      document.removeEventListener("click", handleOutsideClick);
+    }
+    if (handleEscape) {
+      document.removeEventListener("keydown", handleEscape);
+    }
 
     const menuLinks = mobileMenu?.querySelectorAll("a");
     if (menuLinks && handleLinkClick) {
@@ -112,4 +123,4 @@ export function initHeader() {
 
 // Run on view transitions (fires on initial load too)
 document.addEventListener("astro:page-load", initHeader);
-document.addEventListener("astro:before-swap", () => cleanup && cleanup());
+document.addEventListener("astro:before-swap", runCleanup);

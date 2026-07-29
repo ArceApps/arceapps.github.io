@@ -35,6 +35,7 @@ const shareLinks = [
 const shareLabel = lang === 'es' ? 'Compartir' : 'Share';
 const shareAriaLabel = lang === 'es' ? 'Compartir esta entrada' : 'Share this post';
 const fallbackLabel = lang === 'es' ? 'Compartir esta entrada:' : 'Share this post:';
+const shareOnLabel = lang === 'es' ? 'Compartir en' : 'Share on';
 ---
 
 <div class="flex flex-col sm:flex-row items-center gap-4 my-8 p-4 bg-surface-variant/30 dark:bg-dark-surface-variant/30 rounded-xl border border-gray-200 dark:border-gray-800">
@@ -46,7 +47,7 @@ const fallbackLabel = lang === 'es' ? 'Compartir esta entrada:' : 'Share this po
   <!-- Web Share API button (shown when supported) -->
   <button
     id="web-share-btn"
-    class="hidden flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-medium text-sm transition-all transform hover:scale-105 shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+    class="hidden flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white font-medium text-sm transition-colors motion-reduce:transition-none shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
     aria-label={shareAriaLabel}
   >
     <span class="material-icons text-base" aria-hidden="true">share</span>
@@ -60,8 +61,8 @@ const fallbackLabel = lang === 'es' ? 'Compartir esta entrada:' : 'Share this po
         href={link.url}
         target="_blank"
         rel="noopener noreferrer"
-        class={`flex items-center gap-2 px-3 py-1 rounded-lg text-white font-medium text-xs transition-all transform hover:scale-105 shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${link.color}`}
-        aria-label={`Share on ${link.name}`}
+        class={`flex items-center gap-2 px-3 py-1 rounded-lg text-white font-medium text-xs transition-colors motion-reduce:transition-none shadow-md focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none ${link.color}`}
+        aria-label={`${shareOnLabel} ${link.name}`}
       >
         <svg viewBox="0 0 24 24" class="w-4 h-4 fill-current" aria-hidden="true">
           <path d={link.path} />

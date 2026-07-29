@@ -1,0 +1,320 @@
+# Rediseño visual de ArceApps — Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use `specai:specai-subagent-driven-development` (recommended) or `specai:specai-executing-plans` to execute this plan. Keep the designs, plan, tasks and verify documents synchronized after every task and commit.
+> Acceptance criteria live ONLY in `20260723-arceapps-visual-redesign-verify.md`.
+
+**Goal:** Evolucionar la web de ArceApps hacia una experiencia de “indie software studio” más moderna, atractiva y coherente, conservando el contenido, las URLs, Astro estático y el soporte EN/ES.
+
+**Architecture:** Consolidar tokens semánticos en `global.css`, introducir una primitiva pequeña de superficie (`Card.astro`) y un encabezado común de listados (`PageIntro.astro`), y migrar portada, tarjetas, navegación y páginas de detalle hacia esa gramática. Las rutas seguirán cargando datos, pero compartirán composición visual y traducciones.
+
+**Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
+
+**Status:** ✅ COMPLETADO — Tasks 1–11 completadas; deuda técnica residual solo en `CONTACT_FORM_KEY` y warnings conocidos.
+
+## Dependency & Package Validation
+
+- No se añadirán paquetes, fuentes, icon libraries ni herramientas de CSS.
+- Se reutilizarán las versiones existentes de Astro, Tailwind, DaisyUI, Material Icons, fuentes y Vitest.
+- La validación previa de `package.json` confirma que los comandos disponibles son `pnpm build`, `pnpm test`, `pnpm dev` y `pnpm preview`.
+- El plan no depende de una API externa ni de credenciales.
+
+## Constraints & Guardrails
+
+- Todas las interacciones, textos de documentación y registros deben estar en español; nombres de código y rutas, en inglés.
+- Mantener las rutas raíz inglesas y las rutas españolas bajo `/es`.
+- No cambiar slugs, contenido editorial, esquemas de colecciones ni frontmatter.
+- Usar exclusivamente los colores de marca existentes: teal `#018786` y orange `#FF9800`, con derivados accesibles declarados en tokens.
+- No usar clases visuales inexistentes como `bg-primary-dark` o `elevation-4`.
+- No introducir más blur, gradients, rotaciones o escalados decorativos que los que el sistema visual pueda justificar.
+- Todo estado interactivo debe funcionar con teclado, foco visible y `prefers-reduced-motion`.
+- Mantener fuera de esta feature la corrección de `CONTACT_FORM_KEY`, los 274 enlaces fallidos y los fallos baseline de tests salvo que una migración los empeore.
+- No crear imágenes nuevas; reutilizar los assets existentes.
+- Después de cada tarea se actualizarán tasks, plan y verify con el estado real antes de continuar.
+
+## Architectural Notes
+
+1. `Card.astro` será una primitiva pequeña con variantes `article`, `app` y `feature`; no contendrá carga de colecciones ni lógica de negocio.
+2. `PageIntro.astro` recibirá textos ya localizados y resolverá solo la presentación del encabezado de un listado.
+3. Las rutas EN/ES conservarán su responsabilidad de resolver datos y paths; los componentes compartidos recibirán `lang` cuando necesiten traducir o construir enlaces.
+4. El hero dejará de simular un teléfono y una métrica de producto. La pieza destacada será contenido real obtenido de las colecciones actuales o una composición editorial sin datos ficticios.
+5. El detalle de artículo tendrá una columna de lectura de aproximadamente 720–760px; los medios no heredarán un límite global de 500px.
+6. El detalle de app mantendrá Google Play como CTA primaria y relegará rating, versión, fecha, tags y repositorio a metadatos secundarios.
+7. La deuda de `.material-card` sin uso y el baseline técnico de `CONTACT_FORM_KEY`/tests/enlaces se registrará, pero no se declarará resuelta por esta feature.
+
+## Delta de requisitos
+
+### ADDED
+
+- Un contrato semántico de tokens para superficie, contenido, borde, foco, radio y elevación.
+- Una primitiva compartida de cards con variantes `article`, `app` y `feature`.
+- Un componente común para intros de listados.
+- Strings de UI faltantes para inglés y español.
+- Verificación explícita de responsive, teclado, tema oscuro y movimiento reducido en las páginas rediseñadas.
+
+### MODIFIED
+
+- La portada pasa de una composición Bento/mockup a una jerarquía editorial con contenido real.
+- Cards, hero, header, listados y detalles comparten superficies, spacing, foco y transiciones.
+- La navegación móvil pasa a un panel visual delimitado con estado activo claro.
+- Los detalles de app y artículo priorizan, respectivamente, conversión y lectura.
+- La composición EN/ES delega en los mismos componentes visuales.
+
+### REMOVED
+
+- Mockup CSS de teléfono, estadísticas ficticias y decoración Bento que no aporten contenido real.
+- Hover global que cambia el peso de todos los encabezados.
+- Escalados, giros y pulsos decorativos no esenciales en cards y detalles.
+
+## Orden de ejecución y checkpoints
+
+1. Contrato de tokens y primitivas visuales.
+2. Strings UI y estados localizados.
+3. Header y navegación móvil.
+4. Portada y hero.
+5. Listados de Apps, Blog y Bitácora.
+6. Detalle de app.
+7. Detalle de artículo y prose.
+8. Responsive, accesibilidad, motion y auditoría de regresión.
+9. Verificación final y actualización del estado de los documentos.
+
+Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tarea supera complejidad 6 o requiere cambiar la dirección visual aprobada, se detiene la ejecución y se solicita confirmación antes de editar.
+
+## Execution Log
+
+### [2026-07-23] Preparación documental
+
+**Done:** Auditoría visual y arquitectónica completada; se documentó el alcance de los hallazgos 1–10 y se separó la deuda 11–12. Se prepararon los diseños, el plan, las tareas y la verificación sin implementar código.
+
+**Baseline histórico (previo a Tasks 4–9):** `pnpm build` pasa y genera 1.043 páginas estáticas/301 imágenes OG con el warning conocido de `CONTACT_FORM_KEY`. `pnpm test` tenía entonces 2 ficheros, 276 fallos y 111 tests correctos de 387. El recuento final de cierre queda actualizado en la verificación final: 1 fichero, 274 fallos y 139 tests correctos de 413.
+
+**Outcome:** 🟡 Pendiente de aprobación del usuario.
+
+**Problems & fixes:** El agente documental delegado no respondió dentro del tiempo disponible; el orquestador redactó la documentación localmente manteniendo el contrato de documentos de SpecAI.
+
+### [2026-07-23 22:40] Verificación del baseline después de crear documentación
+
+**Done:** `pnpm build` volvió a pasar con 1.043 páginas y 301 imágenes OG. Este registro conserva el baseline histórico previo a Tasks 4–9: 2 ficheros fallidos, 276 tests fallidos y 111 correctos de 387. El cierre final registra 1 fichero fallido, 274 fallos y 139 correctos de 413. `git diff --check` pasa.
+
+**Outcome:** ✅ Proyecto sin regresión atribuible a la documentación.
+
+**Problems & fixes:** El build requiere ejecución fuera del sandbox porque `tsx` no puede abrir su pipe IPC con `EPERM`; la ejecución autorizada completó correctamente. El warning de `CONTACT_FORM_KEY` y los fallos de header/enlaces siguen fuera del alcance.
+
+### [2026-07-23 23:01] Task 1: Establecer el contrato de tokens visuales
+
+**Archivos principales:** `src/styles/global.css`, `src/pages/404.astro`, `src/layouts/Layout.astro`, `src/components/pages/HomePage.astro`, `src/styles/design-contract.test.ts`
+
+**TDD:** RED → GREEN, 3/3 tests contractuales.
+
+**Build:** Astro exit 0, 1043 páginas generadas.
+
+**Code review:** CLEAN.
+
+**Problemas/Fixes:** Se corrigieron los hallazgos del code review. Permanece el warning conocido `CONTACT_FORM_KEY`.
+
+**Outcome:** success
+
+### [2026-07-23] Task 2: Crear las primitivas de superficie y migrar cards
+
+**Archivos implementados:** `src/components/Card.astro` y `src/components/PageIntro.astro`.
+
+**Archivos migrados:** `src/components/BlogCard.astro`, `src/components/ProjectCard.astro` y `src/components/AppCard.astro`, conservando sus enlaces y datos.
+
+**Pruebas:** `pnpm exec vitest run src/components/card-contract.test.ts` pasa 3/3; `pnpm build` termina con Astro exit 0 y genera 1043 páginas.
+
+**Code review:** revisión independiente CLEAN.
+
+**Dependencias y baseline:** No se introdujeron dependencias. El warning conocido `CONTACT_FORM_KEY` permanece sin cambios como baseline.
+
+**Outcome:** success
+
+### [2026-07-23] Task 3: Completar strings y rutas localizadas
+
+**Localización:** Se añadieron claves de UI equivalentes en EN/ES y se localizaron el `Header` y las páginas dinámicas de Apps y Blog en ambos idiomas.
+
+**Pruebas:** localization-contract + utils pasan 27/27; `pnpm build` termina con Astro exit 0 y genera 1043 páginas.
+
+**Code review:** CLEAN.
+
+**Dependencias y baseline:** No se introdujeron dependencias nuevas. Permanece el warning conocido `CONTACT_FORM_KEY`.
+
+**Outcome:** success
+
+### [2026-07-23] Task 4: Rediseñar header y navegación móvil
+
+**Header y navegación:** Se implementó un panel móvil delimitado y localizado, estado activo con `aria-current` y borde, y gestión coherente de `aria-hidden`/`data-state`. La interacción cubre foco, Escape, click exterior y cleanup.
+
+**Pruebas:** header test 3/3; `pnpm build` termina con Astro exit 0 y genera 1043 páginas.
+
+**Code review:** CLEAN.
+
+**Entorno de pruebas y baseline:** El mock de `localStorage` solo estabiliza el entorno jsdom de Vitest y no modifica producción. Permanece el warning conocido `CONTACT_FORM_KEY`.
+
+**Outcome:** success
+
+### [2026-07-23] Task 5: Simplificar hero y portada
+
+**Archivos principales:** `src/components/Hero.astro`, `src/components/pages/HomePage.astro` y `src/i18n/ui.ts`.
+
+**Decisiones:** Se eligieron la última entrada real de Bitácora y las tres apps actuales. El hero pasó a una composición editorial sin mockup, métricas, glows ni gradientes; `HomePage` usa `Card` en variante `feature`, `apps.map` con `ProjectCard` y un CTA sólido. Se conservaron el contenido real, los anchors y la composición localizada EN/ES. El checkpoint final fue aprobado explícitamente por el usuario.
+
+**Pruebas:** contrato de portada 3/3.
+
+**Build:** Astro exit 0, 1043 páginas generadas; permanece el warning conocido `CONTACT_FORM_KEY` como baseline.
+
+**Code review:** CLEAN.
+
+**Inspección visual:** portada EN/ES revisada en desktop y portada ES revisada en móvil a 360px, sin overflow horizontal.
+
+**Outcome:** success
+
+### [2026-07-23] Task 6: Homogeneizar listados de Apps, Blog y Bitácora
+
+**Resultado:** Se completó la actualización visual, localizada y responsive de Apps, Blog y Bitácora EN/ES, incluida la migración de la Bitácora a tarjetas tipo `Card`.
+
+**Evidencia:** Contrato de listados 4/4; `pnpm build` termina con Astro exit 0 y genera 1043 páginas; `git diff --check` pasa; revisión visual desktop/móvil y revisión independiente CLEAN. Permanecen pendientes los criterios globales de detalles, header desktop y responsive completo.
+
+**Outcome:** success
+
+### 2026-07-23 — Task 6: Homogeneizar listados Apps/Blog/Bitácora
+
+- Commit: `1041e95` — `feat: unify localized listing layouts`
+- Outcome: **success**
+- Evidencia: contrato listings 4/4, `pnpm build` exitoso con 1043 páginas, `git diff --check`, revisión independiente CLEAN y revisión visual EN/ES sin overflow.
+
+### [2026-07-24] Task 7: Reordenar el detalle de app
+
+**Archivos implementados:** `src/pages/apps/[...slug].astro`, `src/pages/es/apps/[...slug].astro` y `src/components/app-detail-contract.test.ts`.
+
+**Implementación:** Se separó el contenido primario de los metadatos secundarios y se priorizó la secuencia nombre → propuesta de valor → hero → Google Play → prueba visual en EN y ES.
+
+**Correcciones tras revisión:** La revisión detectó un orden visual incorrecto provocado por reglas `order` y tags demasiado prominentes. Se corrigió el orden visual y se reagruparon los tags junto a los metadatos secundarios. También se corrigió el recorte inesperado del hero y se sustituyó la galería inclinada por una composición estable sin overflow horizontal. Finalmente, rating, versión, fecha y tags quedaron después de Google Play dentro del panel secundario.
+
+**Pruebas:** `src/components/app-detail-contract.test.ts` pasa 3/3.
+
+**Build:** `pnpm build` termina con Astro exit 0 y genera 1043 páginas.
+
+**Verificación adicional:** `git diff --check` pasa; revisión visual de detalles EN/ES en desktop y móvil; labels, `alt`, enlaces externos, foco, tema y rutas `/es` comprobados.
+
+**Code review:** revisión final CLEAN.
+
+**Baseline:** El warning conocido `CONTACT_FORM_KEY` permanece sin cambios.
+
+**Outcome:** success
+
+### 2026-07-24 — Commit de Task 7
+
+- Commit: `2b5ac85` — `feat: reorder app detail presentation`
+- Contenido: páginas de detalle EN/ES, contrato 3/3 y documentación living.
+- Verificación: build Astro con 1043 páginas, `git diff --check` y revisión CLEAN.
+- Pendiente: Task 8 y la verificación global.
+- Outcome: **success**
+
+### 2026-07-24 — Task 8: Convertir el detalle de artículo en lectura editorial
+
+**Cambios:** Se separaron encabezado, hero, TOC y columna de lectura; se mantuvieron breadcrumbs, progreso, compartir, navegación y anchors. El detalle EN/ES adoptó una composición editorial con columna de lectura, medios responsive y labels localizados.
+
+**Corrección:** La regla CSS editorial no se aplicó durante la primera revisión por un servidor obsoleto. Se corrigió el servidor obsoleto y se confirmó la aplicación correcta de la regla.
+
+**Pruebas:** El contrato `blog-detail` pasa 3/3 y `git diff --check` pasa.
+
+**Build:** `pnpm build` termina con exit 0, genera 1043 páginas y 301 OG, y conserva el warning conocido `CONTACT_FORM_KEY`.
+
+**Revisión visual:** EN desktop a 1440px con reading column de 760px, grid 200/760, TOC con 45 enlaces, sin overflow, `object-fit: contain` y sin `main` anidado. ES móvil a 360px con `readingWidth=314px`, TOC móvil con 45 enlaces, aside oculto, sin overflow, progreso activo y etiquetas localizadas.
+
+**Code review:** CLEAN.
+
+**Outcome:** success
+
+### 2026-07-24 — Commit de Task 8
+
+- **Commit:** `25675f6` — `feat: reshape article detail reading layout`
+- **Contenido:** Páginas EN/ES de detalle de artículo, estilos editoriales, `SocialShare`/`PostNavigation`, contrato `blog-detail` y documentos living.
+- **Verificación:** Build Astro: 1043 páginas/301 OG; contrato 3/3; diff check y code review CLEAN.
+- **Pendiente:** Tasks 9–10 y verificación global.
+- **Outcome:** `success`
+
+### 2026-07-24 — Task 9: Auditoría transversal de responsive, accesibilidad y motion
+
+**Auditoría inicial:** Se buscaron y clasificaron usos de `hover`, `scale`, `rotate`, `blur` y `animation`.
+
+**TDD:** La fase RED produjo los 2 fallos esperados. La fase GREEN quedó en 3/3 mediante `src/components/cross-cutting-contract.test.ts`.
+
+**Cambios y corrección:** `global.css` incorpora el fallback global de `prefers-reduced-motion: reduce`. `AppCard`, `BlogCard`, `ProjectCard`, `PostNavigation` y `SocialShare` eliminan escalados, desplazamientos y adornos decorativos sin valor informativo, conservando transiciones cromáticas, `focus-visible`, ARIA y URLs. Se corrigió el hallazgo de especificidad eliminando transforms y se reforzó el contrato contra `transform` en hover.
+
+**Revisión visual y estructural:** Se revisaron las rutas EN/ES a 360, 768 y 1280 px en portada, listados, detalle de app y artículo, sin overflow. Se verificó `main=1`, controles `aria-expanded`/`aria-controls` válidos y 0 focos sin nombre tras excluir checkboxes disabled de listas Markdown.
+
+**Verificación:** `pnpm build` termina con exit 0 y genera 1043 páginas y 301 OG. `git diff --check` pasa. Code review final CLEAN tras comprobar foco y ARIA por control.
+
+**Baseline:** El warning `CONTACT_FORM_KEY` permanece sin cambios.
+
+**Outcome:** success
+
+### 2026-07-24 — Commit de Task 9
+
+- Commit: `a4e9055` — `feat: audit responsive accessibility and motion`
+- Contenido: fallback global reduced motion, eliminación de transforms y adornos decorativos en `AppCard`, `BlogCard`, `ProjectCard`, `PostNavigation` y `SocialShare`, contrato cross-cutting 3/3 y documentos living.
+- Verificación: build Astro con 1043 páginas/301 OG; suite completa mantiene baseline de `links-validation` con 274 fallos; `git diff --check` y code review CLEAN.
+- Pendiente: Task 10 y verificación global.
+- Outcome: **success**
+
+### 2026-07-25 — Task 10: Verificación final y cierre documental
+
+**Done:** Se actualizaron los tres documentos living de la feature sin cambiar código ni decisiones de diseño. Task 10 queda marcada como DONE con sus cinco pasos completos; la deuda de los hallazgos 11 (`.material-card` sin uso) y 12 (`CONTACT_FORM_KEY` y fallos existentes de tests/enlaces) permanece separada y no bloqueante.
+
+**Verificación observable:** `pnpm build` exit 0, 1043 páginas y 301 imágenes OG; warning conocido `CONTACT_FORM_KEY` ausente. `pnpm test` exit 1 únicamente en `src/utils/links-validation.test.ts`, con 274 fallos, 139 pasados de 413; se mantiene como baseline/out-of-scope y la suite global no se marca verde. `pnpm exec vitest run src/i18n/utils.test.ts` exit 0, 24/24. `git diff --check` exit 0. `rg --files docs/specai/20260723-arceapps-visual-redesign` confirma designs, plan, tasks y verify.
+
+**Revisiones:** `spec-compliance-reviewer PASS`; `verifier PASS`, autorizando el cierre.
+
+**Outcome:** ✅ success — cierre documental autorizado con deuda técnica no bloqueante.
+
+### 2026-07-25T00:06:40+02:00 — Aceptación del usuario y comprobación de finalización
+
+**Aceptación explícita:** `acepto`.
+
+**Finishing-a-development-branch:** La comprobación obligatoria de la suite completa devuelve `pnpm test` exit 1: 1 fichero fallido (`src/utils/links-validation.test.ts`), 274 fallos y 139 pasados de 413. Por tanto, el Gate F1 (tests completos con 0 fallos) no se cumple.
+
+**Integración:** No se hace merge ni PR. El estado global del rediseño permanece `✅ COMPLETADO`, pero la integración queda bloqueada hasta resolver la suite completa. No se realizó commit.
+
+**Outcome:** ⚠️ Cierre aceptado; integración pendiente por Gate F1 no cumplido.
+
+### 2026-07-29 — Task 11: restaurar integridad de enlaces internos del blog
+
+**RED:** Se confirmó correctamente el fallo inicial del contrato en `src/utils/blog-link-resolution.test.ts` por import ausente.
+
+**GREEN:** La implementación pasó primero 3/3 casos y después 4/4 tras incorporar `parseBlogRedirects`. `src/utils/links-validation.test.ts` pasa 2/2.
+
+**Correcciones:** Se canonicalizaron enlaces EN/ES, se resolvieron trailing slashes y aliases definidos mediante redirects, se corrigieron enlaces cross-locale permitidos y se eliminaron enlaces a git-worktrees sin equivalente local.
+
+**Verificación:** `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0, genera 1043 páginas y 301 imágenes OG, y mantiene el warning conocido de `CONTACT_FORM_KEY` junto con los warnings no relacionados de `glob-loader` por IDs duplicados; `git diff --check` pasa.
+
+**Checkpoint:** El usuario aprobó continuar con “podemos seguir entonces?” al inicio de esta ejecución; la aprobación fue confirmada antes de editar y queda registrada con timestamp `2026-07-29T09:06:41+02:00`.
+
+**Code review:** CLEAN.
+
+**Estado:** La corrección está implementada y verificada técnicamente. El commit y el verifier final permanecen pendientes; por tanto, Task 11 aún no se marca como DONE.
+
+### 2026-07-29 — Commit de Task 11
+
+- **Commit:** `93d86a6` — `fix: restore blog link integrity`
+- **Contenido:** Resolver de enlaces, contratos, validador, canonicalización de enlaces EN/ES y actualización de los documentos living de Task 11.
+- **Verificación:** `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0 y genera 1043 páginas y 301 imágenes OG; `git diff --check` pasa; code review CLEAN.
+- **Estado:** El step de commit queda completado. El verifier final permanece pendiente.
+- **Outcome:** 🟡 Task 11 implementada y commit creada; cierre formal pendiente del verifier.
+
+### 2026-07-29 — Evidencia dirigida del criterio 9
+
+**Comando:** `pnpm exec vitest run src/utils/blog-link-resolution.test.ts src/utils/links-validation.test.ts`
+
+**Resultado:** 2 archivos PASS, 6 tests PASS. `git diff --check` PASS.
+
+**Cobertura explícita:** El contrato verifica el alias válido `blog-superpowers-deep-dive` → `superpowers-deep-dive`, la normalización de trailing slash y un slug inexistente que conserva el estado `missing`.
+
+**Estado:** El verifier previo quedó `UNVERIFIED` únicamente por falta de evidencia explícita del criterio 9. Se solicita una segunda verificación del verifier con esta evidencia dirigida. Task 11 no se marca todavía como `DONE`.
+
+### 2026-07-29 — Verifier final de Task 11
+
+**Resultado:** `PASS`. El verifier final autorizó marcar Task 11 como `DONE`.
+
+**Evidencia:** Commit `93d86a6`; `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0 y genera 1043 páginas y 301 imágenes OG; `git diff --check` pasa; los tests dirigidos pasan con 2 archivos y 6 tests; code review CLEAN. El criterio 9 queda cubierto explícitamente por los casos de alias válido (`blog-superpowers-deep-dive` → `superpowers-deep-dive`), trailing slash y slug inexistente con estado `missing`.
+
+**Outcome:** ✅ Task 11 cerrada y autorizada por verifier. La feature completa queda en estado `✅ COMPLETADO`.

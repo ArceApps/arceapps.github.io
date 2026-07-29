@@ -556,7 +556,7 @@ El motivo: las notas que más me importa que estén **exactamente como las quier
 
 ### Por Qué forgetful como Segunda Capa
 
-La razón principal: **el formato Agent Skills SKILL.md es portable**. forgetful puede importar/exportar skills en este formato, que es el estándar que están adoptando Claude Code, Codex y otros agentes modernos (cubrimos esto en el [artículo sobre Skills dinámicas](/blog/ai-agent-skills-dynamic-context/)).
+La razón principal: **el formato Agent Skills SKILL.md es portable**. forgetful puede importar/exportar skills en este formato, que es el estándar que están adoptando Claude Code, Codex y otros agentes modernos (cubrimos esto en el [artículo sobre Skills dinámicas](/blog/agent-skills-contexto-dinamico/)).
 
 Mi uso concreto: tengo un repositorio de skills procedurales (cómo debuggear problemas de Gradle, cómo configurar CI para Android, cómo hacer refactor seguro en Astro) que quiero que estén disponibles en cualquier agente que use. forgetful es el repositorio central.
 
@@ -923,5 +923,5 @@ Y lo más importante: **no necesitas implementar todo esto hoy**. Empieza con ba
 - [uv (Astral Python package manager)](https://docs.astral.sh/uv/)
 - [Artículo previo: Plugins nativos de OpenCode para memoria persistente](/blog/opencode-plugins-memoria-nativos/)
 - [Artículo previo: Servidores MCP cross-agent para memoria persistente](/blog/servidores-mcp-memoria-cross-agent/)
-- [Artículo previo: Arquitectura de la Memoria Persistente en Agentes IA](/blog/ai-agent-memory-persistence-guide/)
-- [Artículo previo: Skills dinámicas para agentes IA](/blog/ai-agent-skills-dynamic-context/)
+- [Artículo previo: Arquitectura de la Memoria Persistente en Agentes IA](/blog/memoria-persistente-agentes-ia/)
+- [Artículo previo: Skills dinámicas para agentes IA](/blog/agent-skills-contexto-dinamico/)

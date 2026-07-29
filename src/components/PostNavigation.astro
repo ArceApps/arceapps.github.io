@@ -33,20 +33,20 @@ const prefix = lang === 'es' ? '/es/blog' : '/blog';
 ---
 
 {(prevPost || nextPost) && (
-  <nav class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 mb-12 border-t border-b border-gray-200 dark:border-gray-800 py-8" aria-label="Post navigation">
+  <nav class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 mb-12 border-t border-b border-gray-200 dark:border-gray-800 py-8" aria-label={lang === 'es' ? 'Navegación de artículos' : 'Post navigation'}>
     {/* Previous Post */}
     <div class="flex flex-col items-start justify-center">
       {prevPost ? (
         <a
           href={`${prefix}/${prevPost.slug}`}
-          class="group flex flex-col items-start p-4 w-full h-full rounded-xl hover:bg-surface-variant/30 dark:hover:bg-dark-surface-variant/30 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+          class="group flex flex-col items-start p-4 w-full h-full rounded-xl hover:bg-surface-variant/30 dark:hover:bg-dark-surface-variant/30 transition-colors motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
           aria-label={`${t.ariaPrev}: ${prevPost.title}`}
         >
-          <span class="flex items-center text-sm font-bold text-on-surface-variant dark:text-gray-300 mb-2 group-hover:text-primary transition-colors">
-            <span class="material-icons text-lg mr-1 group-hover:-translate-x-1 transition-transform" aria-hidden="true">arrow_back</span>
+          <span class="flex items-center text-sm font-bold text-on-surface-variant dark:text-gray-300 mb-2 group-hover:text-primary transition-colors motion-reduce:transition-none">
+            <span class="material-icons text-lg mr-1" aria-hidden="true">arrow_back</span>
             {t.prev}
           </span>
-          <span class="text-lg font-bold text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors line-clamp-2">
+          <span class="text-lg font-bold text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors motion-reduce:transition-none line-clamp-2">
             {prevPost.title}
           </span>
         </a>
@@ -60,14 +60,14 @@ const prefix = lang === 'es' ? '/es/blog' : '/blog';
       {nextPost ? (
         <a
           href={`${prefix}/${nextPost.slug}`}
-          class="group flex flex-col items-end p-4 w-full h-full rounded-xl hover:bg-surface-variant/30 dark:hover:bg-dark-surface-variant/30 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+          class="group flex flex-col items-end p-4 w-full h-full rounded-xl hover:bg-surface-variant/30 dark:hover:bg-dark-surface-variant/30 transition-colors motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
           aria-label={`${t.ariaNext}: ${nextPost.title}`}
         >
-          <span class="flex items-center text-sm font-bold text-on-surface-variant dark:text-gray-300 mb-2 group-hover:text-primary transition-colors">
+          <span class="flex items-center text-sm font-bold text-on-surface-variant dark:text-gray-300 mb-2 group-hover:text-primary transition-colors motion-reduce:transition-none">
             {t.next}
-            <span class="material-icons text-lg ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+            <span class="material-icons text-lg ml-1" aria-hidden="true">arrow_forward</span>
           </span>
-          <span class="text-lg font-bold text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors line-clamp-2">
+          <span class="text-lg font-bold text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors motion-reduce:transition-none line-clamp-2">
             {nextPost.title}
           </span>
         </a>

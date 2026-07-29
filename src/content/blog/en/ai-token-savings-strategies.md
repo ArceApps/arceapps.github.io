@@ -19,7 +19,7 @@ category: ai-agents
 reference_id: "d372e2d1-04b0-4bd9-b89f-28d46cc910a4"
 ---
 
-> **Related reads on the blog:** [Caveman: the viral skill that silences your AI agents](/blog/caveman-skill-token-compression) · [AI Agents Coding: from Copilot to autonomous agents](/blog/ai-agents-coding) · [AI Agent Memory Persistence Guide](/blog/ai-agent-memory-persistence-guide)
+> **Related reads on the blog:** [Caveman: the viral skill that silences your AI agents](/blog/caveman-skill-token-compression) · [AI Agents Coding: from Copilot to autonomous agents](/blog/coding-with-ai-agents) · [AI Agent Memory Persistence Guide](/blog/ai-agent-memory-persistence-guide)
 
 ## The bill that opened my eyes
 
@@ -543,5 +543,5 @@ Token optimization isn't a trick. It's a system. And like every system, it's bui
 ### Related reads on ArceApps
 
 - [Caveman: the viral skill that silences your AI agents](/blog/caveman-skill-token-compression) — Analysis of the skill that cuts output tokens by ~75%.
-- [AI Agents Coding: from Copilot to autonomous agents](/blog/ai-agents-coding) — How the developer's role changed with the arrival of agents.
+- [AI Agents Coding: from Copilot to autonomous agents](/blog/coding-with-ai-agents) — How the developer's role changed with the arrival of agents.
 - [AI Agent Memory Persistence Guide](/blog/ai-agent-memory-persistence-guide) — Strategies for your agent to remember across sessions.

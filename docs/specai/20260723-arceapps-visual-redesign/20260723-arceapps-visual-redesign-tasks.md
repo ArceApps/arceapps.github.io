@@ -1,0 +1,318 @@
+# Rediseño visual de ArceApps — Task List
+
+> **For agentic workers:** Read this file once, then execute each task in order. Do not bundle tasks. No task is complete until su verificación y la actualización de los documentos living hayan terminado.
+
+## Task 1: Establecer el contrato de tokens visuales
+
+**Files:**
+
+- Modify: `src/styles/global.css`
+- Modify: `src/pages/404.astro`
+- Modify: `src/layouts/Layout.astro`
+- Modify: `src/components/pages/HomePage.astro`
+- Create: `src/styles/design-contract.test.ts`
+
+**Spec context:** Reemplazar la mezcla de Material/spatial y las clases `bg-primary-dark`/`elevation-4` por tokens semánticos declarados, con equivalentes de tema claro y oscuro. No eliminar todavía `.material-card`; su limpieza queda como deuda separada.
+
+**Metadata:** Complexity 4/10 · Risk Medium · Checkpoint No
+
+**Status:** ✅ DONE
+
+**Steps:**
+
+- [x] Inventariar tokens y clases visuales usados con `rg` y registrar el mapa en la sección de diseño correspondiente.
+- [x] Declarar colores, superficies, contenido, foco, radios y tres niveles de elevación en `@theme` o utilities existentes.
+- [x] Sustituir referencias a tokens no declarados y eliminar el hover global de headings sin modificar el contenido.
+- [x] Ejecutar `rg -n "primary-dark|elevation-4|h[1-6]:hover" src` y comprobar que no queden usos no intencionados.
+- [x] Ejecutar `pnpm build` y registrar el resultado en el execution log.
+
+**Resultado:** test contractual 3/3, build Astro exit 0 con 1043 páginas, code review CLEAN; warning conocido `CONTACT_FORM_KEY`.
+
+## Task 2: Crear las primitivas de superficie y migrar cards
+
+**Files:**
+
+- Create: `src/components/Card.astro`
+- Create: `src/components/PageIntro.astro`
+- Modify: `src/components/BlogCard.astro`
+- Modify: `src/components/ProjectCard.astro`
+- Modify: `src/components/AppCard.astro`
+
+**Spec context:** Las tres cards deben compartir superficie, radio, borde, foco, spacing y CTA. `Card.astro` ofrece solo `article`, `app` y `feature`; no carga colecciones ni introduce una abstracción de layout generalista.
+
+**Metadata:** Complexity 6/10 · Risk Medium · Checkpoint Yes
+
+**Status:** ✅ DONE
+
+**Steps:**
+
+- [x] Definir props tipadas para `variant`, `href`, `ariaLabel` y clases adicionales sin romper las APIs de datos existentes.
+- [x] Implementar la superficie accesible con estados hover/focus discretos y fallback compatible con tema oscuro.
+- [x] Migrar `BlogCard`, `ProjectCard` y `AppCard` a las variantes correspondientes conservando sus enlaces y datos.
+- [x] Implementar `PageIntro` con título, descripción y ancho responsive sin textos hardcodeados.
+- [x] Ejecutar `pnpm build` y revisar que las páginas que consumen las cards sigan generándose.
+- [x] Checkpoint revisado: no se requirió cambiar la jerarquía aprobada.
+
+**Resultado:** contrato de `Card` 3/3, build Astro exit 0 con 1043 páginas y code review independiente CLEAN; permanece el warning conocido `CONTACT_FORM_KEY`.
+
+## Task 3: Completar strings y rutas localizadas
+
+**Files:**
+
+- Modify: `src/i18n/ui.ts`
+- Modify: `src/i18n/utils.ts` solo si aparece una necesidad localizada concreta
+- Modify: `src/components/Header.astro`
+- Modify: `src/pages/apps/[...slug].astro`
+- Modify: `src/pages/es/apps/[...slug].astro`
+- Modify: `src/pages/blog/[...slug].astro`
+- Modify: `src/pages/es/blog/[...slug].astro`
+
+**Spec context:** Todo texto de UI, estado vacío, CTA y etiqueta ARIA debe pasar por `useTranslations`. El idioma debe provenir de la ruta o prop; no se permite usar una traducción inglesa fija en la ruta española.
+
+**Metadata:** Complexity 4/10 · Risk Medium · Checkpoint No
+
+**Status:** ✅ DONE
+
+**Steps:**
+
+- [x] Localizar strings hardcodeados con `rg` para `Gallery|Live Demo|Code|Updated|No Image Available|Filter by tags|Contact|Table of Contents|Home|Blog`.
+- [x] Añadir claves equivalentes en `en` y `es` de `src/i18n/ui.ts` con nombres agrupados por área.
+- [x] Sustituir textos visibles, placeholders, `aria-label`, `alt` de UI y estados vacíos por `t(...)`.
+- [x] Comprobar que `useTranslations` recibe el idioma correcto en las rutas dinámicas EN/ES.
+- [x] Ejecutar `pnpm test -- src/i18n/utils.test.ts` y `pnpm build`.
+
+**Resultado:** localization-contract + utils 27/27, build Astro exit 0 con 1043 páginas y code review CLEAN; permanece el warning conocido `CONTACT_FORM_KEY`.
+
+## Task 4: Rediseñar header y navegación móvil
+
+**Files:**
+
+- Modify: `src/components/Header.astro`
+- Modify: `src/layouts/Layout.astro` si el skip link o el botón back-to-top necesita tokens nuevos
+- Modify: `src/scripts/header.test.ts` solo para ajustar el contrato observable del nuevo estado, no para ocultar fallos
+
+**Spec context:** El menú móvil debe verse como un panel propio, con estado activo claro, orden de acciones comprensible y foco visible. La navegación desktop conserva sus rutas y el selector de idioma/tema.
+
+**Metadata:** Complexity 5/10 · Risk Medium · Checkpoint No
+
+**Status:** ✅ DONE
+
+**Steps:**
+
+- [x] Dibujar el orden de navegación desktop/móvil y mapear cada control a su clave de traducción.
+- [x] Convertir el menú móvil en un panel delimitado con atributos de estado y clases de tema claro/oscuro.
+- [x] Revisar cierre, foco, `aria-expanded`, `aria-controls` y navegación por teclado.
+- [x] Añadir estado activo inequívoco sin depender solo del color.
+- [x] Ejecutar las pruebas específicas del header y `pnpm build`; registrar cualquier fallo baseline separado.
+
+**Resultado:** panel móvil delimitado y localizado; estado activo con `aria-current` y borde; gestión de `aria-hidden`/`data-state`; foco, Escape, click exterior y cleanup cubiertos. Header test 3/3, build Astro exit 0 con 1043 páginas y code review CLEAN. El mock de `localStorage` solo estabiliza el entorno jsdom de Vitest y no modifica producción; el warning conocido `CONTACT_FORM_KEY` permanece como baseline.
+
+## Task 5: Simplificar hero y portada
+
+**Files:**
+
+- Modify: `src/components/Hero.astro`
+- Modify: `src/components/pages/HomePage.astro`
+- Modify: `src/pages/index.astro`
+- Modify: `src/pages/es/index.astro`
+
+**Spec context:** La portada debe seguir el orden hero → construcción real → apps → artículos → CTA. Se retiran el mockup de teléfono, métricas simuladas, glows redundantes y Bento decorativo; se conservan datos reales de colecciones y enlaces actuales.
+
+**Metadata:** Complexity 6/10 · Risk High · Checkpoint Yes
+
+**Status:** ✅ DONE
+
+**Nota:** El checkpoint de riesgo alto y el checkpoint final de Task 5 fueron aprobados explícitamente por el usuario el 2026-07-23. Se mantuvo el alcance: retirar el mockup y las métricas ficticias, y conservar el contenido real, los anchors y EN/ES.
+
+**Steps:**
+
+- [x] Elegir la última entrada real de Bitácora y las tres apps actuales como contenido destacado, sin inventar datos.
+- [x] Reescribir `Hero` como composición editorial con CTA principal y CTA secundaria localizados.
+- [x] Reordenar `HomePage` para usar `Card` en variante `feature`, `apps.map` con `ProjectCard` y artículos, manteniendo filtros y límites de colección.
+- [x] Revisar el comportamiento de ambos idiomas y los anchors públicos (`#apps` y enlaces existentes).
+- [x] Ejecutar `pnpm build` y revisar la portada EN/ES en desktop y la portada ES en móvil a 360px.
+- [x] Completar el checkpoint humano final, aprobado explícitamente por el usuario.
+
+**Resultado:** Hero editorial sin mockup, métricas, glows ni gradientes; `HomePage` usa `Card` en variante `feature`, `apps.map` con `ProjectCard` y un CTA sólido. Contrato de portada 3/3; build Astro exit 0 con 1043 páginas; inspección visual EN/ES en desktop y ES móvil a 360px sin overflow horizontal; code review CLEAN. El warning conocido `CONTACT_FORM_KEY` permanece como baseline.
+
+## Task 6: Homogeneizar listados de Apps, Blog y Bitácora
+
+**Files:**
+
+- Modify: `src/pages/apps/index.astro`
+- Modify: `src/pages/es/apps/index.astro`
+- Modify: `src/pages/blog/[...page].astro`
+- Modify: `src/pages/es/blog/[...page].astro`
+- Modify: `src/pages/devlog/index.astro`
+- Modify: `src/pages/es/devlog/index.astro`
+- Modify: `src/pages/blog/tag/[tag].astro` y su ruta española si la migración de card lo requiere
+
+**Spec context:** Compartir `PageIntro`, retícula, estados vacíos, filtros y separación. La carga de contenido, paginación y slugs no cambia; solo se centraliza la composición visual.
+
+**Metadata:** Complexity 5/10 · Risk Medium · Checkpoint No
+
+**Status:** ✅ DONE
+
+**Steps:**
+
+- [x] Mapear cada listado a `PageIntro` y a la variante de card correcta.
+- [x] Migrar retículas y espaciado sin cambiar el orden ni el número de entradas mostradas.
+- [x] Alinear estados de carga/vacío, tags, paginación y enlaces de retorno en EN/ES.
+- [x] Comprobar que ninguna ruta crea enlaces raíz desde contenido español.
+- [x] Ejecutar `pnpm build` y revisar las rutas de listado generadas.
+
+**Resultado:** Apps, Blog y Bitácora EN/ES comparten una presentación consistente, localizada y responsive. Bitácora conserva su orden, fechas, imágenes, descripciones y enlaces tras migrar de timeline a tarjetas.
+
+**Evidencia:** `src/components/listings-contract.test.ts` pasa 4/4; `pnpm build` termina con Astro exit 0 y genera 1043 páginas; `git diff --check` pasa; revisión visual desktop de Apps EN, Blog EN/ES y Bitácora EN/ES; Bitácora ES a 360 px sin overflow (`scrollWidth=346`, `viewport=361`), con 38 cards y headings/CTA visibles; revisión independiente CLEAN. Los criterios globales de detalles, header desktop y responsive completo permanecen pendientes.
+
+## Task 7: Reordenar el detalle de app
+
+**Files:**
+
+- Modify: `src/pages/apps/[...slug].astro`
+- Modify: `src/pages/es/apps/[...slug].astro`
+
+**Spec context:** Prioridad visual: nombre → propuesta de valor → icono/hero → Google Play → prueba visual. Rating, versión, fecha, tags, repositorio y CTA secundarios deben quedar agrupados como información secundaria sin perder funcionalidad.
+
+**Metadata:** Complexity 6/10 · Risk High · Checkpoint Yes
+
+**Status:** ✅ DONE
+
+**Nota:** El checkpoint humano del 2026-07-24 aprobó alterar el orden de CTAs e información de descarga.
+
+**Steps:**
+
+- [x] Auditar el orden actual de campos y separar contenido primario de metadatos secundarios.
+- [x] Reestructurar el hero de detalle para que Google Play sea la acción primaria en ambos idiomas.
+- [x] Migrar imagen y galería a una secuencia estable sin rotación obligatoria ni overflow horizontal.
+- [x] Revisar labels, `alt`, enlaces externos, foco y el comportamiento de pantalla pequeña.
+- [x] Ejecutar `pnpm build` y abrir al menos un detalle EN y uno ES en vista desktop/móvil.
+- [x] Solicitar checkpoint humano antes de continuar si se altera el orden de CTAs o la información de descarga.
+
+**Resultado:** El detalle de app prioriza nombre, propuesta de valor, hero, Google Play y prueba visual. Los metadatos permanecen agrupados como información secundaria y la galería usa una composición estable y responsive.
+
+**Evidencia:** `src/components/app-detail-contract.test.ts` pasa 3/3; `pnpm build` termina con Astro exit 0 y genera 1043 páginas; `git diff --check` pasa; revisión visual de detalles EN/ES en desktop y móvil sin overflow horizontal; revisión final CLEAN. El warning conocido `CONTACT_FORM_KEY` permanece como baseline.
+
+## Task 8: Convertir el detalle de artículo en lectura editorial
+
+**Status:** ✅ DONE
+
+**Nota:** Checkpoint humano del 2026-07-24 completado.
+
+**Files:**
+
+- Modify: `src/pages/blog/[...slug].astro`
+- Modify: `src/pages/es/blog/[...slug].astro`
+- Modify: `src/styles/global.css`
+- Modify: `src/components/PostNavigation.astro` o `src/components/SocialShare.astro` solo si la migración de strings lo exige
+
+**Contexto de spec:** Mantener breadcrumbs, progreso, TOC, compartir y navegación. El contenido respira como artículo, con una columna de lectura de 720–760px y medios capaces de crecer más de 500px sin desbordar.
+
+**Metadatos:** Complexity 6/10 · Risk High · Checkpoint Yes
+
+**Steps:**
+
+- [x] Separar encabezado, hero, TOC y contenido sin envolver todo el prose en una card pesada.
+- [x] Ajustar tipografía, ancho, headings, código, citas, tablas, imágenes e iframes para claro/oscuro.
+- [x] Localizar breadcrumbs, TOC, fechas, reading time, compartir y navegación EN/ES.
+- [x] Verificar que el progreso y los anchors sigan funcionando con la nueva estructura.
+- [x] Ejecutar `pnpm build` y revisar un artículo largo con TOC en desktop y móvil.
+- [x] Completar el checkpoint humano tras confirmar la dirección editorial.
+
+**Resultado:** Detalle de artículo convertido en lectura editorial EN/ES; contrato `blog-detail` 3/3; `pnpm build` exit 0 con 1043 páginas y 301 OG, conservando el warning `CONTACT_FORM_KEY`; `git diff --check` pasa; code review CLEAN.
+
+**Evidencia:** Revisión visual EN desktop a 1440px con reading column de 760px, grid 200/760, TOC con 45 enlaces, sin overflow, `object-fit: contain` y sin `main` anidado. Revisión visual ES móvil a 360px con `readingWidth=314px`, TOC móvil con 45 enlaces, aside oculto, sin overflow, progreso activo y etiquetas localizadas. El contrato `blog-detail` pasa 3/3 y code review CLEAN.
+
+## Task 9: Auditoría transversal de responsive, accesibilidad y motion
+
+**Files:**
+
+- Modify: `src/styles/global.css`
+- Modify: todos los componentes y páginas tocados en Tasks 1–8
+
+**Spec context:** La calidad transversal se verifica después de migrar todas las superficies. No se debe ocultar un elemento esencial en móvil ni depender de hover, blur o movimiento para entender la interfaz.
+
+**Metadata:** Complexity 6/10 · Risk Medium · Checkpoint No
+
+**Status:** ✅ DONE
+
+**Steps:**
+
+- [x] Ejecutar búsquedas de clases de hover, scale, rotate, blur y animation y clasificar cada uso por necesidad.
+- [x] Mantener solo transiciones de interacción/entrada justificadas y completar `prefers-reduced-motion`.
+- [x] Recorrer teclado, foco, contraste, orden de headings, landmarks, `aria-expanded` y labels en rutas EN/ES.
+- [x] Probar widths móvil, tablet y desktop en portada, listado, detalle de app y artículo.
+- [x] Ejecutar `git diff --check`, `pnpm test` y `pnpm build`; separar fallos preexistentes de regresiones nuevas.
+
+**Resultado:** `global.css` añade un fallback global para `prefers-reduced-motion: reduce`. `AppCard`, `BlogCard`, `ProjectCard`, `PostNavigation` y `SocialShare` eliminan escalados, desplazamientos y adornos decorativos sin valor informativo, conservando transiciones cromáticas, `focus-visible`, atributos ARIA y URLs. El contrato `src/components/cross-cutting-contract.test.ts` pasa 3/3. `pnpm build` termina con exit 0, genera 1043 páginas y 301 OG, y mantiene el warning conocido `CONTACT_FORM_KEY`. `git diff --check` pasa y el code review final queda CLEAN tras reforzar el contrato contra `transform` en hover y comprobar foco/ARIA por control.
+
+**Evidencia:** Auditoría inicial de usos de `hover`, `scale`, `rotate`, `blur` y `animation`; RED TDD con 2 fallos esperados y GREEN 3/3. Se corrigió el hallazgo de especificidad eliminando transforms. La revisión visual EN/ES a 360, 768 y 1280 px cubrió portada, listados, detalle de app y artículo sin overflow. Se verificó `main=1`, controles `aria-expanded`/`aria-controls` válidos y 0 focos sin nombre tras excluir checkboxes disabled de listas Markdown. Build, `git diff --check` y code review CLEAN.
+
+## Task 10: Verificación final y cierre documental
+
+**Files:**
+
+- Modify: `docs/specai/20260723-arceapps-visual-redesign/20260723-arceapps-visual-redesign-plan.md`
+- Modify: `docs/specai/20260723-arceapps-visual-redesign/20260723-arceapps-visual-redesign-tasks.md`
+- Modify: `docs/specai/20260723-arceapps-visual-redesign/20260723-arceapps-visual-redesign-verify.md`
+- Modify: `docs/specai/20260723-arceapps-visual-redesign/20260723-arceapps-visual-redesign-designs.md` si cambió una decisión
+
+**Spec context:** El verifier es la única autoridad para criterios de aceptación. Los documentos deben reflejar la realidad de cada tarea, el baseline conocido y cualquier corrective task antes de pedir integración.
+
+**Metadata:** Complexity 3/10 · Risk Low · Checkpoint Yes
+
+**Status:** ✅ DONE
+
+**Nota:** Cierre documental completado el 2026-07-25 tras completar Tasks 1–9 y obtener `spec-compliance-reviewer PASS` y `verifier PASS` autorizando el cierre. Los hallazgos 11–12 permanecen como deuda técnica separada y no bloqueante.
+
+**Steps:**
+
+- [x] Marcar únicamente tareas y criterios realmente verificados, con comandos y resultados observables.
+- [x] Añadir al execution log los cambios, errores, causas y correcciones relevantes.
+- [x] Confirmar que 11–12 siguen registrados como deuda separada y no como éxito del rediseño.
+- [x] Ejecutar por última vez `pnpm build`, `pnpm test` y `git diff --check`.
+- [x] Presentar el resultado al usuario para decidir merge, PR o siguiente iteración.
+
+**Resultado:** Cierre documental completado sin tocar código ni archivos fuera de esta carpeta. El plan queda completado con deuda no bloqueante.
+
+**Evidencia:** `pnpm build` exit 0 con 1043 páginas y 301 imágenes OG, manteniendo únicamente el warning conocido por ausencia de `CONTACT_FORM_KEY`; `pnpm test` exit 1 únicamente en `src/utils/links-validation.test.ts`, con 274 fallos y 139 pasados de 413, registrado como baseline/out-of-scope y no como suite verde; `pnpm exec vitest run src/i18n/utils.test.ts` exit 0 con 24/24; `git diff --check` exit 0; los cuatro documentos living existen. `spec-compliance-reviewer PASS` y `verifier PASS` autorizan el cierre.
+
+## Task 11: Reparar enlaces internos del blog
+
+**Files:**
+
+- Modify: `src/utils/blog-link-resolution.test.ts`
+- Modify: `src/utils/links-validation.test.ts`
+- Modify: `src/content/blog/en/` y `src/content/blog/es/` únicamente en los Markdown afectados
+- Inspect/Modify: `astro.config.mjs` para consultar aliases y redirects declarados
+
+**Contexto:** Restaurar la integridad de enlaces internos del blog sin ocultar destinos realmente ausentes. Tasks 1–10 permanecen `DONE`; esta tarea reabrió exclusivamente la deuda técnica del Hallazgo 12.
+
+**Metadata:** Complexity 6/10 · Risk Medium · Checkpoint Yes
+
+**Dependencies:** Secuencial. La tarea toca el resolver, sus contratos y contenido Markdown compartido; no hay paralelismo seguro entre subpasos que editen los mismos archivos.
+
+**Shared Resources:**
+
+- `src/content/blog`
+- `src/utils/links-validation.test.ts`
+- `src/utils/blog-link-resolution.test.ts`
+- `astro.config.mjs`
+
+**Status:** ✅ DONE
+
+**Steps:**
+
+- [x] Crear el contrato RED para normalización de trailing slash, aliases/redirects y resolución por locale, incluyendo casos cross-locale explícitamente permitidos.
+- [x] Implementar en GREEN la resolución mínima que consulte el slug canonical, normalice trailing slash y conozca los aliases/redirects declarados.
+- [x] Canonicalizar los enlaces internos afectados conservando el locale correcto y documentar de forma explícita los enlaces cross-locale permitidos.
+- [x] Sustituir los destinos realmente ausentes y eliminar enlaces a git-worktrees sin equivalente local cuando no exista un artículo equivalente válido.
+- [x] Ejecutar `pnpm test`, confirmar 21 archivos y 144 tests PASS, comprobar `pnpm build` con exit 0 y verificar `git diff --check`.
+- [x] Solicitar y registrar el checkpoint humano antes de continuar; la aprobación “podemos seguir entonces?” quedó confirmada con timestamp `2026-07-29T09:06:41+02:00`.
+- [x] Crear el commit `93d86a6` y obtener el verifier final antes de cerrar la tarea.
+
+**Resultado:** El resolver conoce trailing slashes y aliases/redirects mediante `parseBlogRedirects`; se canonicalizaron enlaces EN/ES y se eliminaron enlaces a git-worktrees sin equivalente local. El commit `93d86a6` contiene el resolver, contratos, validador, enlaces EN/ES y documentos living de Task 11.
+
+**Evidencia:** `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0 y genera 1043 páginas y 301 imágenes OG; `git diff --check` pasa; tests dirigidos pasan con 2 archivos y 6 tests; code review CLEAN. El criterio 9 queda cubierto por alias válido (`blog-superpowers-deep-dive` → `superpowers-deep-dive`), trailing slash y slug inexistente con estado `missing`.
+
+**Nota de cierre:** El segundo verifier devolvió `PASS` y autorizó marcar Task 11 como `DONE`. Commit creado: `93d86a6`.

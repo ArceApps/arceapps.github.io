@@ -25,7 +25,7 @@ reference_id: "8f3a2c1e-9b4d-4e7a-a1c5-7e9d8b2f4c6b"
 
 Tengo un problema de confidencia con mis propios agentes IA. Les pido una búsqueda en el código y me devuelven un *grep* de 12.000 líneas. Les pido un log de SRE y me devuelven 80 KB de texto donde solo dos líneas me importan. Cada llamada al LLM se siente como pagar la factura del agua de una piscina para beberme un vaso.
 
-Y no es solo dinero: es latencia, es degradación silenciosa del razonamiento cuando la ventana se llena de ruido, es ese momento en que el modelo "se olvida" de las instrucciones del sistema porque hay demasiada paja por encima. Llevamos meses hablando de **context engineering** (en este blog cubrimos los 4 C's en [Effective Context for AI](/blog/effective-context-ai)), pero la mayoría de las soluciones que hemos visto son **manuales**: tú recortas, tú filtras, tú reescribes prompts. Pegas parches hasta que el contexto cabe, y vuelta a empezar.
+Y no es solo dinero: es latencia, es degradación silenciosa del razonamiento cuando la ventana se llena de ruido, es ese momento en que el modelo "se olvida" de las instrucciones del sistema porque hay demasiada paja por encima. Llevamos meses hablando de **context engineering** (en este blog cubrimos los 4 C's en [Effective Context for AI](/blog/contexto-efectivo-ia)), pero la mayoría de las soluciones que hemos visto son **manuales**: tú recortas, tú filtras, tú reescribes prompts. Pegas parches hasta que el contexto cabe, y vuelta a empezar.
 
 [Headroom](https://github.com/chopratejas/headroom) ataca el problema desde otro lado: **automatiza esa compresión en una capa de infraestructura que se sienta entre tu agente y el proveedor LLM, sin que tengas que reescribir una línea de tu código**. Lo descubrí buceando en GitHub Trending de esta semana (apenas 33.4k estrellas y subiendo, 2.2k forks) y me pasé dos días leyendo su código, su docs y los benchmarks. Lo que encontré es, sinceramente, una de las piezas de ingeniería de AI tooling más serias que he visto en 2026. Y está hecha por una persona, [Tejas Chopra](https://github.com/chopratejas), en Apache 2.0.
 
@@ -413,7 +413,7 @@ Si lo pruebas, me encantaría leer tu número. Yo reportaré el mío en un devlo
 
 ### Artículos del blog relacionados
 - [Ponytail: el "lazy senior dev" skill que reduce 6x los tokens generados](/blog/ponytail-skill-senior-perezoso) · El stack de 3 capas (NeuralMind + Headroom + Ponytail) que citó Headroom.
-- [Effective Context for AI: Prompt Engineering](/blog/effective-context-ai) · Los 4 C's del contexto (capacidad, contexto, constraints, chain-of-thought).
+- [Effective Context for AI: Prompt Engineering](/blog/contexto-efectivo-ia) · Los 4 C's del contexto (capacidad, contexto, constraints, chain-of-thought).
 - [AI Agent Skills: Inyección Dinámica de Contexto](/blog/blog-agent-skills-contexto-dinamico) · Patrón complementario para reducir contexto vía skills modulares.
 - [hmem: memoria jerárquica con lazy loading](/blog/blog-hmem-sqlite-memoria-jerarquica-agentes) · Otra capa ortogonal del stack: memoria persistente eficiente.
 - [Servidores MCP para memoria cross-agent](/blog/blog-servidores-mcp-memoria-cross-agent) · Panorama del ecosistema MCP.

@@ -19,7 +19,7 @@ reference_id: "f9e0f666-5787-498c-8c04-c1f9531b88d5"
 ---
 
 
-> **Lecturas relacionadas en el blog:** [Ponytail: el skill viral que enseña a tus agentes a ser seniors perezosos](/blog/ponytail-skill-senior-perezoso) · [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/mattpocock-skills) · [AI Agents Coding: de Copilot a agentes autónomos](/blog/ai-agents-coding) · [Effective Context for AI: Prompt Engineering](/blog/effective-context-ai)
+> **Lecturas relacionadas en el blog:** [Ponytail: el skill viral que enseña a tus agentes a ser seniors perezosos](/blog/ponytail-skill-senior-perezoso) · [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/mattpocock-skills) · [AI Agents Coding: de Copilot a agentes autónomos](/blog/ai-agents-coding) · [Effective Context for AI: Prompt Engineering](/blog/contexto-efectivo-ia)
 
 ## "Brain still big. Mouth small."
 
@@ -244,4 +244,4 @@ Y cuando lo combines con Ponytail, mide primero. El stack completo es poderoso p
 - [Ponytail: el skill viral que enseña a tus agentes a ser seniors perezosos](/blog/ponytail-skill-senior-perezoso) — caveman mencionado como ortogonal (línea 192).
 - [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/mattpocock-skills) — sección "El Skill Caveman" (líneas 166-183).
 - [AI Agents Coding: de Copilot a agentes autónomos](/blog/ai-agents-coding) — por qué los agentes sobre-ingenieran por defecto.
-- [Effective Context for AI: Prompt Engineering](/blog/effective-context-ai) — las 4 C's del contexto.
+- [Effective Context for AI: Prompt Engineering](/blog/contexto-efectivo-ia) — las 4 C's del contexto.

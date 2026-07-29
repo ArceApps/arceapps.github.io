@@ -264,7 +264,7 @@ The combined approach — Socratic pre-spec + SDD during build + Socratic post-g
 
 - [mattpocock/skills](/blog/blog-mattpocock-skills) — the composable skills approach
 - [Socratic Method Prompts: Breaking AI Sycophancy](/blog/blog-socratic-method-prompts-kotlin-android) — the four-component Socratic prompt anatomy
-- [SDD Frameworks Comparison](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) — Spec Kit, OpenSpec, and BMAD
+- [SDD Frameworks Comparison](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) — Spec Kit, OpenSpec, and BMAD
 - [Socratic Agents Part 2: SDD and Sycophancy](/blog/socratic-agents-part-2-sdd-sycophancy) — the relationship between adversarial prompting and SDD
 - [/diagnose skill](https://github.com/mattpocock/skills/blob/main/skills/engineering/diagnose/SKILL.md) — the six-phase disciplined debugging loop
 - [/grill-me skill](https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md) — the alignment-before-coding session

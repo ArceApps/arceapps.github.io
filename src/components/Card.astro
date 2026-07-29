@@ -1,0 +1,57 @@
+---
+type CardVariant = "article" | "app" | "feature";
+
+interface Props {
+  variant: CardVariant;
+  href?: string;
+  target?: string;
+  rel?: string;
+  "data-astro-prefetch"?: boolean | string;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  variant,
+  href,
+  target,
+  rel,
+  "data-astro-prefetch": dataAstroPrefetch,
+  ariaLabel,
+  class: customClass = "",
+} = Astro.props;
+
+const variantClasses: Record<CardVariant, string> = {
+  article: "rounded-2xl",
+  app: "rounded-2xl",
+  feature: "rounded-3xl",
+};
+
+const surfaceClasses = [
+  "group relative h-full overflow-hidden",
+  "bg-surface-raised dark:bg-dark-surface-raised",
+  "border border-border dark:border-dark-border",
+  "shadow-sm hover:shadow-lg",
+  "focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/30",
+  "transition-shadow duration-200 motion-reduce:transition-none",
+  variantClasses[variant],
+  customClass,
+].filter(Boolean).join(" ");
+---
+
+{href ? (
+  <a
+    href={href}
+    target={target}
+    rel={rel}
+    data-astro-prefetch={dataAstroPrefetch}
+    aria-label={ariaLabel}
+    class={surfaceClasses}
+  >
+    <slot />
+  </a>
+) : (
+  <article class={surfaceClasses}>
+    <slot />
+  </article>
+)}

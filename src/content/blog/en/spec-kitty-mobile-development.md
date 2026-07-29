@@ -12,7 +12,7 @@ canonical: "https://arceapps.com/blog/spec-kitty-mobile-development/"
 keywords: ["SDD", "Spec Kitty", "AI Agents", "Git Worktrees", "Spec-Driven Development", "Workflow", "Kanban", "Multi-Agent"]
 ---
 
-> **Related reads:** [Spec-Driven Development with Agentic AI](/blog/specs-driven-development) · [Git Worktrees for Parallel Development](/blog/git-worktrees-android) · [AI Agents in Android Development](/blog/ai-agents-workflow-android)
+> **Related reads:** [Spec-Driven Development with Agentic AI](/blog/spec-driven-development-ai) · [AI Agents in Android Development](/blog/ai-agents-workflow-android)
 
 When a mobile development team works with one AI coding agent, the workflow feels manageable. You describe what you want, the agent writes code, you review it, and the feature lands in your codebase. But when you add a second agent — maybe one handling backend logic while another builds the UI — the cracks appear: which agent is working on what, where did requirements get lost, how do you merge two separate implementations without conflicts?
 

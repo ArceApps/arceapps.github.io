@@ -19,7 +19,7 @@ reference_id: "f8a4d6c2-7e3b-4a1f-9d5e-2c8b6a4f1e94"
 
 
 
-> **Lectura relacionada:** [SDD Frameworks Deep Dive: Spec Kit, OpenSpec y BMAD-METHOD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) · [Lean, Task-First: Beads, LeanSpec y Taskmaster](/blog/lean-task-first-beads-leanspec-taskmaster) · [Spec-Driven Development con IA Agentic](/blog/specs-driven-development) · [Alternative Paradigms in AI-Assisted Engineering](/blog/paradigmas-alternativos-ingenieria-software-ia) · [Effective Context for AI](/blog/contexto-efectivo-ia)
+> **Lectura relacionada:** [SDD Frameworks Deep Dive: Spec Kit, OpenSpec y BMAD-METHOD](/blog/sdd-frameworks-spec-kit-openspec-bmad) · [Lean, Task-First: Beads, LeanSpec y Taskmaster](/blog/lean-task-first-beads-leanspec-taskmaster) · [Spec-Driven Development con IA Agentic](/blog/specs-driven-development) · [Alternative Paradigms in AI-Assisted Engineering](/blog/paradigmas-alternativos-ingenieria-software-ia) · [Effective Context for AI](/blog/contexto-efectivo-ia)
 
 
 ![Infografía Taskmaster](/images/infographic-taskmaster.svg)
@@ -462,7 +462,7 @@ En mi flujo, `/gsd-quick` se ha convertido en el modo por defecto para cosas com
 
 ## ⚖️ Comparativa honesta: GSD vs el resto del ecosistema SDD
 
-Ya cubrí en profundidad [Spec Kit, OpenSpec y BMAD-METHOD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad), y también [Beads, LeanSpec y Taskmaster](/blog/lean-task-first-beads-leanspec-taskmaster). Aquí va la comparativa que faltaba: cómo se posiciona GSD frente a cada familia.
+Ya cubrí en profundidad [Spec Kit, OpenSpec y BMAD-METHOD](/blog/sdd-frameworks-spec-kit-openspec-bmad), y también [Beads, LeanSpec y Taskmaster](/blog/lean-task-first-beads-leanspec-taskmaster). Aquí va la comparativa que faltaba: cómo se posiciona GSD frente a cada familia.
 
 ### GSD vs los "pesados" (Spec Kit, OpenSpec, BMAD)
 
@@ -650,7 +650,7 @@ Más allá de la herramienta concreta, GSD me hizo replantear varias cosas sobre
 - Tus tareas son siempre triviales y un solo turno basta (cualquier LLM sin framework).
 - No quieres aprender un sistema nuevo y prefieres un workflow ad-hoc.
 
-**Mi recomendación personal:** si vienes del [análisis de SDD frameworks](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) o del [repaso a herramientas lean](/blog/lean-task-first-beads-leanspec-taskmaster) y aún no has probado nada, empieza por GSD. Es la opción que mejor balance da entre potencia, portabilidad y sobriedad. Si después de dos fases sientes que necesitas algo más constitucional, añade Spec Kit al stack. Si sientes que necesitas un grafo de dependencias externo, evalúa Beads. Pero date dos fases para formar una opinión. El phase loop tiene una curva de familiaridad: las primeras dos fases se sienten ceremoniosas, la tercera ya fluye, y a la quinta no quieres volver atrás.
+**Mi recomendación personal:** si vienes del [análisis de SDD frameworks](/blog/sdd-frameworks-spec-kit-openspec-bmad) o del [repaso a herramientas lean](/blog/lean-task-first-beads-leanspec-taskmaster) y aún no has probado nada, empieza por GSD. Es la opción que mejor balance da entre potencia, portabilidad y sobriedad. Si después de dos fases sientes que necesitas algo más constitucional, añade Spec Kit al stack. Si sientes que necesitas un grafo de dependencias externo, evalúa Beads. Pero date dos fases para formar una opinión. El phase loop tiene una curva de familiaridad: las primeras dos fases se sienten ceremoniosas, la tercera ya fluye, y a la quinta no quieres volver atrás.
 
 ---
 
@@ -695,7 +695,7 @@ Más allá de la herramienta concreta, GSD me hizo replantear varias cosas sobre
 
 ### Artículos relacionados de ArceApps
 
-26. [SDD Frameworks Deep Dive: GitHub Spec Kit, OpenSpec, and BMAD-METHOD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) — Análisis previo de los tres frameworks SDD "pesados".
+26. [SDD Frameworks Deep Dive: GitHub Spec Kit, OpenSpec, and BMAD-METHOD](/blog/sdd-frameworks-spec-kit-openspec-bmad) — Análisis previo de los tres frameworks SDD "pesados".
 27. [Spec-Driven Development con IA Agentic](/blog/specs-driven-development) — Marco teórico del SDD y mención a GSD-2.
 28. [Lean, Task-First: Beads, LeanSpec, and Taskmaster in Practice](/blog/lean-task-first-beads-leanspec-taskmaster) — Las tres herramientas lean que GSD integra.
 29. [Alternative Paradigms in AI-Assisted Engineering](/blog/paradigmas-alternativos-ingenieria-software-ia) — IDD, Lean SDD y Beads como metodologías alternativas.

@@ -19,6 +19,7 @@
 import { describe, it, expect } from 'vitest';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { parseBlogRedirects, resolveBlogSlug } from './blog-link-resolution';
 
 const CONTENT_DIR = path.resolve(__dirname, '../content/blog');
 const LOCALES = ['en', 'es'] as const;
@@ -47,6 +48,9 @@ interface BrokenLink {
 
 const brokenLinks: BrokenLink[] = [];
 const checkedCount = { value: 0 };
+const redirects = parseBlogRedirects(
+  await fs.readFile(path.resolve(__dirname, '../../astro.config.mjs'), 'utf-8')
+);
 
 await Promise.all(
   LOCALES.map(async (locale) => {
@@ -68,10 +72,17 @@ await Promise.all(
 
         for (const slug of linkedSlugs) {
           checkedCount.value++;
-          if (!slugsInLocale.has(slug)) {
+          const resolution = resolveBlogSlug({
+            slug,
+            locale,
+            availableSlugs: slugsInLocale,
+            redirects,
+          });
+
+          if (resolution.status === 'missing') {
             brokenLinks.push({
               file: `src/content/blog/${locale}/${file}`,
-              slug,
+              slug: resolution.slug,
               expectedLocale: locale,
             });
           }

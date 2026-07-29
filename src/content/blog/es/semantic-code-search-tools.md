@@ -19,7 +19,7 @@ reference_id: "b4c5d6e7-8f9a-0b1c-2d3e-4f5a6b7c8d9e"
 
 
 
-> **Lecturas relacionadas:** [Desarrollo Guiado por Especificaciones con IA Agéntica](/es/blog/spec-driven-development-ai) · [Guía Completa: Stack Recomendado para Construir Agentes IA en 2026](/es/blog/complete-beginners-guide-ai-agents-stack-2026) · [Agentes IA en Desarrollo Android](/es/blog/ai-agents-workflow-android)
+> **Lecturas relacionadas:** [Desarrollo Guiado por Especificaciones con IA Agéntica](/es/blog/spec-driven-development-ai) · [Guía Completa: Stack Recomendado para Construir Agentes IA en 2026](/es/blog/complete-beginners-guide-ai-agents-stack-2026) · [Agentes IA en Desarrollo Android](/es/blog/flujos-trabajo-agentes-android)
 
 Si alguna vez has trabajado con un agente de programación IA en un proyecto grande, probablemente habrás notado algo frustrante: el agente dedica una porción significativa de su presupuesto de tokens a navegar por el código. Antes de implementar una funcionalidad o corregir un bug, necesita entender el contexto circundante. Dispara comandos grep, patrones glob y operaciones de búsqueda — buscando el archivo correcto, la función relevante, la abstracción apropiada. Esta fase de exploración consume tokens que podrían gastarse en escribir código realmente.
 
