@@ -130,10 +130,10 @@ rg --files docs/specai/20260723-arceapps-visual-redesign
 - [x] `pnpm test` termina con exit 0 y la suite completa queda verde.
 - [x] `pnpm build` termina correctamente.
 - [x] `git diff --check` termina correctamente.
-- [ ] El contrato del validador conserva la detección de destinos ausentes y no convierte aliases o redirects válidos en falsos positivos.
+- [x] El contrato del validador conserva la detección de destinos ausentes y no convierte aliases o redirects válidos en falsos positivos.
 
-**Evidencia:** RED correcto en `src/utils/blog-link-resolution.test.ts` por import ausente; GREEN primero 3/3 y después 4/4 tras incorporar `parseBlogRedirects`; `src/utils/links-validation.test.ts` pasa 2/2; `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0, genera 1043 páginas y 301 imágenes OG, mantiene el warning conocido `CONTACT_FORM_KEY` y los warnings no relacionados de `glob-loader` por IDs duplicados; `git diff --check` pasa; code review CLEAN. El checkpoint de usuario “podemos seguir entonces?” fue confirmado antes de editar, con timestamp `2026-07-29T09:06:41+02:00`.
+**Evidencia del verifier final:** `PASS`, autorizando el cierre de Task 11. Commit `93d86a6`; `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0 y genera 1043 páginas y 301 imágenes OG; `git diff --check` pasa; los tests dirigidos pasan con 2 archivos y 6 tests; code review CLEAN. El criterio 9 fue verificado explícitamente con un alias válido (`blog-superpowers-deep-dive` → `superpowers-deep-dive`), trailing slash y slug inexistente conservando el estado `missing`.
 
-**Estado:** Los criterios 1–8 están verificados. El criterio 9 queda pendiente de confirmación del verifier final. No se ha creado commit.
+**Estado:** `PASS — verifier final autoriza cierre`.
 
-**Alcance:** Esta sección reabre la deuda técnica del Hallazgo 12 sin cambiar el alcance visual del rediseño ni sus decisiones de diseño.
+**Alcance:** La integridad de enlaces queda resuelta. La deuda técnica residual de la feature se limita a `CONTACT_FORM_KEY` y los warnings conocidos, sin cambiar el alcance visual del rediseño.

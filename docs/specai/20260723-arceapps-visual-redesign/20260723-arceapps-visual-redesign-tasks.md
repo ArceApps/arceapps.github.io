@@ -286,7 +286,7 @@
 - Modify: `src/content/blog/en/` y `src/content/blog/es/` únicamente en los Markdown afectados
 - Inspect/Modify: `astro.config.mjs` para consultar aliases y redirects declarados
 
-**Contexto:** Restaurar la integridad de enlaces internos del blog sin ocultar destinos realmente ausentes. Tasks 1–10 permanecen `DONE`; esta tarea reabre exclusivamente la deuda técnica del Hallazgo 12.
+**Contexto:** Restaurar la integridad de enlaces internos del blog sin ocultar destinos realmente ausentes. Tasks 1–10 permanecen `DONE`; esta tarea reabrió exclusivamente la deuda técnica del Hallazgo 12.
 
 **Metadata:** Complexity 6/10 · Risk Medium · Checkpoint Yes
 
@@ -299,7 +299,7 @@
 - `src/utils/blog-link-resolution.test.ts`
 - `astro.config.mjs`
 
-**Status:** 🟡 IN PROGRESS
+**Status:** ✅ DONE
 
 **Steps:**
 
@@ -309,10 +309,10 @@
 - [x] Sustituir los destinos realmente ausentes y eliminar enlaces a git-worktrees sin equivalente local cuando no exista un artículo equivalente válido.
 - [x] Ejecutar `pnpm test`, confirmar 21 archivos y 144 tests PASS, comprobar `pnpm build` con exit 0 y verificar `git diff --check`.
 - [x] Solicitar y registrar el checkpoint humano antes de continuar; la aprobación “podemos seguir entonces?” quedó confirmada con timestamp `2026-07-29T09:06:41+02:00`.
-- [ ] Crear un commit de la corrección y solicitar el verifier final antes de cerrar la tarea.
+- [x] Crear el commit `93d86a6` y obtener el verifier final antes de cerrar la tarea.
 
-**Resultado:** El resolver conoce trailing slashes y aliases/redirects mediante `parseBlogRedirects`; los contratos específicos pasan 4/4 y 2/2; se canonicalizaron enlaces EN/ES y se eliminaron enlaces a git-worktrees sin equivalente local.
+**Resultado:** El resolver conoce trailing slashes y aliases/redirects mediante `parseBlogRedirects`; se canonicalizaron enlaces EN/ES y se eliminaron enlaces a git-worktrees sin equivalente local. El commit `93d86a6` contiene el resolver, contratos, validador, enlaces EN/ES y documentos living de Task 11.
 
-**Evidencia:** `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0, genera 1043 páginas y 301 imágenes OG, mantiene el warning conocido `CONTACT_FORM_KEY` y los warnings no relacionados de `glob-loader` por IDs duplicados; `git diff --check` pasa; code review CLEAN.
+**Evidencia:** `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0 y genera 1043 páginas y 301 imágenes OG; `git diff --check` pasa; tests dirigidos pasan con 2 archivos y 6 tests; code review CLEAN. El criterio 9 queda cubierto por alias válido (`blog-superpowers-deep-dive` → `superpowers-deep-dive`), trailing slash y slug inexistente con estado `missing`.
 
-**Nota de cierre:** No se marca `DONE` hasta crear el commit y obtener el verifier final.
+**Nota de cierre:** El segundo verifier devolvió `PASS` y autorizó marcar Task 11 como `DONE`. Commit creado: `93d86a6`.

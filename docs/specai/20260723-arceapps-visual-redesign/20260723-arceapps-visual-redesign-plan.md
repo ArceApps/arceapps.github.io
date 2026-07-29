@@ -9,7 +9,7 @@
 
 **Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
 
-**Status:** 🟡 IN PROGRESS — Tasks 1–10 completadas; Task 11 correctiva en cierre/verificación.
+**Status:** ✅ COMPLETADO — Tasks 1–11 completadas; deuda técnica residual solo en `CONTACT_FORM_KEY` y warnings conocidos.
 
 ## Dependency & Package Validation
 
@@ -292,3 +292,29 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Code review:** CLEAN.
 
 **Estado:** La corrección está implementada y verificada técnicamente. El commit y el verifier final permanecen pendientes; por tanto, Task 11 aún no se marca como DONE.
+
+### 2026-07-29 — Commit de Task 11
+
+- **Commit:** `93d86a6` — `fix: restore blog link integrity`
+- **Contenido:** Resolver de enlaces, contratos, validador, canonicalización de enlaces EN/ES y actualización de los documentos living de Task 11.
+- **Verificación:** `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0 y genera 1043 páginas y 301 imágenes OG; `git diff --check` pasa; code review CLEAN.
+- **Estado:** El step de commit queda completado. El verifier final permanece pendiente.
+- **Outcome:** 🟡 Task 11 implementada y commit creada; cierre formal pendiente del verifier.
+
+### 2026-07-29 — Evidencia dirigida del criterio 9
+
+**Comando:** `pnpm exec vitest run src/utils/blog-link-resolution.test.ts src/utils/links-validation.test.ts`
+
+**Resultado:** 2 archivos PASS, 6 tests PASS. `git diff --check` PASS.
+
+**Cobertura explícita:** El contrato verifica el alias válido `blog-superpowers-deep-dive` → `superpowers-deep-dive`, la normalización de trailing slash y un slug inexistente que conserva el estado `missing`.
+
+**Estado:** El verifier previo quedó `UNVERIFIED` únicamente por falta de evidencia explícita del criterio 9. Se solicita una segunda verificación del verifier con esta evidencia dirigida. Task 11 no se marca todavía como `DONE`.
+
+### 2026-07-29 — Verifier final de Task 11
+
+**Resultado:** `PASS`. El verifier final autorizó marcar Task 11 como `DONE`.
+
+**Evidencia:** Commit `93d86a6`; `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0 y genera 1043 páginas y 301 imágenes OG; `git diff --check` pasa; los tests dirigidos pasan con 2 archivos y 6 tests; code review CLEAN. El criterio 9 queda cubierto explícitamente por los casos de alias válido (`blog-superpowers-deep-dive` → `superpowers-deep-dive`), trailing slash y slug inexistente con estado `missing`.
+
+**Outcome:** ✅ Task 11 cerrada y autorizada por verifier. La feature completa queda en estado `✅ COMPLETADO`.
