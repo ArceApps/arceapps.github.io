@@ -18,7 +18,7 @@ category: android-kotlin
 
 
 
-Kotlin Multiplatform (KMP) has matured significantly. As I discussed in my article on [State of KMP 2025](/blog/kmp-2025-state), sharing business logic is now standard practice. However, with the release of **Compose Multiplatform 1.8**, the debate has shifted to the UI layer: *How much user interface should we really share?*
+Kotlin Multiplatform (KMP) has matured significantly. As I discussed in my article on [State of KMP 2025](/blog/kotlin-multiplatform-2025-state), sharing business logic is now standard practice. However, with the release of **Compose Multiplatform 1.8**, the debate has shifted to the UI layer: *How much user interface should we really share?*
 
 In this article, we'll dive into advanced strategies for sharing UI code between Android and iOS without sacrificing the "native" feel users expect. This is the expanded version of the original from February 2026: I've added a third strategy (Selective Compose), a complete decision table, and a real migration case study.
 
@@ -323,7 +323,7 @@ My default recommendation for 2026: **Selective Compose + shared network layer**
 
 1. [Compose Multiplatform documentation](https://www.jetbrains.com/lp/compose-multiplatform/)
 2. [Decompose library](https://arkivanov.github.io/Decompose/)
-3. [State of KMP 2025](/blog/kmp-2025-state)
+3. [State of KMP 2025](/blog/kotlin-multiplatform-2025-state)
 4. [Now in Android — Architecture](https://github.com/android/nowinandroid) — Google's open source project. Although Android-only, the patterns translate well to KMP.
 5. [SKIE: Swift Kotlin Interop Enhanced](https://skie.touchlab.co/) — If you'll use SwiftUI with KMP, this library saves you months of friction.
 6. [Touchlab: KMP Production Case Studies](https://touchlab.co/) — Real migration cases. Some posts require registration but the content is gold.

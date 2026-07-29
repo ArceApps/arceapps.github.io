@@ -201,7 +201,7 @@ Si `find dist` devuelve vacío tras un build verde, tienes el **pubDate-future t
 
 Si tienes una librería Android Open Source, **debes** tener documentación web.
 
-1. Genera la documentación con Dokka (ver [artículo de documentación](blog-android-documentation.md)).
+1. Genera la documentación con Dokka (ver [artículo de documentación](/blog/android-documentation)).
 2. Configura el output de Dokka para que vaya a una carpeta `docs/`.
 3. En GitHub Pages settings, elige `Source: Deploy from a branch` y selecciona la carpeta `/docs`.
 
@@ -249,4 +249,4 @@ Si tuviera que recomendarte un siguiente paso: **crea un repo `tu-usuario.github
 - [GitHub Pages:官方 docs](https://docs.github.com/es/pages) — Para CNAME, HTTPS enforced, y los nuevos límites de uso.
 - [withastro/action en GitHub Marketplace](https://github.com/marketplace/actions/deploy-to-github-pages) — La acción que uso en cada deploy.
 - [State of JS 2025: Astro subió al top 3](https://stateofjs.com) — No es evidencia dura pero sí señal de mercado.
-- [Artículo del blog sobre Dokka y Android](/es/blog/blog-android-documentation) — Si quieres usar Pages para documentar una librería Android, no para un blog.
+- [Artículo del blog sobre Dokka y Android](/blog/android-documentation) — Si quieres usar Pages para documentar una librería Android, no para un blog.
