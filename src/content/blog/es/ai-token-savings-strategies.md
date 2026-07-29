@@ -18,7 +18,7 @@ tags: ["AI Agents", "Tokens", "Cost Optimization", "Prompt Caching", "Model Rout
 reference_id: "d372e2d1-04b0-4bd9-b89f-28d46cc910a4"
 ---
 
-> **Lecturas relacionadas en el blog:** [Caveman: el skill viral que silencia a tus agentes AI](/blog/caveman-skill-token-compression) · [AI Agents Coding: de Copilot a agentes autónomos](/blog/ai-agents-coding) · [AI Agent Memory Persistence Guide](/blog/ai-agent-memory-persistence-guide)
+> **Lecturas relacionadas en el blog:** [Caveman: el skill viral que silencia a tus agentes AI](/blog/caveman-skill-token-compression) · [AI Agents Coding: de Copilot a agentes autónomos](/blog/ai-agents-coding) · [AI Agent Memory Persistence Guide](/blog/memoria-persistente-agentes-ia)
 
 ## La factura que me hizo abrir los ojos
 
@@ -543,4 +543,4 @@ La optimización de tokens no es un truco. Es un sistema. Y como todo sistema, s
 
 - [Caveman: el skill viral que silencia a tus agentes AI](/blog/caveman-skill-token-compression) — Análisis del skill que reduce output tokens un ~75%.
 - [AI Agents Coding: de Copilot a agentes autónomos](/blog/ai-agents-coding) — Cómo cambió el rol del desarrollador con la llegada de los agentes.
-- [AI Agent Memory Persistence Guide](/blog/ai-agent-memory-persistence-guide) — Estrategias para que tu agente recuerde entre sesiones.
+- [AI Agent Memory Persistence Guide](/blog/memoria-persistente-agentes-ia) — Estrategias para que tu agente recuerde entre sesiones.

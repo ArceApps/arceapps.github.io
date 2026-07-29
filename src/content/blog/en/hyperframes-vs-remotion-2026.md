@@ -689,7 +689,7 @@ HyperFrames has a `/remotion-to-hyperframes` skill. Many teams do this:
 - [Agents.md Standard: Blueprint for AI-Ready Projects](https://arceapps.com/blog/agents-md-standard/) — why structured documentation for agents matters.
 - [AI Skills in Development: the wrapper that wins](https://arceapps.com/blog/ai-agent-skills-dynamic-context/) — persistent context configurations explained.
 - [AI Tools Worth Learning in 2026](https://arceapps.com/blog/ai-tools-worth-learning-2026/) — the complete indie dev agentic stack.
-- [Clean Architecture for AI](https://arceapps.com/blog/clean-architecture-ia/) — how to structure projects with agents.
+- [Clean Architecture for AI](https://arceapps.com/blog/clean-architecture-ai/) — how to structure projects with agents.
 
 ---
 

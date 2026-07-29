@@ -119,3 +119,21 @@ rg --files docs/specai/20260723-arceapps-visual-redesign
 - [x] Todos los criterios anteriores tienen evidencia y están marcados por el documenter de SpecAI.
 - [x] El estado final es `✅ DONE` porque el build pasa, no hay regresiones nuevas atribuibles al rediseño y la inspección visual EN/ES está documentada.
 - [x] Los fallos baseline/out-of-scope y la advertencia de `CONTACT_FORM_KEY` quedan registrados como deuda; no requieren corrective task dentro de esta feature.
+
+## 11. Integridad de enlaces internos
+
+- [x] Los enlaces con trailing slash no producen falsos positivos cuando existe un archivo local tras normalizar la ruta.
+- [x] Los aliases `blog-*` definidos como redirects resuelven al slug canonical correspondiente.
+- [x] Cada enlace EN resuelve en el locale EN, salvo que esté marcado explícitamente como enlace cross-locale permitido.
+- [x] Cada enlace ES resuelve en el locale ES, salvo que esté marcado explícitamente como enlace cross-locale permitido.
+- [x] No quedan destinos realmente ausentes; los enlaces a git-worktrees sin equivalente local fueron eliminados o sustituidos por destinos válidos.
+- [x] `pnpm test` termina con exit 0 y la suite completa queda verde.
+- [x] `pnpm build` termina correctamente.
+- [x] `git diff --check` termina correctamente.
+- [ ] El contrato del validador conserva la detección de destinos ausentes y no convierte aliases o redirects válidos en falsos positivos.
+
+**Evidencia:** RED correcto en `src/utils/blog-link-resolution.test.ts` por import ausente; GREEN primero 3/3 y después 4/4 tras incorporar `parseBlogRedirects`; `src/utils/links-validation.test.ts` pasa 2/2; `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0, genera 1043 páginas y 301 imágenes OG, mantiene el warning conocido `CONTACT_FORM_KEY` y los warnings no relacionados de `glob-loader` por IDs duplicados; `git diff --check` pasa; code review CLEAN. El checkpoint de usuario “podemos seguir entonces?” fue confirmado antes de editar, con timestamp `2026-07-29T09:06:41+02:00`.
+
+**Estado:** Los criterios 1–8 están verificados. El criterio 9 queda pendiente de confirmación del verifier final. No se ha creado commit.
+
+**Alcance:** Esta sección reabre la deuda técnica del Hallazgo 12 sin cambiar el alcance visual del rediseño ni sus decisiones de diseño.

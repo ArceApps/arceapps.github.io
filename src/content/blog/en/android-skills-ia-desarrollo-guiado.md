@@ -19,7 +19,7 @@ That's where the [Android Skills repository](https://github.com/android/skills) 
 
 *Android skills* are essentially modular instructions, optimized for artificial intelligence. They use the standard `SKILL.md` format, which acts as a technical specification of the task, serving to "ground" the LLM in the reality of modern development.
 
-In my indie workflow, where time is money and I don't have a QA chasing me around, I need my code to follow [architecture best practices](/blog/clean-architecture-ia) without having to audit every line of generated code. Skills cover exactly those areas where LLMs tend to slip up:
+In my indie workflow, where time is money and I don't have a QA chasing me around, I need my code to follow [architecture best practices](/blog/clean-architecture-ai) without having to audit every line of generated code. Skills cover exactly those areas where LLMs tend to slip up:
 
 - Migrations (for example, to AGP 9 or XML-to-Compose).
 - Configuration and analysis of R8 rules.
@@ -40,7 +40,7 @@ android skills add --skill=r8-analyzer --project=.
 android skills add --all
 ```
 
-If you use [assistants like Claude or local tools](/blog/herramientas-ia-2026), these skills are typically downloaded to local directories (`~/.gemini/antigravity/skills`, etc.) and the agent automatically picks up the context for the task you're performing if it matches the skill's description.
+If you use [assistants like Claude or local tools](/blog/ai-tools-worth-learning-2026), these skills are typically downloaded to local directories (`~/.gemini/antigravity/skills`, etc.) and the agent automatically picks up the context for the task you're performing if it matches the skill's description.
 
 This way, we achieve a truly productive flow. There's no longer a need to debate with the LLM about whether to use `ViewModelProviders` (spoiler: no). The model reads the skill, understands the modern "official" mandate, and generates useful code on the first try.
 

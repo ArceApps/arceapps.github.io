@@ -13,7 +13,7 @@ reference_id: "CLI-AI-SF1-2026-REWRITE-001"
 
 > Este artículo asume familiaridad con agentes de IA y flujos de trabajo de pair programming. Si estás empezando, estos dos te pondrán en contexto de inmediato:
 >
-> - **[AI Tools Worth Learning in 2026: Investment vs. Hype](/blog/ai-tools-worth-learning-2026)** — el panorama completo de herramientas de agentes, incluyendo el por qué del agnosticismo.
+> - **[AI Tools Worth Learning in 2026: Investment vs. Hype](/blog/herramientas-ia-2026)** — el panorama completo de herramientas de agentes, incluyendo el por qué del agnosticismo.
 > - **[Android CLI: Accelerating Development with AI Agents](/blog/android-cli-agentes-herramientas)** — el precedente inmediato que motivó esta serie: cómo una CLI pensada para agentes cambia las reglas del juego.
 >
 > - **[OpenCode Subagents: Workflows & Superpowers](/blog/opencode-subagents)** — una de las 10 herramientas analizadas en la segunda semifinal, tratada a fondo en su propio artículo.

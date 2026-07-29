@@ -29,7 +29,7 @@ That sentence is doing a lot of work. He's saying: when you hand your project to
 
 This is the core thesis of [`mattpocock/skills`](https://github.com/mattpocock/skills) — a collection of agent skills for coding agents (Claude Code, Codex, and others) that are small, composable, and explicitly *not* a full-stack methodology. Each skill does one thing. You pick the ones you need. You leave the rest.
 
-If you've been reading this blog's [SDD framework comparison](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad), you know we spent a lot of words on what Spec Kit does, what OpenSpec does, and what BMAD does. Skills is a different answer to the same question: "how do I make AI agents actually useful instead of just compliant?"
+If you've been reading this blog's [SDD framework comparison](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad), you know we spent a lot of words on what Spec Kit does, what OpenSpec does, and what BMAD does. Skills is a different answer to the same question: "how do I make AI agents actually useful instead of just compliant?"
 
 
 ![Infografía OpenSpec](/images/infographic-openspec.svg)
@@ -245,7 +245,7 @@ The skill that gets the most praise in the community is `/grill-with-docs`. The 
 
 ## How It Compares to the Frameworks We Reviewed
 
-In our [SDD framework comparison](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad), we found three distinct philosophies:
+In our [SDD framework comparison](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad), we found three distinct philosophies:
 
 - **Spec Kit**: Constitutional approach — your project has a `SPEC.md` that's treated as the source of truth. Agents read it before generating code.
 - **OpenSpec**: Change-proposal approach — every modification goes through a review process that produces a titled document before any code is written.
@@ -282,7 +282,7 @@ That's worth something. The best practices in `/diagnose` and `/tdd` are not the
 - [mattpocock/skills GitHub Repository](https://github.com/mattpocock/skills)
 - [skills.sh Installer](https://skills.sh/b/mattpocock/skills)
 - [Matt Pocock's Newsletter (~60,000 subscribers)](https://www.aihero.dev/s/skills-newsletter)
-- [The Pragmatic Programmer, Thomas & Hunt](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
-- [Domain-Driven Design, Eric Evans](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
-- [A Philosophy of Software Design, John Ousterhout](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
-- Previous SDD articles on this blog: [SDD Frameworks Comparison](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad), [Socratic Agents and Sycophancy](/blog/socratic-agents-part-2-sdd-sycophancy), [Specs-Driven Development](/blog/specs-driven-development)
+- [The Pragmatic Programmer, Thomas & Hunt](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)
+- [Domain-Driven Design, Eric Evans](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)
+- [A Philosophy of Software Design, John Ousterhout](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)
+- Previous SDD articles on this blog: [SDD Frameworks Comparison](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad), [Socratic Agents and Sycophancy](/blog/socratic-agents-part-2-sdd-sycophancy), [Specs-Driven Development](/blog/spec-driven-development-ai)

@@ -413,6 +413,6 @@ Juntos, crean una arquitectura de memoria IA cualitativamente diferente de las a
 2. *How to Implement PARA with AI*. The Second Brain. [thesecondbrain.io/how-to-implement-para-with-ai](https://thesecondbrain.io/how-to-implement-para-with-ai)
 3. Documentación del Model Context Protocol (MCP). Anthropic. [modelcontextprotocol.io](https://modelcontextprotocol.io)
 4. Relacionado: [La Arquitectura de la Memoria Persistente en Agentes IA: Marcos, Metodologías y la Evolución de la Gestión del Conocimiento Personal](/blog/blog-memoria-persistente-agentes-ia) — el panorama más amplio de los sistemas de memoria IA.
-5. Relacionado: [Obsidian para Desarrolladores: Guía Definitiva 2025](/blog/obsidian-para-desarrolladores) — configurar Obsidian como un IDE para desarrolladores.
+5. Relacionado: [Obsidian para Desarrolladores: Guía Definitiva 2025](/blog/obsidian-desarrolladores) — configurar Obsidian como un IDE para desarrolladores.
 6. Plugin MCP de Obsidian. Desarrollado por la comunidad. [github.com/calclavia/mcp-obsidian](https://github.com/calclavia/mcp-obsidian)
 7. Documentación de Logseq: Sistema de Grafo y Consultas. [docs.logseq.com](https://docs.logseq.com)

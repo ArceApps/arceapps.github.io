@@ -16,7 +16,7 @@ reference_id: "CLI-AI-FINAL-2026-CHAMPION-003-V2"
 > - **[Semifinal 1 — bloque mixto (ES)](/blog/cli-ai-semifinal-1/)** y **[Semifinal 1 — mixed block (EN)](https://arceapps.com/blog/cli-ai-semifinal-1/)**: los 10 contendientes en la terminal, con Claude Code (60/70) y Hermes Agent (59/70) clasificándose a esta final.
 > - **[Semifinal 2 — nativos vs agnósticos (ES)](/blog/cli-ai-semifinal-2/)** y **[Semifinal 2 — native vs agnostic (EN)](https://arceapps.com/blog/cli-ai-semifinal-2/)**: los 10 contendientes en sus bloques de integración, con OpenCode (62/70) y OpenAI Codex (60/70) avanzando.
 >
-> Y si lo que quieres es entender el "por qué" del agnosticismo, el harness y la elección de modelos, tengo tres artículos que cubren el marco conceptual sobre el que se sostiene este torneo: **[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/ai-tools-worth-learning-2026/)**, **[OpenCode Subagents: Workflows & Superpowers (EN)](https://arceapps.com/blog/opencode-subagents/)** y los **[Servidores MCP y memoria cross-agent (ES)](/blog/servidores-mcp-memoria-cross-agent/)** con su pieza gemela sobre **[plugins de memoria nativos en OpenCode (ES)](/blog/opencode-plugins-memoria-nativos/)**.
+> Y si lo que quieres es entender el "por qué" del agnosticismo, el harness y la elección de modelos, tengo tres artículos que cubren el marco conceptual sobre el que se sostiene este torneo: **[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/herramientas-ia-2026/)**, **[OpenCode Subagents: Workflows & Superpowers (EN)](https://arceapps.com/blog/opencode-subagents/)** y los **[Servidores MCP y memoria cross-agent (ES)](/blog/servidores-mcp-memoria-cross-agent/)** con su pieza gemela sobre **[plugins de memoria nativos en OpenCode (ES)](/blog/opencode-plugins-memoria-nativos/)**.
 
 ---
 
@@ -650,7 +650,7 @@ Nos vemos en el Torneo AI CLI 2027. Tengo la corazonada de que el campeón de en
 
 - **[Semifinal 1 — bloque mixto (ES)](/blog/cli-ai-semifinal-1/)** y **[Semifinal 1 — mixed block (EN)](https://arceapps.com/blog/cli-ai-semifinal-1/)**: cómo Claude Code y Hermes Agent ganaron sus pases a esta final.
 - **[Semifinal 2 — nativos vs agnósticos (ES)](/blog/cli-ai-semifinal-2/)** y **[Semifinal 2 — native vs agnostic (EN)](https://arceapps.com/blog/cli-ai-semifinal-2/)**: cómo OpenCode y OpenAI Codex se ganaron los suyos.
-- **[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/ai-tools-worth-learning-2026/)**: el panorama completo de herramientas de agentes y por qué el agnosticismo importa.
+- **[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/herramientas-ia-2026/)**: el panorama completo de herramientas de agentes y por qué el agnosticismo importa.
 - **[OpenCode Subagents: Workflows & Superpowers (EN)](https://arceapps.com/blog/opencode-subagents/)**: análisis a fondo del ganador de la semifinal 1, su arquitectura de subagentes y el sistema de plugins JS.
 - **[Servidores MCP y memoria cross-agent (ES)](/blog/servidores-mcp-memoria-cross-agent/)**: cómo MCP cambió el juego y por qué Claude Code es el cliente más maduro.
 - **[OpenCode plugins: memoria nativa (ES)](/blog/opencode-plugins-memoria-nativos/)**: el lado agnóstico de la memoria persistente, complementario al artículo sobre MCP.

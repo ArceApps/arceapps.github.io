@@ -13,7 +13,7 @@ reference_id: "0cacec48-ee8b-4453-866f-c598eff790cf"
 
 Throughout my years building mobile applications, the initial project setup, emulator configuration, and environment preparation have always represented a significant amount of friction. That feeling of wrestling with Gradle builds before writing the first serious line of code is something we all know too well. However, over the past year, particularly with the rise of AI agents, I've found myself completely rethinking how I manage my workflows.
 
-The arrival of the **Android CLI** (and its deep integration with AI agents) has largely changed this equation. Now, instead of clicking around and waiting for Android Studio to index half my hard drive, I can lean on command-line tools that are explicitly designed to integrate smoothly with bots like *Claude Code* or my own [locally configured agents](/blog/configuracion-agentes-ia).
+The arrival of the **Android CLI** (and its deep integration with AI agents) has largely changed this equation. Now, instead of clicking around and waiting for Android Studio to index half my hard drive, I can lean on command-line tools that are explicitly designed to integrate smoothly with bots like *Claude Code* or my own [locally configured agents](/blog/configuring-ai-agents).
 
 ## Why a CLI now?
 
@@ -36,7 +36,7 @@ According to recent tests, this greatly reduces the tokens an agent needs to spe
 
 ## The AI-centric Workflow
 
-Picture this: I'm iterating on a new idea in a fully console-based environment (maybe an [MCP server](/blog/servidores-mcp-memoria-cross-agent)), and I ask my agent to deploy the project to review the layout on a connected device:
+Picture this: I'm iterating on a new idea in a fully console-based environment (maybe an [MCP server](/blog/mcp-servers-memory-cross-agent)), and I ask my agent to deploy the project to review the layout on a connected device:
 
 ```bash
 android run --apks=app-debug.apk --device=emulator-5554
@@ -50,7 +50,7 @@ If you want to understand how to complement this by injecting specific developme
 
 You might wonder: "Does this mean I'll stop using Android Studio?". No. The main idea, which I constantly apply in my projects, is to use agents + CLI for rapid prototyping, massive structural refactors, or CI/CD flows.
 
-For visual debugging, performance profiling, or fine-tuning UI, I [open my project in the IDE](/blog/herramientas-ia-2026). The Android CLI includes commands like `android studio check` or `android studio open-file` to hand the baton back to the IDE without friction.
+For visual debugging, performance profiling, or fine-tuning UI, I [open my project in the IDE](/blog/ai-tools-worth-learning-2026). The Android CLI includes commands like `android studio check` or `android studio open-file` to hand the baton back to the IDE without friction.
 
 ## My Takeaways
 

@@ -9,7 +9,7 @@
 
 **Tech Stack:** Astro 5.16.3 estático, TypeScript estricto, Tailwind CSS 4.1.17, DaisyUI 5.5.5, Material Icons, Inter/Merriweather, Fuse.js, pnpm, Vitest.
 
-**Status:** ✅ COMPLETADO — Tasks 1–10 completadas; queda deuda técnica no bloqueante en los hallazgos 11–12.
+**Status:** 🟡 IN PROGRESS — Tasks 1–10 completadas; Task 11 correctiva en cierre/verificación.
 
 ## Dependency & Package Validation
 
@@ -276,3 +276,19 @@ Los checkpoints humanos se sitúan después de los pasos 1, 4, 6 y 9. Si una tar
 **Integración:** No se hace merge ni PR. El estado global del rediseño permanece `✅ COMPLETADO`, pero la integración queda bloqueada hasta resolver la suite completa. No se realizó commit.
 
 **Outcome:** ⚠️ Cierre aceptado; integración pendiente por Gate F1 no cumplido.
+
+### 2026-07-29 — Task 11: restaurar integridad de enlaces internos del blog
+
+**RED:** Se confirmó correctamente el fallo inicial del contrato en `src/utils/blog-link-resolution.test.ts` por import ausente.
+
+**GREEN:** La implementación pasó primero 3/3 casos y después 4/4 tras incorporar `parseBlogRedirects`. `src/utils/links-validation.test.ts` pasa 2/2.
+
+**Correcciones:** Se canonicalizaron enlaces EN/ES, se resolvieron trailing slashes y aliases definidos mediante redirects, se corrigieron enlaces cross-locale permitidos y se eliminaron enlaces a git-worktrees sin equivalente local.
+
+**Verificación:** `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0, genera 1043 páginas y 301 imágenes OG, y mantiene el warning conocido de `CONTACT_FORM_KEY` junto con los warnings no relacionados de `glob-loader` por IDs duplicados; `git diff --check` pasa.
+
+**Checkpoint:** El usuario aprobó continuar con “podemos seguir entonces?” al inicio de esta ejecución; la aprobación fue confirmada antes de editar y queda registrada con timestamp `2026-07-29T09:06:41+02:00`.
+
+**Code review:** CLEAN.
+
+**Estado:** La corrección está implementada y verificada técnicamente. El commit y el verifier final permanecen pendientes; por tanto, Task 11 aún no se marca como DONE.

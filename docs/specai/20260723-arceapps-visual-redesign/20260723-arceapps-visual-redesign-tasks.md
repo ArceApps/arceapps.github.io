@@ -276,3 +276,43 @@
 **Resultado:** Cierre documental completado sin tocar código ni archivos fuera de esta carpeta. El plan queda completado con deuda no bloqueante.
 
 **Evidencia:** `pnpm build` exit 0 con 1043 páginas y 301 imágenes OG, manteniendo únicamente el warning conocido por ausencia de `CONTACT_FORM_KEY`; `pnpm test` exit 1 únicamente en `src/utils/links-validation.test.ts`, con 274 fallos y 139 pasados de 413, registrado como baseline/out-of-scope y no como suite verde; `pnpm exec vitest run src/i18n/utils.test.ts` exit 0 con 24/24; `git diff --check` exit 0; los cuatro documentos living existen. `spec-compliance-reviewer PASS` y `verifier PASS` autorizan el cierre.
+
+## Task 11: Reparar enlaces internos del blog
+
+**Files:**
+
+- Modify: `src/utils/blog-link-resolution.test.ts`
+- Modify: `src/utils/links-validation.test.ts`
+- Modify: `src/content/blog/en/` y `src/content/blog/es/` únicamente en los Markdown afectados
+- Inspect/Modify: `astro.config.mjs` para consultar aliases y redirects declarados
+
+**Contexto:** Restaurar la integridad de enlaces internos del blog sin ocultar destinos realmente ausentes. Tasks 1–10 permanecen `DONE`; esta tarea reabre exclusivamente la deuda técnica del Hallazgo 12.
+
+**Metadata:** Complexity 6/10 · Risk Medium · Checkpoint Yes
+
+**Dependencies:** Secuencial. La tarea toca el resolver, sus contratos y contenido Markdown compartido; no hay paralelismo seguro entre subpasos que editen los mismos archivos.
+
+**Shared Resources:**
+
+- `src/content/blog`
+- `src/utils/links-validation.test.ts`
+- `src/utils/blog-link-resolution.test.ts`
+- `astro.config.mjs`
+
+**Status:** 🟡 IN PROGRESS
+
+**Steps:**
+
+- [x] Crear el contrato RED para normalización de trailing slash, aliases/redirects y resolución por locale, incluyendo casos cross-locale explícitamente permitidos.
+- [x] Implementar en GREEN la resolución mínima que consulte el slug canonical, normalice trailing slash y conozca los aliases/redirects declarados.
+- [x] Canonicalizar los enlaces internos afectados conservando el locale correcto y documentar de forma explícita los enlaces cross-locale permitidos.
+- [x] Sustituir los destinos realmente ausentes y eliminar enlaces a git-worktrees sin equivalente local cuando no exista un artículo equivalente válido.
+- [x] Ejecutar `pnpm test`, confirmar 21 archivos y 144 tests PASS, comprobar `pnpm build` con exit 0 y verificar `git diff --check`.
+- [x] Solicitar y registrar el checkpoint humano antes de continuar; la aprobación “podemos seguir entonces?” quedó confirmada con timestamp `2026-07-29T09:06:41+02:00`.
+- [ ] Crear un commit de la corrección y solicitar el verifier final antes de cerrar la tarea.
+
+**Resultado:** El resolver conoce trailing slashes y aliases/redirects mediante `parseBlogRedirects`; los contratos específicos pasan 4/4 y 2/2; se canonicalizaron enlaces EN/ES y se eliminaron enlaces a git-worktrees sin equivalente local.
+
+**Evidencia:** `pnpm test` pasa con 21 archivos y 144 tests; `pnpm build` termina con exit 0, genera 1043 páginas y 301 imágenes OG, mantiene el warning conocido `CONTACT_FORM_KEY` y los warnings no relacionados de `glob-loader` por IDs duplicados; `git diff --check` pasa; code review CLEAN.
+
+**Nota de cierre:** No se marca `DONE` hasta crear el commit y obtener el verifier final.
