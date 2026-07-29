@@ -1,0 +1,32 @@
+---
+interface Props {
+  class?: string;
+  colSpan?: string; // e.g. "lg:col-span-2"
+  rowSpan?: string; // e.g. "lg:row-span-2"
+  variant?: 'default' | 'primary' | 'secondary' | 'featured';
+}
+
+const {
+  class: className = "",
+  colSpan = "col-span-1",
+  rowSpan = "row-span-1",
+  variant = 'default',
+} = Astro.props;
+
+// Variant specific backgrounds & accent borders
+const variantClasses = {
+  default: "bg-surface dark:bg-dark-surface border-border/80 dark:border-dark-border/80 hover:border-primary/40 dark:hover:border-teal-400/40",
+  primary: "bg-gradient-to-br from-primary/5 via-surface to-surface dark:from-primary/10 dark:via-dark-surface dark:to-dark-surface border-primary/20 dark:border-teal-500/30 hover:border-primary dark:hover:border-teal-400",
+  secondary: "bg-gradient-to-br from-secondary/5 via-surface to-surface dark:from-secondary/10 dark:via-dark-surface dark:to-dark-surface border-secondary/20 dark:border-orange-500/30 hover:border-secondary dark:hover:border-orange-400",
+  featured: "bg-surface dark:bg-dark-surface border-2 border-primary/30 dark:border-teal-500/40 hover:border-primary dark:hover:border-teal-400 shadow-lg",
+};
+---
+
+<article
+  class={`group relative rounded-3xl p-6 md:p-8 flex flex-col justify-between overflow-hidden border shadow-sm hover:shadow-xl hover:shadow-primary/5 dark:hover:shadow-teal-500/10 transition-all duration-300 ease-out hover:-translate-y-2 focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${colSpan} ${rowSpan} ${variantClasses[variant]} ${className}`}
+>
+  <!-- Subtle ambient top gradient accent on hover -->
+  <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 motion-reduce:transition-none" aria-hidden="true"></div>
+
+  <slot />
+</article>

@@ -1,0 +1,55 @@
+---
+import BentoCard from "./BentoCard.astro";
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+  lang: 'en' | 'es';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const linkPrefix = lang === 'es' ? '/es' : '';
+---
+
+<BentoCard colSpan="lg:col-span-2" rowSpan="lg:row-span-2" variant="primary" class="justify-between min-h-[380px]">
+  <div>
+    <!-- Header Badges -->
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+      <span class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-primary dark:text-teal-400">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-primary dark:bg-teal-400"></span>
+        </span>
+        {t('home.bento.hero_badge')}
+      </span>
+      <span class="text-xs font-semibold tracking-wide text-on-surface-variant/80 dark:text-dark-on-surface-variant/80">
+        {t('home.hero.eyebrow')}
+      </span>
+    </div>
+
+    <!-- Title & Subtitle -->
+    <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-on-surface dark:text-dark-on-surface tracking-tight leading-[1.15] mb-6">
+      {t('home.bento.hero_title')}
+    </h1>
+    <p class="text-base sm:text-lg text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed max-w-xl mb-8">
+      {t('home.bento.hero_subtitle')}
+    </p>
+  </div>
+
+  <!-- Actions & Status Footer -->
+  <div class="flex flex-wrap items-center gap-4 pt-6 border-t border-border/60 dark:border-dark-border/60">
+    <a
+      href={`${linkPrefix}/apps`}
+      class="inline-flex items-center justify-center rounded-2xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-primary/20 hover:bg-primary/90 transition-all duration-200 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 group"
+    >
+      {t('home.view_all_apps')}
+      <span class="material-icons ml-2 text-base group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+    </a>
+    <a
+      href={`${linkPrefix}/about-me`}
+      class="inline-flex items-center justify-center rounded-2xl border border-border dark:border-dark-border bg-surface dark:bg-dark-surface px-6 py-3.5 text-sm font-bold text-on-surface dark:text-dark-on-surface hover:bg-on-surface/5 dark:hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    >
+      {t('nav.about')}
+    </a>
+  </div>
+</BentoCard>
