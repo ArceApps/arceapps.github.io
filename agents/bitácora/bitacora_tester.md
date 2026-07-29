@@ -13,3 +13,13 @@ Registro de actividades de aseguramiento de calidad y ejecución de pruebas.
 **Mejoras:**
 - Instalación de Vitest y JSDOM.
 - Refactorización de scripts para hacer exportables sus funciones internas.
+
+## 2026-07-29 - Actualización del enlace de Google Play
+**Estado:** ✅ Verificado
+**Cambios comprobados:**
+- Actualizados los cuatro enlaces compartidos al perfil de desarrollador para usar `https://play.google.com/store/apps/dev?id=8812775800441745731`.
+- Añadida una prueba de contrato en `src/components/google-play-links.test.ts` para evitar la regresión del formato anterior.
+**Verificación:**
+- `pnpm test`: 23 archivos y 154 pruebas superadas.
+- `pnpm build`: 1023 páginas generadas correctamente.
+- `git diff --check`: sin errores.

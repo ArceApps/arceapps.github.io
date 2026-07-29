@@ -449,3 +449,27 @@
 - Modificado `src/components/ProjectCard.astro`: Añadido `motion-reduce:transform-none` al contenedor, imagen hero y flecha de acción.
 - Modificado `src/pages/devlog/index.astro`: Añadido `motion-reduce:transform-none` al contenedor de tarjeta y a la imagen hero.
 - Verificado mediante inspección estática (`grep`) de las clases aplicadas.
+
+## 2026-07-29 - Auditoría de rediseño moderno
+
+**Alcance:**
+- Auditados layout, cabecera, portada, tarjetas, detalles de Blog y estilos globales siguiendo `/specai-audit-plan`.
+- Inspeccionadas la portada y una entrada de Blog publicadas, además de la estructura responsive en escritorio y tablet.
+
+**Evidencia:**
+- El rediseño previo sí está integrado en el historial, pero no consolidó una dirección visual única ni toda la web en una misma familia de componentes.
+- Reproducido el solapamiento del índice: en el detalle de Blog a 1280 px, un TOC de 252,18 px desborda su pista de 200 px e invade 4,18 px la lectura.
+- La cabecera muestra siete enlaces desde 768 px y queda sin un estado tablet intermedio.
+
+**Resultado:**
+- Creados `docs/specai/20260729-modern-visual-redesign/audit-findings.md` y `docs/specai/20260729-modern-visual-redesign/architecture-audit-report.md`.
+- No se modificó la interfaz ni el contenido. La implementación queda pendiente de la selección de hallazgos y la posterior planificación SpecAI.
+
+## 2026-07-29 - Sistema visual documentado
+
+**Decisión del usuario:** se conserva la paleta teal y naranja actual.
+
+**Realizado:**
+- Creado `docs/specai/20260729-modern-visual-redesign/DESIGN.md` como fuente de verdad para color, roles, tipografía, espaciado, superficies, tarjetas, responsive y criterios de aceptación.
+- Se propone reutilizar Merriweather, que ya forma parte del proyecto, solo para la lectura editorial; Inter Variable seguirá siendo la fuente de interfaz y títulos.
+- No se aplicaron cambios visuales todavía.
