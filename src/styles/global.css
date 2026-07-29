@@ -443,6 +443,18 @@
       animation-timeline: scroll();
     }
   }
+
+  .home-hero-title {
+    animation: fade-in-up 0.7s ease-out both;
+  }
+
+  .home-hero-manifesto {
+    animation: fade-in-up 0.7s ease-out 0.15s both;
+  }
+
+  .home-hero-scroll {
+    animation: fade-in-up 0.7s ease-out 0.3s both;
+  }
 }
 
 /* Keep editorial article columns stable when utility classes are composed. */
