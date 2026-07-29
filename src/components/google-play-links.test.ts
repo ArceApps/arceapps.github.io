@@ -7,7 +7,7 @@ const expectedDeveloperUrl =
 
 const developerLinkSources = [
   'src/components/Footer.astro',
-  'src/components/pages/HomePage.astro',
+  'src/components/home/HomeCta.astro',
   'src/pages/404.astro',
   'src/pages/privacy-policy.astro',
 ];
