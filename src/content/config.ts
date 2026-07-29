@@ -38,6 +38,17 @@ const appsCollection = defineCollection({
   }),
 });
 
+const projectsCollection = defineCollection({
+  schema: z.object({
+    title: z.string(), description: z.string(), pubDate: z.coerce.date(),
+    datePrecision: z.enum(['exact', 'approximate']).default('exact'),
+    heroImage: z.string(), heroImageAlt: z.string(), repositoryUrl: z.string().url(),
+    reference_id: z.string(), technologies: z.array(z.string()), tags: z.array(z.string()),
+    status: z.enum(['active', 'maintained', 'archived', 'experimental']).default('active'),
+    draft: z.boolean().optional().default(false),
+  }),
+});
+
 const devlogCollection = defineCollection({
   schema: z.object({
     title: z.string().max(100),
@@ -56,5 +67,6 @@ const devlogCollection = defineCollection({
 export const collections = {
   'blog': blogCollection,
   'apps': appsCollection,
+  'projects': projectsCollection,
   'devlog': devlogCollection,
 };

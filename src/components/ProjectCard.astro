@@ -10,7 +10,9 @@ interface Props {
   realIconUrl?: string;
   tags?: string[];
   pubDate: Date;
+  datePrecision?: 'exact' | 'approximate';
   slug: string;
+  kind?: 'app' | 'project';
 }
 
 const {
@@ -20,12 +22,15 @@ const {
   realIconUrl,
   tags = [],
   pubDate,
+  datePrecision = 'exact',
   slug,
+  kind = 'app',
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
+const basePath = kind === 'project' ? 'projects' : 'apps';
+const href = lang === 'es' ? `/es/${basePath}/${slug}` : `/${basePath}/${slug}`;
 ---
 
 <Card
@@ -111,7 +116,16 @@ const href = lang === 'es' ? `/es/apps/${slug}` : `/apps/${slug}`;
       <span
         class="text-sm font-medium text-on-surface-variant/70 dark:text-dark-on-surface-variant/70"
       >
-        {pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US')}
+        <span class="flex flex-col items-end gap-0.5">
+          <time datetime={pubDate.toISOString()}>
+            {pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US')}
+          </time>
+          {kind === 'project' && datePrecision === 'approximate' && (
+            <span class="text-[0.65rem] uppercase tracking-wider text-secondary">
+              {t('projects.date_approximate')}
+            </span>
+          )}
+        </span>
       </span>
       <span
         class="flex items-center text-primary font-bold text-sm"

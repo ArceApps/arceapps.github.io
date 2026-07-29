@@ -2,18 +2,19 @@
 
 ## Criterios de aceptación globales
 
-- [ ] `pnpm test` pasa sin regresiones.
-- [ ] `pnpm build` finaliza correctamente.
-- [ ] Todas las rutas públicas EN/ES usan el sistema visual de `DESIGN.md` y cadenas localizadas.
-- [ ] El header tiene comportamiento móvil, tablet y escritorio accesible; footer enlaza las secciones actuales.
-- [ ] El TOC no se superpone al artículo a 1280 px y permanece navegable por teclado.
-- [ ] `projects` es una colección Astro; `projects.json` no tiene consumidores.
-- [ ] SpecAI, NewsAPI y SkillsAI tienen ficha EN/ES, hero, `reference_id` y fecha marcada como aproximada.
-- [ ] Projects solo contiene repositorios públicos y no duplica Apps.
-- [ ] Home muestra exactamente tres elementos de Apps/Projects ordenados por `pubDate`.
-- [ ] Las fichas Project muestran procedencia cuando corresponde.
-- [ ] SkillsAI tiene MIT, registro de procedencia individual, avisos Apache-2.0/MIT conservados y explicación de colección personal.
-- [ ] SkillsAI es público en GitHub antes de que la web publique su enlace.
+- [x] `pnpm test` pasa sin regresiones: 22 archivos y 149 tests.
+- [x] `pnpm build` finaliza correctamente: 1023 páginas estáticas.
+- [x] `pnpm astro check` finaliza con 0 errores y 0 warnings; quedan 18 hints heredados de scripts inline.
+- [x] Todas las rutas públicas EN/ES usan el sistema visual compartido de `DESIGN.md` y los listados/detalles nuevos respetan i18n.
+- [x] El header tiene comportamiento móvil, tablet y escritorio accesible; el footer enlaza Apps, Projects y las secciones actuales.
+- [x] El TOC reserva 264 px frente a 760 px de lectura en un contenedor de 1200 px y permanece navegable por teclado.
+- [x] `projects` es una colección Astro; `projects.json` no tiene consumidores.
+- [x] SpecAI, NewsAPI y SkillsAI tienen ficha EN/ES, hero, `reference_id` y fecha marcada como aproximada.
+- [x] Projects solo contiene repositorios públicos y no duplica Apps.
+- [x] Home muestra exactamente tres elementos de Apps/Projects ordenados por `pubDate`.
+- [x] Las fichas Project muestran procedencia cuando corresponde.
+- [x] SkillsAI tiene MIT, registro de procedencia, avisos Apache-2.0/MIT conservados y explicación de colección personal.
+- [x] SkillsAI es público en GitHub antes de que la web publique su enlace.
 
 ## Matriz de evidencia
 

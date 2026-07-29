@@ -14,7 +14,7 @@ const esPosts = allPosts.filter(p => p.id.startsWith("es/"));
 
 const seriesPosts = series.posts
   .map(postSlug => esPosts.find(p => p.id === `es/${postSlug}.md` || p.id === `es/${postSlug}` || p.slug.endsWith(postSlug)))
-  .filter(Boolean);
+  .filter((post): post is NonNullable<typeof post> => Boolean(post));
 
 const title = `${series.name} — ArceApps`;
 

@@ -8,7 +8,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<footer class="bg-surface-variant dark:bg-dark-surface-variant pt-16 pb-8 border-t border-gray-200 dark:border-gray-800 transition-colors duration-300 cv-auto" style="contain-intrinsic-size: 400px;">
+<footer class="border-t border-border bg-surface-subtle py-14 transition-colors duration-300 dark:border-dark-border dark:bg-dark-surface-subtle cv-auto" style="contain-intrinsic-size: 400px;">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
       <!-- Brand -->
@@ -36,6 +36,7 @@ const t = useTranslations(lang);
         <ul class="space-y-3">
           <li><a href={lang === 'es' ? '/es' : '/'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.home')}</a></li>
           <li><a href={lang === 'es' ? '/es/apps' : '/apps'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.apps')}</a></li>
+          <li><a href={lang === 'es' ? '/es/projects' : '/projects'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.projects')}</a></li>
           <li><a href={lang === 'es' ? '/es/about-me' : '/about-me'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.about')}</a></li>
           <li><a href={lang === 'es' ? '/es/about-me#contact' : '/about-me#contact'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('footer.contact')}</a></li>
         </ul>
@@ -61,7 +62,7 @@ const t = useTranslations(lang);
       </div>
     </div>
 
-    <div class="border-t border-gray-300 dark:border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant/80 dark:text-dark-on-surface-variant/80">
+    <div class="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant/80 dark:border-dark-border dark:text-dark-on-surface-variant/80">
       <p>{t('footer.copyright').replace('©', `© ${currentYear}`)}</p>
       <p>{t('footer.designed_with')} <span class="text-secondary">♥</span> y Material Design.</p>
     </div>

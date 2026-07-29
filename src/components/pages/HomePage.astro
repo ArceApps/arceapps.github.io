@@ -32,6 +32,22 @@ const apps = (await getCollection("apps", ({ data, id }) => !data.draft && id.st
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
+const projects = await getCollection("projects", ({ data, id }) => !data.draft && id.startsWith(prefix));
+const recentWork = [
+  ...apps.map((app) => ({ type: 'app' as const, entry: app, pubDate: app.data.pubDate })),
+  ...projects.map((project) => ({ type: 'project' as const, entry: project, pubDate: project.data.pubDate })),
+].sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf()).slice(0, 3);
+
+const featuredWork = recentWork[0]
+  ? {
+      title: recentWork[0].entry.data.title,
+      description: recentWork[0].entry.data.description,
+      href: `${linkPrefix}/${recentWork[0].type === 'project' ? 'projects' : 'apps'}/${recentWork[0].entry.slug.split('/').pop() || ''}`,
+      heroImage: recentWork[0].entry.data.heroImage,
+      kind: recentWork[0].type,
+    }
+  : undefined;
+
 const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
 ---
 
@@ -50,7 +66,7 @@ const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
     </script>
   )}
 
-  <Hero />
+  <Hero featuredWork={featuredWork} />
 
   <!-- Apps & Devlog -->
   <section id="apps" class="bg-surface py-24 dark:bg-dark-surface cv-auto fade-in-section" style="contain-intrinsic-size: 800px;">
@@ -103,24 +119,29 @@ const devlogSlug = latestDevlog ? latestDevlog.slug.split('/').pop() : '';
       )}
 
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {apps.map(app => (
+        {recentWork.map(({ type, entry }) => (
           <div class="h-full">
             <ProjectCard
-              title={app.data.title}
-              description={app.data.description}
-              heroImage={app.data.heroImage}
-              realIconUrl={app.data.realIconUrl}
-              tags={app.data.tags}
-              pubDate={app.data.pubDate}
-              slug={app.slug.split('/').pop() || ''}
+              title={entry.data.title}
+              description={entry.data.description}
+              heroImage={entry.data.heroImage}
+              realIconUrl={type === 'app' && 'realIconUrl' in entry.data ? entry.data.realIconUrl : undefined}
+              tags={entry.data.tags}
+              pubDate={entry.data.pubDate}
+              datePrecision={type === 'project' && 'datePrecision' in entry.data ? entry.data.datePrecision : 'exact'}
+              slug={entry.slug.split('/').pop() || ''}
+              kind={type as 'app' | 'project'}
             />
           </div>
         ))}
       </div>
 
-      <div class="mt-16 text-center">
-        <a href={`${linkPrefix}/apps`} class="inline-flex items-center justify-center rounded-2xl border-2 border-primary px-10 py-4 text-lg font-bold text-primary transition-colors duration-200 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 motion-reduce:transition-none">
+      <div class="mt-16 flex flex-col justify-center gap-4 text-center sm:flex-row">
+        <a href={`${linkPrefix}/apps`} class="inline-flex items-center justify-center rounded-2xl border-2 border-primary px-8 py-4 text-lg font-bold text-primary transition-colors duration-200 hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 motion-reduce:transition-none">
           {t('home.view_all_apps')}
+        </a>
+        <a href={`${linkPrefix}/projects`} class="inline-flex items-center justify-center rounded-2xl border-2 border-secondary px-8 py-4 text-lg font-bold text-secondary transition-colors duration-200 hover:bg-secondary hover:text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-secondary/30 motion-reduce:transition-none">
+          {t('home.view_all_projects')}
         </a>
       </div>
     </div>

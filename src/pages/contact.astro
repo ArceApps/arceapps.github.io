@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import ContactForm from "../components/ContactForm.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import PageIntro from "../components/PageIntro.astro";
 
 const title = "Contact — ArceApps";
 const description = "Get in touch with ArceApps. Questions, suggestions, or just want to say hi.";
@@ -13,28 +14,20 @@ const breadcrumbItems = [
 
 <Layout title={title} description={description}>
   <!-- Hero -->
-  <div class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16">
+  <div class="border-b border-border bg-surface-subtle py-16 dark:border-dark-border dark:bg-dark-surface-subtle">
     <div class="container mx-auto px-4 max-w-4xl text-center">
-      <h1
-        class="text-4xl md:text-5xl font-bold text-on-surface dark:text-dark-on-surface mb-4"
-      >
-        <span class="material-icons text-primary text-4xl mr-2 align-middle" aria-hidden="true">mail</span>
-        Contact
-      </h1>
-      <p
-        class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto"
-      >
-        Whether you have a question about my apps, want to discuss an idea, or just feel like saying hello — I'd love to hear from you.
-      </p>
+      <PageIntro eyebrow="Let's talk" title="Contact" description="Whether you have a question about my apps, want to discuss an idea, or just feel like saying hello — I'd love to hear from you." />
     </div>
   </div>
 
   <!-- Content -->
-  <div class="container mx-auto px-4 max-w-2xl py-16">
+  <div class="container mx-auto max-w-2xl px-4 py-16">
     <div class="mb-4">
       <Breadcrumbs items={breadcrumbItems} />
     </div>
 
-    <ContactForm lang="en" />
+    <div class="rounded-[2rem] border border-border bg-surface-raised p-6 shadow-xl shadow-primary/5 dark:border-dark-border dark:bg-dark-surface-raised md:p-10">
+      <ContactForm lang="en" />
+    </div>
   </div>
 </Layout>

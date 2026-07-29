@@ -56,6 +56,18 @@ describe('contrato de listados visuales', () => {
     }
   });
 
+  it('expone el listado de Projects en ambos idiomas con el mismo contrato visual', () => {
+    const projectFiles = ['src/pages/projects.astro', 'src/pages/es/projects.astro'];
+
+    for (const file of projectFiles) {
+      const source = readSource(file);
+      expect(source).toContain('getCollection("projects"');
+      expect(source).toContain('PageIntro');
+      expect(source).toContain('<ProjectCard');
+      expect(source).toMatch(/grid-cols-1[\s\S]*md:grid-cols-2[\s\S]*lg:grid-cols-3/);
+    }
+  });
+
   it('conserva los prefijos localizados en enlaces de etiquetas y retorno', () => {
     const spanishBlog = readSource('src/pages/es/blog/[...page].astro');
     const spanishTag = readSource('src/pages/es/blog/tag/[tag].astro');

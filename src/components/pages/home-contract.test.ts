@@ -39,6 +39,22 @@ describe('contrato editorial de portada', () => {
     expect(home).not.toContain('Bento');
   });
 
+  it('combina Apps y Projects por fecha y muestra solo tres trabajos recientes', () => {
+    const home = readSource('src/components/pages/HomePage.astro');
+
+    expect(home).toContain("getCollection(\"projects\"");
+    expect(home).toContain('recentWork');
+    expect(home).toContain('.sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf())');
+    expect(home).toContain('.slice(0, 3)');
+  });
+
+  it('envía el trabajo más reciente al hero para convertirlo en una entrada visual', () => {
+    const home = readSource('src/components/pages/HomePage.astro');
+
+    expect(home).toContain('const featuredWork = recentWork[0]');
+    expect(home).toContain('<Hero featuredWork={featuredWork} />');
+  });
+
   it('declara el copy editorial del hero en ambos idiomas', () => {
     const heroKeys = ['home.hero.eyebrow', 'home.hero.prefix', 'home.hero.note'] as const;
 

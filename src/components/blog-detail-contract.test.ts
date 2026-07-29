@@ -58,4 +58,12 @@ describe('contrato editorial del detalle de artículo', () => {
     expect(styles).toContain('overflow-x: auto;');
     expect(styles).not.toContain('max-inline-size: min(100%, 500px)');
   });
+
+  it('reserva una columna de índice más ancha para evitar solapamientos a 1280px', () => {
+    for (const file of detailFiles) {
+      const source = readSource(file);
+      expect(source).toContain('max-w-[1200px]');
+      expect(source).toContain('lg:grid-cols-[minmax(0,264px)_minmax(0,760px)]');
+    }
+  });
 });
