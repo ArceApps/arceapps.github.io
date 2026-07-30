@@ -2,12 +2,18 @@
 import Layout from "../layouts/Layout.astro";
 import ContactForm from "../components/ContactForm.astro";
 import PhilosophyCard from "../components/PhilosophyCard.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { Image } from "astro:assets";
 import brandIcon from "../assets/brand-icon.png";
 
 const title = "About Me - ArceApps";
 const description =
   "Learn more about ArceApps, my tech stack and my focus on Android development and Artificial Intelligence.";
+
+const breadcrumbItems = [
+  { label: "Home", href: "/" },
+  { label: "About Me", href: "/about-me" },
+];
 
 // Tech Categories
 const techStack = [
@@ -160,13 +166,15 @@ const techStack = [
 ];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} type="profile" image="/logo.png">
   <!-- Hero Section -->
   <div class="border-b border-border bg-surface-subtle py-20 dark:border-dark-border dark:bg-dark-surface-subtle">
     <div class="container mx-auto px-4">
-      <div
-        class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto"
-      >
+      <Breadcrumbs items={breadcrumbItems} />
+
+        <div
+          class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto"
+        >
         <!-- Profile Image (Web Icon) -->
         <div
           class="w-48 h-48 md:w-56 md:h-56 rounded-[2rem] border border-primary/30 bg-surface-raised p-2 shrink-0 shadow-xl shadow-primary/10 animate-fade-in dark:bg-dark-surface-raised"

@@ -236,6 +236,24 @@ const socialImageURL = new URL(image, Astro.url);
       />
     )}
 
+    <!-- Schema.org - Person (when type="profile") -->
+    {type === "profile" && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "ArceApps",
+          url: "https://arceapps.com/about-me",
+          image: "https://arceapps.com/logo.png",
+          sameAs: [
+            "https://github.com/arceapps",
+            "https://play.google.com/store/apps/developer?id=Arce+Apps",
+          ],
+        }).replace(/</g, "\\u003C")}
+      />
+    )}
+
     <script is:inline>
       // Theme Script
       function getTheme() {
