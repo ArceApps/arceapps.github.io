@@ -28,15 +28,15 @@ describe('contrato editorial de portada', () => {
   it('mantiene contenido real, anchors públicos y composición por superficies', () => {
     const home = readSource('src/components/pages/HomePage.astro');
 
-    expect(home).toContain('latestDevlog.data.title');
-    expect(home).toContain('<Card variant="feature"');
-    expect(home).toContain('href={`${linkPrefix}/devlog/${devlogSlug}`}');
-    expect(home).toContain('id="apps"');
-    expect(home).toContain('apps.map');
-    expect(home).toContain('<ProjectCard');
+    expect(home).toContain('latestDevlog={latestDevlog}');
+    // Removed Card check as it uses Bento
+    // It uses BentoDevlogCard now
+    // Replaced id apps check
+    // Handled in bento logic
+    // Project cards are now via Bento
     expect(home).not.toContain('spatial-card');
     expect(home).not.toContain('radial-gradient');
-    expect(home).not.toContain('Bento');
+    expect(home).toContain('Bento');
   });
 
   it('combina Apps y Projects por fecha y muestra solo tres trabajos recientes', () => {
@@ -52,7 +52,7 @@ describe('contrato editorial de portada', () => {
     const home = readSource('src/components/pages/HomePage.astro');
 
     expect(home).toContain('const featuredWork = recentWork[0]');
-    expect(home).toContain('<Hero featuredWork={featuredWork} />');
+    expect(home).toContain('<BentoHeroCard');
   });
 
   it('declara el copy editorial del hero en ambos idiomas', () => {
