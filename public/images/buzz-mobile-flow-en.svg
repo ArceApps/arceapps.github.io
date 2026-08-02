@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid-mob-en" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <filter id="glow-mob-en" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow-mob-en" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#34d399"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <rect width="1200" height="630" fill="url(#grid-mob-en)" opacity="0.55"/>
+
+  <text x="60" y="48" font-family="ui-monospace, monospace" font-size="14" fill="#64748b" letter-spacing="3">FROM LAPTOP TO POCKET · MOBILE PAIRING IN BUZZ</text>
+  <text x="1140" y="48" font-family="ui-monospace, monospace" font-size="14" fill="#64748b" text-anchor="end" letter-spacing="2">INFOGRAPHIC 02 / 04</text>
+  <line x1="60" y1="64" x2="1140" y2="64" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Pipeline track -->
+  <rect x="60" y="120" width="1080" height="180" rx="20" fill="#0b1220" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Phase 1: desktop generates QR -->
+  <rect x="90" y="150" width="220" height="120" rx="12" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+  <rect x="90" y="150" width="220" height="30" rx="12" fill="#018786"/>
+  <text x="200" y="172" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#0F172A">PHASE 1 · DESKTOP</text>
+  <text x="200" y="200" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#cbd5e1">Generate nsec + QR</text>
+  <text x="200" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">Desktop creates your</text>
+  <text x="200" y="237" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">keypair and a QR secret.</text>
+  <text x="200" y="258" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#34d399">🔐 keypair born on device</text>
+
+  <!-- Phase 2: phone scans + 6 digits -->
+  <rect x="380" y="150" width="220" height="120" rx="12" fill="#0F172A" stroke="#FF9800" stroke-width="2"/>
+  <rect x="380" y="150" width="220" height="30" rx="12" fill="#FF9800"/>
+  <text x="490" y="172" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#0F172A">PHASE 2 · PHONE</text>
+  <text x="490" y="200" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#cbd5e1">Scan + match 6 digits</text>
+  <text x="490" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">Encrypted exchange over</text>
+  <text x="490" y="237" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">Buzz, 6-digit confirmation.</text>
+  <text x="490" y="258" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#FFB74D">🤳 same identity, new device</text>
+
+  <!-- Phase 3: phone talks to relay -->
+  <rect x="670" y="150" width="220" height="120" rx="12" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+  <rect x="670" y="150" width="220" height="30" rx="12" fill="#018786"/>
+  <text x="780" y="172" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#0F172A">PHASE 3 · MOBILE PEER</text>
+  <text x="780" y="200" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#cbd5e1">Direct WS to relay</text>
+  <text x="780" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">Mobile signs events locally;</text>
+  <text x="780" y="237" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">relay only sees routing meta.</text>
+  <text x="780" y="258" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#34d399">📡 same surface, pocket-sized</text>
+
+  <!-- Phase 4: review anywhere -->
+  <rect x="960" y="150" width="160" height="120" rx="12" fill="#0F172A" stroke="#FF9800" stroke-width="2"/>
+  <rect x="960" y="150" width="160" height="30" rx="12" fill="#FF9800"/>
+  <text x="1040" y="172" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#0F172A">PHASE 4</text>
+  <text x="1040" y="200" text-anchor="middle" font-family="ui-monospace, monospace" font-size="13" font-weight="700" fill="#cbd5e1">Review on the go</text>
+  <text x="1040" y="222" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">Approve, merge,</text>
+  <text x="1040" y="237" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">or hand off mid-flight.</text>
+  <text x="1040" y="258" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#FFB74D">🚶 never a remote control</text>
+
+  <!-- Arrows between phases -->
+  <line x1="316" y1="210" x2="372" y2="210" stroke="#34d399" stroke-width="3" marker-end="url(#arrow-mob-en)"/>
+  <line x1="606" y1="210" x2="662" y2="210" stroke="#34d399" stroke-width="3" marker-end="url(#arrow-mob-en)"/>
+  <line x1="896" y1="210" x2="952" y2="210" stroke="#34d399" stroke-width="3" marker-end="url(#arrow-mob-en)"/>
+
+  <!-- Bottom: three columns (push, privacy, agent) -->
+  <rect x="60" y="335" width="350" height="200" rx="14" fill="#0b1220" stroke="#018786" stroke-width="1.5"/>
+  <text x="80" y="365" font-family="ui-monospace, monospace" font-size="14" font-weight="700" fill="#34d399">📬 Push (NIP-PL)</text>
+  <text x="80" y="392" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">App registers with relays and a push</text>
+  <text x="80" y="407" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">gateway separately.</text>
+  <text x="80" y="432" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">• relays never see device token</text>
+  <text x="80" y="448" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">• push gateway sees no public key</text>
+  <text x="80" y="464" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">• Apple/Google see no metadata</text>
+  <text x="80" y="510" font-family="ui-monospace, monospace" font-size="10" fill="#FFB74D">→ no third party can correlate you</text>
+
+  <rect x="425" y="335" width="350" height="200" rx="14" fill="#0b1220" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="445" y="365" font-family="ui-monospace, monospace" font-size="14" font-weight="700" fill="#FFB74D">🛡️ Privacy by default</text>
+  <text x="445" y="392" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">No analytics SDKs at the time</text>
+  <text x="445" y="407" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">of writing — verifiable in source.</text>
+  <text x="445" y="432" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">• EXIF / GPS stripped before upload</text>
+  <text x="445" y="448" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">• private keys never leave device</text>
+  <text x="445" y="464" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">• relay sees only routing metadata</text>
+  <text x="445" y="510" font-family="ui-monospace, monospace" font-size="10" fill="#34d399">→ privacy is a load-bearing wall</text>
+
+  <rect x="790" y="335" width="350" height="200" rx="14" fill="#0b1220" stroke="#34d399" stroke-width="1.5"/>
+  <text x="810" y="365" font-family="ui-monospace, monospace" font-size="14" font-weight="700" fill="#34d399">🤖 Agent control plane</text>
+  <text x="810" y="392" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">Mobile does not host agents,</text>
+  <text x="810" y="407" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">but it controls them anywhere.</text>
+  <text x="810" y="432" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">• leave messages while laptop sleeps</text>
+  <text x="810" y="448" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">• cancellation travels as ephemeral</text>
+  <text x="810" y="464" font-family="ui-monospace, monospace" font-size="11" fill="#94a3b8">• live telemetry stays in DMs</text>
+  <text x="810" y="510" font-family="ui-monospace, monospace" font-size="10" fill="#FFB74D">→ your hive is multi-device by default</text>
+
+  <text x="60" y="612" font-family="ui-monospace, monospace" font-size="12" fill="#64748b">Source: engineering.block.xyz/blog/a-buzz-on-your-phone · buzz mobile runs Flutter, ships via apple.com/us/app/buzz-chat-with-your-hive and play.google.com/store/apps/details?id=xyz.block.buzz.mobile</text>
+</svg>
