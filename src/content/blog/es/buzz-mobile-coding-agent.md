@@ -114,13 +114,15 @@ Cuando mueves tu identidad a otro dispositivo —típicamente del laptop al móv
 
 ---
 
-## Instalación: tres caminos según quién eres
+## Instalación: cuatro caminos según quién eres
 
-El propio README distingue tres audiencias. Voy a respetar esa taxonomía porque está pensada para minimizar tu tiempo hasta el primer commit.
+El propio README distingue tres audiencias. Voy a añadir un cuarto al principio porque, al releer, me di cuenta de que el camino más rápido de todos se esconde en una sola línea del post oficial. **Si quieres empezar en cinco minutos, ve directo al Camino 0**. Si quieres control, salta al 2 o al 3.
 
-### Camino 1 — Solo quiero probar la app
+### Camino 0 — Quiero estar dentro en 5 minutos (recomendado para empezar)
 
-Descargas un binario empaquetado desde la [página de releases](https://github.com/block/buzz/releases/latest):
+El camino más corto no es descargar el binario. Es **crear una cuenta en [buzz.xyz](https://buzz.xyz)**. Block hospeda un relay gratis; tú solo te registras y obtienes una URL tipo `wss://buzz.xyz/<tu-comunidad>` que es tuya desde el primer minuto.
+
+Después, descarga la app desde la [página de releases](https://github.com/block/buzz/releases/latest) — el binario sirve para cualquier relay, hospedado o self-hosted:
 
 | Plataforma | Archivo |
 |---|---|
@@ -129,9 +131,17 @@ Descargas un binario empaquetado desde la [página de releases](https://github.c
 | Linux x86_64 | `Buzz_<version>_amd64.AppImage` o `..._amd64.deb` |
 | Windows x64 | `Buzz_<version>_x64-setup_alpha-unsigned.exe` |
 
-Por defecto la app apunta a `ws://localhost:3000`. Si quieres apuntarla a un relay tuyo o de un amigo, exporta `BUZZ_RELAY_URL` antes de lanzar, o cámbialo dentro de la app. **El binario de Windows no está code-signed**, así que SmartScreen mostrará la pantalla de "Windows protected your PC". Click en *More info → Run anyway*.
+**El binario de Windows no está code-signed**, así que SmartScreen mostrará la pantalla de "Windows protected your PC". Click en *More info → Run anyway*.
+
+Al abrir la app por primera vez, en vez de apuntar al `ws://localhost:3000` por defecto, **pega la URL que te dio buzz.xyz** (o cámbialo dentro de la app en cualquier momento). Eso es todo: ya estás dentro, con tu identidad Nostr creada en el relay de Block.
+
+**Trade-off honesto**: estás confiando en el relay operado por Block. Para experimentar y para equipos pequeños esto es perfectamente razonable; los servidores corren con la misma transparencia que el código open source. Cuando controles tu identidad, podrás migrar a self-hosted sin perder el historial (es la promesa de *"if Block disappears, your identity still verifies"*). Si desde el día uno quieres soberanía total sobre el relay, salta al Camino 2 o al 3.
 
 Si trabajas en Block, no uses nada de esto: descarga el build interno desde [`squareup/buzz-releases`](https://github.com/squareup/buzz-releases/releases/latest), que viene pre-cableado al relay y al agent provider de la empresa.
+
+### Camino 1 — Solo quiero probar la app contra un relay local
+
+El Camino 0 asume que confías en el relay hospedado. Si lo que quieres es **probar la app con un relay que tú controlas desde el minuto cero**, descarga el binario igual que arriba y arranca el relay de desarrollo. Por defecto la app apunta a `ws://localhost:3000`, que es justo lo que produce `just dev`. Si prefieres apuntar a un relay propio o de un amigo, exporta `BUZZ_RELAY_URL` antes de lanzar, o cámbialo dentro de la app.
 
 ### Camino 2 — Quiero mi propio relay hospedado (sin pelearme con servidores)
 

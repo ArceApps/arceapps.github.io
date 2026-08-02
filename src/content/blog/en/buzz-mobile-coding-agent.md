@@ -114,13 +114,15 @@ When you move your identity to another device — typically from laptop to mobil
 
 ---
 
-## Installation: three paths depending on who you are
+## Installation: four paths depending on who you are
 
-The README itself distinguishes three audiences. I'm respecting that taxonomy because it's designed to minimize your time to first commit.
+The README itself distinguishes three audiences. I'm adding a fourth at the top because, on re-read, I realized the fastest path of all hides in a single line of the official post. **If you want to start in five minutes, jump straight to Path 0**. If you want control, skip to 2 or 3.
 
-### Path 1 — I just want to try the app
+### Path 0 — I want to be inside in 5 minutes (recommended to start)
 
-Download a packaged binary from the [releases page](https://github.com/block/buzz/releases/latest):
+The shortest path is not downloading the binary. It's **creating an account at [buzz.xyz](https://buzz.xyz)**. Block hosts a free relay; you just sign up and get a URL like `wss://buzz.xyz/<your-community>` that's yours from the first minute.
+
+Then download the app from the [releases page](https://github.com/block/buzz/releases/latest) — the binary works with any relay, hosted or self-hosted:
 
 | Platform | File |
 |---|---|
@@ -129,9 +131,17 @@ Download a packaged binary from the [releases page](https://github.com/block/buz
 | Linux x86_64 | `Buzz_<version>_amd64.AppImage` or `..._amd64.deb` |
 | Windows x64 | `Buzz_<version>_x64-setup_alpha-unsigned.exe` |
 
-By default the app points at `ws://localhost:3000`. To point it at a relay you run or one a friend shared with you, export `BUZZ_RELAY_URL` before launching, or change it inside the app. **The Windows binary is not code-signed**, so SmartScreen will show the "Windows protected your PC" screen. Click *More info → Run anyway*.
+**The Windows binary is not code-signed**, so SmartScreen will show the "Windows protected your PC" screen. Click *More info → Run anyway*.
+
+When you open the app for the first time, instead of pointing at the default `ws://localhost:3000`, **paste the URL buzz.xyz gave you** (or change it inside the app at any time). That's it: you're in, with your Nostr identity created on Block's relay.
+
+**Honest trade-off**: you're trusting the relay Block operates. For experimentation and small teams this is perfectly reasonable; the servers run with the same transparency as the open source code. Once you control your identity, you can migrate to self-hosted without losing history (that's the *"if Block disappears, your identity still verifies"* promise). If you want full sovereignty over the relay from day one, skip to Path 2 or 3.
 
 If you work at Block, don't use any of this: download the internal build from [`squareup/buzz-releases`](https://github.com/squareup/buzz-releases/releases/latest), which comes pre-wired to the company relay and agent provider.
+
+### Path 1 — I just want to try the app against a local relay
+
+Path 0 assumes you trust the hosted relay. If what you want is **trying the app with a relay you control from minute zero**, download the binary the same way as above and start the dev relay. By default the app points at `ws://localhost:3000`, which is exactly what `just dev` produces. If you'd rather point it at a relay you run or one a friend shared with you, export `BUZZ_RELAY_URL` before launching, or change it inside the app.
 
 ### Path 2 — I want my own hosted relay (without fighting servers)
 
