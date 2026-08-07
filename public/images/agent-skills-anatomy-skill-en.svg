@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid-if1-en" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <rect width="1200" height="630" fill="url(#grid-if1-en)" opacity="0.3"/>
+
+  <text x="60" y="60" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#018786" letter-spacing="2">FIGURE 1 · SKILL ANATOMY</text>
+  <text x="60" y="100" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="26" fill="#e2e8f0" font-weight="700">SKILL.md: 6 sections, one consistent shape</text>
+
+  <g transform="translate(60,150)">
+    <g transform="translate(0,0)">
+      <rect width="540" height="60" fill="#1e293b" stroke="#018786" stroke-width="1.5" rx="6"/>
+      <rect x="0" y="0" width="6" height="60" fill="#018786"/>
+      <text x="22" y="25" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#018786" font-weight="700">OVERVIEW</text>
+      <text x="22" y="46" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#cbd5e1">What it does and why it exists</text>
+    </g>
+    <g transform="translate(0,75)">
+      <rect width="540" height="60" fill="#1e293b" stroke="#018786" stroke-width="1.5" rx="6"/>
+      <rect x="0" y="0" width="6" height="60" fill="#018786"/>
+      <text x="22" y="25" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#018786" font-weight="700">WHEN TO USE</text>
+      <text x="22" y="46" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#cbd5e1">When it applies · When it does NOT</text>
+    </g>
+    <g transform="translate(0,150)">
+      <rect width="540" height="60" fill="#1e293b" stroke="#FF9800" stroke-width="1.5" rx="6"/>
+      <rect x="0" y="0" width="6" height="60" fill="#FF9800"/>
+      <text x="22" y="25" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#FF9800" font-weight="700">PROCESS</text>
+      <text x="22" y="46" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#cbd5e1">Step-by-step workflow, with pseudo-code</text>
+    </g>
+    <g transform="translate(0,225)">
+      <rect width="540" height="60" fill="#1e293b" stroke="#FF9800" stroke-width="1.5" rx="6"/>
+      <rect x="0" y="0" width="6" height="60" fill="#FF9800"/>
+      <text x="22" y="25" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#FF9800" font-weight="700">COMMON RATIONALIZATIONS</text>
+      <text x="22" y="46" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#cbd5e1">Table: excuse → rebuttal (anti-skip)</text>
+    </g>
+    <g transform="translate(0,300)">
+      <rect width="540" height="60" fill="#1e293b" stroke="#FF9800" stroke-width="1.5" rx="6"/>
+      <rect x="0" y="0" width="6" height="60" fill="#FF9800"/>
+      <text x="22" y="25" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#FF9800" font-weight="700">RED FLAGS</text>
+      <text x="22" y="46" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#cbd5e1">Stop signals during the action</text>
+    </g>
+    <g transform="translate(0,375)">
+      <rect width="540" height="60" fill="#1e293b" stroke="#018786" stroke-width="1.5" rx="6"/>
+      <rect x="0" y="0" width="6" height="60" fill="#018786"/>
+      <text x="22" y="25" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#018786" font-weight="700">VERIFICATION</text>
+      <text x="22" y="46" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#cbd5e1">Evidence required to mark it complete</text>
+    </g>
+  </g>
+
+  <g transform="translate(660,150)">
+    <text font-family="ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#94a3b8" font-weight="700">EXAMPLE · TDD</text>
+    <text y="22" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#94a3b8">Real rationalization rows from the repo</text>
+
+    <g transform="translate(0,40)">
+      <rect width="480" height="30" fill="#1e293b" stroke="#FF9800" stroke-width="1"/>
+      <text x="14" y="20" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#FF9800" font-weight="700">RATIONALIZATION</text>
+      <text x="250" y="20" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#FF9800" font-weight="700">REALITY</text>
+
+      <rect y="30" width="480" height="60" fill="#0F172A" stroke="#334155" stroke-width="0.5"/>
+      <text x="14" y="50" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#cbd5e1">"The change is</text>
+      <text x="14" y="64" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#cbd5e1">trivial, it doesn't</text>
+      <text x="14" y="78" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#cbd5e1">need a test"</text>
+      <text x="250" y="50" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">Most expensive</text>
+      <text x="250" y="64" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">bugs of my career</text>
+      <text x="250" y="78" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">came from</text>
+      <text x="250" y="92" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">"trivial" changes</text>
+
+      <rect y="100" width="480" height="60" fill="#0F172A" stroke="#334155" stroke-width="0.5"/>
+      <text x="14" y="120" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#cbd5e1">"I'll test it by</text>
+      <text x="14" y="134" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#cbd5e1">hand later"</text>
+      <text x="250" y="120" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">The manual test</text>
+      <text x="250" y="134" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">disappears in the</text>
+      <text x="250" y="148" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">next change. If it's</text>
+      <text x="250" y="162" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">not in the repo,</text>
+      <text x="250" y="176" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">it doesn't exist</text>
+
+      <rect y="170" width="480" height="60" fill="#0F172A" stroke="#334155" stroke-width="0.5"/>
+      <text x="14" y="190" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#cbd5e1">"It's a refactor,</text>
+      <text x="14" y="204" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#cbd5e1">behavior doesn't</text>
+      <text x="14" y="218" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#cbd5e1">change"</text>
+      <text x="250" y="190" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">Precisely why</text>
+      <text x="250" y="204" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">the test is MORE</text>
+      <text x="250" y="218" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">important: the</text>
+      <text x="250" y="232" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="10" fill="#e2e8f0">safety net</text>
+    </g>
+  </g>
+
+  <text x="60" y="585" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#94a3b8">All 24 skills follow the same template. That's how an eval framework can audit the catalog with consistent rules.</text>
+  <text x="1140" y="585" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#475569" text-anchor="end">ARCEAPPS · 2026</text>
+</svg>
