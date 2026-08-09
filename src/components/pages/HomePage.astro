@@ -21,21 +21,32 @@ const t = useTranslations(lang);
 const prefix = lang === 'es' ? 'es/' : 'en/';
 const linkPrefix = lang === 'es' ? '/es' : '';
 
+// Fetch all collections concurrently
+const [rawBlog, rawDevlog, rawApps, rawProjects] = await Promise.all([
+  getCollection("blog"),
+  getCollection("devlog"),
+  getCollection("apps"),
+  getCollection("projects")
+]);
+
 // Get latest blog posts
-const allPosts = (await getCollection("blog", ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith(prefix)))
+const allPosts = rawBlog
+  .filter(({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith(prefix))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
 // Get latest devlog entry
-const latestDevlog = (await getCollection("devlog", ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith(prefix)))
+const latestDevlog = rawDevlog
+  .filter(({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith(prefix))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
 
 // Get featured apps and projects
-const apps = (await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith(prefix)))
+const apps = rawApps
+  .filter(({ data, id }) => !data.draft && id.startsWith(prefix))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const projects = await getCollection("projects", ({ data, id }) => !data.draft && id.startsWith(prefix));
+const projects = rawProjects.filter(({ data, id }) => !data.draft && id.startsWith(prefix));
 const recentWork = [
   ...apps.map((app) => ({ type: 'app' as const, entry: app, pubDate: app.data.pubDate })),
   ...projects.map((project) => ({ type: 'project' as const, entry: project, pubDate: project.data.pubDate })),
