@@ -14,7 +14,16 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
 
-  const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))].sort();
+  const tagsSet = new Set<string>();
+  for (let i = 0; i < allPosts.length; i++) {
+    const tags = allPosts[i].data.tags;
+    if (tags) {
+      for (let j = 0; j < tags.length; j++) {
+        tagsSet.add(tags[j]);
+      }
+    }
+  }
+  const allTags = [...tagsSet].sort();
 
   return paginate(allPosts, { pageSize: 6, props: { allTags } });
 }
