@@ -925,3 +925,31 @@ El post previo (`paradigmas-alternativos`) era taxonómico: qué son IDD, BEADS,
 - **La economía de la dark factory es el freno real.** $1.000/día/ingeniero (StrongDM) vs $200/mes (Willison): el modelo completo es enterprise; los principios son adoptables a coste cero.
 
 **Cierre de issue:** #386 cerrada con `--reason completed` y comentario con URLs ES/EN + resumen de contenido.
+
+### 2026-08-10 (2ª parte) - Fix: SVG con entidades HTML inválidas → imagen de portada rota
+**Estado:** Completado (hotfix post-publicación)
+
+**Síntoma reportado por el usuario:** La imagen de portada del post dark-factory no se mostraba en ES ni EN — error.
+
+**Causa raíz:**
+Los hero SVGs usaban entidades HTML (`&middot;` ×3 en portada, `&nbsp;` ×4 en architecture) para los separadores de texto. **Esas entidades NO existen en XML/SVG plano** — solo en HTML. El parser XML del navegador abortaba con `undefined entity` y el SVG completo quedaba sin renderizar. El resto de SVGs (levels, acdd) no tenían entidades y funcionaban.
+
+**Fix:**
+```bash
+sed -i 's/&middot;/\·/g' public/images/dark-factory-agentic-infrastructure-{es,en}.svg
+sed -i 's/&nbsp;/ /g' public/images/dark-factory-architecture-{es,en}.svg
+```
+Reemplazo por caracteres Unicode literales (`·` U+00B7, espacio normal). Validación post-fix: `xml.dom.minidom.parse()` pasa en los 9 SVGs (local + dist).
+
+**Verificación producción:**
+- Cache window de Pages (pitfall #17) aplicado: 3 intentos con 200 pero contenido viejo, propagado en el intento 4 (~2 min)
+- Cache-buster `?nocache=<ts>`: 0 hits `&middot;`, 1 hit texto corregido en ES; EN idéntico a local
+- Páginas ES/EN: 200 OK
+
+**Commit:** `62f66d0` — 4 files changed (2 heroes + 2 architecture). Push limpio.
+
+**Aprendizaje (NUEVA TRAMPA para la skill):**
+- En SVG plano SOLO son válidas las 5 entidades XML predefinidas: `&lt; &gt; &amp; &apos; &quot;`
+- Cualquier otra entidad HTML (`&middot;`, `&nbsp;`, `&copy;`, `&ndash;`...) rompe el parseo del navegador y la imagen no se muestra
+- Regla: en SVGs, escribir siempre el carácter Unicode literal (`·`, ` ` o espacio normal, `©`, `–`) — nunca la entidad
+- Añadir a la verificación de la skill (pitfall #20): `grep -oE "&[a-zA-Z]+;" public/images/<slug>-*.svg` — solo deben aparecer lt/gt/amp/apos/quot
