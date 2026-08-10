@@ -953,3 +953,17 @@ Reemplazo por caracteres Unicode literales (`·` U+00B7, espacio normal). Valida
 - Cualquier otra entidad HTML (`&middot;`, `&nbsp;`, `&copy;`, `&ndash;`...) rompe el parseo del navegador y la imagen no se muestra
 - Regla: en SVGs, escribir siempre el carácter Unicode literal (`·`, ` ` o espacio normal, `©`, `–`) — nunca la entidad
 - Añadir a la verificación de la skill (pitfall #20): `grep -oE "&[a-zA-Z]+;" public/images/<slug>-*.svg` — solo deben aparecer lt/gt/amp/apos/quot
+
+### 2026-08-10 (3ª parte) - Resolución final: el fix era correcto, el retraso era cache
+**Estado:** Resuelto y confirmado por el usuario ("Ya funciona")
+
+**Secuencia real del incidente:**
+1. Fix commit `62f66d0` — entidades HTML reemplazadas por caracteres Unicode
+2. Mi verificación post-fix: producción YA servía el SVG corregido (XML válido con `xml.dom.minidom`, 0 hits `&middot;`, content-type `image/svg+xml`) — el intento 4 de la primera ronda ya lo confirmó
+3. El usuario reportó "sigue fallando" tras mi fix — el HTML servido referenciaba el src correcto (`/images/dark-factory-agentic-infrastructure-es.svg`) y ese archivo era válido
+4. Resolución: era la propagación del cache (CDN de Pages + caché del navegador), NO un error residual del SVG. El usuario confirmó que funciona.
+
+**Lección corregida:**
+- La propagación del cache de Pages es VARIABLE y puede superar los 2 minutos desde la perspectiva del usuario, incluso cuando el servidor ya sirve el contenido corregido (200 + bytes nuevos con cache-buster)
+- Cuando el usuario reporta "sigue fallando" tras un fix de assets: NO asumir que el fix era incorrecto. Verificar primero qué bytes sirve el servidor con cache-buster (`?cb=<timestamp>`); si son los correctos, el problema es cache del cliente, no el fix
+- El diagnóstico original (entidades HTML inválidas en SVG) era correcto — la skill pitfall #20b queda validada
