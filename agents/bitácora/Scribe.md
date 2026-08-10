@@ -967,3 +967,35 @@ Reemplazo por caracteres Unicode literales (`·` U+00B7, espacio normal). Valida
 - La propagación del cache de Pages es VARIABLE y puede superar los 2 minutos desde la perspectiva del usuario, incluso cuando el servidor ya sirve el contenido corregido (200 + bytes nuevos con cache-buster)
 - Cuando el usuario reporta "sigue fallando" tras un fix de assets: NO asumir que el fix era incorrecto. Verificar primero qué bytes sirve el servidor con cache-buster (`?cb=<timestamp>`); si son los correctos, el problema es cache del cliente, no el fix
 - El diagnóstico original (entidades HTML inválidas en SVG) era correcto — la skill pitfall #20b queda validada
+
+---
+
+## 2026-08-10 - IDD: Desarrollo Impulsado por Intención (FORGE, AISpec/WBS) — issue #383
+**Estado:** Completado
+
+**Fuente:** Issue editorial #382 (general SDD) → #383 (sub-issue IDD). Recursos del issue: scottfeltham.github.io/forge-framework y github.com/cbora/aispec.
+
+**Investigación:**
+- Extracción completa con curl+python de las dos fuentes primarias (FORGE Framework docs + README de AISpec): ciclo FORGE de 5 fases, formato WBS (What-Boundaries-Success), meta-prompt, Bora's Law (I = Bi(C²)).
+- Contrapunto crítico: Addy Osmani (vibe coding no es AI-assisted engineering), InfoQ (escepticismo responsable). Falsos positivos en búsqueda de crítica directa a IDD — se usó la crítica al vibe coding como el problema que IDD resuelve.
+
+**Estructura del artículo:** Gancho (la frase de Feltham "I just kept writing the wrong code fast") → problema del prompt-vago y espacio de soluciones → definición de IDD → espectro de paradigmas (vibe/SDD/IDD/dark factory) → deep dive FORGE (5 fases + ejemplo payment processing) → deep dive AISpec (WBS + intuición probabilística) → Bora's Law con crítica honesta → comparación práctica → experimento propio (notificaciones con prioridades) → trampas (5) → guía de adopción en 3 pasos → bibliografía.
+
+**Prior art enlazado (5 posts):** specs-driven-development, sdd-frameworks-spec-kit-openspec-bmad, superpowers-vs-openspec, lean-task-first-beads-leanspec-taskmaster, dark-factory-agentic-infrastructure.
+**Diferenciación:** el blog cubría SDD (specs de archivos/cambios) y dark factory (autonomía total); este artículo cubre la capa de intención — el paso anterior a la spec: declarar qué resultado + límites + éxito, con los dos marcos que lo hacen operable (FORGE proceso, AISpec lenguaje). Cero posts previos sobre IDD/FORGE/AISpec (auditoría con globs *idd*, *forge*, *intent* → 0 resultados).
+
+**Word counts:** ES 4.374 / EN 4.102 (floor del usuario: 4000 por idioma; el issue pedía 2000-2500).
+
+**Assets:** 8 SVGs en total (hero + 3 inline × 2 idiomas): hero anillos concéntricos (intención/implementación), ciclo FORGE circular con compuertas, WBS funnel de reducción de espacio de soluciones, espectro de paradigmas. Todos validados: XML parse OK, solo entidades XML válidas (lt/amp), 0 tokens del idioma cruzado, tamaños 3.2-5.5 KB.
+
+**Calidad ES:** scan CJK 0 hits, anglicismos 0 hits. Títulos: ES "IDD: Desarrollo por Intención con FORGE y AISpec" (58 chars) / EN "IDD: Intent-Driven Development with FORGE and AISpec" (61 chars) — difieren ✓, <100 ✓. Links internos ES solo /es/blog/, EN solo /blog/ ✓.
+
+**Build:** npx astro build → 1054 páginas, Complete en 14.49s. dist: 2 páginas generadas, sitemap 2 URLs, refs de imágenes correctas por idioma.
+
+**Post-deploy:** 7 intentos de 404 (Pages rebuild) → intento 7: ES=200 EN=200.
+
+**Issue:** #383 cerrada con --reason completed y comentario con URLs ES/EN.
+
+**Commit:** e2810fc — 10 files changed (2 md + 8 svg). Solo lo tocado; sin OG images ni lockfile.
+
+**Innovative technique:** extracción de fuentes primarias con curl+python (write_file a /tmp + python3), validación de idioma cruzado en SVGs con grep de tokens reales (no substrings), contrapunto crítico a la "ley" de Bora como elemento de honestidad editorial.
