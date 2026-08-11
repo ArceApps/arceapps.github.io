@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <defs>
+    <pattern id="grid-boeck-en" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid-boeck-en)"/>
+
+  <!-- Title -->
+  <text x="600" y="50" text-anchor="middle" fill="#FF9800" font-size="22" font-weight="700" letter-spacing="2">THE THREE MATURITY LEVELS</text>
+  <text x="600" y="78" text-anchor="middle" fill="#FFFFFF" font-size="14" opacity="0.7">Birgitta Böckeler · Thoughtworks — adapted</text>
+
+  <!-- 3 stacked columns representing increasing human distance from code -->
+  <!-- Column 1: Spec-first -->
+  <rect x="80" y="120" width="320" height="440" fill="none" stroke="#018786" stroke-width="2" rx="6"/>
+  <rect x="80" y="120" width="320" height="50" fill="#018786" rx="6"/>
+  <text x="240" y="152" text-anchor="middle" fill="#FFFFFF" font-size="18" font-weight="700" letter-spacing="2">SPEC-FIRST</text>
+
+  <text x="100" y="195" fill="#FF9800" font-size="12" font-weight="700">HUMAN EDITS</text>
+  <text x="100" y="215" fill="#FFFFFF" font-size="14">Spec + Code</text>
+  <text x="100" y="255" fill="#FF9800" font-size="12" font-weight="700">AI EDITS</text>
+  <text x="100" y="275" fill="#FFFFFF" font-size="14">Only generated code</text>
+
+  <text x="100" y="325" fill="#FFFFFF" font-size="13" opacity="0.6">— — — — — — — — — — — — —</text>
+  <text x="100" y="355" fill="#FFFFFF" font-size="13" font-weight="700">When to use</text>
+  <text x="100" y="378" fill="#FFFFFF" font-size="13" opacity="0.85">Greenfield prototypes</text>
+  <text x="100" y="398" fill="#FFFFFF" font-size="13" opacity="0.85">Throwaway scripts</text>
+  <text x="100" y="418" fill="#FFFFFF" font-size="13" opacity="0.85">Spike solutions</text>
+
+  <text x="100" y="465" fill="#FF9800" font-size="12" font-weight="700">Risk</text>
+  <text x="100" y="488" fill="#FFFFFF" font-size="12" opacity="0.8">Spec rot as soon as</text>
+  <text x="100" y="506" fill="#FFFFFF" font-size="12" opacity="0.8">the project ships.</text>
+  <text x="100" y="528" fill="#FFFFFF" font-size="11" opacity="0.5">Code is the real source.</text>
+
+  <!-- Column 2: Spec-anchored -->
+  <rect x="440" y="120" width="320" height="440" fill="none" stroke="#018786" stroke-width="2" rx="6"/>
+  <rect x="440" y="120" width="320" height="50" fill="#018786" rx="6"/>
+  <text x="600" y="152" text-anchor="middle" fill="#FFFFFF" font-size="18" font-weight="700" letter-spacing="2">SPEC-ANCHORED</text>
+
+  <text x="460" y="195" fill="#FF9800" font-size="12" font-weight="700">HUMAN EDITS</text>
+  <text x="460" y="215" fill="#FFFFFF" font-size="14">Spec + Code (both)</text>
+  <text x="460" y="255" fill="#FF9800" font-size="12" font-weight="700">AI EDITS</text>
+  <text x="460" y="275" fill="#FFFFFF" font-size="14">Driven by spec deltas</text>
+
+  <text x="460" y="325" fill="#FFFFFF" font-size="13" opacity="0.6">— — — — — — — — — — — — —</text>
+  <text x="460" y="355" fill="#FFFFFF" font-size="13" font-weight="700">When to use</text>
+  <text x="460" y="378" fill="#FFFFFF" font-size="13" opacity="0.85">Maintenance releases</text>
+  <text x="460" y="398" fill="#FFFFFF" font-size="13" opacity="0.85">API contracts evolution</text>
+  <text x="460" y="418" fill="#FFFFFF" font-size="13" opacity="0.85">Production brownfield</text>
+
+  <text x="460" y="465" fill="#FF9800" font-size="12" font-weight="700">Risk</text>
+  <text x="460" y="488" fill="#FFFFFF" font-size="12" opacity="0.8">Dual maintenance:</text>
+  <text x="460" y="506" fill="#FFFFFF" font-size="12" opacity="0.8">spec AND code diverge.</text>
+  <text x="460" y="528" fill="#FFFFFF" font-size="11" opacity="0.5">Brownfield wins here.</text>
+
+  <!-- Column 3: Spec-as-Source -->
+  <rect x="800" y="120" width="320" height="440" fill="none" stroke="#FF9800" stroke-width="3" rx="6"/>
+  <rect x="800" y="120" width="320" height="50" fill="#FF9800" rx="6"/>
+  <text x="960" y="152" text-anchor="middle" fill="#0F172A" font-size="18" font-weight="700" letter-spacing="2">SPEC-AS-SOURCE</text>
+
+  <text x="820" y="195" fill="#FF9800" font-size="12" font-weight="700">HUMAN EDITS</text>
+  <text x="820" y="215" fill="#FFFFFF" font-size="14">Only the spec</text>
+  <text x="820" y="255" fill="#FF9800" font-size="12" font-weight="700">AI EDITS</text>
+  <text x="820" y="275" fill="#FFFFFF" font-size="14">Regenerates all code</text>
+
+  <text x="820" y="325" fill="#FFFFFF" font-size="13" opacity="0.6">— — — — — — — — — — — — —</text>
+  <text x="820" y="355" fill="#FFFFFF" font-size="13" font-weight="700">When to use</text>
+  <text x="820" y="378" fill="#FFFFFF" font-size="13" opacity="0.85">Greenfield APIs</text>
+  <text x="820" y="398" fill="#FFFFFF" font-size="13" opacity="0.85">Schema-first systems</text>
+  <text x="820" y="418" fill="#FFFFFF" font-size="13" opacity="0.85">High-churn CRUD</text>
+
+  <text x="820" y="465" fill="#FF9800" font-size="12" font-weight="700">Risk</text>
+  <text x="820" y="488" fill="#FFFFFF" font-size="12" opacity="0.8">Spec must be 100%</text>
+  <text x="820" y="506" fill="#FFFFFF" font-size="12" opacity="0.8">executable. No escape hatches.</text>
+  <text x="820" y="528" fill="#FFFFFF" font-size="11" opacity="0.5">The org model shifts. →</text>
+
+  <!-- Arrow at the bottom showing direction -->
+  <text x="240" y="595" text-anchor="middle" fill="#FFFFFF" font-size="12" opacity="0.6">↑ Less formal commitment</text>
+  <text x="600" y="595" text-anchor="middle" fill="#FFFFFF" font-size="12" opacity="0.6">↑ Living document</text>
+  <text x="960" y="595" text-anchor="middle" fill="#FF9800" font-size="12" font-weight="700">↑ Total redefinition of role</text>
+
+  <!-- Brand -->
+  <text x="1140" y="612" text-anchor="end" fill="#018786" font-size="11" font-weight="700" letter-spacing="2">ARCEAPPS · 2026</text>
+</svg>
