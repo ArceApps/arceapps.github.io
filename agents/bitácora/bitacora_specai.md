@@ -27,3 +27,17 @@
 **Pendiente:** Gate UA — el usuario debe probar en producción y responder `accept` (o iterar) antes de mergear la rama.
 
 **Nota:** `links-validation.test.ts` tiene 9 fallos pre-existentes (enlaces rotos del blog, ajenos a esta feature).
+
+## [2026-08-12] 20260812-fix-broken-blog-links
+
+**Feature:** Fix de 9 enlaces internos rotos del blog (validador `links-validation.test.ts`).
+
+**Causa:** los posts enlazaban a slugs del otro locale o desactualizados; un caso con `]` extra (sintaxis rota).
+
+**Cambios:**
+- `src/content/blog/en/agent-skills-addyosmani-lifecycle-completo.md` — 8 enlaces corregidos a sus traducciones EN (building-ai-agent-skills, ai-agent-skills-dynamic-context, sdd-frameworks-analysis-spec-kit-openspec-bmad, mcp-servers-memory-cross-agent, spec-driven-development-ai) + fix sintaxis línea 460
+- `src/content/blog/es/buzz-mobile-coding-agent.md` — 1 enlace corregido a stack-memoria-persistente-implementacion
+
+**Resultado:** `pnpm test` 24/24 archivos, 157/157 PASS (antes 9 fallos); `pnpm build` OK. Validador intacto.
+
+**Pendiente:** Gate UA + merge/push.

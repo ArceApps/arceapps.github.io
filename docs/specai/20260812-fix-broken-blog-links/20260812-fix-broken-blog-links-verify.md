@@ -28,15 +28,15 @@
 
 | Criterio | Resultado | Evidencia |
 |----------|-----------|-----------|
-| V1 | ⬜ | |
-| V2 | ⬜ | |
-| V3 | ⬜ | |
-| V4 | ⬜ | |
-| V5 | ⬜ | |
-| V6 | ⬜ | |
-| V7 | ⬜ | |
-| V8 | ⬜ | |
-| V9 | ⬜ | |
+| V1 | ✅ | `npx vitest run src/utils/links-validation.test.ts` → 2/2 PASS |
+| V2 | ✅ | grep slugs rotos en ambos posts → 0 (las 2 coincidencias EN restantes son `persistent-memory-stack-implementation`, válido en EN) |
+| V3 | ✅ | 6 destinos existen (5 EN + 1 ES) |
+| V4 | ✅ | `pnpm test`: 24/24 archivos, 157/157 tests PASS |
+| V5 | ✅ | `pnpm build` OK (1061 páginas) |
+| V6 | ✅ | `git diff` de validador/blog-link-resolution/astro.config → vacío |
+| V7 | ✅ | Diff de los posts: solo cambian URLs destino, anchor intacto |
+| V8 | ✅ | grep `cross-agent/]` → 0 |
+| V9 | ✅ | `git diff package.json` → vacío |
 
 **Gate UA (INQUEBRANTABLE):** la feature no está completa hasta que el usuario pruebe y responda `accept` (o equivalente). Respuestas tipo "iterate"/"bug" → `specai-iteration`. NO mergear antes del `accept`.
 

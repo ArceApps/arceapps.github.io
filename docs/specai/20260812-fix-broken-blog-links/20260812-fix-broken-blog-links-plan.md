@@ -8,7 +8,7 @@
 
 **Tech Stack:** Markdown, Vitest (validador existente). Sin dependencias nuevas.
 
-**Status:** 🟢 BACKLOG
+**Status:** 🟡 IN PROGRESS → ✅ DONE (verificado, pendiente Gate UA)
 
 ---
 
@@ -60,10 +60,24 @@ Sin paquetes nuevos. Riesgo de dependencia: **ninguno**.
 
 _Living record, updated by the documenter subagent. Do not edit by hand._
 
-<!-- Documenter appends entries here, format:
-### [<ISO date> <ISO time>] Task <N>: <title>
-**Done:** ...
-**Why:** ...
-**Outcome:** ✅ success | ❌ failed
-**Problems & fixes:** ...
--->
+### [2026-08-12 13:15] Task 1: Commit de los documentos specai (main)
+**Done:** 5 documentos commiteados en `main` (commit `268899f`).
+**Why:** Gate P2: los documentos viven sin rama.
+**Outcome:** ✅ success
+
+### [2026-08-12 13:16] Task 2: Rama feature
+**Done:** Rama `feature/arceapps.github.io_20260812-fix-broken-blog-links` creada.
+**Outcome:** ✅ success
+
+### [2026-08-12 13:20] Task 3: Fix 8 enlaces del post EN
+**Done:** Commit `135a5e9`. Corregidos: `agentes-ia-skills`→`building-ai-agent-skills` (x2), `agent-skills-contexto-dinamico`→`ai-agent-skills-dynamic-context` (x2, supuesto PRD §6), `sdd-frameworks-spec-kit-openspec-bmad`→`sdd-frameworks-analysis-spec-kit-openspec-bmad` (x2), `servidores-mcp-memoria-cross-agent/]`→`mcp-servers-memory-cross-agent` (x1, +fix `]` extra), `specs-driven-development`→`spec-driven-development-ai` (x1).
+**Why:** PRD §4 (mapeo verificado por pubDate/título).
+**Outcome:** ✅ success — validador EN limpio.
+
+### [2026-08-12 13:22] Task 4: Fix 1 enlace del post ES
+**Done:** Commit `7b17f8d`. `persistent-memory-stack-implementation`→`stack-memoria-persistente-implementacion` (línea 410).
+**Outcome:** ✅ success — validador 2/2 PASS.
+
+### [2026-08-12 13:25] Task 5: Verificación completa + living docs
+**Done:** `pnpm test`: **24/24 archivos, 157/157 tests PASS** (antes: 1 archivo fallando, 9 tests rotos). `pnpm build` OK (1061 páginas). V1-V9 ✅.
+**Outcome:** ✅ success — pendiente Gate UA.
