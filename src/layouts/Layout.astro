@@ -168,15 +168,18 @@ const socialImageURL = new URL(image, Astro.url);
       } catch (e) {}
     </script>
 
-    <!-- Google Analytics -->
+    <!-- Google Analytics (hilo principal: el Consent Mode exige que gtag.js lea el default
+         directamente del dataLayer main-thread; Partytown no garantiza ese orden en el worker) -->
     <script
-      is:inline type="text/partytown"
+      is:inline
+      async
       src="https://www.googletagmanager.com/gtag/js?id=G-CZLNYSWY76"></script>
-    <script is:inline type="text/partytown">
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag() {
+      // Respeta la implementación real de gtag.js si ya cargó; solo usa el stub como fallback.
+      window.gtag = window.gtag || function () {
         dataLayer.push(arguments);
-      }
+      };
       gtag("js", new Date());
 
       gtag("config", "G-CZLNYSWY76");
