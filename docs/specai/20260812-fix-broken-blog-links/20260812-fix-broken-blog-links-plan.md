@@ -81,3 +81,7 @@ _Living record, updated by the documenter subagent. Do not edit by hand._
 ### [2026-08-12 13:25] Task 5: Verificación completa + living docs
 **Done:** `pnpm test`: **24/24 archivos, 157/157 tests PASS** (antes: 1 archivo fallando, 9 tests rotos). `pnpm build` OK (1061 páginas). V1-V9 ✅.
 **Outcome:** ✅ success — pendiente Gate UA.
+
+### [2026-08-12 13:35] Gate UA: aceptación del usuario
+**Done:** Usuario: "Adelante con el cierre usando el flujo de specai" (aceptación explícita).
+**Outcome:** ✅ Gate UA superado. Decisión de integración: opción 1 (merge a `main` local + push a origin), la misma que en la feature anterior.

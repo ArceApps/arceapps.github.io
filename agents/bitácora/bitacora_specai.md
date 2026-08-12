@@ -41,3 +41,5 @@
 **Resultado:** `pnpm test` 24/24 archivos, 157/157 PASS (antes 9 fallos); `pnpm build` OK. Validador intacto.
 
 **Pendiente:** Gate UA + merge/push.
+
+**Estado:** Gate UA superado (2026-08-12) — merge a main + push completados.
