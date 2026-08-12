@@ -29,16 +29,16 @@
 
 | Criterio | Resultado | Evidencia |
 |----------|-----------|-----------|
-| V1 | ⬜ | |
-| V2 | ⬜ | |
-| V3 | ⬜ | |
-| V4 | ⬜ | |
-| V5 | ⬜ | |
-| V6 | ⬜ | |
-| V7 | ⬜ | |
-| V8 | ⬜ | |
-| V9 | ⬜ | |
-| V10 | ⬜ | |
+| V1 | ✅ | Contract test (Task 4) + dist: consent(3480) < gtag(4152) |
+| V2 | ✅ | E2E checks 1-2: banner visible, cero cookies pre-consent |
+| V3 | ✅ | E2E checks 3-4: localStorage=granted, _ga creada |
+| V4 | ✅ | E2E checks 6-7: localStorage=denied, cero cookies |
+| V5 | ✅ | E2E checks 5 y 8: sin banner en retorno (ambos casos) |
+| V6 | ✅ | pnpm build OK (1061 págs); pnpm test: contract suite verde (23/24 archivos; 1 fallo pre-existente links del blog) |
+| V7 | ✅ | curl: /cookies -> 200, /es/cookies -> 200 |
+| V8 | ✅ | Footer enlaza /cookies (EN) y /es/cookies (ES) en dist |
+| V9 | ✅ | Default con ad_* denied; update del banner solo toca analytics_storage (revisión de código) |
+| V10 | ✅ | git diff package.json vacío |
 
 **Gate UA (INQUEBRANTABLE):** la feature no está completa hasta que el usuario pruebe en producción y responda `accept` (o equivalente). Respuestas tipo "iterate"/"bug" → `specai-iteration`. NO mergear, hacer PR ni archivar antes del `accept` explícito.
 

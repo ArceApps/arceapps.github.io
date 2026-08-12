@@ -8,7 +8,7 @@
 
 **Tech Stack:** Astro 5 (estático), Tailwind 4 + DaisyUI, Partytown (@astrojs/partytown 2.1.4), i18n propio (`src/i18n/ui.ts`), Vitest + Playwright (ya instalados).
 
-**Status:** 🟢 BACKLOG
+**Status:** 🟡 IN PROGRESS → ✅ DONE (verificado, pendiente Gate UA)
 
 ---
 
@@ -69,10 +69,37 @@ No se instala ningún paquete nuevo. `package.json` ya incluye Astro, Tailwind, 
 
 _Living record, updated by the documenter subagent. Do not edit by hand._
 
-<!-- Documenter appends entries here, format:
-### [<ISO date> <ISO time>] Task <N>: <title>
-**Done:** ...
-**Why:** ...
-**Outcome:** ✅ success | ❌ failed
-**Problems & fixes:** ...
--->
+### [2026-08-12 12:31] Task 1: Commit de los documentos specai (main)
+**Done:** 5 documentos specai commiteados en `main` (commit `231b729`).
+**Why:** Gate P2: los documentos viven sin rama.
+**Outcome:** ✅ success
+
+### [2026-08-12 12:33] Task 2: Commit implementación core (Layout + Banner + i18n)
+**Done:** Rama `feature/arceapps.github.io_20260812-cookie-consent-banner` creada; commit `7da401b` (banner + Consent Mode v2 default denied).
+**Why:** RF-1 a RF-8, RNF-1, RNF-4, RNF-5.
+**Outcome:** ✅ success
+
+### [2026-08-12 12:34] Task 3: Commit política de cookies + footer
+**Done:** Commit `6f3d46e` (páginas /cookies y /es/cookies + enlace footer).
+**Why:** RF-9, RF-10.
+**Outcome:** ✅ success
+
+### [2026-08-12 12:36] Task 4: Contract test del banner
+**Done:** `cookie-banner-contract.test.ts` (3 tests) verde en 14ms; commit `6df7b71`.
+**Why:** V1, V9.
+**Outcome:** ✅ success. Nota: `links-validation.test.ts` tiene 9 fallos PRE-EXISTENTES (enlaces rotos del blog, ajenos a la feature).
+
+### [2026-08-12 12:37] Task 5: Build + verificación HTML
+**Done:** `pnpm build` OK (1061 páginas); orden consent(3480) < gtag(4152) en dist; banner presente; `/cookies` generado.
+**Why:** RNF-1, RF-7, V6.
+**Outcome:** ✅ success
+
+### [2026-08-12 12:39-12:49] Task 6: Suite E2E (verificación empírica) — con hallazgo y fix
+**Done:** Script `scripts/e2e-cookie-consent.mjs`; 8/8 checks PASS. **Hallazgo:** con Partytown, el consent default no llegaba a tiempo al worker (cookies GA creadas sin consentimiento: checks 2 y 7 FAIL) y, tras mover gtag.js al main thread, el proxy de `dataLayer.push` de Partytown seguía desviando los comandos (check 4 FAIL). **Fix:** quitar la integración `@astrojs/partytown` de `astro.config.mjs` (su único uso era GA) + cargar gtag.js en main thread con `window.gtag = window.gtag || ...`. Commit `c8cab67`.
+**Why:** RNF-7 (verificación por red/cookies reales; TagAssistant no sirve con Partytown).
+**Outcome:** ✅ success — 8/8 PASS (cero cookies pre-consent, _ga al aceptar, cero al rechazar, sin banner en retorno)
+
+### [2026-08-12 12:51] Task 7: Verificación final, living docs y bitácora
+**Done:** V1-V10 verificados; living docs actualizados; bitácora creada.
+**Why:** Regla AGENTS.md n.º 3 + flujo specai.
+**Outcome:** ✅ success — pendiente Gate UA (usuario prueba y responde `accept`)
