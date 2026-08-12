@@ -22,7 +22,7 @@ If you've been following how coding agents have moved from "glorified autocomple
 
 This article is, above all, a **deep tour of that repository**. I'll open the hood, look at the guts of three concrete skills, explain the three-tier eval framework that is probably the most interesting piece of the whole project, and then dedicate the last section to an honest comparison with Superpowers, OpenSpec, and Spec-Kit — without cross-marketing, reading what each one says about itself and about the others.
 
-If you've already read my previous posts on SDD, agent skills, or harness engineering, you know I've been on this beat for months: [`agentes-ia-skills`](/blog/agentes-ia-skills/), [`agent-skills-contexto-dinamico`](/blog/agent-skills-contexto-dinamico/), [`mattpocock-skills`](/blog/mattpocock-skills/), [`sdd-frameworks-spec-kit-openspec-bmad`](/blog/sdd-frameworks-spec-kit-openspec-bmad/), and [`superpowers-deep-dive`](/blog/superpowers-deep-dive/). What changes here is that Addy Osmani — Engineering Lead at Chrome, author of *Learning JavaScript Design Patterns* and one of the names that has shaped how web engineering is taught over the last decade — has decided to take a position in this market with something that isn't "a loose little skill" but a closed, opinionated system with measurements. It deserves a full article, not a three-paragraph mention.
+If you've already read my previous posts on SDD, agent skills, or harness engineering, you know I've been on this beat for months: [`agentes-ia-skills`](/blog/building-ai-agent-skills/), [`agent-skills-contexto-dinamico`](/blog/ai-agent-skills-dynamic-context/), [`mattpocock-skills`](/blog/mattpocock-skills/), [`sdd-frameworks-spec-kit-openspec-bmad`](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad/), and [`superpowers-deep-dive`](/blog/superpowers-deep-dive/). What changes here is that Addy Osmani — Engineering Lead at Chrome, author of *Learning JavaScript Design Patterns* and one of the names that has shaped how web engineering is taught over the last decade — has decided to take a position in this market with something that isn't "a loose little skill" but a closed, opinionated system with measurements. It deserves a full article, not a three-paragraph mention.
 
 ---
 
@@ -457,7 +457,7 @@ Addy himself admits this in `docs/comparison.md`, and it's the most honest piece
 
 > None of these has solved **durable cross-session memory** well yet: what an agent learned in one session rarely carries cleanly into the next. All three are circling it (learnings files, handoff artifacts, tracker-backed planning maps). If that is your bottleneck, know that you are at the edge of what any of them ships today, and expect to stitch some of it yourself for now.
 
-If your main pain is "my agent forgets what it learned between sessions," none of the four solves it out-of-the-box. You'll have to roll your own. I've covered this in other posts ([`stack-memoria-persistente-implementacion`](/blog/persistent-memory-stack-implementation/), [`servidores-mcp-memoria-cross-agent`](/blog/servidores-mcp-memoria-cross-agent/]) but the final solution is still yours to build.
+If your main pain is "my agent forgets what it learned between sessions," none of the four solves it out-of-the-box. You'll have to roll your own. I've covered this in other posts ([`stack-memoria-persistente-implementacion`](/blog/persistent-memory-stack-implementation/), [`servidores-mcp-memoria-cross-agent`](/blog/mcp-servers-memory-cross-agent/)) but the final solution is still yours to build.
 
 ---
 
@@ -529,13 +529,13 @@ Comparison:
 
 Previous blog posts that cross with this topic:
 
-- [`agentes-ia-skills`](/blog/agentes-ia-skills/) — the meta-article on what agent skills are
-- [`agent-skills-contexto-dinamico`](/blog/agent-skills-contexto-dinamico/) — how skills handle context
+- [`agentes-ia-skills`](/blog/building-ai-agent-skills/) — the meta-article on what agent skills are
+- [`agent-skills-contexto-dinamico`](/blog/ai-agent-skills-dynamic-context/) — how skills handle context
 - [`mattpocock-skills`](/blog/mattpocock-skills/) — the third leg of the skills ecosystem (Pocock)
-- [`sdd-frameworks-spec-kit-openspec-bmad`](/blog/sdd-frameworks-spec-kit-openspec-bmad/) — previous comparison between Spec-Kit and OpenSpec
+- [`sdd-frameworks-spec-kit-openspec-bmad`](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad/) — previous comparison between Spec-Kit and OpenSpec
 - [`superpowers-deep-dive`](/blog/superpowers-deep-dive/) — previous deep dive into Superpowers
 - [`grill-me-claude-skill-deep-dive`](/blog/grill-me-claude-skill-deep-dive/) — Pocock's grilling skill
-- [`specs-driven-development`](/blog/specs-driven-development/) — SDD from the indie practitioner perspective
+- [`specs-driven-development`](/blog/spec-driven-development-ai/) — SDD from the indie practitioner perspective
 - [`socratic-agents-part-2-sdd-sycophancy`](/blog/socratic-agents-part-2-sdd-sycophancy/) — the sycophancy problem in SDD
 - [`harness-engineering-wrapper-gana`](/blog/harness-engineering-wrapper-gana/) — the wrapper that matters more than the model
 - [`stack-memoria-persistente-implementacion`](/blog/persistent-memory-stack-implementation/) — the shared frontier none of them solves yet
