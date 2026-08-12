@@ -103,3 +103,7 @@ _Living record, updated by the documenter subagent. Do not edit by hand._
 **Done:** V1-V10 verificados; living docs actualizados; bitácora creada.
 **Why:** Regla AGENTS.md n.º 3 + flujo specai.
 **Outcome:** ✅ success — pendiente Gate UA (usuario prueba y responde `accept`)
+
+### [2026-08-12 12:53] Gate UA: aceptación del usuario
+**Done:** Usuario: "Lo apruebo, cierra con specai finish" (aceptación explícita de la implementación).
+**Outcome:** ✅ Gate UA superado. Nota: el usuario acepta con conocimiento de los 9 fallos pre-existentes de `links-validation.test.ts` (drift del blog, ajenos a la feature), informados en el reporte previo.
