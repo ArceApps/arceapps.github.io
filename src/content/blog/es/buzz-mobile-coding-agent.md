@@ -407,7 +407,7 @@ just setup && just build
 - [Android CLI: Accelerating Development with AI Agents](/es/blog/android-cli-agentes-herramientas) — La capa de comandos que un agente usa para construir tu app Android. Complemento directo de este artículo.
 - [Android Skills: desarrollo guiado por agentes](/es/blog/android-skills-ia-desarrollo-guiado/) — El repositorio de reglas que mantiene al agente en el camino recto.
 - [Android: skills IA para desarrollo guiado](/blog/android-skills-ia-desarrollo-guiado) — Versión EN.
-- [Persistent memory stack implementation](/blog/persistent-memory-stack-implementation) — Cómo los agentes recuerdan entre sesiones. Complemento natural al log firmado de Buzz.
+- [Persistent memory stack implementation](/blog/stack-memoria-persistente-implementacion) — Cómo los agentes recuerdan entre sesiones. Complemento natural al log firmado de Buzz.
 - [Hipocampus: memoria jerárquica para agentes](/es/blog/hipocampus-memoria-jerarquica-agentes) — Patrón de memoria que Buzz no reemplaza pero sí contextualiza.
 - [OpenCode Subagents: workflows móviles](/es/blog/opencode-subagents-workflows) — Cómo orquestar agentes cheap + frontier, patrón que Buzz hace nativo en el workspace.
 - [Socratic agents part 3 — multi-agent orchestrator](/es/blog/socratic-agents-part-3-multi-agent-orchestrator) — Diseño de orquestación que casa con el modelo de Buzz.
