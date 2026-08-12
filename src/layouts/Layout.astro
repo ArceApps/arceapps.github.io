@@ -5,6 +5,7 @@ import "@fontsource/material-icons";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CookieBanner from "../components/CookieBanner.astro";
 import { ClientRouter } from "astro:transitions";
 import { getLangFromUrl } from "../i18n/utils";
 
@@ -143,6 +144,29 @@ const socialImageURL = new URL(image, Astro.url);
     <!-- Performance Optimizations -->
     <link rel="preconnect" href="https://play-lh.googleusercontent.com" />
     <link rel="preconnect" href="https://cdn.simpleicons.org" />
+
+    <!-- Google Consent Mode v2: default denied (antes de que cargue gtag.js) -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () {
+        dataLayer.push(arguments);
+      };
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "granted",
+        security_storage: "granted",
+      });
+      // Visitante de retorno: aplicar su elección previa sin esperar al banner.
+      try {
+        var arceConsent = localStorage.getItem("cookie-consent");
+        if (arceConsent === "granted" || arceConsent === "denied") {
+          gtag("consent", "update", { analytics_storage: arceConsent });
+        }
+      } catch (e) {}
+    </script>
 
     <!-- Google Analytics -->
     <script
@@ -316,5 +340,6 @@ const socialImageURL = new URL(image, Astro.url);
     </button>
 
     <script src="../scripts/layout.ts"></script>
+    <CookieBanner />
   </body>
 </html>

@@ -1,0 +1,94 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const cookiesPath = lang === "es" ? "/es/cookies" : "/cookies";
+---
+
+<div
+  id="cookie-banner"
+  role="dialog"
+  aria-label={t("cookie.aria")}
+  class="fixed bottom-0 inset-x-0 z-[70] border-t border-border bg-surface-raised shadow-[0_-4px_20px_rgba(0,0,0,0.12)] transition-colors duration-300 dark:border-dark-border dark:bg-dark-surface-raised"
+>
+  <div class="container mx-auto px-4 py-4 md:py-5 flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6">
+    <div class="flex-1 text-sm leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+      <p>
+        {t("cookie.banner_text1")}{" "}
+        <strong class="text-on-surface dark:text-dark-on-surface">{t("cookie.free")}</strong>{" "}
+        {t("cookie.banner_text2")} {t("cookie.banner_text3")}
+      </p>
+    </div>
+    <div class="flex flex-wrap items-center gap-3 shrink-0">
+      <a
+        href={cookiesPath}
+        data-astro-prefetch
+        class="text-sm font-medium text-primary hover:underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded"
+      >
+        {t("cookie.more_info")}
+      </a>
+      <button
+        type="button"
+        data-cookie-action="reject"
+        class="px-4 py-2 rounded-lg text-sm font-medium text-on-surface-variant dark:text-dark-on-surface-variant border border-border dark:border-dark-border hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+      >
+        {t("cookie.reject")}
+      </button>
+      <button
+        type="button"
+        data-cookie-action="accept"
+        class="px-4 py-2 rounded-lg text-sm font-bold bg-primary text-white shadow-sm hover:bg-primary-strong transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+      >
+        {t("cookie.accept")}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var CONSENT_KEY = "cookie-consent";
+
+    function hasConsent() {
+      var v = null;
+      try {
+        v = localStorage.getItem(CONSENT_KEY);
+      } catch (e) {}
+      return v === "granted" || v === "denied";
+    }
+
+    function removeBanner(doc) {
+      var b = doc.getElementById("cookie-banner");
+      if (b) b.remove();
+    }
+
+    // View Transitions: eliminar el banner del documento entrante antes del swap
+    // si el usuario ya tomó una decisión (evita parpadeo tras navegar).
+    document.addEventListener("astro:before-swap", function (ev) {
+      if (hasConsent()) removeBanner(ev.newDocument);
+    });
+
+    // Visita de retorno con elección guardada: no mostrar el banner.
+    if (hasConsent()) {
+      removeBanner(document);
+      return;
+    }
+
+    function setConsent(value) {
+      try {
+        localStorage.setItem(CONSENT_KEY, value);
+      } catch (e) {}
+      if (window.gtag) {
+        window.gtag("consent", "update", { analytics_storage: value });
+      }
+      removeBanner(document);
+    }
+
+    var banner = document.getElementById("cookie-banner");
+    var acceptBtn = banner && banner.querySelector('[data-cookie-action="accept"]');
+    var rejectBtn = banner && banner.querySelector('[data-cookie-action="reject"]');
+    if (acceptBtn) acceptBtn.addEventListener("click", function () { setConsent("granted"); });
+    if (rejectBtn) rejectBtn.addEventListener("click", function () { setConsent("denied"); });
+  })();
+</script>
