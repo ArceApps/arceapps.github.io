@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="OpenChamber: el cockpit agéntico que supervisa">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#1E293B" stroke-width="0.5" opacity="0.4"/>
+    </pattern>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#94A3B8">
+    <text x="60" y="55" letter-spacing="0.15em">ARCEAPPS · DEEP DIVE</text>
+    <text x="60" y="75" fill="#018786" font-size="12">OPENCHAMBER · 2026-08-16</text>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" text-anchor="middle">
+    <text x="600" y="125" font-size="40" fill="#F8FAFC" font-weight="bold">OpenChamber</text>
+    <text x="600" y="158" font-size="18" fill="#018786">el cockpit agéntico que supervisa</text>
+    <text x="600" y="182" font-size="13" fill="#94A3B8">sexis funciones de la v0.7 · 8.7k ★ · MIT · Bohdan Triapitsyn</text>
+  </g>
+
+  <!-- 6 feature grid -->
+  <g transform="translate(60 240)" font-family="ui-monospace, monospace">
+    <!-- Row 1 -->
+    <g transform="translate(0 0)">
+      <rect x="0" y="0" width="350" height="130" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+      <rect x="0" y="0" width="350" height="32" rx="8" fill="#018786"/>
+      <text x="15" y="22" font-size="13" fill="#0F172A" font-weight="bold">1. SESSION GOALS</text>
+      <text x="15" y="55" font-size="11" fill="#F8FAFC">El agente trabaja hasta cumplir</text>
+      <text x="15" y="73" font-size="11" fill="#F8FAFC">un objetivo verificable, no</text>
+      <text x="15" y="91" font-size="11" fill="#F8FAFC">hasta consumir tokens.</text>
+      <text x="15" y="115" font-size="10" fill="#94A3B8">"Set a finish line."</text>
+    </g>
+    <g transform="translate(370 0)">
+      <rect x="0" y="0" width="350" height="130" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+      <rect x="0" y="0" width="350" height="32" rx="8" fill="#018786"/>
+      <text x="15" y="22" font-size="13" fill="#0F172A" font-weight="bold">2. MULTI-RUN + FUSION</text>
+      <text x="15" y="55" font-size="11" fill="#F8FAFC">Hasta 5 modelos en paralelo,</text>
+      <text x="15" y="73" font-size="11" fill="#F8FAFC">cada uno en su worktree. Fusion</text>
+      <text x="15" y="91" font-size="11" fill="#F8FAFC">combina los mejores patches.</text>
+      <text x="15" y="115" font-size="10" fill="#94A3B8">best-of-N, no voting.</text>
+    </g>
+    <g transform="translate(740 0)">
+      <rect x="0" y="0" width="350" height="130" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+      <rect x="0" y="0" width="350" height="32" rx="8" fill="#018786"/>
+      <text x="15" y="22" font-size="13" fill="#0F172A" font-weight="bold">3. CHANGES WALKTHROUGH</text>
+      <text x="15" y="55" font-size="11" fill="#F8FAFC">Diff ilegible reorganizado en</text>
+      <text x="15" y="73" font-size="11" fill="#F8FAFC">tour guiado por pasos.</text>
+      <text x="15" y="91" font-size="11" fill="#F8FAFC">El agente narra su cambio.</text>
+      <text x="15" y="115" font-size="10" fill="#94A3B8">commit message estructurado.</text>
+    </g>
+
+    <!-- Row 2 -->
+    <g transform="translate(0 150)">
+      <rect x="0" y="0" width="350" height="130" rx="8" fill="#0F172A" stroke="#FF9800" stroke-width="2"/>
+      <rect x="0" y="0" width="350" height="32" rx="8" fill="#FF9800"/>
+      <text x="15" y="22" font-size="13" fill="#0F172A" font-weight="bold">4. PREVIEW</text>
+      <text x="15" y="55" font-size="11" fill="#F8FAFC">Señala un elemento de la UI</text>
+      <text x="15" y="73" font-size="11" fill="#F8FAFC">y manda al agente screenshot,</text>
+      <text x="15" y="91" font-size="11" fill="#F8FAFC">estilos, posición, errores.</text>
+      <text x="15" y="115" font-size="10" fill="#94A3B8">contexto visual sin copia-pega.</text>
+    </g>
+    <g transform="translate(370 150)">
+      <rect x="0" y="0" width="350" height="130" rx="8" fill="#0F172A" stroke="#FF9800" stroke-width="2"/>
+      <rect x="0" y="0" width="350" height="32" rx="8" fill="#FF9800"/>
+      <text x="15" y="22" font-size="13" fill="#0F172A" font-weight="bold">5. ISSUE → PR</text>
+      <text x="15" y="55" font-size="11" fill="#F8FAFC">Sesión desde issue de GitHub,</text>
+      <text x="15" y="73" font-size="11" fill="#F8FAFC">checks fallidos vuelven al</text>
+      <text x="15" y="91" font-size="11" fill="#F8FAFC">agente, merge dentro de la app.</text>
+      <text x="15" y="115" font-size="10" fill="#94A3B8">Git es first-class.</text>
+    </g>
+    <g transform="translate(740 150)">
+      <rect x="0" y="0" width="350" height="130" rx="8" fill="#0F172A" stroke="#FF9800" stroke-width="2"/>
+      <rect x="0" y="0" width="350" height="32" rx="8" fill="#FF9800"/>
+      <text x="15" y="22" font-size="13" fill="#0F172A" font-weight="bold">6. CRON + GOALS</text>
+      <text x="15" y="55" font-size="11" fill="#F8FAFC">Prompt programado con Session</text>
+      <text x="15" y="73" font-size="11" fill="#F8FAFC">Goal. El agente se autogestiona</text>
+      <text x="15" y="91" font-size="11" fill="#F8FAFC">hasta cumplir o bloquear.</text>
+      <text x="15" y="115" font-size="10" fill="#94A3B8">agent on autopilot disciplinado.</text>
+    </g>
+  </g>
+
+  <g font-family="ui-monospace, monospace" font-size="11" fill="#64748B">
+    <text x="60" y="595">teal = completion loop · orange = workflow integration · arceapps.com</text>
+    <text x="1140" y="595" text-anchor="end" fill="#64748B">ES · 4,873 palabras</text>
+  </g>
+</svg>
