@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Category map: frontend, orchestrator, cockpit, pocket">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="60" y="55" font-size="13" fill="#94A3B8" letter-spacing="0.15em">ARCEAPPS · INFOGRAPHIC</text>
+    <text x="60" y="100" font-size="32" fill="#F8FAFC" font-weight="bold">Four categories, not four frontends</text>
+    <text x="60" y="130" font-size="16" fill="#FF9800">what each app solves and why they're not interchangeable</text>
+  </g>
+
+  <!-- 4 columns -->
+  <g transform="translate(60 200)" font-family="ui-monospace, monospace">
+
+    <!-- Column 1: OpenChamber - supervision -->
+    <g transform="translate(0 0)">
+      <rect x="0" y="0" width="255" height="320" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+      <rect x="0" y="0" width="255" height="40" rx="8" fill="#018786"/>
+      <text x="127" y="26" text-anchor="middle" font-size="14" fill="#0F172A" font-weight="bold">SUPERVISION</text>
+      <text x="127" y="68" text-anchor="middle" font-size="20" fill="#018786" font-weight="bold">OpenChamber</text>
+      <text x="127" y="86" text-anchor="middle" font-size="11" fill="#94A3B8">frontend + harness</text>
+      <text x="20" y="120" font-size="11" fill="#F8FAFC">• One session, one</text>
+      <text x="20" y="138" font-size="11" fill="#F8FAFC">  view, all devices</text>
+      <text x="20" y="156" font-size="11" fill="#F8FAFC">  synchronized</text>
+      <text x="20" y="186" font-size="11" fill="#F8FAFC">• Session Goals</text>
+      <text x="20" y="204" font-size="11" fill="#F8FAFC">• Multi-run + Fusion</text>
+      <text x="20" y="222" font-size="11" fill="#F8FAFC">• Changes Walkthrough</text>
+      <text x="20" y="240" font-size="11" fill="#F8FAFC">• Private Relay</text>
+      <text x="20" y="280" font-size="10" fill="#FF9800">MIT · 8.7k ★</text>
+      <text x="20" y="296" font-size="10" fill="#64748B">wraps OpenCode</text>
+    </g>
+
+    <!-- Column 2: Paseo - orchestration -->
+    <g transform="translate(280 0)">
+      <rect x="0" y="0" width="255" height="320" rx="8" fill="#0F172A" stroke="#FF9800" stroke-width="2"/>
+      <rect x="0" y="0" width="255" height="40" rx="8" fill="#FF9800"/>
+      <text x="127" y="26" text-anchor="middle" font-size="14" fill="#0F172A" font-weight="bold">ORCHESTRATION</text>
+      <text x="127" y="68" text-anchor="middle" font-size="20" fill="#FF9800" font-weight="bold">Paseo</text>
+      <text x="127" y="86" text-anchor="middle" font-size="11" fill="#94A3B8">multi-provider daemon</text>
+      <text x="20" y="120" font-size="11" fill="#F8FAFC">• Each agent runs</text>
+      <text x="20" y="138" font-size="11" fill="#F8FAFC">  as its own process</text>
+      <text x="20" y="156" font-size="11" fill="#F8FAFC">  with its real CLI</text>
+      <text x="20" y="186" font-size="11" fill="#F8FAFC">• 35+ providers</text>
+      <text x="20" y="204" font-size="11" fill="#F8FAFC">• Voice control</text>
+      <text x="20" y="222" font-size="11" fill="#F8FAFC">• @getpaseo/client SDK</text>
+      <text x="20" y="240" font-size="11" fill="#F8FAFC">• HN Show · 1k points</text>
+      <text x="20" y="280" font-size="10" fill="#FF9800">AGPL-3.0 · 13.7k ★</text>
+      <text x="20" y="296" font-size="10" fill="#64748B">its own category</text>
+    </g>
+
+    <!-- Column 3: CodeNomad - cockpit -->
+    <g transform="translate(560 0)">
+      <rect x="0" y="0" width="255" height="320" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+      <rect x="0" y="0" width="255" height="40" rx="8" fill="#018786"/>
+      <text x="127" y="26" text-anchor="middle" font-size="14" fill="#0F172A" font-weight="bold">COCKPIT</text>
+      <text x="127" y="68" text-anchor="middle" font-size="20" fill="#018786" font-weight="bold">CodeNomad</text>
+      <text x="127" y="86" text-anchor="middle" font-size="11" fill="#94A3B8">premium desktop</text>
+      <text x="20" y="120" font-size="11" fill="#F8FAFC">• Multi-instance</text>
+      <text x="20" y="138" font-size="11" fill="#F8FAFC">  native workspace</text>
+      <text x="20" y="156" font-size="11" fill="#F8FAFC">• SideCars (VSCode, ttyd)</text>
+      <text x="20" y="186" font-size="11" fill="#F8FAFC">• Voice input</text>
+      <text x="20" y="204" font-size="11" fill="#F8FAFC">• Worktrees by default</text>
+      <text x="20" y="222" font-size="11" fill="#F8FAFC">• Electron + Tauri</text>
+      <text x="20" y="240" font-size="11" fill="#F8FAFC">• Command palette</text>
+      <text x="20" y="280" font-size="10" fill="#FF9800">MIT · 2.5k ★</text>
+      <text x="20" y="296" font-size="10" fill="#64748B">wraps OpenCode</text>
+    </g>
+
+    <!-- Column 4: opencode-mobile - pocket -->
+    <g transform="translate(840 0)">
+      <rect x="0" y="0" width="255" height="320" rx="8" fill="#0F172A" stroke="#FF9800" stroke-width="2"/>
+      <rect x="0" y="0" width="255" height="40" rx="8" fill="#FF9800"/>
+      <text x="127" y="26" text-anchor="middle" font-size="14" fill="#0F172A" font-weight="bold">POCKET</text>
+      <text x="127" y="68" text-anchor="middle" font-size="20" fill="#FF9800" font-weight="bold">opencode-mobile</text>
+      <text x="127" y="86" text-anchor="middle" font-size="11" fill="#94A3B8">native Android</text>
+      <text x="20" y="120" font-size="11" fill="#F8FAFC">• Minimal client</text>
+      <text x="20" y="138" font-size="11" fill="#F8FAFC">  for your server</text>
+      <text x="20" y="156" font-size="11" fill="#F8FAFC">• React Native + Expo</text>
+      <text x="20" y="186" font-size="11" fill="#F8FAFC">• Play Store Beta</text>
+      <text x="20" y="204" font-size="11" fill="#F8FAFC">• LAN or Tailscale</text>
+      <text x="20" y="222" font-size="11" fill="#F8FAFC">• One session at a time</text>
+      <text x="20" y="240" font-size="11" fill="#F8FAFC">• No voice, no fusion</text>
+      <text x="20" y="280" font-size="10" fill="#FF9800">Apache-2.0 · 104 ★</text>
+      <text x="20" y="296" font-size="10" fill="#64748B">consumes HTTP/WS</text>
+    </g>
+  </g>
+
+  <!-- Bottom: cross-cutting axe -->
+  <g font-family="ui-monospace, monospace" font-size="11" fill="#64748B">
+    <text x="60" y="580">teal = OpenCode frontend (wraps one engine)</text>
+    <text x="600" y="580">orange = independent category (orchestrator or pocket)</text>
+    <text x="1140" y="600" text-anchor="end" fill="#94A3B8">arceapps.com</text>
+  </g>
+</svg>
