@@ -100,6 +100,98 @@ Comparativa operativa de 4 productos frontends para coding agents: OpenChamber (
 
 ---
 
+## 2026-08-15 — Artículo "Paseo: el orchestrator de coding agents que reescribió la categoría"
+
+**Estado:** ✅ Escrito, validado, **pusheado en commit `33816b2` con pubDate 2026-08-15 (mañana)**. Pages NO lo renderiza hasta que `new Date() >= 2026-08-15`. El sitemap de HOY lo excluye. Aparece en producción MAÑANA cuando Pages haga rebuild — disparado por el push de OpenChamber (`291c780`) o un cron trigger.
+
+**Tema:**
+Deep dive en Paseo como categoría independiente: *agent orchestrator*. Arquitectura daemon + 5 clientes + relay Elixir opcional. La historia del RFC #1042 (bug de storage migration en OpenCode ≥1.14 → migración a ACP, 10.000 líneas custom → 1.100 genérico). Las tres skills oficiales (Handoff, Advisor, Committee) con sus briefings estructurados. La promesa de voice procesado local.
+
+**Materiales nuevos:**
+- 3 SKILL.md (Handoff, Advisor, Committee) — descargados con `curl`.
+- Hilo HN `item?id=48377250` — 10 citas verbatim.
+- RFC #1042 cerrado — texto completo extraído de `api.github.com/repos/.../issues/1042`.
+- Review GIGAZINE 5-jul-2026 — confirmación de voice procesado local, IDs iOS App Store y Google Play.
+- DeepWiki ACP providers + OpenCode provider.
+- Review elsolitario.org sobre OpenChamber (referencia cruzada).
+
+**Word counts por idioma:**
+- ES: 5,731 palabras (objetivo 4,000 ✓).
+- EN: 5,471 palabras (objetivo 4,000 ✓).
+
+**Frontmatter verificado:**
+- Title ES: 76 chars / EN: 71 chars (≤100 ✓).
+- Description ES: 251 chars / EN: 251 chars (80-300 ✓).
+- Bilingual titles differ ✓.
+- `pubDate: 2026-08-15` (mañana, petición del user).
+- `reference_id: "eede9df0-9aaf-44c6-a424-19b868712f52"`.
+
+**Build verification:**
+- `npx astro build` → 1067 páginas, 16.40s, exit 0.
+- Imágenes en dist: 4 SVGs (hero + handoff skill) ✓.
+
+**Imágenes generadas:**
+- `public/images/paseo-orchestrator-multi-provider-2026-es.svg` (7,279 bytes, XML parseable ✓).
+- `public/images/paseo-orchestrator-multi-provider-2026-en.svg` (7,228 bytes, XML parseable ✓).
+- `public/images/paseo-handoff-skill-es.svg` (5,864 bytes, XML parseable ✓).
+- `public/images/paseo-handoff-skill-en.svg` (5,824 bytes, XML parseable ✓).
+
+**Pitfalls evitados:**
+- #1: pubDate 2026-08-15 (mañana). NO backdateo: el user pidió fecha de mañana. Pages rebuild mañana.
+
+**Siguiente paso:** push de OpenChamber (`291c780`) mañana fuerza el rebuild que incluye Paseo.
+
+---
+
+## 2026-08-16 — Artículo "OpenChamber: el cockpit agéntico que supervisa - OpenCode"
+
+**Estado:** ✅ Escrito, validado, **commit local `291c780`, NO pusheado aún**. pubDate 2026-08-16 (pasado mañana). Pages NO lo renderiza hasta `new Date() >= 2026-08-16`.
+
+**Tema:**
+Deep dive en OpenChamber como categoría complementaria: *agent supervision environment*. Las 6 funciones de la v0.7 (Session Goals, Multi-run con Fusion, Changes Walkthrough, Preview, issue→PR, cron+goals). Las 5 superfícies (Desktop, Web/PWA, VS Code, iOS, Android). Los 5 caminos de acceso remoto (LAN, Tailscale, SSH, Cloudflare, Private Relay). El contexto del maintainer Bohdan Triapitsyn.
+
+**Materiales nuevos:**
+- Review elsolitario.org del 9-ago-2026 — cita verbatim de las "seis funciones en una sola versión", testimonios de early adopters (Harsha Kotcherlakota).
+- OpenChamber Roadmap (openchamber.dev/roadmap/).
+- Marketplace VS Code oficial (19,097 installs).
+- Reviews externos: addROM, Oflight Inc, EveryDev.ai.
+
+**Word counts por idioma:**
+- ES: 4,873 palabras (objetivo 4,000 ✓).
+- EN: 4,718 palabras (objetivo 4,000 ✓).
+
+**Frontmatter verificado:**
+- Title ES: 66 chars / EN: 68 chars (≤100 ✓).
+- Description ES: 287 chars / EN: 271 chars (80-300 ✓).
+- Bilingual titles differ ✓.
+- `pubDate: 2026-08-16` (pasado mañana, petición del user).
+- `reference_id: "ec47df9a-f9fe-4c46-bf3f-1c056109ccdc"`.
+
+**Build verification:**
+- `npx astro build` → 1067 páginas, 15.36s, exit 0.
+- Imágenes en dist: 4 SVGs (hero + session goals) ✓.
+
+**Imágenes generadas:**
+- `public/images/openchamber-cockpit-agentico-2026-es.svg` (6,109 bytes, XML parseable ✓).
+- `public/images/openchamber-cockpit-agentico-2026-en.svg` (5,998 bytes, XML parseable ✓).
+- `public/images/openchamber-session-goals-es.svg` (5,992 bytes, XML parseable ✓).
+- `public/images/openchamber-session-goals-en.svg` (5,812 bytes, XML parseable ✓).
+
+**Pitfalls evitados:**
+- #1: pubDate 2026-08-16 (pasado mañana). NO backdateo.
+
+**Consideración operativa:**
+- Hecho commit local, NO pusheado. Razones:
+  1. pubDate es pasado mañana, Pages rebuild excluiría el post HOY.
+  2. Para que Paseo (pubDate 2026-08-15) entre en producción mañana, Pages debe hacer rebuild.
+  3. El push de OpenChamber mañana (`291c780`) fuerza el rebuild que incluye Paseo.
+  4. Pasado mañana, Paseo + OpenChamber aparecen juntos en sitemap.
+
+**Siguiente paso:** push de OpenChamber mañana (~15-ago-2026) fuerza rebuild que incluye Paseo. Push de OpenChamber se hace junto al siguiente push operativo (cron trigger o cualquier cambio).
+
+---
+
+
 ## 2026-07-09 — Artículo "OKF de Google: Qué es y por qué te importa"
 
 **Estado:** ✅ Publicado y compilado sin errores (`pnpm build` → 1008 páginas, 7.98s)
