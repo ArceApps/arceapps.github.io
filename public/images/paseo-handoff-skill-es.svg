@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Paseo handoff skill: briefing structure de 8 secciones">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E293B"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0 L0 0 0 40" fill="none" stroke="#1E293B" stroke-width="0.5" opacity="0.4"/>
+    </pattern>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#FF9800"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <text x="60" y="55" font-size="13" fill="#94A3B8" letter-spacing="0.15em">ARCEAPPS · INFOGRAFÍA · SKILL</text>
+    <text x="60" y="100" font-size="32" fill="#F8FAFC" font-weight="bold">paseo-handoff: cómo pasar contexto</text>
+    <text x="60" y="130" font-size="16" fill="#FF9800">el briefing autocontenido de 8 secciones que reemplaza el copia-pega</text>
+  </g>
+
+  <g transform="translate(60 175)" font-family="ui-monospace, monospace">
+
+    <!-- Source -->
+    <g transform="translate(0 0)">
+      <rect x="0" y="0" width="180" height="80" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+      <text x="90" y="30" text-anchor="middle" font-size="13" fill="#018786" font-weight="bold">SOURCE AGENT</text>
+      <text x="90" y="50" text-anchor="middle" font-size="10" fill="#94A3B8">ha estado trabajando</text>
+      <text x="90" y="64" text-anchor="middle" font-size="10" fill="#94A3B8">en la tarea</text>
+    </g>
+
+    <path d="M 200 40 L 320 40" stroke="#FF9800" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Handoff prompt -->
+    <g transform="translate(340 0)">
+      <rect x="0" y="0" width="300" height="380" rx="8" fill="#0F172A" stroke="#FF9800" stroke-width="2"/>
+      <rect x="0" y="0" width="300" height="32" rx="8" fill="#FF9800"/>
+      <text x="150" y="22" text-anchor="middle" font-size="13" fill="#0F172A" font-weight="bold">HANDOFF PROMPT</text>
+
+      <text x="15" y="60" font-size="11" fill="#FF9800">## Task</text>
+      <text x="15" y="78" font-size="9" fill="#94A3B8">[descripción imperativa]</text>
+
+      <text x="15" y="106" font-size="11" fill="#FF9800">## Context</text>
+      <text x="15" y="124" font-size="9" fill="#94A3B8">[por qué existe, contexto]</text>
+
+      <text x="15" y="152" font-size="11" fill="#FF9800">## Relevant files</text>
+      <text x="15" y="170" font-size="9" fill="#94A3B8">[paths + por qué importan]</text>
+
+      <text x="15" y="198" font-size="11" fill="#FF9800">## Current state</text>
+      <text x="15" y="216" font-size="9" fill="#94A3B8">[qué funciona, qué no]</text>
+
+      <text x="15" y="244" font-size="11" fill="#FF9800">## What was tried</text>
+      <text x="15" y="262" font-size="9" fill="#94A3B8">[approach — por qué falló]</text>
+
+      <text x="15" y="290" font-size="11" fill="#FF9800">## Decisions</text>
+      <text x="15" y="308" font-size="9" fill="#94A3B8">[decisión — rationale]</text>
+
+      <text x="15" y="336" font-size="11" fill="#FF9800">## Acceptance criteria</text>
+      <text x="15" y="354" font-size="9" fill="#94A3B8">- [ ] [criterio verificable]</text>
+
+      <text x="15" y="372" font-size="11" fill="#FF9800">## Constraints</text>
+    </g>
+
+    <path d="M 660 40 L 780 40" stroke="#FF9800" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- Target -->
+    <g transform="translate(800 0)">
+      <rect x="0" y="0" width="280" height="380" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+      <rect x="0" y="0" width="280" height="32" rx="8" fill="#018786"/>
+      <text x="140" y="22" text-anchor="middle" font-size="13" fill="#0F172A" font-weight="bold">TARGET AGENT</text>
+
+      <text x="140" y="68" text-anchor="middle" font-size="11" fill="#018786" font-weight="bold">fresh context</text>
+      <text x="140" y="86" text-anchor="middle" font-size="10" fill="#94A3B8">recibe el briefing</text>
+      <text x="140" y="100" text-anchor="middle" font-size="10" fill="#94A3B8">como prompt inicial</text>
+
+      <line x1="20" y1="120" x2="260" y2="120" stroke="#1E293B" stroke-width="1"/>
+
+      <text x="140" y="148" text-anchor="middle" font-size="11" fill="#FF9800">isolation: "worktree"</text>
+      <text x="140" y="166" text-anchor="middle" font-size="10" fill="#94A3B8">si el usuario dijo</text>
+      <text x="140" y="180" text-anchor="middle" font-size="10" fill="#94A3B8">"in a worktree"</text>
+
+      <line x1="20" y1="200" x2="260" y2="200" stroke="#1E293B" stroke-width="1"/>
+
+      <text x="140" y="228" text-anchor="middle" font-size="11" fill="#FF9800">reglas duras</text>
+      <text x="20" y="252" font-size="10" fill="#94A3B8">• No esperar ni polear</text>
+      <text x="20" y="270" font-size="10" fill="#94A3B8">• La skill crea, no controla</text>
+      <text x="20" y="288" font-size="10" fill="#94A3B8">• El usuario decide cuándo</text>
+      <text x="20" y="306" font-size="10" fill="#94A3B8">  detach</text>
+      <text x="20" y="324" font-size="10" fill="#94A3B8">• Preserve task semantics</text>
+      <text x="20" y="342" font-size="10" fill="#94A3B8">  ("DO NOT edit files" vs</text>
+      <text x="20" y="358" font-size="10" fill="#94A3B8">  "implement the fix")</text>
+    </g>
+  </g>
+
+  <g font-family="ui-monospace, monospace" font-size="11" fill="#64748B">
+    <text x="60" y="595">verde = agente · naranja = skill · el briefing es un template, no se improvisa</text>
+    <text x="1140" y="595" text-anchor="end" fill="#94A3B8">arceapps.com</text>
+  </g>
+</svg>
