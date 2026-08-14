@@ -22,6 +22,19 @@ export async function getStaticPaths() {
   // Sort posts by date to ensure correct next/prev logic
   const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
+  // Create an index of posts by tag for O(1) lookups
+  const tagToPosts = new Map();
+  for (let i = 0; i < sortedPosts.length; i++) {
+    const p = sortedPosts[i];
+    if (p.data.tags) {
+      for (let j = 0; j < p.data.tags.length; j++) {
+        const tag = p.data.tags[j];
+        if (!tagToPosts.has(tag)) tagToPosts.set(tag, []);
+        tagToPosts.get(tag).push(p);
+      }
+    }
+  }
+
   return sortedPosts.map((post, index) => {
     // Note: posts are sorted descending (newest first).
     // So "next" post (chronologically newer) is at index - 1.
@@ -40,26 +53,36 @@ export async function getStaticPaths() {
        }
     }
 
-// Related posts logic — precomputed in getStaticPaths using sortedPosts (no extra getCollection call)
+    // Related posts logic - optimized to O(T) where T is number of related posts instead of O(N) where N is all posts
     const currentTags = post.data.tags || [];
-    const currentTagsSet = new Set(currentTags);
-    const relatedPostsData = [];
+    const relatedPostsMap = new Map();
 
-    for (let i = 0; i < sortedPosts.length; i++) {
-      const p = sortedPosts[i];
-      if (p.slug === post.slug) continue;
-
-      let commonTags = 0;
-      const pTags = p.data.tags;
-      if (pTags) {
-        for (let j = 0; j < pTags.length; j++) {
-          if (currentTagsSet.has(pTags[j])) {
-            commonTags++;
+    // Find related posts through the tag index
+    for (let i = 0; i < currentTags.length; i++) {
+      const postsWithTag = tagToPosts.get(currentTags[i]);
+      if (postsWithTag) {
+        for (let j = 0; j < postsWithTag.length; j++) {
+          const p = postsWithTag[j];
+          if (p.slug !== post.slug) {
+            relatedPostsMap.set(p, (relatedPostsMap.get(p) || 0) + 1);
           }
         }
       }
+    }
 
-      relatedPostsData.push({ post: p, commonTags });
+    const relatedPostsData = [];
+    for (const [p, count] of relatedPostsMap.entries()) {
+      relatedPostsData.push({ post: p, commonTags: count });
+    }
+
+    // Fallback if not enough related posts (fill with newest)
+    if (relatedPostsData.length < 3) {
+      for (let i = 0; i < sortedPosts.length && relatedPostsData.length < 3; i++) {
+        const p = sortedPosts[i];
+        if (p.slug !== post.slug && !relatedPostsMap.has(p)) {
+          relatedPostsData.push({ post: p, commonTags: 0 });
+        }
+      }
     }
 
     const relatedPosts = relatedPostsData
