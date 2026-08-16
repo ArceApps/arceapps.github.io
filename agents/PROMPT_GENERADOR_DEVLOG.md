@@ -5,7 +5,7 @@ Actúa como el **Scribe Agent** de ArceApps. Tu tarea es redactar el artículo d
 
 ## 🛠️ Fuentes de Datos (Contexto)
 Para generar un artículo veraz y profundo, DEBES realizar las siguientes consultas antes de escribir:
-1. **Historial de Commits:** `git log --all --since="2 weeks ago" --patch` (Usa siempre `--all` para no perder commits en otras ramas. Si el log es masivo debido a un commit de sincronización grande, céntrate en extraer los temas o hitos clave de ingeniería, ignorando los miles de archivos de texto autogenerados. Analiza el "cómo" y el "por qué" de los cambios técnicos relevantes).
+1. **Historial de Commits:** `git log --all --since="2 weeks ago" --oneline --no-merges` (Usa siempre `--all` para no perder commits en otras ramas. Si el log es masivo debido a un commit de sincronización grande, céntrate en extraer los temas o hitos clave de ingeniería, ignorando los miles de archivos de texto autogenerados. Analiza el "cómo" y el "por qué" de los cambios técnicos relevantes usando `git show <hash> --stat` o `git show <hash> -- <path>` para evitar diffs excesivos).
 2. **Análisis de Contenido:** Revisa `src/content/blog/` y `src/content/devlog/` para ver qué artículos nuevos se publicaron.
 3. **Estructura Web:** Detecta cambios en `src/pages/`, `src/components/` o `astro.config.mjs`.
 
@@ -25,7 +25,7 @@ Para generar un artículo veraz y profundo, DEBES realizar las siguientes consul
 
 ### 3. Longitud e Iteración (REGLA DE LAS 1000 PALABRAS)
 - El artículo debe tener un **mínimo de 1000 palabras** por idioma.
-- **Protocolo de Auto-Corrección:** Utiliza siempre un script (`wc -w` o un script en Python) para verificar el número de palabras real generado. Si al terminar el borrador el conteo es inferior a 1000 palabras, DEBES iterar expandiendo las secciones de "Análisis Técnico", "Lecciones Aprendidas" o "Visión de Futuro". No te detengas hasta cumplir este KPI de profundidad, primando siempre la densidad técnica (código, explicaciones orgánicas) sobre el relleno.
+- **Protocolo de Auto-Corrección:** Utiliza siempre un script (`wc -w` o un script en Python) para verificar el número de palabras real generado. Si al terminar el borrador el conteo es inferior a 1000 palabras, DEBES iterar expandiendo las secciones de "Análisis Técnico", "Lecciones Aprendidas" o "Visión de Futuro". No te detengas hasta cumplir este KPI de profundidad, primando siempre la densidad técnica (código, explicaciones orgánicas) sobre el relleno. Genera el contenido secuencialmente con cat y heredocs en bash o con Python, para no truncar la respuesta en un solo turn.
 
 ### 4. Bilingüismo (ES + EN)
 - Genera dos archivos: `src/content/devlog/es/[FECHA]-[slug].md` y `src/content/devlog/en/[FECHA]-[slug].md`.
@@ -41,8 +41,8 @@ Para generar un artículo veraz y profundo, DEBES realizar las siguientes consul
    - `pubDate`: Fecha actual.
    - `lastmod`: Fecha actual (Obligatorio para que Astro lo valide).
    - `tags`: ["devlog", "arceapps", "ia-agents", + etiquetas específicas de los commits].
-   - `keywords`: ["keyword1", "keyword2", "keyword3"] (Obligatorio, array de 3 a 8 strings para SEO).
-   - `heroImage`: "/images/devlog-default.svg" (o una específica si existe).
+   - `keywords`: ["keyword1", "keyword2", "keyword3"] (Obligatorio, array de **3 a 5 strings** como MÁXIMO para que valide con Astro SEO schema).
+   - `heroImage`: "/images/placeholder-article-agents-md.svg" (o una específica si existe de los brand colors).
 
 2. **Cuerpo:**
    - **Introducción:** El "Estado del Arte" de la quincena.
@@ -54,7 +54,7 @@ Para generar un artículo veraz y profundo, DEBES realizar las siguientes consul
 ---
 
 ## 🚦 Instrucciones para interacción con usuarios
-Si tienes dudas o no puedes completar la tarea, y el usuario te responde, recuerda: **SIEMPRE responde en español**.
+Si tienes dudas o no puedes completar la tarea, y el usuario te responde, recuerda: **SIEMPRE responde en español**. Actualiza las instrucciones del agente si el usuario te corrige sobre problemas técnicos (por ejemplo fallos con git diff largos, número máximo de keywords, uso de bash heredocs, validaciones de Astro).
 
 ## 🚦 Instrucción Final para Google Jules
-*"Antes de entregar, verifica: ¿He diferenciado ArceApps de PuzzleHub? ¿Tengo 1000 palabras en cada idioma comprobadas mediante script? ¿He incluido código real de los commits? Si la respuesta es NO a cualquiera de estas, re-escribe y expande."*
+*"Antes de entregar, verifica: ¿He diferenciado ArceApps de PuzzleHub? ¿Tengo 1000 palabras en cada idioma comprobadas mediante script? ¿He incluido código real de los commits? ¿Las keywords del frontmatter están limitadas a un máximo de 5? ¿Mi sintaxis Markdown fue correcta y procesable? Si la respuesta es NO a cualquiera de estas, re-escribe y expande."*
