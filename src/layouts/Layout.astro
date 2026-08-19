@@ -5,6 +5,7 @@ import "@fontsource/material-icons";
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CookieBanner from "../components/CookieBanner.astro";
 import { ClientRouter } from "astro:transitions";
 import { getLangFromUrl } from "../i18n/utils";
 
@@ -144,15 +145,41 @@ const socialImageURL = new URL(image, Astro.url);
     <link rel="preconnect" href="https://play-lh.googleusercontent.com" />
     <link rel="preconnect" href="https://cdn.simpleicons.org" />
 
-    <!-- Google Analytics -->
-    <script
-      is:inline type="text/partytown"
-      src="https://www.googletagmanager.com/gtag/js?id=G-CZLNYSWY76"></script>
-    <script is:inline type="text/partytown">
+    <!-- Google Consent Mode v2: default denied (antes de que cargue gtag.js) -->
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag() {
+      window.gtag = window.gtag || function () {
         dataLayer.push(arguments);
-      }
+      };
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "granted",
+        security_storage: "granted",
+      });
+      // Visitante de retorno: aplicar su elección previa sin esperar al banner.
+      try {
+        var arceConsent = localStorage.getItem("cookie-consent");
+        if (arceConsent === "granted" || arceConsent === "denied") {
+          gtag("consent", "update", { analytics_storage: arceConsent });
+        }
+      } catch (e) {}
+    </script>
+
+    <!-- Google Analytics (hilo principal: el Consent Mode exige que gtag.js lea el default
+         directamente del dataLayer main-thread; Partytown no garantiza ese orden en el worker) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-CZLNYSWY76"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      // Respeta la implementación real de gtag.js si ya cargó; solo usa el stub como fallback.
+      window.gtag = window.gtag || function () {
+        dataLayer.push(arguments);
+      };
       gtag("js", new Date());
 
       gtag("config", "G-CZLNYSWY76");
@@ -236,6 +263,24 @@ const socialImageURL = new URL(image, Astro.url);
       />
     )}
 
+    <!-- Schema.org - Person (when type="profile") -->
+    {type === "profile" && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "ArceApps",
+          url: "https://arceapps.com/about-me",
+          image: "https://arceapps.com/logo.png",
+          sameAs: [
+            "https://github.com/arceapps",
+            "https://play.google.com/store/apps/developer?id=Arce+Apps",
+          ],
+        }).replace(/</g, "\\u003C")}
+      />
+    )}
+
     <script is:inline>
       // Theme Script
       function getTheme() {
@@ -298,5 +343,6 @@ const socialImageURL = new URL(image, Astro.url);
     </button>
 
     <script src="../scripts/layout.ts"></script>
+    <CookieBanner />
   </body>
 </html>

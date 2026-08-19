@@ -2,12 +2,18 @@
 import Layout from "../../layouts/Layout.astro";
 import ContactForm from "../../components/ContactForm.astro";
 import PhilosophyCard from "../../components/PhilosophyCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import { Image } from "astro:assets";
 import brandIcon from "../../assets/brand-icon.png";
 
-const title = "About Me - ArceApps";
+const title = "Sobre Mí - ArceApps";
 const description =
   "Conoce más sobre ArceApps, mi stack tecnológico y mi enfoque en el desarrollo Android y la Inteligencia Artificial.";
+
+const breadcrumbItems = [
+  { label: "Inicio", href: "/es/" },
+  { label: "Sobre Mí", href: "/es/about-me" },
+];
 
 // Categorías de tecnologías
 const techStack = [
@@ -160,13 +166,15 @@ const techStack = [
 ];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} type="profile" image="/logo.png">
   <!-- Hero Section -->
   <div class="border-b border-border bg-surface-subtle py-20 dark:border-dark-border dark:bg-dark-surface-subtle">
     <div class="container mx-auto px-4">
-      <div
-        class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto"
-      >
+      <Breadcrumbs items={breadcrumbItems} />
+
+        <div
+          class="flex flex-col md:flex-row items-center gap-12 max-w-5xl mx-auto"
+        >
         <!-- Profile Image (Web Icon) -->
         <div
           class="w-48 h-48 md:w-56 md:h-56 rounded-[2rem] border border-primary/30 bg-surface-raised p-2 shrink-0 shadow-xl shadow-primary/10 animate-fade-in dark:bg-dark-surface-raised"
@@ -188,13 +196,13 @@ const techStack = [
           <h1
             class="text-5xl md:text-6xl font-bold text-on-surface dark:text-dark-on-surface tracking-tight"
           >
-            About Me
+            Sobre Mí
           </h1>
           <h2 class="text-2xl text-primary font-medium">
             ArceApps <span
               class="text-on-surface-variant dark:text-dark-on-surface-variant text-lg mx-2"
               >|</span
-            > Android Developer & AI Enthusiast
+            > Desarrollador Android & Entusiasta de la IA
           </h2>
           <p
             class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed max-w-2xl mx-auto md:mx-0"
@@ -222,7 +230,7 @@ const techStack = [
         <h3
           class="text-3xl font-bold text-on-surface dark:text-dark-on-surface mb-4"
         >
-          Tech Stack
+          Stack Tecnológico
         </h3>
         <p
           class="text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto"

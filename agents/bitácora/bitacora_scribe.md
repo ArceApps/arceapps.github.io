@@ -4,6 +4,194 @@ Registro de actividades del redactor técnico del blog de ArceApps. Producción 
 
 ---
 
+## 2026-08-14 — Artículo "OpenChamber, Paseo, CodeNomad y opencode-mobile: comparativa 2026"
+
+**Estado:** ✅ Escrito, validado con `npx astro build` (1067 páginas, 16.37s). **NO publicado.** Pasa a Gate UA para revisión del user antes de commit/push.
+
+**Tema:**
+Comparativa operativa de 4 productos frontends para coding agents: OpenChamber (frontend + supervision), Paseo (orchestrator multi-provider), CodeNomad (cockpit premium) y opencode-mobile (cliente Android). El ángulo diferenciador vs `opencode-frontends-comparativa-2026` (26-jul-2026) es **el cambio de categoría**: Paseo ya no es "un frontend de OpenCode" sino un daemon multi-provider, OpenChamber dio el salto a "agent supervision environment" con Session Goals + Multi-run + Fusion, CodeNomad y opencode-mobile consolidaron su nicho. Lo que era "tour del zoo" en julio es ahora "decisión práctica: ¿cuál instalo hoy?".
+
+**Productos investigados (datos primarios verificados vía GitHub API a 2026-08-14):**
+
+| Producto | Repo | Estrellas | Forks | Licencia | Tecnología |
+|---|---|---|---|---|---|
+| OpenChamber | openchamber/openchamber | 8,729 | 911 | MIT | TypeScript |
+| Paseo | getpaseo/paseo | 13,679 | 1,410 | AGPL-3.0 | TypeScript |
+| CodeNomad | NeuralNomadsAI/CodeNomad | 2,471 | 166 | MIT | TypeScript + Electron/Tauri |
+| opencode-mobile | alvarolorentedev/opencode-mobile | 104 | 14 | Apache-2.0 | React Native + Expo |
+| OpenCode (engine) | anomalyco/opencode | 197,365 | 25,384 | MIT | TypeScript (referencia) |
+
+**Fuentes consultadas:**
+- READMEs primarios de los 4 repos (descargados con `curl -sL -A "Mozilla/5.0" https://raw.githubusercontent.com/.../README.md`).
+- GitHub API para stars/forks/license (`api.github.com/repos/...`).
+- Hilo de Show HN de Paseo (9-jun-2026, item 48377250): 10 citas verbatim extraídas con `curl` + grep sobre `class="commtext"`.
+- DeepWiki `getpaseo/paseo/6.5-opencode-provider` (técnico, 6-ago-2026).
+- Reviews externos: vibecodinghub.org, addrom.com, oflight.co.jp.
+- Posts previos del blog para enlazar como prior art: `opencode-frontends-comparativa-2026`, `awesome-opencode-ecosystem`, `opencode-subagents`, `opencode-plugins-memoria-nativos`, `paradigmas-alternativos-ingenieria-software-ia`.
+
+**Estructura del artículo (15 secciones):**
+1. Apertura / Gancho (diferenciación vs el post de julio).
+2. Por qué este artículo existe (3 cambios del paisaje en agosto).
+3. Tabla-resumen de 4 productos en un vistazo.
+4. El cambio de paradigma: del TUI único a superfícies múltiples.
+5. Infografía inline: 4 categorías, no 4 frentes.
+6. OpenChamber: el cockpit que supervisa (arquitectura, 3 features, críticas).
+7. Paseo: cuando un cliente se convierte en categoría (instalación, SDK, críticas + 10 citas HN).
+8. CodeNomad: cockpit premium para sesiones largas (multi-instance, voz, SideCars).
+9. opencode-mobile: el bolsillo para tu OpenCode (modelo simple, críticas).
+10. Tabla comparativa densa (16 dimensiones operativas).
+11. 5 escenarios reales: ¿cuál instalo?
+12. Hacia dónde va el espacio (3 señales).
+13. Bibliografía con URLs verificables.
+14. Cierre con remate indie.
+
+**Word counts por idioma:**
+- ES: 6,311 palabras (objetivo 4,000 ✓).
+- EN: 6,228 palabras (objetivo 4,000 ✓).
+
+**Frontmatter verificado:**
+- Title ES: 74 chars (≤100 ✓) / EN: 72 chars (≤100 ✓).
+- Description ES: 251 chars (80-300 ✓) / EN: 229 chars (80-300 ✓).
+- Bilingual titles differ ✓ (Pitfall #21).
+- `pubDate: 2026-08-13` ES / `2026-08-14` EN (ES backdated 1día por pitfall #1; ver validación `find dist -path "*openchamber-paseo*"` ✓).
+- `reference_id: "8b453c74-2632-409b-94c0-39bf26dc78f4"` (UUID v4 generado).
+
+**Build verification:**
+- `npx astro build` → 1067 páginas, 16.37s, exit 0.
+- `find dist -path "*openchamber-paseo*" -name index.html` → 2 entries (ES + EN) ✓.
+- `grep -oE "openchamber-paseo[^<]*" dist/sitemap-0.xml | sort -u` → 2 entries ✓.
+- OG images regeneradas: `blog-{en,es}-openchamber-paseo-comparative-2026.png` (332 entries totales, 0 failures).
+
+**Imágenes generadas (brand colors #018786 teal + #FF9800 orange, dark bg #0F172A):**
+- `public/images/openchamber-paseo-comparativa-2026-es.svg` (5,401 bytes, XML parseable ✓).
+- `public/images/openchamber-paseo-comparativa-2026-en.svg` (5,379 bytes, XML parseable ✓).
+- `public/images/infographic-categorias-es.svg` (7,000 bytes, XML parseable ✓).
+- `public/images/infographic-categorias-en.svg` (6,971 bytes, XML parseable ✓).
+- Verificación pitfall #20b: 0 entidades HTML problemáticas (solo `lt|gt|amp|apos|quot` válidos).
+- Verificación pitfall #20: 0 palabras del idioma equivocado en `<text>` (verificado con grep -cwE).
+
+**Pitfalls evitados:**
+- #1: pubDate backdated 1 día en ES.
+- #18: NO stageo OG image regeneradas de posts previos (5 PNGs modificadas, 10 PNGs nuevas — todas de posts NO tocados por mí).
+- #19: CJK scan ES = 0; CJK scan EN = 0.
+- #20: Bilingual SVG text clean.
+- #20b: 0 HTML entities.
+- #21: Títulos bilingües distintos (74 vs 72 chars).
+- #23: Cross-links verificados — todos los slugs existen en su idioma correcto.
+
+**Diferenciación vs prior art (CRÍTICO per AGENTS.md):**
+- El post viejo `opencode-frontends-comparativa-2026` cubría OpenChamber/CodeNomad/nomacode/opencode-mobile como frontends de OpenCode. Este post:
+  - Añade Paseo (era la pieza que faltaba — categoría nueva).
+  - Profundiza en los features que aparecieron en agosto (Session Goals, Multi-run Fusion, Changes Walkthrough, @getpaseo/client SDK).
+  - Cita el hilo de HN de Paseo verbatim (10 quotes).
+  - Se posiciona como "capa operativa" vs "tour del zoo" del viejo.
+  - Enlaza explícitamente el post viejo al inicio (Prior Art ✓).
+
+**Siguiente paso (gate UA):**
+- Esperar OK del user para commit + push.
+- El user dijo en su mensaje que después de esta comparativa hará un artículo específico sobre cada uno. Esta sesión NO entra a esos detalles individuales — será otra sesión.
+
+### Innovative techniques used
+
+- **Multi-source parallel research**: `web_search` + `curl` a 4 repos + `curl` + `grep` a hilo de HN ejecutados en paralelo en una sola assistant turn.
+- **Schema validation via Python**: pre-flight check de title length, description range, CJK scan, bilingual title diff en un solo `python3 -c` por idioma.
+- **Pitfall #1 mitigation**: backdated `pubDate` en ES un día + verificación `find dist -path "*openchamber-paseo*"` post-build.
+- **Pitfall #20b SVG check**: validación `python3 -c "import xml.dom.minidom; xml.dom.minidom.parse(...)"` + grep de HTML entities.
+
+---
+
+## 2026-08-15 — Artículo "Paseo: el orchestrator de coding agents que reescribió la categoría"
+
+**Estado:** ✅ Escrito, validado, **pusheado en commit `33816b2` con pubDate 2026-08-15 (mañana)**. Pages NO lo renderiza hasta que `new Date() >= 2026-08-15`. El sitemap de HOY lo excluye. Aparece en producción MAÑANA cuando Pages haga rebuild — disparado por el push de OpenChamber (`291c780`) o un cron trigger.
+
+**Tema:**
+Deep dive en Paseo como categoría independiente: *agent orchestrator*. Arquitectura daemon + 5 clientes + relay Elixir opcional. La historia del RFC #1042 (bug de storage migration en OpenCode ≥1.14 → migración a ACP, 10.000 líneas custom → 1.100 genérico). Las tres skills oficiales (Handoff, Advisor, Committee) con sus briefings estructurados. La promesa de voice procesado local.
+
+**Materiales nuevos:**
+- 3 SKILL.md (Handoff, Advisor, Committee) — descargados con `curl`.
+- Hilo HN `item?id=48377250` — 10 citas verbatim.
+- RFC #1042 cerrado — texto completo extraído de `api.github.com/repos/.../issues/1042`.
+- Review GIGAZINE 5-jul-2026 — confirmación de voice procesado local, IDs iOS App Store y Google Play.
+- DeepWiki ACP providers + OpenCode provider.
+- Review elsolitario.org sobre OpenChamber (referencia cruzada).
+
+**Word counts por idioma:**
+- ES: 5,731 palabras (objetivo 4,000 ✓).
+- EN: 5,471 palabras (objetivo 4,000 ✓).
+
+**Frontmatter verificado:**
+- Title ES: 76 chars / EN: 71 chars (≤100 ✓).
+- Description ES: 251 chars / EN: 251 chars (80-300 ✓).
+- Bilingual titles differ ✓.
+- `pubDate: 2026-08-15` (mañana, petición del user).
+- `reference_id: "eede9df0-9aaf-44c6-a424-19b868712f52"`.
+
+**Build verification:**
+- `npx astro build` → 1067 páginas, 16.40s, exit 0.
+- Imágenes en dist: 4 SVGs (hero + handoff skill) ✓.
+
+**Imágenes generadas:**
+- `public/images/paseo-orchestrator-multi-provider-2026-es.svg` (7,279 bytes, XML parseable ✓).
+- `public/images/paseo-orchestrator-multi-provider-2026-en.svg` (7,228 bytes, XML parseable ✓).
+- `public/images/paseo-handoff-skill-es.svg` (5,864 bytes, XML parseable ✓).
+- `public/images/paseo-handoff-skill-en.svg` (5,824 bytes, XML parseable ✓).
+
+**Pitfalls evitados:**
+- #1: pubDate 2026-08-15 (mañana). NO backdateo: el user pidió fecha de mañana. Pages rebuild mañana.
+
+**Siguiente paso:** push de OpenChamber (`291c780`) mañana fuerza el rebuild que incluye Paseo.
+
+---
+
+## 2026-08-16 — Artículo "OpenChamber: el cockpit agéntico que supervisa - OpenCode"
+
+**Estado:** ✅ Escrito, validado, **commit local `291c780`, NO pusheado aún**. pubDate 2026-08-16 (pasado mañana). Pages NO lo renderiza hasta `new Date() >= 2026-08-16`.
+
+**Tema:**
+Deep dive en OpenChamber como categoría complementaria: *agent supervision environment*. Las 6 funciones de la v0.7 (Session Goals, Multi-run con Fusion, Changes Walkthrough, Preview, issue→PR, cron+goals). Las 5 superfícies (Desktop, Web/PWA, VS Code, iOS, Android). Los 5 caminos de acceso remoto (LAN, Tailscale, SSH, Cloudflare, Private Relay). El contexto del maintainer Bohdan Triapitsyn.
+
+**Materiales nuevos:**
+- Review elsolitario.org del 9-ago-2026 — cita verbatim de las "seis funciones en una sola versión", testimonios de early adopters (Harsha Kotcherlakota).
+- OpenChamber Roadmap (openchamber.dev/roadmap/).
+- Marketplace VS Code oficial (19,097 installs).
+- Reviews externos: addROM, Oflight Inc, EveryDev.ai.
+
+**Word counts por idioma:**
+- ES: 4,873 palabras (objetivo 4,000 ✓).
+- EN: 4,718 palabras (objetivo 4,000 ✓).
+
+**Frontmatter verificado:**
+- Title ES: 66 chars / EN: 68 chars (≤100 ✓).
+- Description ES: 287 chars / EN: 271 chars (80-300 ✓).
+- Bilingual titles differ ✓.
+- `pubDate: 2026-08-16` (pasado mañana, petición del user).
+- `reference_id: "ec47df9a-f9fe-4c46-bf3f-1c056109ccdc"`.
+
+**Build verification:**
+- `npx astro build` → 1067 páginas, 15.36s, exit 0.
+- Imágenes en dist: 4 SVGs (hero + session goals) ✓.
+
+**Imágenes generadas:**
+- `public/images/openchamber-cockpit-agentico-2026-es.svg` (6,109 bytes, XML parseable ✓).
+- `public/images/openchamber-cockpit-agentico-2026-en.svg` (5,998 bytes, XML parseable ✓).
+- `public/images/openchamber-session-goals-es.svg` (5,992 bytes, XML parseable ✓).
+- `public/images/openchamber-session-goals-en.svg` (5,812 bytes, XML parseable ✓).
+
+**Pitfalls evitados:**
+- #1: pubDate 2026-08-16 (pasado mañana). NO backdateo.
+
+**Consideración operativa:**
+- Hecho commit local, NO pusheado. Razones:
+  1. pubDate es pasado mañana, Pages rebuild excluiría el post HOY.
+  2. Para que Paseo (pubDate 2026-08-15) entre en producción mañana, Pages debe hacer rebuild.
+  3. El push de OpenChamber mañana (`291c780`) fuerza el rebuild que incluye Paseo.
+  4. Pasado mañana, Paseo + OpenChamber aparecen juntos en sitemap.
+
+**Siguiente paso:** push de OpenChamber mañana (~15-ago-2026) fuerza rebuild que incluye Paseo. Push de OpenChamber se hace junto al siguiente push operativo (cron trigger o cualquier cambio).
+
+---
+
+
 ## 2026-07-09 — Artículo "OKF de Google: Qué es y por qué te importa"
 
 **Estado:** ✅ Publicado y compilado sin errores (`pnpm build` → 1008 páginas, 7.98s)

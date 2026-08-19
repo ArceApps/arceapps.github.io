@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#018786" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#018786" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- concentric rings: intent core + implementation shell -->
+  <circle cx="430" cy="300" r="150" fill="none" stroke="#018786" stroke-width="2" stroke-dasharray="6 6" opacity="0.5"/>
+  <circle cx="430" cy="300" r="110" fill="none" stroke="#FF9800" stroke-width="2" opacity="0.6"/>
+  <circle cx="430" cy="300" r="62" fill="#018786" opacity="0.15"/>
+  <circle cx="430" cy="300" r="62" fill="none" stroke="#018786" stroke-width="3"/>
+  <text x="430" y="292" text-anchor="middle" fill="#018786" font-family="monospace" font-size="26" font-weight="bold">INTENCIÓN</text>
+  <text x="430" y="322" text-anchor="middle" fill="#7DD3C8" font-family="monospace" font-size="15">qué · límites · éxito</text>
+
+  <!-- ring labels -->
+  <text x="430" y="118" text-anchor="middle" fill="#FF9800" font-family="monospace" font-size="17" font-weight="bold">IA IMPLEMENTA</text>
+  <text x="430" y="140" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="13">el cómo dentro de fronteras</text>
+
+  <!-- orbiting phase dots -->
+  <circle cx="430" cy="150" r="6" fill="#FF9800"/>
+  <circle cx="580" cy="300" r="6" fill="#FF9800"/>
+  <circle cx="430" cy="450" r="6" fill="#FF9800"/>
+  <circle cx="280" cy="300" r="6" fill="#FF9800"/>
+
+  <!-- right column: phases -->
+  <g font-family="monospace">
+    <text x="720" y="150" fill="#F8FAFC" font-size="20" font-weight="bold">Ciclo FORGE</text>
+    <text x="720" y="185" fill="#FF9800" font-size="15" font-weight="bold">FOCUS</text>
+    <text x="820" y="185" fill="#94A3B8" font-size="14">qué y por qué</text>
+    <text x="720" y="225" fill="#FF9800" font-size="15" font-weight="bold">ORCHESTRATE</text>
+    <text x="890" y="225" fill="#94A3B8" font-size="14">arquitectura</text>
+    <text x="720" y="265" fill="#FF9800" font-size="15" font-weight="bold">REFINE</text>
+    <text x="790" y="265" fill="#94A3B8" font-size="14">definir «hecho»</text>
+    <text x="720" y="305" fill="#FF9800" font-size="15" font-weight="bold">GENERATE</text>
+    <text x="840" y="305" fill="#94A3B8" font-size="14">TDD</text>
+    <text x="720" y="345" fill="#FF9800" font-size="15" font-weight="bold">EVALUATE</text>
+    <text x="820" y="345" fill="#94A3B8" font-size="14">verificar intención</text>
+  </g>
+
+  <!-- bottom title -->
+  <rect x="0" y="545" width="1200" height="85" fill="#0B1120"/>
+  <text x="60" y="585" fill="#F8FAFC" font-family="monospace" font-size="28" font-weight="bold">IDD · Desarrollo Impulsado por Intención</text>
+  <text x="60" y="612" fill="#018786" font-family="monospace" font-size="16">FORGE y AISpec: del «cómo» al «qué» — ARCEAPPS 2026</text>
+</svg>

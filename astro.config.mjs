@@ -2,7 +2,6 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
-import partytown from '@astrojs/partytown';
 import rehypeExternalLinks from 'rehype-external-links';
 import { remarkLocaleLinks } from './src/plugins/remark-locale-links.ts';
 // import tailwind from '@astrojs/tailwind';
@@ -50,11 +49,6 @@ export default defineConfig({
         'https://arceapps.com/devlog',
         'https://arceapps.com/es/devlog',
       ],
-    }),
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
     }),
   ],
   base: '/',
