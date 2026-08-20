@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" role="img" aria-label="Team fit matrix: 4 agent archetypes by 4 team profiles">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1F2937" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <rect width="1200" height="720" fill="url(#grid)" opacity="0.4"/>
+
+  <!-- Title -->
+  <g transform="translate(60, 50)">
+    <rect width="14" height="56" fill="#FF9800"/>
+    <text x="30" y="28" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="22" font-weight="700" fill="#FFFFFF">Team fit matrix</text>
+    <text x="30" y="50" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#9CA3AF">4 agent archetypes · 4 team profiles · read your cell before choosing</text>
+  </g>
+
+  <!-- Column headers (agents) -->
+  <g transform="translate(330, 140)">
+    <rect x="-110" y="-22" width="220" height="44" rx="10" fill="#0B1220" stroke="#FF9800" stroke-width="2"/>
+    <text text-anchor="middle" y="6" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#FF9800">Claude Code</text>
+  </g>
+  <g transform="translate(570, 140)">
+    <rect x="-110" y="-22" width="220" height="44" rx="10" fill="#0B1220" stroke="#9CA3AF" stroke-width="2"/>
+    <text text-anchor="middle" y="6" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#FFFFFF">Codex CLI</text>
+  </g>
+  <g transform="translate(810, 140)">
+    <rect x="-110" y="-22" width="220" height="44" rx="10" fill="#0B1220" stroke="#018786" stroke-width="2" stroke-dasharray="6 6"/>
+    <text text-anchor="middle" y="6" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#018786">OpenCode</text>
+  </g>
+  <g transform="translate(1050, 140)">
+    <rect x="-110" y="-22" width="220" height="44" rx="10" fill="#0B1220" stroke="#018786" stroke-width="3"/>
+    <text text-anchor="middle" y="6" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#018786">DeepSeek Harness</text>
+  </g>
+
+  <!-- Column taglines -->
+  <g font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">
+    <text x="330" y="186" text-anchor="middle">"Apple" · cómodo dentro</text>
+    <text x="330" y="200" text-anchor="middle">caro si sales</text>
+    <text x="570" y="186" text-anchor="middle">"OpenBSD" · opinionated</text>
+    <text x="570" y="200" text-anchor="middle">predecible</text>
+    <text x="810" y="186" text-anchor="middle">"Linux" · flexible</text>
+    <text x="810" y="200" text-anchor="middle">frustrante si no sabes</text>
+    <text x="1050" y="186" text-anchor="middle">"PostgreSQL" · infra</text>
+    <text x="1050" y="200" text-anchor="middle">para quien sabe</text>
+  </g>
+
+  <!-- Row headers (team profiles) -->
+  <g transform="translate(170, 280)">
+    <rect x="-130" y="-22" width="260" height="44" rx="10" fill="#0B1220" stroke="#FF9800" stroke-width="2"/>
+    <text text-anchor="middle" y="-2" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#FFFFFF">Productividad inmediata</text>
+    <text text-anchor="middle" y="14" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#FF9800">indie · escribir código ya</text>
+  </g>
+  <g transform="translate(170, 400)">
+    <rect x="-130" y="-22" width="260" height="44" rx="10" fill="#0B1220" stroke="#9CA3AF" stroke-width="2"/>
+    <text text-anchor="middle" y="-2" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#FFFFFF">Seguridad estricta</text>
+    <text text-anchor="middle" y="14" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">regulado · blast radius</text>
+  </g>
+  <g transform="translate(170, 520)">
+    <rect x="-130" y="-22" width="260" height="44" rx="10" fill="#0B1220" stroke="#018786" stroke-width="3"/>
+    <text text-anchor="middle" y="-2" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#FFFFFF">Auditabilidad arquitectónica</text>
+    <text text-anchor="middle" y="14" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#018786">compliance · qué vio el modelo</text>
+  </g>
+  <g transform="translate(170, 640)">
+    <rect x="-130" y="-22" width="260" height="44" rx="10" fill="#0B1220" stroke="#018786" stroke-width="2" stroke-dasharray="6 6"/>
+    <text text-anchor="middle" y="-2" font-family="ui-monospace, Menlo, monospace" font-size="12" font-weight="700" fill="#FFFFFF">Neutralidad de modelo</text>
+    <text text-anchor="middle" y="14" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#018786">multi-provider · zero lock-in</text>
+  </g>
+
+  <!-- Cells -->
+  <!-- Row 1: productividad -->
+  <g transform="translate(330, 280)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#FF9800" stroke-width="2"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#FF9800" font-weight="700">★★★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">Skills + Subagents</text>
+  </g>
+  <g transform="translate(570, 280)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">code mode + sandbox</text>
+  </g>
+  <g transform="translate(810, 280)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">unix mental model</text>
+  </g>
+  <g transform="translate(1050, 280)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">curva empinada · 1-2 días</text>
+  </g>
+
+  <!-- Row 2: seguridad -->
+  <g transform="translate(330, 400)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">mature, configurable</text>
+  </g>
+  <g transform="translate(570, 400)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#9CA3AF" stroke-width="2"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#FFFFFF" font-weight="700">★★★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#FFFFFF">kernel sandbox · leader</text>
+  </g>
+  <g transform="translate(810, 400)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">user-configurable</text>
+  </g>
+  <g transform="translate(1050, 400)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">plugins in-process risk</text>
+  </g>
+
+  <!-- Row 3: auditabilidad -->
+  <g transform="translate(330, 520)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">razonamiento cifrado</text>
+  </g>
+  <g transform="translate(570, 520)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">logs + replay, no invariant</text>
+  </g>
+  <g transform="translate(810, 520)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">per-session, no guarantee</text>
+  </g>
+  <g transform="translate(1050, 520)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#018786" stroke-width="3"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#018786" font-weight="700">★★★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#018786">model-visible = logged</text>
+  </g>
+
+  <!-- Row 4: neutralidad -->
+  <g transform="translate(330, 640)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">Anthropic-first</text>
+  </g>
+  <g transform="translate(570, 640)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">OpenAI-first</text>
+  </g>
+  <g transform="translate(810, 640)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#018786" stroke-width="2" stroke-dasharray="6 6"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#018786" font-weight="700">★★★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#018786">any provider, any model</text>
+  </g>
+  <g transform="translate(1050, 640)">
+    <rect x="-100" y="-32" width="200" height="64" rx="10" fill="#0B1220" stroke="#1F2937" stroke-width="1"/>
+    <text text-anchor="middle" y="-8" font-family="ui-monospace, Menlo, monospace" font-size="32" fill="#9CA3AF" font-weight="700">★★★★</text>
+    <text text-anchor="middle" y="20" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#E5E7EB">registry swap on the fly</text>
+  </g>
+
+  <!-- Highlight diagonal: Claude/productivity + Codex/security + dsh/audit + OC/neutrality -->
+  <g transform="translate(0, 0)">
+    <text x="60" y="282" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#6B7280">� winners live along the diagonal</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(60, 696)" font-family="ui-monospace, Menlo, monospace" font-size="11">
+    <text x="0" y="0" fill="#FFFFFF">★ = fit score · 5 = great · 3 = OK · 1 = poor · colored border = the diagonal winner for that row</text>
+  </g>
+</svg>

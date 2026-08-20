@@ -308,6 +308,21 @@ as Claude Code or Codex"*. La realidad es que `dsh` está más cerca de
 **PostgreSQL** que de **Notion**: te da piezas de infraestructura que
 componer, no una experiencia cerrada que consumir.
 
+Para visualizar cómo encajan los cuatro arquetipos de agente con los
+cuatro perfiles de equipo más comunes, esta matriz muestra dónde está el
+"winner" de cada celda:
+
+![Matriz team-fit: 4 arquetipos de agente cruzados con 4 perfiles de
+equipo](/images/diagrams/team-fit-matrix-es.svg)
+
+La lectura rápida: los winners viven en la **diagonal**. Claude Code
+gana para "productividad inmediata" (5 estrellas), Codex CLI para
+"seguridad estricta" (kernel sandbox), `dsh` para "auditabilidad
+arquitectónica" (la única opción con la invariante *"model-visible
+means logged"*), OpenCode para "neutralidad de modelo" (cualquier
+provider, cualquier modelo). Si tu prioridad no es la diagonal de tu
+perfil, te toca aceptar un trade-off.
+
 Tres audiencias que deberían mirarlo en serio:
 
 - **Equipos que ya construyen infra de agentes** y están hartos de que cada

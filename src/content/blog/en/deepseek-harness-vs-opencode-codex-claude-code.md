@@ -274,7 +274,20 @@ construction.
 
 ## Token efficiency: where the real cost sits
 
-Here the ranking is clear, and it hurts `dsh` fans:
+Here the ranking is clear, and it hurts `dsh` fans. This visualization
+on a logarithmic scale makes the difference tangible — the gap between
+OpenCode and `dsh` is one order of magnitude in input tokens:
+
+![Token cost per comparable task: 4 agents on a logarithmic scale with
+dollar cost per task](/images/diagrams/token-cost-bar-chart-en.svg)
+
+The `dsh` bar almost touches the 100k ceiling — the extra 30k tokens
+come from the confirmed bug that duplicates `CLAUDE.md` and
+`AGENTS.md` when they have identical content. Without that bug, `dsh`
+would sit around 65k and get closer to Claude Code. With it, **an
+indie doing 50 tasks a day pays $32.5 daily in tokens, versus $4 for
+OpenCode** — the difference between using the agent as a daily tool
+and as an adoption project.
 
 - **OpenCode** and **Codex CLI** are the most efficient. Their system
   prompts are short, their sessions have little overhead, and they do
