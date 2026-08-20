@@ -1038,3 +1038,36 @@ El diagrama `coding-agent-harness-comparison.svg` codifica visualmente lo que la
 
 **Innovative technique:**
 El diagrama `dsh-event-loop.svg` resuelve un problema que el texto no puede: el loop de Cordis tiene 11 eventos públicos, todos interceptables, pero enumerarlos en párrafo hace que el lector pierda la estructura. La swimlane doble (TURN + STEP) más los gates en naranja + el decision diamond más la re-entry loop hacen que "casi cada caja es interceptable" sea visualmente obvio, no solo declarado.
+
+---
+
+## Sesión 2026-08-20 (segunda continuación): +2 diagramas
+
+**Estado:** ✅ completado y re-publicado en producción.
+
+**Cambios:**
+- 2 nuevos diagramas SVG hand-authored en `public/images/diagrams/`:
+  - `team-fit-matrix.svg` (12.877 bytes, 53 text labels): matriz 4×4 con los 4 agentes como columnas (Claude Code / Codex CLI / OpenCode / DeepSeek Harness) y 4 perfiles de equipo como filas (Productividad inmediata / Seguridad estricta / Auditabilidad arquitectónica / Neutralidad de modelo). Cada celda tiene un score de 1-5 estrellas + el rasgo definitorio. Los winners viven en la diagonal, marcados con el border coloreado del agente. Embedded en `deepseek-harness-everything-plugin.md` (ES + EN) tras la sección "Qué significa esto / What this means".
+  - `token-cost-bar-chart.svg` (7.659 bytes, 35 text labels): bar chart en escala log (1k / 3k / 10k / 30k / 100k) con los 4 agentes. Cada barra etiquetada con su consumo de input tokens + coste en $/tarea ($0.08 OpenCode → $0.65 dsh). Dos callouts abajo: (a) "50 tasks/day for an indie" con la traducción a $4 / $13.5 / $20.5 / $32.5 diarios; (b) "Of those 95k dsh tokens, ~30k are double-injected from the CLAUDE.md / AGENTS.md bug". Embedded en `deepseek-harness-vs-opencode-codex-claude-code.md` (ES + EN) al inicio de la sección "Token efficiency".
+- Symlinks `-es.svg` / `-en.svg` por convención bilingüe (4 symlinks).
+
+**Word counts tras los párrafos de introducción al diagrama:**
+- post #1 ES: 5.516 → 5.616 (+100 palabras para introducir la matriz).
+- post #1 EN: 5.205 → 5.300 (+95 palabras para introducir la matriz).
+- post #2 ES: 4.826 → 4.945 (+119 palabras para introducir el bar chart).
+- post #2 EN: 4.654 → 4.771 (+117 palabras para introducir el bar chart).
+- **Total bilingüe: 20.632 palabras** (todos los 4 archivos > 4.000).
+
+**Verificación pitfalls de la skill ejecutada en esta pasada:**
+- Pitfall #20b (entidades HTML SVG): `grep -oE "&[a-zA-Z]+;"` sobre los 2 nuevos SVG → 0 hits. Validación `xml.dom.minidom.parse()` → OK ambos.
+- Pitfall #19 (CJK en ES): 0 hits en los 4 .md tras los patches.
+- Pitfall #23 (cross-link prefix): los 2 nuevos embed son a `/images/diagrams/...` (assets, no cross-links a otros posts), no aplican al regex.
+- Pitfall #18 (prebuild OG churn): `git status --short` muestra solo los 10 archivos esperados, sin OG image drift.
+- Pitfall #3a (lockfile drift): `pnpm install --ignore-scripts` no mutó `pnpm-lock.yaml`.
+- Pitfall #17 (cache Pages window): el SVG `team-fit-matrix-es.svg` necesitó 5 intentos × 15s (75s) antes de servir 200. Los otros 3 SVG nuevos sirvieron 200 en attempt 1. Los 4 HTML sirvieron 200 directo. Sin acción correctiva necesaria — Pages tarda más con assets que con páginas.
+
+**Innovative technique (matriz team-fit):**
+Los winners viven en la diagonal — esa es la lectura que la matriz hace explícita visualmente. Cada celda tiene un score 1-5 estrellas más una etiqueta de una línea con el rasgo definitorio (e.g. "kernel sandbox · leader" para Codex CLI × seguridad). El borde coloreado del agente ganador de la fila (orange para Claude, gris para Codex, teal-dashed para OpenCode, teal-solid para `dsh`) hace que el lector pueda absorber el mensaje "tu agente depende de tu perfil" sin leer el texto.
+
+**Innovative technique (bar chart log):**
+El rango 12k-95k en escala lineal haría la barra de OpenCode invisible (1/8 del canvas) y la de `dsh` aplastaría todo. Escala logarítmica (1k/3k/10k/30k/100k) hace que cada agente sea visible sin distorsionar la comparación proporcional. Los callouts inferiores convierten "95k tokens" en "$32.5/día" y enlazan los 30k de overhead al bug concreto, haciendo tangible la diferencia sin necesidad de hacer la aritmética a mano.
