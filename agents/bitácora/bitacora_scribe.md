@@ -996,3 +996,45 @@ Multi-source deep-research en una sola sesión: 9 URLs primarias extraídas con 
 
 **Innovative technique applied:**
 Tabla maestra 11×4 que cruza licencia, lenguaje, filosofía de extensión, modelo por defecto, sandbox, trazabilidad, eficiencia de tokens, curva de adopción, estrellas, estado y mejor-para. La tabla precede al texto por sección, y cada sección después profundiza solo en la dimensión donde cada agente destaca. Patrón "tabla-resumen + secciones-detalle" reutilizable para futuras comparativas N-way.
+
+---
+
+## Sesión 2026-08-20 (continuación): fatten a 4k+ + 2 diagramas
+
+**Estado:** ✅ completado y re-publicado en producción.
+
+**Cambios sobre la sesión inicial:**
+- Post #1 ES: 4.408 → **5.516** (+1.108 palabras). AÑADIDO: "Cómo ve el modelo: prompt assembly, context injection y el adapter" (~700 palabras sobre system-prompt/assemble, ctx.llm registry, context injection event waterfall) + "Preguntas frecuentes" (5 Q&A, ~520 palabras). EMBEBIDO: diagrama event-loop tras la sección de "Cuatro modos".
+- Post #1 EN: 4.158 → **5.205** (+1.047 palabras). Mismas secciones nuevas + mismo diagrama.
+- Post #2 ES: 3.504 → **4.826** (+1.322 palabras). AÑADIDO: "Benchmarks cuantitativos" (throughput/latencia, tokens/tarea, success rate — tabla comparativa con costes en $), "Un caso de uso real" (workflow de migración OpenCode → dsh para compliance de API de pagos, 4 pasos numerados), "Preguntas frecuentes" (5 Q&A). EMBEBIDO: diagrama comparativa 4-way antes de "El modelo de extensión". DEDUP: eliminado bloque "Veredicto" duplicado que quedó tras el parche anterior.
+- Post #2 EN: 3.237 → **4.654** (+1.417 palabras). Mismas secciones nuevas + mismo diagrama.
+
+**Word counts finales:**
+| Post | ES | EN |
+|---|---|---|
+| `deepseek-harness-everything-plugin` | 5.516 | 5.205 |
+| `deepseek-harness-vs-opencode-codex-claude-code` | 4.826 | 4.654 |
+| **Total bilingüe** | | **20.201 palabras** |
+
+**Diagramas nuevos (hand-authored SVG, brand-consistent):**
+- `public/images/diagrams/dsh-event-loop.svg` (10.993 bytes, 42 text labels): swimlane doble (TURN + STEP) con el flujo `turn/start → agent/pre-step → step/start → system-prompt/assemble → agent/request → llm/stream → assistant/message → tools/pre-execute → tools/execute → tools/post-execute → {decision} → step/end`. Gates interceptables en naranja. Re-entry loop desde "more tool calls?" hasta system-prompt/assemble. Embedded en post #1 ES + EN.
+- `public/images/diagrams/coding-agent-harness-comparison.svg` (7.992 bytes, 43 text labels): caja central MODEL con 4 cajas satélite (DeepSeek Harness / Claude Code / Codex CLI / OpenCode) conectadas por líneas de estilo distinto (teal sólido / orange / gris / teal dashed). Leyenda en la parte inferior. Embedded en post #2 ES + EN.
+- Symlinks `-es.svg` / `-en.svg` por convención bilingüe.
+- **Por qué hand-authored y no Mermaid**: `@mermaid-js/mermaid-cli` no estaba instalado en este clone (el lockfile/package.json no lo declaraba, y `npx mmdc` fallaba con `could not determine executable`). Instalar mermaid-cli requiere approve-builds para puppeteer (~300MB chromium). Decidido hand-author para evitar ese coste — además el resultado es 100% brand-consistent (palette teal/orange/dark `#0F172A`), mientras que mermaid habría renderizado con su default theme.
+- Validados: `xml.dom.minidom.parse()` → OK los 6 archivos; `grep -oE "&[a-zA-Z]+;"` → 0 hits (sin entidades HTML no-predefinidas); text-content probe confirmó contenido correcto en cada uno.
+
+**Pitfalls de la skill verificados en esta pasada:**
+- Pitfall #19 (CJK): scan `[\u3000-\u9fff]` sobre los 4 .md → 0 hits.
+- Pitfall #20b (entidades HTML SVG): 0 hits en los 4 archivos SVG de diagrams.
+- Pitfall #21 (títulos bilingües): post #1 ES 52 / EN 58; post #2 ES 62 / EN 65. Todos ≤100 y diferentes.
+- Pitfall #23 (cross-link prefix): ES usa `/es/blog/...` (Hipocampus `/es/blog/hipocampus-memoria-jerarquica-agentes/` y PlugMem `/es/blog/plugmem-microsoft-memoria-agentes/` — verificado contra el filesystem real, no transliterados mal como en el primer intento), EN usa `/blog/...`. Sin mezclas.
+- Pitfall #17 (cache Pages window): primer `curl` post-push → 200 directo en los 4 .html. Assets (diagrams/*.svg) tardaron ~90s extra en propagarse — segunda vuelta del probe los devolvió 200. Sin acción correctiva necesaria, solo paciencia.
+- Pitfall #18 (prebuild OG churn): `npx astro build` directo (sin `pnpm build`) → `git status --short` muestra solo los 10 archivos esperados (4 .md modified + 6 .svg nuevos).
+- Pitfall #3a (lockfile drift): `pnpm install --ignore-scripts` no mutó `pnpm-lock.yaml`. Verificado con `git diff --stat pnpm-lock.yaml` → 0.
+- Pitfall #14 (verificar todos los puntos de la lista del user): el usuario pidió 2 cosas en este turno — (a) "los dos artículos tienen que tener más de 4000 palabras" ✅ verificado en wc -w de los 4 archivos, (b) "y también quiero el diagrama" ✅ verificado con grep sobre el HTML servido, encontrando las imágenes referenciadas correctas por idioma.
+
+**Innovative technique:**
+El diagrama `coding-agent-harness-comparison.svg` codifica visualmente lo que las tablas y el texto plano no pueden: la distancia entre la caja de extensión y el modelo. Cada conector tiene un grosor/estilo distinto (teal sólido para "in-process" / orange para "encima del núcleo" / gris para "fuera del proceso" / teal dashed para "sin extension system"). Es el equivalente visual del argumento "filosofía importa más que features" — el lector lo absorbe en un vistazo antes de leer el texto.
+
+**Innovative technique:**
+El diagrama `dsh-event-loop.svg` resuelve un problema que el texto no puede: el loop de Cordis tiene 11 eventos públicos, todos interceptables, pero enumerarlos en párrafo hace que el lector pierda la estructura. La swimlane doble (TURN + STEP) más los gates en naranja + el decision diamond más la re-entry loop hacen que "casi cada caja es interceptable" sea visualmente obvio, no solo declarado.
