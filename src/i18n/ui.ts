@@ -103,6 +103,9 @@ export const ui = {
     'cookie.accept': 'Accept statistics',
     'cookie.reject': 'Reject',
     'footer.cookies': 'Cookies',
+    'footer.material_design': 'and Material Design.',
+    'common.skip_to_content': 'Skip to content',
+    'common.meta_description': 'ArceApps - Quality, modern and functional Android applications.',
   },
   es: {
     'nav.home': 'Inicio',
@@ -201,5 +204,8 @@ export const ui = {
     'cookie.accept': 'Aceptar estadísticas',
     'cookie.reject': 'Rechazar',
     'footer.cookies': 'Cookies',
+    'footer.material_design': 'y Material Design.',
+    'common.skip_to_content': 'Saltar al contenido',
+    'common.meta_description': 'ArceApps - Aplicaciones Android de calidad, modernas y funcionales.',
   },
 } as const;

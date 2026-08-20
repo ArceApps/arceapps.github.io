@@ -37,6 +37,8 @@ const t = useTranslations(lang);
           <li><a href={lang === 'es' ? '/es' : '/'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.home')}</a></li>
           <li><a href={lang === 'es' ? '/es/apps' : '/apps'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.apps')}</a></li>
           <li><a href={lang === 'es' ? '/es/projects' : '/projects'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.projects')}</a></li>
+          <li><a href={lang === 'es' ? '/es/blog' : '/blog'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.blog')}</a></li>
+          <li><a href={lang === 'es' ? '/es/devlog' : '/devlog'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.devlog')}</a></li>
           <li><a href={lang === 'es' ? '/es/about-me' : '/about-me'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.about')}</a></li>
           <li><a href={lang === 'es' ? '/es/about-me#contact' : '/about-me#contact'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('footer.contact')}</a></li>
         </ul>
@@ -65,7 +67,7 @@ const t = useTranslations(lang);
 
     <div class="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant/80 dark:border-dark-border dark:text-dark-on-surface-variant/80">
       <p>{t('footer.copyright').replace('©', `© ${currentYear}`)}</p>
-      <p>{t('footer.designed_with')} <span class="text-secondary">♥</span> y Material Design.</p>
+      <p>{t('footer.designed_with')} <span class="text-secondary">♥</span> {t('footer.material_design')}</p>
     </div>
   </div>
 </footer>
