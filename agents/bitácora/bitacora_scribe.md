@@ -918,3 +918,81 @@ Multi-source primary research (5 APIs + 4 READMEs raw + Reddit JSON para CodeNom
 
 **Innovative technique applied:**
 Reverse-traffic-light matrix (✅ ⚠️ ❌) en la tabla comparativa como opinionated subjective score, no objetiva — defendida en el párrafo de la crítica honesta. Patrón reutilizable.
+
+---
+
+## Sesión 2026-08-20: DeepSeek Harness deep-dive + comparativa
+
+**Estado:** ✅ completado, publicado en producción.
+
+**Fuentes investigadas:**
+- [DeepSeek Harness developer preview](https://deepseek.com/harness/en/) — página oficial con la promesa "Everything is a plugin", quick-start `npx @deepseek-ai/dsh web`, 4 modos de runtime.
+- [deepseek-ai/deepseek-harness README](https://github.com/deepseek-ai/deepseek-harness) — repositorio MIT, `0.1.0-rc.5` al cierre.
+- [Cordis paper (Peking U + DeepSeek-AI)](https://github.com/cordiverse/paper) — 88 páginas sobre spatiotemporal composability.
+- [Justin3Go: DeepSeek Harness In Depth](https://justin3go.com/en/posts/2026/08/15-deepseek-harness-review) — análisis técnico línea por línea vs Pi / Codex CLI / Claude Code / OpenCode.
+- [Flowtivity: 95,000 stars in 2 days](https://flowtivity.ai/blog/deepseek-harness-open-source-agent-explained/) — métricas de adopción y benchmarks V4-Pro.
+- [Aoyii: Self-Evolving Agents Blueprint](https://www.aoyii.com/en/deepseek-cordis-self-evolving-agents/) — lectura centrada en el paper de Cordis.
+- [InfoQ: Open-Sourcing of DeepSeek Harness](https://www.infoq.com/news/2026/08/deep-seek-harness/) — cobertura institucional micro-kernel.
+- [deepseek-code.com](https://deepseek-code.com/) — catálogo de 316 plugins + guía "5 best alternatives".
+- [Hacker News thread (727 pts)](https://news.ycombinator.com/item?id=49285244) — respuesta del equipo autor.
+
+**Estructura de los artículos:**
+
+1. `deepseek-harness-everything-plugin` (pubDate 2026-08-20):
+   - Inmersión técnica: Cordis, modelo + harness, plugin shape mínima, bucle por eventos, session log append-only, sandbox, self-evolution.
+   - Crítica honesta: overhead de tokens, bug doble-AGENTS.md, opacidad de benchmarks, plugins en proceso.
+   - Veredicto: para quién es, en una línea.
+
+2. `deepseek-harness-vs-opencode-codex-claude-code` (pubDate 2026-08-19 = ayer):
+   - 4 filosofías en una frase + tabla maestra 11 filas.
+   - Sección dedicada a modelo de extensión por cada uno (imperativo / full stack / folder / config).
+   - Sandbox, auditoría, token efficiency, madurez de ecosistema.
+   - Trade-offs en 3 preguntas + factor humano (Apple / OpenBSD / Linux / PostgreSQL).
+   - Veredicto: 4 ganadores para 4 contextos.
+
+**Prior art enlazado (5 posts internos):**
+- `/es/blog/harness-engineering-wrapper-gana/` y `/blog/harness-engineering-wrapper-gana/` (separación Model + Harness).
+- `/es/blog/opencode-subagents/` y `/blog/opencode-subagents/` (harness sobre modelo).
+- `/es/blog/awesome-opencode-ecosystem/` y `/blog/awesome-opencode-ecosystem/` (catálogo).
+- `/es/blog/deepseek-harness-everything-plugin/` y `/blog/deepseek-harness-everything-plugin/` (auto-link entre los dos nuevos).
+
+**Diferenciación vs prior art:**
+- vs `harness-engineering-wrapper-gana`: prior art habla del harness como concepto; este es la primera mirada operativa a un harness donde TODO es reconfigurable sin reinicio (la pregunta inversa).
+- vs `opencode-subagents`: prior art cubre OpenCode como harness sobre modelo; este artículo enmarca OpenCode como uno de cuatro en el landscape, con sus limitaciones (config > código, sin plugin system formal).
+- vs `awesome-opencode-ecosystem`: prior art cataloga el zoo de OpenCode; este mira hacia afuera y compara con el resto del mercado.
+
+**Word counts:**
+- ES post #1: 4.408 palabras (objetivo ≥4.000 cumplido).
+- EN post #1: 4.158 palabras.
+- ES post #2: 3.504 palabras (sin floor explícito del user; sobre el mínimo de skill 3.000).
+- EN post #2: 3.237 palabras.
+- Total bilingüe: 15.307 palabras.
+
+**Assets generados:**
+- Hero ES post #1: `public/images/deepseek-harness-everything-plugin-es.svg` (4.737 bytes) — concentric rings MODEL dentro HARNESS + panel plugin tree + título bilingüe.
+- Hero EN post #1: `public/images/deepseek-harness-everything-plugin-en.svg` (4.617 bytes).
+- Symlink bare-name: `deepseek-harness-everything-plugin.svg` → en.
+- Hero ES post #2: `public/images/deepseek-harness-vs-opencode-codex-claude-code-es.svg` (6.121 bytes) — 4 columnas side-by-side con bordes de color (teal/orange/gris/teal-dashed) por agente.
+- Hero EN post #2: `public/images/deepseek-harness-vs-opencode-codex-claude-code-en.svg` (5.942 bytes).
+- Symlink bare-name: `deepseek-harness-vs-opencode-codex-claude-code.svg` → en.
+- Variedad de patrones visuales: concentric rings vs 4-column grid → evita homogeneidad.
+
+**Verificación pitfalls de la skill ejecutada:**
+- Pitfall #1 (`pubDate` futuro): post #1 = 2026-08-20 (hoy), post #2 = 2026-08-19 (ayer, ya pasado). Sin trampa de zona horaria.
+- Pitfall #3a (lockfile drift): `pnpm install --ignore-scripts` no mutó `pnpm-lock.yaml`. Verificado con `git diff --stat pnpm-lock.yaml` → 0.
+- Pitfall #4 (gh/linuxbrew): no se tocó `gh`; solo `git push origin main`.
+- Pitfall #8 (web_extract bloqueado): extracción por `curl -sL -A "Mozilla/5.0" + write_file a /tmp/extract_v3.py + python3 en terminal separado`. Patrón write_file + terminal split.
+- Pitfall #18 (prebuild regenera OG images ajenas): usé `npx astro build` directo (sin `pnpm build`), `git status --short` muestra solo los 10 archivos propios. Sin OG churn.
+- Pitfall #19 (CJK y anglicismos en ES): scan Python `[\u4e00-\u9fff]` sobre los 4 archivos → 0 hits tras fix de "允许" → "admitirse" en post #1 ES. Glosario anglicismos comunes → 0 hits.
+- Pitfall #20 (text-content de SVGs): probe con `<text[^>]*>([^<]+)</text>` → contenido verificado bilingüe por variante (ES hero usa "el runtime donde todo es un plugin", EN usa "the runtime where everything is a plugin").
+- Pitfall #20b (entidades HTML en SVG): `grep -oE "&[a-zA-Z]+;"` sobre los 4 SVGs → 0 hits (solo `&` no seguido de entidad). Validación `xml.dom.minidom.parse()` → OK los 6 archivos (incluyendo symlinks).
+- Pitfall #21 (títulos bilingües diferentes): ES "DeepSeek Harness: el runtime donde todo es un plugin" vs EN "DeepSeek Harness: the runtime where everything is a plugin" → differ. ES comparativa 62 chars vs EN 65 chars → ambos ≤100.
+- Pitfall #23 (cross-link prefix): ES file usa `/es/blog/...` en 9 enlaces internos; EN file usa `/blog/...` en sus enlaces. Sin mezclas.
+- Pitfall #17 (cache Pages window): primer `curl` post-push para EN post #1 y ambos de post #2 → 200 directo. ES post #1 → 404 ×3 intentos (45s) antes de 200, dentro del budget 8-attempt. Cache-buster confirmó contenido nuevo (28-30 hits por URL).
+- Pitfall #30 (write_file path): todos los `.md` a `src/content/blog/{es,en}/`, todos los `.svg` a `public/images/`. Sin paths cruzados.
+
+**Innovative technique:**
+Multi-source deep-research en una sola sesión: 9 URLs primarias extraídas con el patrón write_file + terminal split (extract_v3.py), cada batch procesando article body cuando existía. La página oficial + el paper + el análisis técnico de Justin3Go + el hands-on de Flowtivity + el hilo de HN formaron una triangulación que permitió verificar claim-by-claim lo que la cobertura inicial repetía como marketing ("everything is a plugin"). Por ejemplo, la afirmación "subagents pueden delegarse a claude-code o codex" se verificó en el código vía Justin3Go, no en el comunicado oficial.
+
+**Innovative technique applied:**
+Tabla maestra 11×4 que cruza licencia, lenguaje, filosofía de extensión, modelo por defecto, sandbox, trazabilidad, eficiencia de tokens, curva de adopción, estrellas, estado y mejor-para. La tabla precede al texto por sección, y cada sección después profundiza solo en la dimensión donde cada agente destaca. Patrón "tabla-resumen + secciones-detalle" reutilizable para futuras comparativas N-way.
