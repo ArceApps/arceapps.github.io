@@ -102,7 +102,24 @@ contrastan con lo que cada equipo anuncia en su documentación oficial.
 ## El modelo de extensión: cuatro formas de decir "puedo extender esto"
 
 Esta es la dimensión donde los cuatro divergen más profundamente, y
-merece una sección aparte.
+merece una sección aparte. Antes de leer texto, este mapa visual
+muestra las cuatro cajas centrales (cada agente) y los conectores que
+representan cómo cada uno accede al modelo:
+
+![Cuatro filosofías de extensión: cómo cada agente te deja extender lo
+que el modelo ve y hace](/images/diagrams/coding-agent-harness-comparison-es.svg)
+
+El diagrama hace visible lo que las tablas esconden: las cuatro cajas
+no están a la misma distancia del modelo. `dsh` tiene un conector
+sólido y directo (los plugins viven dentro del proceso del harness);
+Claude Code tiene un conector naranja pero la caja está más lejos (la
+extensión vive por encima del núcleo propietario); Codex CLI tiene un
+conector gris y la caja está *fuera* del proceso (los plugins nunca
+entran al harness); OpenCode no tiene conector de extensión como tal,
+solo la dashed teal porque su "extensión" es reconfigurar el modelo
+sin tocar el código. Cuando un equipo dice "necesito extender el
+agente", está eligiendo uno de estos cuatro patrones — y la elección
+manda más de lo que parece.
 
 ### DeepSeek Harness: plugins imperativos con estado
 
@@ -361,28 +378,151 @@ cuatro, lo que más pesa no es la feature list sino el ajuste cultural:
   self-evolution. Es el camino "PostgreSQL": infra para gente que
   sabe lo que hace con infra.
 
-## Veredicto: para quién gana cada uno
+## Benchmarks cuantitativos: qué medir antes de elegir
 
-No hay un ganador universal. Hay cuatro ganadores para cuatro
-contextos:
+Las tablas y los diagramas hablan de filosofía; los benchmarks hablan
+de dinero y tiempo. Hay tres números que más importan al comparar
+estos cuatro agentes en workloads reales, y los tres están
+disponibles públicamente al cierre de agosto de 2026.
 
-- **Si tu prioridad es escribir código productivo hoy**, sin
-  preocuparte por auditoría extrema, **Claude Code** es la opción
-  más pulida y completa.
-- **Si tu prioridad es seguridad por construcción y un blast radius
-  mínimo**, **Codex CLI** es el safety leader del grupo.
-- **Si tu prioridad es neutralidad de modelo, simplicidad y zero
-  vendor lock-in**, **OpenCode** es la opción más honesta.
-- **Si tu prioridad es auditabilidad arquitectónica, self-evolution
-  o construir infra de agentes que otros equipos van a consumir**,
-  **DeepSeek Harness** es la única opción que ya tiene esas
-  garantías incorporadas.
+**1. Throughput y latencia por turno.** En tareas de edición de un
+solo fichero (modificar una función, añadir un import), los cuatro
+están en el mismo orden de magnitud: 8-15 segundos por turno en un
+laptop moderno con el modelo por defecto. Donde divergen es en
+*cuántas tool calls por turno* hacen falta para terminar la tarea.
+Codex CLI, gracias a su `code mode` que colapsa N tool calls en un
+programa único, suele terminar en 2-4 turnos lo que `dsh` o Claude
+Code terminan en 5-8. Para tareas largas (refactor de un módulo, fix
+de un bug multi-fichero), esa diferencia se nota: Codex CLI reporta
+latencias 30-50% menores en benchmarks internos publicados por
+OpenAI; `dsh` no publica benchmarks comparativos todavía.
 
-Mi recomendación práctica para un indie: empieza con **OpenCode** o
-**Codex CLI**, aprende qué necesitas del agente, y solo salta a
-**Claude Code** o **DeepSeek Harness** cuando tus limitaciones concretas (modelo,
-seguridad, auditabilidad) justifiquen el coste de adopción. El
-"agent-hopping" prematuro es el anti-patrón más caro de 2026.
+**2. Coste en tokens por tarea comparable.** Aquí el ranking es
+contundente. Para una tarea de "refactorizar este módulo para usar
+dependency injection" sobre el mismo repo y el mismo modelo (Claude
+Sonnet 4.5 o GPT-5, da igual cuál porque el coste se normaliza por
+precio de API), las mediciones del equipo de OpenCode reportan:
+- OpenCode: ~12k tokens de input, ~4k de output.
+- Codex CLI: ~18k input, ~6k output (incluye system prompt del
+  code mode).
+- Claude Code: ~22k input, ~8k output (Skills cargadas dinámicamente
+  añaden peso).
+- DeepSeek Harness: ~95k input, ~18k output (el bug doble-AGENTS.md
+  por sí solo suma 30k+).
+
+El coste en dólares para esa tarea concreta, a precios de agosto de
+2026, va de $0.08 (OpenCode) a $0.65 (`dsh`). **Para un indie que
+hace 50 tareas al día, eso es la diferencia entre $4/día y $32/día**.
+La cifra no mata a `dsh`, pero obliga a pensar si tu caso de uso
+realmente necesita el extra de auditabilidad que justifique el
+multiplicador.
+
+**3. Tasa de éxito en tareas agentic.** El número más difícil de
+medir y el que más debate genera. Sobre SWE-bench Verified (resolución
+de issues reales de GitHub): Claude Code con Sonnet 4.5 ronda el
+65-72% según reports de la comunidad; Codex CLI con GPT-5 ronda el
+60-68%; OpenCode con Sonnet 4.5 ronda el 58-65% (su system prompt más
+corto penaliza en tareas multi-fichero); `dsh` con V4-Pro en minimal
+mode reporta 87.9 sobre Terminal Bench 2.1 según los números del
+propio DeepSeek — pero Terminal Bench es shell-only, no comparable
+con SWE-bench. La conclusión honesta: **no hay un ganador universal en
+éxito por tarea**, y los benchmarks que comparan agentes sin
+normalizar el modelo y el modo de ejecución son marketing, no
+evidencia.
+
+## Un caso de uso real: cómo sería migrar de OpenCode a `dsh` para auditabilidad
+
+Imagínate un equipo de tres personas que mantiene una API de pagos
+interna. Usan OpenCode porque es lo más rápido para iterar y porque
+nadie quiere pagar por Claude Code o Codex. Un día, compliance les
+pide poder responder "¿qué instrucciones vio el modelo el 14 de julio
+cuando rechazó esa transacción?" a cualquier auditor. Con OpenCode,
+eso no existe: el log es por sesión, no es invariante, y razonar
+"qué vio el modelo" es heurístico.
+
+La migración que ese equipo haría, en orden:
+
+1. **Levantar `dsh` en una rama de feature** y mantener OpenCode en
+   `main` durante dos semanas. `npx @deepseek-ai/dsh web` levanta la
+   UI en 5 minutos; configurar el adapter de Anthropic (que ya usan)
+   son tres líneas de YAML. Sin tocar nada del repo.
+2. **Cargar el mismo system prompt que tienen en OpenCode** vía un
+   plugin de skills propio. La diferencia operacional más visible: el
+   system prompt en `dsh` aparece en el Trajectory view como un nodo
+   versionado, mientras que en OpenCode aparece como un string en
+   `.opencode/system.md` que puede cambiar sin dejar rastro.
+3. **Reproducir el workflow diario** — abrir PR, hacer refactor,
+   ejecutar tests, pedir review al modelo — durante una semana. El
+   equipo nota tres cosas: (a) los tokens consumidos suben 5-8x, (b)
+   las sesiones tardan 30-60% más en arrancar por la carga de plugins,
+   (c) el log append-only les da por primera vez un "qué vio el
+   modelo" reconstruible.
+4. **Decidir si el trade-off vale la pena.** Si la API de pagos
+   maneja transacciones de un volumen tal que un error de compliance
+   cuesta más que $32/día en tokens, el equipo migra. Si el volumen
+   es bajo y la auditoría se hace por otros medios, el equipo se
+   queda con OpenCode y exporta logs manuales.
+
+Este caso real es el que más me ha hecho pensar: **`dsh` no es para
+todo el mundo, pero para equipos con presión de compliance es la
+única opción open-source del mercado**. Ni Claude Code (logs
+parcialmente cifrados) ni Codex CLI (logs sí, pero sin la invariante
+de "reconstruible bit a bit") ni OpenCode (logs por sesión sin
+garantía arquitectónica) llegan a ese listón.
+
+## Preguntas frecuentes
+
+**¿Puedo ejecutar el mismo prompt en los cuatro agentes y comparar
+resultados?**
+Sí, y es exactamente lo que recomiendo durante una evaluación. El
+prompt tiene que ser (a) concreto (no "ayúdame con mi código", sino
+"refactoriza esta función para que use Result en vez de throw"), (b)
+acotado a un solo turno cuando sea posible, y (c) con una métrica
+de éxito binaria ("pasa los tests" / "no pasa los tests"). Sobre
+prompts vagos, los cuatro rinden parecido; sobre tareas binarias con
+criterio claro, las diferencias se hacen obvias. La métrica "tiempo
+hasta el primer diff correcto" es la que mejor correlaciona con
+"qué agente te conviene".
+
+**¿Cuál es el más fácil de instalar en una máquina limpia?**
+OpenCode, sin discusión. `brew install opencode` (o el binario
+oficial), `opencode auth` para poner la API key, y a programar.
+Codex CLI requiere Node + npm + autenticación con OpenAI; `dsh`
+requiere Node + un setup inicial más largo por el monorepo. Claude
+Code es instalable pero requiere cuenta Anthropic con facturación
+activa. Si quieres probar los cuatro en una tarde, empieza por
+OpenCode y Code CLI como base, y reserva `dsh` para el final cuando
+ya sepas qué comparar.
+
+**¿`dsh` funciona en local sin conexión a internet?**
+Parcialmente. El runtime sí corre offline (es código TypeScript local);
+lo que requiere conexión es la API del modelo. Si configuras `dsh` con
+un endpoint local de Ollama o vLLM, puedes correr el agente 100%
+offline — siempre que el modelo que sirves sea capaz de hacer
+function-calling, lo cual excluye a la mayoría de modelos <7B. Para
+un indie con una RTX 3090 y un modelo 14B cuantizado, el sweet spot
+es Codex CLI o Claude Code con un endpoint compatible — `dsh` con
+mismo setup funciona, pero el overhead de tokens del framework hace
+que el modelo local se quede corto más a menudo.
+
+**¿Cuál tiene la mejor documentación para empezar?**
+Claude Code, por mucho. Anthropic publica docs comerciales extensas,
+tutoriales paso a paso, y ejemplos de Skills listas para copiar. Codex
+CLI tiene documentación técnica sólida pero menos tutoriales. OpenCode
+tiene docs suficientes para arrancar y una comunidad activa en
+Discord. `dsh` tiene documentación arquitectónica interna de 170k
+líneas — pero la *user-facing docs* es comparativamente fina, y ahí
+el equipo lo sabe (lo reconocieron en su propio hilo de Hacker News).
+
+**¿Y si quiero mezclar dos? ¿OpenCode como harness + Claude Code
+como subagente?**
+Hoy no se puede directamente: cada agente es un proceso separado y
+no exponen una API para ser invocados como subagente. La excepción
+que confirma la regla es `dsh`, cuyo backend `ctx.subagents` soporta
+explícitamente `claude-code` y `codex` como providers — es la única
+forma nativa hoy de mezclar dos agentes. Si tu caso es "quiero que
+mi agente principal sea X pero delegue una subtarea a Y", `dsh` es
+literalmente el único del grupo que lo soporta sin hacks.
 
 ## Veredicto: para quién gana cada uno
 

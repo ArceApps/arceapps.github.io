@@ -198,6 +198,20 @@ tools, persistencia, sandbox y política de aprobación) y, encima, parchear
 cualquier fila de configuración con un archivo de patch sin tocar el código
 del framework.
 
+Para entender qué hace cada evento público en el loop, este diagrama
+resume el flujo `turn → step → tools → result` con los gates
+interceptables marcados en naranja:
+
+![Bucle de eventos Cordis: turn wrapping steps, cada step con un model
+request más tool calls](/images/diagrams/dsh-event-loop-es.svg)
+
+Léelo dos veces. La primera para entender el flujo principal; la segunda
+para notar que **casi cada caja es un evento interceptable**. Un plugin
+puede reescribir mensajes en `agent/pre-step`, suprimir la ejecución de
+una tool en `tools/pre-execute`, o reemplazar el resultado en
+`tools/post-execute`. El loop no es propiedad privada del framework; es
+un protocolo público en el que todos los plugins participan.
+
 ## El log append-only como invariante de runtime
 
 El segundo pilar técnico —y el más práctico para equipos que necesitan
@@ -405,6 +419,114 @@ Si construyes infra de agentes, lee el paper. Si evalúas plataformas de
 agentes, pregunta si el runtime puede swappear tools y skills en vivo sin
 reiniciar. Esa capacidad se acaba de convertir en benchmark, no en
 nice-to-have.
+
+## Cómo ve el modelo: prompt assembly, context injection y el adapter
+
+Una dimensión que se pasa por alto al hablar de "todo es un plugin" es
+cómo llega la información al modelo. `dsh` descompone ese momento en
+varias etapas, todas interceptables como eventos. La más interesante es
+**`system-prompt/assemble`**: el momento en el que el runtime compone el
+prompt del sistema del agente. Plugins de skills, plugins de memoria,
+plugins de policies y plugins de UI pueden registrarse como
+"contribuyentes" al prompt; cada uno añade su bloque en un orden
+determinado por dependencias declaradas, no por orden de carga. El
+resultado es un system prompt reproducible: el mismo config en dos
+runs produce el mismo prompt, lo que da una propiedad importante para
+benchmarks y debugging — *"lo que vio el modelo" se puede reconstruir
+bit a bit desde el log*.
+
+La segunda etapa es el **adapter de modelo** en `ctx.llm`. A diferencia
+de otros frameworks donde el adapter del proveedor es código interno
+privilegiado, aquí vive como un plugin más. El runtime trae adapters
+para OpenAI, Anthropic, Google, Kimi, DeepSeek y cualquier endpoint
+OpenAI-compatible, y los publica en un registro que las tools pueden
+consultar. Cuando una tool quiere llamar al modelo — por ejemplo, un
+plugin de summarización que necesita generar un nodo de resumen para la
+compactación — le pide al registry "dame el adapter activo" en lugar de
+importar uno hardcoded. Cambiar de proveedor en caliente es reconfigurar
+el registry, no recompilar el harness.
+
+La tercera pieza, menos obvia pero crítica para la consistencia, es el
+**context injection event waterfall**. Cada vez que un plugin añade
+información al contexto del modelo (resultado de una tool, mensaje de
+un subagente, observación del sandbox), dispara un evento que otros
+plugins pueden interceptar para reescribir, anotar o suprimir. Es un
+mecanismo de middleware al estilo Express, pero aplicado a la cadena de
+inputs del modelo. En la práctica, eso significa que un equipo puede
+montar un plugin de **red-team safety** que reescribe cualquier
+inyección sospechosa antes de que llegue al modelo, o un plugin de
+**observabilidad** que anota cada mensaje con un trace ID y lo envía a
+un sink externo — sin tocar el código del framework.
+
+Juntas, las tres etapas convierten al system prompt en un artefacto
+componible, no en un string opaco que solo el vendor controla. Es la
+misma filosofía que aplicó Unix a las pipes: cada etapa hace una cosa,
+toma input de la anterior, y produce output para la siguiente. El
+modelo, en este símil, es el último consumidor de una cadena de
+plugins que filtran, anotan y dan forma al contexto antes de que el
+agente "vea" nada.
+
+## Preguntas frecuentes
+
+**¿`dsh` es solo el Claude Code de DeepSeek con otro nombre?**
+No. Claude Code es un producto comercial con un modelo de extensión
+privilegiado (Skills, Subagents, Hooks viven en una capa de extensión,
+no en el núcleo del runtime). `dsh` es un framework donde la capa de
+extensión *es* el núcleo: el modelo, el toolset, el sandbox, el log y
+el bucle son plugins de primera clase, intercambiables sin recompilar.
+La diferencia operativa: puedes sustituir el bucle principal por un
+plugin tuyo que implemente una arquitectura multi-agente; no puedes
+hacer eso en Claude Code sin forkear el repo.
+
+**¿Está listo para producción en agosto de 2026?**
+No, no todavía. El propio README lleva la advertencia *"THERE WILL BE
+COMPATIBILITY-BREAKING CHANGES"* en mayúsculas, y la release es
+`0.1.0-rc.5` con etiqueta "developer preview". Lo que sí está listo
+es la arquitectura: Cordis lleva cuatro años en producción dentro de
+Koishi, y el diseño de effects revertibles está validado a nivel de
+sistema en ese ecosistema. Lo que aún no está listo es la API pública
+de `dsh`: los contratos de plugin pueden cambiar, los presets oficiales
+pueden reorganizarse, y el ecosistema de 316 plugins comunitarios tiene
+solo 41 marcados como compatibles. Trátalo como infraestructura
+experimental con backing teórico serio, no como producto estable.
+
+**¿Por qué no usar simplemente OpenCode o Claude Code con un buen
+prompt?**
+Si tu workload cabe en "leer el repo, editar unos ficheros, correr
+los tests", cualquiera de los dos te va a dar mejor resultado *hoy*
+con menos fricción. `dsh` entra en la ecuación cuando necesitas
+alguno de estos: auditoría arquitectónica completa (*"model-visible
+means logged"*), hot-swap de proveedores en runtime, composición de
+plugins con estado entre sesiones, o un sandbox donde puedas meter
+código generado por el modelo sin riesgo de escape. Para "indie
+haciendo su app", `dsh` es overkill. Para "equipo construyendo infra
+de agentes que otros van a consumir", es la única opción del mercado
+que ya tiene esas propiedades por construcción.
+
+**¿Cómo encaja `dsh` con el resto del stack de un indie?**
+Tres patrones reales que he visto en la primera semana desde el
+lanzamiento. (1) **Como sandbox para evaluar modelos**: el modo
+Minimal mode te da shell + str_replace_editor y nada más, lo que
+permite comparar dos modelos en idénticas condiciones sin que el
+framework inyecte system prompts divergentes. (2) **Como memoria
+persistente cross-proyecto**: el log append-only se puede montar como
+fuente de verdad para un sistema de memoria tipo [Hipocampus](/es/blog/hipocampus-memoria-jerarquica-agentes/)
+o [PlugMem](/es/blog/plugmem-microsoft-memoria-agentes/), donde cada
+sesión alimenta un índice estructurado. (3) **Como proxy de auditoría
+para equipos chicos que no pueden permitirse Datadog**: el Trajectory
+view + el log exportable te dan observabilidad agéntica sin vendor
+lock-in.
+
+**¿Vale la pena leer el paper de Cordis aunque no adoptes `dsh`?**
+Sí, sin discusión. El paper *"A Programming Paradigm for Spatiotemporal
+Composability"* es la única referencia pública con teoría formal +
+resultados de producción de cuatro años sobre el problema de
+self-modificación segura en sistemas con plugins. Aunque no uses
+Cordis ni `dsh`, los conceptos de effects revertibles y coeffects
+reactivos son aplicables a cualquier sistema donde los componentes
+llegan y se van en runtime: desde tu propio framework de microservicios
+hasta un cluster de Kubernetes con operators. Es una de esas piezas
+de teoría que, una vez leídas, cambian cómo ves el resto de tu stack.
 
 ## Cómo se instala y qué esperar el primer día
 

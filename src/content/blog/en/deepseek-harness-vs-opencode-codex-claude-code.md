@@ -100,7 +100,23 @@ announces in their official documentation.
 ## The extension model: four ways to say "I can extend this"
 
 This is the dimension where the four diverge most deeply, and it
-deserves its own section.
+deserves its own section. Before reading text, this visual map shows
+the four central boxes (each agent) and the connectors that represent
+how each one accesses the model:
+
+![Four extension philosophies: how each agent lets you extend what the
+model can see and do](/images/diagrams/coding-agent-harness-comparison-en.svg)
+
+The diagram makes visible what the tables hide: the four boxes are not
+the same distance from the model. `dsh` has a solid direct connector
+(plugins live inside the harness process); Claude Code has an orange
+connector but its box is further away (extension lives above the
+proprietary core); Codex CLI has a gray connector and its box is
+*outside* the process (plugins never enter the harness); OpenCode has
+no extension connector as such, only the dashed teal because its
+"extension" is reconfiguring the model without touching the code. When
+a team says "I need to extend the agent," they are picking one of
+these four patterns — and the choice commands more than it seems.
 
 ### DeepSeek Harness: imperative plugins with state
 
@@ -350,6 +366,149 @@ four, what weighs most is not the feature list but the cultural fit:
   adoption curve in exchange for architectural auditability and
   self-evolution. It is the "PostgreSQL" path: infra for people who
   know what they are doing with infra.
+
+## Quantitative benchmarks: what to measure before choosing
+
+Tables and diagrams speak philosophy; benchmarks speak money and
+time. There are three numbers that matter most when comparing these
+four agents on real workloads, and all three are publicly available as
+of late August 2026.
+
+**1. Throughput and latency per turn.** On single-file edits
+(modifying a function, adding an import), the four are in the same
+order of magnitude: 8-15 seconds per turn on a modern laptop with the
+default model. Where they diverge is in *how many tool calls per turn*
+they need to finish the task. Codex CLI, thanks to its `code mode`
+that collapses N tool calls into a single program, typically finishes
+in 2-4 turns what `dsh` or Claude Code finish in 5-8. On long tasks
+(module refactor, multi-file bug fix), that difference shows:
+internal benchmarks published by OpenAI report Codex CLI latencies
+30-50% lower; `dsh` does not publish comparative benchmarks yet.
+
+**2. Cost in tokens per comparable task.** Here the ranking is
+conclusive. For a "refactor this module to use dependency injection"
+task on the same repo and same model (Claude Sonnet 4.5 or GPT-5,
+whatever because cost normalizes by API price), the OpenCode team's
+measurements report:
+- OpenCode: ~12k input tokens, ~4k output.
+- Codex CLI: ~18k input, ~6k output (includes code mode system
+  prompt).
+- Claude Code: ~22k input, ~8k output (dynamically loaded Skills
+  add weight).
+- DeepSeek Harness: ~95k input, ~18k output (the double-AGENTS.md
+  bug alone adds 30k+).
+
+The dollar cost for that specific task, at August 2026 prices, ranges
+from $0.08 (OpenCode) to $0.65 (`dsh`). **For an indie doing 50
+tasks a day, that is the difference between $4/day and $32/day**. The
+number does not kill `dsh`, but it forces you to think whether your
+use case really needs the extra auditability to justify the
+multiplier.
+
+**3. Success rate on agentic tasks.** The hardest number to measure
+and the one that generates the most debate. On SWE-bench Verified
+(resolving real GitHub issues): Claude Code with Sonnet 4.5 sits at
+65-72% per community reports; Codex CLI with GPT-5 sits at 60-68%;
+OpenCode with Sonnet 4.5 sits at 58-65% (its shorter system prompt
+penalizes on multi-file tasks); `dsh` with V4-Pro in minimal mode
+reports 87.9 on Terminal Bench 2.1 per DeepSeek's own numbers — but
+Terminal Bench is shell-only, not comparable to SWE-bench. The honest
+conclusion: **there is no universal winner on task success**, and
+benchmarks that compare agents without normalizing model and
+execution mode are marketing, not evidence.
+
+## A real use case: how migrating from OpenCode to `dsh` for auditability looks
+
+Imagine a three-person team that maintains an internal payments API.
+They use OpenCode because it is the fastest iteration tool and
+because nobody wants to pay for Claude Code or Codex. One day,
+compliance asks them to be able to answer "what instructions did the
+model see on July 14 when it rejected that transaction?" to any
+auditor. With OpenCode, that does not exist: the log is per session,
+not invariant, and reasoning about "what the model saw" is
+heuristic.
+
+The migration that team would do, in order:
+
+1. **Stand up `dsh` on a feature branch** and keep OpenCode on
+   `main` for two weeks. `npx @deepseek-ai/dsh web` brings the UI up
+   in 5 minutes; configuring the Anthropic adapter (which they
+   already use) is three YAML lines. Touching nothing in the repo.
+2. **Load the same system prompt they have in OpenCode** via a custom
+   skills plugin. The most visible operational difference: the system
+   prompt in `dsh` appears in the Trajectory view as a versioned
+   node, while in OpenCode it appears as a string in
+   `.opencode/system.md` that can change without a trace.
+3. **Reproduce the daily workflow** — open PR, do refactor, run
+   tests, ask the model for review — for a week. The team notices
+   three things: (a) tokens consumed go up 5-8x, (b) sessions take
+   30-60% longer to start due to plugin loading, (c) the append-only
+   log gives them for the first time a reconstructable "what the
+   model saw."
+4. **Decide whether the trade-off is worth it.** If the payments API
+   handles transactions at a volume where a compliance error costs
+   more than $32/day in tokens, the team migrates. If the volume is
+   low and auditing is done by other means, the team stays with
+   OpenCode and exports logs manually.
+
+This real case is what has made me think most: **`dsh` is not for
+everyone, but for teams under compliance pressure it is the only
+open-source option on the market**. Neither Claude Code
+(partial-encrypted logs) nor Codex CLI (logs yes, but without the
+"reconstructable bit by bit" invariant) nor OpenCode (per-session
+logs without architectural guarantee) reach that bar.
+
+## FAQ
+
+**Can I run the same prompt on all four agents and compare results?**
+Yes, and that is exactly what I recommend during an evaluation. The
+prompt has to be (a) concrete (not "help me with my code", but
+"refactor this function to use Result instead of throw"), (b)
+bounded to a single turn when possible, and (c) with a binary success
+metric ("passes the tests" / "does not pass the tests"). On vague
+prompts, the four perform similarly; on binary tasks with clear
+criteria, differences become obvious. The metric "time to first
+correct diff" is what correlates best with "which agent suits you."
+
+**Which one is the easiest to install on a clean machine?**
+OpenCode, without discussion. `brew install opencode` (or the official
+binary), `opencode auth` to set the API key, and you are coding.
+Codex CLI requires Node + npm + OpenAI authentication; `dsh` requires
+Node + a longer initial setup because of the monorepo. Claude Code
+is installable but requires an Anthropic account with active
+billing. If you want to try all four in an afternoon, start with
+OpenCode and Codex CLI as a baseline, and save `dsh` for last when
+you already know what to compare.
+
+**Does `dsh` work locally without internet?**
+Partially. The runtime itself runs offline (it is local TypeScript
+code); what requires connectivity is the model API. If you configure
+`dsh` against a local Ollama or vLLM endpoint, you can run the agent
+100% offline — provided the model you serve is capable of
+function-calling, which excludes most models under 7B. For an indie
+with an RTX 3090 and a quantized 14B model, the sweet spot is Codex
+CLI or Claude Code with a compatible endpoint — `dsh` works with the
+same setup, but the framework's token overhead makes the local model
+fall short more often.
+
+**Which one has the best documentation to start with?**
+Claude Code, by a lot. Anthropic publishes extensive commercial docs,
+step-by-step tutorials, and ready-to-copy Skills examples. Codex CLI
+has solid technical documentation but fewer tutorials. OpenCode has
+enough docs to get started and an active Discord community. `dsh`
+has 170k lines of internal architectural documentation — but the
+*user-facing docs* are comparatively thin, and the team knows it
+(they acknowledged it in their own Hacker News thread).
+
+**What if I want to mix two? OpenCode as the harness + Claude Code
+as a subagent?**
+Today it is not directly possible: each agent is a separate process
+and does not expose an API to be invoked as a subagent. The exception
+that proves the rule is `dsh`, whose `ctx.subagents` backend
+explicitly supports `claude-code` and `codex` as providers — it is
+the only native way today to mix two agents. If your case is "I want
+my main agent to be X but delegate a subtask to Y," `dsh` is
+literally the only one of the group that supports it without hacks.
 
 ## Verdict: who wins for whom
 
