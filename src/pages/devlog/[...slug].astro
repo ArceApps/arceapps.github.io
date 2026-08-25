@@ -3,11 +3,12 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import SocialShare from '../../components/SocialShare.astro';
 import { useTranslations } from '../../i18n/utils';
+import { isPublished } from '../../utils/publishing';
 
 const t = useTranslations('en');
 
 export async function getStaticPaths() {
-  const posts = await getCollection('devlog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'));
+  const posts = await getCollection('devlog', ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith('en/'));
   return posts.map((post) => ({
     params: { slug: post.slug.split('/').pop() },
     props: post,

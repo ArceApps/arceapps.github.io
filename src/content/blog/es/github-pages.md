@@ -231,7 +231,7 @@ Para un portafolio Android, Pages es la opción correcta: gratis, rápido, y ya 
 
 ## ⚠️ Troubleshooting: tres gotchas que cuestan horas
 
-**1. `pubDate` futuro → página no se renderiza.** El filtro `data.pubDate <= new Date()` excluye posts publicados "hoy" si el build corre en otro huso horario. Diagnóstico: `find dist -path "*<slug>*"` devuelve vacío tras build verde. Fix: backea `pubDate` un día.
+**1. `pubDate` futuro → página no se renderiza.** El filtro `data.pubDate <= new Date()` excluía posts publicados "hoy" si el build corría en otro huso horario: `z.coerce.date()` convierte `2026-08-26` en medianoche UTC, y un build a las 00:17 CEST (aún 25-aug en UTC) lo filtraba sin error visible. Diagnóstico: `find dist -path "*<slug>*"` devuelve vacío tras build verde. Fix definitivo (agosto 2026): comparo a granularidad de día con un helper `isPublished()` que interpreta las fechas en la zona horaria del sitio; el workaround antiguo era backear `pubDate` un día.
 
 **2. Imágenes en `src/` no se incluyen en build.** Astro solo copia `public/` automáticamente. Si metes imágenes en `src/assets/`, necesitas importarlas (`import img from '../assets/x.png'`). Si las metes en `src/images/`, asegúrate de que el componente las referencia.
 

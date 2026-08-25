@@ -1,15 +1,16 @@
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
+import { isPublished } from '../utils/publishing';
 
 export async function GET(context: APIContext) {
   const blogPosts = await getCollection('blog', ({ data, id }) => 
-    !data.draft && data.pubDate <= new Date() && id.startsWith('es/')
+    !data.draft && isPublished(data.pubDate) && id.startsWith('es/')
   );
   const apps = await getCollection('apps', ({ data, id }) => 
     !data.draft && id.startsWith('es/')
   );
   const devlogs = await getCollection('devlog', ({ data, id }) => 
-    !data.draft && data.pubDate <= new Date() && id.startsWith('es/')
+    !data.draft && isPublished(data.pubDate) && id.startsWith('es/')
   );
 
   const site = context.site ?? 'https://arceapps.com';

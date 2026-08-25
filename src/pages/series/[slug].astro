@@ -3,13 +3,14 @@ import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import { getCollection } from "astro:content";
 import seriesData from "../../data/series.json";
+import { isPublished } from "../../utils/publishing";
 
 const { slug } = Astro.params;
 const series = seriesData.series.find(s => s.slug === slug);
 
 if (!series) return Astro.redirect("/404");
 
-const allPosts = await getCollection("blog", ({ data }) => !data.draft && data.pubDate <= new Date());
+const allPosts = await getCollection("blog", ({ data }) => !data.draft && isPublished(data.pubDate));
 const enPosts = allPosts.filter(p => p.id.startsWith("en/"));
 
 const seriesPosts = series.posts

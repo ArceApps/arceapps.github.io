@@ -1071,3 +1071,34 @@ Los winners viven en la diagonal — esa es la lectura que la matriz hace explí
 
 **Innovative technique (bar chart log):**
 El rango 12k-95k en escala lineal haría la barra de OpenCode invisible (1/8 del canvas) y la de `dsh` aplastaría todo. Escala logarítmica (1k/3k/10k/30k/100k) hace que cada agente sea visible sin distorsionar la comparación proporcional. Los callouts inferiores convierten "95k tokens" en "$32.5/día" y enlazan los 30k de overhead al bug concreto, haciendo tangible la diferencia sin necesidad de hacer la aritmética a mano.
+
+---
+
+## Sesión 2026-08-26: Artículo "AI Agent Goals" (bilingüe + 8 infografías)
+
+**Estado:** ✅ completado. Build verde (1109 páginas), páginas e imágenes verificadas en `dist/`.
+
+**Entregables:**
+- `src/content/blog/es/ai-agent-goal-loops.md` (~4.300 palabras de prosa, 5.290 wc -w)
+- `src/content/blog/en/ai-agent-goal-loops.md` (~4.000 palabras de prosa, 4.943 wc -w)
+- 8 SVGs en `public/images/`: portadas `ai-agent-goal-loops-{es,en}.svg` + figuras `ai-agent-goal-loop-anatomy-{es,en}.svg`, `ai-agent-verifiable-goal-{es,en}.svg`, `ai-agent-goal-types-{es,en}.svg`. Generados vía script Python (`/tmp/opencode/gen_goal_svgs.py`), XML validado con `xml.dom.minidom`.
+
+**Investigación (fuentes primarias verificadas):** docs oficiales `/goal` y scheduled-tasks de Claude Code, guía "Getting started with loops" de Anthropic (taxonomía turn-based/goal-based/time-based/proactive), "Loop Engineering" de Addy Osmani (5 piezas del bucle), "Ralph Wiggum as a software engineer" de Geoffrey Huntley (while loop, backpressure, techo 90%), "The Coming Loop" de Armin Ronacher (crítica: drift defensivo, comprehension debt), paper ReAct, patrón goal-setting-and-monitoring de Taskade.
+
+**Prior art enlazado:** `loop-engineering-desarrollo-movil`, `agentes-ia-autonomos-android`, `ai-agents-coding`, `orquestar-agentes-pipeline-cicd`, `memoria-persistente-agentes-ia` (+ equivalentes EN). Los 10 cross-links verificados contra `dist/`.
+
+**SEO audit (write-blog-seo):** PASS tras iteración. Fixes aplicados: descriptions ES 163→147 chars, EN 169→147 chars. Title ES 55 chars / EN 45 chars, slug kebab-case sin stopwords, keywords 6 ∈ [3,8], canonicals correctos.
+
+**Incidencia resuelta — pitfall documentado en github-pages.md:234:** con pubDate=2026-08-26 y build a las 00:17 CEST, el filtro `data.pubDate <= new Date()` excluía el artículo porque UTC aún era 25-aug 22:17Z (z.coerce.date() interpreta la fecha como medianoche UTC). Síntoma: build verde pero `find dist -path "*goal-loops*"` vacío; además caché stale de `.astro/` enmascaró el diagnóstico en la primera pasada. **Fix aplicado (aprobado por el usuario):** retroceder pubDate/lastmod un día (2026-08-25), según el workaround que el propio repo documenta. No se tocó código global del sitio.
+
+**Verificación final:** `pnpm build` → 1109 páginas (+4 vs baseline 1105); títulos correctos en ambos HTML; las 3 figuras incrustadas por idioma; 10/10 enlaces internos OK.
+
+## Sesión 2026-08-26 (continuación): Fix raíz del filtro pubDate UTC
+
+**Estado:** ✅ completado. Tests 160/160, build verde (1109 páginas) con las fechas reales restauradas.
+
+**Cambios:**
+- Nuevo helper `src/utils/publishing.ts`: `isPublished(pubDate)` compara a granularidad de día en `Europe/Madrid` vía `Intl.DateTimeFormat`, eliminando el "pubDate-future trap" (un frontmatter `YYYY-MM-DD` se convierte en medianoche UTC y el filtro antiguo lo excluía durante horas). Test unitario incluido (`publishing.test.ts`, 4 casos: hoy antes de medianoche UTC, pasado, futuro, límite 23:59 CEST).
+- Reemplazados los 25 usos de `data.pubDate <= new Date()` en 20 archivos (`src/pages/**`, `src/components/pages/**`) por `isPublished(data.pubDate)` mediante script determinista que inserta el import con la profundidad relativa correcta.
+- Restaurados `pubDate`/`lastmod` a `2026-08-26` (fecha real) en ambos artículos `ai-agent-goal-loops`; ya no hace falta el workaround de retroceder un día.
+- Actualizada la sección de troubleshooting de los artículos publicados `github-pages.md` (ES y EN) para documentar el fix raíz en lugar del workaround.

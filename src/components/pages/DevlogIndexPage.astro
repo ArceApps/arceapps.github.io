@@ -4,6 +4,7 @@ import Card from "../Card.astro";
 import PageIntro from "../PageIntro.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../i18n/utils";
+import { isPublished } from "../../utils/publishing";
 
 interface Props {
   lang: 'en' | 'es';
@@ -12,7 +13,7 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const devlogs = (await getCollection("devlog", ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith(`${lang}/`))).sort(
+const devlogs = (await getCollection("devlog", ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith(`${lang}/`))).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 

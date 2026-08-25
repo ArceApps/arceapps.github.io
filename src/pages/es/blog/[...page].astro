@@ -6,11 +6,12 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import type { Page } from "astro";
 import { slugify } from "../../../utils/slugs";
 import { useTranslations } from "../../../i18n/utils";
+import { isPublished } from "../../../utils/publishing";
 
 const t = useTranslations('es');
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
-  const allPosts = (await getCollection("blog", ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'))).sort(
+  const allPosts = (await getCollection("blog", ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith('es/'))).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
 

@@ -4,9 +4,10 @@ import PageIntro from "../../components/PageIntro.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { isPublished } from "../../utils/publishing";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const projects = (await getCollection("projects", ({ data, id }) => !data.draft && id.startsWith("es/") && data.pubDate <= new Date())).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const projects = (await getCollection("projects", ({ data, id }) => !data.draft && id.startsWith("es/") && isPublished(data.pubDate))).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 <Layout title={`${t('projects.title')} — ArceApps`} description={t('projects.subtitle')}>
   <main class="mx-auto max-w-6xl px-4 py-16">

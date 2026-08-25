@@ -1,10 +1,11 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
+import { isPublished } from '../utils/publishing';
 
 export async function GET(context: APIContext) {
   const posts = await getCollection('blog', ({ data, id }) => {
-    return !data.draft && data.pubDate <= new Date() && id.startsWith('en/');
+    return !data.draft && isPublished(data.pubDate) && id.startsWith('en/');
   });
 
   return rss({

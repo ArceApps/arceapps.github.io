@@ -195,7 +195,7 @@ find dist -path "*blog*" -name "index.html" | head -5
 # Expected: generated routes
 ```
 
-If `find dist` returns empty after a green build, you have the **pubDate-future trap** I cover in my [Astro debugging guide](/blog/). The solution is simple: backdate `pubDate` one day.
+If `find dist` returns empty after a green build, you have the **pubDate-future trap** I cover below. Since August 2026 the site compares dates at day granularity (an `isPublished()` helper), so this trap is gone; before that, the quick fix was backdating `pubDate` one day.
 
 ## 🎨 Library Documentation (Dokka + Pages)
 
@@ -231,7 +231,7 @@ For an Android portfolio, Pages is the right choice: free, fast, and you already
 
 ## ⚠️ Troubleshooting: Three Gotchas That Cost Hours
 
-**1. Future `pubDate` → page doesn't render.** The filter `data.pubDate <= new Date()` excludes posts published "today" if the build runs in another timezone. Diagnosis: `find dist -path "*<slug>*"` returns empty after green build. Fix: backdate `pubDate` one day.
+**1. Future `pubDate` → page doesn't render.** The old filter `data.pubDate <= new Date()` excluded posts published "today" when the build ran in another timezone: `z.coerce.date()` turns `2026-08-26` into midnight UTC, so a build at 00:17 CEST (still Aug 25 in UTC) silently filtered it out. Diagnosis: `find dist -path "*<slug>*"` returns empty after a green build. Permanent fix (August 2026): dates are now compared at day granularity via an `isPublished()` helper that interprets them in the site's timezone; the old workaround was backdating `pubDate` one day.
 
 **2. Images in `src/` aren't included in build.** Astro only copies `public/` automatically. If you put images in `src/assets/`, you need to import them (`import img from '../assets/x.png'`). If you put them in `src/images/`, make sure the component references them.
 

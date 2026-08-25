@@ -7,6 +7,7 @@ import HomeFeaturedWork from "../home/HomeFeaturedWork.astro";
 import HomeCta from "../home/HomeCta.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../i18n/utils";
+import { isPublished } from "../../utils/publishing";
 
 interface Props {
   lang: 'en' | 'es';
@@ -28,13 +29,13 @@ const [rawBlog, rawDevlog, rawApps, rawProjects] = await Promise.all([
 
 // Get latest blog posts
 const allPosts = rawBlog
-  .filter(({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith(prefix))
+  .filter(({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith(prefix))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
 // Get latest devlog entry
 const latestDevlog = rawDevlog
-  .filter(({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith(prefix))
+  .filter(({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith(prefix))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
 
 // Get featured apps and projects

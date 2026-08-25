@@ -7,13 +7,14 @@ import SocialShare from '../../components/SocialShare.astro';
 import PostNavigation from '../../components/PostNavigation.astro';
 import { slugify } from '../../utils/slugs';
 import { useTranslations } from '../../i18n/utils';
+import { isPublished } from '../../utils/publishing';
 
 const t = useTranslations('en');
 
 export async function getStaticPaths() {
   const [posts, esPosts] = await Promise.all([
-    getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/')),
-    getCollection('blog', ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('es/'))
+    getCollection('blog', ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith('en/')),
+    getCollection('blog', ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith('es/'))
   ]);
 
   // Create a map for O(1) translation lookup

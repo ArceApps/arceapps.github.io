@@ -5,6 +5,7 @@ import PageIntro from "../../../components/PageIntro.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { slugify } from "../../../utils/slugs";
 import { useTranslations } from "../../../i18n/utils";
+import { isPublished } from "../../../utils/publishing";
 
 const t = useTranslations('en');
 
@@ -14,7 +15,7 @@ interface TagGroup {
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog", ({ data, id }) => !data.draft && data.pubDate <= new Date() && id.startsWith('en/'));
+  const allPosts = await getCollection("blog", ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith('en/'));
   
   // Group posts by slugified tag
   const tagGroups = new Map<string, TagGroup>();
