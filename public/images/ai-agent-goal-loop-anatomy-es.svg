@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.3"/>
+  <text x="60" y="55" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#018786" letter-spacing="2">FIGURA 1 · ANATOMÍA DEL BUCLE DE OBJETIVO</text>
+  <text x="60" y="90" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="24" fill="#e2e8f0" font-weight="700">El bucle que no para hasta cumplir</text>
+  <rect x="60" y="130" width="240" height="92" fill="#1e293b" stroke="#018786" stroke-width="2" rx="8"/>
+  <rect x="60" y="130" width="240" height="6" fill="#018786" rx="3"/>
+  <text x="180.0" y="168" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="17" fill="#018786" font-weight="700" text-anchor="middle" letter-spacing="1">TRIGGER</text>
+  <text x="180.0" y="194" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#cbd5e1" text-anchor="middle">comando · cron · evento</text>
+  <line x1="303" y1="176.0" x2="316" y2="176.0" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="316,171.0 322,176.0 316,181.0" fill="#94a3b8"/>
+  <rect x="322" y="130" width="240" height="92" fill="#1e293b" stroke="#FF9800" stroke-width="2" rx="8"/>
+  <rect x="322" y="130" width="240" height="6" fill="#FF9800" rx="3"/>
+  <text x="442.0" y="168" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="17" fill="#FF9800" font-weight="700" text-anchor="middle" letter-spacing="1">DECIDIR</text>
+  <text x="442.0" y="194" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#cbd5e1" text-anchor="middle">el LLM elige la acción</text>
+  <line x1="565" y1="176.0" x2="578" y2="176.0" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="578,171.0 584,176.0 578,181.0" fill="#94a3b8"/>
+  <rect x="584" y="130" width="240" height="92" fill="#1e293b" stroke="#018786" stroke-width="2" rx="8"/>
+  <rect x="584" y="130" width="240" height="6" fill="#018786" rx="3"/>
+  <text x="704.0" y="168" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="17" fill="#018786" font-weight="700" text-anchor="middle" letter-spacing="1">ACTUAR</text>
+  <text x="704.0" y="194" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#cbd5e1" text-anchor="middle">tools: edit · bash · API</text>
+  <line x1="827" y1="176.0" x2="840" y2="176.0" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="840,171.0 846,176.0 840,181.0" fill="#94a3b8"/>
+  <rect x="846" y="130" width="240" height="92" fill="#1e293b" stroke="#FF9800" stroke-width="2" rx="8"/>
+  <rect x="846" y="130" width="240" height="6" fill="#FF9800" rx="3"/>
+  <text x="966.0" y="168" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="17" fill="#FF9800" font-weight="700" text-anchor="middle" letter-spacing="1">OBSERVAR</text>
+  <text x="966.0" y="194" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" fill="#cbd5e1" text-anchor="middle">resultado real del mundo</text>
+  <line x1="966.0" y1="222" x2="966.0" y2="250" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="961.0,250 966.0,258 971.0,250" fill="#94a3b8"/>
+  <rect x="300" y="276" width="600" height="110" fill="#1e293b" stroke="#FF9800" stroke-width="3" rx="10"/>
+  <text x="600.0" y="308" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="16" fill="#FF9800" font-weight="700" text-anchor="middle" letter-spacing="1">EVALUADOR INDEPENDIENTE</text>
+  <text x="600.0" y="334" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12.5" fill="#cbd5e1" text-anchor="middle">modelo pequeño y rápido juzga la condición contra la evidencia. El que</text>
+  <text x="600.0" y="352" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12.5" fill="#cbd5e1" text-anchor="middle">trabaja nunca se califica a sí mismo.</text>
+  <path d="M 300 331.0 L 442.0 331.0 L 442.0 264" fill="none" stroke="#018786" stroke-width="2.5" stroke-dasharray="7 5"/>
+  <polygon points="436.0,266 442.0,256 448.0,266" fill="#018786"/>
+  <text x="371.0" y="323.0" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#018786" font-weight="700" text-anchor="middle">AÚN NO (+ razón → siguiente vuelta)</text>
+  <text x="980" y="150" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#94a3b8" font-weight="700" text-anchor="start" letter-spacing="2">SALIDAS POSIBLES</text>
+  <rect x="980" y="168" width="170" height="64" fill="#1e293b" stroke="#018786" stroke-width="1.5" rx="7"/>
+  <text x="994" y="194" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#018786" font-weight="700">✓ CUMPLIDO</text>
+  <text x="994" y="216" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#94a3b8">goal logrado</text>
+  <rect x="980" y="244" width="170" height="64" fill="#1e293b" stroke="#FF9800" stroke-width="1.5" rx="7"/>
+  <text x="994" y="270" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#FF9800" font-weight="700">✗ IMPOSIBLE</text>
+  <text x="994" y="292" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#94a3b8">limpiado con motivo</text>
+  <rect x="980" y="320" width="170" height="64" fill="#1e293b" stroke="#FF9800" stroke-width="1.5" rx="7"/>
+  <text x="994" y="346" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#FF9800" font-weight="700">⚠ ERROR FATAL</text>
+  <text x="994" y="368" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#94a3b8">auth · créditos · contexto</text>
+  <rect x="980" y="396" width="170" height="64" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5" rx="7"/>
+  <text x="994" y="422" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#94a3b8" font-weight="700">⏤ PRESUPUESTO</text>
+  <text x="994" y="444" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#94a3b8">máx. turnos agotado</text>
+  <rect x="60" y="430" width="1080" height="54" fill="none" stroke="#018786" stroke-width="1.5" stroke-dasharray="8 6" rx="8"/>
+  <text x="600" y="462" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#018786" font-weight="700" text-anchor="middle">MEMORIA EN DISCO: PLAN.md · git · colas — el modelo olvida, el repo no</text>
+  <text x="60" y="545" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="14" fill="#94a3b8">Sin evaluador independiente no hay autonomía: hay un eco con permisos.</text>
+  <text x="1140" y="600" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#475569" text-anchor="end">ARCEAPPS · 2026</text>
+</svg>

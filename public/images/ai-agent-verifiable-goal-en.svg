@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.3"/>
+  <text x="60" y="55" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#018786" letter-spacing="2">FIGURE 2 · ANATOMY OF A VERIFIABLE GOAL</text>
+  <text x="60" y="92" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="25" fill="#e2e8f0" font-weight="700">Four components, zero ambiguity</text>
+  <rect x="60" y="125" width="528" height="108" fill="#1e293b" stroke="#018786" stroke-width="2" rx="9"/>
+  <rect x="60" y="125" width="8" height="108" fill="#018786"/>
+  <text x="86" y="155" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="15" fill="#018786" font-weight="700">01</text>
+  <text x="126" y="155" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="15" fill="#018786" font-weight="700" letter-spacing="1">MEASURABLE END STATE</text>
+  <text x="86" y="183" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#cbd5e1">one observable criterion:</text>
+  <text x="86" y="205" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#94a3b8">exit code 0 · score ≥ 90 · empty queue</text>
+  <rect x="612" y="125" width="528" height="108" fill="#1e293b" stroke="#FF9800" stroke-width="2" rx="9"/>
+  <rect x="612" y="125" width="8" height="108" fill="#FF9800"/>
+  <text x="638" y="155" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="15" fill="#FF9800" font-weight="700">02</text>
+  <text x="678" y="155" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="15" fill="#FF9800" font-weight="700" letter-spacing="1">STATED CHECK</text>
+  <text x="638" y="183" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#cbd5e1">how it gets proven:</text>
+  <text x="638" y="205" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#94a3b8">«pnpm build exits 0»</text>
+  <rect x="60" y="247" width="528" height="108" fill="#1e293b" stroke="#018786" stroke-width="2" rx="9"/>
+  <rect x="60" y="247" width="8" height="108" fill="#018786"/>
+  <text x="86" y="277" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="15" fill="#018786" font-weight="700">03</text>
+  <text x="126" y="277" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="15" fill="#018786" font-weight="700" letter-spacing="1">CONSTRAINTS</text>
+  <text x="86" y="305" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#cbd5e1">define the crime:</text>
+  <text x="86" y="327" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#94a3b8">no touching tests · no new dependencies</text>
+  <rect x="612" y="247" width="528" height="108" fill="#1e293b" stroke="#FF9800" stroke-width="2" rx="9"/>
+  <rect x="612" y="247" width="8" height="108" fill="#FF9800"/>
+  <text x="638" y="277" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="15" fill="#FF9800" font-weight="700">04</text>
+  <text x="678" y="277" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="15" fill="#FF9800" font-weight="700" letter-spacing="1">STOP CLAUSE</text>
+  <text x="638" y="305" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#cbd5e1">effort budget:</text>
+  <text x="638" y="327" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#94a3b8">«or stop after N turns»</text>
+  <rect x="60" y="380" width="1080" height="150" fill="none" stroke="#475569" stroke-width="1.5" rx="9"/>
+  <text x="84" y="414" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="15" fill="#FF9800" font-weight="700">❌ BAD</text>
+  <text x="160" y="414" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="14.5" fill="#94a3b8">/goal fix the failing tests</text>
+  <text x="84" y="448" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="15" fill="#018786" font-weight="700">✅ GOOD</text>
+  <text x="160" y="448" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13.5" fill="#cbd5e1">/goal all tests in test/integration pass 3 consecutive runs,</text>
+  <text x="160" y="470" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13.5" fill="#cbd5e1">verified with pytest -x, without modifying existing tests,</text>
+  <text x="160" y="492" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13.5" fill="#FF9800">or stop after 12 turns</text>
+  <text x="600" y="520" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#475569" text-anchor="middle">Missing any of the four? You don't have a goal: you have a hope formatted as a command.</text>
+  <text x="1140" y="600" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="11" fill="#475569" text-anchor="end">ARCEAPPS · 2026</text>
+</svg>
