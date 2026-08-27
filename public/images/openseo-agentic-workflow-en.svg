@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 680" width="1100" height="680">
+  <defs>
+    <linearGradient id="workflow-bg-en" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="100%" stop-color="#141E33" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="680" rx="16" fill="url(#workflow-bg-en)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Header -->
+  <g transform="translate(60, 45)">
+    <rect x="0" y="0" width="190" height="28" rx="14" fill="#FF9800" fill-opacity="0.2" stroke="#FF9800" stroke-width="1" />
+    <text x="95" y="19" fill="#FFB74D" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">AGENTIC WORKFLOW</text>
+    <text x="0" y="62" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800">
+      The Autonomous SEO Audit &amp; Code Repair Loop
+    </text>
+    <text x="0" y="90" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="400">
+      From MCP telemetry to direct codebase modifications in a single terminal session
+    </text>
+  </g>
+
+  <!-- 5 Workflow Steps (Horizontal Flow) -->
+  
+  <!-- Step 1 -->
+  <g transform="translate(60, 160)">
+    <rect width="180" height="430" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1.5" />
+    <circle cx="90" cy="35" r="20" fill="#018786" />
+    <text x="90" y="42" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="800" text-anchor="middle">1</text>
+    
+    <text x="90" y="80" fill="#F8FAFC" font-family="sans-serif" font-size="15" font-weight="700" text-anchor="middle">Initial Context</text>
+    
+    <g transform="translate(15, 105)">
+      <rect width="150" height="60" rx="6" fill="#0F172A" stroke="#475569" stroke-width="1" />
+      <text x="10" y="24" fill="#38BDF8" font-family="monospace" font-size="11">whoami</text>
+      <text x="10" y="45" fill="#94A3B8" font-family="sans-serif" font-size="10">Verify credits &amp; key</text>
+    </g>
+
+    <g transform="translate(15, 175)">
+      <rect width="150" height="75" rx="6" fill="#0F172A" stroke="#475569" stroke-width="1" />
+      <text x="10" y="22" fill="#38BDF8" font-family="monospace" font-size="11">get_project_context</text>
+      <text x="10" y="42" fill="#94A3B8" font-family="sans-serif" font-size="10">Read business goals</text>
+      <text x="10" y="58" fill="#94A3B8" font-family="sans-serif" font-size="10">&amp; key competitors</text>
+    </g>
+
+    <g transform="translate(15, 260)">
+      <rect width="150" height="150" rx="6" fill="#0F172A" />
+      <text x="10" y="25" fill="#CBD5E1" font-family="sans-serif" font-size="11" font-weight="600">Requirements:</text>
+      <text x="10" y="48" fill="#94A3B8" font-family="sans-serif" font-size="10">· Zero wasted spend</text>
+      <text x="10" y="68" fill="#94A3B8" font-family="sans-serif" font-size="10">· Check past cache</text>
+      <text x="10" y="88" fill="#94A3B8" font-family="sans-serif" font-size="10">(&lt; 30d reuses log)</text>
+      <text x="10" y="115" fill="#4ADE80" font-family="sans-serif" font-size="10" font-weight="600">✓ Context ready</text>
+    </g>
+  </g>
+
+  <!-- Step 2 -->
+  <g transform="translate(265, 160)">
+    <rect width="180" height="430" rx="10" fill="#1E293B" stroke="#018786" stroke-width="2" />
+    <circle cx="90" cy="35" r="20" fill="#018786" />
+    <text x="90" y="42" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="800" text-anchor="middle">2</text>
+    
+    <text x="90" y="80" fill="#F8FAFC" font-family="sans-serif" font-size="15" font-weight="700" text-anchor="middle">MCP Live Audit</text>
+    
+    <g transform="translate(15, 105)">
+      <rect width="150" height="60" rx="6" fill="#0F172A" stroke="#018786" stroke-width="1" />
+      <text x="10" y="24" fill="#00B4B2" font-family="monospace" font-size="11">run_site_audit</text>
+      <text x="10" y="45" fill="#94A3B8" font-family="sans-serif" font-size="10">Technical URL crawl</text>
+    </g>
+
+    <g transform="translate(15, 175)">
+      <rect width="150" height="75" rx="6" fill="#0F172A" stroke="#018786" stroke-width="1" />
+      <text x="10" y="22" fill="#00B4B2" font-family="monospace" font-size="10">get_backlinks_overview</text>
+      <text x="10" y="42" fill="#94A3B8" font-family="sans-serif" font-size="10">Referring domains</text>
+      <text x="10" y="58" fill="#94A3B8" font-family="sans-serif" font-size="10">&amp; link profile data</text>
+    </g>
+
+    <g transform="translate(15, 260)">
+      <rect width="150" height="150" rx="6" fill="#0F172A" />
+      <text x="10" y="25" fill="#CBD5E1" font-family="sans-serif" font-size="11" font-weight="600">Issue Detection:</text>
+      <text x="10" y="48" fill="#F87171" font-family="sans-serif" font-size="10">· 404s &amp; redirect loops</text>
+      <text x="10" y="68" fill="#F87171" font-family="sans-serif" font-size="10">· Missing meta tags</text>
+      <text x="10" y="88" fill="#F87171" font-family="sans-serif" font-size="10">· Broken canonicals</text>
+      <text x="10" y="115" fill="#00B4B2" font-family="sans-serif" font-size="10" font-weight="600">Cost: ~$0.02</text>
+    </g>
+  </g>
+
+  <!-- Step 3 -->
+  <g transform="translate(470, 160)">
+    <rect width="180" height="430" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1.5" />
+    <circle cx="90" cy="35" r="20" fill="#FF9800" />
+    <text x="90" y="42" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="800" text-anchor="middle">3</text>
+    
+    <text x="90" y="80" fill="#F8FAFC" font-family="sans-serif" font-size="15" font-weight="700" text-anchor="middle">"The One Thing"</text>
+    
+    <g transform="translate(15, 105)">
+      <rect width="150" height="85" rx="6" fill="#0F172A" stroke="#FF9800" stroke-width="1" />
+      <text x="10" y="22" fill="#FFB74D" font-family="sans-serif" font-size="11" font-weight="700">Anti-Noise Filter</text>
+      <text x="10" y="42" fill="#94A3B8" font-family="sans-serif" font-size="10">Discards 80 vanity</text>
+      <text x="10" y="58" fill="#94A3B8" font-family="sans-serif" font-size="10">metrics and isolates</text>
+      <text x="10" y="74" fill="#94A3B8" font-family="sans-serif" font-size="10">the #1 priority</text>
+    </g>
+
+    <g transform="translate(15, 200)">
+      <rect width="150" height="210" rx="6" fill="#0F172A" />
+      <text x="10" y="25" fill="#CBD5E1" font-family="sans-serif" font-size="11" font-weight="600">Sample Verdict:</text>
+      <text x="10" y="50" fill="#38BDF8" font-family="sans-serif" font-size="10" font-weight="700">"Site fast but 12</text>
+      <text x="10" y="68" fill="#38BDF8" font-family="sans-serif" font-size="10" font-weight="700">posts lack canonical &amp;</text>
+      <text x="10" y="86" fill="#38BDF8" font-family="sans-serif" font-size="10" font-weight="700">sitemap is stale"</text>
+      
+      <text x="10" y="120" fill="#94A3B8" font-family="sans-serif" font-size="10">· Zero consultant fluff</text>
+      <text x="10" y="140" fill="#94A3B8" font-family="sans-serif" font-size="10">· Actionable today</text>
+      <text x="10" y="170" fill="#4ADE80" font-family="sans-serif" font-size="10" font-weight="600">✓ Goal specified</text>
+    </g>
+  </g>
+
+  <!-- Step 4 -->
+  <g transform="translate(675, 160)">
+    <rect width="180" height="430" rx="10" fill="#1E293B" stroke="#00B4B2" stroke-width="2" />
+    <circle cx="90" cy="35" r="20" fill="#00B4B2" />
+    <text x="90" y="42" fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="800" text-anchor="middle">4</text>
+    
+    <text x="90" y="80" fill="#F8FAFC" font-family="sans-serif" font-size="15" font-weight="700" text-anchor="middle">Direct Code Patch</text>
+    
+    <g transform="translate(15, 105)">
+      <rect width="150" height="95" rx="6" fill="#0F172A" stroke="#00B4B2" stroke-width="1" />
+      <text x="10" y="22" fill="#4ADE80" font-family="sans-serif" font-size="11" font-weight="700">Code Modification</text>
+      <text x="10" y="42" fill="#94A3B8" font-family="sans-serif" font-size="10">Agent edits Astro /</text>
+      <text x="10" y="58" fill="#94A3B8" font-family="sans-serif" font-size="10">HTML / MDX directly</text>
+      <text x="10" y="74" fill="#94A3B8" font-family="sans-serif" font-size="10">fixing root issues</text>
+      <text x="10" y="88" fill="#94A3B8" font-family="sans-serif" font-size="10">inside the terminal</text>
+    </g>
+
+    <g transform="translate(15, 210)">
+      <rect width="150" height="200" rx="6" fill="#0F172A" />
+      <text x="10" y="25" fill="#CBD5E1" font-family="sans-serif" font-size="11" font-weight="600">Agent Actions:</text>
+      <text x="10" y="48" fill="#94A3B8" font-family="sans-serif" font-size="10">· Injects JSON-LD</text>
+      <text x="10" y="68" fill="#94A3B8" font-family="sans-serif" font-size="10">· Fixes canonical URLs</text>
+      <text x="10" y="88" fill="#94A3B8" font-family="sans-serif" font-size="10">· Corrects dead slugs</text>
+      <text x="10" y="108" fill="#94A3B8" font-family="sans-serif" font-size="10">· Adds SVG/img alt tags</text>
+      <text x="10" y="145" fill="#00B4B2" font-family="sans-serif" font-size="10" font-weight="600">✓ Zero IDE friction</text>
+    </g>
+  </g>
+
+  <!-- Step 5 -->
+  <g transform="translate(880, 160)">
+    <rect width="160" height="430" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1.5" />
+    <circle cx="80" cy="35" r="20" fill="#4ADE80" />
+    <text x="80" y="42" fill="#090D16" font-family="sans-serif" font-size="16" font-weight="800" text-anchor="middle">5</text>
+    
+    <text x="80" y="80" fill="#F8FAFC" font-family="sans-serif" font-size="15" font-weight="700" text-anchor="middle">Verification</text>
+    
+    <g transform="translate(12, 105)">
+      <rect width="136" height="80" rx="6" fill="#0F172A" stroke="#475569" stroke-width="1" />
+      <text x="10" y="22" fill="#38BDF8" font-family="monospace" font-size="11">pnpm build</text>
+      <text x="10" y="42" fill="#94A3B8" font-family="sans-serif" font-size="10">Validates types,</text>
+      <text x="10" y="58" fill="#94A3B8" font-family="sans-serif" font-size="10">Zod schemas &amp; dist</text>
+    </g>
+
+    <g transform="translate(12, 195)">
+      <rect width="136" height="215" rx="6" fill="#0F172A" />
+      <text x="10" y="25" fill="#CBD5E1" font-family="sans-serif" font-size="11" font-weight="600">Cycle Completion:</text>
+      <text x="10" y="48" fill="#94A3B8" font-family="sans-serif" font-size="10">· Log saved in</text>
+      <text x="10" y="66" fill="#94A3B8" font-family="monospace" font-size="9">project_context</text>
+      <text x="10" y="90" fill="#94A3B8" font-family="sans-serif" font-size="10">· Clean git commit</text>
+      <text x="10" y="112" fill="#94A3B8" font-family="sans-serif" font-size="10">· GSC feedback</text>
+      <text x="10" y="165" fill="#4ADE80" font-family="sans-serif" font-size="11" font-weight="700">★ Green Success</text>
+    </g>
+  </g>
+
+  <!-- Bottom Summary Banner -->
+  <g transform="translate(60, 605)">
+    <rect width="980" height="40" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1" />
+    <text x="490" y="25" fill="#94A3B8" font-family="sans-serif" font-size="13" font-weight="500" text-anchor="middle">
+      Result: Full technical audit + direct code correction in under 5 minutes for less than $0.05 USD.
+    </text>
+  </g>
+</svg>

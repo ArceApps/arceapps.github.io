@@ -999,3 +999,33 @@ Reemplazo por caracteres Unicode literales (`·` U+00B7, espacio normal). Valida
 **Commit:** e2810fc — 10 files changed (2 md + 8 svg). Solo lo tocado; sin OG images ni lockfile.
 
 **Innovative technique:** extracción de fuentes primarias con curl+python (write_file a /tmp + python3), validación de idioma cruzado en SVGs con grep de tokens reales (no substrings), contrapunto crítico a la "ley" de Bora como elemento de honestidad editorial.
+
+---
+
+## 2026-08-27 - OpenSEO: Alternativa Open Source a Semrush para Agentes (Issue #566)
+**Estado:** ✅ Completado y verificado con compilación local (1117 páginas generadas en 43.54s)
+
+**Origen:** Issue #566 ("Skill SEO para el repositorio web y nuevo artículo - referencia post midudev"). Fuente original: publicación de midudev en LinkedIn recomendando OpenSEO (`every-app/open-seo`) como alternativa de código abierto a Semrush/Ahrefs con soporte nativo de MCP y Agent Skills.
+
+**Artículos creados:**
+- ES: `src/content/blog/es/openseo-open-source-seo-ai-agents.md` (**5.352 palabras**)
+- EN: `src/content/blog/en/openseo-open-source-seo-ai-agents.md` (**4.283 palabras**)
+Ambos superan holgadamente el requisito de 4.000 palabras por idioma con profundidad técnica real, enfoque indie y rigor arquitectónico.
+
+**Assets Gráficos Creados (9 SVGs limpios y validados con XML minidom):**
+- Hero Cover: `public/images/openseo-open-source-seo-ai-agents-{es,en}.svg` (1200x630, colores de marca #018786 Teal y #FF9800 Orange, fondo #0F172A) + copia retrocompatible `openseo-open-source-seo-ai-agents.svg`.
+- Infografía 1 (Arquitectura Técnica): `public/images/openseo-architecture-stack-{es,en}.svg` (1100x680, visualizando las 3 capas: Clientes/Agentes, Servidor MCP/Skills/Contexto, y Motor de datos DataForSEO BYOK vs Monolito SaaS).
+- Infografía 2 (Flujo Agéntico): `public/images/openseo-agentic-workflow-{es,en}.svg` (1100x680, bucle de 5 pasos: Contexto Inicial -> Auditoría MCP -> Síntesis "The One Thing" -> Parche Directo en Código -> Verificación).
+- Infografía 3 (Economía y Costes): `public/images/openseo-cost-comparison-{es,en}.svg` (1100x580, comparativa financiera real Semrush Pro 1.679$/año vs Ahrefs Lite 1.548$/año vs OpenSEO Cloud 120$/año vs OpenSEO Self-Hosted ~3$/año).
+
+**Skill Creada:**
+- `agents/skills/openseo-audit/SKILL.md`: Guía y protocolo de auditoría técnica SEO para el repositorio web de ArceApps, integrando herramientas MCP de OpenSEO, DataForSEO, Search Console y checklist estático de Astro/Markdown con la filosofía de acción única de alto impacto.
+
+**Prior Art Enlazado:**
+- ES: `servidores-mcp-memoria-cross-agent`, `agent-skills-contexto-dinamico`, `agent-skills-addyosmani-lifecycle-completo`, `agents-md-estandar`, `ai-agent-goal-loops`, `clean-architecture-ia`, `ai-token-savings-strategies`.
+- EN: `mcp-servers-memory-cross-agent`, `ai-agent-skills-dynamic-context`, `agent-skills-addyosmani-lifecycle-completo`, `agents-md-standard`, `ai-agent-goal-loops`, `clean-architecture-ai`, `ai-token-savings-strategies`.
+
+**Verificación:**
+- Build Astro: 1117 páginas generadas en 43.54s sin errores Zod ni advertencias de schema.
+- Validación SEO: Títulos ≤ 60 chars (ES 58, EN 54), Descripciones 120-160 chars (ES 152, EN 155), Keywords 7 elementos, Slugs kebab-case sin stopwords, CJK 0 hits.
+
