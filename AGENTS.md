@@ -35,6 +35,9 @@ La comunicación en toda la web debe reflejar sutilmente esta filosofía indie. 
     - `bot_Palette.md`: Diseño y UX.
     - `bot_Bolt.md`: Performance y Optimización.
     - `bot_Scribe.md`: Redacción y Contenido (Blog, Apps, Devlog).
+    - `bot_Radar.md`: SEO, Descubrimiento Orgánico y Auditoría Técnica (Bot-SEO / OpenSEO).
+  - `skills/`: Habilidades modulares para agentes.
+    - `seo/`: Suite integral de SEO (OpenSEO MCP, validaciones Astro, keywords, competencia y frontmatter).
   - `bitácora/`: Logs de actividad de los agentes.
 
 ## 4. Comandos de Desarrollo

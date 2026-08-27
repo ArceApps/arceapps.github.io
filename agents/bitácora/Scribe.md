@@ -1019,7 +1019,7 @@ Ambos superan holgadamente el requisito de 4.000 palabras por idioma con profund
 - Infografía 3 (Economía y Costes): `public/images/openseo-cost-comparison-{es,en}.svg` (1100x580, comparativa financiera real Semrush Pro 1.679$/año vs Ahrefs Lite 1.548$/año vs OpenSEO Cloud 120$/año vs OpenSEO Self-Hosted ~3$/año).
 
 **Skill Creada:**
-- `agents/skills/openseo-audit/SKILL.md`: Guía y protocolo de auditoría técnica SEO para el repositorio web de ArceApps, integrando herramientas MCP de OpenSEO, DataForSEO, Search Console y checklist estático de Astro/Markdown con la filosofía de acción única de alto impacto.
+- `agents/skills/seo/audit/SKILL.md`: Guía y protocolo de auditoría técnica SEO para el repositorio web de ArceApps, integrando herramientas MCP de OpenSEO, DataForSEO, Search Console y checklist estático de Astro/Markdown con la filosofía de acción única de alto impacto.
 
 **Prior Art Enlazado:**
 - ES: `servidores-mcp-memoria-cross-agent`, `agent-skills-contexto-dinamico`, `agent-skills-addyosmani-lifecycle-completo`, `agents-md-estandar`, `ai-agent-goal-loops`, `clean-architecture-ia`, `ai-token-savings-strategies`.

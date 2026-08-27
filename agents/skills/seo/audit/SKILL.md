@@ -28,7 +28,7 @@ Cuando el servidor MCP de OpenSEO (`@openseo/mcp-server`) está disponible, el a
 | Herramienta MCP | Propósito y Buenas Prácticas |
 | :--- | :--- |
 | `whoami` | Verifica el estado de la conexión y el saldo restante antes de lanzar peticiones de pago. |
-| `get_project_context` | Consulta la memoria compartida del proyecto (metas, competidores, páginas clave y log de auditorías). Si existe un log reciente (&lt; 30 días), reutiliza los datos. |
+| `get_project_context` | Consulta la memoria compartida del proyecto (metas, competidores, páginas clave y log de auditorías). Si existe un log reciente (< 30 días), reutiliza los datos. |
 | `update_project_context` | Persiste los resultados duraderos y añade una entrada al `research_log`. |
 | `run_site_audit` | Inicia el rastreo técnico del dominio. Mantener `runLighthouse: false` por defecto para velocidad y ahorro, salvo que se requiera análisis profundo de Core Web Vitals. |
 | `get_audit_issues` | Lee los problemas detectados clasificados por gravedad. |
@@ -77,7 +77,6 @@ Si se ejecuta en modo estático local (sin conexión activa a MCP), el agente de
 3. **Corregir en Código:** Modifica directamente los componentes de Astro, los archivos Markdown o la configuración estática.
 4. **Verificar Compilación:** Ejecuta el comando de validación local:
    ```bash
-   ./node_modules/.bin/astro build
+   pnpm test && pnpm build
    ```
-   (o `pnpm build` asegurando que no existan errores de esquema Zod ni tipos rotos).
-5. **Registrar:** Añade una nota en la bitácora del agente (`agents/bitácora/`) detallando los hallazgos y el commit realizado.
+5. **Registrar:** Añade una nota en la bitácora del agente (`agents/bitácora/Radar.md`) detallando los hallazgos y el commit realizado.
