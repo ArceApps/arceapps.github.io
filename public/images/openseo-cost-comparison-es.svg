@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 580" width="1100" height="580">
+  <defs>
+    <linearGradient id="cost-bg-es" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="100%" stop-color="#141E33" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="580" rx="16" fill="url(#cost-bg-es)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Header -->
+  <g transform="translate(60, 45)">
+    <rect x="0" y="0" width="170" height="28" rx="14" fill="#018786" fill-opacity="0.2" stroke="#018786" stroke-width="1" />
+    <text x="85" y="19" fill="#38BDF8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">ECONOMÍA INDIE</text>
+    <text x="0" y="62" fill="#F8FAFC" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="28" font-weight="800">
+      Comparativa Real de Costes: Suscripción SaaS vs OpenSEO
+    </text>
+    <text x="0" y="90" fill="#94A3B8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="400">
+      Simulación de gasto para un desarrollador independiente con 1 a 3 sitios web en producción
+    </text>
+  </g>
+
+  <!-- 4 Cost Columns -->
+  
+  <!-- Col 1: Semrush Pro -->
+  <g transform="translate(60, 160)">
+    <rect width="225" height="340" rx="10" fill="#1E293B" fill-opacity="0.7" stroke="#EF4444" stroke-width="1.5" />
+    <text x="112" y="35" fill="#F87171" font-family="sans-serif" font-size="16" font-weight="700" text-anchor="middle">Semrush Pro</text>
+    <text x="112" y="70" fill="#F8FAFC" font-family="sans-serif" font-size="26" font-weight="800" text-anchor="middle">139,95 $</text>
+    <text x="112" y="90" fill="#94A3B8" font-family="sans-serif" font-size="12" text-anchor="middle">al mes (facturación fija)</text>
+
+    <line x1="20" y1="110" x2="205" y2="110" stroke="#334155" />
+
+    <g transform="translate(15, 130)">
+      <text x="0" y="20" fill="#CBD5E1" font-family="sans-serif" font-size="12">· Coste anual: 1.679,40 $</text>
+      <text x="0" y="48" fill="#94A3B8" font-family="sans-serif" font-size="11">· Inactivo 95% del mes</text>
+      <text x="0" y="76" fill="#94A3B8" font-family="sans-serif" font-size="11">· Límite 5 proyectos</text>
+      <text x="0" y="104" fill="#94A3B8" font-family="sans-serif" font-size="11">· Sin soporte MCP/agentes</text>
+      <text x="0" y="145" fill="#EF4444" font-family="sans-serif" font-size="12" font-weight="700">✕ Gasto desorbitado</text>
+    </g>
+  </g>
+
+  <!-- Col 2: Ahrefs Lite -->
+  <g transform="translate(310, 160)">
+    <rect width="225" height="340" rx="10" fill="#1E293B" fill-opacity="0.7" stroke="#EF4444" stroke-width="1.5" />
+    <text x="112" y="35" fill="#F87171" font-family="sans-serif" font-size="16" font-weight="700" text-anchor="middle">Ahrefs Lite</text>
+    <text x="112" y="70" fill="#F8FAFC" font-family="sans-serif" font-size="26" font-weight="800" text-anchor="middle">129,00 $</text>
+    <text x="112" y="90" fill="#94A3B8" font-family="sans-serif" font-size="12" text-anchor="middle">al mes (facturación fija)</text>
+
+    <line x1="20" y1="110" x2="205" y2="110" stroke="#334155" />
+
+    <g transform="translate(15, 130)">
+      <text x="0" y="20" fill="#CBD5E1" font-family="sans-serif" font-size="12">· Coste anual: 1.548,00 $</text>
+      <text x="0" y="48" fill="#94A3B8" font-family="sans-serif" font-size="11">· Sistema estricto de créditos</text>
+      <text x="0" y="76" fill="#94A3B8" font-family="sans-serif" font-size="11">· Límite 500 créditos/mes</text>
+      <text x="0" y="104" fill="#94A3B8" font-family="sans-serif" font-size="11">· Sin integración terminal</text>
+      <text x="0" y="145" fill="#EF4444" font-family="sans-serif" font-size="12" font-weight="700">✕ Inflexible para indie</text>
+    </g>
+  </g>
+
+  <!-- Col 3: OpenSEO Hosted -->
+  <g transform="translate(560, 160)">
+    <rect width="225" height="340" rx="10" fill="#1E293B" stroke="#018786" stroke-width="1.5" />
+    <text x="112" y="35" fill="#00B4B2" font-family="sans-serif" font-size="16" font-weight="700" text-anchor="middle">OpenSEO Cloud</text>
+    <text x="112" y="70" fill="#F8FAFC" font-family="sans-serif" font-size="26" font-weight="800" text-anchor="middle">10,00 $</text>
+    <text x="112" y="90" fill="#94A3B8" font-family="sans-serif" font-size="12" text-anchor="middle">al mes (hosted / openseo.so)</text>
+
+    <line x1="20" y1="110" x2="205" y2="110" stroke="#018786" />
+
+    <g transform="translate(15, 130)">
+      <text x="0" y="20" fill="#CBD5E1" font-family="sans-serif" font-size="12">· Coste anual: 120,00 $</text>
+      <text x="0" y="48" fill="#CBD5E1" font-family="sans-serif" font-size="11">· Cero configuración / DevOps</text>
+      <text x="0" y="76" fill="#CBD5E1" font-family="sans-serif" font-size="11">· Servidor MCP incluido</text>
+      <text x="0" y="104" fill="#CBD5E1" font-family="sans-serif" font-size="11">· Proyectos ilimitados</text>
+      <text x="0" y="145" fill="#38BDF8" font-family="sans-serif" font-size="12" font-weight="700">✓ Ahorro del 92%</text>
+    </g>
+  </g>
+
+  <!-- Col 4: OpenSEO Self-Hosted (Winner) -->
+  <g transform="translate(810, 160)">
+    <rect width="230" height="340" rx="10" fill="#0F172A" stroke="#4ADE80" stroke-width="2.5" />
+    <rect x="20" y="-12" width="190" height="24" rx="12" fill="#4ADE80" />
+    <text x="115" y="4" fill="#090D16" font-family="sans-serif" font-size="11" font-weight="800" text-anchor="middle">MÁXIMA EFICIENCIA</text>
+
+    <text x="115" y="35" fill="#4ADE80" font-family="sans-serif" font-size="16" font-weight="700" text-anchor="middle">Self-Hosted (BYOK)</text>
+    <text x="115" y="70" fill="#F8FAFC" font-family="sans-serif" font-size="26" font-weight="800" text-anchor="middle">~0,25 $</text>
+    <text x="115" y="90" fill="#4ADE80" font-family="sans-serif" font-size="12" text-anchor="middle">al mes (según uso real)</text>
+
+    <line x1="20" y1="110" x2="210" y2="110" stroke="#4ADE80" />
+
+    <g transform="translate(15, 130)">
+      <text x="0" y="20" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="700">· Coste anual: ~3,00 $</text>
+      <text x="0" y="48" fill="#CBD5E1" font-family="sans-serif" font-size="11">· Docker / Cloudflare gratis</text>
+      <text x="0" y="76" fill="#CBD5E1" font-family="sans-serif" font-size="11">· DataForSEO (~0.02$/crawl)</text>
+      <text x="0" y="104" fill="#CBD5E1" font-family="sans-serif" font-size="11">· Control 100% de tus datos</text>
+      <text x="0" y="145" fill="#4ADE80" font-family="sans-serif" font-size="12" font-weight="800">★ Ahorro del 99.8%</text>
+    </g>
+  </g>
+
+  <!-- Footer Banner -->
+  <g transform="translate(60, 520)">
+    <text x="0" y="0" fill="#64748B" font-family="sans-serif" font-size="13">
+      Nota: Los cálculos de OpenSEO Self-Hosted asumen 10 auditorías de URLs completas y 20 consultas de keywords mensuales vía DataForSEO API.
+    </text>
+  </g>
+</svg>
