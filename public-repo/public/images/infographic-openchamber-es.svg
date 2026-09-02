@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
+
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0V60" fill="none" stroke="#1e293b" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#018786" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.6"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect x="0" y="0" width="1200" height="80" fill="#018786" opacity="0.92"/>
+  <text x="40" y="34" fill="#0F172A" font-size="14" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">APP DEL ANÁLISIS</text>
+  <text x="40" y="64" fill="#0F172A" font-size="26" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">OpenChamber</text>
+  <text x="1160" y="50" fill="#0F172A" font-size="13" font-weight="600" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">MULTI-DISPOSITIVO</text>
+
+<g transform="translate(60,130)">
+<text x="0" y="0" fill="#cbd5e1" font-size="14" font-weight="700">FLOW · DEVICE CONTINUITY</text>
+<g transform="translate(0,30)">
+<rect width="200" height="80" rx="10" fill="#0b1226" stroke="#34d399" stroke-width="1.5"/>
+<rect width="200" height="22" rx="10" fill="#018786" opacity="0.9"/>
+<text x="10" y="16" fill="#0F172A" font-size="11" font-weight="700">STEP 1</text>
+<text x="10" y="46" fill="#f8fafc" font-size="14" font-weight="700">TUI/CLI</text>
+<text x="10" y="66" fill="#94a3b8" font-size="11">Terminal</text>
+</g>
+<path d="M 202 70 l 18 0" stroke="#FF9800" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<g transform="translate(222,30)">
+<rect width="200" height="80" rx="10" fill="#0b1226" stroke="#34d399" stroke-width="1.5"/>
+<rect width="200" height="22" rx="10" fill="#018786" opacity="0.9"/>
+<text x="10" y="16" fill="#0F172A" font-size="11" font-weight="700">STEP 2</text>
+<text x="10" y="46" fill="#f8fafc" font-size="14" font-weight="700">Servidor openchamber</text>
+<text x="10" y="66" fill="#94a3b8" font-size="11">Daemon local</text>
+</g>
+<path d="M 424 70 l 18 0" stroke="#FF9800" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<g transform="translate(444,30)">
+<rect width="200" height="80" rx="10" fill="#0b1226" stroke="#34d399" stroke-width="1.5"/>
+<rect width="200" height="22" rx="10" fill="#018786" opacity="0.9"/>
+<text x="10" y="16" fill="#0F172A" font-size="11" font-weight="700">STEP 3</text>
+<text x="10" y="46" fill="#f8fafc" font-size="14" font-weight="700">Desktop (Electron)</text>
+<text x="10" y="66" fill="#94a3b8" font-size="11">App nativa</text>
+</g>
+<path d="M 646 70 l 18 0" stroke="#FF9800" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<g transform="translate(666,30)">
+<rect width="200" height="80" rx="10" fill="#0b1226" stroke="#34d399" stroke-width="1.5"/>
+<rect width="200" height="22" rx="10" fill="#018786" opacity="0.9"/>
+<text x="10" y="16" fill="#0F172A" font-size="11" font-weight="700">STEP 4</text>
+<text x="10" y="46" fill="#f8fafc" font-size="14" font-weight="700">Web / PWA</text>
+<text x="10" y="66" fill="#94a3b8" font-size="11">Navegador</text>
+</g>
+<path d="M 868 70 l 18 0" stroke="#FF9800" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<g transform="translate(888,30)">
+<rect width="200" height="80" rx="10" fill="#0b1226" stroke="#34d399" stroke-width="1.5"/>
+<rect width="200" height="22" rx="10" fill="#018786" opacity="0.9"/>
+<text x="10" y="16" fill="#0F172A" font-size="11" font-weight="700">STEP 5</text>
+<text x="10" y="46" fill="#f8fafc" font-size="14" font-weight="700">Móvil (QR)</text>
+<text x="10" y="66" fill="#94a3b8" font-size="11">PWA / browser</text>
+</g>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L8,5 L0,10 Z" fill="#FF9800"/></marker></defs>
+</g>
+<g transform="translate(60,250)">
+<g transform="translate(0,0)">
+<rect width="350" height="220" rx="12" fill="#0b1226" stroke="#34d399" stroke-width="1.5"/>
+<rect width="350" height="34" rx="12" fill="#34d399" opacity="0.85"/>
+<text x="14" y="22" fill="#0F172A" font-size="13" font-weight="700">Instalación</text>
+<text x="14" y="62" fill="#cbd5e1" font-size="13">• AppImage / DMG / MSI</text>
+<text x="14" y="92" fill="#cbd5e1" font-size="13">• Escritorio: incluye binario opencode</text>
+<text x="14" y="122" fill="#cbd5e1" font-size="13">• Web: requiere CLI en PATH</text>
+<text x="14" y="152" fill="#cbd5e1" font-size="13">• Sin Termux, sin Docker</text>
+</g>
+<g transform="translate(380,0)">
+<rect width="350" height="220" rx="12" fill="#0b1226" stroke="#FFB74D" stroke-width="1.5"/>
+<rect width="350" height="34" rx="12" fill="#FFB74D" opacity="0.85"/>
+<text x="14" y="22" fill="#0F172A" font-size="13" font-weight="700">Día a día</text>
+<text x="14" y="62" fill="#cbd5e1" font-size="13">• Chat ramificable con /undo /redo</text>
+<text x="14" y="92" fill="#cbd5e1" font-size="13">• Voice input integrado</text>
+<text x="14" y="122" fill="#cbd5e1" font-size="13">• GitHub-native (issues/PRs)</text>
+<text x="14" y="152" fill="#cbd5e1" font-size="13">• Extensión VS Code oficial</text>
+</g>
+<g transform="translate(760,0)">
+<rect width="350" height="220" rx="12" fill="#0b1226" stroke="#ef4444" stroke-width="1.5"/>
+<rect width="350" height="34" rx="12" fill="#ef4444" opacity="0.85"/>
+<text x="14" y="22" fill="#0F172A" font-size="13" font-weight="700">Limitaciones</text>
+<text x="14" y="62" fill="#cbd5e1" font-size="13">• Cloudflare tunnel obligatorio en remoto</text>
+<text x="14" y="92" fill="#cbd5e1" font-size="13">• Multi-window algo pesado</text>
+<text x="14" y="122" fill="#cbd5e1" font-size="13">• Build Linux fuera de AppImage inestable</text>
+</g>
+</g>
+<rect x="0" y="560" width="1200" height="70" fill="#0b1226"/>
+<text x="40" y="600" fill="#FF9800" font-size="16" font-weight="700">★ 6 928 · MIT · sept 2025</text>
+<text x="1160" y="600" fill="#94a3b8" font-size="12" text-anchor="end">Estrellas a 2026-07-27</text>
+</svg>

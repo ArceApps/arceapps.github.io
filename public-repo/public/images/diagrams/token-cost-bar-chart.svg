@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" role="img" aria-label="Token cost per comparable task: 4 agents on log scale plus dollar cost">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1F2937" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/>
+  <rect width="1200" height="720" fill="url(#grid)" opacity="0.4"/>
+
+  <!-- Title -->
+  <g transform="translate(60, 50)">
+    <rect width="14" height="56" fill="#FF9800"/>
+    <text x="30" y="28" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="22" font-weight="700" fill="#FFFFFF">Cost per comparable task</text>
+    <text x="30" y="50" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#9CA3AF">input tokens · log scale · same repo, same model, same prompt · Aug 2026 prices</text>
+  </g>
+
+  <!-- Y-axis label -->
+  <g transform="translate(80, 380) rotate(-90)">
+    <text text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#9CA3AF">input tokens (log10)</text>
+  </g>
+
+  <!-- Log scale gridlines (1k, 3k, 10k, 30k, 100k) -->
+  <!-- log10(1000)=3, log10(3000)≈3.48, log10(10000)=4, log10(30000)≈4.48, log10(100000)=5 -->
+  <!-- Y axis from top (y=180, log=5, 100k) to bottom (y=540, log=3, 1k). 360px per 2 log units = 180px/log unit -->
+  <g stroke="#1F2937" stroke-width="1" stroke-dasharray="2 4">
+    <line x1="170" y1="180" x2="1140" y2="180"/>  <!-- 100k -->
+    <line x1="170" y1="270" x2="1140" y2="270"/>  <!-- 30k -->
+    <line x1="170" y1="360" x2="1140" y2="360"/>  <!-- 10k -->
+    <line x1="170" y1="450" x2="1140" y2="450"/>  <!-- 3k -->
+    <line x1="170" y1="540" x2="1140" y2="540"/>  <!-- 1k -->
+  </g>
+  <g font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#9CA3AF">
+    <text x="160" y="184" text-anchor="end">100k</text>
+    <text x="160" y="274" text-anchor="end">30k</text>
+    <text x="160" y="364" text-anchor="end">10k</text>
+    <text x="160" y="454" text-anchor="end">3k</text>
+    <text x="160" y="544" text-anchor="end">1k</text>
+  </g>
+
+  <!-- 4 bars. Each bar: x-position, baseline y=540 (1k), height = (log10(value)-3)*180 -->
+  <!-- OpenCode 12k: log10=4.08, height = 0.08*180=14, too small. Recompute: from 1k at y=540 to 100k at y=180 = -360 over 2 log units = -180/log. -->
+  <!-- OpenCode 12000: 4.079 -> y=540-(4.079-3)*180 = 540-194 = 346, bar from 346 to 540 = 194 -->
+  <!-- Codex CLI 18000: 4.255 -> y=540-225 = 315, bar from 315 to 540 = 225 -->
+  <!-- Claude Code 22000: 4.342 -> y=540-242 = 298, bar from 298 to 540 = 242 -->
+  <!-- DeepSeek Harness 95000: 4.978 -> y=540-356 = 184, bar from 184 to 540 = 356 -->
+
+  <!-- OpenCode bar (teal dashed) -->
+  <g transform="translate(280, 0)">
+    <rect x="-80" y="346" width="160" height="194" fill="#018786" fill-opacity="0.25" stroke="#018786" stroke-width="2" stroke-dasharray="6 6"/>
+    <text x="0" y="336" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#FFFFFF">12k</text>
+    <text x="0" y="320" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">$0.08 / task</text>
+    <text x="0" y="570" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="700" fill="#018786">OpenCode</text>
+    <text x="0" y="586" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">"Linux" minimalist</text>
+  </g>
+
+  <!-- Codex CLI bar (gray solid) -->
+  <g transform="translate(490, 0)">
+    <rect x="-80" y="315" width="160" height="225" fill="#9CA3AF" fill-opacity="0.25" stroke="#9CA3AF" stroke-width="2"/>
+    <text x="0" y="305" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#FFFFFF">18k</text>
+    <text x="0" y="289" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">$0.27 / task</text>
+    <text x="0" y="570" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="700" fill="#FFFFFF">Codex CLI</text>
+    <text x="0" y="586" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">"OpenBSD" safety-first</text>
+  </g>
+
+  <!-- Claude Code bar (orange solid) -->
+  <g transform="translate(700, 0)">
+    <rect x="-80" y="298" width="160" height="242" fill="#FF9800" fill-opacity="0.25" stroke="#FF9800" stroke-width="2"/>
+    <text x="0" y="288" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#FFFFFF">22k</text>
+    <text x="0" y="272" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">$0.41 / task</text>
+    <text x="0" y="570" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="700" fill="#FF9800">Claude Code</text>
+    <text x="0" y="586" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">"Apple" product</text>
+  </g>
+
+  <!-- DeepSeek Harness bar (teal solid, biggest, the "ouch") -->
+  <g transform="translate(940, 0)">
+    <rect x="-90" y="184" width="180" height="356" fill="#018786" fill-opacity="0.25" stroke="#018786" stroke-width="3"/>
+    <text x="0" y="174" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="16" font-weight="700" fill="#FFFFFF">95k</text>
+    <text x="0" y="156" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">$0.65 / task</text>
+    <text x="0" y="570" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="700" fill="#018786">DeepSeek Harness</text>
+    <text x="0" y="586" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">"PostgreSQL" runtime</text>
+  </g>
+
+  <!-- 50-tasks-per-day callout -->
+  <g transform="translate(60, 640)">
+    <rect x="0" y="0" width="440" height="56" rx="10" fill="#3a2a0a" stroke="#FF9800" stroke-width="2"/>
+    <text x="20" y="22" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="700" fill="#FF9800">50 tasks / day for an indie:</text>
+    <text x="20" y="42" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#FFFFFF">
+      <tspan fill="#018786">OpenCode $4/día</tspan>
+      <tspan fill="#9CA3AF">  ·  </tspan>
+      <tspan fill="#9CA3AF">Codex CLI $13.5</tspan>
+      <tspan fill="#9CA3AF">  ·  </tspan>
+      <tspan fill="#FF9800">Claude $20.5</tspan>
+      <tspan fill="#9CA3AF">  ·  </tspan>
+      <tspan fill="#018786" font-weight="700">dsh $32.5/día</tspan>
+    </text>
+  </g>
+
+  <!-- Bug callout (right side) -->
+  <g transform="translate(680, 640)">
+    <rect x="0" y="0" width="460" height="56" rx="10" fill="#0B1220" stroke="#018786" stroke-width="2"/>
+    <text x="20" y="22" font-family="ui-monospace, Menlo, monospace" font-size="13" font-weight="700" fill="#FFFFFF">Of those 95k dsh tokens:</text>
+    <text x="20" y="42" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#E5E7EB">
+      <tspan fill="#018786" font-weight="700">~30k</tspan>
+      <tspan> are double-injected from the </tspan>
+      <tspan fill="#FFFFFF">CLAUDE.md / AGENTS.md</tspan>
+      <tspan> bug</tspan>
+    </text>
+  </g>
+</svg>

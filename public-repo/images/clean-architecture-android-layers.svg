@@ -1,0 +1,106 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="uiGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="domainGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6b6b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ee5a24;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="dataGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4ecdc4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#44bd32;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#2c3e50" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Clean Architecture en Android - Capas y Flujo de Datos</text>
+  
+  <!-- UI Layer -->
+  <g>
+    <rect x="50" y="80" width="700" height="120" fill="url(#uiGradient)" rx="10"/>
+    <text x="70" y="110" fill="#ffffff" font-family="Arial, sans-serif" font-size="18" font-weight="bold">📱 UI Layer (Presentation)</text>
+    
+    <!-- UI Components -->
+    <rect x="80" y="130" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="140" y="150" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Activities</text>
+    <text x="140" y="165" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">Fragments</text>
+    
+    <rect x="220" y="130" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="280" y="150" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Compose UI</text>
+    <text x="280" y="165" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">@Composable</text>
+    
+    <rect x="360" y="130" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="420" y="150" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">ViewModels</text>
+    <text x="420" y="165" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">State Management</text>
+    
+    <rect x="500" y="130" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="560" y="150" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">UI Models</text>
+    <text x="560" y="165" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">UI State</text>
+  </g>
+  
+  <!-- Arrow from UI to Domain -->
+  <path d="M 400 200 L 400 230 L 390 220 M 400 230 L 410 220" stroke="#2c3e50" stroke-width="2" fill="none"/>
+  <text x="420" y="218" fill="#2c3e50" font-family="Arial, sans-serif" font-size="12">Calls Use Cases</text>
+  
+  <!-- Domain Layer -->
+  <g>
+    <rect x="50" y="240" width="700" height="120" fill="url(#domainGradient)" rx="10"/>
+    <text x="70" y="270" fill="#ffffff" font-family="Arial, sans-serif" font-size="18" font-weight="bold">🧠 Domain Layer (Business Logic)</text>
+    
+    <!-- Domain Components -->
+    <rect x="80" y="290" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="140" y="310" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Entities</text>
+    <text x="140" y="325" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">Domain Models</text>
+    
+    <rect x="220" y="290" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="280" y="310" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Use Cases</text>
+    <text x="280" y="325" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">Interactors</text>
+    
+    <rect x="360" y="290" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="420" y="310" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Repositories</text>
+    <text x="420" y="325" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">Interfaces</text>
+    
+    <rect x="500" y="290" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="560" y="310" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Domain</text>
+    <text x="560" y="325" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">Services</text>
+  </g>
+  
+  <!-- Arrow from Domain to Data -->
+  <path d="M 400 360 L 400 390 L 390 380 M 400 390 L 410 380" stroke="#2c3e50" stroke-width="2" fill="none"/>
+  <text x="420" y="378" fill="#2c3e50" font-family="Arial, sans-serif" font-size="12">Uses Repository Abstractions</text>
+  
+  <!-- Data Layer -->
+  <g>
+    <rect x="50" y="400" width="700" height="120" fill="url(#dataGradient)" rx="10"/>
+    <text x="70" y="430" fill="#ffffff" font-family="Arial, sans-serif" font-size="18" font-weight="bold">💾 Data Layer (Infrastructure)</text>
+    
+    <!-- Data Components -->
+    <rect x="80" y="450" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="140" y="470" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Repository</text>
+    <text x="140" y="485" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">Implementation</text>
+    
+    <rect x="220" y="450" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="280" y="470" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Room DB</text>
+    <text x="280" y="485" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">Local Storage</text>
+    
+    <rect x="360" y="450" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="420" y="470" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Retrofit</text>
+    <text x="420" y="485" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">Remote API</text>
+    
+    <rect x="500" y="450" width="120" height="50" fill="rgba(255,255,255,0.2)" rx="5"/>
+    <text x="560" y="470" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Data Sources</text>
+    <text x="560" y="485" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12">Mappers</text>
+  </g>
+  
+  <!-- Dependency Rule -->
+  <g transform="translate(50,540)">
+    <rect x="0" y="0" width="700" height="40" fill="#ecf0f1" rx="5"/>
+    <text x="20" y="25" fill="#2c3e50" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🎯 Regla de Dependencia: </text>
+    <text x="180" y="25" fill="#2c3e50" font-family="Arial, sans-serif" font-size="14">Las dependencias solo apuntan hacia adentro (hacia el dominio)</text>
+  </g>
+</svg>

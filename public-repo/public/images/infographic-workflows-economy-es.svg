@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1a2820"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1e293b" stroke-width="0.5" opacity="0.4"/></pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="48" text-anchor="middle" font-family="monospace" font-size="26" font-weight="bold" fill="#f8fafc" filter="url(#glow)">Economía de subagentes: enrutamiento por complejidad</text>
+  <text x="600" y="72" text-anchor="middle" font-family="monospace" font-size="13" fill="#64748b">Modelos baratos para lo rutinario · Modelos de frontera para lo crítico</text>
+  <line x1="300" y1="84" x2="900" y2="84" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- LEFT COLUMN: Cheap agents -->
+  <rect x="50" y="115" width="540" height="380" rx="14" fill="#0F172A" stroke="#34d399" stroke-width="2.5"/>
+  <rect x="50" y="115" width="540" height="60" rx="14" fill="#34d399" opacity="0.16"/>
+  <text x="320" y="142" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#34d399">CHEAP AGENTS</text>
+  <text x="320" y="162" text-anchor="middle" font-family="monospace" font-size="11" fill="#6ee7b7">SLMs · Modelos rápidos · Bajo coste</text>
+
+  <text x="80" y="200" font-family="monospace" font-size="11" font-weight="bold" fill="#cbd5e1">Modelos típicos</text>
+  <text x="80" y="220" font-family="monospace" font-size="11" fill="#94a3b8">▸ Haiku · Gemini Flash · Llama 3 (8B)</text>
+
+  <text x="80" y="252" font-family="monospace" font-size="11" font-weight="bold" fill="#cbd5e1">Tareas ideales</text>
+  <text x="80" y="272" font-family="monospace" font-size="11" fill="#94a3b8">▸ Clasificación · extracción · síntesis</text>
+
+  <line x1="80" y1="290" x2="560" y2="290" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="80" y="310" font-family="monospace" font-size="11" font-weight="bold" fill="#34d399">Roles en mi stack</text>
+  <text x="80" y="332" font-family="monospace" font-size="11" fill="#cbd5e1">⚙ Router</text>
+  <text x="170" y="332" font-family="monospace" font-size="10" fill="#94a3b8">decide qué subagente llamar</text>
+  <text x="80" y="352" font-family="monospace" font-size="11" fill="#cbd5e1">⚙ Summarizer</text>
+  <text x="170" y="352" font-family="monospace" font-size="10" fill="#94a3b8">condensa contexto largo</text>
+  <text x="80" y="372" font-family="monospace" font-size="11" fill="#cbd5e1">⚙ Linter</text>
+  <text x="170" y="372" font-family="monospace" font-size="10" fill="#94a3b8">errores obvios antes de test</text>
+
+  <line x1="80" y1="392" x2="560" y2="392" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="80" y="412" font-family="monospace" font-size="11" font-weight="bold" fill="#34d399">Coste vs Latencia</text>
+  <text x="80" y="430" font-family="monospace" font-size="10" fill="#6ee7b7">€  ~0.10 / 1M tokens</text>
+  <text x="280" y="430" font-family="monospace" font-size="10" fill="#6ee7b7">⏱  200–500 ms</text>
+  <text x="80" y="448" font-family="monospace" font-size="10" fill="#94a3b8">Tráfico alto · contexto pequeño</text>
+  <text x="80" y="465" font-family="monospace" font-size="10" fill="#94a3b8">El 80% de las llamadas del workflow</text>
+
+  <!-- VS symbol -->
+  <text x="600" y="290" text-anchor="middle" font-family="monospace" font-size="48" font-weight="bold" fill="#FF9800" filter="url(#glow)">vs</text>
+  <text x="600" y="320" text-anchor="middle" font-family="monospace" font-size="11" fill="#64748b">enrutamiento</text>
+  <text x="600" y="335" text-anchor="middle" font-family="monospace" font-size="11" fill="#64748b">por complejidad</text>
+
+  <!-- RIGHT COLUMN: Frontier agents -->
+  <rect x="610" y="115" width="540" height="380" rx="14" fill="#0F172A" stroke="#FF9800" stroke-width="2.5"/>
+  <rect x="610" y="115" width="540" height="60" rx="14" fill="#FF9800" opacity="0.16"/>
+  <text x="880" y="142" text-anchor="middle" font-family="monospace" font-size="16" font-weight="bold" fill="#FF9800">FRONTIER AGENTS</text>
+  <text x="880" y="162" text-anchor="middle" font-family="monospace" font-size="11" fill="#fbbf24">Claude 3.5 · GPT-4o · Razonamiento profundo</text>
+
+  <text x="640" y="200" font-family="monospace" font-size="11" font-weight="bold" fill="#cbd5e1">Modelos típicos</text>
+  <text x="640" y="220" font-family="monospace" font-size="11" fill="#94a3b8">▸ Claude 3.5 Sonnet · GPT-4o · Opus</text>
+
+  <text x="640" y="252" font-family="monospace" font-size="11" font-weight="bold" fill="#cbd5e1">Tareas ideales</text>
+  <text x="640" y="272" font-family="monospace" font-size="11" fill="#94a3b8">▸ Arquitectura · seguridad · lógica</text>
+
+  <line x1="640" y1="290" x2="1120" y2="290" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="640" y="310" font-family="monospace" font-size="11" font-weight="bold" fill="#FF9800">Roles en mi stack</text>
+  <text x="640" y="332" font-family="monospace" font-size="11" fill="#cbd5e1">⚙ Architect (Plan)</text>
+  <text x="780" y="332" font-family="monospace" font-size="10" fill="#94a3b8">divide el problema en pasos</text>
+  <text x="640" y="352" font-family="monospace" font-size="11" fill="#cbd5e1">⚙ SecOps</text>
+  <text x="780" y="352" font-family="monospace" font-size="10" fill="#94a3b8">vulnerabilidades complejas</text>
+  <text x="640" y="372" font-family="monospace" font-size="11" fill="#cbd5e1">⚙ Build</text>
+  <text x="780" y="372" font-family="monospace" font-size="10" fill="#94a3b8">lógica de negocio real</text>
+
+  <line x1="640" y1="392" x2="1120" y2="392" stroke="#1e293b" stroke-width="1"/>
+
+  <text x="640" y="412" font-family="monospace" font-size="11" font-weight="bold" fill="#FF9800">Coste vs Latencia</text>
+  <text x="640" y="430" font-family="monospace" font-size="10" fill="#fbbf24">€  ~3–15 / 1M tokens</text>
+  <text x="860" y="430" font-family="monospace" font-size="10" fill="#fbbf24">⏱  2–8 s</text>
+  <text x="640" y="448" font-family="monospace" font-size="10" fill="#94a3b8">Tráfico bajo · contexto grande</text>
+  <text x="640" y="465" font-family="monospace" font-size="10" fill="#94a3b8">El 20% de las llamadas críticas</text>
+
+  <!-- Bottom: routing flow -->
+  <rect x="50" y="520" width="1100" height="80" rx="14" fill="#0F172A" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="80" y="548" font-family="monospace" font-size="13" font-weight="bold" fill="#f8fafc">¿Cómo decide el enrutador?</text>
+  <text x="80" y="570" font-family="monospace" font-size="11" fill="#94a3b8">▸ Complejidad de la tarea (syntax → razonamiento)        ▸ Coste estimado antes de la llamada</text>
+  <text x="80" y="588" font-family="monospace" font-size="11" fill="#94a3b8">▸ Tamaño del contexto (pequeño → cheap, grande → frontier)  ▸ Criticidad (cosmético → cheap, security → frontier)</text>
+
+  <!-- Footer -->
+  <text x="600" y="615" text-anchor="middle" font-family="monospace" font-size="10" fill="#475569">ARCEAPPS · opencode-subagents-workflows · 2026</text>
+</svg>

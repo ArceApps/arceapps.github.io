@@ -1,0 +1,39 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0F172A"/>
+  
+  <!-- Subtle Grid Pattern in background -->
+  <path d="M 0,100 L 1200,100 M 0,200 L 1200,200 M 0,300 L 1200,300 M 0,400 L 1200,400 M 0,500 L 1200,500 M 100,0 L 100,630 M 200,0 L 200,630 M 300,0 L 300,630 M 400,0 L 400,630 M 500,0 L 500,630 M 600,0 L 600,630 M 700,0 L 700,630 M 800,0 L 800,630 M 900,0 L 900,630 M 1000,0 L 1000,630 M 1100,0 L 1100,630" stroke="#1E293B" stroke-width="1"/>
+
+  <!-- Left abstract decorative elements (Teal & Orange) -->
+  <circle cx="200" cy="315" r="120" stroke="#018786" stroke-width="6" opacity="0.3" stroke-dasharray="10 15"/>
+  <circle cx="200" cy="315" r="80" stroke="#FF9800" stroke-width="4" opacity="0.4"/>
+  
+  <!-- Diagonal tech lines -->
+  <path d="M-50,680 L400,230 M800,400 L1250,-50 M100,100 L250,250 M1000,500 L1150,650" stroke="#018786" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M-50,640 L360,230 M840,400 L1250,-10" stroke="#FF9800" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+
+  <!-- Main center illustration: Open Code & Community theme -->
+  <rect x="450" y="165" width="300" height="300" rx="16" stroke="#018786" stroke-width="4" fill="#0F172A" fill-opacity="0.8" />
+  <rect x="475" y="190" width="250" height="40" rx="8" fill="#1E293B" />
+  
+  <!-- Terminal Prompt symbol -->
+  <path d="M495,202 L505,210 L495,218" stroke="#FF9800" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="512" y1="218" x2="525" y2="218" stroke="#018786" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Floating abstract connections / nodes -->
+  <circle cx="500" cy="300" r="15" fill="#018786" />
+  <circle cx="700" cy="300" r="15" fill="#FF9800" />
+  <circle cx="600" cy="400" r="12" fill="#018786" />
+  
+  <!-- Lines connecting nodes -->
+  <path d="M500,300 L600,400 L700,300 M500,300 L700,300" stroke="#E2E8F0" stroke-width="2" stroke-dasharray="4 4" opacity="0.6"/>
+
+  <!-- Title / Logo branding inside SVG -->
+  <text x="600" y="525" fill="#E2E8F0" font-family="'Roboto', 'Inter', 'Segoe UI', sans-serif" font-size="28" font-weight="bold" text-anchor="middle" letter-spacing="4">OPEN SOURCE AI IDEs</text>
+  <text x="600" y="560" fill="#018786" font-family="'Roboto', 'Inter', 'Segoe UI', sans-serif" font-size="18" font-weight="600" text-anchor="middle" letter-spacing="8">SEMIFINAL B</text>
+
+  <!-- Right side glowing abstract pattern -->
+  <path d="M950,215 A100,100 0 0 1 1050,315 A100,100 0 0 1 950,415" stroke="#FF9800" stroke-width="6" stroke-linecap="round" opacity="0.2"/>
+  <path d="M980,245 A60,60 0 0 1 1040,305 A60,60 0 0 1 980,365" stroke="#018786" stroke-width="4" stroke-linecap="round" opacity="0.3"/>
+</svg>

@@ -1,0 +1,38 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#004D40"/>
+  
+  <!-- Before: Tangled code -->
+  <g opacity="0.5">
+    <rect x="100" y="100" width="400" height="400" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="10,5"/>
+    <text x="300" y="80" font-family="sans-serif" font-size="32" fill="#FFFFFF" text-anchor="middle">ANTES</text>
+    
+    <line x1="150" y1="150" x2="350" y2="400" stroke="#FF9800" stroke-width="3"/>
+    <line x1="250" y1="150" x2="200" y2="350" stroke="#FF9800" stroke-width="3"/>
+    <line x1="350" y1="200" x2="150" y2="450" stroke="#FF9800" stroke-width="3"/>
+    <line x1="200" y1="250" x2="400" y2="300" stroke="#FF9800" stroke-width="3"/>
+    <line x1="400" y1="200" x2="250" y2="450" stroke="#FF9800" stroke-width="3"/>
+  </g>
+  
+  <!-- Arrow -->
+  <g transform="translate(600, 315)">
+    <line x1="-50" y1="0" x2="50" y2="0" stroke="#FFFFFF" stroke-width="6"/>
+    <polygon points="50,0 30,-15 30,15" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- After: Clean structure -->
+  <g>
+    <rect x="700" y="100" width="400" height="400" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="900" y="80" font-family="sans-serif" font-size="32" fill="#FFFFFF" text-anchor="middle">DESPUÉS</text>
+    
+    <rect x="750" y="150" width="100" height="80" fill="#018786" rx="5"/>
+    <rect x="900" y="150" width="100" height="80" fill="#018786" rx="5"/>
+    <rect x="750" y="280" width="100" height="80" fill="#018786" rx="5"/>
+    <rect x="900" y="280" width="100" height="80" fill="#018786" rx="5"/>
+    <rect x="825" y="410" width="100" height="80" fill="#FF9800" rx="5"/>
+    
+    <line x1="800" y1="230" x2="875" y2="410" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="950" y1="230" x2="875" y2="410" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="800" y1="360" x2="875" y2="410" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="950" y1="360" x2="875" y2="410" stroke="#FFFFFF" stroke-width="2"/>
+  </g>
+</svg>

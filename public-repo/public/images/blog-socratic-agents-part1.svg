@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="800" height="420">
+  <!-- Background -->
+  <rect width="800" height="420" fill="#0d1117"/>
+
+  <!-- Grid lines -->
+  <line x1="0" y1="140" x2="800" y2="140" stroke="#1a2332" stroke-width="1"/>
+  <line x1="0" y1="280" x2="800" y2="280" stroke="#1a2332" stroke-width="1"/>
+  <line x1="267" y1="0" x2="267" y2="420" stroke="#1a2332" stroke-width="1"/>
+  <line x1="534" y1="0" x2="534" y2="420" stroke="#1a2332" stroke-width="1"/>
+
+  <!-- === LEFT: Question mark (Socratic) === -->
+  <circle cx="120" cy="200" r="80" fill="none" stroke="#6366f1" stroke-width="3"/>
+  <text x="120" y="185" text-anchor="middle" font-family="monospace" font-size="72" font-weight="bold" fill="#6366f1">?</text>
+  <text x="120" y="230" text-anchor="middle" font-family="monospace" font-size="10" fill="#6366f1">Socratic</text>
+
+  <!-- === CENTER: Brain/entropy symbol === -->
+  <circle cx="400" cy="200" r="90" fill="none" stroke="#8b5cf6" stroke-width="3"/>
+  <circle cx="400" cy="200" r="60" fill="#8b5cf6" opacity="0.1" stroke="#8b5cf6" stroke-width="2"/>
+  <!-- Entropy S symbol -->
+  <text x="400" y="220" text-anchor="middle" font-family="monospace" font-size="48" font-weight="bold" fill="#8b5cf6">S</text>
+  <text x="400" y="250" text-anchor="middle" font-family="monospace" font-size="10" fill="#8b5cf6">Shannon Entropy</text>
+
+  <!-- === RIGHT: KL Divergence diagram === -->
+  <!-- P distribution -->
+  <rect x="580" y="120" width="80" height="140" rx="5" fill="#8b5cf6" opacity="0.15" stroke="#8b5cf6" stroke-width="2"/>
+  <rect x="590" y="180" width="20" height="80" rx="2" fill="#8b5cf6" opacity="0.4"/>
+  <rect x="615" y="150" width="20" height="110" rx="2" fill="#8b5cf6" opacity="0.4"/>
+  <rect x="640" y="200" width="20" height="60" rx="2" fill="#8b5cf6" opacity="0.4"/>
+  <!-- Q distribution -->
+  <rect x="580" y="270" width="80" height="50" rx="5" fill="#ec4899" opacity="0.15" stroke="#ec4899" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="620" y="295" text-anchor="middle" font-family="monospace" font-size="8" fill="#ec4899">D(P||Q)</text>
+  <!-- Arrow showing KL divergence -->
+  <line x1="680" y1="200" x2="720" y2="200" stroke="#ec4899" stroke-width="2"/>
+  <polygon points="720,196 730,200 720,204" fill="#ec4899"/>
+  <text x="700" y="190" text-anchor="middle" font-family="monospace" font-size="8" fill="#ec4899">KL</text>
+
+  <!-- === BOTTOM: Flow arrows === -->
+  <line x1="200" y1="320" x2="600" y2="320" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <polygon points="600,316 610,320 600,324" fill="#64748b"/>
+  <text x="400" y="340" text-anchor="middle" font-family="monospace" font-size="11" fill="#64748b">Induction → Entropy → Divergence</text>
+
+  <!-- === Labels === -->
+  <text x="120" y="380" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">Question</text>
+  <text x="400" y="380" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">Measurement</text>
+  <text x="680" y="380" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">Comparison</text>
+
+</svg>

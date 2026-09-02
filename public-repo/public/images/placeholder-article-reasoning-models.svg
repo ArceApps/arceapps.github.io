@@ -1,0 +1,38 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" fill="#f1f5f9" />
+
+  <!-- Background Lines -->
+  <line x1="0" y1="100" x2="800" y2="100" stroke="#e0e0e0" stroke-width="1" />
+  <line x1="0" y1="200" x2="800" y2="200" stroke="#e0e0e0" stroke-width="1" />
+  <line x1="0" y1="300" x2="800" y2="300" stroke="#e0e0e0" stroke-width="1" />
+  <line x1="0" y1="400" x2="800" y2="400" stroke="#e0e0e0" stroke-width="1" />
+  <line x1="0" y1="500" x2="800" y2="500" stroke="#e0e0e0" stroke-width="1" />
+
+  <!-- Brain/Thinking Icon -->
+  <circle cx="400" cy="300" r="100" fill="#E91E63" opacity="0.1" />
+  <path d="M350 250 C350 200, 450 200, 450 250 C450 300, 350 300, 350 250" fill="none" stroke="#E91E63" stroke-width="4" />
+  <path d="M350 270 C350 320, 450 320, 450 270" fill="none" stroke="#E91E63" stroke-width="4" />
+  <path d="M370 240 C370 210, 430 210, 430 240" fill="none" stroke="#E91E63" stroke-width="4" />
+  <path d="M370 280 C370 310, 430 310, 430 280" fill="none" stroke="#E91E63" stroke-width="4" />
+
+  <!-- Chain Links (Chain of Thought) -->
+  <rect x="200" y="280" width="60" height="40" rx="10" fill="#FF9800" />
+  <rect x="280" y="280" width="60" height="40" rx="10" fill="#FF9800" />
+  <rect x="360" y="280" width="60" height="40" rx="10" fill="#E91E63" /> <!-- Active thought -->
+  <rect x="440" y="280" width="60" height="40" rx="10" fill="#FF9800" />
+  <rect x="520" y="280" width="60" height="40" rx="10" fill="#FF9800" />
+
+  <!-- Connecting Lines -->
+  <line x1="260" y1="300" x2="280" y2="300" stroke="#333" stroke-width="4" />
+  <line x1="340" y1="300" x2="360" y2="300" stroke="#333" stroke-width="4" />
+  <line x1="420" y1="300" x2="440" y2="300" stroke="#333" stroke-width="4" />
+  <line x1="500" y1="300" x2="520" y2="300" stroke="#333" stroke-width="4" />
+
+  <!-- Text -->
+  <text x="400" y="150" font-family="sans-serif" font-size="40" text-anchor="middle" fill="#333" font-weight="bold">Chain of Thought</text>
+  <text x="400" y="450" font-family="sans-serif" font-size="24" text-anchor="middle" fill="#E91E63" font-style="italic">"Let's think step by step"</text>
+
+  <!-- Model Names -->
+  <text x="100" y="550" font-family="sans-serif" font-size="30" text-anchor="middle" fill="#333" font-weight="bold">o1</text>
+  <text x="700" y="550" font-family="sans-serif" font-size="30" text-anchor="middle" fill="#333" font-weight="bold">R1</text>
+</svg>

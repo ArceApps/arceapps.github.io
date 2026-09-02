@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 820" width="1100" height="820">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Card Background -->
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Glowing Filters -->
+    <filter id="glowTeal" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="820" fill="url(#bgGrad)" />
+
+  <!-- Outer Border -->
+  <rect x="20" y="20" width="1060" height="780" rx="16" fill="none" stroke="#1e293b" stroke-width="3" />
+
+  <!-- Title & Subtitle -->
+  <text x="550" y="70" text-anchor="middle" font-family="sans-serif" font-size="32" font-weight="bold" fill="#38bdf8" filter="url(#glowTeal)">
+    The 6 Types of Socratic Questions by R.W. Paul
+  </text>
+  <text x="550" y="100" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#64748b">
+    R.W. Paul's framework for critical thinking and inquiry
+  </text>
+
+  <!-- Grid of 6 Cards -->
+
+  <!-- ROW 1 -->
+  <!-- Card 1: Clarification -->
+  <g transform="translate(55, 140)">
+    <rect width="310" height="280" rx="16" fill="url(#cardGrad)" stroke="#38bdf8" stroke-width="2" />
+    <!-- Circle Icon & Number -->
+    <circle cx="50" cy="50" r="24" fill="#38bdf8" opacity="0.1" stroke="#38bdf8" stroke-width="1.5" />
+    <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-weight="bold" fill="#38bdf8">1</text>
+    <!-- Title -->
+    <text x="90" y="55" font-family="sans-serif" font-size="18" font-weight="bold" fill="#38bdf8">CLARIFICATION</text>
+    <!-- Question -->
+    <text x="25" y="120" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">What do you mean</text>
+    <text x="25" y="150" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">by that?</text>
+    <!-- Line separator -->
+    <line x1="25" y1="180" x2="285" y2="180" stroke="#334155" stroke-width="1" />
+    <!-- Description -->
+    <text x="25" y="210" font-family="sans-serif" font-size="13" fill="#cbd5e1">Exploring the clarity and precision of</text>
+    <text x="25" y="230" font-family="sans-serif" font-size="13" fill="#cbd5e1">ideas, definitions, explanations,</text>
+    <text x="25" y="250" font-family="sans-serif" font-size="13" fill="#cbd5e1">and terminology.</text>
+  </g>
+
+  <!-- Card 2: Assumptions -->
+  <g transform="translate(395, 140)">
+    <rect width="310" height="280" rx="16" fill="url(#cardGrad)" stroke="#10b981" stroke-width="2" />
+    <!-- Circle Icon & Number -->
+    <circle cx="50" cy="50" r="24" fill="#10b981" opacity="0.1" stroke="#10b981" stroke-width="1.5" />
+    <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-weight="bold" fill="#10b981">2</text>
+    <!-- Title -->
+    <text x="90" y="55" font-family="sans-serif" font-size="18" font-weight="bold" fill="#10b981">ASSUMPTIONS</text>
+    <!-- Question -->
+    <text x="25" y="120" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">What are you taking</text>
+    <text x="25" y="150" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">for granted?</text>
+    <!-- Line separator -->
+    <line x1="25" y1="180" x2="285" y2="180" stroke="#334155" stroke-width="1" />
+    <!-- Description -->
+    <text x="25" y="210" font-family="sans-serif" font-size="13" fill="#cbd5e1">Examining underlying beliefs and</text>
+    <text x="25" y="230" font-family="sans-serif" font-size="13" fill="#cbd5e1">presuppositions that are accepted</text>
+    <text x="25" y="250" font-family="sans-serif" font-size="13" fill="#cbd5e1">as true without questioning.</text>
+  </g>
+
+  <!-- Card 3: Evidence -->
+  <g transform="translate(735, 140)">
+    <rect width="310" height="280" rx="16" fill="url(#cardGrad)" stroke="#fbbf24" stroke-width="2" />
+    <!-- Circle Icon & Number -->
+    <circle cx="50" cy="50" r="24" fill="#fbbf24" opacity="0.1" stroke="#fbbf24" stroke-width="1.5" />
+    <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-weight="bold" fill="#fbbf24">3</text>
+    <!-- Title -->
+    <text x="90" y="55" font-family="sans-serif" font-size="18" font-weight="bold" fill="#fbbf24">EVIDENCE</text>
+    <!-- Question -->
+    <text x="25" y="120" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">How do you know?</text>
+    <text x="25" y="150" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">What's your proof?</text>
+    <!-- Line separator -->
+    <line x1="25" y1="180" x2="285" y2="180" stroke="#334155" stroke-width="1" />
+    <!-- Description -->
+    <text x="25" y="210" font-family="sans-serif" font-size="13" fill="#cbd5e1">Investigating the foundation of claims,</text>
+    <text x="25" y="230" font-family="sans-serif" font-size="13" fill="#cbd5e1">demanding data, facts, reasons,</text>
+    <text x="25" y="250" font-family="sans-serif" font-size="13" fill="#cbd5e1">and empirical validation.</text>
+  </g>
+
+  <!-- ROW 2 -->
+  <!-- Card 4: Perspectives -->
+  <g transform="translate(55, 460)">
+    <rect width="310" height="280" rx="16" fill="url(#cardGrad)" stroke="#f97316" stroke-width="2" />
+    <!-- Circle Icon & Number -->
+    <circle cx="50" cy="50" r="24" fill="#f97316" opacity="0.1" stroke="#f97316" stroke-width="1.5" />
+    <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-weight="bold" fill="#f97316">4</text>
+    <!-- Title -->
+    <text x="90" y="55" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f97316">PERSPECTIVES</text>
+    <!-- Question -->
+    <text x="25" y="120" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">How would others</text>
+    <text x="25" y="150" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">see this?</text>
+    <!-- Line separator -->
+    <line x1="25" y1="180" x2="285" y2="180" stroke="#334155" stroke-width="1" />
+    <!-- Description -->
+    <text x="25" y="210" font-family="sans-serif" font-size="13" fill="#cbd5e1">Considering alternative points of view,</text>
+    <text x="25" y="230" font-family="sans-serif" font-size="13" fill="#cbd5e1">different paradigms, and possible</text>
+    <text x="25" y="250" font-family="sans-serif" font-size="13" fill="#cbd5e1">counterarguments.</text>
+  </g>
+
+  <!-- Card 5: Implications -->
+  <g transform="translate(395, 460)">
+    <rect width="310" height="280" rx="16" fill="url(#cardGrad)" stroke="#a855f7" stroke-width="2" />
+    <!-- Circle Icon & Number -->
+    <circle cx="50" cy="50" r="24" fill="#a855f7" opacity="0.1" stroke="#a855f7" stroke-width="1.5" />
+    <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-weight="bold" fill="#a855f7">5</text>
+    <!-- Title -->
+    <text x="90" y="55" font-family="sans-serif" font-size="18" font-weight="bold" fill="#a855f7">IMPLICATIONS</text>
+    <!-- Question -->
+    <text x="25" y="120" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">If true, what else</text>
+    <text x="25" y="150" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">must be true?</text>
+    <!-- Line separator -->
+    <line x1="25" y1="180" x2="285" y2="180" stroke="#334155" stroke-width="1" />
+    <!-- Description -->
+    <text x="25" y="210" font-family="sans-serif" font-size="13" fill="#cbd5e1">Analyzing the logical outcomes,</text>
+    <text x="25" y="230" font-family="sans-serif" font-size="13" fill="#cbd5e1">consequences, and downstream</text>
+    <text x="25" y="250" font-family="sans-serif" font-size="13" fill="#cbd5e1">effects of a statement.</text>
+  </g>
+
+  <!-- Card 6: Meta-Questions -->
+  <g transform="translate(735, 460)">
+    <rect width="310" height="280" rx="16" fill="url(#cardGrad)" stroke="#ec4899" stroke-width="2" />
+    <!-- Circle Icon & Number -->
+    <circle cx="50" cy="50" r="24" fill="#ec4899" opacity="0.1" stroke="#ec4899" stroke-width="1.5" />
+    <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-weight="bold" fill="#ec4899">6</text>
+    <!-- Title -->
+    <text x="90" y="55" font-family="sans-serif" font-size="18" font-weight="bold" fill="#ec4899">META-QUESTIONS</text>
+    <!-- Question -->
+    <text x="25" y="120" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">Why is this query</text>
+    <text x="25" y="150" font-family="sans-serif" font-size="20" font-weight="bold" fill="#ffffff">important?</text>
+    <!-- Line separator -->
+    <line x1="25" y1="180" x2="285" y2="180" stroke="#334155" stroke-width="1" />
+    <!-- Description -->
+    <text x="25" y="210" font-family="sans-serif" font-size="13" fill="#cbd5e1">Reflecting on the questioning process</text>
+    <text x="25" y="230" font-family="sans-serif" font-size="13" fill="#cbd5e1">itself, and investigating the root intent</text>
+    <text x="25" y="250" font-family="sans-serif" font-size="13" fill="#cbd5e1">of the inquiry.</text>
+  </g>
+
+</svg>

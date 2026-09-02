@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1b2a"/>
+      <stop offset="100%" stop-color="#1b263b"/>
+    </linearGradient>
+    <linearGradient id="teal" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#018786"/>
+      <stop offset="100%" stop-color="#00b3b3"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF9800"/>
+      <stop offset="100%" stop-color="#ffb74d"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <g stroke="#018786" stroke-width="0.5" opacity="0.15">
+    <line x1="0" y1="90" x2="800" y2="90"/>
+    <line x1="0" y1="180" x2="800" y2="180"/>
+    <line x1="0" y1="270" x2="800" y2="270"/>
+    <line x1="0" y1="360" x2="800" y2="360"/>
+    <line x1="160" y1="0" x2="160" y2="450"/>
+    <line x1="320" y1="0" x2="320" y2="450"/>
+    <line x1="480" y1="0" x2="480" y2="450"/>
+    <line x1="640" y1="0" x2="640" y2="450"/>
+  </g>
+
+  <!-- Cat ears silhouette left -->
+  <polygon points="80,120 60,60 120,90" fill="#018786" opacity="0.9"/>
+  <polygon points="80,120 60,60 90,85" fill="#018786"/>
+
+  <!-- Cat silhouette right (spec kitty) -->
+  <ellipse cx="680" cy="260" rx="90" ry="70" fill="url(#teal)" opacity="0.85"/>
+  <!-- Cat head -->
+  <ellipse cx="730" cy="190" rx="55" ry="50" fill="url(#teal)" opacity="0.9"/>
+  <!-- Cat ears -->
+  <polygon points="690,150 670,90 720,130" fill="url(#teal)"/>
+  <polygon points="770,150 790,90 740,130" fill="url(#teal)"/>
+  <!-- Inner ears -->
+  <polygon points="693,148 680,108 715,132" fill="#0d1b2a" opacity="0.4"/>
+  <polygon points="767,148 780,108 745,132" fill="#0d1b2a" opacity="0.4"/>
+  <!-- Cat eyes -->
+  <ellipse cx="710" cy="185" rx="8" ry="10" fill="#FF9800" filter="url(#glow)"/>
+  <ellipse cx="750" cy="185" rx="8" ry="10" fill="#FF9800" filter="url(#glow)"/>
+  <ellipse cx="710" cy="185" rx="3" ry="7" fill="#0d1b2a"/>
+  <ellipse cx="750" cy="185" rx="3" ry="7" fill="#0d1b2a"/>
+  <!-- Cat nose -->
+  <polygon points="730,202 725,210 735,210" fill="#FF9800" opacity="0.8"/>
+  <!-- Cat whiskers -->
+  <g stroke="#018786" stroke-width="1.5" opacity="0.6">
+    <line x1="690" y1="200" x2="650" y2="190"/>
+    <line x1="690" y1="205" x2="650" y2="205"/>
+    <line x1="690" y1="210" x2="650" y2="220"/>
+    <line x1="770" y1="200" x2="810" y2="190"/>
+    <line x1="770" y1="205" x2="810" y2="205"/>
+    <line x1="770" y1="210" x2="810" y2="220"/>
+  </g>
+
+  <!-- Code bracket left -->
+  <text x="120" y="230" font-family="monospace" font-size="80" fill="url(#teal)" opacity="0.7">&lt;</text>
+
+  <!-- Code bracket right -->
+  <text x="640" y="370" font-family="monospace" font-size="80" fill="url(#teal)" opacity="0.7">/&gt;</text>
+
+  <!-- Flow arrows connecting steps -->
+  <g fill="none" stroke="url(#teal)" stroke-width="2.5" opacity="0.6">
+    <!-- spec -> plan -->
+    <path d="M 210 230 C 240 230 240 170 270 170" marker-end="url(#arrow)"/>
+    <!-- plan -> tasks -->
+    <path d="M 320 170 C 350 170 350 230 380 230" marker-end="url(#arrow)"/>
+    <!-- tasks -> implement -->
+    <path d="M 440 230 C 470 230 470 170 500 170" marker-end="url(#arrow)"/>
+    <!-- implement -> review -->
+    <path d="M 560 170 C 590 170 590 230 620 230" marker-end="url(#arrow)"/>
+  </g>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#018786"/>
+    </marker>
+  </defs>
+
+  <!-- Step boxes -->
+  <!-- SPEC -->
+  <rect x="130" y="195" width="80" height="50" rx="8" fill="url(#teal)" opacity="0.9"/>
+  <text x="170" y="226" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0d1b2a" text-anchor="middle">SPEC</text>
+
+  <!-- PLAN -->
+  <rect x="270" y="135" width="80" height="50" rx="8" fill="url(#orange)" opacity="0.9"/>
+  <text x="310" y="166" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0d1b2a" text-anchor="middle">PLAN</text>
+
+  <!-- TASKS -->
+  <rect x="380" y="195" width="80" height="50" rx="8" fill="url(#teal)" opacity="0.9"/>
+  <text x="420" y="226" font-family="sans-serif" font-size="12" font-weight="bold" fill="#0d1b2a" text-anchor="middle">TASKS</text>
+
+  <!-- IMPLEMENT -->
+  <rect x="500" y="135" width="80" height="50" rx="8" fill="url(#orange)" opacity="0.9"/>
+  <text x="540" y="166" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0d1b2a" text-anchor="middle">IMPLEMENT</text>
+
+  <!-- REVIEW -->
+  <rect x="620" y="195" width="80" height="50" rx="8" fill="url(#teal)" opacity="0.9"/>
+  <text x="660" y="226" font-family="sans-serif" font-size="11" font-weight="bold" fill="#0d1b2a" text-anchor="middle">REVIEW</text>
+
+  <!-- Kanban lanes -->
+  <g font-family="sans-serif" font-size="11" fill="#ffffff" opacity="0.5">
+    <text x="160" y="350">planned</text>
+    <text x="320" y="350">doing</text>
+    <text x="480" y="350">for_review</text>
+    <text x="620" y="350">done</text>
+  </g>
+  <g stroke="#018786" stroke-width="1" opacity="0.3">
+    <line x1="240" y1="330" x2="240" y2="380"/>
+    <line x1="400" y1="330" x2="400" y2="380"/>
+    <line x1="560" y1="330" x2="560" y2="380"/>
+  </g>
+
+  <!-- Title area -->
+  <text x="400" y="60" font-family="sans-serif" font-size="22" font-weight="bold" fill="url(#teal)" text-anchor="middle" filter="url(#glow)">Spec Kitty</text>
+  <text x="400" y="82" font-family="sans-serif" font-size="13" fill="#FF9800" text-anchor="middle">Spec-Driven Development for AI Agents</text>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="430" width="800" height="20" fill="url(#teal)" opacity="0.3"/>
+</svg>

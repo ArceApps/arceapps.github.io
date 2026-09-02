@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100%" height="100%" fill="#018786"/>
+  
+  <!-- Window frame -->
+  <rect x="300" y="100" width="600" height="430" fill="#004D40" rx="20"/>
+  
+  <!-- Window panes (grid) -->
+  <rect x="320" y="120" width="280" height="190" fill="#FFFFFF" rx="5"/>
+  <rect x="620" y="120" width="260" height="190" fill="#FFFFFF" rx="5"/>
+  <rect x="320" y="330" width="280" height="180" fill="#FFFFFF" rx="5"/>
+  <rect x="620" y="330" width="260" height="180" fill="#FFFFFF" rx="5"/>
+  
+  <!-- Crack lines on broken pane -->
+  <line x1="420" y1="150" x2="550" y2="280" stroke="#FF9800" stroke-width="6"/>
+  <line x1="350" y1="220" x2="500" y2="180" stroke="#FF9800" stroke-width="5"/>
+  <line x1="480" y1="240" x2="580" y2="250" stroke="#FF9800" stroke-width="5"/>
+  <line x1="400" y1="280" x2="520" y2="300" stroke="#FF9800" stroke-width="4"/>
+  
+  <!-- Repair tools -->
+  <circle cx="750" cy="420" r="80" fill="#FF9800" opacity="0.2"/>
+  <path d="M720 390 L780 450 M780 390 L720 450" stroke="#FF9800" stroke-width="8"/>
+</svg>

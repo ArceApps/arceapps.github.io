@@ -1,1 +1,0 @@
-20260723-arceapps-visual-redesign-plan.md

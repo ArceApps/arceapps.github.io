@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#018786" />
+      <stop offset="100%" stop-color="#005f5e" />
+    </linearGradient>
+    <linearGradient id="secondaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9800" />
+      <stop offset="100%" stop-color="#E65100" />
+    </linearGradient>
+    <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#018786" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0" />
+    </radialGradient>
+    <!-- Grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E293B" stroke-width="1" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0F172A" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+  <circle cx="600" cy="315" r="500" fill="url(#bgGlow)" />
+
+  <!-- Geometric Abstract Shapes / Loop Elements -->
+  <!-- Outer glowing rings -->
+  <circle cx="600" cy="315" r="280" fill="none" stroke="#018786" stroke-width="1.5" stroke-dasharray="10 15" opacity="0.3" />
+  <circle cx="600" cy="315" r="250" fill="none" stroke="#FF9800" stroke-width="1" stroke-dasharray="5 10" opacity="0.2" />
+
+  <!-- Connecting Node Lines (Agnostic Bracket structure) -->
+  <path d="M 150 180 L 350 180 L 400 315 L 350 450 L 150 450" fill="none" stroke="#018786" stroke-width="2.5" opacity="0.4" />
+  <path d="M 1050 180 L 850 180 L 800 315 L 850 450 L 1050 450" fill="none" stroke="#FF9800" stroke-width="2.5" opacity="0.4" />
+  <line x1="400" y1="315" x2="800" y2="315" stroke="#018786" stroke-width="3" stroke-dasharray="8 6" opacity="0.5" />
+
+  <!-- Central Terminal Window -->
+  <g transform="translate(375, 140)">
+    <!-- Terminal shadow/glow -->
+    <rect x="-10" y="-10" width="470" height="370" rx="12" fill="#000000" opacity="0.4" />
+    <!-- Terminal Body -->
+    <rect x="0" y="0" width="450" height="350" rx="8" fill="#1E293B" stroke="#018786" stroke-width="3" />
+    <!-- Header -->
+    <path d="M 0 8 A 8 8 0 0 1 8 0 L 442 0 A 8 8 0 0 1 450 8 L 450 35 L 0 35 Z" fill="#0F172A" />
+    <!-- Buttons -->
+    <circle cx="20" cy="18" r="6" fill="#EF4444" />
+    <circle cx="40" cy="18" r="6" fill="#F59E0B" />
+    <circle cx="60" cy="18" r="6" fill="#10B981" />
+    <!-- Title -->
+    <text x="225" y="23" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="14" fill="#64748B" text-anchor="middle" letter-spacing="1">arceapps@terminal: ~</text>
+
+    <!-- Terminal Content (The Battle) -->
+    <text x="30" y="70" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="18" fill="#FF9800" font-weight="bold">> match start --semifinal-1</text>
+    
+    <text x="30" y="110" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="14" fill="#018786" font-weight="bold">agnostic_bracket_active: true</text>
+    <text x="30" y="130" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="14" fill="#94A3B8">contenders_loaded: 10/10</text>
+    
+    <!-- Code block visualization -->
+    <text x="30" y="170" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="12" fill="#475569">1: import { tournament } from 'arceapps-cli';</text>
+    <text x="30" y="190" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="12" fill="#475569">2: const sf1 = tournament.getSemifinal(1);</text>
+    <text x="30" y="210" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="12" fill="#475569">3: sf1.evaluate({</text>
+    <text x="30" y="230" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="12" fill="#475569">4:   criteria: 7,</text>
+    <text x="30" y="250" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="12" fill="#475569">5:   mode: 'strict-indie'</text>
+    <text x="30" y="270" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="12" fill="#475569">6: });</text>
+
+    <!-- CLI Cursor -->
+    <text x="30" y="310" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="16" fill="#E2E8F0">> evaluating...</text>
+    <rect x="180" y="295" width="10" height="18" fill="#FF9800">
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+    </rect>
+  </g>
+
+  <!-- Left Sidebar (Tools 01-05) -->
+  <g font-family="'JetBrains Mono', 'Fira Code', monospace">
+    <text x="140" y="120" font-size="14" fill="#64748B" font-weight="bold">WESTERN &amp; AGNOSTIC SECTOR</text>
+    
+    <!-- Tool 01 -->
+    <rect x="50" y="150" width="220" height="40" rx="6" fill="#1E293B" stroke="#018786" stroke-width="1.5" />
+    <text x="70" y="175" font-size="14" fill="#018786" font-weight="bold">01</text>
+    <text x="105" y="175" font-size="14" fill="#E2E8F0" font-weight="bold">CLAUDE CODE</text>
+    
+    <!-- Tool 02 -->
+    <rect x="50" y="210" width="220" height="40" rx="6" fill="#1E293B" stroke="#018786" stroke-width="1.5" />
+    <text x="70" y="235" font-size="14" fill="#018786" font-weight="bold">02</text>
+    <text x="105" y="235" font-size="14" fill="#E2E8F0" font-weight="bold">CLINE</text>
+
+    <!-- Tool 03 -->
+    <rect x="50" y="270" width="220" height="40" rx="6" fill="#1E293B" stroke="#018786" stroke-width="1.5" />
+    <text x="70" y="295" font-size="14" fill="#018786" font-weight="bold">03</text>
+    <text x="105" y="295" font-size="14" fill="#E2E8F0" font-weight="bold">MISTRAL VIBE</text>
+
+    <!-- Tool 04 -->
+    <rect x="50" y="330" width="220" height="40" rx="6" fill="#1E293B" stroke="#018786" stroke-width="1.5" />
+    <text x="70" y="355" font-size="14" fill="#018786" font-weight="bold">04</text>
+    <text x="105" y="355" font-size="14" fill="#E2E8F0" font-weight="bold">KIMI CODE CLI</text>
+
+    <!-- Tool 05 -->
+    <rect x="50" y="390" width="220" height="40" rx="6" fill="#1E293B" stroke="#018786" stroke-width="1.5" />
+    <text x="70" y="415" font-size="14" fill="#018786" font-weight="bold">05</text>
+    <text x="105" y="415" font-size="14" fill="#E2E8F0" font-weight="bold">MINIMAX CLI</text>
+  </g>
+
+  <!-- Right Sidebar (Tools 06-10) -->
+  <g font-family="'JetBrains Mono', 'Fira Code', monospace">
+    <text x="1060" y="120" font-size="14" fill="#64748B" font-weight="bold" text-anchor="end">UTILITIES &amp; AGENTS SECTOR</text>
+
+    <!-- Tool 06 -->
+    <rect x="930" y="150" width="220" height="40" rx="6" fill="#1E293B" stroke="#FF9800" stroke-width="1.5" />
+    <text x="950" y="175" font-size="14" fill="#FF9800" font-weight="bold">06</text>
+    <text x="985" y="175" font-size="14" fill="#E2E8F0" font-weight="bold">COPILOT CLI</text>
+    
+    <!-- Tool 07 -->
+    <rect x="930" y="210" width="220" height="40" rx="6" fill="#1E293B" stroke="#FF9800" stroke-width="1.5" />
+    <text x="950" y="235" font-size="14" fill="#FF9800" font-weight="bold">07</text>
+    <text x="985" y="235" font-size="14" fill="#E2E8F0" font-weight="bold">PI</text>
+
+    <!-- Tool 08 -->
+    <rect x="930" y="270" width="220" height="40" rx="6" fill="#1E293B" stroke="#FF9800" stroke-width="1.5" />
+    <text x="950" y="295" font-size="14" fill="#FF9800" font-weight="bold">08</text>
+    <text x="985" y="295" font-size="14" fill="#E2E8F0" font-weight="bold">HERMES</text>
+
+    <!-- Tool 09 -->
+    <rect x="930" y="330" width="220" height="40" rx="6" fill="#1E293B" stroke="#FF9800" stroke-width="1.5" />
+    <text x="950" y="355" font-size="14" fill="#FF9800" font-weight="bold">09</text>
+    <text x="985" y="355" font-size="14" fill="#E2E8F0" font-weight="bold">LLM</text>
+
+    <!-- Tool 10 -->
+    <rect x="930" y="390" width="220" height="40" rx="6" fill="#1E293B" stroke="#FF9800" stroke-width="1.5" />
+    <text x="950" y="415" font-size="14" fill="#FF9800" font-weight="bold">10</text>
+    <text x="985" y="415" font-size="14" fill="#E2E8F0" font-weight="bold">AICHAT</text>
+  </g>
+
+  <!-- Title & Branding -->
+  <g font-family="'JetBrains Mono', 'Fira Code', monospace" font-weight="700">
+    <text x="600" y="55" text-anchor="middle" font-size="34" fill="#E2E8F0" letter-spacing="6">CLI TOURNAMENT 2026</text>
+    <text x="600" y="90" text-anchor="middle" font-size="18" fill="#94A3B8" letter-spacing="4">SEMIFINAL 1: BATTLE OF THE TERMINAL AGENTS</text>
+  </g>
+
+  <!-- Footer Info -->
+  <g font-family="'JetBrains Mono', monospace" font-size="11" fill="#475569">
+    <text x="50" y="590">ArceApps · arceapps.com · 2026-07-08</text>
+    <text x="1150" y="590" text-anchor="end">BYOK · OPEN-SOURCE · AGENTIC CLI</text>
+  </g>
+</svg>

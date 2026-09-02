@@ -1,0 +1,13 @@
+graph LR
+  IDE["📱 Android Studio\nwith AI plugin"] --> Spec["📋 Write Spec\n(natural language)"]
+  Spec --> Validate["✅ AI validates\nagainst codebase"]
+  Validate --> Generate["🤖 Generate code\n(Compose + ViewModel)"]
+  Generate --> Test["🧪 Generate tests\n(JUnit + MockK)"]
+  Test --> Review["🔍 AI Review\n(PR comments)"]
+  Review --> Deploy["🚀 Deploy\n(GitHub Actions)"]
+
+  Review -->|"feedback loop"| Spec
+
+  style IDE fill:#018786,color:#fff,stroke:#018786
+  style Spec fill:#FF9800,color:#000,stroke:#FF9800
+  style Deploy fill:#018786,color:#fff,stroke:#018786

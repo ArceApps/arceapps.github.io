@@ -1,0 +1,71 @@
+---
+title: 4Line for Color lines
+description: >-
+  A colorful logic and puzzle game. Form lines of 4 or more tiles of the same
+  color to clear the board and earn points.
+pubDate: '2023-10-10'
+heroImage: >-
+  https://play-lh.googleusercontent.com/AsU3mwLRmnil8O13dJju384ESb4e__Gew6DvWnMx0Cmm5pGCvflgDGH3kF0Xv0nQ7g
+icon: linear_scale
+tags:
+  - Puzzle
+  - Strategy
+  - Brain Training
+googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.a4line'
+repoUrl: 'https://github.com/ArceApps/4Line.git'
+realIconUrl: >-
+  https://play-lh.googleusercontent.com/6rGaNE9lQxno4idyUqPCu5XkCDxz3mkS6HxUX-E9U4oXxGzzB2YooGgeJe96m7g8mQ
+screenshots:
+  - >-
+    https://play-lh.googleusercontent.com/ScAmhEgQkkBvx9FiLQrj_f4B_l6wUiBE8XhKoHS9aR7uvXB2siHbznTRDqRYNKP61t4
+  - >-
+    https://play-lh.googleusercontent.com/RBiMrDK9QMLJADQ2Ob7X3mZYPC1-eZzhDMMTKos7Nc_fVfpMM4-yENJOqknZOZDk9Tg
+  - >-
+    https://play-lh.googleusercontent.com/nvGPbjyDDl0hCvofM4e5vLQbYbmhn3pdDX_a55udHI63c6Wx1gqAU5OxSP2b7Wr1XlU
+  - >-
+    https://play-lh.googleusercontent.com/X848myaxFxKQmQ6Ui8xT-KsH1HYa9DIi6gPqPgNf5u8zG8kaJBU8KtlH0w1yg-zLcLg
+  - >-
+    https://play-lh.googleusercontent.com/eRUYQfIyPW3NgGU-X0km10LpSuaCJ4bU4kjdLCn4IIapMQ1JP1tbKTV6a1Z3GA66TIO9
+  - >-
+    https://play-lh.googleusercontent.com/snB8ZKP54-e4O_HvT47L5aFadoTTsfwAM2WyA00ZOedeXrxATySNLFfHcJSY1kh4mw
+  - >-
+    https://play-lh.googleusercontent.com/Vfjp6vkCmYEb8U91U6goSl_5LlQ2heL6herjW3uyUuJdJVOVO7yK94PUN87Iwn9tq7k
+  - >-
+    https://play-lh.googleusercontent.com/M5wICC6b3Iq7qP3HY-c_WIEv78orgwH2tVDS20nOuPUvSgzi-4xnMXzNsjqr4CYhgg
+lastUpdated: 'Jul 23, 2025'
+version: 2.1.1
+---
+
+<!-- ABOUT_START -->
+## Behind the App
+
+4Line is my take on Color Lines, a puzzle game that first appeared on PC in 1992 and has never truly left. There's something timeless about the "place a ball, build a line, plan three steps ahead" cycle that keeps players engaged long after they've learned the rules. I wanted to rebuild that feeling with modern Android standards — crisp colors, clean animations, and the kind of responsive touch input that the original PC mouse-driven version could never offer.
+
+What makes 4Line personally significant to me is that it was the first app where I truly wrestled with grid-based pathfinding. Implementing A* to route balls across the board, making sure the game never spawns new pieces in positions that cause an immediate loss, and balancing randomness so the game feels fair rather than arbitrary — these were genuinely hard problems that forced me to think like both a game designer and a systems engineer at the same time.
+
+The diagonal line scoring is a detail I'm particularly proud of. Most Color Lines clones ignore diagonals or handle them inconsistently. I spent a disproportionate amount of time making sure diagonal five-in-a-rows register exactly the way a player intuitively expects them to, because fairness in game mechanics is non-negotiable. Building this app taught me that the most important features are often the ones players never consciously notice.
+<!-- ABOUT_END -->
+
+<!-- STORE_DESCRIPTION_START -->
+
+**4Line for Color line** is a totally free game of logic, puzzle and brain teaser design for Android.
+It is easy, intuitive and addictive. Take a stimulating pause. Enjoy having your mind active and do it in a pleasant way.
+Challenge your mind! You are ready for a new challenge!
+
+<!-- STORE_DESCRIPTION_END -->
+
+## Game Tutorial
+
+*   **Objective**: 4Line for Color line game consists of moving color squares around the board forming lines with at least 4 squares of the same color.
+*   **Gameplay**: Each time we move a square another 3 with different colors come up, and randomly arrange themselves around the board.
+*   **Strategy**: The squares can be placed horizontally, vertically or diagonally. The more squares you can make disappear at the same time, the more points you get.
+*   **End Game**: The game ends when there are no empty squares or possible movements over the board.
+
+The game is similar to classic game 4Line for Color lines, etc, for a single player.
+
+## Features
+
+*   **Leaderboards**: Check daily, weakly and the highest score of the standings.
+*   **Updates**: Frequent game enhancements based on your comments.
+
+Get ready to face a new challenge! Enjoy the game!

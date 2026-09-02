@@ -1,0 +1,33 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ContactForm from "../../components/ContactForm.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import PageIntro from "../../components/PageIntro.astro";
+
+const title = "Contacto — ArceApps";
+const description = "Ponte en contacto con ArceApps. Preguntas, sugerencias, o simplemente saludar.";
+const breadcrumbItems = [
+  { label: "Inicio", href: "/es/" },
+  { label: "Contacto", href: "/es/contact" },
+];
+---
+
+<Layout title={title} description={description}>
+  <!-- Hero -->
+  <div class="border-b border-border bg-surface-subtle py-16 dark:border-dark-border dark:bg-dark-surface-subtle">
+    <div class="container mx-auto px-4 max-w-4xl text-center">
+      <PageIntro eyebrow="Hablemos" title="Contacto" description="¿Tienes alguna pregunta sobre mis apps, quieres comentarme una idea o simplemente saludar? Me encantaría escucharte." />
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="container mx-auto max-w-2xl px-4 py-16">
+    <div class="mb-4">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+
+    <div class="rounded-[2rem] border border-border bg-surface-raised p-6 shadow-xl shadow-primary/5 dark:border-dark-border dark:bg-dark-surface-raised md:p-10">
+      <ContactForm lang="es" />
+    </div>
+  </div>
+</Layout>

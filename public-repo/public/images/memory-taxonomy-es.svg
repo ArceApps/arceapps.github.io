@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Taxonomía de memoria agéntica: Episódica, Semántica, Procedural, Corto plazo, Largo plazo">
+  <defs>
+    <linearGradient id="bgLight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#E2E8F0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgLight)"/>
+
+  <g font-family="ui-sans-serif,Inter,system-ui">
+    <text x="600" y="64" text-anchor="middle" fill="#0F172A" font-size="32" font-weight="800">Taxonomía de memoria agéntica</text>
+    <text x="600" y="96" text-anchor="middle" fill="#475569" font-size="16">Cinco categorías que un agente cognitivo debería distinguir</text>
+  </g>
+
+  <g font-family="ui-sans-serif,Inter,system-ui" font-size="14" font-weight="600" text-anchor="middle">
+    <g transform="translate(260,210)">
+      <circle r="76" fill="#018786" opacity="0.12"/>
+      <circle r="64" fill="#018786"/>
+      <text fill="#FFFFFF" y="-6">Episódica</text>
+      <text fill="#FFFFFF" y="14" font-weight="400" opacity="0.9">hechos del usuario</text>
+    </g>
+    <g transform="translate(600,210)">
+      <circle r="76" fill="#014845" opacity="0.12"/>
+      <circle r="64" fill="#014845"/>
+      <text fill="#FFFFFF" y="-6">Semántica</text>
+      <text fill="#FFFFFF" y="14" font-weight="400" opacity="0.9">conocimiento estable</text>
+    </g>
+    <g transform="translate(940,210)">
+      <circle r="76" fill="#FF9800" opacity="0.14"/>
+      <circle r="64" fill="#FF9800"/>
+      <text fill="#0F172A" y="-6">Procedural</text>
+      <text fill="#0F172A" y="14" font-weight="400" opacity="0.85">skills y workflows</text>
+    </g>
+    <g transform="translate(430,440)">
+      <circle r="76" fill="#0EA5A4" opacity="0.14"/>
+      <circle r="64" fill="#0EA5A4"/>
+      <text fill="#FFFFFF" y="-6">Corto plazo</text>
+      <text fill="#FFFFFF" y="14" font-weight="400" opacity="0.9">working context</text>
+    </g>
+    <g transform="translate(770,440)">
+      <circle r="76" fill="#F57C00" opacity="0.14"/>
+      <circle r="64" fill="#F57C00"/>
+      <text fill="#FFFFFF" y="-6">Largo plazo</text>
+      <text fill="#FFFFFF" y="14" font-weight="400" opacity="0.9">consolidada</text>
+    </g>
+  </g>
+
+  <g stroke="#94A3B8" stroke-width="2" fill="none" stroke-dasharray="6 6">
+    <line x1="324" y1="270" x2="468" y2="380"/>
+    <line x1="664" y1="270" x2="744" y2="380"/>
+    <line x1="924" y1="240" x2="834" y2="380"/>
+  </g>
+
+  <g transform="translate(600,560)" font-family="ui-sans-serif,Inter,system-ui" text-anchor="middle">
+    <rect x="-280" y="0" width="560" height="44" rx="22" fill="#0F172A"/>
+    <text y="28" fill="#F1F5F9" font-size="15" font-weight="600">Todas alimentan un stack único de agente</text>
+  </g>
+</svg>

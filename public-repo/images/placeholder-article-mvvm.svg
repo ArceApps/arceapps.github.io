@@ -1,0 +1,88 @@
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1e293b"/>
+  
+  <!-- Background Pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="1" opacity="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="400" fill="url(#grid)"/>
+  
+  <!-- MVVM Architecture Diagram -->
+  <!-- Model Layer -->
+  <rect x="50" y="100" width="200" height="80" rx="10" fill="#4f46e5" opacity="0.8"/>
+  <text x="150" y="130" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">📊 MODEL</text>
+  <text x="150" y="150" text-anchor="middle" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="12">Repository • Use Cases</text>
+  <text x="150" y="165" text-anchor="middle" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="12">Room • Retrofit</text>
+  
+  <!-- ViewModel Layer -->
+  <rect x="300" y="50" width="200" height="80" rx="10" fill="#059669" opacity="0.8"/>
+  <text x="400" y="80" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">🎭 VIEWMODEL</text>
+  <text x="400" y="100" text-anchor="middle" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="12">LiveData • StateFlow</text>
+  <text x="400" y="115" text-anchor="middle" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="12">Presentation Logic</text>
+  
+  <!-- View Layer -->
+  <rect x="550" y="100" width="200" height="80" rx="10" fill="#dc2626" opacity="0.8"/>
+  <text x="650" y="130" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">👁️ VIEW</text>
+  <text x="650" y="150" text-anchor="middle" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="12">Fragment • Activity</text>
+  <text x="650" y="165" text-anchor="middle" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="12">Jetpack Compose</text>
+  
+  <!-- Arrows -->
+  <path d="M 250 140 L 300 90" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  <path d="M 500 90 L 550 140" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+  
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#10b981"/>
+    </marker>
+  </defs>
+  
+  <!-- Minesweeper Game Icon -->
+  <g transform="translate(340, 200)">
+    <!-- Game board -->
+    <rect x="0" y="0" width="120" height="120" rx="8" fill="#374151" stroke="#6b7280" stroke-width="2"/>
+    
+    <!-- Grid lines -->
+    <line x1="30" y1="0" x2="30" y2="120" stroke="#6b7280" stroke-width="1"/>
+    <line x1="60" y1="0" x2="60" y2="120" stroke="#6b7280" stroke-width="1"/>
+    <line x1="90" y1="0" x2="90" y2="120" stroke="#6b7280" stroke-width="1"/>
+    <line x1="0" y1="30" x2="120" y2="30" stroke="#6b7280" stroke-width="1"/>
+    <line x1="0" y1="60" x2="120" y2="60" stroke="#6b7280" stroke-width="1"/>
+    <line x1="0" y1="90" x2="120" y2="90" stroke="#6b7280" stroke-width="1"/>
+    
+    <!-- Game elements -->
+    <text x="15" y="22" text-anchor="middle" font-size="16">💣</text>
+    <text x="45" y="22" text-anchor="middle" font-size="12" fill="#10b981">1</text>
+    <text x="75" y="22" text-anchor="middle" font-size="16">🚩</text>
+    <text x="105" y="22" text-anchor="middle" font-size="12" fill="#ef4444">2</text>
+    
+    <text x="15" y="52" text-anchor="middle" font-size="12" fill="#10b981">1</text>
+    <text x="45" y="52" text-anchor="middle" font-size="12" fill="#3b82f6">3</text>
+    <text x="75" y="52" text-anchor="middle" font-size="16">🚩</text>
+    <text x="105" y="52" text-anchor="middle" font-size="12" fill="#ef4444">2</text>
+    
+    <text x="15" y="82" text-anchor="middle" font-size="16">🚩</text>
+    <text x="45" y="82" text-anchor="middle" font-size="12" fill="#ef4444">2</text>
+    <text x="75" y="82" text-anchor="middle" font-size="16">💣</text>
+    <text x="105" y="82" text-anchor="middle" fill="#6b7280">⬜</text>
+    
+    <text x="15" y="112" text-anchor="middle" fill="#6b7280">⬜</text>
+    <text x="45" y="112" text-anchor="middle" fill="#6b7280">⬜</text>
+    <text x="75" y="112" text-anchor="middle" fill="#6b7280">⬜</text>
+    <text x="105" y="112" text-anchor="middle" fill="#6b7280">⬜</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#f1f5f9" font-family="Arial, sans-serif" font-size="24" font-weight="bold">MVVM Architecture</text>
+  
+  <!-- Subtitle -->
+  <text x="400" y="360" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14">Implementación con ejemplo práctico de Buscaminas Android</text>
+  
+  <!-- Android Icons -->
+  <text x="80" y="350" font-size="20">🤖</text>
+  <text x="150" y="350" font-size="20">📱</text>
+  <text x="650" y="350" font-size="20">⚡</text>
+  <text x="720" y="350" font-size="20">🧪</text>
+</svg>

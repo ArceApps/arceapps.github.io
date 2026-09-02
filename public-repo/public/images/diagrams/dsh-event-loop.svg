@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" role="img" aria-label="DeepSeek Harness event-driven loop: turn wrapping steps, each step a model request plus tool calls">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1F2937" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9CA3AF"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF9800"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="700" fill="url(#bg)"/>
+  <rect width="1200" height="700" fill="url(#grid)" opacity="0.4"/>
+
+  <!-- Title -->
+  <g transform="translate(60, 50)">
+    <rect width="14" height="56" fill="#FF9800"/>
+    <text x="30" y="28" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="22" font-weight="700" fill="#FFFFFF">Cordis event loop</text>
+    <text x="30" y="50" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" fill="#9CA3AF">turn wraps one or more steps; each step = 1 model request + tool calls</text>
+  </g>
+
+  <!-- Turn swimlane (top strip) -->
+  <g transform="translate(80, 140)">
+    <rect x="0" y="0" width="1040" height="120" rx="14" fill="#0B1220" stroke="#018786" stroke-width="2"/>
+    <text x="20" y="26" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#018786">TURN</text>
+    <text x="20" y="46" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#9CA3AF">user input → everything done</text>
+
+    <!-- turn events as a horizontal row -->
+    <g font-family="ui-monospace, Menlo, monospace" font-size="12">
+      <g transform="translate(140, 75)">
+        <rect x="-60" y="-20" width="120" height="40" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FFFFFF" font-weight="700">turn/start</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">user input</text>
+      </g>
+      <g transform="translate(320, 75)">
+        <rect x="-78" y="-20" width="156" height="40" rx="8" fill="#3a2a0a" stroke="#FF9800" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FF9800" font-weight="700">agent/pre-step</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">plugin can rewrite</text>
+      </g>
+      <g transform="translate(700, 75)">
+        <rect x="-90" y="-20" width="180" height="40" rx="8" fill="#3a2a0a" stroke="#FF9800" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FF9800" font-weight="700">agent/turn-stopping</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">end-of-turn check</text>
+      </g>
+      <g transform="translate(940, 75)">
+        <rect x="-60" y="-20" width="120" height="40" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FFFFFF" font-weight="700">turn/end</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">session log</text>
+      </g>
+    </g>
+
+    <!-- arrows -->
+    <line x1="200" y1="75" x2="240" y2="75" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <line x1="400" y1="75" x2="610" y2="75" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4 4"/>
+    <line x1="790" y1="75" x2="880" y2="75" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Connector arrow: pre-step → step/start -->
+  <g transform="translate(400, 260)">
+    <line x1="0" y1="0" x2="0" y2="50" stroke="#FF9800" stroke-width="2" marker-end="url(#arrowOrange)"/>
+    <text x="10" y="30" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#FF9800">invokes</text>
+  </g>
+
+  <!-- Step swimlane -->
+  <g transform="translate(80, 320)">
+    <rect x="0" y="0" width="1040" height="280" rx="14" fill="#0B1220" stroke="#018786" stroke-width="2"/>
+    <text x="20" y="26" font-family="ui-monospace, Menlo, monospace" font-size="14" font-weight="700" fill="#018786">STEP</text>
+    <text x="20" y="46" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#9CA3AF">one model request + whatever tool calls it triggers</text>
+
+    <!-- step events: a vertical loop -->
+    <g font-family="ui-monospace, Menlo, monospace" font-size="11">
+      <g transform="translate(140, 110)">
+        <rect x="-60" y="-22" width="120" height="44" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FFFFFF" font-weight="700">step/start</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">begin step</text>
+      </g>
+      <g transform="translate(140, 200)">
+        <rect x="-78" y="-22" width="156" height="44" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FFFFFF" font-weight="700">system-prompt/assemble</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">plugins contribute</text>
+      </g>
+
+      <g transform="translate(380, 110)">
+        <rect x="-60" y="-22" width="120" height="44" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FFFFFF" font-weight="700">agent/request</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">build LLM call</text>
+      </g>
+      <g transform="translate(380, 200)">
+        <rect x="-60" y="-22" width="120" height="44" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FFFFFF" font-weight="700">llm/stream</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">tokens in</text>
+      </g>
+
+      <g transform="translate(620, 110)">
+        <rect x="-72" y="-22" width="144" height="44" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FFFFFF" font-weight="700">assistant/message</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">tool calls?</text>
+      </g>
+      <g transform="translate(620, 200)">
+        <rect x="-72" y="-22" width="144" height="44" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FFFFFF" font-weight="700">tools/pre-execute</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">plugin can refuse</text>
+      </g>
+
+      <g transform="translate(860, 110)">
+        <rect x="-66" y="-22" width="132" height="44" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FFFFFF" font-weight="700">tools/execute</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">run in sandbox</text>
+      </g>
+      <g transform="translate(860, 200)">
+        <rect x="-72" y="-22" width="144" height="44" rx="8" fill="#3a2a0a" stroke="#FF9800" stroke-width="2"/>
+        <text text-anchor="middle" y="-2" fill="#FF9800" font-weight="700">tools/post-execute</text>
+        <text text-anchor="middle" y="14" fill="#9CA3AF" font-size="10">plugin can rewrite</text>
+      </g>
+    </g>
+
+    <!-- arrows in step -->
+    <g stroke="#9CA3AF" stroke-width="1.5" fill="none">
+      <line x1="200" y1="110" x2="320" y2="110" marker-end="url(#arrow)"/>
+      <line x1="320" y1="134" x2="320" y2="178" marker-end="url(#arrow)"/>
+      <line x1="320" y1="200" x2="320" y2="222" stroke="#018786" stroke-width="2"/>
+      <line x1="200" y1="200" x2="320" y2="200" marker-end="url(#arrow)" stroke-dasharray="4 4"/>
+
+      <line x1="440" y1="110" x2="560" y2="110" marker-end="url(#arrow)"/>
+      <line x1="440" y1="200" x2="560" y2="200" marker-end="url(#arrow)"/>
+
+      <line x1="620" y1="134" x2="620" y2="178" marker-end="url(#arrow)"/>
+      <line x1="692" y1="110" x2="800" y2="110" marker-end="url(#arrow)"/>
+      <line x1="692" y1="200" x2="800" y2="200" marker-end="url(#arrow)"/>
+
+      <line x1="860" y1="134" x2="860" y2="178" marker-end="url(#arrow)"/>
+    </g>
+
+    <!-- decision diamond + step/end -->
+    <g transform="translate(940, 155)">
+      <polygon points="-50,0 0,-30 50,0 0,30" fill="#0F172A" stroke="#FF9800" stroke-width="2"/>
+      <text text-anchor="middle" y="-2" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#FFFFFF" font-weight="700">more tool</text>
+      <text text-anchor="middle" y="12" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#FFFFFF" font-weight="700">calls?</text>
+    </g>
+    <g font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">
+      <text x="900" y="240" text-anchor="end">no →</text>
+      <text x="990" y="80" text-anchor="end">yes → loop back</text>
+    </g>
+    <!-- yes loop arrow -->
+    <path d="M 940 130 Q 600 60 200 195" fill="none" stroke="#FF9800" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrowOrange)"/>
+    <!-- no arrow -->
+    <line x1="940" y1="185" x2="940" y2="245" stroke="#9CA3AF" stroke-width="1.5" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- step/end pill -->
+  <g transform="translate(960, 600)">
+    <rect x="-60" y="-22" width="120" height="44" rx="8" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+    <text text-anchor="middle" y="-2" font-family="ui-monospace, Menlo, monospace" font-size="12" fill="#FFFFFF" font-weight="700">step/end</text>
+    <text text-anchor="middle" y="14" font-family="ui-monospace, Menlo, monospace" font-size="10" fill="#9CA3AF">returns to turn</text>
+  </g>
+
+  <!-- legend -->
+  <g transform="translate(60, 640)" font-family="ui-monospace, Menlo, monospace" font-size="11">
+    <rect x="0" y="0" width="14" height="14" fill="#0F172A" stroke="#018786" stroke-width="2"/>
+    <text x="22" y="11" fill="#FFFFFF">core event</text>
+    <rect x="120" y="0" width="14" height="14" fill="#3a2a0a" stroke="#FF9800" stroke-width="2"/>
+    <text x="142" y="11" fill="#FFFFFF">interceptable gate</text>
+    <rect x="280" y="0" width="14" height="14" fill="#0F172A" stroke="#FF9800" stroke-width="2"/>
+    <text x="302" y="11" fill="#FFFFFF">decision</text>
+    <line x1="380" y1="7" x2="420" y2="7" stroke="#FF9800" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <text x="430" y="11" fill="#FFFFFF">re-entry loop</text>
+  </g>
+
+  <!-- footer -->
+  <g transform="translate(60, 678)" font-family="ui-monospace, Menlo, monospace" font-size="11" fill="#6B7280">
+    <text>ARCEAPPS · 2026 · model-visible means logged (Cordis invariant)</text>
+  </g>
+</svg>

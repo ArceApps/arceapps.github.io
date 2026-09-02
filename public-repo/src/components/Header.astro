@@ -1,0 +1,191 @@
+---
+import { Image } from "astro:assets";
+import brandIcon from "../assets/brand-icon.png";
+import Search from "./Search.astro";
+import { getLangFromUrl, useTranslations, isPathActive, getLocalizedTogglePath } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props {
+  translatedPath?: string;
+}
+
+const { translatedPath } = Astro.props;
+
+const navItems = [
+  { label: t('nav.home'), href: lang === 'es' ? '/es' : '/' },
+  { label: t('nav.apps'), href: lang === 'es' ? '/es/apps' : '/apps' },
+  { label: t('nav.projects'), href: lang === 'es' ? '/es/projects' : '/projects' },
+  { label: t('nav.blog'), href: lang === 'es' ? '/es/blog' : '/blog' },
+  { label: t('nav.devlog'), href: lang === 'es' ? '/es/devlog' : '/devlog' },
+  { label: t('nav.about'), href: lang === 'es' ? '/es/about-me' : '/about-me' },
+  { label: t('nav.contact'), href: lang === 'es' ? '/es/contact' : '/contact' },
+];
+
+const { pathname } = Astro.url;
+
+const isActive = (href: string) => isPathActive(pathname, href);
+
+// Language Toggle Logic
+const currentLang = lang;
+const nextLang = currentLang === 'es' ? 'en' : 'es';
+const nextLangLabel = currentLang === 'es' ? 'EN' : 'ES';
+
+// Use translatedPath if provided, otherwise fallback to simple path replacement
+const nextPath = translatedPath || getLocalizedTogglePath(Astro.url, currentLang);
+---
+
+<header
+  class="sticky top-0 z-50 bg-surface/90 dark:bg-dark-surface/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300"
+>
+  <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a
+      href={lang === 'es' ? '/es' : '/'}
+      data-astro-prefetch
+      class="flex items-center gap-2 group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg p-1"
+    >
+      <Image
+        src={brandIcon}
+        alt="ArceApps Logo"
+        width={40}
+        height={40}
+        loading="eager"
+        fetchpriority="high"
+        class="w-10 h-10 rounded-full shadow-md group-hover:scale-105 transition-transform"
+      />
+      <span
+        class="text-xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface"
+      >
+        Arce<span class="text-primary">Apps</span>
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-6 xl:gap-8">
+      {
+        navItems.map((item) => {
+          const active = isActive(item.href);
+          return (
+            <a
+              href={item.href}
+              data-astro-prefetch
+              aria-current={active ? "page" : undefined}
+              class:list={[
+                "text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded px-2 py-1",
+                active
+                  ? "text-primary font-bold"
+                  : "text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary dark:hover:text-primary",
+              ]}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-2">
+      <!-- Search -->
+      <Search />
+
+      <!-- Language Toggle -->
+      <a
+        id="language-toggle"
+        href={nextPath}
+        class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        aria-label={t('nav.language')}
+        data-lang={nextLang}
+      >
+        {nextLangLabel}
+      </a>
+
+      <!-- Theme Toggle -->
+      <button
+        id="theme-toggle"
+        class="relative w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary overflow-hidden"
+        aria-label={t('nav.theme')}
+      >
+        <div class="relative w-6 h-6">
+          <!-- Moon Icon (Visible in Light Mode -> Action: Go Dark) -->
+          <span
+            id="icon-dark"
+            class="material-icons absolute inset-0 text-xl transform transition-all duration-500 motion-reduce:duration-0 rotate-0 scale-100 opacity-100 dark:-rotate-90 dark:scale-0 dark:opacity-0"
+            aria-hidden="true"
+          >
+            dark_mode
+          </span>
+          <!-- Sun Icon (Visible in Dark Mode -> Action: Go Light) -->
+          <span
+            id="icon-light"
+            class="material-icons absolute inset-0 text-xl transform transition-all duration-500 motion-reduce:duration-0 rotate-90 scale-0 opacity-0 dark:rotate-0 dark:scale-100 dark:opacity-100"
+            aria-hidden="true"
+          >
+            light_mode
+          </span>
+        </div>
+      </button>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="menu-toggle"
+        class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        aria-label={t('nav.menu')}
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-haspopup="true"
+      >
+        <span class="material-icons text-2xl" aria-hidden="true">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden absolute left-4 right-4 max-h-[calc(100vh-5rem)] overflow-y-auto overscroll-contain rounded-xl border border-gray-200 dark:border-gray-700 bg-surface dark:bg-dark-surface shadow-lg motion-reduce:scroll-auto"
+    aria-hidden="true"
+    data-state="closed"
+  >
+    <nav class="flex flex-col p-4">
+      {
+        navItems.map((item) => {
+          const active = isActive(item.href);
+          return (
+            <a
+              href={item.href}
+              data-astro-prefetch
+              aria-current={active ? "page" : undefined}
+              class:list={[
+                "py-3 px-4 text-base rounded-lg border-l-4 transition-colors motion-reduce:transition-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none",
+                active
+                  ? "border-primary font-bold text-primary bg-primary/10 dark:bg-primary/5"
+                  : "border-transparent font-medium text-on-surface dark:text-dark-on-surface hover:bg-surface-variant dark:hover:bg-gray-800",
+              ]}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</header>
+
+<script src="../scripts/header.ts"></script>
+<script>
+  // Language preference handler
+  document.addEventListener('astro:page-load', () => {
+    const langToggle = document.getElementById('language-toggle');
+    if (langToggle) {
+      langToggle.addEventListener('click', () => {
+        const nextLang = langToggle.getAttribute('data-lang');
+        if (nextLang) {
+          localStorage.setItem('lang-preference', nextLang);
+        }
+      });
+    }
+  });
+</script>

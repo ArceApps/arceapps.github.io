@@ -1,0 +1,21 @@
+{
+  "name": "ArceApps",
+  "short_name": "ArceApps",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#018786",
+  "description": "Desarrollo de aplicaciones Android de calidad, modernas y funcionales.",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

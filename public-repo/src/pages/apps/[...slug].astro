@@ -1,0 +1,188 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { optimizeGooglePlayImage } from "../../utils/image-optimization";
+import { useTranslations } from "../../i18n/utils";
+
+const t = useTranslations('en');
+
+export async function getStaticPaths() {
+  const apps = await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('en/'));
+  const esApps = await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('es/'));
+
+  const esAppsMap = new Map();
+  for (const app of esApps) {
+    if (app.data.reference_id) {
+      esAppsMap.set(app.data.reference_id, app);
+    }
+  }
+
+  return apps.map((app) => {
+    let hreflangPath = undefined;
+    if (app.data.reference_id) {
+      const esApp = esAppsMap.get(app.data.reference_id);
+      if (esApp) {
+        hreflangPath = `/es/apps/${esApp.slug.split('/').pop()}`;
+      }
+    }
+
+    return {
+      params: { slug: app.slug.split('/').pop() },
+      props: { app, hreflangPath },
+    };
+  });
+}
+
+const { app, hreflangPath } = Astro.props;
+const { Content } = await app.render();
+---
+
+<Layout 
+  title={`${app.data.title} - ArceApps Portfolio`}
+  description={app.data.description}
+  hreflangPath={hreflangPath}
+  isAppPage={true}
+  image={`/images/og/apps-en-${app.slug.split('/').pop()}.png`}
+  appData={{
+    rating: app.data.rating,
+    realIconUrl: app.data.realIconUrl,
+    googlePlayUrl: app.data.googlePlayUrl,
+  }}
+>
+  <section class="border-b border-border bg-surface dark:border-dark-border dark:bg-dark-surface">
+      <div class="container mx-auto px-4 py-14 md:py-20">
+        <div class="max-w-4xl">
+          <h1 class="text-4xl font-semibold leading-tight text-on-surface dark:text-dark-on-surface md:text-6xl">
+            {app.data.title}
+          </h1>
+          <p class="mt-6 max-w-3xl text-xl leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant md:text-2xl">
+            {app.data.description}
+          </p>
+
+          <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
+            <figure class="overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-sm dark:border-dark-border dark:bg-dark-surface-raised">
+              <div class="aspect-[2/1] w-full">
+                {app.data.heroImage ? (
+                  <img
+                    src={optimizeGooglePlayImage(app.data.heroImage, 800, 'width')}
+                    alt={app.data.title}
+                    width="400"
+                    height="500"
+                    fetchpriority="high"
+                    class="h-full w-full object-contain"
+                  />
+                ) : (
+                  <div class="flex h-full flex-col items-center justify-center text-on-surface-variant dark:text-dark-on-surface-variant">
+                    <span class="material-icons mb-4 text-8xl" aria-hidden="true">smartphone</span>
+                    <span class="text-xl font-medium">{t('apps.no_image')}</span>
+                  </div>
+                )}
+              </div>
+            </figure>
+
+            <div class="rounded-2xl border border-border bg-surface-raised p-6 dark:border-dark-border dark:bg-dark-surface-raised">
+              <div class="flex items-center gap-4">
+                {app.data.realIconUrl && (
+                  <img src={optimizeGooglePlayImage(app.data.realIconUrl, 128, 'square')} alt={`${t('apps.icon_alt')} ${app.data.title}`} class="h-16 w-16 rounded-2xl border border-border object-cover dark:border-dark-border" />
+                )}
+              </div>
+
+              <div class="mt-8 flex flex-wrap gap-3">
+                {app.data.googlePlayUrl && (
+                  <a
+                    href={app.data.googlePlayUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-3 rounded-xl border border-primary bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-focus/30 motion-reduce:transition-none"
+                  >
+                    <span class="material-icons" aria-hidden="true">shop</span>
+                    Google Play
+                  </a>
+                )}
+
+                {app.data.demoUrl && (
+                  <a
+                    href={app.data.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 font-medium text-on-surface transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/30 motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface"
+                  >
+                    <span class="material-icons" aria-hidden="true">visibility</span>
+                    {t('apps.live_demo')}
+                  </a>
+                )}
+
+                {app.data.repoUrl && (
+                  <a
+                    href={app.data.repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 font-medium text-on-surface transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/30 motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface"
+                  >
+                    <span class="material-icons" aria-hidden="true">code</span>
+                    {t('apps.code')}
+                  </a>
+                )}
+              </div>
+
+              <div class="mt-6 flex flex-wrap gap-2 text-sm text-on-surface dark:text-dark-on-surface">
+                {app.data.rating && <span>{app.data.rating} <span class="material-icons align-middle text-base text-yellow-500" aria-hidden="true">star</span></span>}
+                {app.data.version && <span>v{app.data.version}</span>}
+                {app.data.lastUpdated && <span>{t('apps.updated')}: {app.data.lastUpdated}</span>}
+              </div>
+
+              <div class="mt-4 flex flex-wrap gap-2">
+                {app.data.tags?.map(tag => (
+                  <span class="rounded-full border border-border bg-surface px-3 py-1 text-sm font-medium text-primary dark:border-dark-border dark:bg-dark-surface">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <article class="bg-surface-subtle py-14 dark:bg-dark-surface-subtle md:py-20">
+      <div class="container mx-auto max-w-4xl px-4">
+
+      {app.data.screenshots && app.data.screenshots.length > 0 && (
+        <div class="mb-12">
+          <h2 class="text-2xl font-bold mb-6 text-on-surface dark:text-dark-on-surface flex items-center gap-2">
+            <span class="material-icons text-primary" aria-hidden="true">collections</span>
+            {t('apps.gallery')}
+          </h2>
+          <div
+            class="grid grid-cols-2 gap-4 rounded-2xl border border-border bg-surface-raised p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/30 motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-raised sm:grid-cols-3 lg:grid-cols-4"
+            tabindex="0"
+            aria-label={t('apps.gallery_aria')}
+          >
+            {app.data.screenshots.map((screenshot, index) => (
+              <div class="aspect-[3/4] overflow-hidden rounded-xl border border-border bg-surface dark:border-dark-border dark:bg-dark-surface">
+                <img
+                  src={screenshot}
+                  alt={`${t('apps.screenshot_alt')} ${index + 1}`}
+                  class="h-full w-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div class="prose prose-lg break-words dark:prose-invert max-w-none rounded-2xl border border-border bg-surface-raised p-6 shadow-sm dark:border-dark-border dark:bg-dark-surface-raised md:p-10">
+        <Content />
+      </div>
+
+      <!-- Navigation Footer -->
+      <div class="mt-12 flex justify-between items-center">
+        <a href="/apps" class="flex items-center gap-2 text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded motion-reduce:transition-none">
+          <span class="material-icons" aria-hidden="true">arrow_back</span>
+          {t('common.back')}
+        </a>
+      </div>
+      </div>
+    </article>
+</Layout>

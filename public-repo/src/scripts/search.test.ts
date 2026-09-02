@@ -1,0 +1,383 @@
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+
+describe('Search Script', () => {
+  let searchModule: typeof import('./search');
+  let searchMock: ReturnType<typeof vi.fn>;
+
+  beforeEach(async () => {
+    vi.resetModules();
+
+    // Reset DOM
+    document.body.innerHTML = `
+      <button id="search-button" aria-expanded="false"></button>
+      <div id="search-modal" class="hidden">
+        <button id="close-search"></button>
+        <input id="search-input" type="text" />
+        <div id="search-results" class="hidden"></div>
+        <div id="search-status"></div>
+      </div>
+    `;
+
+    // Setup Mock for Fuse.js
+    searchMock = vi.fn();
+    vi.doMock('fuse.js', () => {
+      return {
+        default: class {
+          search = searchMock;
+        }
+      };
+    });
+
+    // Import module dynamically
+    searchModule = await import('./search');
+
+    // Initialize component
+    searchModule.initSearchComponent();
+  });
+
+  describe('debounce', () => {
+    it('should delay function execution', () => {
+      vi.useFakeTimers();
+      const func = vi.fn();
+      const debouncedFunc = searchModule.debounce(func, 100);
+
+      debouncedFunc();
+      expect(func).not.toHaveBeenCalled();
+
+      vi.advanceTimersByTime(50);
+      expect(func).not.toHaveBeenCalled();
+
+      vi.advanceTimersByTime(50);
+      expect(func).toHaveBeenCalledTimes(1);
+      vi.useRealTimers();
+    });
+
+    it('should only execute once for multiple calls', () => {
+      vi.useFakeTimers();
+      const func = vi.fn();
+      const debouncedFunc = searchModule.debounce(func, 100);
+
+      debouncedFunc();
+      debouncedFunc();
+      debouncedFunc();
+
+      vi.advanceTimersByTime(100);
+      expect(func).toHaveBeenCalledTimes(1);
+      vi.useRealTimers();
+    });
+
+    it('should pass arguments to the function', () => {
+      vi.useFakeTimers();
+      const func = vi.fn();
+      const debouncedFunc = searchModule.debounce(func, 100);
+
+      debouncedFunc('test', 123);
+
+      vi.advanceTimersByTime(100);
+      expect(func).toHaveBeenCalledWith('test', 123);
+      vi.useRealTimers();
+    });
+
+    it('should preserve this context', () => {
+      vi.useFakeTimers();
+      const context = { value: 'test' };
+      let capturedContext: any;
+      const func = function(this: any) {
+        capturedContext = this;
+      };
+      const debouncedFunc = searchModule.debounce(func, 100);
+
+      debouncedFunc.call(context);
+
+      vi.advanceTimersByTime(100);
+      expect(capturedContext).toBe(context);
+      vi.useRealTimers();
+    });
+  });
+
+  describe('initFuse error handling', () => {
+    it('should show error message when fetch response is not ok', async () => {
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: false,
+            status: 404,
+        });
+
+        await searchModule.initFuse();
+
+        const status = document.getElementById('search-status');
+        expect(status?.textContent).toBe('Error al cargar el buscador.');
+    });
+
+    it('should show error message when fetch throws an error', async () => {
+        global.fetch = vi.fn().mockRejectedValue(new Error('Network failure'));
+
+        await searchModule.initFuse();
+
+        const status = document.getElementById('search-status');
+        expect(status?.textContent).toBe('Error al cargar el buscador.');
+    });
+
+    it('should allow retry after a failure', async () => {
+        // First call fails
+        global.fetch = vi.fn().mockRejectedValueOnce(new Error('First failure'))
+                               .mockResolvedValueOnce({
+                                   ok: true,
+                                   json: () => Promise.resolve([]),
+                               });
+
+        await searchModule.initFuse();
+        expect(global.fetch).toHaveBeenCalledTimes(1);
+
+        // Second call should trigger fetch again because loadingPromise was reset
+        await searchModule.initFuse();
+        expect(global.fetch).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  describe('performSearch', () => {
+    it('should show "at least 2 characters" message for short query', async () => {
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([{ title: "Test", slug: "/test", type: "App" }]),
+        });
+
+        await searchModule.initFuse();
+        searchModule.performSearch('a');
+
+        const status = document.getElementById('search-status');
+        expect(status?.textContent).toContain('Escribe al menos 2 caracteres');
+    });
+
+    it('should display results when query matches', async () => {
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([{ title: "Test App", slug: "/app", type: "App" }]),
+        });
+
+        searchMock.mockReturnValue([{
+            item: { title: "Test App", slug: "/app", type: "App", description: "Desc" }
+        }]);
+
+        await searchModule.initFuse();
+        searchModule.performSearch('test');
+
+        const results = document.getElementById('search-results');
+        expect(results?.innerHTML).toContain('Test App');
+    });
+
+    it('should sanitize javascript: URIs in results', async () => {
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([{ title: "XSS", slug: "javascript:alert(1)", type: "App" }]),
+        });
+
+        searchMock.mockReturnValue([{
+            item: { title: "XSS", slug: "javascript:alert(1)", type: "App", description: "Vulnerable" }
+        }]);
+
+        await searchModule.initFuse();
+        searchModule.performSearch('xss');
+
+        const results = document.getElementById('search-results');
+        const anchor = results?.querySelector('a');
+        expect(anchor?.getAttribute('href')).toBe('about:blank');
+    });
+
+    it('should NOT sanitize legitimate URIs in results', async () => {
+        const legitimateSlug = "/blog/my-awesome-post";
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([{ title: "Safe", slug: legitimateSlug, type: "Article" }]),
+        });
+
+        searchMock.mockReturnValue([{
+            item: { title: "Safe", slug: legitimateSlug, type: "Article", description: "Safe Link" }
+        }]);
+
+        await searchModule.initFuse();
+        searchModule.performSearch('safe');
+
+        const results = document.getElementById('search-results');
+        const anchor = results?.querySelector('a');
+        expect(anchor?.getAttribute('href')).toBe(legitimateSlug);
+    });
+
+    it('should render malicious title as plain text (XSS protection)', async () => {
+        const xssPayload = '<img src=x onerror=alert(1)>';
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([{ title: xssPayload, slug: "/app", type: "App", description: "Desc" }]),
+        });
+
+        searchMock.mockReturnValue([{
+            item: { title: xssPayload, slug: "/app", type: "App", description: "Desc" }
+        }]);
+
+        await searchModule.initFuse();
+        searchModule.performSearch('xss');
+
+        const results = document.getElementById('search-results');
+        const h4 = results?.querySelector('h4');
+        expect(h4?.textContent).toBe(xssPayload);
+        expect(h4?.innerHTML).not.toContain('<img');
+    });
+
+    it('should render malicious query as plain text in "no results" (XSS protection)', async () => {
+        const xssPayload = '"><img src=x onerror=alert(1)>';
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([]),
+        });
+
+        searchMock.mockReturnValue([]);
+
+        await searchModule.initFuse();
+        searchModule.performSearch(xssPayload);
+
+        const status = document.getElementById('search-status');
+        expect(status?.textContent).toContain(`No encontramos resultados para "${xssPayload}"`);
+        expect(status?.innerHTML).not.toContain('<img');
+    });
+  });
+
+
+  describe('closeModal', () => {
+    it('should hide modal and reset body overflow', () => {
+      const modal = document.getElementById('search-modal');
+      modal?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      searchModule.closeModal();
+
+      expect(modal?.classList.contains('hidden')).toBe(true);
+      expect(document.body.style.overflow).toBe('');
+    });
+
+    it('should set aria-expanded to false on search button', () => {
+      const button = document.getElementById('search-button');
+      button?.setAttribute('aria-expanded', 'true');
+
+      searchModule.closeModal();
+
+      expect(button?.getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('should clear the search input', () => {
+      const input = document.getElementById('search-input') as HTMLInputElement;
+      if (input) input.value = 'test query';
+
+      searchModule.closeModal();
+
+      expect(input?.value).toBe('');
+    });
+
+    it('should clear and hide search results', () => {
+      const results = document.getElementById('search-results');
+      if (results) {
+        results.textContent = 'Some results';
+        results.classList.remove('hidden');
+      }
+
+      searchModule.closeModal();
+
+      expect(results?.textContent).toBe('');
+      expect(results?.classList.contains('hidden')).toBe(true);
+    });
+
+    it('should reset and show search status', () => {
+      const status = document.getElementById('search-status');
+      if (status) {
+        status.textContent = 'Searching...';
+        status.classList.add('hidden');
+      }
+
+      searchModule.closeModal();
+
+      expect(status?.textContent).toBe('Escribe para buscar...');
+      expect(status?.classList.contains('hidden')).toBe(false);
+    });
+
+    it('should handle missing elements gracefully without throwing errors', () => {
+      // Create a scenario where elements are missing by overwriting innerHTML temporarily
+      const originalHTML = document.body.innerHTML;
+      document.body.innerHTML = '';
+
+      // Re-initialize to update references to nulls internally in searchModule
+      searchModule.initSearchComponent();
+
+      expect(() => {
+        searchModule.closeModal();
+      }).not.toThrow();
+
+      // Restore
+      document.body.innerHTML = originalHTML;
+      searchModule.initSearchComponent();
+    });
+  });
+
+  describe('initSearchComponent', () => {
+    it('should prefetch on mouseenter', () => {
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([]),
+        });
+
+        const button = document.getElementById('search-button');
+        button?.dispatchEvent(new Event('mouseenter'));
+
+        expect(global.fetch).toHaveBeenCalledWith('/search-index.json');
+    });
+
+    it('should prefetch on focus', () => {
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([]),
+        });
+
+        const button = document.getElementById('search-button');
+        button?.dispatchEvent(new Event('focus'));
+
+        expect(global.fetch).toHaveBeenCalledWith('/search-index.json');
+    });
+  });
+
+  describe('sanitizeUrl', () => {
+    it('should return empty string for empty input', () => {
+      expect(searchModule.sanitizeUrl('')).toBe('');
+    });
+
+    it('should allow safe relative URLs', () => {
+      expect(searchModule.sanitizeUrl('/blog/post')).toBe('/blog/post');
+      expect(searchModule.sanitizeUrl('apps/my-app')).toBe('apps/my-app');
+    });
+
+    it('should allow safe absolute URLs', () => {
+      expect(searchModule.sanitizeUrl('https://arceapps.com')).toBe('https://arceapps.com');
+      expect(searchModule.sanitizeUrl('http://localhost:3000')).toBe('http://localhost:3000');
+    });
+
+    it('should block javascript: protocol', () => {
+      expect(searchModule.sanitizeUrl('javascript:alert(1)')).toBe('about:blank');
+      expect(searchModule.sanitizeUrl('JAVASCRIPT:alert(1)')).toBe('about:blank');
+    });
+
+    it('should block data: protocol', () => {
+      expect(searchModule.sanitizeUrl('data:text/html,<script>alert(1)</script>')).toBe('about:blank');
+    });
+
+    it('should block vbscript: protocol', () => {
+      expect(searchModule.sanitizeUrl('vbscript:msgbox("Hello")')).toBe('about:blank');
+    });
+
+    it('should sanitize control characters and whitespace before check', () => {
+      expect(searchModule.sanitizeUrl('   javascript:alert(1)')).toBe('about:blank');
+      expect(searchModule.sanitizeUrl('\x00javascript:alert(1)')).toBe('about:blank');
+      expect(searchModule.sanitizeUrl('java\x01script:alert(1)')).toBe('about:blank');
+    });
+
+    it('should allow URLs containing dangerous strings but not as protocol', () => {
+      expect(searchModule.sanitizeUrl('/search?q=javascript:foo')).toBe('/search?q=javascript:foo');
+      expect(searchModule.sanitizeUrl('https://example.com/data:abc')).toBe('https://example.com/data:abc');
+    });
+  });
+});

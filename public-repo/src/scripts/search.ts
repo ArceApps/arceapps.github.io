@@ -1,0 +1,328 @@
+// src/scripts/search.ts
+import type Fuse from "fuse.js";
+
+export interface SearchItem {
+  title: string;
+  description: string;
+  slug: string;
+  type: "Blog" | "App";
+  tags: string[];
+  lang: "es" | "en";
+  body?: string;
+}
+
+// Module-level state (persists across View Transitions)
+let fuse: Fuse<SearchItem> | undefined;
+let searchIndex: SearchItem[] = [];
+let loadingPromise: Promise<void> | undefined;
+
+// DOM Element References (refreshed on each navigation)
+let searchModal: HTMLElement | null = null;
+let searchButton: HTMLElement | null = null;
+let closeSearch: HTMLElement | null = null;
+let searchInput: HTMLInputElement | null = null;
+let searchResults: HTMLElement | null = null;
+let searchStatus: HTMLElement | null = null;
+
+// Utility: Debounce function to limit execution frequency
+export function debounce<T extends (...args: unknown[]) => void>(
+  func: T,
+  wait: number
+) {
+  let timeout: ReturnType<typeof setTimeout>;
+  return function (this: ThisParameterType<T>, ...args: Parameters<T>) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+
+
+/**
+ * Sanitizes a URL to prevent XSS attacks (javascript:, data:, etc.)
+ * @param url The URL to sanitize
+ * @returns A safe URL (the original or 'about:blank' if dangerous)
+ */
+export function sanitizeUrl(url: string): string {
+  if (!url) return "";
+
+  // Normalize for comparison (remove whitespace and control characters)
+  const sanitizedUrl = url.replace(/[^\x20-\x7E]/g, "").trim();
+
+  // Block dangerous schemes
+  // We check if it starts with a dangerous protocol
+  if (/^(javascript|data|vbscript):/i.test(sanitizedUrl)) {
+    return "about:blank";
+  }
+
+  // If it's a relative URL or uses a safe protocol, it's fine
+  return url;
+}
+
+function handleEscape(e: KeyboardEvent) {
+  if (e.key === "Escape") {
+    closeModal();
+  }
+}
+
+export function closeModal() {
+  if (searchModal) {
+    searchModal.classList.add("hidden");
+    document.body.style.overflow = "";
+
+    // Clean up global listener
+    document.removeEventListener("keydown", handleEscape);
+
+    if (searchButton) {
+      searchButton.setAttribute("aria-expanded", "false");
+    }
+
+    if (searchInput) {
+      searchInput.value = "";
+    }
+
+    if (searchResults) {
+      searchResults.textContent = "";
+      searchResults.classList.add("hidden");
+    }
+
+    if (searchStatus) {
+      searchStatus.textContent = "Escribe para buscar...";
+      searchStatus.classList.remove("hidden");
+    }
+  }
+}
+
+export async function initFuse() {
+  if (searchIndex.length > 0) return;
+  if (loadingPromise) return loadingPromise;
+
+  loadingPromise = (async () => {
+    // Show loading state
+    if (searchStatus) {
+      searchStatus.textContent = "";
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "flex items-center justify-center gap-2";
+
+      const icon = document.createElement("span");
+      icon.className = "material-icons animate-spin";
+      icon.textContent = "refresh";
+
+      const text = document.createElement("span");
+      text.textContent = "Cargando índice...";
+
+      wrapper.appendChild(icon);
+      wrapper.appendChild(text);
+      searchStatus.appendChild(wrapper);
+
+      searchStatus.classList.remove("hidden");
+    }
+
+    try {
+      // Parallelize fetching index and loading library
+      const [response, { default: Fuse }] = await Promise.all([
+        fetch("/search-index.json"),
+        import("fuse.js"),
+      ]);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      searchIndex = await response.json();
+
+      fuse = new Fuse(searchIndex, {
+        keys: [
+          { name: "title", weight: 0.6 },
+          { name: "description", weight: 0.3 },
+          { name: "tags", weight: 0.2 },
+          { name: "body", weight: 0.2 },
+        ],
+        includeScore: true,
+        threshold: 0.4,
+      });
+
+      // Clear loading state if input is empty
+      if (searchInput && searchInput.value === "" && searchStatus) {
+        searchStatus.textContent = "Escribe para buscar...";
+      } else if (searchInput && searchInput.value !== "") {
+        performSearch(searchInput.value);
+      }
+    } catch (error) {
+      console.error("Error loading search index:", error);
+      if (searchStatus)
+        searchStatus.textContent = "Error al cargar el buscador.";
+      loadingPromise = undefined; // Allow retry on error
+    }
+  })();
+
+  return loadingPromise;
+}
+
+export function openModal() {
+  if (searchModal) {
+    searchModal.classList.remove("hidden");
+    document.body.style.overflow = "hidden";
+
+    // Add global listener only when modal is open
+    document.addEventListener("keydown", handleEscape);
+
+    if (searchButton) {
+      searchButton.setAttribute("aria-expanded", "true");
+    }
+
+    initFuse();
+    setTimeout(() => searchInput?.focus(), 100);
+  }
+}
+
+export function performSearch(query: string) {
+  if (!fuse) return;
+
+  if (query.length < 2) {
+    if (searchResults) searchResults.classList.add("hidden");
+    if (searchStatus) {
+      searchStatus.textContent = "Escribe al menos 2 caracteres...";
+      searchStatus.classList.remove("hidden");
+    }
+    return;
+  }
+
+  const results = fuse.search(query);
+
+  if (results.length === 0) {
+    if (searchResults) searchResults.classList.add("hidden");
+    if (searchStatus) {
+      searchStatus.textContent = "";
+
+      const wrapper = document.createElement("div");
+      wrapper.className =
+        "flex flex-col items-center justify-center py-8 gap-3 text-gray-500 dark:text-gray-400";
+
+      const icon = document.createElement("span");
+      icon.className = "material-icons text-5xl opacity-50";
+      icon.textContent = "search_off";
+
+      const message = document.createElement("p");
+      message.className = "font-medium";
+      message.textContent = `No encontramos resultados para "${query}"`;
+
+      const subMessage = document.createElement("p");
+      subMessage.className = "text-sm";
+      subMessage.textContent =
+        "Intenta con otras palabras clave o revisa la ortografía.";
+
+      wrapper.appendChild(icon);
+      wrapper.appendChild(message);
+      wrapper.appendChild(subMessage);
+      searchStatus.appendChild(wrapper);
+
+      searchStatus.classList.remove("hidden");
+    }
+    return;
+  }
+
+  if (searchStatus) searchStatus.classList.add("hidden");
+  if (searchResults) {
+    searchResults.classList.remove("hidden");
+    searchResults.textContent = "";
+
+    const fragment = document.createDocumentFragment();
+
+    results.slice(0, 10).forEach((result) => {
+      const item = result.item;
+      const icon = item.type === "App" ? "android" : "article";
+      const safeUrl = sanitizeUrl(item.slug);
+
+      const a = document.createElement("a");
+      a.href = safeUrl;
+      a.className =
+        "block p-3 rounded-lg hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors group focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none";
+
+      const mainDiv = document.createElement("div");
+      mainDiv.className = "flex items-start gap-3";
+
+      const iconDiv = document.createElement("div");
+      iconDiv.className =
+        "w-8 h-8 rounded bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-1";
+
+      const iconSpan = document.createElement("span");
+      iconSpan.className = "material-icons text-sm";
+      iconSpan.textContent = icon;
+
+      iconDiv.appendChild(iconSpan);
+
+      const contentDiv = document.createElement("div");
+
+      const title = document.createElement("h4");
+      title.className =
+        "font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors";
+      title.textContent = item.title;
+
+      const description = document.createElement("p");
+      description.className =
+        "text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2";
+      description.textContent = item.description;
+
+      const tagWrapper = document.createElement("div");
+      tagWrapper.className = "flex gap-2 mt-1";
+
+      const typeTag = document.createElement("span");
+      typeTag.className =
+        "text-xs px-2 py-0.5 rounded-full bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-gray-500";
+      typeTag.textContent = item.type;
+
+      tagWrapper.appendChild(typeTag);
+
+      contentDiv.appendChild(title);
+      contentDiv.appendChild(description);
+      contentDiv.appendChild(tagWrapper);
+
+      mainDiv.appendChild(iconDiv);
+      mainDiv.appendChild(contentDiv);
+
+      a.appendChild(mainDiv);
+      fragment.appendChild(a);
+    });
+
+    searchResults.appendChild(fragment);
+  }
+}
+
+export function initSearchComponent() {
+  // Update DOM references for current page
+  searchButton = document.getElementById("search-button");
+  searchModal = document.getElementById("search-modal");
+  closeSearch = document.getElementById("close-search");
+  searchInput = document.getElementById("search-input") as HTMLInputElement;
+  searchResults = document.getElementById("search-results");
+  searchStatus = document.getElementById("search-status");
+
+  // Re-attach event listeners
+  if (searchButton) {
+      searchButton.addEventListener("click", openModal);
+      searchButton.addEventListener("mouseenter", initFuse);
+      searchButton.addEventListener("focus", initFuse);
+  }
+
+  if (closeSearch) {
+      closeSearch.addEventListener("click", closeModal);
+  }
+
+  if (searchModal) {
+      searchModal.addEventListener("click", (e: Event) => {
+          if (e.target === searchModal) closeModal();
+      });
+  }
+
+  if (searchInput) {
+      const handleInput = debounce((e: unknown) => {
+          performSearch(((e as Event).target as HTMLInputElement).value);
+      }, 300) as unknown as EventListener;
+
+      searchInput.addEventListener("input", handleInput);
+  }
+}
+
+// Initialize on page load and view transitions
+document.addEventListener("astro:page-load", initSearchComponent);

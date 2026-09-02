@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="1000" height="500">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Card Gradients -->
+    <linearGradient id="card1Grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Glow Filters -->
+    <filter id="glowTeal" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="500" fill="url(#bgGrad)" />
+
+  <!-- Outer Border (Matching Spanish original style but modern flat border) -->
+  <rect x="15" y="15" width="970" height="470" rx="16" fill="none" stroke="#1e293b" stroke-width="3" />
+
+  <!-- Main Title -->
+  <text x="500" y="80" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="34" font-weight="bold" fill="#38bdf8" filter="url(#glowTeal)">
+    The 3 Phases of the Socratic Method for LLMs
+  </text>
+
+  <!-- Flow Arrows / Connectors -->
+  <!-- Arrow 1 -> 2 -->
+  <g stroke="#018786" stroke-width="4" fill="none">
+    <path d="M 330,270 L 375,270" />
+    <polygon points="373,264 385,270 373,276" fill="#018786" />
+  </g>
+  <!-- Arrow 2 -> 3 -->
+  <g stroke="#ff9800" stroke-width="4" fill="none">
+    <path d="M 640,270 L 685,270" />
+    <polygon points="683,264 695,270 683,276" fill="#ff9800" />
+  </g>
+
+  <!-- === CARD 1 === -->
+  <g transform="translate(60, 150)">
+    <!-- Card Border & Background -->
+    <rect width="270" height="240" rx="16" fill="url(#card1Grad)" stroke="#018786" stroke-width="2" />
+    
+    <!-- Circle Icon Badge -->
+    <circle cx="50" cy="50" r="30" fill="#018786" opacity="0.15" />
+    <circle cx="50" cy="50" r="30" fill="none" stroke="#018786" stroke-width="2" />
+    <text x="50" y="58" text-anchor="middle" font-family="sans-serif" font-size="28" font-weight="bold" fill="#018786">?</text>
+
+    <!-- Header -->
+    <text x="100" y="42" font-family="sans-serif" font-size="14" font-weight="bold" fill="#94a3b8" letter-spacing="1">PHASE 1</text>
+    <text x="100" y="62" font-family="sans-serif" font-size="16" font-weight="extrabold" fill="#f8fafc">QUESTIONS ONLY</text>
+    
+    <!-- Separator -->
+    <line x1="20" y1="100" x2="250" y2="100" stroke="#334155" stroke-width="1.5" />
+
+    <!-- Body text -->
+    <text x="20" y="135" font-family="sans-serif" font-size="14" fill="#cbd5e1" font-weight="normal">
+      The model formulates the
+    </text>
+    <text x="20" y="160" font-family="sans-serif" font-size="14" fill="#cbd5e1" font-weight="normal">
+      minimum necessary set of
+    </text>
+    <text x="20" y="185" font-family="sans-serif" font-size="14" fill="#018786" font-weight="bold">
+      clarifying questions
+    </text>
+    <text x="20" y="210" font-family="sans-serif" font-size="14" fill="#cbd5e1" font-weight="normal">
+      to narrow down requirements.
+    </text>
+  </g>
+
+  <!-- === CARD 2 === -->
+  <g transform="translate(370, 150)">
+    <!-- Card Border & Background -->
+    <rect width="270" height="240" rx="16" fill="url(#card1Grad)" stroke="#38bdf8" stroke-width="2" />
+    
+    <!-- Circle Icon Badge -->
+    <circle cx="50" cy="50" r="30" fill="#38bdf8" opacity="0.15" />
+    <circle cx="50" cy="50" r="30" fill="none" stroke="#38bdf8" stroke-width="2" />
+    <!-- Magnifying glass icon representation -->
+    <circle cx="47" cy="47" r="8" fill="none" stroke="#38bdf8" stroke-width="2.5" />
+    <line x1="53" y1="53" x2="62" y2="62" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" />
+
+    <!-- Header -->
+    <text x="100" y="42" font-family="sans-serif" font-size="14" font-weight="bold" fill="#94a3b8" letter-spacing="1">PHASE 2</text>
+    <text x="100" y="62" font-family="sans-serif" font-size="16" font-weight="extrabold" fill="#f8fafc">VERIFICATION</text>
+    
+    <!-- Separator -->
+    <line x1="20" y1="100" x2="250" y2="100" stroke="#334155" stroke-width="1.5" />
+
+    <!-- Body text -->
+    <text x="20" y="135" font-family="sans-serif" font-size="14" fill="#cbd5e1" font-weight="normal">
+      Reformulates the problem
+    </text>
+    <text x="20" y="160" font-family="sans-serif" font-size="14" fill="#cbd5e1" font-weight="normal">
+      and lists all underlying
+    </text>
+    <text x="20" y="185" font-family="sans-serif" font-size="14" fill="#38bdf8" font-weight="bold">
+      technical assumptions
+    </text>
+    <text x="20" y="210" font-family="sans-serif" font-size="14" fill="#cbd5e1" font-weight="normal">
+      for developer validation.
+    </text>
+  </g>
+
+  <!-- === CARD 3 === -->
+  <g transform="translate(670, 150)">
+    <!-- Card Border & Background -->
+    <rect width="270" height="240" rx="16" fill="url(#card1Grad)" stroke="#ff9800" stroke-width="2" />
+    
+    <!-- Circle Icon Badge -->
+    <circle cx="50" cy="50" r="30" fill="#ff9800" opacity="0.15" />
+    <circle cx="50" cy="50" r="30" fill="none" stroke="#ff9800" stroke-width="2" />
+    <!-- Checkmark icon -->
+    <path d="M 40,50 L 47,57 L 62,42" fill="none" stroke="#ff9800" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+
+    <!-- Header -->
+    <text x="100" y="42" font-family="sans-serif" font-size="14" font-weight="bold" fill="#94a3b8" letter-spacing="1">PHASE 3</text>
+    <text x="100" y="62" font-family="sans-serif" font-size="16" font-weight="extrabold" fill="#f8fafc">RESPONSE</text>
+    
+    <!-- Separator -->
+    <line x1="20" y1="100" x2="250" y2="100" stroke="#334155" stroke-width="1.5" />
+
+    <!-- Body text -->
+    <text x="20" y="135" font-family="sans-serif" font-size="14" fill="#cbd5e1" font-weight="normal">
+      Only when all is clear,
+    </text>
+    <text x="20" y="160" font-family="sans-serif" font-size="14" fill="#cbd5e1" font-weight="normal">
+      delivers code with brief
+    </text>
+    <text x="20" y="185" font-family="sans-serif" font-size="14" fill="#ff9800" font-weight="bold">
+      architectural reasoning
+    </text>
+    <text x="20" y="210" font-family="sans-serif" font-size="14" fill="#cbd5e1" font-weight="normal">
+      and framing alternatives.
+    </text>
+  </g>
+
+</svg>

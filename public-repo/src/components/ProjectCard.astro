@@ -1,0 +1,140 @@
+---
+import { optimizeGooglePlayImage } from "../utils/image-optimization";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Card from "./Card.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  heroImage?: string;
+  realIconUrl?: string;
+  tags?: string[];
+  pubDate: Date;
+  datePrecision?: 'exact' | 'approximate';
+  slug: string;
+  kind?: 'app' | 'project';
+}
+
+const {
+  title,
+  description,
+  heroImage,
+  realIconUrl,
+  tags = [],
+  pubDate,
+  datePrecision = 'exact',
+  slug,
+  kind = 'app',
+} = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const basePath = kind === 'project' ? 'projects' : 'apps';
+const href = lang === 'es' ? `/es/${basePath}/${slug}` : `/${basePath}/${slug}`;
+---
+
+<Card
+  href={href}
+  data-astro-prefetch
+  variant="app"
+  ariaLabel={title}
+>
+  <!-- Image Area -->
+  <div class="relative h-56 overflow-hidden bg-gray-100 dark:bg-gray-800">
+    {
+      heroImage ? (
+        <img
+          src={optimizeGooglePlayImage(heroImage, 800, "width")}
+          alt={title}
+          width="400"
+          height="224"
+          loading="lazy"
+          decoding="async"
+          class="w-full h-full object-cover"
+        />
+      ) : (
+        <div
+          class="w-full h-full flex items-center justify-center text-gray-300 dark:text-gray-700"
+          aria-hidden="true"
+        >
+          <span class="material-icons text-6xl">smartphone</span>
+        </div>
+      )
+    }
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity motion-reduce:transition-none"
+      aria-hidden="true"
+    >
+    </div>
+
+    {
+      realIconUrl && (
+        <div class="absolute top-4 right-4 w-16 h-16 rounded-xl overflow-hidden shadow-lg border-2 border-white/20 backdrop-blur-sm z-10">
+          <img
+            src={optimizeGooglePlayImage(realIconUrl, 128, "square")}
+            alt={`${t('apps.icon_alt')} ${title}`}
+            loading="lazy"
+            decoding="async"
+            width="64"
+            height="64"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      )
+    }
+
+    <!-- Tags Overlay -->
+    <div class="absolute bottom-4 left-4 flex flex-wrap gap-2">
+      {
+        tags
+          .slice(0, 2)
+          .map((tag) => (
+            <span class="px-3 py-1 text-xs font-bold bg-white/20 backdrop-blur-md text-white rounded-full border border-white/30">
+              {tag}
+            </span>
+          ))
+      }
+    </div>
+  </div>
+
+  <!-- Content Area -->
+  <div class="p-8 flex flex-col flex-grow relative">
+    <h2
+      class="text-2xl font-bold mb-3 text-on-surface dark:text-gray-100 group-hover:text-primary group-focus-visible:text-primary transition-colors motion-reduce:transition-none"
+    >
+      {title}
+    </h2>
+    <p
+      class="text-on-surface-variant dark:text-gray-300 mb-6 line-clamp-3 leading-relaxed flex-grow"
+    >
+      {description}
+    </p>
+
+    <div
+      class="flex items-center justify-between mt-auto pt-6 border-t border-gray-100 dark:border-gray-800"
+    >
+      <span
+        class="text-sm font-medium text-on-surface-variant/70 dark:text-dark-on-surface-variant/70"
+      >
+        <span class="flex flex-col items-end gap-0.5">
+          <time datetime={pubDate.toISOString()}>
+            {pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US')}
+          </time>
+          {kind === 'project' && datePrecision === 'approximate' && (
+            <span class="text-[0.65rem] uppercase tracking-wider text-secondary">
+              {t('projects.date_approximate')}
+            </span>
+          )}
+        </span>
+      </span>
+      <span
+        class="flex items-center text-primary font-bold text-sm"
+      >
+        {t('common.read_more')}
+        <span class="material-icons ml-1 text-base" aria-hidden="true"
+          >arrow_forward</span
+        >
+      </span>
+    </div>
+  </div>
+</Card>

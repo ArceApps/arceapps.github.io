@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#018786"/>
+  <rect x="100" y="100" width="1000" height="430" rx="20" fill="#000000" opacity="0.1"/>
+  <text x="600" y="315" font-family="sans-serif" font-size="80" font-weight="bold" fill="#ffffff" text-anchor="middle" dominant-baseline="middle">
+    Superpowers Infographic
+  </text>
+  <circle cx="600" cy="450" r="40" fill="#FF9800" />
+</svg>

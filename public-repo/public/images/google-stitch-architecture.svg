@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="100%" height="100%">
+    <rect width="800" height="400" fill="#0D1117" rx="12"/>
+    <rect x="200" y="50" width="400" height="300" rx="8" fill="#161B22" stroke="#30363D" stroke-width="2"/>
+    <text x="400" y="90" font-family="sans-serif" font-size="22" fill="#E6EDF3" text-anchor="middle" font-weight="bold">Arquitectura de Integración</text>
+
+    <rect x="250" y="120" width="130" height="60" rx="6" fill="#21262D" stroke="#8B949E"/>
+    <text x="315" y="155" font-family="sans-serif" font-size="14" fill="#C9D1D9" text-anchor="middle">Stitch Web</text>
+
+    <rect x="420" y="120" width="130" height="60" rx="6" fill="#21262D" stroke="#8B949E"/>
+    <text x="485" y="155" font-family="sans-serif" font-size="14" fill="#C9D1D9" text-anchor="middle">Gemini 2.5 Pro</text>
+
+    <path d="M 315 180 L 315 230" fill="none" stroke="#58A6FF" stroke-width="2"/>
+    <path d="M 485 180 L 485 230" fill="none" stroke="#58A6FF" stroke-width="2"/>
+    <path d="M 315 230 L 485 230" fill="none" stroke="#58A6FF" stroke-width="2"/>
+    <path d="M 400 230 L 400 260" fill="none" stroke="#58A6FF" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <rect x="300" y="260" width="200" height="60" rx="6" fill="#1F6FEB"/>
+    <text x="400" y="295" font-family="sans-serif" font-size="16" fill="#FFF" text-anchor="middle" font-weight="bold">Android Studio</text>
+
+    <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#58A6FF"/>
+        </marker>
+    </defs>
+</svg>

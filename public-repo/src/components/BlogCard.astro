@@ -1,0 +1,92 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { slugify } from "../utils/slugs";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import Card from "./Card.astro";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Format date
+const formattedDate = post.data.pubDate.toLocaleDateString(lang === 'es' ? "es-ES" : "en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const slug = post.slug.split('/').pop();
+const href = lang === 'es' ? `/es/blog/${slug}/` : `/blog/${slug}/`;
+const firstTag = post.data.tags?.[0];
+---
+
+<Card variant="article">
+  <a
+    href={href}
+    data-astro-prefetch
+    class="absolute inset-0 z-10 rounded-xl focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none transition-shadow motion-reduce:transition-none"
+    aria-label={`${t('common.read_more')} ${post.data.title}`}></a>
+
+  {
+    post.data.heroImage && (
+      <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+        <img
+          src={post.data.heroImage}
+          alt={post.data.title}
+          class="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+          width="800"
+          height="450"
+        />
+      </div>
+    )
+  }
+
+  <div class="p-6 flex flex-col flex-grow relative z-20 pointer-events-none">
+    <div class="flex items-center gap-2 mb-3">
+      {
+        firstTag && (
+          <a
+            href={lang === 'es' ? `/es/blog/tag/${slugify(firstTag)}/` : `/blog/tag/${slugify(firstTag)}/`}
+            data-astro-prefetch
+            class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors motion-reduce:transition-none relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+          >
+            {firstTag}
+          </a>
+        )
+      }
+      <span
+        class="text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70 ml-auto"
+      >
+        {formattedDate}
+      </span>
+    </div>
+
+    <h3
+      class="text-xl font-bold mb-3 text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors motion-reduce:transition-none line-clamp-2 pointer-events-none"
+    >
+      {post.data.title}
+    </h3>
+
+    <p
+      class="text-on-surface-variant dark:text-gray-300 text-sm line-clamp-3 mb-4 flex-grow leading-relaxed pointer-events-none"
+    >
+      {post.data.description}
+    </p>
+
+    <div
+      class="flex items-center text-primary font-medium text-sm mt-auto pointer-events-none"
+    >
+      {t('common.read_more')}
+      <span
+        class="material-icons text-base ml-1"
+        aria-hidden="true">arrow_forward</span
+      >
+    </div>
+  </div>
+</Card>

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#0a1a2a"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+    <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1e293b" stroke-width="0.5" opacity="0.4"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="600" y="52" text-anchor="middle" font-family="monospace" font-size="28" font-weight="bold" fill="#f8fafc" filter="url(#glow)">OpenSpec — Community-Driven Specifications</text>
+  <text x="600" y="76" text-anchor="middle" font-family="monospace" font-size="13" fill="#64748b">Open standard · Multi-framework · Transparent spec authoring</text>
+  <line x1="280" y1="88" x2="920" y2="88" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- === CENTRAL: OpenSpec Hub === -->
+  <rect x="420" y="120" width="360" height="120" rx="16" fill="#0a2a30" stroke="#22d3ee" stroke-width="3"/>
+  <text x="600" y="165" text-anchor="middle" font-family="monospace" font-size="20" font-weight="bold" fill="#22d3ee">📖 OpenSpec Hub</text>
+  <text x="600" y="190" text-anchor="middle" font-family="monospace" font-size="11" fill="#67e8f9">Community-reviewed specifications</text>
+  <text x="600" y="210" text-anchor="middle" font-family="monospace" font-size="11" fill="#67e8f9">Open standard format · Version controlled</text>
+
+  <!-- Branching lines from hub -->
+  <!-- Branch 1: top-left -->
+  <line x1="440" y1="180" x2="180" y2="270" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <rect x="70" y="275" width="220" height="90" rx="10" fill="#0F172A" stroke="#a78bfa" stroke-width="2"/>
+  <text x="180" y="305" text-anchor="middle" font-family="monospace" font-size="13" font-weight="bold" fill="#a78bfa">🔌 Plugin Specs</text>
+  <text x="180" y="327" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">IDE extensions, tooling</text>
+  <text x="180" y="345" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">Interoperable interfaces</text>
+
+  <!-- Branch 2: top-right -->
+  <line x1="760" y1="180" x2="920" y2="270" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <rect x="810" y="275" width="220" height="90" rx="10" fill="#0F172A" stroke="#f59e0b" stroke-width="2"/>
+  <text x="920" y="305" text-anchor="middle" font-family="monospace" font-size="13" font-weight="bold" fill="#fbbf24">📊 Data Models</text>
+  <text x="920" y="327" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">Shared schemas, types</text>
+  <text x="920" y="345" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">Cross-framework contracts</text>
+
+  <!-- Branch 3: bottom-left -->
+  <line x1="440" y1="180" x2="270" y2="440" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <rect x="70" y="445" width="220" height="95" rx="10" fill="#0F172A" stroke="#34d399" stroke-width="2"/>
+  <text x="180" y="475" text-anchor="middle" font-family="monospace" font-size="13" font-weight="bold" fill="#34d399">🔄 Agent Workflows</text>
+  <text x="180" y="497" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">Standardized agent pipelines</text>
+  <text x="180" y="515" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">Phase-aware execution</text>
+
+  <!-- Branch 4: bottom-right -->
+  <line x1="760" y1="180" x2="1020" y2="440" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <rect x="910" y="445" width="220" height="95" rx="10" fill="#0F172A" stroke="#fb7185" stroke-width="2"/>
+  <text x="1020" y="475" text-anchor="middle" font-family="monospace" font-size="13" font-weight="bold" fill="#fb7185">🛡️ Governance</text>
+  <text x="1020" y="497" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">Approval chains, audits</text>
+  <text x="1020" y="515" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">Compliance verification</text>
+
+  <!-- Branch 5: bottom-center -->
+  <line x1="600" y1="240" x2="600" y2="440" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <rect x="440" y="445" width="320" height="95" rx="10" fill="#0F172A" stroke="#FF9800" stroke-width="2.5"/>
+  <text x="600" y="475" text-anchor="middle" font-family="monospace" font-size="14" font-weight="bold" fill="#FFB74D">📦 SDK / Libraries</text>
+  <text x="600" y="497" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">Multi-language bindings</text>
+  <text x="600" y="515" text-anchor="middle" font-family="monospace" font-size="10" fill="#94a3b8">Auto-generated from spec</text>
+
+  <!-- Key differentiators panel -->
+  <rect x="60" y="110" width="280" height="170" rx="10" fill="#0F172A" stroke="#1e293b" stroke-width="1"/>
+  <text x="200" y="140" text-anchor="middle" font-family="monospace" font-size="13" font-weight="bold" fill="#f8fafc">⚡ Differentiators</text>
+  <line x1="80" y1="150" x2="320" y2="150" stroke="#1e293b" stroke-width="0.5"/>
+
+  <circle cx="80" cy="175" r="4" fill="#22d3ee"/>
+  <text x="96" y="179" font-family="monospace" font-size="10" fill="#cbd5e1">Open standard — no vendor lock</text>
+
+  <circle cx="80" cy="200" r="4" fill="#22d3ee"/>
+  <text x="96" y="204" font-family="monospace" font-size="10" fill="#cbd5e1">Community-vetted specifications</text>
+
+  <circle cx="80" cy="225" r="4" fill="#22d3ee"/>
+  <text x="96" y="229" font-family="monospace" font-size="10" fill="#cbd5e1">Git-native version control</text>
+
+  <circle cx="80" cy="250" r="4" fill="#22d3ee"/>
+  <text x="96" y="254" font-family="monospace" font-size="10" fill="#cbd5e1">Forkable, composable specs</text>
+
+  <!-- Right sidebar: Comparison -->
+  <rect x="900" y="110" width="240" height="170" rx="10" fill="#0F172A" stroke="#1e293b" stroke-width="1"/>
+  <text x="1020" y="140" text-anchor="middle" font-family="monospace" font-size="13" font-weight="bold" fill="#f8fafc">📊 vs. Alternatives</text>
+  <line x1="920" y1="150" x2="1120" y2="150" stroke="#1e293b" stroke-width="0.5"/>
+
+  <text x="940" y="175" font-family="monospace" font-size="10" fill="#22d3ee">OpenSpec</text>
+  <text x="1050" y="175" font-family="monospace" font-size="10" fill="#94a3b8">Open · Flexible</text>
+
+  <text x="940" y="197" font-family="monospace" font-size="10" fill="#34d399">Spec Kit</text>
+  <text x="1050" y="197" font-family="monospace" font-size="10" fill="#94a3b8">Linear · Constrained</text>
+
+  <text x="940" y="219" font-family="monospace" font-size="10" fill="#FF9800">BMAD</text>
+  <text x="1050" y="219" font-family="monospace" font-size="10" fill="#94a3b8">Heavy · Enterprise</text>
+
+  <text x="940" y="241" font-family="monospace" font-size="10" fill="#a78bfa">Grill Me</text>
+  <text x="1050" y="241" font-family="monospace" font-size="10" fill="#94a3b8">Pre-spec · Adversarial</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="600" width="1200" height="30" fill="#018786" opacity="0.12"/>
+  <text x="600" y="620" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">OpenSpec — github.com/openspec · Open standard, community-driven, git-native spec authoring</text>
+</svg>

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <pattern id="grid-id-es" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+    </pattern>
+    <filter id="glow-id-es" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow-id-es" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#FF9800"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <rect width="1200" height="630" fill="url(#grid-id-es)" opacity="0.55"/>
+
+  <text x="60" y="48" font-family="ui-monospace, monospace" font-size="14" fill="#64748b" letter-spacing="3">DELEGACIÓN, NO IMPERSONACIÓN · CÓMO FUNCIONA LA IDENTIDAD DEL AGENTE</text>
+  <text x="1140" y="48" font-family="ui-monospace, monospace" font-size="14" fill="#64748b" text-anchor="end" letter-spacing="2">INFOGRAFÍA 03 / 04</text>
+  <line x1="60" y1="64" x2="1140" y2="64" stroke="#1e293b" stroke-width="1"/>
+
+  <circle cx="400" cy="335" r="78" fill="#0F172A" stroke="#FF9800" stroke-width="3"/>
+  <text x="400" y="320" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" font-weight="900" fill="#FF9800" filter="url(#glow-id-es)">PAR DE</text>
+  <text x="400" y="340" text-anchor="middle" font-family="ui-monospace, monospace" font-size="14" font-weight="900" fill="#FF9800" filter="url(#glow-id-es)">CLAVES</text>
+  <text x="400" y="362" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#FFB74D">del agente</text>
+
+  <rect x="320" y="120" width="160" height="84" rx="12" fill="#0b1220" stroke="#018786" stroke-width="2"/>
+  <rect x="320" y="120" width="160" height="26" rx="12" fill="#018786"/>
+  <text x="400" y="138" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#0F172A">PAR DE CLAVES HUMANO</text>
+  <text x="400" y="166" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">Tú guardas tu clave humana.</text>
+  <text x="400" y="182" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">Permanece contigo para siempre.</text>
+  <text x="400" y="198" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#34d399">nunca se comparte con el relay</text>
+
+  <rect x="640" y="200" width="160" height="84" rx="12" fill="#0b1220" stroke="#FF9800" stroke-width="2"/>
+  <rect x="640" y="200" width="160" height="26" rx="12" fill="#FF9800"/>
+  <text x="720" y="218" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#0F172A">TOKEN DE DELEGACIÓN</text>
+  <text x="720" y="246" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">Alcance estrecho, firmado</text>
+  <text x="720" y="262" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">por el dueño, con caducidad.</text>
+  <text x="720" y="278" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#FFB74D">prueba quién autorizó qué</text>
+
+  <rect x="640" y="386" width="160" height="84" rx="12" fill="#0b1220" stroke="#34d399" stroke-width="2"/>
+  <rect x="640" y="386" width="160" height="26" rx="12" fill="#34d399"/>
+  <text x="720" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#0F172A">TRABAJO FIRMADO POR AGENTE</text>
+  <text x="720" y="432" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">Patch, review, merge —</text>
+  <text x="720" y="448" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">firmado por el agente, no por ti.</text>
+  <text x="720" y="464" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#34d399">autoría ≠ autorización</text>
+
+  <rect x="0" y="200" width="160" height="84" rx="12" fill="#0b1220" stroke="#ef4444" stroke-width="2"/>
+  <rect x="0" y="200" width="160" height="26" rx="12" fill="#ef4444"/>
+  <text x="80" y="218" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#0F172A">REVOCACIÓN</text>
+  <text x="80" y="246" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">Si la clave del agente se filtra,</text>
+  <text x="80" y="262" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">la revocas. No a ti.</text>
+  <text x="80" y="278" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#FFB74D">radio de impacto granular</text>
+
+  <rect x="0" y="386" width="160" height="84" rx="12" fill="#0b1220" stroke="#FF9800" stroke-width="2"/>
+  <rect x="0" y="386" width="160" height="26" rx="12" fill="#FF9800"/>
+  <text x="80" y="404" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#0F172A">AUDITORÍA HASH-CHAIN</text>
+  <text x="80" y="432" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">Cada evento enlaza con el</text>
+  <text x="80" y="448" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">anterior vía hash chain.</text>
+  <text x="80" y="464" text-anchor="middle" font-family="ui-monospace, monospace" font-size="10" fill="#FFB74D">historia tamper-evident</text>
+
+  <path d="M 400 200 Q 400 175 470 155" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arrow-id-es)"/>
+  <path d="M 478 160 Q 580 170 640 220" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arrow-id-es)"/>
+  <path d="M 720 290 Q 720 340 720 380" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arrow-id-es)"/>
+  <path d="M 640 426 Q 540 470 322 432" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arrow-id-es)"/>
+  <path d="M 160 426 Q 230 470 320 360" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arrow-id-es)"/>
+  <path d="M 160 280 Q 240 260 322 290" stroke="#34d399" stroke-width="2" fill="none" marker-end="url(#arrow-id-es)"/>
+
+  <rect x="850" y="100" width="320" height="430" rx="16" fill="#0b1220" stroke="#018786" stroke-width="2"/>
+  <text x="870" y="135" font-family="ui-monospace, monospace" font-size="18" font-weight="900" fill="#34d399">Qué cambia esto</text>
+  <line x1="870" y1="148" x2="1010" y2="148" stroke="#018786" stroke-width="2"/>
+
+  <text x="870" y="180" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#FFB74D">1 · El móvil nunca aloja al agente</text>
+  <text x="870" y="198" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">El móvil es un par que firma y</text>
+  <text x="870" y="212" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">rutea; el agente vive en laptop,</text>
+  <text x="870" y="226" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">VM, edge box o tostadora.</text>
+
+  <text x="870" y="256" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#FFB74D">2 · No más "toma mi API key"</text>
+  <text x="870" y="274" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">El antipatrón del bot de Slack</text>
+  <text x="870" y="288" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">desaparece: ningún agente</text>
+  <text x="870" y="302" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">loggea como humano.</text>
+
+  <text x="870" y="332" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#FFB74D">3 · Revoca uno, conserva el otro</text>
+  <text x="870" y="350" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">¿Clave del agente comprometida?</text>
+  <text x="870" y="364" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">Revócala sin rotar la humana.</text>
+
+  <text x="870" y="394" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#FFB74D">4 · Independiente de la confianza en el relay</text>
+  <text x="870" y="412" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">Cualquiera puede hospedar un</text>
+  <text x="870" y="426" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">relay; los agentes verifican firmas,</text>
+  <text x="870" y="440" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">no direcciones IP.</text>
+
+  <text x="870" y="470" font-family="ui-monospace, monospace" font-size="12" font-weight="700" fill="#FFB74D">5 · El log es portable</text>
+  <text x="870" y="488" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">Si Block desaparece, tu historial</text>
+  <text x="870" y="502" font-family="ui-monospace, monospace" font-size="11" fill="#cbd5e1">firmado sigue verificándose.</text>
+
+  <text x="60" y="612" font-family="ui-monospace, monospace" font-size="12" fill="#64748b">Fuente: engineering.block.xyz/blog/buzz § Bee Yourself · block.xyz/inside/introducing-buzz · github.com/block/buzz/AGENTS.md</text>
+</svg>

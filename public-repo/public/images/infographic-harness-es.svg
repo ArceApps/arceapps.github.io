@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0F172A"/><stop offset="100%" stop-color="#0a1a16"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1e293b" stroke-width="0.5" opacity="0.4"/></pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <text x="600" y="52" text-anchor="middle" font-family="monospace" font-size="28" font-weight="bold" fill="#f8fafc" filter="url(#glow)">Harness Engineering — Patrón Modelo + Arnés</text>
+  <text x="600" y="76" text-anchor="middle" font-family="monospace" font-size="13" fill="#64748b">La base arquitectónica del SDD Agentivo · Ingeniería de contexto sobre ingeniería de prompts</text>
+  <line x1="240" y1="88" x2="960" y2="88" stroke="#1e293b" stroke-width="1"/>
+
+  <!-- Outer ring: HARNESS / ARNÉS -->
+  <circle cx="420" cy="380" r="205" fill="#0F172A" stroke="#FF9800" stroke-width="4" opacity="0.9"/>
+  <circle cx="420" cy="380" r="195" fill="none" stroke="#FF9800" stroke-width="1" opacity="0.3" stroke-dasharray="8,4"/>
+  <text x="420" y="168" text-anchor="middle" font-family="monospace" font-size="15" font-weight="bold" fill="#FFB74D">🛠️ ARNÉS</text>
+  <text x="420" y="183" text-anchor="middle" font-family="monospace" font-size="9" fill="#FF9800">Capa de ingeniería de contexto</text>
+
+  <!-- Harness components -->
+  <rect x="345" y="200" width="150" height="45" rx="8" fill="#1a1200" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="420" y="218" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#FFB74D">🔒 Restricciones</text>
+  <text x="420" y="234" text-anchor="middle" font-family="monospace" font-size="8" fill="#fbbf24">Límites del sistema</text>
+
+  <rect x="530" y="310" width="140" height="45" rx="8" fill="#1a1200" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="600" y="328" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#FFB74D">✅ Verificación</text>
+  <text x="600" y="344" text-anchor="middle" font-family="monospace" font-size="8" fill="#fbbf24">Chequeo de conformidad</text>
+
+  <rect x="345" y="520" width="150" height="45" rx="8" fill="#1a1200" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="420" y="538" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#FFB74D">📄 Documentación</text>
+  <text x="420" y="554" text-anchor="middle" font-family="monospace" font-size="8" fill="#fbbf24">Contexto vivo</text>
+
+  <rect x="170" y="310" width="150" height="45" rx="8" fill="#1a1200" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="245" y="328" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#FFB74D">📊 Observabilidad</text>
+  <text x="245" y="344" text-anchor="middle" font-family="monospace" font-size="8" fill="#fbbf24">Tokens, errores, trazas</text>
+
+  <rect x="545" y="235" width="150" height="45" rx="8" fill="#1a1200" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="620" y="253" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#FFB74D">🔄 Iteración</text>
+  <text x="620" y="269" text-anchor="middle" font-family="monospace" font-size="8" fill="#fbbf24">Feedback → refinar</text>
+
+  <rect x="545" y="445" width="150" height="45" rx="8" fill="#1a1200" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="620" y="463" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#FFB74D">🛡️ Guardarraíles</text>
+  <text x="620" y="479" text-anchor="middle" font-family="monospace" font-size="8" fill="#fbbf24">Límites de seguridad</text>
+
+  <rect x="170" y="445" width="150" height="45" rx="8" fill="#1a1200" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="245" y="463" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#FFB74D">🔧 Registro Herram.</text>
+  <text x="245" y="479" text-anchor="middle" font-family="monospace" font-size="8" fill="#fbbf24">Skills, MCPs, plugins</text>
+
+  <rect x="170" y="235" width="150" height="45" rx="8" fill="#1a1200" stroke="#FF9800" stroke-width="1.5"/>
+  <text x="245" y="253" text-anchor="middle" font-family="monospace" font-size="10" font-weight="bold" fill="#FFB74D">🧠 Ventana Contexto</text>
+  <text x="245" y="269" text-anchor="middle" font-family="monospace" font-size="8" fill="#fbbf24">Inyección selectiva</text>
+
+  <!-- Inner ring: MODEL -->
+  <circle cx="420" cy="380" r="105" fill="#0d332e" stroke="#018786" stroke-width="4"/>
+  <circle cx="420" cy="380" r="95" fill="none" stroke="#018786" stroke-width="1" opacity="0.5" stroke-dasharray="6,3"/>
+  <text x="420" y="355" text-anchor="middle" font-family="monospace" font-size="18" font-weight="bold" fill="#34d399">🤖 MODELO</text>
+  <text x="420" y="375" text-anchor="middle" font-family="monospace" font-size="10" fill="#6ee7b7">Núcleo LLM</text>
+  <text x="420" y="395" text-anchor="middle" font-family="monospace" font-size="9" fill="#5eead4">Motor de razonamiento</text>
+
+  <!-- Right panel -->
+  <rect x="720" y="110" width="430" height="480" rx="14" fill="#0F172A" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="935" y="145" text-anchor="middle" font-family="monospace" font-size="15" font-weight="bold" fill="#f8fafc">📐 Principios de Harness Engineering</text>
+  <line x1="745" y1="155" x2="1125" y2="155" stroke="#1e293b" stroke-width="0.5"/>
+
+  <rect x="745" y="175" width="380" height="55" rx="8" fill="#0a1a16" stroke="#018786" stroke-width="1"/>
+  <text x="760" y="197" font-family="monospace" font-size="11" font-weight="bold" fill="#34d399">1. Contexto sobre prompts</text>
+  <text x="760" y="216" font-family="monospace" font-size="9" fill="#94a3b8">El arnés selecciona lo que el modelo ve — AGENTS.md, docs, memoria</text>
+
+  <rect x="745" y="245" width="380" height="55" rx="8" fill="#0a1a16" stroke="#018786" stroke-width="1"/>
+  <text x="760" y="267" font-family="monospace" font-size="11" font-weight="bold" fill="#34d399">2. Límites sobre guardarraíles</text>
+  <text x="760" y="286" font-family="monospace" font-size="9" fill="#94a3b8">Restricciones de filesystem previenen malas rutas ANTES de generar código</text>
+
+  <rect x="745" y="315" width="380" height="55" rx="8" fill="#0a1a16" stroke="#018786" stroke-width="1"/>
+  <text x="760" y="337" font-family="monospace" font-size="11" font-weight="bold" fill="#34d399">3. La verificación es el contrato</text>
+  <text x="760" y="356" font-family="monospace" font-size="9" fill="#94a3b8">El cumplimiento de spec post-generación no es opcional — es trabajo del arnés</text>
+
+  <rect x="745" y="385" width="380" height="55" rx="8" fill="#0a1a16" stroke="#018786" stroke-width="1"/>
+  <text x="760" y="407" font-family="monospace" font-size="11" font-weight="bold" fill="#34d399">4. Documentación viva</text>
+  <text x="760" y="426" font-family="monospace" font-size="9" fill="#94a3b8">GLOSARIO.md + AGENTS.md evolucionan CON el código, no antes</text>
+
+  <rect x="745" y="455" width="380" height="55" rx="8" fill="#0a1a16" stroke="#018786" stroke-width="1"/>
+  <text x="760" y="477" font-family="monospace" font-size="11" font-weight="bold" fill="#34d399">5. La observabilidad es obligatoria</text>
+  <text x="760" y="496" font-family="monospace" font-size="9" fill="#94a3b8">Quema de tokens, trazas de error, tool calls — monitoriza o vuelas a ciegas</text>
+
+  <rect x="745" y="525" width="380" height="50" rx="8" fill="#1a1200" stroke="#FF9800" stroke-width="1"/>
+  <text x="935" y="548" text-anchor="middle" font-family="monospace" font-size="10" fill="#FFB74D" font-style="italic">"El arnés ES el producto — el modelo es el</text>
+  <text x="935" y="566" text-anchor="middle" font-family="monospace" font-size="10" fill="#FFB74D" font-style="italic">motor. La ingeniería de contexto gana."</text>
+
+  <rect x="0" y="600" width="1200" height="30" fill="#018786" opacity="0.12"/>
+  <text x="600" y="620" text-anchor="middle" font-family="monospace" font-size="10" fill="#64748b">Harness Engineering · El patrón arquitectónico detrás del SDD Agentivo — modelo + arnés = agente</text>
+</svg>

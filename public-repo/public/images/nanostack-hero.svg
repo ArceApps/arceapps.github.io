@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1628;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d2137;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#01a89e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#018786;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB74D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF9800;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern -->
+  <g opacity="0.04">
+    <line x1="0" y1="90" x2="1200" y2="90" stroke="#018786" stroke-width="1"/>
+    <line x1="0" y1="180" x2="1200" y2="180" stroke="#018786" stroke-width="1"/>
+    <line x1="0" y1="270" x2="1200" y2="270" stroke="#018786" stroke-width="1"/>
+    <line x1="0" y1="360" x2="1200" y2="360" stroke="#018786" stroke-width="1"/>
+    <line x1="0" y1="450" x2="1200" y2="450" stroke="#018786" stroke-width="1"/>
+    <line x1="0" y1="540" x2="1200" y2="540" stroke="#018786" stroke-width="1"/>
+    <line x1="120" y1="0" x2="120" y2="630" stroke="#018786" stroke-width="1"/>
+    <line x1="240" y1="0" x2="240" y2="630" stroke="#018786" stroke-width="1"/>
+    <line x1="360" y1="0" x2="360" y2="630" stroke="#018786" stroke-width="1"/>
+    <line x1="480" y1="0" x2="480" y2="630" stroke="#018786" stroke-width="1"/>
+    <line x1="600" y1="0" x2="600" y2="630" stroke="#018786" stroke-width="1"/>
+    <line x1="720" y1="0" x2="720" y2="630" stroke="#018786" stroke-width="1"/>
+    <line x1="840" y1="0" x2="840" y2="630" stroke="#018786" stroke-width="1"/>
+    <line x1="960" y1="0" x2="960" y2="630" stroke="#018786" stroke-width="1"/>
+    <line x1="1080" y1="0" x2="1080" y2="630" stroke="#018786" stroke-width="1"/>
+  </g>
+
+  <!-- Sprint pipeline visualization - horizontal flow -->
+  <!-- Left side decorative bracket -->
+  <path d="M 90 285 L 70 285 L 70 345 L 90 345" stroke="#018786" stroke-width="2" fill="none" opacity="0.5"/>
+
+  <!-- STEP 1: /think -->
+  <rect x="100" y="275" width="110" height="70" rx="8" fill="#018786" fill-opacity="0.15" stroke="#018786" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="155" y="302" font-family="monospace" font-size="14" fill="#018786" text-anchor="middle" opacity="0.9">/think</text>
+  <text x="155" y="325" font-family="'Segoe UI', sans-serif" font-size="10" fill="#aad4d3" text-anchor="middle">Strategy</text>
+
+  <!-- Arrow -->
+  <line x1="210" y1="310" x2="235" y2="310" stroke="#FF9800" stroke-width="1.5" opacity="0.7"/>
+  <polygon points="235,305 245,310 235,315" fill="#FF9800" opacity="0.7"/>
+
+  <!-- STEP 2: /nano -->
+  <rect x="245" y="275" width="110" height="70" rx="8" fill="#018786" fill-opacity="0.15" stroke="#018786" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="300" y="302" font-family="monospace" font-size="14" fill="#018786" text-anchor="middle" opacity="0.9">/nano</text>
+  <text x="300" y="325" font-family="'Segoe UI', sans-serif" font-size="10" fill="#aad4d3" text-anchor="middle">Plan + Specs</text>
+
+  <!-- Arrow -->
+  <line x1="355" y1="310" x2="378" y2="310" stroke="#FF9800" stroke-width="1.5" opacity="0.7"/>
+  <polygon points="378,305 388,310 378,315" fill="#FF9800" opacity="0.7"/>
+
+  <!-- STEP 3: build -->
+  <rect x="388" y="275" width="110" height="70" rx="8" fill="#FF9800" fill-opacity="0.12" stroke="#FF9800" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="443" y="302" font-family="monospace" font-size="14" fill="#FF9800" text-anchor="middle" opacity="0.9">build</text>
+  <text x="443" y="325" font-family="'Segoe UI', sans-serif" font-size="10" fill="#ffe0b2" text-anchor="middle">Implement</text>
+
+  <!-- Arrow -->
+  <line x1="498" y1="310" x2="521" y2="310" stroke="#FF9800" stroke-width="1.5" opacity="0.7"/>
+  <polygon points="521,305 531,310 521,315" fill="#FF9800" opacity="0.7"/>
+
+  <!-- STEP 4: /review -->
+  <rect x="531" y="275" width="110" height="70" rx="8" fill="#018786" fill-opacity="0.15" stroke="#018786" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="586" y="302" font-family="monospace" font-size="14" fill="#018786" text-anchor="middle" opacity="0.9">/review</text>
+  <text x="586" y="325" font-family="'Segoe UI', sans-serif" font-size="10" fill="#aad4d3" text-anchor="middle">Code Review</text>
+
+  <!-- Arrow -->
+  <line x1="641" y1="310" x2="664" y2="310" stroke="#FF9800" stroke-width="1.5" opacity="0.7"/>
+  <polygon points="664,305 674,310 664,315" fill="#FF9800" opacity="0.7"/>
+
+  <!-- STEP 5: /qa -->
+  <rect x="674" y="275" width="110" height="70" rx="8" fill="#018786" fill-opacity="0.15" stroke="#018786" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="729" y="302" font-family="monospace" font-size="14" fill="#018786" text-anchor="middle" opacity="0.9">/qa</text>
+  <text x="729" y="325" font-family="'Segoe UI', sans-serif" font-size="10" fill="#aad4d3" text-anchor="middle">Testing</text>
+
+  <!-- Arrow -->
+  <line x1="784" y1="310" x2="807" y2="310" stroke="#FF9800" stroke-width="1.5" opacity="0.7"/>
+  <polygon points="807,305 817,310 807,315" fill="#FF9800" opacity="0.7"/>
+
+  <!-- STEP 6: /security -->
+  <rect x="817" y="275" width="120" height="70" rx="8" fill="#018786" fill-opacity="0.15" stroke="#018786" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="877" y="302" font-family="monospace" font-size="14" fill="#018786" text-anchor="middle" opacity="0.9">/security</text>
+  <text x="877" y="325" font-family="'Segoe UI', sans-serif" font-size="10" fill="#aad4d3" text-anchor="middle">Audit</text>
+
+  <!-- Arrow -->
+  <line x1="937" y1="310" x2="960" y2="310" stroke="#FF9800" stroke-width="1.5" opacity="0.7"/>
+  <polygon points="960,305 970,310 960,315" fill="#FF9800" opacity="0.7"/>
+
+  <!-- STEP 7: /ship -->
+  <rect x="970" y="275" width="110" height="70" rx="8" fill="#FF9800" fill-opacity="0.25" stroke="#FF9800" stroke-width="2" filter="url(#glow)"/>
+  <text x="1025" y="302" font-family="monospace" font-size="14" fill="#FF9800" text-anchor="middle" opacity="1">/ship</text>
+  <text x="1025" y="325" font-family="'Segoe UI', sans-serif" font-size="10" fill="#ffe0b2" text-anchor="middle">Deploy</text>
+
+  <!-- Right bracket -->
+  <path d="M 1080 285 L 1100 285 L 1100 345 L 1080 345" stroke="#FF9800" stroke-width="2" fill="none" opacity="0.5"/>
+
+  <!-- Main title -->
+  <text x="600" y="165" font-family="'Segoe UI', Arial, sans-serif" font-size="68" font-weight="700" fill="white" text-anchor="middle" letter-spacing="-1">NanoStack</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="210" font-family="'Segoe UI', Arial, sans-serif" font-size="22" fill="#aad4d3" text-anchor="middle" opacity="0.85">Think · Plan · Build · Review · Ship</text>
+
+  <!-- Tagline -->
+  <text x="600" y="430" font-family="'Segoe UI', Arial, sans-serif" font-size="16" fill="#80cbc4" text-anchor="middle" opacity="0.7">Zero dependencies · LLM-agnostic · Open Source</text>
+
+  <!-- AI provider icons area -->
+  <text x="600" y="480" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#546e7a" text-anchor="middle">Claude Code · Gemini CLI · OpenAI Codex · Cursor · Amp · Cline</text>
+
+  <!-- Decorative teal accent line -->
+  <line x1="200" y1="245" x2="1000" y2="245" stroke="#018786" stroke-width="1" opacity="0.3"/>
+  <line x1="200" y1="380" x2="1000" y2="380" stroke="#018786" stroke-width="1" opacity="0.3"/>
+
+  <!-- Small decorative circles -->
+  <circle cx="100" cy="540" r="40" fill="#018786" fill-opacity="0.06" stroke="#018786" stroke-width="1" opacity="0.3"/>
+  <circle cx="1100" cy="100" r="55" fill="#FF9800" fill-opacity="0.05" stroke="#FF9800" stroke-width="1" opacity="0.25"/>
+  <circle cx="70" cy="150" r="25" fill="#018786" fill-opacity="0.08" stroke="none"/>
+  <circle cx="1150" cy="480" r="35" fill="#FF9800" fill-opacity="0.07" stroke="none"/>
+
+  <!-- Bottom branding -->
+  <text x="600" y="600" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#37474f" text-anchor="middle">arceapps.github.io</text>
+</svg>

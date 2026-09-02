@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="50%" stop-color="#0b0f19" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Neon Teal Glow -->
+    <filter id="glowTeal" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComponentTransfer in="blur" result="glow1">
+        <feFuncA type="linear" slope="0.6"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="glow1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Neon Orange Glow -->
+    <filter id="glowOrange" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComponentTransfer in="blur" result="glow1">
+        <feFuncA type="linear" slope="0.6"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="glow1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)" />
+
+  <!-- Technical Circuit Grid Overlay -->
+  <g stroke="#1e293b" stroke-width="1" fill="none" opacity="0.6">
+    <path d="M 0,100 L 1200,100 M 0,200 L 1200,200 M 0,300 L 1200,300 M 0,400 L 1200,400 M 0,500 L 1200,500" />
+    <path d="M 200,0 L 200,630 M 400,0 L 400,630 M 600,0 L 600,630 M 800,0 L 800,630 M 1000,0 L 1000,630" />
+  </g>
+
+  <!-- Decorative Glowing Circuits (Teal) -->
+  <g stroke="#018786" stroke-width="2" fill="none" filter="url(#glowTeal)" opacity="0.7">
+    <path d="M -50,150 L 150,150 L 250,250 M 500,-50 L 500,50 L 400,150 L 100,150 L 50,200" />
+    <path d="M 1250,450 L 1050,450 L 950,350 L 950,200" />
+    <circle cx="250" cy="250" r="4" fill="#018786" />
+    <circle cx="50" cy="200" r="4" fill="#018786" />
+    <circle cx="950" cy="200" r="4" fill="#018786" />
+  </g>
+
+  <!-- Decorative Glowing Circuits (Orange) -->
+  <g stroke="#FF9800" stroke-width="2" fill="none" filter="url(#glowOrange)" opacity="0.6">
+    <path d="M 150,650 L 150,550 L 300,400 M 1050,-50 L 1050,100 L 1150,200" />
+    <circle cx="300" cy="400" r="4" fill="#FF9800" />
+    <circle cx="1150" cy="200" r="4" fill="#FF9800" />
+  </g>
+
+  <!-- === RIGHT: Smartphone & Neural Net Visualization === -->
+  <g transform="translate(680, 50)">
+    <!-- Phone Body -->
+    <rect x="80" y="50" width="240" height="480" rx="36" fill="#020617" stroke="#1e293b" stroke-width="4" />
+    <rect x="90" y="60" width="220" height="460" rx="28" fill="#070a13" />
+
+    <!-- Phone Screen Notch -->
+    <rect x="150" y="60" width="100" height="20" rx="10" fill="#020617" />
+    
+    <!-- Phone Screen Content Grid -->
+    <g stroke="#1e293b" stroke-width="1" fill="none" opacity="0.3">
+      <line x1="90" y1="120" x2="310" y2="120" />
+      <line x1="90" y1="220" x2="310" y2="220" />
+      <line x1="90" y1="320" x2="310" y2="320" />
+      <line x1="90" y1="420" x2="310" y2="420" />
+    </g>
+
+    <!-- Neural Network Nodes & Links Overlay (Teal & Orange) -->
+    <g opacity="0.85">
+      <!-- Connections -->
+      <line x1="200" y1="200" x2="130" y2="270" stroke="#018786" stroke-width="2.5" filter="url(#glowTeal)" />
+      <line x1="200" y1="200" x2="270" y2="270" stroke="#018786" stroke-width="2.5" filter="url(#glowTeal)" />
+      <line x1="130" y1="270" x2="200" y2="350" stroke="#FF9800" stroke-width="2.5" filter="url(#glowOrange)" />
+      <line x1="270" y1="270" x2="200" y2="350" stroke="#FF9800" stroke-width="2.5" filter="url(#glowOrange)" />
+      <line x1="200" y1="350" x2="200" y2="440" stroke="#018786" stroke-width="2" filter="url(#glowTeal)" />
+      
+      <!-- Cross Connections -->
+      <line x1="130" y1="270" x2="270" y2="270" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" />
+      <line x1="200" y1="200" x2="200" y2="350" stroke="#475569" stroke-width="1.5" stroke-dasharray="4,4" />
+
+      <!-- Node Circles (Glow) -->
+      <!-- Center Top Node -->
+      <circle cx="200" cy="200" r="14" fill="#018786" filter="url(#glowTeal)" />
+      <circle cx="200" cy="200" r="8" fill="#e2e8f0" />
+      
+      <!-- Left Mid Node -->
+      <circle cx="130" cy="270" r="14" fill="#018786" filter="url(#glowTeal)" />
+      <circle cx="130" cy="270" r="8" fill="#e2e8f0" />
+
+      <!-- Right Mid Node -->
+      <circle cx="270" cy="270" r="14" fill="#018786" filter="url(#glowTeal)" />
+      <circle cx="270" cy="270" r="8" fill="#e2e8f0" />
+
+      <!-- Center Bottom Node -->
+      <circle cx="200" cy="350" r="16" fill="#FF9800" filter="url(#glowOrange)" />
+      <circle cx="200" cy="350" r="9" fill="#e2e8f0" />
+
+      <!-- Terminal Output Node -->
+      <circle cx="200" cy="440" r="10" fill="#018786" filter="url(#glowTeal)" />
+      <circle cx="200" cy="440" r="5" fill="#e2e8f0" />
+    </g>
+
+    <!-- Glowing floating particles -->
+    <circle cx="100" cy="150" r="3" fill="#018786" filter="url(#glowTeal)" opacity="0.8" />
+    <circle cx="300" cy="180" r="2" fill="#FF9800" filter="url(#glowOrange)" opacity="0.6" />
+    <circle cx="280" cy="400" r="3" fill="#018786" filter="url(#glowTeal)" opacity="0.8" />
+    <circle cx="110" cy="380" r="2" fill="#FF9800" filter="url(#glowOrange)" opacity="0.6" />
+  </g>
+
+  <!-- === LEFT: Brand Text Content === -->
+  <g transform="translate(80, 0)">
+    <!-- Small Brand / Category Label -->
+    <rect x="0" y="140" width="160" height="32" rx="16" fill="#018786" opacity="0.15" />
+    <rect x="0" y="140" width="160" height="32" rx="16" fill="none" stroke="#018786" stroke-width="1.5" />
+    <text x="80" y="161" text-anchor="middle" font-family="'Outfit', 'Roboto', 'Inter', sans-serif" font-size="14" font-weight="bold" fill="#018786" letter-spacing="1">AI PROMPTING</text>
+
+    <!-- Main Title (Socratic & Maieutic) -->
+    <text x="0" y="240" font-family="'Outfit', 'Roboto', 'Inter', sans-serif" font-size="56" font-weight="900" fill="#ffffff" letter-spacing="-1">
+      Socratic Method &amp;
+    </text>
+    <text x="0" y="315" font-family="'Outfit', 'Roboto', 'Inter', sans-serif" font-size="56" font-weight="900" fill="#FF9800" letter-spacing="-1" filter="url(#glow)">
+      Maieutic Prompting
+    </text>
+
+    <!-- Separator Line -->
+    <line x1="0" y1="365" x2="350" y2="365" stroke="#334155" stroke-width="2" />
+
+    <!-- Subtitle / Hook -->
+    <text x="0" y="415" font-family="'Roboto', 'Inter', sans-serif" font-size="20" font-weight="normal" fill="#94a3b8">
+      How mobile developers can ask better questions
+    </text>
+    <text x="0" y="450" font-family="'Roboto', 'Inter', sans-serif" font-size="20" font-weight="normal" fill="#94a3b8">
+      to escape the &quot;almost correct&quot; code loop.
+    </text>
+
+    <!-- Target Badges (Android + iOS) -->
+    <g transform="translate(0, 500)">
+      <!-- Android Badge -->
+      <rect x="0" y="0" width="105" height="32" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+      <text x="52.5" y="20" text-anchor="middle" font-family="'Roboto', 'Inter', sans-serif" font-size="13" font-weight="bold" fill="#38bdf8">Kotlin / Compose</text>
+
+      <!-- iOS Badge -->
+      <rect x="120" y="0" width="95" height="32" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+      <text x="167.5" y="20" text-anchor="middle" font-family="'Roboto', 'Inter', sans-serif" font-size="13" font-weight="bold" fill="#f43f5e">Swift / SwiftUI</text>
+      
+      <!-- IDEs Badge -->
+      <rect x="230" y="0" width="150" height="32" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
+      <text x="305" y="20" text-anchor="middle" font-family="'Roboto', 'Inter', sans-serif" font-size="13" font-weight="bold" fill="#a855f7">Gemini / Copilot / Cursor</text>
+    </g>
+  </g>
+</svg>

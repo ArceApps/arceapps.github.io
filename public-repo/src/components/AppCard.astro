@@ -1,0 +1,78 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  icon?: string;
+  realIconUrl?: string;
+  link: string;
+  color?: string; // Optional custom color class for icon background
+  ctaText?: string;
+  isExternal?: boolean;
+}
+
+const {
+  title,
+  description,
+  icon = "android",
+  realIconUrl,
+  link,
+  color = "bg-primary",
+  ctaText = "Descargar en Google Play",
+  isExternal = true,
+} = Astro.props;
+
+import { optimizeGooglePlayImage } from "../utils/image-optimization";
+import Card from "./Card.astro";
+---
+
+<Card
+  href={link}
+  target={isExternal ? "_blank" : undefined}
+  rel={isExternal ? "noopener noreferrer" : undefined}
+  variant="app"
+  ariaLabel={title}
+>
+  <div class="flex h-full flex-col p-6">
+    <!-- Icon -->
+    <div
+      class={`w-14 h-14 rounded-2xl ${!realIconUrl ? color : "bg-white"} flex items-center justify-center text-white shadow-md mb-6 overflow-hidden`}
+    >
+      {
+        realIconUrl ? (
+          <img
+            src={optimizeGooglePlayImage(realIconUrl, 112, "square")}
+            alt={`${title} icon`}
+            loading="lazy"
+            decoding="async"
+            width="56"
+            height="56"
+            class="w-full h-full object-cover"
+          />
+        ) : (
+          <span class="material-icons text-3xl">{icon}</span>
+        )
+      }
+    </div>
+
+    <!-- Content -->
+    <h3
+      class="text-xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors motion-reduce:transition-none"
+    >
+      {title}
+    </h3>
+    <p
+      class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed flex-grow line-clamp-3"
+    >
+      {description}
+    </p>
+
+    <!-- Action -->
+    <div class="mt-6 flex items-center text-primary font-medium">
+      <span>{ctaText}</span>
+      <span
+        class="material-icons ml-1 text-sm"
+        >arrow_forward</span
+      >
+    </div>
+  </div>
+</Card>
