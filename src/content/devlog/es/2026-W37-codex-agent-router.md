@@ -31,6 +31,8 @@ Así empezó lo que terminó convirtiéndose en cinco skills: `agent-opencode`, 
 
 En el artículo técnico de esta semana explico toda la arquitectura con más calma. Este devlog es la otra cara: cómo llegué hasta ella, qué decisiones cambié por el camino y por qué una simple palabra —“enruta”— terminó siendo una de las mejores partes del diseño.
 
+Y hay una diferencia importante respecto a la primera versión de esta entrada: después de escribirla empezamos a ejecutar el sistema de verdad. Aparecieron errores. Algunos parecían culpa del sandbox, otros parecían culpa de OpenCode y uno acabó siendo culpa de una línea de Bash que nosotros mismos habíamos escrito. Eso mejoró bastante el diseño.
+
 Si quieres el análisis técnico completo, está en [Codex Agent Router: Orquestar agentes externos](/es/blog/codex-agent-router-external-agents/). Aquí vamos con la cocina.
 
 ![Arquitectura del sistema que terminamos montando.](/images/codex-agent-router-architecture-es.svg)
@@ -192,15 +194,11 @@ Hay tareas que son útiles y baratas intelectualmente. Un análisis preliminar. 
 
 El worker gratuito crea un carril psicológico y económico diferente.
 
-También obliga a ser más consciente de privacidad. La skill lleva una instrucción explícita para no mandar deliberadamente claves, tokens, credenciales, `.env` ni información especialmente sensible.
+También obliga a ser más consciente de privacidad. La skill lleva una instrucción explícita para no mandar deliberadamente claves, tokens, credenciales, `.env`, claves privadas, cookies de autenticación ni información especialmente sensible.
 
 Y eso me recordó algo que conviene repetir: cuando hacemos routing de modelos, hacemos routing de datos.
 
 No todo código debe enviarse a cualquier proveedor simplemente porque técnicamente se pueda.
-
-En los ejemplos de este artículo y del devlog he sido deliberadamente aburrido: rutas genéricas, nombres genéricos, ninguna IP, ningún host privado, ninguna credencial, ningún fragmento de configuración personal.
-
-Lo aburrido es bueno cuando hablamos de secretos.
 
 ## agent-minimax: otro modelo, el mismo harness
 
@@ -243,7 +241,7 @@ En un mundo ideal los tokens no importarían. En el mundo donde vivo, claro que 
 
 ## agent-agy: “todos los permisos” significa exactamente eso
 
-Con Antigravity el usuario de la semana —yo mismo— tenía una petición muy clara: quiero que pueda trabajar sin quedarse parado pidiendo permisos.
+Con Antigravity tenía una petición muy clara: quiero que pueda trabajar sin quedarse parado pidiendo permisos.
 
 `agy` ofrece:
 
@@ -260,19 +258,12 @@ También configuramos:
 ```bash
 --effort high
 --print-timeout 30m
-```
-
-y posteriormente añadimos:
-
-```bash
 --output-format stream-json
 ```
 
 La razón del timeout era sencilla: cinco minutos pueden ser suficientes para responder una pregunta, pero no para una tarea que implique leer proyecto, ejecutar build, encontrar un fallo, tocar código y volver a probar.
 
-La razón de `stream-json` apareció un poco más tarde y acabó siendo clave para el sistema completo.
-
-Pero antes de llegar ahí todavía faltaba construir la pieza que decidiera quién hace qué.
+La razón de `stream-json` acabó siendo clave para el sistema completo: si Codex va a supervisar un agente externo, necesita actividad observable mientras trabaja.
 
 ## Nace agent-router y, como buen router, al principio tenía demasiado equipaje
 
@@ -303,8 +294,6 @@ Solo necesitaba responder una pregunta:
 El resto debía vivir en las skills específicas.
 
 Recortarla fue probablemente la mejora más importante que hicimos en toda la configuración.
-
-Cuando trabajas con agentes es muy fácil pensar que más instrucciones significan más control. A partir de cierto punto significan más contexto, más contradicciones y más oportunidades para que una regla secundaria tape la intención principal.
 
 ## El momento de “delega” y “enruta”
 
@@ -358,33 +347,11 @@ enruta usando el agente gratuito
 
 sin perder control.
 
-Si no digo ninguna de las dos cosas, entonces sí dejo al router decidir automáticamente.
-
 ![Cómo interpreta Agent Router las órdenes de delegación y routing.](/images/codex-agent-router-routing-es.svg)
 
-## Pero los agentes externos desaparecían detrás del proceso
-
-En ese punto el sistema ya podía ejecutar trabajo.
-
-Y apareció el siguiente problema: yo quería verlo.
-
-No necesito leer el razonamiento interno del modelo. De hecho, eso no es lo importante. Quiero saber si está leyendo archivos, ejecutando tests, modificando cosas, atascado o terminado.
-
-Con OpenCode podíamos plantear un servidor web y abrir su UI. También podíamos usar sesiones, TUI y logs.
-
-Con Antigravity había una posibilidad especialmente buena: `stream-json`.
-
-Pero cuanto más añadía paneles paralelos, más traicionaba la idea original de tener Codex como centro.
-
-La pregunta cambió:
-
-¿puedo hacer que el agente externo aparezca dentro del sistema de subagentes de Codex?
-
-No como si fuera un subagente nativo —porque no lo es—, sino usando un subagente de Codex como **host**.
-
-Y ahí la arquitectura hizo clic.
-
 ## El subagente host: un supervisor al que le está prohibido ayudar
+
+Cuando quisimos ver qué estaba haciendo cada agente externo apareció la idea del host.
 
 El host es un subagente nativo de Codex con una tarea muy poco heroica.
 
@@ -401,27 +368,13 @@ Algo así:
 ```text
 Codex principal
     |
-    +-- host "AGY · corregir build"
+    +-- host "MiniMax · refactor"
             |
-            +-- agent-agy
+            +-- agent-minimax
                     |
-                    +-- agy
+                    +-- opencode run
                             |
-                            +-- Antigravity hace el trabajo
-```
-
-O:
-
-```text
-Codex principal
-    |
-    +-- host "OpenCode · refactor"
-            |
-            +-- agent-opencode
-                    |
-                    +-- OpenCode
-                            |
-                            +-- DeepSeek hace el trabajo
+                            +-- MiniMax hace el trabajo
 ```
 
 La instrucción “no implementes tú la tarea” es crucial.
@@ -430,115 +383,316 @@ Parece absurdo crear un agente capaz y luego prohibirle ayudar, pero precisament
 
 El host es una carcasa de observabilidad.
 
-Y, de repente, la distinción entre “delega” y “enruta” se volvió todavía más útil.
-
 “Delega” crea un subagente que **sí trabaja**.
 
 “Enruta” crea un subagente que **supervisa a quien trabaja**.
 
-Eso es fácil de explicar y, por tanto, fácil de usar.
+Ese matiz terminó siendo más importante de lo que esperaba.
 
-## Streaming: cuando la terminal deja de ser una caja negra
+## Primer golpe de realidad: `ln: Read-only file system`
 
-Para que el host tenga algo que observar, los runners necesitan emitir progreso.
-
-OpenCode soporta formato JSON de eventos:
-
-```bash
-opencode run \
-  --format json \
-  ...
-```
-
-Antigravity tiene:
-
-```bash
-agy \
-  --output-format stream-json \
-  ...
-```
-
-En `agy`, el stream incluye eventos de inicialización, pasos, herramientas y resultado. Eso significa que el host puede recibir actividad conforme ocurre.
-
-No es el “pensamiento secreto” del modelo. Tampoco lo quiero.
-
-Es algo mucho más útil para ingeniería: actividad observable.
-
-¿Ha ejecutado una herramienta?
-
-¿Está todavía trabajando?
-
-¿Ha terminado?
-
-¿Con error?
-
-¿Cuántos pasos lleva?
-
-Eso es telemetría, no voyeurismo neuronal.
-
-Añadimos `stdbuf` y `tee` a los runners para reducir buffering y conservar la salida.
-
-Y entonces apareció el último pequeño cinturón de seguridad: logs persistentes.
-
-## current-agent-*.log: porque no confío mi vida a una UI
-
-La idea del host funciona, pero las interfaces multiagente siguen evolucionando. No quería que un cambio en cómo Codex muestra un subagent thread dejara a los workers invisibles.
-
-Así que cada runner escribe también un log.
-
-Conceptualmente:
+La arquitectura quedaba preciosa dibujada. Entonces llegó la primera ejecución real con MiniMax y apareció:
 
 ```text
-~/.codex/agent-runs/
-├── current-agent-opencode.log
-├── current-agent-minimax.log
-├── current-agent-free.log
-└── current-agent-agy.log
+ln: Read-only file system
 ```
 
-Cada ejecución real usa un fichero con timestamp y el `current-*` apunta al último.
+La lectura inmediata fue: permisos.
 
-Si algo no se ve bien en la UI:
+El host está limitado. OpenCode no puede escribir. MiniMax ni siquiera puede empezar. Algo en el sandbox está mal.
+
+Y sí, la capa de permisos del proceso padre importaba. Un host no puede inventarse privilegios que su padre no tiene. Ajustamos el contexto de ejecución para que el proceso exterior tuviera la autoridad necesaria.
+
+El siguiente intento avanzó más.
+
+Pero lo interesante llegó cuando seguimos investigando el `ln` concreto.
+
+Ese `ln` no lo ejecutaba MiniMax.
+
+Ni siquiera lo ejecutaba OpenCode.
+
+Lo ejecutábamos **nosotros** en `scripts/run.sh`:
 
 ```bash
-tail -f ~/.codex/agent-runs/current-agent-agy.log
+CURRENT="$LOG_DIR/current-${AGENT_NAME}.log"
+ln -sfn "$LOG" "$CURRENT"
 ```
 
-y asunto arreglado.
+Habíamos creado un enlace `current-agent-minimax.log` para que fuera cómodo seguir el último log. Una idea perfectamente razonable y completamente innecesaria para el diseño final.
 
-No hay rutas privadas reales en este ejemplo; `~` es la forma estándar y genérica de representar el directorio home.
+El error que parecía demostrar que el agente externo no tenía permisos era, en realidad, nuestro wrapper fallando antes de lanzar al agente externo.
 
-En algún momento pensé que esto era redundante. Después recordé cuántas veces una interfaz bonita me ha enseñado menos información que un fichero de texto.
+Ese fue uno de los mejores bugs de la semana porque obligó a separar capas.
 
-El log se quedó.
+## La solución fue quitar cosas, no añadir más permisos
 
-## Qué hace agent-router cuando no le doy el destino
+En vez de intentar conseguir que el symlink funcionara en cualquier contexto, lo eliminamos.
 
-La política final no intenta ganar un premio de inteligencia artificial.
+Los logs dejaron de vivir como “estado actual” compartido y pasaron a ser artefactos únicos por ejecución:
 
-`agent-opencode` es el default externo.
+```bash
+LOG_DIR="${AGENT_ROUTER_LOG_DIR:-${TMPDIR:-/tmp}/codex-agent-router}"
+STAMP="$(date '+%Y%m%d-%H%M%S')"
+RUN_ID="${STAMP}-$$-${RANDOM}"
+LOG="$LOG_DIR/${AGENT_NAME}-${RUN_ID}.log"
+```
 
-`agent-free` es para trabajo sencillo o cuando quiero preservar cuota.
+Ahora puedo tener:
 
-`agent-minimax` es para trabajo largo, amplio o repetitivo.
+```text
+/tmp/codex-agent-router/
+├── agent-minimax-20260910-130501-12345-9123.log
+├── agent-minimax-20260910-130502-12347-1221.log
+├── agent-opencode-20260910-130504-12351-18003.log
+└── agent-agy-20260910-130507-12360-22114.log
+```
 
-`agent-agy` es para tareas muy agentic y cargadas de herramientas.
+Dos MiniMax en paralelo ya no pelean por `current-agent-minimax.log`.
 
-Si digo “enruta”, el router escoge entre esos cuatro.
+El wrapper tampoco necesita escribir bajo `~/.codex` solo para dejar telemetría.
 
-Si digo un nombre, mi elección gana.
+Y el host recibe el path exacto del log que pertenece a su ejecución.
 
-Si digo “delega”, no mira esos cuatro: usa subagentes nativos de Codex.
+La solución mejoró permisos, paralelismo y observabilidad al mismo tiempo simplemente eliminando una abstracción que ya no hacía falta.
 
-Y si solo escribo `$agent-router` con una tarea, tiene libertad para elegir Codex principal, subagentes internos o ruta externa.
+## Después apareció `opencode.log`, y nos hizo dudar otra vez
 
-Esa última opción es útil, pero me gusta que las palabras explícitas existan porque hacen que el flujo sea predecible.
+La siguiente ejecución avanzó más y falló al abrir:
 
-La automatización no debería obligarme a perder el control del modelo mental.
+```text
+~/.local/share/opencode/log/opencode.log
+```
+
+Eso volvió a parecer un problema de permisos.
+
+Pero hicimos algo que quiero conservar como regla para futuras depuraciones: probar cada capa por separado.
+
+Desde el mismo contexto de Codex se podía crear y borrar un fichero en ese directorio. Los permisos Unix del directorio y del fichero eran correctos. El propietario era el usuario esperado. El proceso OpenCode que estaba abierto manualmente tenía el mismo `HOME` y el mismo usuario.
+
+También apareció una pista curiosa: había una sesión interactiva de OpenCode viva desde hacía horas.
+
+Durante un momento parecía lógico pensar que quizá ese proceso persistente era la causa. Pero `lsof` no mostraba que tuviera abierto el log nuevo, y Linux no convierte normalmente un fichero de log en exclusivo simplemente porque otro proceso exista.
+
+La conclusión fue más útil que el diagnóstico rápido: **una sesión de OpenCode persistida y un proceso OpenCode vivo son dos cosas distintas**.
+
+Y eso nos llevó a cambiar el contrato de lifecycle.
+
+## Una tarea, un proceso
+
+A partir de ahora, cada routing normal es efímero.
+
+```text
+una tarea
+    -> un host Codex
+        -> un opencode run o un agy
+            -> termina
+        -> el host devuelve resultado
+    -> termina el host
+```
+
+El router no reutiliza una TUI de OpenCode que yo tenga abierta.
+
+No hace `attach` a una sesión existente por defecto.
+
+No utiliza `--continue` ni `--session` salvo que la tarea diga explícitamente “continúa aquella ejecución”.
+
+No mata tampoco mis sesiones interactivas. Son otro mundo.
+
+Esto me gusta especialmente porque hace que el sistema sea repetible. Si dos tareas idénticas se enrutan en momentos distintos, ambas empiezan desde un proceso nuevo salvo que yo pida lo contrario.
+
+OpenCode puede conservar el historial de la sesión internamente. Eso no significa que el proceso tenga que seguir vivo.
+
+Es una diferencia pequeña en vocabulario y enorme en operación.
+
+## MiniMax por fin arrancó y entonces descubrimos el siguiente problema: veía demasiado poco
+
+Después de corregir el launcher, MiniMax llegó a ejecutar una tarea real.
+
+Modificó el test autorizado.
+
+Ejecutó el test enfocado.
+
+Pasó.
+
+Ejecutó la suite completa.
+
+También pasó.
+
+`git diff --check` salió limpio.
+
+Exit code 0.
+
+Eso era justo lo que queríamos.
+
+Pero durante la ejecución ocurrió algo todavía más interesante: el primer intento de test falló por `JAVA_HOME`. MiniMax encontró un JDK disponible, corrigió el entorno y reintentó.
+
+El host me contó el resultado así, más o menos:
+
+```text
+El primer intento falló por JAVA_HOME; MiniMax lo reintentó con el JDK disponible y pasó.
+```
+
+Correcto.
+
+Y totalmente insuficiente para el tipo de sistema que quiero.
+
+¿Qué comando falló?
+
+¿Qué valor de `JAVA_HOME` utilizó después?
+
+¿Qué comando exacto reintentó?
+
+¿Cambió solo una variable para ese proceso o tocó configuración persistente?
+
+No quiero el chain of thought del modelo. Quiero saber qué hizo mi máquina.
+
+Ese matiz terminó convirtiéndose en otra sección de las skills.
+
+## Observabilidad no es ver que “está trabajando”
+
+Ahora el contrato dice que, cuando la información exista, el host debe enseñar:
+
+```text
+- comandos shell relevantes;
+- builds;
+- tests;
+- Git;
+- cambios de entorno;
+- errores;
+- reintentos;
+- acciones de recuperación;
+- archivos importantes modificados.
+```
+
+Si un comando falla y el agente se recupera, la secuencia ideal es:
+
+```text
+1. comando original;
+2. error relevante;
+3. acción correctiva;
+4. comando de reintento;
+5. resultado.
+```
+
+La frase “arregló JAVA_HOME” puede seguir apareciendo en el resumen final, pero no debería ser la única evidencia disponible.
+
+También añadimos la regla contraria: el host no inventa comandos que no haya visto. Si el CLI externo solo ha emitido un resumen semántico, Codex debe admitirlo.
+
+La observabilidad útil no consiste en fabricar detalle. Consiste en preservar el detalle disponible.
+
+## `--print-logs`, `tee` y un exit code que no mienta
+
+Los wrappers de OpenCode pasaron a compartir el mismo patrón:
+
+```bash
+stdbuf -oL -eL \
+  opencode \
+    --print-logs \
+    --log-level INFO \
+    run \
+    --model "$MODEL" \
+    --dir "$REPO" \
+    --auto \
+    --format json \
+    --title "Codex ${AGENT_NAME} ${RUN_ID}" \
+    "$TASK" \
+    2>&1 | tee "$LOG"
+
+STATUS=${PIPESTATUS[0]}
+```
+
+Lo de `PIPESTATUS[0]` merece cariño.
+
+Con un pipeline, Bash puede acabar devolviendo el estado de `tee`. Y `tee` puede funcionar perfectamente aunque OpenCode haya muerto.
+
+No quería una ejecución así:
+
+```text
+OpenCode -> exit 1
+tee      -> exit 0
+router   -> “éxito”
+```
+
+Ahora el estado final pertenece al worker real.
+
+No es glamuroso. Es exactamente el tipo de detalle que quiero que exista sin tener que pensar en él cada vez.
+
+AGY mantiene su `stream-json` y `--dangerously-skip-permissions`, pero adopta el mismo contrato alrededor: run único, log único, `tee`, exit code real y finalización del proceso.
+
+## Marcadores pequeños para no interpretar prosa
+
+También añadimos dos marcadores básicos.
+
+Al empezar:
+
+```text
+AGENT_ROUTER_START
+worker=agent-minimax
+run_id=...
+repository=...
+log=...
+```
+
+Al terminar:
+
+```text
+AGENT_ROUTER_RESULT
+worker=agent-minimax
+exit_code=0
+log=/tmp/codex-agent-router/agent-minimax-....log
+status=success
+```
+
+La intención no es inventar un protocolo enorme.
+
+Solo quiero que el host no tenga que deducir de un párrafo si el proceso terminó, qué log le corresponde o cuál fue su exit code.
+
+Cuanta menos interpretación necesite la infraestructura, mejor.
+
+## Paralelismo: sí, pero que Codex sepa que está ocurriendo
+
+Otra pregunta apareció casi sola: si cada routing es un proceso independiente, ¿por qué no lanzar varios a la vez?
+
+Sí.
+
+Pero quiero que el paralelismo lo controle Codex, no que quede escondido dentro de OpenCode.
+
+Para lectura, genial:
+
+```text
+Codex
+├── host A -> MiniMax revisa arquitectura
+├── host B -> DeepSeek revisa tests
+└── host C -> Big Pickle revisa documentación
+```
+
+Para escritura, cuidado.
+
+Tres agentes editando el mismo fichero no son “multi-agent engineering”. Son tres procesos compitiendo por un recurso compartido.
+
+La política actual es sencilla:
+
+- lectura: paralelismo libre cuando tenga sentido;
+- escritura con scopes claramente separados: posible;
+- escritura solapada: no;
+- tareas grandes en paralelo: worktrees separados.
+
+La arquitectura que quiero terminar automatizando es:
+
+```text
+Codex
+├── host A -> MiniMax  -> worktree A
+├── host B -> DeepSeek -> worktree B
+└── host C -> AGY      -> worktree C
+```
+
+Y luego Codex integra.
+
+Me gusta más que pedirle a un OpenCode persistente que lance subagentes por debajo porque mantiene el mapa de trabajo en el nivel donde yo lo estoy mirando.
 
 ## Una decisión pequeña que evita una gran fiesta de subagentes
 
-También limitamos la delegación interna.
+La delegación interna también tiene límites.
 
 Por defecto, máximo tres subagentes concurrentes.
 
@@ -546,7 +700,7 @@ Y les decimos que no creen más subagentes salvo que yo lo pida.
 
 Esto puede parecer demasiado conservador en 2026, cuando todo producto de IA quiere enseñarte una animación con veinte agentes corriendo en paralelo.
 
-Mi experiencia es que veinte agentes son impresionantes en un gráfico y bastante menos impresionantes cuando cinco de ellos han investigado lo mismo y tres están editando el mismo archivo.
+Mi experiencia es que veinte agentes son impresionantes en un gráfico y bastante menos impresionantes cuando cinco han investigado lo mismo y tres están editando el mismo archivo.
 
 Los subagentes son excelentes cuando las tareas son independientes.
 
@@ -570,7 +724,7 @@ Eso no es multiagente. Es una recreación digital de tres personas intentando es
 
 ## La parte que no se ve: preparar un buen handoff
 
-A estas alturas tenía nombres, routing, hosts y streaming.
+A estas alturas tenía nombres, routing, hosts, streaming y lifecycle.
 
 Podía haber dado el trabajo por terminado.
 
@@ -582,37 +736,13 @@ No copiar todo.
 
 No pegar media hora de chat.
 
-Extraer objetivo, restricciones, módulo relevante, comportamiento esperado, verificación y permisos especiales.
+Extraer objetivo, restricciones, módulo relevante, comportamiento esperado, verificación, scope de escritura, cambios previos que hay que respetar y autorización Git si existe.
 
 Eso reduce tokens y reduce errores.
 
 También es una barrera de privacidad. Si la conversación contiene información de otros proyectos, no tiene por qué viajar al proveedor externo.
 
 Una arquitectura de agentes bien montada no solo decide dónde se ejecuta el código. Decide qué contexto cruza cada frontera.
-
-## Ollama entró en la reunión y salió sin una skill
-
-Durante el diseño miramos también Ollama.
-
-Yo no quería modelos locales en ese momento, pero Ollama Cloud tiene uso remoto y el plan gratuito incluye una cantidad starter para ciertos modelos.
-
-Podíamos añadir otro worker.
-
-No lo hicimos.
-
-Esta parte me parece importante porque en building in public es muy fácil contar todas las cosas que añadiste y ninguna de las que **decidiste no añadir**.
-
-Ya teníamos un worker gratuito.
-
-Crear `agent-ollama` solo porque técnicamente era posible añadía una nueva ruta, otra política, otra fuente de disponibilidad cambiante y otra cosa que mantener.
-
-La pregunta fue: ¿qué problema nuevo resuelve?
-
-En ese momento, ninguno.
-
-Así que salió del diseño.
-
-Puede volver otro día.
 
 ## Lo bueno: por qué estoy contento con el resultado
 
@@ -628,25 +758,21 @@ Lo tercero es que los nombres significan cosas.
 
 `agent-minimax` no cambia silenciosamente de proveedor.
 
-`agent-free` representa un objetivo de coste.
+`agent-free` representa un objetivo de coste y tiene reglas más estrictas sobre secretos.
 
 `agent-agy` representa autonomía y herramientas.
 
 `agent-router` representa política.
 
-Lo cuarto es la observabilidad.
+Lo cuarto es que cada routing normal es una unidad de trabajo limpia: proceso nuevo, log nuevo, estado nuevo.
 
-El host-subagent me da un hilo.
+Lo quinto es la observabilidad. El host me da un hilo, el stream me da actividad y el log me da evidencia cuando la UI resume demasiado.
 
-El stream me da actividad.
+Lo sexto es que ahora puedo distinguir quién falló. Un `ln` en el wrapper no es un fallo de MiniMax. Un test roto por la implementación sí lo es.
 
-El log me da una red de seguridad.
+Lo séptimo es que puedo sustituir piezas. Si dentro de seis meses cambia el modelo detrás de `agent-opencode`, el router no tiene por qué enterarse.
 
-Lo quinto es que puedo sustituir piezas. Si dentro de seis meses cambia el modelo que quiero detrás de `agent-opencode`, el router no tiene por qué enterarse.
-
-Lo sexto es una cosa menos visible: tengo un vocabulario.
-
-“Delega” y “enruta” quizá sea la feature que más use de todo esto.
+Y lo octavo sigue siendo mi favorito: tengo un vocabulario. “Delega” y “enruta” probablemente sea la feature que más use de todo esto.
 
 ## Lo malo: porque por supuesto hay una factura
 
@@ -676,7 +802,7 @@ La sexta es que `agent-router` no es omnisciente.
 
 Puede mandar una tarea al worker equivocado. Por eso el routing explícito existe.
 
-Y la séptima es que la UI de Codex no está obligada a enseñarme cada evento exactamente como yo sueño. Los logs existen por algo.
+Y la séptima es que observabilidad no significa visibilidad perfecta. OpenCode o la UI pueden resumir eventos. Tener el log ayuda, pero todavía hay margen de mejora.
 
 ## Qué solucionamos de verdad esta semana
 
@@ -698,7 +824,9 @@ yo -> reconciliarlo todo
 Ahora:
 
 ```text
-yo -> Codex -> router -> worker
+yo -> Codex -> router -> host -> worker externo
+                  |               |
+                  |               +-> log + exit code
                   |
                   +-> Codex verifica
 ```
@@ -719,15 +847,17 @@ No me importa demasiado si por debajo hay cuatro modelos, seis procesos o doce f
 
 ## Qué haría después
 
-Hay varias mejoras obvias.
+La mejora más clara ahora mismo es automatizar worktrees para routing paralelo de escritura.
 
-Una es capturar métricas de los workers: duración, exit code, número de archivos, tests, quizá coste cuando esté disponible. Entonces el router podría basarse menos en heurísticas y más en historial.
+Quiero que Codex pueda mirar tres tareas, detectar que tocan zonas solapadas y aislarlas antes de lanzar los workers.
 
-Otra es crear worktrees automáticamente cuando se enrutan tareas de escritura paralelas.
+También quiero capturar métricas: duración, exit code, número de archivos, tests, número de reintentos y quizá coste cuando esté disponible. Entonces el router podría basarse menos en intuición y más en experiencia real.
 
-Otra es mejorar el host para que, si un agente externo devuelve una pregunta importante, Codex pueda evaluarla y responder sin cortar toda la ejecución. Esto requeriría sesiones más persistentes.
+Otra mejora es hacer que el host presente mejor el stream estructurado. No necesito ver cada byte de JSON, pero sí quiero que herramientas, comandos, reintentos y cambios de entorno importantes aparezcan de forma cómoda.
 
-Y otra es un pequeño dashboard sobre los logs. Aunque paradójicamente ahora mismo no lo necesito porque justo acabamos de esforzarnos para no necesitar otra interfaz.
+Y sigue abierta la posibilidad del bridge interactivo: si un agente externo encuentra una decisión importante, Codex podría intentar responderla y escalarme solo cuando sea realmente necesario.
+
+No quiero construirlo todavía.
 
 La tentación será añadir todo.
 
@@ -735,19 +865,21 @@ Intentaré resistirla.
 
 ## Una última regla: llamar a cada cosa por su nombre
 
-Durante la conversación hubo otra pequeña corrección que acabó importando más de lo previsto: dejar de llamar “subagente de Codex” a cualquier cosa que Codex lance.
+Durante el proceso hubo una corrección que acabó importando más de lo previsto: dejar de llamar “subagente de Codex” a cualquier cosa que Codex lance.
 
-Si Codex crea un agente nativo con su mecanismo multiagente, eso es un **subagente de Codex**. Puede heredar el modelo del padre, recibe una subtarea y trabaja dentro del sistema multiagente de Codex.
+Si Codex crea un agente nativo con su mecanismo multiagente, eso es un **subagente de Codex**.
 
-Si Codex ejecuta OpenCode, MiniMax a través de OpenCode, Big Pickle o `agy`, eso es un **agente externo**. Aunque el proceso se lance desde un subagente host y aparezca asociado a un hilo dentro de Codex, el trabajo real lo está realizando otra herramienta y, potencialmente, otro proveedor.
+Si Codex ejecuta OpenCode, MiniMax a través de OpenCode, Big Pickle o `agy`, eso es un **agente externo**.
+
+Si un subagente Codex existe solo para mantener visible ese proceso externo, eso es un **host**.
+
+Y si OpenCode guarda una sesión después de que el proceso termine, eso es **historial persistido**, no un proceso vivo.
 
 Parece una obsesión terminológica, pero evita decisiones equivocadas. Cuando digo que una tarea se mantiene “interna”, estoy hablando también de fronteras de contexto y de proveedor. Cuando digo que una tarea se enruta fuera, sé que debo pensar en autenticación, cuota, políticas de datos y comportamiento de otro CLI.
 
 El host no borra esa frontera. Solo la hace más cómoda de supervisar.
 
-Esta semana me ha recordado algo bastante básico: una arquitectura empieza a ser manejable cuando sus nombres dejan de mentir. Si todo se llama agente, worker, subagente o tarea de forma intercambiable, acabas escribiendo reglas enormes para compensar una taxonomía mala. En cambio, con cuatro palabras bastante claras —Codex principal, subagente interno, host y agente externo— el diagrama casi se explica solo.
-
-Y si el diagrama se explica solo, la skill también puede ser más corta. Menos instrucciones significa menos tokens gastados en recordar la infraestructura cada vez que quiero arreglar un botón.
+Esta semana me ha recordado algo bastante básico: una arquitectura empieza a ser manejable cuando sus nombres dejan de mentir.
 
 ## Referencias técnicas de esta semana
 
@@ -757,13 +889,12 @@ Y si el diagrama se explica solo, la skill también puede ser más corta. Menos 
 - [OpenCode — documentación del CLI](https://opencode.ai/docs/cli/)
 - [Google Antigravity — modo headless de AGY](https://antigravity.google/docs/cli/headless/)
 - [MiniMax — Token Plan](https://platform.minimax.io/subscribe/token-plan)
-- [Ollama — pricing](https://ollama.com/pricing)
 
 ## Cierre: una centralita pequeña es mejor que cinco teléfonos
 
 Hay semanas en las que termino con una feature visible. Un botón nuevo. Una pantalla. Algo que puedes señalar.
 
-Esta semana he terminado con cinco carpetas de skills y varios scripts.
+Esta semana he terminado con cinco carpetas de skills, varios scripts y una cantidad sorprendente de opiniones sobre el ciclo de vida de un proceso Bash.
 
 No es especialmente fotogénico.
 
@@ -779,10 +910,16 @@ Los agentes externos trabajan cuando digo “enruta”.
 
 Un host los vigila.
 
-Los logs cuentan lo ocurrido.
+Cada routing normal empieza limpio y termina cuando termina su proceso.
 
-Y yo intento no lanzar tres agentes contra el mismo fichero a las dos de la mañana.
+Los logs cuentan lo ocurrido sin competir por un symlink global.
 
-Eso último todavía no está automatizado.
+El exit code pertenece al worker, no a `tee`.
 
-Dame otra semana.
+Y si MiniMax arregla `JAVA_HOME` por el camino, quiero poder saber cómo.
+
+Lo más divertido es que varios de estos principios no salieron de un diagrama. Salieron de errores concretos. Primero parecía que no teníamos permisos. Después parecía que OpenCode bloqueaba un log. Luego descubrimos que una parte del problema estaba en nuestro propio `ln`. Más tarde conseguimos que MiniMax trabajara correctamente y el problema pasó a ser que no veíamos suficiente detalle de lo que hacía.
+
+Eso es probablemente lo mejor que le puede pasar a una arquitectura pequeña: que falle pronto, delante de ti y de una forma que puedas entender.
+
+Ahora el sistema no solo funciona mejor. También sé bastante mejor dónde mirar cuando deje de funcionar.
