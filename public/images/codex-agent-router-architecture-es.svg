@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">Arquitectura de Codex Agent Router</title>
+<desc id="desc">Codex distingue delegación interna de enrutado hacia agentes externos supervisados por un host.</desc>
+<rect width="1200" height="760" fill="#0F172A"/>
+<text x="600" y="62" text-anchor="middle" font-family="system-ui,sans-serif" font-size="34" font-weight="800" fill="#F8FAFC">CODEX AGENT ROUTER</text>
+<rect x="450" y="96" width="300" height="82" rx="22" fill="#018786"/>
+<text x="600" y="145" text-anchor="middle" font-family="system-ui,sans-serif" font-size="26" font-weight="700" fill="#F8FAFC">Codex principal</text>
+<path d="M600 178 V238 M600 238 H300 V300 M600 238 H900 V300" stroke="#F8FAFC" stroke-width="6" fill="none"/>
+<rect x="125" y="300" width="350" height="105" rx="22" fill="#F8FAFC"/>
+<text x="300" y="342" text-anchor="middle" font-family="system-ui,sans-serif" font-size="24" font-weight="800" fill="#0F172A">DELEGA</text>
+<text x="300" y="375" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#018786">Subagente Codex hace el trabajo</text>
+<rect x="725" y="300" width="350" height="105" rx="22" fill="#F8FAFC"/>
+<text x="900" y="342" text-anchor="middle" font-family="system-ui,sans-serif" font-size="24" font-weight="800" fill="#0F172A">ENRUTA</text>
+<text x="900" y="375" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#FF9800">Host Codex supervisa</text>
+<path d="M900 405 V475" stroke="#FF9800" stroke-width="7"/>
+<g font-family="system-ui,sans-serif" text-anchor="middle">
+  <rect x="90" y="520" width="235" height="110" rx="18" fill="#018786"/>
+  <text x="207" y="562" font-size="20" font-weight="700" fill="#F8FAFC">agent-opencode</text><text x="207" y="594" font-size="16" fill="#F8FAFC">DeepSeek V4 Flash</text>
+  <rect x="355" y="520" width="235" height="110" rx="18" fill="#018786"/>
+  <text x="472" y="562" font-size="20" font-weight="700" fill="#F8FAFC">agent-minimax</text><text x="472" y="594" font-size="16" fill="#F8FAFC">MiniMax M3</text>
+  <rect x="620" y="520" width="235" height="110" rx="18" fill="#018786"/>
+  <text x="737" y="562" font-size="20" font-weight="700" fill="#F8FAFC">agent-free</text><text x="737" y="594" font-size="16" fill="#F8FAFC">Big Pickle</text>
+  <rect x="885" y="520" width="235" height="110" rx="18" fill="#FF9800"/>
+  <text x="1002" y="562" font-size="20" font-weight="700" fill="#0F172A">agent-agy</text><text x="1002" y="594" font-size="16" fill="#0F172A">Antigravity</text>
+</g>
+<text x="600" y="698" text-anchor="middle" font-family="system-ui,sans-serif" font-size="19" fill="#F8FAFC">El host externo observa · el worker externo modifica · Codex verifica</text>
+</svg>
