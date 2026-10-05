@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Android Studio BYOA</title>
+<desc id="desc">Geometric diagram showing Android Studio connected through ACP to multiple coding agents.</desc>
+<rect width="1200" height="630" fill="#0F172A"/>
+<rect x="70" y="70" width="1060" height="490" rx="36" fill="#111C31" stroke="#1E293B" stroke-width="2"/>
+<text x="110" y="128" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#FF9800" letter-spacing="2">ARCEAPPS · ANDROID · AGENTS</text>
+<text x="110" y="198" font-family="system-ui,sans-serif" font-size="52" font-weight="800" fill="#F8FAFC">ANDROID STUDIO BYOA</text>
+<text x="110" y="238" font-family="system-ui,sans-serif" font-size="24" fill="#94A3B8">One IDE · Open protocol · Your agent</text>
+<rect x="110" y="300" width="280" height="150" rx="24" fill="#018786"/>
+<text x="250" y="360" text-anchor="middle" font-family="system-ui,sans-serif" font-size="30" font-weight="800" fill="#FFFFFF">ANDROID</text>
+<text x="250" y="400" text-anchor="middle" font-family="system-ui,sans-serif" font-size="30" font-weight="800" fill="#FFFFFF">STUDIO</text>
+<line x1="390" y1="375" x2="610" y2="375" stroke="#FF9800" stroke-width="12" stroke-linecap="round"/>
+<circle cx="500" cy="375" r="56" fill="#0F172A" stroke="#FF9800" stroke-width="6"/>
+<text x="500" y="385" text-anchor="middle" font-family="ui-monospace,monospace" font-size="26" font-weight="800" fill="#FF9800">ACP</text>
+<line x1="610" y1="375" x2="760" y2="295" stroke="#018786" stroke-width="8" stroke-linecap="round"/>
+<line x1="610" y1="375" x2="760" y2="375" stroke="#018786" stroke-width="8" stroke-linecap="round"/>
+<line x1="610" y1="375" x2="760" y2="455" stroke="#018786" stroke-width="8" stroke-linecap="round"/>
+<rect x="760" y="262" width="270" height="66" rx="18" fill="#F8FAFC"/>
+<rect x="760" y="342" width="270" height="66" rx="18" fill="#F8FAFC"/>
+<rect x="760" y="422" width="270" height="66" rx="18" fill="#F8FAFC"/>
+<text x="895" y="304" text-anchor="middle" font-family="system-ui,sans-serif" font-size="23" font-weight="750" fill="#0F172A">CODEX</text>
+<text x="895" y="384" text-anchor="middle" font-family="system-ui,sans-serif" font-size="23" font-weight="750" fill="#0F172A">CLAUDE</text>
+<text x="895" y="464" text-anchor="middle" font-family="system-ui,sans-serif" font-size="23" font-weight="750" fill="#0F172A">ANTIGRAVITY</text>
+<text x="110" y="520" font-family="ui-monospace,monospace" font-size="17" fill="#94A3B8">PROJECT GRAPH · BUILD DIAGNOSTICS · SDK · TERMINAL · EMULATOR</text>
+</svg>
