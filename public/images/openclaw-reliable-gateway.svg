@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="OpenClaw reliability, gateway server and atomic updates"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111b26"/><stop offset=".56" stop-color="#21303b"/><stop offset="1" stop-color="#071d23"/></linearGradient><linearGradient id="shift" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#FF9800"/><stop offset="1" stop-color="#018786"/></linearGradient><pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="11" cy="11" r="1" fill="#41606d" opacity=".4"/></pattern></defs><rect width="1200" height="630" fill="url(#bg)"/><rect width="1200" height="630" fill="url(#dots)"/>
+<path d="M0 515Q360 445 610 520T1200 505V630H0Z" fill="#07151f"/>
+<text x="70" y="93" font-family="Inter,Arial,sans-serif" font-size="58" fill="#fff7ec" font-weight="800" letter-spacing="1">OPENCLAW 2.0</text>
+<text x="72" y="139" font-family="Inter,Arial,sans-serif" font-size="23" fill="#f9bd75" font-weight="700" letter-spacing=".6">AGENTES QUE SOBREVIVEN A UNA ACTUALIZACIÓN</text>
+<text x="72" y="190" font-family="Inter,Arial,sans-serif" font-size="20" fill="#c4dcd8" >Gateway · Copias verificadas · Recuperación</text>
+<rect x="69" y="229" width="356" height="255" rx="20" fill="#0c212c" stroke="#d67f25" stroke-width="3"/>
+<rect x="91" y="254" width="310" height="43" rx="9" fill="#263b45"/>
+<text x="111" y="283" font-family="Inter,Arial,sans-serif" font-size="17" fill="#ffd9a3" font-weight="750">GATEWAY EN PRODUCCIÓN</text>
+<text x="104" y="338" font-family="Inter,Arial,sans-serif" font-size="19" fill="#9ce4ce" >● Servicio accesible</text>
+<text x="104" y="379" font-family="Inter,Arial,sans-serif" font-size="19" fill="#9ce4ce" >● Estado respaldado</text>
+<text x="104" y="420" font-family="Inter,Arial,sans-serif" font-size="19" fill="#9ce4ce" >● Acceso autenticado</text>
+<path d="M435 352H525" stroke="#FF9800" stroke-width="7" stroke-linecap="round"/><path d="M500 337L530 352 500 367" fill="none" stroke="#FF9800" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="554" y="192" width="556" height="302" rx="23" fill="#0d232b" stroke="#018786" stroke-width="3"/>
+<rect x="582" y="225" width="236" height="104" rx="16" fill="#19484b" stroke="#4cd2ad" stroke-width="2"/>
+<rect x="845" y="225" width="237" height="104" rx="16" fill="#53331b" stroke="#ffb44e" stroke-width="2"/>
+<text x="602" y="259" font-family="Inter,Arial,sans-serif" font-size="17" fill="#a9f2de" font-weight="700">INSTALACIÓN A</text><text x="602" y="292" font-family="Inter,Arial,sans-serif" font-size="23" fill="#fffaf1" font-weight="700">Estable</text>
+<text x="864" y="259" font-family="Inter,Arial,sans-serif" font-size="17" fill="#ffd8a3" font-weight="700">CANDIDATA B</text><text x="864" y="292" font-family="Inter,Arial,sans-serif" font-size="22" fill="#fffaf1" font-weight="700">Validar primero</text>
+<path d="M822 277H841" stroke="#f7c06a" stroke-width="4" stroke-dasharray="5 5"/>
+<path d="M698 330V374H961V331" fill="none" stroke="#4fdbbc" stroke-width="4"/>
+<rect x="640" y="378" width="371" height="74" rx="14" fill="#14343a" stroke="#4dbba3" stroke-width="1"/>
+<text x="659" y="406" font-family="Inter,Arial,sans-serif" font-size="19" fill="#f9fbf5" font-weight="700">BACKUP + HEALTH CHECK</text>
+<text x="659" y="433" font-family="Inter,Arial,sans-serif" font-size="16" fill="#d5efe5" >Rollback solo si es compatible</text>
+<path d="M69 533H1110" stroke="url(#shift)" stroke-width="4" stroke-linecap="round"/>
+<text x="72" y="573" font-family="Inter,Arial,sans-serif" font-size="17" fill="#f0e2cf" font-weight="700" letter-spacing="1.6">ARCEAPPS  /  OPERACIONES DE AGENTES</text>
+</svg>
