@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="SDD and TDD feature development illustration">
+<defs><linearGradient id="paper" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fafc"/><stop offset="1" stop-color="#dfeee8"/></linearGradient><linearGradient id="line"><stop stop-color="#018786"/><stop offset="1" stop-color="#FF9800"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#paper)"/>
+<rect x="72" y="73" width="10" height="108" rx="5" fill="#FF9800"/>
+<text x="107" y="120" font-size="62" fill="#18313d" font-family="Arial,sans-serif" font-weight="bold">SDD + TDD</text>
+<text x="108" y="172" font-size="23" fill="#018786" font-family="Arial,sans-serif" font-weight="bold">DE LA ESPECIFICACIÓN A LA EVIDENCIA</text>
+<text x="108" y="235" font-size="24" fill="#335b60" font-family="Arial,sans-serif">¿Construimos lo correcto?</text>
+<text x="108" y="275" font-size="24" fill="#335b60" font-family="Arial,sans-serif">¿Funciona de verdad?</text>
+<rect x="95" y="332" width="370" height="176" rx="20" fill="#18313d"/>
+<text x="126" y="377" font-size="23" fill="#f8fafc" font-family="Arial,sans-serif" font-weight="bold">TESTS DE ACEPTACIÓN</text>
+<text x="126" y="414" font-size="20" fill="#fba5a5" font-family="Arial,sans-serif">RED: falla primero</text>
+<text x="126" y="453" font-size="20" fill="#a7f3d0" font-family="Arial,sans-serif">GREEN: cambio mínimo</text>
+<text x="126" y="492" font-size="20" fill="#fed7aa" font-family="Arial,sans-serif">REFACTOR: sin regresión</text>
+<path d="M487 419H597" stroke="#FF9800" stroke-width="7"/><path d="M580 402L604 419 580 436" stroke="#FF9800" stroke-width="7" fill="none"/>
+<rect x="628" y="204" width="480" height="310" rx="24" fill="#fff" stroke="#018786" stroke-width="3"/>
+<text x="662" y="257" font-size="25" fill="#126962" font-family="Arial,sans-serif" font-weight="bold">CONTRATO VERSIONADO</text>
+<rect x="657" y="289" width="207" height="65" rx="14" fill="#dff4eb"/>
+<text x="675" y="329" font-size="20" fill="#174841" font-family="Arial,sans-serif">Qué debe hacer</text>
+<rect x="886" y="289" width="196" height="65" rx="14" fill="#fff0d6"/>
+<text x="903" y="329" font-size="19" fill="#a45c18" font-family="Arial,sans-serif">Qué no debe tocar</text>
+<path d="M758 356V380H990V356" stroke="#018786" fill="none" stroke-width="3"/>
+<rect x="672" y="401" width="401" height="81" rx="13" fill="#eef8f3"/>
+<text x="702" y="431" font-size="25" fill="#224746" font-family="Arial,sans-serif" font-weight="bold">Tests → Diff → CI</text>
+<text x="702" y="463" font-size="19" fill="#4a6866" font-family="Arial,sans-serif">Evidencia antes de fusionar</text>
+<rect x="73" y="551" width="1035" height="5" rx="2" fill="url(#line)"/>
+<text x="76" y="591" font-size="17" fill="#48615d" font-family="Arial,sans-serif">ARCEAPPS / DESARROLLO CON AGENTES</text>
+</svg>
