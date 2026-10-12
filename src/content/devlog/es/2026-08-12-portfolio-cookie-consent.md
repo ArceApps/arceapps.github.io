@@ -23,7 +23,7 @@ Esta entrada cuenta la secuencia completa: qué encontramos, qué alternativas e
 
 ## Una web que medía antes de preguntar
 
-El punto de partida era sencillo de describir y difícil de defender. En `src/layouts/Layout.astro` se cargaba `gtag.js` con el identificador `G-CZLNYSWY76` en todas las páginas, ejecutado a través de Partytown. No había ninguna condición previa: el script se inyectaba siempre, para todos los visitantes, sin preguntar.
+El punto de partida era sencillo de describir y difícil de defender. En `src/layouts/Layout.astro` se cargaba `gtag.js` con el identificador de medición de Google Analytics en todas las páginas, ejecutado a través de Partytown. No había ninguna condición previa: el script se inyectaba siempre, para todos los visitantes, sin preguntar.
 
 Google Analytics instala cookies no esenciales —`_ga`, `_gid`, `_gat_*`— y en la Unión Europea ese tipo de cookies exige consentimiento previo. La base no es discutible: el artículo 5.3 de la Directiva ePrivacy regula el almacenamiento de información en el equipo del usuario, y la Guía de cookies de la AEPD, en su actualización de julio de 2023, desarrolla cómo debe pedirse y registrarse ese consentimiento. A eso se suma que, desde marzo de 2024, Google exige Consent Mode v2 para sus etiquetas en el Espacio Económico Europeo.
 

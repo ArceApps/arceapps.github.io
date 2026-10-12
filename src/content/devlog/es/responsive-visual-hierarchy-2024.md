@@ -584,7 +584,7 @@ const socialImageURL = new URL(image, Astro.url);
     <!-- Google Analytics -->
     <script
       is:inline type="text/partytown"
-      src="https://www.googletagmanager.com/gtag/js?id=G-CZLNYSWY76"></script>
+      src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script is:inline type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -592,7 +592,7 @@ const socialImageURL = new URL(image, Astro.url);
       }
       gtag("js", new Date());
 
-      gtag("config", "G-CZLNYSWY76");
+      gtag("config", "GA_MEASUREMENT_ID");
     </script>
 
     <!-- Schema.org -->

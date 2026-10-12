@@ -23,7 +23,7 @@ This entry tells the full sequence: what we found, which alternatives we weighed
 
 ## A website that measured before it asked
 
-The starting point was easy to describe and hard to defend. In `src/layouts/Layout.astro`, `gtag.js` was loaded with the identifier `G-CZLNYSWY76` on every page, executed through Partytown. There was no prior condition: the script was injected always, for every visitor, without asking.
+The starting point was easy to describe and hard to defend. In `src/layouts/Layout.astro`, `gtag.js` was loaded with the Google Analytics measurement ID on every page, executed through Partytown. There was no prior condition: the script was injected always, for every visitor, without asking.
 
 Google Analytics installs non-essential cookies —`_ga`, `_gid`, `_gat_*`— and in the European Union that kind of cookie requires prior consent. The basis isn't debatable: article 5.3 of the ePrivacy Directive governs storing information on a user's equipment, and the AEPD's cookie guide, in its July 2023 update, lays out how that consent must be requested and recorded. On top of that, since March 2024 Google requires Consent Mode v2 for its tags in the European Economic Area.
 
