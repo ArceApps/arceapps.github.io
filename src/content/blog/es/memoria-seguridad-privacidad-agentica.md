@@ -20,7 +20,7 @@ reference_id: "b7e3f1a2-0d4c-5b8e-c6g2-9d3f7e5b2a0c"
 
 
 
-> Este artículo es la continuación directa de **[La Arquitectura de la Memoria Persistente en Agentes IA](/blog/blog-memoria-persistente-agentes-ia)**, donde exploramos los frameworks, metodologías y la evolución del conocimiento personal agéntico. Si todavía no lo has leído, te recomiendo empezar por ahí para entender el *cómo construir* la memoria antes de abordar el *cómo protegerla*.
+> Este artículo es la continuación directa de **[La Arquitectura de la Memoria Persistente en Agentes IA](/blog/ai-agent-memory-persistence-guide)**, donde exploramos los frameworks, metodologías y la evolución del conocimiento personal agéntico. Si todavía no lo has leído, te recomiendo empezar por ahí para entender el *cómo construir* la memoria antes de abordar el *cómo protegerla*.
 
 ---
 

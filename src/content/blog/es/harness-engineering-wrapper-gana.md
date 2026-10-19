@@ -19,7 +19,7 @@ category: ai-agents
 reference_id: "5fed4b93-ea15-411e-a6e6-2120934be487"
 ---
 
-> **Lectura relacionada en el blog:** Si llegas de nuevas al tema, este artículo asume que ya sabes lo básico de agentes y contexto. Si quieres ponerte al día, lee antes [Contexto Efectivo para IA en Android](/blog/contexto-efectivo-ia), [GSD Core: framework anti-ceremonia para ingeniería de contexto](/blog/gsd-core-context-engineering) y [Headroom: la capa de compresión que tu stack de agentes necesita](/blog/headroom-compression-layer). Si ya has leído varios, baja a la sección "Las 3 eras" — la idea es que este artículo es la **capa meta** que une a los demás.
+> **Lectura relacionada en el blog:** Si llegas de nuevas al tema, este artículo asume que ya sabes lo básico de agentes y contexto. Si quieres ponerte al día, lee antes [Contexto Efectivo para IA en Android](/blog/effective-context-ai), [GSD Core: framework anti-ceremonia para ingeniería de contexto](/blog/gsd-core-context-engineering) y [Headroom: la capa de compresión que tu stack de agentes necesita](/blog/headroom-compression-layer). Si ya has leído varios, baja a la sección "Las 3 eras" — la idea es que este artículo es la **capa meta** que une a los demás.
 
 
 ![Infografía GSD](/images/infographic-gsd.svg)
@@ -163,7 +163,7 @@ La crítica constructiva que yo añadiría, como indie: **no te obsesiones con e
 
 Si llevas meses leyendo mis artículos, habrás notado que llevo un año construyendo, sin saberlo, un harness. La enumeración me sorprendió cuando la hice:
 
-- **`AGENTS.md` en cada repo** con reglas que nacen de errores reales → [Agents.md como estándar](/blog/agents-md-estandar) es exactamente "Documentation" del patrón 3.
+- **`AGENTS.md` en cada repo** con reglas que nacen de errores reales → [Agents.md como estándar](/blog/agents-md-standard) es exactamente "Documentation" del patrón 3.
 - **Skills curadas** (kanban, write-blog, write-devlog, grill-me) que se cargan como contexto procedural → encajan en "Context & Memory" de Tunguz.
 - **Sistema de hooks de Hermes** que interceptan acciones destructivas → "Restrictions" + "Verification" de los patrones 1 y 2.
 - **Cronjobs duraderos** que ejecutan workers con memoria persistente → "State & Persistence".
@@ -240,17 +240,17 @@ Después de dos semanas leyendo todo lo que se ha publicado sobre el tema y mape
 - **r/Trae_ai — *"The Definitive Guide to Harness Engineering"*** (abril 2026). [`reddit.com/r/Trae_ai/comments/1sti4jx`](https://www.reddit.com/r/Trae_ai/comments/1sti4jx/the_definitive_guide_to_harness_engineering_what/)
 
 ### Lecturas relacionadas en este blog
-- [Contexto Efectivo para IA en Android: el arte de la comunicación clara](/blog/contexto-efectivo-ia) — la era 2 (Context Engineering) explicada para Android.
+- [Contexto Efectivo para IA en Android: el arte de la comunicación clara](/blog/effective-context-ai) — la era 2 (Context Engineering) explicada para Android.
 - [GSD Core: el framework anti-ceremonia para ingeniería de contexto](/blog/gsd-core-context-engineering) — un harness concreto para Claude Code.
 - [Headroom: la capa de compresión de contexto que tu stack necesita](/blog/headroom-compression-layer) — pieza de "Verification" + "Context & Memory" en producción.
-- [Agents.md como estándar abierto](/blog/agents-md-estandar) — la pieza "Documentation" del patrón 3.
-- [Memoria Persistente para Agentes IA: Guía Práctica](/blog/memoria-persistente-agentes-ia) — la pieza "State & Persistence" en cuatro estrategias.
-- [Stack Completo de Agentes IA 2026](/blog/stack-completo-agentes-ia-2026) — el catálogo de herramientas que caben en un harness.
+- [Agents.md como estándar abierto](/blog/agents-md-standard) — la pieza "Documentation" del patrón 3.
+- [Memoria Persistente para Agentes IA: Guía Práctica](/blog/ai-agent-memory-persistence-guide) — la pieza "State & Persistence" en cuatro estrategias.
+- [Stack Completo de Agentes IA 2026](/blog/complete-beginners-guide-ai-agents-stack-2026) — el catálogo de herramientas que caben en un harness.
 - [Superpowers Deep Dive: el framework de skills más completo](/blog/superpowers-deep-dive) — skills como piezas del harness.
 - [OpenSpec en Desarrollo Móvil: spec-driven sin teatro](/blog/openspec-desarrollo-movil) — alimentar el `AGENTS.md` con specs verificables.
 - [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/paradigmas-alternativos-ingenieria-software-ia) — el contexto filosófico más amplio.
 - [Production-Ready Agentic Frameworks: 6 Estrategias](/blog/production-agentic-frameworks) — los frameworks que ya implementan parte del harness.
-- [Spec-Driven Development con IA Agentic](/blog/specs-driven-development) — disciplina de specs como input al harness.
+- [Spec-Driven Development con IA Agentic](/blog/spec-driven-development-ai) — disciplina de specs como input al harness.
 
 
 ![Infografía Superpowers](/images/infographic-superpowers.svg)

@@ -31,9 +31,9 @@ import Layout from "../../layouts/Layout.astro";
 
         <h2>Cookies utilizadas en esta web</h2>
         <p>
-          Esta web es gratuita, no muestra publicidad y no utiliza cookies publicitarias, de personalización ni de
-          elaboración de perfiles. Las únicas cookies que puede utilizar son las de estadísticas de Google Analytics, y
-          solo <strong>después de que las aceptes expresamente</strong> en el aviso de consentimiento.
+          Esta web es gratuita, no muestra publicidad y no utiliza cookies de terceros de ningún tipo: ni de
+          analítica, ni de seguimiento, ni de personalización. Las únicas cookies que establece son estrictamente
+          funcionales: recuerdan tus preferencias (tema e idioma) y que ya has visto y cerrado el aviso de cookies.
         </p>
         <table>
           <thead>
@@ -46,60 +46,46 @@ import Layout from "../../layouts/Layout.astro";
           </thead>
           <tbody>
             <tr>
-              <td><code>_ga</code></td>
-              <td>Distinguir usuarios (identificador anónimo)</td>
-              <td>2 años</td>
-              <td>Google LLC (Google Analytics)</td>
+              <td><code>cookie-consent</code></td>
+              <td>Recuerda que has cerrado el aviso de cookies</td>
+              <td>Persistente (localStorage)</td>
+              <td>ArceApps (este sitio)</td>
             </tr>
             <tr>
-              <td><code>_ga_&lt;container-id&gt;</code></td>
-              <td>Almacenar estado de sesión y campaña</td>
-              <td>2 años</td>
-              <td>Google LLC (Google Analytics)</td>
-            </tr>
-            <tr>
-              <td><code>_gid</code></td>
-              <td>Distinguir usuarios (identificador anónimo)</td>
-              <td>24 horas</td>
-              <td>Google LLC (Google Analytics)</td>
-            </tr>
-            <tr>
-              <td><code>_gat_*</code></td>
-              <td>Limitar la tasa de peticiones</td>
-              <td>1 minuto</td>
-              <td>Google LLC (Google Analytics)</td>
+              <td><code>theme</code></td>
+              <td>Recuerda tu preferencia de tema claro/oscuro</td>
+              <td>Persistente (localStorage)</td>
+              <td>ArceApps (este sitio)</td>
             </tr>
           </tbody>
         </table>
         <p>
-          Si rechazas las cookies de estadísticas, <strong>ninguna de las cookies anteriores se instala</strong>. Google Analytics
-          recibe entonces únicamente información agregada y anónima que no permite identificar tu dispositivo, utilizada
-          para estimar patrones de tráfico (Google Consent Mode).
+          La preferencia de idioma se codifica en la URL (p. ej. <code>/blog/...</code> para inglés, <code>/es/blog/...</code>
+          para español) y no se almacena en ninguna cookie.
         </p>
 
         <h2>Tu consentimiento</h2>
         <p>
-          Cuando visitas esta web por primera vez, un aviso te pregunta si aceptas o rechazas las cookies de estadísticas.
-          No se recopila nada hasta que tomas una decisión, y rechazar es tan fácil como aceptar. Tu elección se guarda en
-          tu propio navegador (<code>localStorage</code>, clave <code>cookie-consent</code>) y el aviso no volverá a mostrarse
-          en ese dispositivo.
+          Cuando visitas esta web por primera vez, un breve aviso en la parte inferior de la página te informa de que el
+          sitio usa cookies funcionales y te permite cerrarlo. No se recopila ningún dato antes ni después de esa
+          interacción: cerrar el aviso es la única acción necesaria. Tu elección se guarda en tu propio navegador
+          (<code>localStorage</code>, clave <code>cookie-consent</code>) y el aviso no volverá a mostrarse en ese dispositivo.
         </p>
         <p>
-          Aunque aceptes, nunca activamos señales publicitarias, de datos de usuario ni de personalización: no se recopilan
-          datos para publicidad, no se vende nada a terceros y no se recogen datos sensibles.
+          Este sitio no ha utilizado nunca señales publicitarias, de datos de usuario ni de personalización. No se vende
+          nada a terceros y no se recogen datos sensibles.
         </p>
 
         <h2>Servicios de terceros</h2>
         <p>
-          Las cookies de estadísticas pertenecen a Google Analytics, un servicio de Google LLC. Google utiliza los datos
-          recopilados para analizar cómo se usa la web y elaborar informes. La política de privacidad de Google está
-          disponible en
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.
+          Ninguno. Este sitio no incrusta analítica, publicidad, widgets sociales, fuentes ni ningún otro recurso de un
+          dominio de terceros. Todos los scripts, estilos, fuentes e imágenes se sirven desde <code>arceapps.com</code> (o
+          su CDN de assets estáticos en <code>cdn.simpleicons.org</code> para los iconos de tecnologías).
         </p>
 
         <h2>Cómo cambiar o retirar tu consentimiento</h2>
         <p>
-          Puedes retirar o cambiar tu elección en cualquier momento borrando la entrada <code>cookie-consent</code> del
+          Puedes reiniciar el aviso en cualquier momento borrando la entrada <code>cookie-consent</code> del
           <code>localStorage</code> de tu navegador (o todos los datos del sitio) para esta web. El aviso volverá a
           mostrarse en tu próxima visita.
         </p>

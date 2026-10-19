@@ -8,14 +8,36 @@ import { isPublished } from '../../../utils/publishing';
 const t = useTranslations('es');
 
 export async function getStaticPaths() {
-  const posts = await getCollection('devlog', ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith('es/'));
-  return posts.map((post) => ({
-    params: { slug: post.slug.split('/').pop() },
-    props: post,
-  }));
+  const [posts, enPosts] = await Promise.all([
+    getCollection('devlog', ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith('es/')),
+    getCollection('devlog', ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith('en/')),
+  ]);
+
+  // Map EN posts by reference_id for O(1) cross-language lookup.
+  const enPostsMap = new Map(enPosts.map((p) => [p.data.reference_id, p]));
+
+  return posts.map((post) => {
+    // Resolve the EN equivalent so the language switcher works even if
+    // filenames diverge. Filename parity (verified by i18n-parity-check)
+    // is the primary contract; this is the defense in depth.
+    let translatedPath = undefined;
+    let hreflangPath = undefined;
+    if (post.data.reference_id) {
+      const enPost = enPostsMap.get(post.data.reference_id);
+      if (enPost) {
+        translatedPath = `/devlog/${enPost.slug.split('/').pop()}`;
+        hreflangPath = translatedPath;
+      }
+    }
+
+    return {
+      params: { slug: post.slug.split('/').pop() },
+      props: { post, translatedPath, hreflangPath },
+    };
+  });
 }
 
-const post = Astro.props;
+const { post, translatedPath, hreflangPath } = Astro.props;
 const { Content } = await post.render();
 
 const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
@@ -26,7 +48,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('es-ES', {
 });
 ---
 
-<Layout title={`${post.data.title} - ArceApps Bitácora`} description={post.data.description} image={`/images/og/devlog-es-${post.slug.split('/').pop()}.png`}>
+<Layout title={`${post.data.title} - ArceApps Bitácora`} description={post.data.description} image={`/images/og/devlog-es-${post.slug.split('/').pop()}.png`} translatedPath={translatedPath} hreflangPath={hreflangPath}>
   <article class="pt-24 pb-20">
     <div class="container mx-auto px-4 max-w-4xl">
       <!-- Back Link -->

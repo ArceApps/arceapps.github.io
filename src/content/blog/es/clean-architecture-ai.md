@@ -10,7 +10,7 @@ keywords:
   - "Arquitectura"
   - "Desarrollo Moderno"
   - "Patrones"
-canonical: "https://arceapps.com/es/blog/clean-architecture-ia/"
+canonical: "https://arceapps.com/es/blog/clean-architecture-ai/"
 heroImage: "/images/placeholder-article-clean-arch-ia.svg"
 tags: ["IA", "Clean Architecture", "Android", "Productividad", "GitHub Copilot"]
 category: cicd

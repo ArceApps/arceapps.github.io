@@ -5,7 +5,7 @@ pubDate: 2025-10-21
 heroImage: /images/placeholder-article-tdd-ai.svg
 tags: ["TDD", "AI", "Testing", "Android", "Productivity", "GitHub Copilot"]
 category: cicd
-reference_id: 0ac2ca01-c1c4-42cc-b392-40461065750c
+reference_id: 991a6ed5-15d1-4662-888e-5ee1d1bfcc01
 author: ArceApps
 lastmod: 2025-10-21
 canonical: "https://arceapps.com/blog/tdd-ai-android-development/"

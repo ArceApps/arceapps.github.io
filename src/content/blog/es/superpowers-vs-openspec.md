@@ -19,7 +19,7 @@ reference_id: "e4d2a1c9-6f8b-4a3d-8e7c-2b1d9f4a5c6d"
 
 
 
-> **Lectura previa recomendada:** [Desarrollo Guiado por Especificaciones con IA Agéntica](/blog/specs-driven-development) · [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Análisis Profundo de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
+> **Lectura previa recomendada:** [Desarrollo Guiado por Especificaciones con IA Agéntica](/blog/spec-driven-development-ai) · [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Análisis Profundo de Frameworks SDD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)
 
 
 ![Infografía BMAD](/images/infographic-bmad.svg)
@@ -34,7 +34,7 @@ Cuando comencé a incorporar agentes de programación con IA en mi flujo de trab
 
 El problema central no era la capacidad de razonamiento del LLM; era la falta de una **metodología** estructurada. No dejaríamos suelto a un desarrollador junior en una base de código de producción sin una especificación técnica, un plan claro y un proceso de revisión de código. Sin embargo, habitualmente esperamos que los agentes de IA intuyan mágicamente nuestra intención arquitectónica a partir de un prompt de tres frases.
 
-Esta realización condujo al auge del Desarrollo Guiado por Especificaciones (SDD) y los frameworks agénticos. En un artículo anterior, analicé [GitHub Spec Kit, OpenSpec y BMAD-METHOD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad). Hoy quiero enfrentar a dos de los enfoques más fascinantes: [Superpowers](https://github.com/obra/superpowers) y [OpenSpec](https://github.com/Fission-AI/OpenSpec).
+Esta realización condujo al auge del Desarrollo Guiado por Especificaciones (SDD) y los frameworks agénticos. En un artículo anterior, analicé [GitHub Spec Kit, OpenSpec y BMAD-METHOD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad). Hoy quiero enfrentar a dos de los enfoques más fascinantes: [Superpowers](https://github.com/obra/superpowers) y [OpenSpec](https://github.com/Fission-AI/OpenSpec).
 
 
 ![Infografía Superpowers](/images/infographic-superpowers.svg)

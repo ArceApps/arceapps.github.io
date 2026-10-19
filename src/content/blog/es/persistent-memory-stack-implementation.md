@@ -19,7 +19,7 @@ reference_id: "2f8d3b7c-6d4a-9c0f-df2d-8a1e7f4b9c6d"
 
 
 
-> Este es el tercer artículo de la serie sobre memoria persistente en agentes. En el [primero](/blog/opencode-plugins-memoria-nativos) cubrimos tres plugins nativos de OpenCode. En el [segundo](/blog/servidores-mcp-memoria-cross-agent), tres servidores MCP cross-agent. Hoy cierro la serie con lo que realmente importa: **cómo combino los mejores en mi flujo real**, con configuraciones verificadas, scripts de mantenimiento y casos de uso honestos — incluyendo los momentos donde cada pieza falla.
+> Este es el tercer artículo de la serie sobre memoria persistente en agentes. En el [primero](/blog/opencode-memory-plugins-native) cubrimos tres plugins nativos de OpenCode. En el [segundo](/blog/mcp-servers-memory-cross-agent), tres servidores MCP cross-agent. Hoy cierro la serie con lo que realmente importa: **cómo combino los mejores en mi flujo real**, con configuraciones verificadas, scripts de mantenimiento y casos de uso honestos — incluyendo los momentos donde cada pieza falla.
 
 ---
 
@@ -88,7 +88,7 @@ Los otros candidatos tenían debilidades en alguna dimensión:
 
 - `opencode-supermemory` solo soporta OpenCode oficialmente.
 - `forgetful` requiere disciplina atómica que no siempre mantengo.
-- Los plugins nativos del [artículo previo](/blog/opencode-plugins-memoria-nativos) no son cross-agent.
+- Los plugins nativos del [artículo previo](/blog/opencode-memory-plugins-native) no son cross-agent.
 
 ### Configuración Inicial Paso a Paso
 
@@ -556,7 +556,7 @@ El motivo: las notas que más me importa que estén **exactamente como las quier
 
 ### Por Qué forgetful como Segunda Capa
 
-La razón principal: **el formato Agent Skills SKILL.md es portable**. forgetful puede importar/exportar skills en este formato, que es el estándar que están adoptando Claude Code, Codex y otros agentes modernos (cubrimos esto en el [artículo sobre Skills dinámicas](/blog/agent-skills-contexto-dinamico/)).
+La razón principal: **el formato Agent Skills SKILL.md es portable**. forgetful puede importar/exportar skills en este formato, que es el estándar que están adoptando Claude Code, Codex y otros agentes modernos (cubrimos esto en el [artículo sobre Skills dinámicas](/blog/ai-agent-skills-dynamic-context/)).
 
 Mi uso concreto: tengo un repositorio de skills procedurales (cómo debuggear problemas de Gradle, cómo configurar CI para Android, cómo hacer refactor seguro en Astro) que quiero que estén disponibles en cualquier agente que use. forgetful es el repositorio central.
 
@@ -897,7 +897,7 @@ Después de seis meses con este stack:
 
 ## Conclusión de la Serie
 
-En el [primer artículo](/blog/opencode-plugins-memoria-nativos) vimos plugins nativos de OpenCode. En el [segundo](/blog/servidores-mcp-memoria-cross-agent), servidores MCP cross-agent. En este tercero, mi stack real.
+En el [primer artículo](/blog/opencode-memory-plugins-native) vimos plugins nativos de OpenCode. En el [segundo](/blog/mcp-servers-memory-cross-agent), servidores MCP cross-agent. En este tercero, mi stack real.
 
 Si tuviera que resumir todo en una frase: **la mejor memoria persistente es la que usa tu agente sin que tengas que pensar en ella**, que sobrevive a un cambio de herramienta, y que puedes auditar con `cat`.
 
@@ -921,7 +921,7 @@ Y lo más importante: **no necesitas implementar todo esto hoy**. Empieza con ba
 - [Codex CLI MCP guide](https://github.com/openai/codex/blob/main/docs/mcp.md)
 - [Cursor MCP documentation](https://docs.cursor.com/welcome/mcp)
 - [uv (Astral Python package manager)](https://docs.astral.sh/uv/)
-- [Artículo previo: Plugins nativos de OpenCode para memoria persistente](/blog/opencode-plugins-memoria-nativos/)
-- [Artículo previo: Servidores MCP cross-agent para memoria persistente](/blog/servidores-mcp-memoria-cross-agent/)
-- [Artículo previo: Arquitectura de la Memoria Persistente en Agentes IA](/blog/memoria-persistente-agentes-ia/)
-- [Artículo previo: Skills dinámicas para agentes IA](/blog/agent-skills-contexto-dinamico/)
+- [Artículo previo: Plugins nativos de OpenCode para memoria persistente](/blog/opencode-memory-plugins-native/)
+- [Artículo previo: Servidores MCP cross-agent para memoria persistente](/blog/mcp-servers-memory-cross-agent/)
+- [Artículo previo: Arquitectura de la Memoria Persistente en Agentes IA](/blog/ai-agent-memory-persistence-guide/)
+- [Artículo previo: Skills dinámicas para agentes IA](/blog/ai-agent-skills-dynamic-context/)

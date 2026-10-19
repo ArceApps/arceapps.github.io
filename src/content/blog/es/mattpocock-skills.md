@@ -40,7 +40,7 @@ Esa frase dice mucho. Lo que está diciendo es: cuando le pasas tu proyecto a un
 
 Esta es la tesis central de [`mattpocock/skills`](https://github.com/mattpocock/skills) — una colección de skills para agentes de codificación (Claude Code, Codex y otros) que son pequeños, composables y expresamente *no* son una metodología de pila completa. Cada skill hace una cosa. Coges los que necesitas. Dejas el resto.
 
-Si has estado leyendo la [comparativa de frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) de este blog, sabes que dedicamos muchas palabras a qué hace Spec Kit, qué hace OpenSpec y qué hace BMAD. Skills es una respuesta diferente a la misma pregunta: "¿cómo hago que los agentes de IA sean realmente útiles en lugar de solo complacientes?"
+Si has estado leyendo la [comparativa de frameworks SDD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) de este blog, sabes que dedicamos muchas palabras a qué hace Spec Kit, qué hace OpenSpec y qué hace BMAD. Skills es una respuesta diferente a la misma pregunta: "¿cómo hago que los agentes de IA sean realmente útiles en lugar de solo complacientes?"
 
 
 ![Infografía OpenSpec](/images/infographic-openspec.svg)
@@ -256,7 +256,7 @@ También hay un costo de onboarding genuino. Leer y entender 15 skills, decidir 
 
 ## Cómo Se Compara a los Frameworks Que Revisamos
 
-En nuestra [comparativa de frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad), encontramos tres filosofías distintas:
+En nuestra [comparativa de frameworks SDD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad), encontramos tres filosofías distintas:
 
 - **Spec Kit**: Enfoque constitucional — tu proyecto tiene un `SPEC.md` que se trata como la fuente de verdad. Los agentes lo leen antes de generar código.
 - **OpenSpec**: Enfoque de propuesta de cambio — cada modificación pasa por un proceso de revisión que produce un documento titled antes de escribir cualquier código.
@@ -293,7 +293,7 @@ Eso vale algo. Las mejores prácticas en `/diagnose` y `/tdd` no son teóricas �
 - [mattpocock/skills GitHub Repository](https://github.com/mattpocock/skills)
 - [skills.sh Installer](https://skills.sh/b/mattpocock/skills)
 - [Matt Pocock's Newsletter (~60,000 suscriptores)](https://www.aihero.dev/s/skills-newsletter)
-- [The Pragmatic Programmer, Thomas & Hunt](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
-- [Domain-Driven Design, Eric Evans](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
-- [A Philosophy of Software Design, John Ousterhout](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
-- Artículos anteriores sobre SDD en este blog: [Comparativa de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad), [Agentes Socráticos y Sicofancia](/blog/socratic-agents-part-2-sdd-sycophancy), [Specs-Driven Development](/blog/specs-driven-development)
+- [The Pragmatic Programmer, Thomas & Hunt](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)
+- [Domain-Driven Design, Eric Evans](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)
+- [A Philosophy of Software Design, John Ousterhout](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)
+- Artículos anteriores sobre SDD en este blog: [Comparativa de Frameworks SDD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad), [Agentes Socráticos y Sicofancia](/blog/socratic-agents-part-2-sdd-sycophancy), [Specs-Driven Development](/blog/spec-driven-development-ai)

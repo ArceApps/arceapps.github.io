@@ -21,9 +21,9 @@ draft: false
 
 > Si todavía no tienes claro qué son los agentes de IA ni cómo se configuran en un proyecto, esta serie te dará las bases necesarias:
 >
-> - **[Más allá del Chat: Por qué necesitas Agentes en tu equipo](/blog/blog-agentes-ia-android-teoria)** — La base teórica.
+> - **[Más allá del Chat: Por qué necesitas Agentes en tu equipo](/blog/ai-agents-android-theory)** — La base teórica.
 > - **[Agentes IA Autónomos en Android](/blog/blog-agentes-ia-autonomos-android)** — De la teoría a la práctica con frameworks multi-agente.
-> - **[Tu Staff Virtual: Configurando Sentinel, Bolt y Palette](/blog/blog-configuracion-agentes-ia)** — Cómo montar la arquitectura en tu propio repo.
+> - **[Tu Staff Virtual: Configurando Sentinel, Bolt y Palette](/blog/configuring-ai-agents)** — Cómo montar la arquitectura en tu propio repo.
 
 ---
 

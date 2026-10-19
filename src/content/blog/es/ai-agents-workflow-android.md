@@ -19,7 +19,7 @@ reference_id: "0ce33761-8899-4d89-aff7-39579c3bca46"
 
 
 
-Ya tienes la [teoría](/blog/blog-agentes-ia-android-teoria) y tienes la [configuración](/blog/blog-configuracion-agentes-ia). Ahora vamos a ver la magia en acción. Vamos a simular escenarios de desarrollo Android reales y ver cómo **Sentinel**, **Bolt** y **Palette** resuelven problemas que un "chatbot" generalista probablemente ignoraría o solucionaría mal.
+Ya tienes la [teoría](/blog/ai-agents-android-theory) y tienes la [configuración](/blog/configuring-ai-agents). Ahora vamos a ver la magia en acción. Vamos a simular escenarios de desarrollo Android reales y ver cómo **Sentinel**, **Bolt** y **Palette** resuelven problemas que un "chatbot" generalista probablemente ignoraría o solucionaría mal.
 
 Pero antes de entrar en los casos de éxito, quiero adoptar un enfoque de **Building in Public** y compartir con ustedes no solo lo bonito, sino también los dolores de cabeza, los errores de configuración y las frustraciones reales que he vivido implementando estos agentes en mis proyectos a lo largo de los últimos meses de 2026. La inteligencia artificial no es magia, es una herramienta, y como cualquier herramienta, necesitas aprender a usarla, afilarla y, a veces, cortarte un poco para entender sus límites.
 

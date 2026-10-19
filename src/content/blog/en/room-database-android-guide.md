@@ -5,7 +5,7 @@ pubDate: 2025-10-12
 heroImage: /images/placeholder-article-room.svg
 tags: ["Android", "Room", "Database", "SQL", "Persistence"]
 category: memory
-reference_id: 33bf7911-98a8-491c-b685-eb741eda08b5
+reference_id: 8a29ebab-ead3-4301-bc43-21481900f95c
 author: ArceApps
 lastmod: 2025-10-12
 canonical: "https://arceapps.com/blog/room-database-android-guide/"

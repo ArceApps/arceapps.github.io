@@ -10,7 +10,7 @@ keywords:
   - "Despliegue"
   - "CI/CD"
   - "Automatización"
-canonical: "https://arceapps.com/es/blog/github-actions-play-store/"
+canonical: "https://arceapps.com/es/blog/automated-deployment-play-store/"
 heroImage: "/images/placeholder-article-github-actions-play-store.svg"
 tags: ["GitHub Actions", "Android", "Google Play Store", "CI/CD", "DevOps"]
 category: cicd

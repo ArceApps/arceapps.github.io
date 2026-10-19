@@ -31,9 +31,9 @@ import Layout from "../layouts/Layout.astro";
 
         <h2>Cookies used on this website</h2>
         <p>
-          This website is free, ad-free, and does not use advertising, personalization or profiling cookies. The only
-          cookies it can use are Google Analytics statistics cookies, and only <strong>after you explicitly accept</strong> them
-          in the consent banner.
+          This website is free, ad-free, and does not use any third-party analytics, advertising, personalization or
+          tracking cookies. The only cookies it sets are strictly functional: they remember your preferences (theme and
+          language) and the fact that you have already seen and dismissed the cookie notice.
         </p>
         <table>
           <thead>
@@ -46,60 +46,48 @@ import Layout from "../layouts/Layout.astro";
           </thead>
           <tbody>
             <tr>
-              <td><code>_ga</code></td>
-              <td>Distinguishes users (anonymous identifier)</td>
-              <td>2 years</td>
-              <td>Google LLC (Google Analytics)</td>
+              <td><code>cookie-consent</code></td>
+              <td>Remembers that you have dismissed the cookie notice</td>
+              <td>Persistent (localStorage)</td>
+              <td>ArceApps (this site)</td>
             </tr>
             <tr>
-              <td><code>_ga_&lt;container-id&gt;</code></td>
-              <td>Stores session and campaign state</td>
-              <td>2 years</td>
-              <td>Google LLC (Google Analytics)</td>
-            </tr>
-            <tr>
-              <td><code>_gid</code></td>
-              <td>Distinguishes users (anonymous identifier)</td>
-              <td>24 hours</td>
-              <td>Google LLC (Google Analytics)</td>
-            </tr>
-            <tr>
-              <td><code>_gat_*</code></td>
-              <td>Rate limiting of requests</td>
-              <td>1 minute</td>
-              <td>Google LLC (Google Analytics)</td>
+              <td><code>theme</code></td>
+              <td>Remembers your light/dark theme preference</td>
+              <td>Persistent (localStorage)</td>
+              <td>ArceApps (this site)</td>
             </tr>
           </tbody>
         </table>
         <p>
-          If you reject statistics cookies, <strong>none of the cookies above are installed</strong>. Google Analytics then only
-          receives aggregated, anonymous information that cannot identify your device, used to estimate traffic patterns
-          (Google Consent Mode).
+          Language preference is encoded in the URL (e.g. <code>/blog/...</code> for English, <code>/es/blog/...</code> for
+          Spanish) and is not stored in a cookie.
         </p>
 
         <h2>Your consent</h2>
         <p>
-          When you visit this website for the first time, a banner asks you to accept or reject statistics cookies. Nothing
-          is collected until you make a choice, and rejecting is as easy as accepting. Your choice is stored in your own
-          browser (<code>localStorage</code>, key <code>cookie-consent</code>), and the banner will not be shown again on that
+          When you visit this website for the first time, a brief notice at the bottom of the page informs you that the
+          site uses functional cookies and lets you dismiss it. No data is collected before or after that interaction:
+          closing the notice is the only action you need to take. Your choice is stored in your own browser
+          (<code>localStorage</code>, key <code>cookie-consent</code>), and the notice will not be shown again on that
           device.
         </p>
         <p>
-          Even if you accept, we never enable advertising, user-data or personalization signals: no data is collected for
-          advertising, nothing is sold to third parties, and no sensitive data is collected.
+          This site has never used advertising, user-data, or personalization signals. Nothing is sold to third parties
+          and no sensitive data is collected.
         </p>
 
         <h2>Third-party services</h2>
         <p>
-          The statistics cookies belong to Google Analytics, a service of Google LLC. Google uses the collected data to
-          analyze how the website is used and to prepare reports. Google's privacy policy is available at
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.
+          None. This site does not embed analytics, advertising, social widgets, fonts, or any other resource from a
+          third-party domain. All scripts, styles, fonts, and images are served from <code>arceapps.com</code> (or its
+          static-asset CDN at <code>cdn.simpleicons.org</code> for technology icons).
         </p>
 
         <h2>How to change or withdraw your consent</h2>
         <p>
-          You can withdraw or change your choice at any time by clearing the <code>cookie-consent</code> entry in your
-          browser's <code>localStorage</code> (or all site data) for this website. The banner will then appear again on your
+          You can reset the notice at any time by clearing the <code>cookie-consent</code> entry in your browser's
+          <code>localStorage</code> (or all site data) for this website. The notice will then appear again on your
           next visit.
         </p>
 

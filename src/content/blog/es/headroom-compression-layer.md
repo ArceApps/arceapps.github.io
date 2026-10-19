@@ -19,13 +19,13 @@ reference_id: "8f3a2c1e-9b4d-4e7a-a1c5-7e9d8b2f4c6b"
 
 
 
-> **Lectura relacionada en el blog:** Hace poco analizamos [Ponytail, el "lazy senior dev" skill](/blog/ponytail-skill-senior-perezoso) y mencionamos un stack de tres capas donde Headroom hacía de **transporte reversible**. Hoy le toca su turno a esa capa, con todo el detalle que merecía. Si trabajas con agentes IA, esto te interesa.
+> **Lectura relacionada en el blog:** Hace poco analizamos [Ponytail, el "lazy senior dev" skill](/blog/ponytail-lazy-senior-dev-skill) y mencionamos un stack de tres capas donde Headroom hacía de **transporte reversible**. Hoy le toca su turno a esa capa, con todo el detalle que merecía. Si trabajas con agentes IA, esto te interesa.
 
 ## Cuando el "truco" se convierte en necesidad
 
 Tengo un problema de confidencia con mis propios agentes IA. Les pido una búsqueda en el código y me devuelven un *grep* de 12.000 líneas. Les pido un log de SRE y me devuelven 80 KB de texto donde solo dos líneas me importan. Cada llamada al LLM se siente como pagar la factura del agua de una piscina para beberme un vaso.
 
-Y no es solo dinero: es latencia, es degradación silenciosa del razonamiento cuando la ventana se llena de ruido, es ese momento en que el modelo "se olvida" de las instrucciones del sistema porque hay demasiada paja por encima. Llevamos meses hablando de **context engineering** (en este blog cubrimos los 4 C's en [Effective Context for AI](/blog/contexto-efectivo-ia)), pero la mayoría de las soluciones que hemos visto son **manuales**: tú recortas, tú filtras, tú reescribes prompts. Pegas parches hasta que el contexto cabe, y vuelta a empezar.
+Y no es solo dinero: es latencia, es degradación silenciosa del razonamiento cuando la ventana se llena de ruido, es ese momento en que el modelo "se olvida" de las instrucciones del sistema porque hay demasiada paja por encima. Llevamos meses hablando de **context engineering** (en este blog cubrimos los 4 C's en [Effective Context for AI](/blog/effective-context-ai)), pero la mayoría de las soluciones que hemos visto son **manuales**: tú recortas, tú filtras, tú reescribes prompts. Pegas parches hasta que el contexto cabe, y vuelta a empezar.
 
 [Headroom](https://github.com/chopratejas/headroom) ataca el problema desde otro lado: **automatiza esa compresión en una capa de infraestructura que se sienta entre tu agente y el proveedor LLM, sin que tengas que reescribir una línea de tu código**. Lo descubrí buceando en GitHub Trending de esta semana (apenas 33.4k estrellas y subiendo, 2.2k forks) y me pasé dos días leyendo su código, su docs y los benchmarks. Lo que encontré es, sinceramente, una de las piezas de ingeniería de AI tooling más serias que he visto en 2026. Y está hecha por una persona, [Tejas Chopra](https://github.com/chopratejas), en Apache 2.0.
 
@@ -246,7 +246,7 @@ headroom wrap copilot --subscription
 
 ### Modo 4: MCP server
 
-Y luego está el modo MCP, que es donde Headroom se cruza con el protocolo que ya cubrimos en [Servidores MCP para memoria cross-agent](/blog/blog-servidores-mcp-memoria-cross-agent). Headroom expone tres tools MCP nativos:
+Y luego está el modo MCP, que es donde Headroom se cruza con el protocolo que ya cubrimos en [Servidores MCP para memoria cross-agent](/blog/mcp-servers-memory-cross-agent). Headroom expone tres tools MCP nativos:
 
 - `headroom_compress` — comprime un payload arbitrario.
 - `headroom_retrieve` — recupera originales cacheados.
@@ -265,7 +265,7 @@ Cuando migrés Hilt a Koin en este repo, NO toques la firma de
 MainActivity. El patrón correcto está en commit a1b2c3d.
 ```
 
-Esto se solapa con lo que cubrimos en [AI Agent Skills: Inyección Dinámica de Contexto](/blog/blog-agent-skills-contexto-dinamico) y con [hmem: memoria jerárquica con lazy loading](/blog/blog-hmem-sqlite-memoria-jerarquica-agentes). La diferencia es que `headroom learn` no necesita que tú escribas nada: detecta, extrae, escribe. En mi flujo de trabajo indie, donde a veces paso semanas sin tocar un proyecto, tener al agente que **relee sus propios errores** antes de empezar a tocar código es una mejora de calidad brutal.
+Esto se solapa con lo que cubrimos en [AI Agent Skills: Inyección Dinámica de Contexto](/blog/ai-agent-skills-dynamic-context) y con [hmem: memoria jerárquica con lazy loading](/blog/hmem-sqlite-hierarchical-memory-agents). La diferencia es que `headroom learn` no necesita que tú escribas nada: detecta, extrae, escribe. En mi flujo de trabajo indie, donde a veces paso semanas sin tocar un proyecto, tener al agente que **relee sus propios errores** antes de empezar a tocar código es una mejora de calidad brutal.
 
 ## Output token reduction: cortar lo que el modelo escribe
 
@@ -370,7 +370,7 @@ Cada vez que comprimimos algo (memoria jerárquica en hmem, context summaries en
 Que `headroom output-savings` reporte una estimación con CI en lugar de un número mágico me da más confianza, no menos. El reporting honesto es la diferencia entre un proyecto que madura y uno que se queda en GitHub Trending una semana.
 
 **4. El ecosistema open source de AI tooling en 2026 es absurdamente bueno.**
-Headroom, RTK, lean-ctx, hmem, NeuralMind, Ponytail… y todos encajan como Lego. En el [análisis de Ponytail](/blog/ponytail-skill-senior-perezoso) cité el stack de tres capas (NeuralMind + Headroom + Ponytail) que reportó 5-10x de ahorro. Empiezo a creer que el stack de un indie dev en 2026 no es "qué modelo uso" sino "qué cinco herramientas de capa de transporte tengo montadas".
+Headroom, RTK, lean-ctx, hmem, NeuralMind, Ponytail… y todos encajan como Lego. En el [análisis de Ponytail](/blog/ponytail-lazy-senior-dev-skill) cité el stack de tres capas (NeuralMind + Headroom + Ponytail) que reportó 5-10x de ahorro. Empiezo a creer que el stack de un indie dev en 2026 no es "qué modelo uso" sino "qué cinco herramientas de capa de transporte tengo montadas".
 
 **5. Hay que mirar la letra pequeña de los benchmarks.**
 Headroom te puede ahorrar 92% en logs y solo 47% en code exploration. La diferencia entre el caso hero y el caso real es enorme, y leer benchmarks sin entender la metodología te lleva a tomar malas decisiones. Esto no es crítico a Headroom en particular, es una nota general sobre el ecosistema: **todos los compresores de contexto mienten un poquito, y Headroom miente menos que la media**.
@@ -412,11 +412,11 @@ Si lo pruebas, me encantaría leer tu número. Yo reportaré el mío en un devlo
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) · Estándar abierto en el que se integra el modo MCP de Headroom.
 
 ### Artículos del blog relacionados
-- [Ponytail: el "lazy senior dev" skill que reduce 6x los tokens generados](/blog/ponytail-skill-senior-perezoso) · El stack de 3 capas (NeuralMind + Headroom + Ponytail) que citó Headroom.
-- [Effective Context for AI: Prompt Engineering](/blog/contexto-efectivo-ia) · Los 4 C's del contexto (capacidad, contexto, constraints, chain-of-thought).
-- [AI Agent Skills: Inyección Dinámica de Contexto](/blog/blog-agent-skills-contexto-dinamico) · Patrón complementario para reducir contexto vía skills modulares.
-- [hmem: memoria jerárquica con lazy loading](/blog/blog-hmem-sqlite-memoria-jerarquica-agentes) · Otra capa ortogonal del stack: memoria persistente eficiente.
-- [Servidores MCP para memoria cross-agent](/blog/blog-servidores-mcp-memoria-cross-agent) · Panorama del ecosistema MCP.
+- [Ponytail: el "lazy senior dev" skill que reduce 6x los tokens generados](/blog/ponytail-lazy-senior-dev-skill) · El stack de 3 capas (NeuralMind + Headroom + Ponytail) que citó Headroom.
+- [Effective Context for AI: Prompt Engineering](/blog/effective-context-ai) · Los 4 C's del contexto (capacidad, contexto, constraints, chain-of-thought).
+- [AI Agent Skills: Inyección Dinámica de Contexto](/blog/ai-agent-skills-dynamic-context) · Patrón complementario para reducir contexto vía skills modulares.
+- [hmem: memoria jerárquica con lazy loading](/blog/hmem-sqlite-hierarchical-memory-agents) · Otra capa ortogonal del stack: memoria persistente eficiente.
+- [Servidores MCP para memoria cross-agent](/blog/mcp-servers-memory-cross-agent) · Panorama del ecosistema MCP.
 - [Claude 4.6 Enterprise Launch: 1M de contexto](/blog/blog-claude-4-6-enterprise-launch) · Por qué el contexto grande no resuelve el problema de la paja.
 
 ### Discusión en redes (jun 2026)

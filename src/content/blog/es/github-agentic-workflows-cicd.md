@@ -23,7 +23,7 @@ reference_id: "27a53d69-538e-496c-8531-58adb79629f4"
 > Este artículo dialoga con dos piezas previas del blog que conviene leer antes o después:
 >
 > - **[Orquestando Agentes de IA en tu Pipeline de CI/CD](/blog/blog-orquestar-agentes-pipeline-cicd)** — cómo montar un pipeline multi-agente clásico con GitHub Actions + Python.
-> - **[Documentación Automatizada: CI/CD con Dokka y MkDocs](/blog/blog-automated-documentation)** — el caso particular de docs generadas como ejemplo de automatización determinista.
+> - **[Documentación Automatizada: CI/CD con Dokka y MkDocs](/blog/automated-documentation-cicd)** — el caso particular de docs generadas como ejemplo de automatización determinista.
 >
 > Lo que vamos a ver aquí va un paso más allá: el agente **razona** sobre el repo en lenguaje natural, pero **solo propone** sus acciones a través de un canal validado.
 
@@ -276,7 +276,7 @@ Y un matiz que vale la pena repetir: **el agente no acelera el código, acelera 
 
 ## 🛠️ Setup para un indie: del `git clone` al primer workflow agentic
 
-Asumiendo que ya tienes un repo con GitHub Actions funcionando (si no, revisa mi [guía de GitHub Actions para Android](/blog/blog-github-actions)):
+Asumiendo que ya tienes un repo con GitHub Actions funcionando (si no, revisa mi [guía de GitHub Actions para Android](/blog/github-actions-android-guide)):
 
 ```bash
 # 1. Instalar la CLI gh-aw
@@ -352,8 +352,8 @@ Si tienes un repo en GitHub, aunque sea personal, pruébalo en una rama con un w
 ### Artículos previos del blog relacionados
 
 - [Orquestando Agentes de IA en tu Pipeline de CI/CD](/blog/blog-orquestar-agentes-pipeline-cicd) — Enfoque multi-agente clásico con Python + Actions.
-- [Documentación Automatizada con Dokka y MkDocs](/blog/blog-automated-documentation) — Caso particular de automatización determinista.
-- [GitHub Actions para Android: Guía Completa](/blog/blog-github-actions) — Base de CI/CD sobre la que se apoya gh-aw.
+- [Documentación Automatizada con Dokka y MkDocs](/blog/automated-documentation-cicd) — Caso particular de automatización determinista.
+- [GitHub Actions para Android: Guía Completa](/blog/github-actions-android-guide) — Base de CI/CD sobre la que se apoya gh-aw.
 - [TDD con IA en Android](/blog/blog-ia-tdd-android) — Contrapunto filosófico a "dejar que el agente haga el trabajo".
 - [Agentes IA Autónomos en Android](/blog/blog-agentes-ia-autonomos-android) — Marco conceptual de agentes que actúan sin intervención humana.
 

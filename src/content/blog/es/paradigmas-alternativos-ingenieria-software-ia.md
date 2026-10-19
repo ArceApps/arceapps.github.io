@@ -18,7 +18,7 @@ draft: false
 
 
 
-> **Lectura relacionada:** [Spec-Driven Development con IA Agéntica](/blog/specs-driven-development) · [Agentes IA Autónomos en Android: Más Allá del Asistente](/blog/blog-agentes-ia-autonomos-android) · [Construyendo Skills para Agentes IA](/blog/blog-agentes-ia-skills)
+> **Lectura relacionada:** [Spec-Driven Development con IA Agéntica](/blog/spec-driven-development-ai) · [Agentes IA Autónomos en Android: Más Allá del Asistente](/blog/blog-agentes-ia-autonomos-android) · [Construyendo Skills para Agentes IA](/blog/building-ai-agent-skills)
 
 ---
 

@@ -5,7 +5,7 @@ pubDate: 2025-10-15
 heroImage: /images/placeholder-article-stateflow.svg
 tags: ["Kotlin", "Coroutines", "Flow", "Android", "StateFlow", "SharedFlow"]
 category: android-kotlin
-reference_id: 4f809146-8583-4075-ade0-d55d8523f8d9
+reference_id: 966834c1-cb2f-4915-95a9-2fbd7d5f0ec7
 author: ArceApps
 lastmod: 2025-10-15
 canonical: "https://arceapps.com/blog/stateflow-sharedflow-guide/"

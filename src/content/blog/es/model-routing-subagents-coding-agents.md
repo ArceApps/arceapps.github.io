@@ -287,7 +287,7 @@ El routing por modelo en subagentes no es una moda. Es la **consecuencia lógica
 - bestaiweb.ai — *OpenRouter, Martian, and Not Diamond: The 2026 LLM Router Race*. 12 may 2026. [bestaiweb.ai/openrouter-martian-and-not-diamond-the-2026-llm-router-race](https://www.bestaiweb.ai/openrouter-martian-and-not-diamond-the-2026-llm-router-race-and-where-agent-cost-optimization-is-heading/)
 - ArceApps — *GSD: la ingeniería del contexto limpio*. [es/blog/gsd-core-context-engineering](/es/blog/gsd-core-context-engineering/)
 - ArceApps — *Gran Final del torneo de IDEs AI*. [es/blog/desktop-ai-grand-final](/es/blog/desktop-ai-grand-final/)
-- ArceApps — *Stack completo de agentes IA 2026*. [es/blog/stack-completo-agentes-ia-2026](/es/blog/stack-completo-agentes-ia-2026/)
+- ArceApps — *Stack completo de agentes IA 2026*. [es/blog/complete-beginners-guide-ai-agents-stack-2026](/es/blog/complete-beginners-guide-ai-agents-stack-2026/)
 
 ## Cierre
 

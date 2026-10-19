@@ -19,7 +19,7 @@ reference_id: "a8c3d5e7-2f1b-4a9c-b6d0-7e4f2c8a1b5d"
 
 
 
-> Este artículo complementa directamente la serie de memoria agéntica de este blog. Si no has leído todavía el análisis general de los frameworks de memoria persistente, te recomiendo empezar por [La Arquitectura de la Memoria Persistente en Agentes IA](/blog/blog-memoria-persistente-agentes-ia). Y si te preocupa la dimensión de seguridad y privacidad, no te pierdas [Memoria Agéntica: Seguridad, Privacidad y el Futuro del Segundo Cerebro de la IA](/blog/blog-memoria-seguridad-privacidad-agentica). Este artículo entra en un ángulo específico que no habíamos cubierto: la propuesta de Microsoft Research para desacoplar completamente la memoria del agente mediante un módulo plugin agnóstico a tareas.
+> Este artículo complementa directamente la serie de memoria agéntica de este blog. Si no has leído todavía el análisis general de los frameworks de memoria persistente, te recomiendo empezar por [La Arquitectura de la Memoria Persistente en Agentes IA](/blog/ai-agent-memory-persistence-guide). Y si te preocupa la dimensión de seguridad y privacidad, no te pierdas [Memoria Agéntica: Seguridad, Privacidad y el Futuro del Segundo Cerebro de la IA](/blog/blog-memoria-seguridad-privacidad-agentica). Este artículo entra en un ángulo específico que no habíamos cubierto: la propuesta de Microsoft Research para desacoplar completamente la memoria del agente mediante un módulo plugin agnóstico a tareas.
 
 ---
 
@@ -103,7 +103,7 @@ Esto tiene implicaciones prácticas importantes:
 - Puedes migrar entre frameworks de agentes conservando el grafo de memoria acumulado.
 - Puedes compartir el mismo módulo de memoria entre múltiples agentes especializados que trabajen en el mismo dominio.
 
-En el contexto del [trabajo con Agent Skills](/blog/blog-agentes-ia-skills) que hemos explorado en este blog, PlugMem sería el componente que permite que las skills aprendidas en una sesión estén disponibles en la siguiente, sin importar qué agente específico las ejecuta.
+En el contexto del [trabajo con Agent Skills](/blog/building-ai-agent-skills) que hemos explorado en este blog, PlugMem sería el componente que permite que las skills aprendidas en una sesión estén disponibles en la siguiente, sin importar qué agente específico las ejecuta.
 
 ---
 
@@ -135,13 +135,13 @@ Sería poco honesto presentar PlugMem sin mencionar sus limitaciones actuales.
 
 ## Cómo Encaja con el Ecosistema Actual
 
-PlugMem no compite directamente con frameworks como Mem0 o Cognee que analizamos en [La Arquitectura de la Memoria Persistente en Agentes IA](/blog/blog-memoria-persistente-agentes-ia). Más bien es una propuesta arquitectónica que esos frameworks podrían adoptar internamente.
+PlugMem no compite directamente con frameworks como Mem0 o Cognee que analizamos en [La Arquitectura de la Memoria Persistente en Agentes IA](/blog/ai-agent-memory-persistence-guide). Más bien es una propuesta arquitectónica que esos frameworks podrían adoptar internamente.
 
 La distinción clave que aporta PlugMem al debate es la separación explícita entre **conocimiento proposicional** y **conocimiento prescriptivo**. Muchos sistemas de memoria tratan toda la información por igual (como embeddings en un espacio vectorial). PlugMem argumenta que los hechos y las habilidades son cognitivamente diferentes y deben almacenarse y recuperarse de forma diferente.
 
-Esta distinción resuena con lo que hemos explorado en este blog sobre [el uso del método PARA para organizar la memoria de agentes](/blog/blog-metodo-para-memoria-ia-archivos). La separación entre "qué sé" (proposicional) y "cómo hago" (prescriptivo) es análoga a la distinción entre áreas de referencia y proyectos activos en el método PARA.
+Esta distinción resuena con lo que hemos explorado en este blog sobre [el uso del método PARA para organizar la memoria de agentes](/blog/para-method-file-based-ai-memory). La separación entre "qué sé" (proposicional) y "cómo hago" (prescriptivo) es análoga a la distinción entre áreas de referencia y proyectos activos en el método PARA.
 
-Para los interesados en [contexto dinámico y Agent Skills](/blog/blog-agent-skills-contexto-dinamico), el conocimiento prescriptivo de PlugMem es esencialmente el equivalente automático y aprendido de los skills que configuras manualmente: estrategias que funcionaron bien en el pasado y que el agente debe aplicar en situaciones similares futuras.
+Para los interesados en [contexto dinámico y Agent Skills](/blog/ai-agent-skills-dynamic-context), el conocimiento prescriptivo de PlugMem es esencialmente el equivalente automático y aprendido de los skills que configuras manualmente: estrategias que funcionaron bien en el pasado y que el agente debe aplicar en situaciones similares futuras.
 
 ---
 
@@ -185,10 +185,10 @@ El repositorio está disponible en [GitHub](https://github.com/TIMAN-group/PlugM
    - [https://github.com/TIMAN-group/PlugMem](https://github.com/TIMAN-group/PlugMem)
 
 3. **The Architecture of Persistent AI Agent Memory** — ArceApps Blog (2026). Análisis amplio de los frameworks de memoria agéntica, incluyendo Mem0, Cognee y OpenClaw.
-   - [/blog/blog-memoria-persistente-agentes-ia](/blog/blog-memoria-persistente-agentes-ia)
+   - [/blog/ai-agent-memory-persistence-guide](/blog/ai-agent-memory-persistence-guide)
 
 4. **Agentic Memory: Security, Privacy, and the Future of the AI Second Brain** — ArceApps Blog (2026). Análisis de los riesgos de seguridad y privacidad de la memoria persistente en agentes.
    - [/blog/blog-memoria-seguridad-privacidad-agentica](/blog/blog-memoria-seguridad-privacidad-agentica)
 
 5. **El Método PARA y la Memoria de IA basada en Archivos** — ArceApps Blog (2026). Exploración del enfoque de memoria local basada en archivos Markdown y el método PARA.
-   - [/blog/blog-metodo-para-memoria-ia-archivos](/blog/blog-metodo-para-memoria-ia-archivos)
+   - [/blog/para-method-file-based-ai-memory](/blog/para-method-file-based-ai-memory)

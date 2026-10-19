@@ -19,7 +19,7 @@ reference_id: "e9a3c571-2b4e-4f8d-93d1-7c0e2a5b8f16"
 
 
 
-> **Lectura relacionada:** [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Spec-Driven Development con IA Agéntica](/blog/specs-driven-development) · [Análisis de Frameworks SDD: Spec Kit, OpenSpec y BMAD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)
+> **Lectura relacionada:** [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) · [Spec-Driven Development con IA Agéntica](/blog/spec-driven-development-ai) · [Análisis de Frameworks SDD: Spec Kit, OpenSpec y BMAD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)
 
 
 ![Infografía BMAD](/images/infographic-bmad.svg)
@@ -142,7 +142,7 @@ Esta restricción también mantiene los specs dentro de la ventana de contexto q
 
 Esto contrasta directamente con los frameworks SDD más pesados que producen documentos arquitectónicos de 20 páginas. Esos documentos pueden ser exhaustivos, pero son demasiado grandes para inyectarlos completos en una ventana de contexto, demasiado lentos de actualizar y demasiado intimidantes de mantener. La filosofía de LeanSpec: **un spec pequeño que siempre está actualizado vale más que un spec perfecto que siempre está obsoleto**.
 
-Para una comparación más profunda con esos frameworks más pesados, consulta [Análisis de Frameworks SDD: Spec Kit, OpenSpec y BMAD-METHOD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad).
+Para una comparación más profunda con esos frameworks más pesados, consulta [Análisis de Frameworks SDD: Spec Kit, OpenSpec y BMAD-METHOD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad).
 
 ### Workflow Central: Descubrir → Diseñar → Implementar → Validar
 
@@ -455,8 +455,8 @@ Empieza pequeño. Elige la que resuelve tu punto de dolor más inmediato. Constr
 - [LeanSpec (lean-spec)](https://github.com/codervisor/lean-spec) — Herramienta de desarrollo spec-driven minimalista con integración MCP
 - [Taskmaster (claude-task-master)](https://github.com/eyaltoledano/claude-task-master) — Motor de orquestación PRD-a-tareas por Eyal Toledano
 - [task-master-ai en npm](https://www.npmjs.com/package/task-master-ai) — Paquete npm oficial
-- [Spec-Driven Development con IA Agéntica](/blog/specs-driven-development) — Lectura fundamental sobre principios SDD
+- [Spec-Driven Development con IA Agéntica](/blog/spec-driven-development-ai) — Lectura fundamental sobre principios SDD
 - [Paradigmas Alternativos en Ingeniería de Software con IA](/blog/blog-paradigmas-alternativos-ingenieria-software-ia) — Contexto más amplio sobre metodologías emergentes
-- [Análisis de Frameworks SDD: Spec Kit, OpenSpec, BMAD-METHOD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) — Comparación de frameworks SDD más pesados
+- [Análisis de Frameworks SDD: Spec Kit, OpenSpec, BMAD-METHOD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) — Comparación de frameworks SDD más pesados
 - Yegge, S. (2024). *Distributed Issue Tracking for the AI Age*. Blog personal.
 - Toledano, E. (2025). *Task-Driven Development with Claude*. GitHub README.

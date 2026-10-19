@@ -19,7 +19,7 @@ reference_id: "f9e0f666-5787-498c-8c04-c1f9531b88d5"
 ---
 
 
-> **Lecturas relacionadas en el blog:** [Ponytail: el skill viral que enseña a tus agentes a ser seniors perezosos](/blog/ponytail-skill-senior-perezoso) · [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/mattpocock-skills) · [AI Agents Coding: de Copilot a agentes autónomos](/blog/ai-agents-coding) · [Effective Context for AI: Prompt Engineering](/blog/contexto-efectivo-ia)
+> **Lecturas relacionadas en el blog:** [Ponytail: el skill viral que enseña a tus agentes a ser seniors perezosos](/blog/ponytail-lazy-senior-dev-skill) · [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/mattpocock-skills) · [AI Agents Coding: de Copilot a agentes autónomos](/blog/coding-with-ai-agents) · [Effective Context for AI: Prompt Engineering](/blog/effective-context-ai)
 
 ## "Brain still big. Mouth small."
 
@@ -35,7 +35,7 @@ Suena demasiado bien. Vamos a abrirlo.
 
 Si llevas meses programando con Claude Code, Codex o Cursor ya conoces la escena. Le pides al agente un validador de email y recibes una clase de 27 líneas envuelta en tres párrafos de cortesía. Pides un contador y te montan un *dashboard*. Pides una caché y te construyen una arquitectura con TTL, eviction policy y tests de concurrencia. Tú querías `lru_cache`. Te han dado un *whitepaper*.
 
-No es un bug. Es el comportamiento por defecto de los modelos entrenados para complacer. Ya lo analizamos en [AI Agents Coding: de Copilot a agentes autónomos](/blog/ai-agents-coding): la diferencia entre sugerir y actuar cambió el rol del desarrollador, pero también disparó la cantidad de tokens que se queman por interacción. Cada prompt dispara un sesgo de "más completo es mejor" que el modelo difícilmente va a corregir solo.
+No es un bug. Es el comportamiento por defecto de los modelos entrenados para complacer. Ya lo analizamos en [AI Agents Coding: de Copilot a agentes autónomos](/blog/coding-with-ai-agents): la diferencia entre sugerir y actuar cambió el rol del desarrollador, pero también disparó la cantidad de tokens que se queman por interacción. Cada prompt dispara un sesgo de "más completo es mejor" que el modelo difícilmente va a corregir solo.
 
 Y luego está el problema del **context drift**. Tú pegaste "sé conciso" al inicio de la sesión. El agente lo respetó los primeros tres turnos. En el octavo, ya está rellenando otra vez con "I'd be happy to help" porque la instrucción original quedó enterrada bajo cuarenta mil tokens de contexto. Los one-shots no sobreviven a sesiones largas. Y eso, en plan Pro/Max/20x donde cada sesión cuesta dólares, duele.
 
@@ -177,7 +177,7 @@ Después de leer el código, las críticas y los benchmarks, esto es lo que me l
 
 ## Cómo encaja con lo que ya cubre este blog
 
-Si llevas un tiempo por aquí, esto te va a sonar. Hace dos días publicamos [Ponytail: el skill viral que enseña a tus agentes a ser seniors perezosos](/blog/ponytail-skill-senior-perezoso). Ponytail ataca la cantidad de **código**. Caveman ataca la cantidad de **prosa**. En el benchmark de Ponytail, caveman quedó en el medio porque solo afecta a las explicaciones. Son ortogonales — el propio `SKILL.md` de Ponytail lo dice: *"Ponytail governs what you build, not how you talk (pair with Caveman for terse prose)."*
+Si llevas un tiempo por aquí, esto te va a sonar. Hace dos días publicamos [Ponytail: el skill viral que enseña a tus agentes a ser seniors perezosos](/blog/ponytail-lazy-senior-dev-skill). Ponytail ataca la cantidad de **código**. Caveman ataca la cantidad de **prosa**. En el benchmark de Ponytail, caveman quedó en el medio porque solo afecta a las explicaciones. Son ortogonales — el propio `SKILL.md` de Ponytail lo dice: *"Ponytail governs what you build, not how you talk (pair with Caveman for terse prose)."*
 
 Y hace un mes, [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/mattpocock-skills) presentó caveman como ejemplo de skill que es un único archivo `.md` con efecto desproporcionado. Caveman es la prueba viviente de la tesis de Pocock: un skill pequeño, composable, portable, que cabe en cualquier toolbox.
 
@@ -241,7 +241,7 @@ Y cuando lo combines con Ponytail, mide primero. El stack completo es poderoso p
 
 ### Lecturas del blog
 
-- [Ponytail: el skill viral que enseña a tus agentes a ser seniors perezosos](/blog/ponytail-skill-senior-perezoso) — caveman mencionado como ortogonal (línea 192).
+- [Ponytail: el skill viral que enseña a tus agentes a ser seniors perezosos](/blog/ponytail-lazy-senior-dev-skill) — caveman mencionado como ortogonal (línea 192).
 - [Matt Pocock Skills: la navaja suiza de los skills pequeños](/blog/mattpocock-skills) — sección "El Skill Caveman" (líneas 166-183).
-- [AI Agents Coding: de Copilot a agentes autónomos](/blog/ai-agents-coding) — por qué los agentes sobre-ingenieran por defecto.
-- [Effective Context for AI: Prompt Engineering](/blog/contexto-efectivo-ia) — las 4 C's del contexto.
+- [AI Agents Coding: de Copilot a agentes autónomos](/blog/coding-with-ai-agents) — por qué los agentes sobre-ingenieran por defecto.
+- [Effective Context for AI: Prompt Engineering](/blog/effective-context-ai) — las 4 C's del contexto.

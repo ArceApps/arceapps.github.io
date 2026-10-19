@@ -105,7 +105,7 @@ En el Workflow B, la "sicofancia" del modelo no pudo esconder los defectos arqui
 
 ## 6. Las Limitaciones y Cuándo Evitar "Grill Me"
 
-A pesar de nuestro entusiasmo, debemos ser rigurosamente honestos sobre cuándo esta herramienta no es adecuada. Como se ha discutido en la comparativa de frameworks SDD ([Comparativa de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad)):
+A pesar de nuestro entusiasmo, debemos ser rigurosamente honestos sobre cuándo esta herramienta no es adecuada. Como se ha discutido en la comparativa de frameworks SDD ([Comparativa de Frameworks SDD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad)):
 
 
 ![Infografía BMAD](/images/infographic-bmad-es.svg)
@@ -173,7 +173,7 @@ En ArceApps, hemos integrado este flujo híbrido en la construcción de nuestros
 
 *   [mattpocock/skills GitHub Repository](https://github.com/mattpocock/skills): El epicentro de esta metodología.
 *   [Prompts del Método Socrático: Rompiendo la Sicofancia de la IA](/blog/blog-socratic-method-prompts-kotlin-android): Anatomía de un prompt socrático de alto rendimiento.
-*   [Comparativa de Frameworks SDD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad): Una revisión profunda de Spec Kit, OpenSpec y BMAD.
+*   [Comparativa de Frameworks SDD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad): Una revisión profunda de Spec Kit, OpenSpec y BMAD.
 *   [Agentes Socráticos Parte 2: SDD y Sicofancia](/blog/socratic-agents-part-2-sdd-sycophancy): La relación histórica entre el prompting adversarial y el Spec-Driven Development.
 *   [Adversarial Prompting in LLMs](https://www.promptingguide.ai/risks/adversarial): Guía de ingeniería de prompts sobre stress-testing.
 *   [LLM Stress Testing 2026: load, adversarial, CI pipeline](https://futureagi.com/blog/stress-test-llm-2025/): Perspectivas de la industria sobre la evolución de la integración continua con agentes de IA.

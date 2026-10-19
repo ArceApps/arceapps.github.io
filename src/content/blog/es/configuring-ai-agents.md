@@ -18,7 +18,7 @@ reference_id: "b0624ec0-08af-4dad-bc3f-7dce6d88c8ea"
 ---
 
 
-En el [artículo anterior](/blog/blog-agentes-ia-android-teoria), exploramos por qué necesitamos agentes especializados en lugar de chats genéricos. Hoy, vamos a ensuciarnos las manos. Vamos a construir la infraestructura necesaria para que **Sentinel**, **Bolt** y **Palette** vivan en tu repositorio Android.
+En el [artículo anterior](/blog/ai-agents-android-theory), exploramos por qué necesitamos agentes especializados en lugar de chats genéricos. Hoy, vamos a ensuciarnos las manos. Vamos a construir la infraestructura necesaria para que **Sentinel**, **Bolt** y **Palette** vivan en tu repositorio Android.
 
 No necesitas instalar librerías complejas de Python ni configurar servidores locales. Solo necesitas organizar tu conocimiento en archivos Markdown que las IAs actuales (Claude, ChatGPT, Gemini) puedan consumir como contexto.
 

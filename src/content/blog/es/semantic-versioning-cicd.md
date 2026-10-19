@@ -10,7 +10,7 @@ keywords:
   - "Versionado"
   - "Release"
   - "Automatización"
-canonical: "https://arceapps.com/es/blog/cde-semantic-versioning/"
+canonical: "https://arceapps.com/es/blog/semantic-versioning-cicd/"
 heroImage: "/images/placeholder-article-cde-semver.svg"
 tags: ["DevOps", "CI/CD", "Semantic Versioning", "Android", "GitHub Actions"]
 category: cicd

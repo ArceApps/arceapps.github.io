@@ -17,7 +17,7 @@ reference_id: "CLI-AI-FINAL-2026-CHAMPION-003-V2"
 > - **[Semifinal 1 — bloque mixto (ES)](/blog/cli-ai-semifinal-1/)** y **[Semifinal 1 — mixed block (EN)](https://arceapps.com/blog/cli-ai-semifinal-1/)**: los 10 contendientes en la terminal, con Claude Code (60/70) y Hermes Agent (59/70) clasificándose a esta final.
 > - **[Semifinal 2 — nativos vs agnósticos (ES)](/blog/cli-ai-semifinal-2/)** y **[Semifinal 2 — native vs agnostic (EN)](https://arceapps.com/blog/cli-ai-semifinal-2/)**: los 10 contendientes en sus bloques de integración, con OpenCode (62/70) y OpenAI Codex (60/70) avanzando.
 >
-> Y si lo que quieres es entender el "por qué" del agnosticismo, el harness y la elección de modelos, tengo tres artículos que cubren el marco conceptual sobre el que se sostiene este torneo: **[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/herramientas-ia-2026/)**, **[OpenCode Subagents: Workflows & Superpowers (EN)](https://arceapps.com/blog/opencode-subagents/)** y los **[Servidores MCP y memoria cross-agent (ES)](/blog/servidores-mcp-memoria-cross-agent/)** con su pieza gemela sobre **[plugins de memoria nativos en OpenCode (ES)](/blog/opencode-plugins-memoria-nativos/)**.
+> Y si lo que quieres es entender el "por qué" del agnosticismo, el harness y la elección de modelos, tengo tres artículos que cubren el marco conceptual sobre el que se sostiene este torneo: **[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/ai-tools-worth-learning-2026/)**, **[OpenCode Subagents: Workflows & Superpowers (EN)](https://arceapps.com/blog/opencode-subagents/)** y los **[Servidores MCP y memoria cross-agent (ES)](/blog/mcp-servers-memory-cross-agent/)** con su pieza gemela sobre **[plugins de memoria nativos en OpenCode (ES)](/blog/opencode-memory-plugins-native/)**.
 
 ---
 
@@ -96,7 +96,7 @@ Lo que lo hace único en el bracket es el **modelo de subagentes con contexto ai
 
 El contexto de OpenCode es **el más profundo del bloque agnóstico**. Implementa `repomix`-style AST scanning con `tree-sitter`, embeddings locales con `transformers.js` (todo offline, nada se envía a la nube para indexar), y un motor de chunks jerárquicos que respeta la estructura del repositorio. En mis pruebas con un monorepo de 312 archivos Kotlin Multiplatform, `@explore` mapeó el árbol completo en 4.1 segundos y devolvió un grafo navegable de 2.847 símbolos. La caché de embeddings vive en `.opencode/cache/` y se reutiliza entre sesiones.
 
-Soporta los modificadores de scope `@file`, `@dir`, `@symbol`, `@git-diff`, y el —todavía beta— `@cross-file` para razonar sobre firmas compartidas entre varios archivos. La compactación se activa al 80% de la ventana, no al 70% como Codex CLI, así que cabe más contexto vivo. La integración con servidores MCP es nativa desde el binario: un `mcp.json` activa servidores automáticamente sin necesidad de un wrapper externo. Y aquí conecto con lo que cubrimos en **[Servidores MCP y memoria cross-agent](/blog/servidores-mcp-memoria-cross-agent/)**: OpenCode es probablemente el cliente MCP más cómodo del bloque agnóstico.
+Soporta los modificadores de scope `@file`, `@dir`, `@symbol`, `@git-diff`, y el —todavía beta— `@cross-file` para razonar sobre firmas compartidas entre varios archivos. La compactación se activa al 80% de la ventana, no al 70% como Codex CLI, así que cabe más contexto vivo. La integración con servidores MCP es nativa desde el binario: un `mcp.json` activa servidores automáticamente sin necesidad de un wrapper externo. Y aquí conecto con lo que cubrimos en **[Servidores MCP y memoria cross-agent](/blog/mcp-servers-memory-cross-agent/)**: OpenCode es probablemente el cliente MCP más cómodo del bloque agnóstico.
 
 #### Calidad de generación y manejo de diffs
 
@@ -245,8 +245,8 @@ Aquí está el verdadero terreno de Claude Code. Anthropic ha invertido mucho en
 
 - **Compaction automática**: cuando el contexto se acerca al límite, Claude resume los turnos anteriores de forma inteligente, conservando las decisiones arquitectónicas y descartando el ruido conversacional. La compactación se activa en el 80% de la ventana.
 - **Subagentes con contexto aislado**: cada subagente tiene su propia ventana, evitando que contaminen el contexto principal. Esta es exactamente la misma filosofía que OpenCode implementa en el bloque agnóstico, pero aquí está afinada para Claude 4.6.
-- **Skills dinámicos**: archivos `.claude/skills/<nombre>/SKILL.md` que Claude descubre y carga bajo demanda cuando detecta que la tarea los requiere. Si quieres entender bien el patrón de "skills dinámicas", mira **[OpenCode plugins: memoria nativa (ES)](/blog/opencode-plugins-memoria-nativos/)** que cubre el mismo concepto desde el lado agnóstico.
-- **MCP (Model Context Protocol)**: estándar abierto de Anthropic para conectar herramientas externas. Claude Code es **el cliente MCP más maduro del mercado**, y eso conecta directamente con lo que cubrimos en **[Servidores MCP y memoria cross-agent](/blog/servidores-mcp-memoria-cross-agent/)**.
+- **Skills dinámicos**: archivos `.claude/skills/<nombre>/SKILL.md` que Claude descubre y carga bajo demanda cuando detecta que la tarea los requiere. Si quieres entender bien el patrón de "skills dinámicas", mira **[OpenCode plugins: memoria nativa (ES)](/blog/opencode-memory-plugins-native/)** que cubre el mismo concepto desde el lado agnóstico.
+- **MCP (Model Context Protocol)**: estándar abierto de Anthropic para conectar herramientas externas. Claude Code es **el cliente MCP más maduro del mercado**, y eso conecta directamente con lo que cubrimos en **[Servidores MCP y memoria cross-agent](/blog/mcp-servers-memory-cross-agent/)**.
 
 En el benchmark privado del "Repositorio de la Vergüenza", Claude Code fue la única herramienta que, tras 73 turnos, seguía recordando el nombre exacto de la función `validateCashFloatAtMidnight()` definida en el turno 14, sin necesidad de re-leer el archivo. Esa es la firma de un compaction inteligente.
 
@@ -536,7 +536,7 @@ Porque **la mejor herramienta no es la más pura, es la que seguirás usando den
 
 1. **Compaction automática madura**: Claude 4.6 Opus resume los turnos anteriores preservando decisiones arquitectónicas, y lo hace mejor que cualquier otro modelo del mercado. En el benchmark privado del "Repositorio de la Vergüenza", tras 73 turnos Claude Code seguía recordando el nombre exacto de una función definida en el turno 14 sin re-leer nada. OpenCode llegó a 58 turnos antes de empezar a perder símbolos.
 
-2. **Cliente MCP más depurado**: ya cubrimos la teoría de MCP en **[Servidores MCP y memoria cross-agent](/blog/servidores-mcp-memoria-cross-agent/)**, pero la implementación nativa de Claude Code es la más pulida del mercado. Conecta con GitHub, con bases de datos, con servicios internos, con sistemas de archivos remotos — todo con confirmación humana por defecto y un sistema de permisos granular. OpenCode también soporta MCP, pero el cliente es más reciente y aún tiene asperezas.
+2. **Cliente MCP más depurado**: ya cubrimos la teoría de MCP en **[Servidores MCP y memoria cross-agent](/blog/mcp-servers-memory-cross-agent/)**, pero la implementación nativa de Claude Code es la más pulida del mercado. Conecta con GitHub, con bases de datos, con servicios internos, con sistemas de archivos remotos — todo con confirmación humana por defecto y un sistema de permisos granular. OpenCode también soporta MCP, pero el cliente es más reciente y aún tiene asperezas.
 
 3. **Sinergia modelo-herramienta real**: cuando Anthropic diseñó Claude Code, no diseñó un wrapper genérico. Diseñó la herramienta desde la primera línea pensando en cómo Claude razona. Esa sinergia es lo que se manifiesta en el 81% de acierto en primer intento —vs el 72% de OpenCode con el mismo Sonnet 4.6—. El harness nativo no es un adorno: es la mitad del producto.
 
@@ -601,7 +601,7 @@ Tendemos a celebrar al campeón como si el torneo hubiese terminado. Error. **En
 
 ### El movimiento que nos falta
 
-Más allá de las marcas, **el movimiento que de verdad importa en 2026-2027 es la estandarización de protocolos**. **Model Context Protocol (MCP)** ya es un estándar de facto —lo cubrimos en profundidad en [Servidores MCP y memoria cross-agent](/blog/servidores-mcp-memoria-cross-agent/)—. Falta **Agent-to-Agent Protocol (A2A)** para que distintos agentes negocien tareas entre sí. Cuando eso llegue, **la pregunta ya no será "¿qué CLI uso?" sino "¿qué orquestador de agentes uso?"**. Y ahí el campo vuelve a estar abierto.
+Más allá de las marcas, **el movimiento que de verdad importa en 2026-2027 es la estandarización de protocolos**. **Model Context Protocol (MCP)** ya es un estándar de facto —lo cubrimos en profundidad en [Servidores MCP y memoria cross-agent](/blog/mcp-servers-memory-cross-agent/)—. Falta **Agent-to-Agent Protocol (A2A)** para que distintos agentes negocien tareas entre sí. Cuando eso llegue, **la pregunta ya no será "¿qué CLI uso?" sino "¿qué orquestador de agentes uso?"**. Y ahí el campo vuelve a estar abierto.
 
 ### Lo que he aprendido yo
 
@@ -651,12 +651,12 @@ Nos vemos en el Torneo AI CLI 2027. Tengo la corazonada de que el campeón de en
 
 - **[Semifinal 1 — bloque mixto (ES)](/blog/cli-ai-semifinal-1/)** y **[Semifinal 1 — mixed block (EN)](https://arceapps.com/blog/cli-ai-semifinal-1/)**: cómo Claude Code y Hermes Agent ganaron sus pases a esta final.
 - **[Semifinal 2 — nativos vs agnósticos (ES)](/blog/cli-ai-semifinal-2/)** y **[Semifinal 2 — native vs agnostic (EN)](https://arceapps.com/blog/cli-ai-semifinal-2/)**: cómo OpenCode y OpenAI Codex se ganaron los suyos.
-- **[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/herramientas-ia-2026/)**: el panorama completo de herramientas de agentes y por qué el agnosticismo importa.
+- **[AI Tools Worth Learning in 2026 (EN)](https://arceapps.com/blog/ai-tools-worth-learning-2026/)**: el panorama completo de herramientas de agentes y por qué el agnosticismo importa.
 - **[OpenCode Subagents: Workflows & Superpowers (EN)](https://arceapps.com/blog/opencode-subagents/)**: análisis a fondo del ganador de la semifinal 1, su arquitectura de subagentes y el sistema de plugins JS.
-- **[Servidores MCP y memoria cross-agent (ES)](/blog/servidores-mcp-memoria-cross-agent/)**: cómo MCP cambió el juego y por qué Claude Code es el cliente más maduro.
-- **[OpenCode plugins: memoria nativa (ES)](/blog/opencode-plugins-memoria-nativos/)**: el lado agnóstico de la memoria persistente, complementario al artículo sobre MCP.
+- **[Servidores MCP y memoria cross-agent (ES)](/blog/mcp-servers-memory-cross-agent/)**: cómo MCP cambió el juego y por qué Claude Code es el cliente más maduro.
+- **[OpenCode plugins: memoria nativa (ES)](/blog/opencode-memory-plugins-native/)**: el lado agnóstico de la memoria persistente, complementario al artículo sobre MCP.
 - **[Android CLI: Accelerating Development with AI Agents (EN)](https://arceapps.com/blog/android-cli-agentes-herramientas/)**: el precedente inmediato que motivó toda esta serie.
-- **[Loop Engineering: de Prompts a Sistemas Autónomos (ES)](/blog/loop-engineering-desarrollo-movil)**: la arquitectura mental para diseñar bucles agénticos.
+- **[Loop Engineering: de Prompts a Sistemas Autónomos (ES)](/blog/loop-engineering-mobile-development)**: la arquitectura mental para diseñar bucles agénticos.
 - **[Harness Engineering: el wrapper que gana (ES)](/blog/harness-engineering-wrapper-gana)**: por qué el binomio modelo-herramienta sigue siendo decisivo.
 
 ---

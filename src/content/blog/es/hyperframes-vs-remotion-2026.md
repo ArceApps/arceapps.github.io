@@ -34,7 +34,7 @@ Dos frameworks open-source. Una misma promesa: convertir código en vídeo MP4 s
 
 En este artículo de **más de 5.000 palabras** vamos a diseccionar **HyperFrames** (el nuevo framework open-source de HeyGen, lanzado en 2026) y **Remotion** (el veterano de 2021, con 53,2k estrellas en GitHub) para que sepas exactamente cuándo usar cada uno, qué les diferencia, qué les une, y por qué la batalla HTML-vs-React va mucho más allá de una preferencia de sintaxis.
 
-Si ya trabajas con [AI Agent Skills](https://arceapps.com/es/blog/agent-skills-contexto-dinamico/) y quieres saber cómo la autoría de vídeo está cambiando radicalmente en 2026, este es tu artículo.
+Si ya trabajas con [AI Agent Skills](https://arceapps.com/es/blog/ai-agent-skills-dynamic-context/) y quieres saber cómo la autoría de vídeo está cambiando radicalmente en 2026, este es tu artículo.
 
 ![Portada del artículo - Comparativa HyperFrames vs Remotion](/images/hyperframes-vs-remotion-2026/es/cover.png)
 
@@ -52,7 +52,7 @@ La buena noticia: los dos funcionan. La mala: no puedes tener los dos gratis si 
 
 Si has tocado un proyecto serio con agentes en 2026, te habrás dado cuenta de que **los LLMs son despistados con los toolchains opinados**. Un agente que escribe TSX de Remotion pierde ciclos pensando en reconciliación, props, hooks y estado. Un agente que escribe HTML de HyperFrames va directo al grano: CSS, un `<script>`, y render.
 
-Es la misma razón por la que en 2026 estamos viendo frameworks AI-first por todas partes: [Vercel AI SDK](https://arceapps.com/es/blog/agent-skills-contexto-dinamico/) prefiere funciones puras sobre clases, los Agent Skills prefieren Markdown estructurado sobre YAML complejo, y los frameworks de vídeo están convergiendo hacia formatos que los modelos ya dominan. HyperFrames ha tomado nota de esto desde el día uno. Remotion, nacido cinco años antes, lo está incorporando a marchas forzadas.
+Es la misma razón por la que en 2026 estamos viendo frameworks AI-first por todas partes: [Vercel AI SDK](https://arceapps.com/es/blog/ai-agent-skills-dynamic-context/) prefiere funciones puras sobre clases, los Agent Skills prefieren Markdown estructurado sobre YAML complejo, y los frameworks de vídeo están convergiendo hacia formatos que los modelos ya dominan. HyperFrames ha tomado nota de esto desde el día uno. Remotion, nacido cinco años antes, lo está incorporando a marchas forzadas.
 
 ### 1.2 Qué vas a sacar de este artículo
 
@@ -425,7 +425,7 @@ Sería injusto no reconocer que **el modelo de Remotion ha financiado 5 años de
 
 Aquí es donde ambos frameworks han dado un paso importante en 2026. **Agent Skills** son paquetes de instrucciones que se instalan en herramientas como Claude Code, Cursor, Codex, Gemini CLI o GitHub Copilot CLI y que enseñan al agente cómo escribir código correcto del framework en cuestión.
 
-Si vienes del mundo de [AI Agent Skills](https://arceapps.com/es/blog/agent-skills-contexto-dinamico/) o del [estándar AGENTS.md](https://arceapps.com/es/blog/agents-md-estandar/), sabes que las skills son **persistent context configurations** que especializan al LLM en una tarea concreta. En el caso de Remotion e HyperFrames, las skills convierten al agente en "un experto en producir vídeo con ese framework".
+Si vienes del mundo de [AI Agent Skills](https://arceapps.com/es/blog/ai-agent-skills-dynamic-context/) o del [estándar AGENTS.md](https://arceapps.com/es/blog/agents-md-standard/), sabes que las skills son **persistent context configurations** que especializan al LLM en una tarea concreta. En el caso de Remotion e HyperFrames, las skills convierten al agente en "un experto en producir vídeo con ese framework".
 
 ### 7.1 Remotion Agent Skills (lanzadas en enero 2026)
 
@@ -687,10 +687,10 @@ HyperFrames tiene una skill `/remotion-to-hyperframes`. Muchos equipos hacen est
 - *"How to use Remotion agent skills with Claude Code"* (Roboto Studio blog) — workflow en producción real.
 
 ### Artículos relacionados en este blog
-- [Agents.md Standard: Blueprint for AI-Ready Projects](https://arceapps.com/es/blog/agents-md-estandar/) — por qué la documentación estructurada para agentes importa.
-- [AI Skills in Development: el wrapper que gana](https://arceapps.com/es/blog/agent-skills-contexto-dinamico/) — persistent context configurations explicadas a fondo.
-- [AI Tools Worth Learning in 2026](https://arceapps.com/es/blog/herramientas-ia-2026/) — el stack completo del indie dev agentic.
-- [Clean Architecture for AI](https://arceapps.com/es/blog/clean-architecture-ia/) — cómo estructurar proyectos con agentes.
+- [Agents.md Standard: Blueprint for AI-Ready Projects](https://arceapps.com/es/blog/agents-md-standard/) — por qué la documentación estructurada para agentes importa.
+- [AI Skills in Development: el wrapper que gana](https://arceapps.com/es/blog/ai-agent-skills-dynamic-context/) — persistent context configurations explicadas a fondo.
+- [AI Tools Worth Learning in 2026](https://arceapps.com/es/blog/ai-tools-worth-learning-2026/) — el stack completo del indie dev agentic.
+- [Clean Architecture for AI](https://arceapps.com/es/blog/clean-architecture-ai/) — cómo estructurar proyectos con agentes.
 
 ---
 

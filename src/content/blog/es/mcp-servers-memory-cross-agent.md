@@ -19,7 +19,7 @@ reference_id: "0d6b1f5a-4b2e-7a8d-bf0b-6e9c5d2f7a4b"
 
 
 
-> Los plugins nativos de OpenCode que cubrimos en el [artículo anterior](/blog/opencode-plugins-memoria-nativos) son fantásticos para uso personal dentro del ecosistema OpenCode. Pero ¿qué pasa cuando quieres usar Claude Code para una tarea seria, Codex en tu pipeline de CI, o Cursor para un refactor rápido? Si tu memoria vive solo en OpenCode, te toca empezar de cero en cada herramienta. Aquí es donde entran los servidores MCP cross-agent.
+> Los plugins nativos de OpenCode que cubrimos en el [artículo anterior](/blog/opencode-memory-plugins-native) son fantásticos para uso personal dentro del ecosistema OpenCode. Pero ¿qué pasa cuando quieres usar Claude Code para una tarea seria, Codex en tu pipeline de CI, o Cursor para un refactor rápido? Si tu memoria vive solo en OpenCode, te toca empezar de cero en cada herramienta. Aquí es donde entran los servidores MCP cross-agent.
 
 ---
 
@@ -40,7 +40,7 @@ El [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) es el están
 
 Esto significa que un servidor MCP bien escrito funciona con **todos los agentes modernos** sin tener que portar código. Y los tres plugins que cubrimos hoy son exactamente eso: servidores MCP que se conectan a tu memoria persistente.
 
-A diferencia de los plugins nativos (que vimos en el [artículo previo](/blog/opencode-plugins-memoria-nativos)), estos tres proyectos ofrecen infraestructura más seria: embeddings vectoriales, grafos de conocimiento, entidades, proyectos, skills procedurales, y más. La contrapartida es que la instalación es ligeramente más compleja y, en algunos casos, hay componente cloud.
+A diferencia de los plugins nativos (que vimos en el [artículo previo](/blog/opencode-memory-plugins-native)), estos tres proyectos ofrecen infraestructura más seria: embeddings vectoriales, grafos de conocimiento, entidades, proyectos, skills procedurales, y más. La contrapartida es que la instalación es ligeramente más compleja y, en algunos casos, hay componente cloud.
 
 Vamos al lío.
 
@@ -182,7 +182,7 @@ Yo lo uso puntualmente para sesiones largas de refactor donde la compactación e
 
 `basic-memory` es el más filosófico de los tres. Su tesis es: **la memoria de un agente no debería ser una base de datos propietaria; debería ser archivos Markdown que tanto humanos como LLMs puedan leer y escribir**.
 
-Es la culminación de la visión OpenClaw que cubrimos en [La Arquitectura de la Memoria Persistente](/blog/memoria-persistente-agentes-ia/): archivos de texto plano, versionables con Git, editables en Obsidian, consultables vía MCP.
+Es la culminación de la visión OpenClaw que cubrimos en [La Arquitectura de la Memoria Persistente](/blog/ai-agent-memory-persistence-guide/): archivos de texto plano, versionables con Git, editables en Obsidian, consultables vía MCP.
 
 La diferencia es que `basic-memory` añade:
 - **Grafo de conocimiento** (observaciones categorizadas + wikilinks).
@@ -336,7 +336,7 @@ Esta es la killer feature. Significa que puedes:
 ### Lo Bueno
 
 - **El más versátil de los seis**: oficialmente compatible con Claude Code, Codex, Cursor, VS Code, ChatGPT, Obsidian, OpenClaw, Hermes, Oh My OpenCode.
-- **Markdown legible y editable por humanos**: cumple la propiedad más importante que pedíamos en el [artículo previo sobre memoria persistente](/blog/memoria-persistente-agentes-ia/).
+- **Markdown legible y editable por humanos**: cumple la propiedad más importante que pedíamos en el [artículo previo sobre memoria persistente](/blog/ai-agent-memory-persistence-guide/).
 - **Grafo de conocimiento navegable**: las relaciones `[[wikilinks]]` se vuelven primera clase, no segunda.
 - **Búsqueda híbrida real** con FastEmbed + sqlite-vec localmente.
 - **Cloud opcional a $15/mes** con sync cross-device.
@@ -478,7 +478,7 @@ Memory ──auto_link──> Memory (semantic similarity)
 Entity ──relates_to──> Entity
 ```
 
-Esto es conceptualmente similar al modelo de Cognee (que cubrimos en el [artículo de memoria persistente](/blog/memoria-persistente-agentes-ia/)) pero implementado en una librería standalone Python.
+Esto es conceptualmente similar al modelo de Cognee (que cubrimos en el [artículo de memoria persistente](/blog/ai-agent-memory-persistence-guide/)) pero implementado en una librería standalone Python.
 
 ### Reranking con Cross-Encoder
 
@@ -552,7 +552,7 @@ Los tres pueden coexistir sin conflictos: cada uno usa su propio puerto MCP y su
 
 ## Lo Que Viene en el Siguiente Artículo
 
-Ahora que tienes el mapa completo de las dos familias de plugins (nativos OpenCode y MCP cross-agent), en el [tercer artículo de esta serie](/blog/stack-memoria-persistente-implementacion) entro al detalle del día a día: cómo combino `basic-memory` + `forgetful` + `opencode-supermemory` en mi flujo real con Claude Code, Codex y OpenCode, con ejemplos concretos de configuración, scripts de mantenimiento, y casos de uso reales en proyectos Kotlin y Astro.
+Ahora que tienes el mapa completo de las dos familias de plugins (nativos OpenCode y MCP cross-agent), en el [tercer artículo de esta serie](/blog/persistent-memory-stack-implementation) entro al detalle del día a día: cómo combino `basic-memory` + `forgetful` + `opencode-supermemory` en mi flujo real con Claude Code, Codex y OpenCode, con ejemplos concretos de configuración, scripts de mantenimiento, y casos de uso reales en proyectos Kotlin y Astro.
 
 ---
 
@@ -570,5 +570,5 @@ Ahora que tienes el mapa completo de las dos familias de plugins (nativos OpenCo
 - [Paper A-MEM: Agentic Memory (arXiv)](https://arxiv.org/abs/2502.12110)
 - [pgvector (extensión vectorial para Postgres)](https://github.com/pgvector/pgvector)
 - [Agent Skills specification](https://agentskills.io)
-- [Artículo previo: Plugins nativos de OpenCode](/blog/opencode-plugins-memoria-nativos/)
-- [Artículo previo: Arquitectura de la Memoria Persistente en Agentes IA](/blog/memoria-persistente-agentes-ia/)
+- [Artículo previo: Plugins nativos de OpenCode](/blog/opencode-memory-plugins-native/)
+- [Artículo previo: Arquitectura de la Memoria Persistente en Agentes IA](/blog/ai-agent-memory-persistence-guide/)

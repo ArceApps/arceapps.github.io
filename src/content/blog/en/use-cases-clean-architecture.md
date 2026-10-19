@@ -5,7 +5,7 @@ pubDate: 2025-06-21
 heroImage: /images/placeholder-article-use-cases.svg
 tags: ["Architecture", "Clean Code", "Use Cases", "Android", "Domain"]
 category: sdd
-reference_id: 2eddc21e-4c8f-4f39-859d-e4c1fc1066bc
+reference_id: de8ea4f0-9971-4726-9f29-cd1976b8526c
 author: ArceApps
 lastmod: 2025-06-21
 canonical: "https://arceapps.com/blog/use-cases-clean-architecture/"

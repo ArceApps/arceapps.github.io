@@ -19,7 +19,7 @@ reference_id: "8b4f9d3e-2f0c-5e6b-9d8f-4c7a3b0d5e2f"
 
 
 
-> Si llevas tiempo trabajando con agentes de codificación, sabes lo que es el "síndrome del agente amnésico": cada sesión empieza desde cero, vuelves a explicar tu arquitectura, tus preferencias y las decisiones que tomaste ayer. En [La Arquitectura de la Memoria Persistente en Agentes IA](/blog/memoria-persistente-agentes-ia/) ya cubrimos el marco teórico (OpenClaw, QMD, Mem0, Cognee). Hoy bajamos al barro con tres plugins reales que puedes instalar hoy mismo en [OpenCode](https://opencode.ai).
+> Si llevas tiempo trabajando con agentes de codificación, sabes lo que es el "síndrome del agente amnésico": cada sesión empieza desde cero, vuelves a explicar tu arquitectura, tus preferencias y las decisiones que tomaste ayer. En [La Arquitectura de la Memoria Persistente en Agentes IA](/blog/ai-agent-memory-persistence-guide/) ya cubrimos el marco teórico (OpenClaw, QMD, Mem0, Cognee). Hoy bajamos al barro con tres plugins reales que puedes instalar hoy mismo en [OpenCode](https://opencode.ai).
 
 ---
 
@@ -29,7 +29,7 @@ Trabajo en proyectos Kotlin para Android, mantengo [este sitio Astro](https://gi
 
 El problema es que sin memoria persistente, abro una sesión y el agente es un desconocido educado. Tiene los superpoderes del modelo, pero cero contexto sobre mí, mi proyecto, mis manías. Tengo que volver a dar el TED Talk de "este repo usa X, no Y, por la razón Z".
 
-Esto me empujó a probar en serio el ecosistema de plugins de memoria persistente para OpenCode. Y aquí traigo los tres que más me han servido cuando **quieres algo nativo, local-first, y que se instale en cinco minutos**. En el [segundo artículo de esta serie](/blog/servidores-mcp-memoria-cross-agent) cubriremos los servidores MCP más pesados pero más versátiles, y en el [tercer artículo](/blog/stack-memoria-persistente-implementacion) entraremos al detalle del día a día.
+Esto me empujó a probar en serio el ecosistema de plugins de memoria persistente para OpenCode. Y aquí traigo los tres que más me han servido cuando **quieres algo nativo, local-first, y que se instale en cinco minutos**. En el [segundo artículo de esta serie](/blog/mcp-servers-memory-cross-agent) cubriremos los servidores MCP más pesados pero más versátiles, y en el [tercer artículo](/blog/persistent-memory-stack-implementation) entraremos al detalle del día a día.
 
 ---
 
@@ -390,9 +390,9 @@ Y si quieres probar varios (como yo), que sepas que **pueden coexistir** porque 
 
 Estos tres plugins son fantásticos, pero todos tienen una limitación común: **solo funcionan con OpenCode**. Si mañana decides probar Claude Code para un proyecto serio, o Cursor para un quick refactor, o Codex CLI en el servidor de CI, no podrás llevarte la memoria contigo.
 
-En el [segundo artículo de esta serie](/blog/servidores-mcp-memoria-cross-agent) cubrimos los tres servidores MCP cross-agent que he encontrado más maduros: **opencode-supermemory** (cloud-first con auto-compact), **basic-memory** (Markdown + grafo de conocimiento) y **forgetful** (Zettelkasten atómico + entidades + skills). Estos son más infraestructura, pero la versatilidad compensa.
+En el [segundo artículo de esta serie](/blog/mcp-servers-memory-cross-agent) cubrimos los tres servidores MCP cross-agent que he encontrado más maduros: **opencode-supermemory** (cloud-first con auto-compact), **basic-memory** (Markdown + grafo de conocimiento) y **forgetful** (Zettelkasten atómico + entidades + skills). Estos son más infraestructura, pero la versatilidad compensa.
 
-Y en el [tercer artículo](/blog/stack-memoria-persistente-implementacion) te cuento exactamente cómo combino los mejores en mi flujo diario con ejemplos reales de configuración para Claude Code, Codex y OpenCode.
+Y en el [tercer artículo](/blog/persistent-memory-stack-implementation) te cuento exactamente cómo combino los mejores en mi flujo diario con ejemplos reales de configuración para Claude Code, Codex y OpenCode.
 
 ---
 
@@ -408,5 +408,5 @@ Y en el [tercer artículo](/blog/stack-memoria-persistente-implementacion) te cu
 - [Documentación del formato logfmt](https://brandur.org/logfmt)
 - [SQLite FTS5 (documentación oficial)](https://www.sqlite.org/fts5.html)
 - [Reciprocal Rank Fusion (paper original)](https://plg.uwaterloo.ca/~gvcormac/cormacksigir09-rrf.pdf)
-- [Artículo previo: Arquitectura de la Memoria Persistente en Agentes IA](/blog/memoria-persistente-agentes-ia/)
+- [Artículo previo: Arquitectura de la Memoria Persistente en Agentes IA](/blog/ai-agent-memory-persistence-guide/)
 - [Artículo previo: OpenCode Subagentes](/blog/opencode-subagents/)

@@ -20,7 +20,7 @@ Ahí es donde entra el [repositorio de Android Skills](https://github.com/androi
 
 Las *Android skills* son básicamente instrucciones modulares, optimizadas para la inteligencia artificial. Utilizan el formato estándar `SKILL.md`, el cual actúa como una especificación técnica de la tarea, sirviendo para "aterrizar" (ground) al LLM en la realidad del desarrollo moderno.
 
-En mi flujo de trabajo indie, donde el tiempo es oro y no tengo a un QA persiguiéndome, necesito que mi código siga las [mejores prácticas de arquitectura](/blog/clean-architecture-ia) sin que yo tenga que auditar cada línea de código generado. Las skills cubren precisamente esas áreas donde los LLMs suelen patinar:
+En mi flujo de trabajo indie, donde el tiempo es oro y no tengo a un QA persiguiéndome, necesito que mi código siga las [mejores prácticas de arquitectura](/blog/clean-architecture-ai) sin que yo tenga que auditar cada línea de código generado. Las skills cubren precisamente esas áreas donde los LLMs suelen patinar:
 
 - Migraciones (por ejemplo, a AGP 9 o XML-to-Compose).
 - Configuración y análisis de reglas de R8.
@@ -41,7 +41,7 @@ android skills add --skill=r8-analyzer --project=.
 android skills add --all
 ```
 
-Si usas [asistentes como Claude o herramientas locales](/blog/herramientas-ia-2026), estas skills se descargan típicamente en directorios locales (`~/.gemini/antigravity/skills`, etc) y el agente automáticamente toma el contexto de la tarea que estás realizando si empareja con la descripción de la skill.
+Si usas [asistentes como Claude o herramientas locales](/blog/ai-tools-worth-learning-2026), estas skills se descargan típicamente en directorios locales (`~/.gemini/antigravity/skills`, etc) y el agente automáticamente toma el contexto de la tarea que estás realizando si empareja con la descripción de la skill.
 
 De esta forma logramos un flujo verdaderamente productivo. Ya no hay que debatir con el LLM sobre si se debe usar `ViewModelProviders` (spoiler: no). El modelo lee la skill, entiende el mandato "oficial" moderno y genera código útil a la primera.
 

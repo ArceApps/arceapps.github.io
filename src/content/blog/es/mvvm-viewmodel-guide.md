@@ -10,7 +10,7 @@ keywords:
   - "Operación"
   - "Android"
   - "ViewModel"
-canonical: "https://arceapps.com/es/blog/mvvm-viewmodel/"
+canonical: "https://arceapps.com/es/blog/mvvm-viewmodel-guide/"
 heroImage: "/images/placeholder-article-viewmodel.svg"
 tags: ["Android", "MVVM", "ViewModel", "StateFlow", "Coroutines"]
 category: architecture

@@ -5,7 +5,7 @@ pubDate: 2025-10-18
 heroImage: /images/placeholder-article-repository.svg
 tags: ["Architecture", "Design Patterns", "Android", "Data Layer"]
 category: architecture
-reference_id: e1498656-14e2-4b0b-9914-752ae17e6062
+reference_id: c252dde0-5e1b-4c21-8999-1e677234e792
 author: ArceApps
 lastmod: 2025-10-18
 canonical: "https://arceapps.com/blog/repository-pattern-android/"

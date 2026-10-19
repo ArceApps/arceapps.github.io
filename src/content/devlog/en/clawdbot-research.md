@@ -10,7 +10,7 @@ tags: ["Research", "Clawdbot", "Architecture", "Local-First"]
 heroImage: "/images/devlog-default.svg"
 ---
 
-If you came here looking for *how* to install Clawdbot, stop for a moment. I've already covered the "step by step" in the main blog, where I explain how to configure the [Gateway and Telegram](/blog/clawdbot-asistente-ia-telegram) and how to compile the [Android Node](/blog/clawdbot-android-node-build).
+If you came here looking for *how* to install Clawdbot, stop for a moment. I've already covered the "step by step" in the main blog, where I explain how to configure the [Gateway and Telegram](/blog/clawdbot-telegram-assistant) and how to compile the [Android Node](/blog/clawdbot-android-node-build).
 
 This entry is not a tutorial. It is the "behind the scenes" of that research. It is the record of my obsession this week to understand how on earth this decentralized beast works.
 

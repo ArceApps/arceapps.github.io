@@ -21,9 +21,9 @@ draft: false
 
 > Si todavía no tienes claro qué es un agente de IA aplicado a Android ni cómo configurarlos en tu proyecto, este artículo asume esos conceptos. Te recomiendo empezar por esta serie antes de continuar:
 >
-> - **[Más allá del Chat: Por qué necesitas Agentes en tu equipo de Android](/blog/blog-agentes-ia-android-teoria)** — La base teórica.
-> - **[Pair Programming Asíncrono con Agentes](/blog/blog-flujos-trabajo-agentes-android)** — Casos de uso reales con Sentinel, Bolt y Palette.
-> - **[Tu Staff Virtual: Configurando Sentinel, Bolt y Palette](/blog/blog-configuracion-agentes-ia)** — Cómo montar la arquitectura en tu propio repo.
+> - **[Más allá del Chat: Por qué necesitas Agentes en tu equipo de Android](/blog/ai-agents-android-theory)** — La base teórica.
+> - **[Pair Programming Asíncrono con Agentes](/blog/ai-agents-workflow-android)** — Casos de uso reales con Sentinel, Bolt y Palette.
+> - **[Tu Staff Virtual: Configurando Sentinel, Bolt y Palette](/blog/configuring-ai-agents)** — Cómo montar la arquitectura en tu propio repo.
 
 ---
 

@@ -20,7 +20,7 @@ draft: false
 reference_id: "2a7f8e1d-9c4b-4f3a-8e6d-1b5c7a9e2f4d"
 ---
 
-> **Si acabas de caer en este tema, tienes dos lecturas previas obligatorias en el blog:** [AI Skills en el Desarrollo: Potencia Tu Flujo de Trabajo con Agentes Autónomos](/blog/ai-skills-desarrollo), donde se define qué es una skill (Persona Adoption + Few-Shot Prompting), y [Agents of Chaos: Lo que 38 Investigadores Descubrieron sobre Seguridad Agentica](/blog/agents-of-chaos-seguridad-agentica), el paper que cubre los **siete riesgos de comportamiento** que ya publiqué hace unos meses. Este artículo entra por la puerta que aquél dejó abierta: el riesgo **dentro del artefacto instalable**, no del agente ya corriendo.
+> **Si acabas de caer en este tema, tienes dos lecturas previas obligatorias en el blog:** [AI Skills en el Desarrollo: Potencia Tu Flujo de Trabajo con Agentes Autónomos](/blog/ai-skills-development-workflow), donde se define qué es una skill (Persona Adoption + Few-Shot Prompting), y [Agents of Chaos: Lo que 38 Investigadores Descubrieron sobre Seguridad Agentica](/blog/agents-chaos-ai-security), el paper que cubre los **siete riesgos de comportamiento** que ya publiqué hace unos meses. Este artículo entra por la puerta que aquél dejó abierta: el riesgo **dentro del artefacto instalable**, no del agente ya corriendo.
 
 ---
 
@@ -40,7 +40,7 @@ Para mí, como indie dev, este Top 10 es la primera vez que alguien pone nombre,
 
 ## Skills no son prompts — y por eso cambia el modelo de amenaza
 
-Una de las cosas que aprendí escribiendo los artículos previos del blog ([AI Skills en el Desarrollo](/blog/ai-skills-desarrollo)) es que un skill **no es un prompt**. Es un paquete persistente, versionado e instalable, que combina:
+Una de las cosas que aprendí escribiendo los artículos previos del blog ([AI Skills en el Desarrollo](/blog/ai-skills-development-workflow)) es que un skill **no es un prompt**. Es un paquete persistente, versionado e instalable, que combina:
 
 - instrucciones en lenguaje natural (el `SKILL.md`),
 - código ejecutable (carpeta `scripts/`),
@@ -136,7 +136,7 @@ Eso es todo. El agente ejecuta literalmente su "rol prescrito", que dice "Setup 
 
 Este ejemplo lo cambia todo. Cualquier Developer Advocate medianamente competente puede escribir uno mejor que yo. La superficie de ataque no es el código: es el lenguaje natural procesado por un agente que obedece instrucciones. **Es el equivalente agéntico del email phishing, pero a la velocidad de un `git clone`.**
 
-Y aquí es donde se cruza con lo que ya tratamos en el blog sobre [Agents of Chaos](/blog/agents-of-chaos-seguridad-agentica). Aquel artículo demostró que los agentes **obedecen a quien les hable sin verificar identidad**. Este demuestra que las instrucciones **llegan a través de artefactos que parecen inofensivos**. Las dos cosas se componen: una skill sin verificar su prosa + un agente sin verificar su interlocutor = RCE en tres líneas.
+Y aquí es donde se cruza con lo que ya tratamos en el blog sobre [Agents of Chaos](/blog/agents-chaos-ai-security). Aquel artículo demostró que los agentes **obedecen a quien les hable sin verificar identidad**. Este demuestra que las instrucciones **llegan a través de artefactos que parecen inofensivos**. Las dos cosas se componen: una skill sin verificar su prosa + un agente sin verificar su interlocutor = RCE en tres líneas.
 
 ---
 

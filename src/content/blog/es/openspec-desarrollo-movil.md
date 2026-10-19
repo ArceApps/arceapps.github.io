@@ -19,7 +19,7 @@ reference_id: "e7f82a1b-3c45-4d9e-8f1a-2b3c4d5e6f7g"
 
 
 
-> **Lecturas relacionadas:** [Análisis Profundo de Frameworks SDD: Spec Kit, OpenSpec y BMAD](/blog/blog-sdd-frameworks-spec-kit-openspec-bmad) · [Desarrollo Impulsado por Especificaciones con IA Agéntica](/blog/specs-driven-development) · [Stack Completo para Construir Agentes IA en 2026](/blog/blog-stack-completo-agentes-ia-2026)
+> **Lecturas relacionadas:** [Análisis Profundo de Frameworks SDD: Spec Kit, OpenSpec y BMAD](/blog/sdd-frameworks-analysis-spec-kit-openspec-bmad) · [Desarrollo Impulsado por Especificaciones con IA Agéntica](/blog/spec-driven-development-ai) · [Stack Completo para Construir Agentes IA en 2026](/blog/complete-beginners-guide-ai-agents-stack-2026)
 
 
 ![Infografía BMAD](/images/infographic-bmad.svg)

@@ -14,7 +14,7 @@ reference_id: "0cacec48-ee8b-4453-866f-c598eff790cf"
 
 A lo largo de mis años desarrollando aplicaciones móviles, el setup inicial de un proyecto, la configuración del emulador y la preparación del entorno siempre han representado una cuota de fricción inicial importante. Esa sensación de tener que luchar con los builds de Gradle antes de tirar la primera línea de código en serio, todos la conocemos. Sin embargo, en el último año, y en particular con el auge de los agentes de IA, me he visto replanteando cómo gestiono mis flujos de trabajo.
 
-La llegada de la **Android CLI** (y su integración profunda con agentes de IA) ha cambiado bastante la ecuación. Ahora, en lugar de estar haciendo clics y esperando que Android Studio termine de indexar medio disco duro, puedo apoyarme en herramientas de línea de comandos que están expresamente diseñadas para integrarse de forma fluida con bots como *Claude Code* o mis propios agentes [configurados localmente](/blog/configuracion-agentes-ia).
+La llegada de la **Android CLI** (y su integración profunda con agentes de IA) ha cambiado bastante la ecuación. Ahora, en lugar de estar haciendo clics y esperando que Android Studio termine de indexar medio disco duro, puedo apoyarme en herramientas de línea de comandos que están expresamente diseñadas para integrarse de forma fluida con bots como *Claude Code* o mis propios agentes [configurados localmente](/blog/configuring-ai-agents).
 
 ## ¿Por qué una CLI ahora?
 
@@ -37,7 +37,7 @@ Según pruebas recientes, esto reduce en gran medida los tokens necesarios que g
 
 ## El flujo de trabajo centrado en la IA
 
-Imagina la situación: estoy iterando sobre una nueva idea en un entorno totalmente basado en consola (quizá un servidor [MCP](/blog/servidores-mcp-memoria-cross-agent)), y le pido a mi agente que despliegue el proyecto para revisar el layout en el dispositivo conectado:
+Imagina la situación: estoy iterando sobre una nueva idea en un entorno totalmente basado en consola (quizá un servidor [MCP](/blog/mcp-servers-memory-cross-agent)), y le pido a mi agente que despliegue el proyecto para revisar el layout en el dispositivo conectado:
 
 ```bash
 android run --apks=app-debug.apk --device=emulator-5554
@@ -51,7 +51,7 @@ Si quieres entender cómo complementar esto inyectándole la lógica específica
 
 Quizá te preguntes: "¿Significa esto que dejaré de usar Android Studio?". No. La idea principal, que aplico constantemente en mis proyectos, es usar agentes + CLI para la fase de prototipado rápido, refactorizaciones estructurales masivas o flujos CI/CD.
 
-Para tareas de debug visual, profiler de rendimiento o UI fina, [abro mi proyecto en el IDE](/blog/herramientas-ia-2026). La Android CLI incluye comandos tipo `android studio check` o `android studio open-file` para pasarle la posta al IDE sin fricción.
+Para tareas de debug visual, profiler de rendimiento o UI fina, [abro mi proyecto en el IDE](/blog/ai-tools-worth-learning-2026). La Android CLI incluye comandos tipo `android studio check` o `android studio open-file` para pasarle la posta al IDE sin fricción.
 
 ## Mis aprendizajes
 

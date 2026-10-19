@@ -2,7 +2,7 @@
 title: "Cookie consent: when Partytown stopped being the answer"
 description: "How the portfolio went from loading Google Analytics without asking to a Consent Mode v2 setup with default denied, a bilingual banner and real E2E checks."
 pubDate: 2026-08-12
-lastmod: 2026-10-11
+lastmod: 2026-10-19
 author: "ArceApps"
 keywords:
   - "Consent Mode v2"
@@ -14,6 +14,18 @@ canonical: "https://arceapps.com/en/devlog/2026-08-12-portfolio-cookie-consent/"
 heroImage: "/images/devlog/portfolio-cookie-consent.svg"
 tags: ["Privacy", "Google Analytics", "Partytown", "Astro", "Building in Public"]
 ---
+
+## Update — 19 October 2026
+
+This entry is preserved as a historical record. The architecture it describes (Consent Mode v2 with default denied, Partytown, the bilingual banner with accept/reject) is no longer the current state of the site.
+
+Two months after publishing this devlog, the editorial automation that runs `write-blog`/`write-devlog` introduced several regressions at once: a duplicate of the real Google Analytics measurement ID leaked into a devlog about secret-leak guard, the cookie banner stopped dismissing on click, the language switcher broke on the devlog that introduced this very feature, and a hero image on the DeepSeek article went missing on production. The shared root cause was that the automation executed skills that the codebase didn't enforce: filename parity, banner behaviour, and reference_id integrity were all implicit, not contracted.
+
+The fix was a single feature that did four things at once: removed the dependency on third-party analytics entirely, made the cookie banner a one-click dismiss that survives Astro View Transitions, introduced an `i18n-parity-check` contract test that the build refuses to merge past when an article pair has mismatched filenames, and gave the devlog page the same `reference_id` cross-language bridge the blog page already had.
+
+Concretely, the site as of 19 October 2026 does not load `gtag.js`, does not declare any Consent Mode signals, and the CSP no longer lists `googletagmanager.com` or `google-analytics.com`. The cookie banner that this entry introduced is still present, but it is now a notice about strictly functional cookies (theme, the fact that the user has seen and dismissed the notice) — there is nothing left to accept or reject, because there is no third-party data being collected. The bilingual content of this devlog is unchanged below; it is kept verbatim because the underlying mechanics (the order of the default-denied block, the `dataLayer.push(arguments)` stub, the `astro:before-swap` event, the `forward: ["dataLayer.push"]` Partytown proxy, the `pnpm test` contract that fails if the default lands after `gtag.js`) are still correct for any future site that does want Consent Mode v2 — and because the most useful lessons from the experience are not the ones that depended on the technology.
+
+## Original entry — 12 August 2026
 
 Some debts stay invisible until someone reads your own privacy policy with attention. For a long time, the ArceApps portfolio loaded Google Analytics on every page, unconditionally, with no consent mechanism at all. And the privacy page, written in good faith, stated that users "can accept or reject these cookies". One of those two things was a lie: there was no way to reject them.
 

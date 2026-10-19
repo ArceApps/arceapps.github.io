@@ -5,7 +5,7 @@ pubDate: 2025-11-15
 heroImage: /images/placeholder-article-github-pages.svg
 tags: ["GitHub Pages", "Web", "Portfolio", "Astro", "Personal Branding"]
 category: web
-reference_id: 45210925-fcbf-46d8-a343-f68613cf8526
+reference_id: 13c4e402-ee1b-406c-a29f-d8c1d02aa8a4
 author: ArceApps
 lastmod: 2025-11-15
 canonical: "https://arceapps.com/blog/github-pages-android-portfolio/"

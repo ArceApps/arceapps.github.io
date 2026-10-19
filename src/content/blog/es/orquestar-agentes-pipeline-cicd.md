@@ -21,8 +21,8 @@ draft: false
 
 > Este artículo es parte de la serie sobre Agentes de IA en el desarrollo Android. Antes de continuar, te recomiendo revisar:
 >
-> - **[Más allá del Chat: Por qué necesitas Agentes en un entorno multi-agente en Android](/blog/blog-agentes-ia-android-teoria)** — La base teórica sobre qué son los agentes y por qué cambian el juego.
-> - **[Tu Staff Virtual: Configurando Sentinel, Bolt y Palette](/blog/blog-configuracion-agentes-ia)** — Cómo montar cada agente en tu repositorio con `AGENTS.md`.
+> - **[Más allá del Chat: Por qué necesitas Agentes en un entorno multi-agente en Android](/blog/ai-agents-android-theory)** — La base teórica sobre qué son los agentes y por qué cambian el juego.
+> - **[Tu Staff Virtual: Configurando Sentinel, Bolt y Palette](/blog/configuring-ai-agents)** — Cómo montar cada agente en tu repositorio con `AGENTS.md`.
 > - **[Agentes IA Autónomos en Android: Más Allá del Asistente](/blog/blog-agentes-ia-autonomos-android)** — El salto conceptual a agentes que actúan sin intervención humana.
 
 ---

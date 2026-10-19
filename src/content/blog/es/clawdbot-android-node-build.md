@@ -19,7 +19,7 @@ reference_id: "3eb5c086-8be4-48c6-a348-5973806f84e9"
 
 
 
-En el [artículo anterior](/blog/clawdbot-asistente-ia-telegram), configuramos el "cerebro" de Clawdbot (Gateway) y su interfaz de chat (Telegram). Pero Clawdbot brilla realmente cuando tiene "cuerpo".
+En el [artículo anterior](/blog/clawdbot-telegram-assistant), configuramos el "cerebro" de Clawdbot (Gateway) y su interfaz de chat (Telegram). Pero Clawdbot brilla realmente cuando tiene "cuerpo".
 
 El **Nodo Android** es una aplicación nativa escrita en Kotlin que convierte tu dispositivo en un periférico inteligente para tu asistente. No es solo un chat; es una extensión sensorial.
 
