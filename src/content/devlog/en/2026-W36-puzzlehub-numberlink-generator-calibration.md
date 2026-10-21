@@ -24,7 +24,7 @@ java.lang.IllegalStateException: Generator failed to verify a unique puzzle with
 
 The other symptom wasn't a crash. That was worse, because no `try-catch` would fix it. On easy, the board came back practically full of numbers. What I wrote in the issue was literal: *"it's just joining numbers that come out next to each other."*
 
-This article is the story of how I investigated that problem, why the obvious answer — "the algorithm is wrong, rewrite it" — was the wrong answer, and what I did with the conclusion instead. It's also the record of five days of work that ended in commit `2e471a80`, although the actual path ran through three iterations and a plan file close to a megabyte.
+This article is the story of how I investigated that problem, why the obvious answer — "the algorithm is wrong, rewrite it" — was the wrong answer, and what I did with the conclusion instead. It's also the record of five days of work that ended in commit `2e471a80`, though the route there spanned three iterations and a plan file close to a megabyte.
 
 One honesty note before we start, and it deserves its own paragraph: **the repository was renamed.** The code, the issues, and part of the internal documentation still say `PuzzleSuite` because that's what it was called when they were written. The canonical repository today is `ArceApps/PuzzleHub`. Every link in this article points at the current name; verbatim quotes keep the original.
 
@@ -90,7 +90,7 @@ What *was* worth keeping from it was the parenthesis pruning idea, which survive
 > "For our 8 s budget at 10×15=150 cells with ~12 colours, the CNF would have ≈ 6,000 vars and 200,000 clauses: probably borderline."
 > "High learning curve for the team."
 
-It was rejected — not because it was wrong, but because 600 KB for a puzzle game, plus an encoder we have to maintain forever, is a price we aren't willing to pay in a catalogue app.
+It was rejected — not because it was wrong, but because adding 600 KB to a puzzle game, plus a CNF encoder we have to maintain forever, isn't a trade I want to make in a catalogue app.
 
 **Architecture C — Hamiltonian carving.** That is, literally, what we already had. And the verdict on it is the sentence that reorganised the whole job:
 
@@ -139,7 +139,7 @@ That comment is a design decision disguised as a comment: difficulty bands delib
 
 ## What did have to be rewritten: the pruning that makes calibration work
 
-Changing the table wasn't enough. At 6–7 pairs the generator has far more free space, and the risk of ambiguity goes up accordingly. Four mechanisms, verified against the real code:
+Changing the table wasn't enough. At 6–7 pairs the generator has far more free space, and the risk of ambiguity goes up accordingly. The four mechanisms below are verified against the code **of that version** — commit `dc01b3e1`, which is where 2×2 pruning was introduced — not against the current state of `main`, where the architecture is a different one:
 
 **1. Minimum length and Manhattan distance.** In `isValidPartition` (commit `dc01b3e1`):
 
@@ -205,7 +205,7 @@ const val DEFAULT_CONFIRM_SEARCH_NODES = 60_000
 const val DEFAULT_TIME_BUDGET_MS = 8_000L
 ```
 
-Here's the justification: with correct calibration, the space the solver has to explore is much smaller. A huge budget doesn't guarantee finding the solution; in the worst case it guarantees taking a long time to discover there isn't one. Dropping to 50,000 nodes is an assertion about generator quality — if a candidate can't find uniqueness within 50,000 nodes, it probably doesn't have any, and the time we spent looking belongs to a different candidate.
+Here's the justification: with correct calibration, the space the solver has to explore is much smaller. A huge budget doesn't guarantee finding the solution; in the worst case it guarantees taking a long time to discover there isn't one. Dropping to 50,000 nodes is an assertion about generator quality — if a candidate can't find uniqueness within 50,000 nodes, it probably doesn't have any, and the time we spent looking would have been better spent on another candidate.
 
 And here comes the piece that turns a crash into a message. `NumberlinkMenuViewModel` started treating the failure as what it is — an expected state of the system:
 
@@ -248,7 +248,7 @@ Determinism, meanwhile, isn't a luxury. With `Random(seed)` as the only source o
 
 There's a task in the plan marked `[x]`: *"Task I3-1: Reproduce and benchmark 7x10 EASY generation across multiple random seeds"*, pointing at a file `NumberlinkGenerationBenchmarkTest.kt`. That file does not exist. I checked the current tree and the entire git history: `git log --all --diff-filter=A` for that name returns nothing. It never existed.
 
-I found this after calling the work done, reviewing the plan line by line. The task is marked complete in the document, but no artefact backs it. I don't know how it happened — most likely marked during a verification iteration and lost when the tree was rewritten. I'm writing it down here because it's exactly the kind of debt that spreads silently, and because a plan whose checkmarks don't correspond to reality is worse than a plan with no checkmarks at all.
+I found this after signing the work off, reading the plan line by line. The task is marked complete in the document, but no artefact backs it. I don't know how it happened — most likely marked during a verification iteration and lost when the tree was rewritten. I'm writing it down here because it's exactly the kind of debt that spreads silently, and because a plan whose checkmarks don't correspond to reality is worse than a plan with no checkmarks at all.
 
 What does exist as performance evidence are estimates recorded in the research document (with the hypothesis stated explicitly: "CPU ARM Cortex-A78"): 7×10 → 550 ms; 8×12 → 1.3 s; 10×15 → 5.5 s with one retry, 8 s timeout with three. These are estimates, not measurements, and I treat them as such.
 
@@ -299,7 +299,7 @@ One task stays open, because honesty requires it: issue #352 is still open, PR #
 
 ### External documentation
 
-- Adcock, van Rooij, Velpic — [Zig-Zag Numberlink is NP-Complete](https://arxiv.org/abs/1410.5845) (arXiv:1410.5845, 2014). The theoretical basis for why uniqueness is verified under a bounded budget.
+- Adcock, Demaine, Demaine, O'Brien, Reidl, Sánchez Villaamil, Sullivan — [Zig-Zag Numberlink is NP-Complete](https://arxiv.org/abs/1410.5845) (arXiv:1410.5845, 2014). The theoretical basis for why uniqueness is verified under a bounded budget.
 - Thomas Ahle — [numberlink](https://github.com/thomasahle/numberlink). The reference implementation; its README carries the warning about not being usable to check uniqueness.
 - Matt Zucker — [mzucker/flow_solver](https://github.com/mzucker/flow_solver). SAT-based uniqueness verification benchmarks used to size the rejected alternative.
 - [Sat4j](https://gitlab.ow2.org/sat4j/sat4j) — pure-Java SAT solver, the alternative evaluated and rejected on APK size and encoding cost.

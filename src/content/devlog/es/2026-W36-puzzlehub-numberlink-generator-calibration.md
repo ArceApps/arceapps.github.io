@@ -41,7 +41,7 @@ Ese último punto es el que nos quita el sueño. Existe un resultado académico 
 
 > «No existe algoritmo polinomial para verificación de unicidad en el caso general. La verificación debe usar heurísticas (A*, backtracking con poda) y aceptar un presupuesto acotado de búsqueda como prueba operacional de unicidad.»
 
-Es decir: **el presupuesto de búsqueda no es un parche de rendimiento, es parte del modelo de corrección.** Si el solver agota el presupuesto, la respuesta honesta no es «no hay solución», es «no lo sé». Y durante meses, el código no distinctions entre las dos cosas. Ese es el germen del crash.
+Es decir: **el presupuesto de búsqueda no es un parche de rendimiento, es parte del modelo de corrección.** Si el solver agota el presupuesto, la respuesta honesta no es «no hay solución», es «no lo sé». Y durante meses, el código no distinguía entre las dos cosas. Ese es el germen del crash.
 
 ## Lo que el presupuesto estaba ocultando
 
@@ -64,7 +64,7 @@ Fíjate en lo que dice esa tabla. En un tablero de 8×8 (64 celdas) en dificulta
 
 > «Esto provoca que entre 56 y 62 de las 64 celdas del tablero sean extremos numéricos contiguos con segmentos de longitud 1–2, desvirtuando por completo la experiencia de juego lúdica e interactiva al convertir el puzzle en una mera unión de casillas adyacentes triviales sin deducción espacial.»
 
-Ahí está el bug real. No era un problema de Connectivity ni de particionamiento. Era un problema de **aritmética**: le estaba pidiendo al espacio combinatorio 28 soluciones disjuntas dentro de 64 celdas, un objetivo que roza lo imposible por construcción. El solver no fallaba. El solver estaba intentando responder correctamente a una pregunta mal hecha, y cuando se agotaba su presupuesto, `error(...)`convertía ese «no lo sé» en un `IllegalStateException` que nadie capturaba en la capa de UI.
+Ahí está el bug real. No era un problema de conectividad ni de particionamiento. Era un problema de **aritmética**: le estaba pidiendo al espacio combinatorio 28 soluciones disjuntas dentro de 64 celdas, un objetivo que roza lo imposible por construcción. El solver no fallaba. El solver estaba intentando responder correctamente a una pregunta mal hecha, y cuando se agotaba su presupuesto, `error(...)` convertía ese «no lo sé» en un `IllegalStateException` que nadie capturaba en la capa de UI.
 
 Por eso el crash no aparecía en todos los tamaños ni en todas las dificultades. En 5×5, donde el rango EASY era `8..11`, la aritmética era razonable y el presupuesto daba para resolverlo. En 8×8 Experto (`20..24` pares sobre celdas que además competían por cobertura strict) el espacio libre era tan pequeño que el solver no encontraba unicidad dentro de 500.000 nodos. La tabla de v1 tenía, en efecto, dos bugs que parecían uno: la calibración absurda y un presupuesto que no distinguía «imposible» de «no garantizado».
 
@@ -90,7 +90,7 @@ Lo que sí mereció la pena foi la poda de paréntesis, que quedó adoptada como
 > «Para nuestro presupuesto de 8 s en 10×15=150 celdas con ~12 colores, el CNF tendría ≈ 6.000 vars y 200.000 cláusulas: probablemente borderline.»
 > «Curva de aprendizaje alta para el equipo.»
 
-Se descartó. No porque fuera incorrecto, sino porque 600 KB para un juego de rompecabezas y un encoders que hay que mantener es un precio que no estamos dispuestos a pagar en una app de catálogo.
+Se descartó. No porque fuera incorrecto, sino porque 600 KB para un juego de rompecabezas, más un codificador CNF que hay que mantener, es un precio que no estamos dispuestos a pagar en una app de catálogo.
 
 **Arquitectura C — carving hamiltoniano.** Esto es, literalmente, lo que ya teníamos. Y el veredicto sobre ella es la frase que reorganizó todo el trabajo:
 
@@ -129,7 +129,7 @@ El término `β_aspect` corrige la asimetría: un tablero 7×10 no tiene la mism
 )
 ```
 
-De 28–31 pares a 6–7. Un orden de magnitud. Y la dirección se invierte con sentido: en v1, más pares era «más fácil» (más celdas numéricas, menos deducción). En v2, más pares es «más difícil» (menos espacio libre por par, más entrelazado). La tabla de hoy, ya con los tamaños rectangulares que el issue #352 Parties añadir, conserva ese mismo criterio:
+De 28–31 pares a 6–7. Un orden de magnitud. Y la dirección se invierte con sentido: en v1, más pares era «más fácil» (más celdas numéricas, menos deducción). En v2, más pares es «más difícil» (menos espacio libre por par, más entrelazado). La tabla de hoy, ya con los tamaños rectangulares que el issue #352 añadiría después, conserva ese mismo criterio:
 
 ```kotlin
 /** Approximately sqrt(area); adjacent difficulty bands intentionally overlap. */
@@ -139,7 +139,7 @@ Ese comentario es una decisión de diseño disfrazada de comentario: las bandas 
 
 ## Lo que sí hubo que reescribir: las podas que hacen que la calibración funcione
 
-Cambiar la tabla no bastaba. Con 6–7 pares, el generador tiene mucho más espacio libre y el riesgo de ambigüedad se dispara. Cuatro mecanismos, verificados en el código real:
+Cambiar la tabla no bastaba. Con 6–7 pares, el generador tiene mucho más espacio libre y el riesgo de ambigüedad se dispara. Los cuatro mecanismos que siguen están verificados contra el código **de esa versión** —el commit `dc01b3e1`, que es cuando se introduce la poda 2×2—, no contra el estado actual de `main`, donde la arquitectura es otra:
 
 **1. Longitud mínima y distancia Manhattan.** En `isValidPartition` (commit `dc01b3e1`):
 
@@ -187,7 +187,7 @@ El `probe` es barato y descarta la mayoría de candidatos; el `confirm` es el qu
 
 > «A puzzle is considered unique and accepted if and only if both probe and confirmation phases found exactly 1 solution with COMPLETED stop reason.»
 
-Fíjate en la parteaking de la que ya hablamos: `COMPLETED`. Si el solver se detiene por límite de nodos o por deadline, el resultado es «inconcluyente», no «no único». Esa distinción es la que convierte un bug en una característica del contrato.
+Fíjate en la parte importante: `COMPLETED`. Si el solver se detiene por límite de nodos o por deadline, el resultado es «inconcluyente», no «no único». Esa distinción es la que convierte un bug en una característica del contrato.
 
 ## Reducir 10× el presupuesto: la decisión contraintuitiva
 
@@ -217,7 +217,7 @@ Y aquí viene la pieza que convierte un crash en un mensaje. El `NumberlinkMenuV
 }
 ```
 
-La re-lanzada de `CancellationException` es el detalle que más me importa, porque es el tipo de error más fácil de Convertir en bug: sin esa línea, el `catch (e: Exception)` se traga también las cancelaciones de structured concurrency y la UI se queda esperando un resultado que nunca llegará.
+La re-lanzada de `CancellationException` es el detalle que más me importa, porque es el tipo de error más fácil de convertir en bug: sin esa línea, el `catch (e: Exception)` se traga también las cancelaciones de structured concurrency y la UI se queda esperando un resultado que nunca llegará.
 
 ## Compatibilidad: versionar en lugar de migrar
 
@@ -285,7 +285,7 @@ Tres cosas, y ninguna es sobre Numberlink.
 
 **Escribir la investigación antes de reescribir es la única forma de no volver a intentarlo.** De los tres cambios grandes de esta semana (podas de dead-ends, partición DP, `2-opt` con desempate estable), ninguno se me ocurrió leyendo el código viejo. Salieron de un documento que comparaba tres algoritmos y escribía, sin adornos, que la arquitectura que ya teníamos era correcta para su subproblema y ortogonal al que nos dolía.
 
-Y queda una tarea sin cerrar, porque las honestas: el issue #352 sigue abierto, la PR #354 sigue sin mergear, y el `Gate UA` del documento de verificación v3 permanece en PENDING. El trabajo que puedo contar con pruebas está terminado; el que sigue, no lo voy a dar por bueno hasta verlo en la app.
+Y queda una tarea sin cerrar, porque la honestidad editorial lo exige: el issue #352 sigue abierto, la PR #354 sigue sin mergear, y el `Gate UA` del documento de verificación v3 permanece en PENDING. El trabajo que puedo contar con pruebas está terminado; el que sigue, no lo voy a dar por bueno hasta verlo en la app.
 
 ## Referencias y documentación
 
@@ -299,7 +299,7 @@ Y queda una tarea sin cerrar, porque las honestas: el issue #352 sigue abierto, 
 
 ### Documentación externa
 
-- Adcock, van Rooij, Velpic, — [Zig-Zag Numberlink is NP-Complete](https://arxiv.org/abs/1410.5845) (arXiv:1410.5845, 2014). La base teórica de por qué la unicidad se verifica con presupuesto acotado.
+- Adcock, Demaine, Demaine, O'Brien, Reidl, Sánchez Villaamil, Sullivan — [Zig-Zag Numberlink is NP-Complete](https://arxiv.org/abs/1410.5845) (arXiv:1410.5845, 2014). La base teórica de por qué la unicidad se verifica con presupuesto acotado.
 - Thomas Ahle, — [numberlink](https://github.com/thomasahle/numberlink). La implementación de referencia; su README contiene la advertencia sobre no poder usarla para comprobar unicidad.
 - Matt Zucker, — [mzucker/flow_solver](https://github.com/mzucker/flow_solver). Benchmarks de verificación de unicidad por SAT usados para dimensionar la opción descartada.
 - [Sat4j](https://gitlab.ow2.org/sat4j/sat4j) — Solver SAT en Java puro, la alternativa evaluada y descartada por tamaño de APK y coste de encoding.
