@@ -30,6 +30,9 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Unit tests
+        # Vitest writes temporary worker files; avoid quota-limited system /tmp on the self-hosted runner.
+        env:
+          TMPDIR: ${{ runner.temp }}
         run: pnpm test
 
       - name: Astro build
