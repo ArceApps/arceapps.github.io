@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Supervisión de agentes de programación entre escritorio y móvil</title>
+<desc id="desc">Dos pantallas conectadas por eventos y una autorización explícita, ilustradas en verde azulado y naranja de ArceApps.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#082A31"/><stop offset="1" stop-color="#071923"/></linearGradient>
+<linearGradient id="accent" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#018786"/><stop offset="1" stop-color="#19B9AE"/></linearGradient>
+<filter id="shadow"><feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#001B23" flood-opacity=".65"/></filter>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<g opacity=".12" stroke="#6ACDC6" fill="none">
+<path d="M0 125 H1200M0 255 H1200M0 385 H1200M0 515 H1200"/>
+<path d="M100 0V630M250 0V630M400 0V630M550 0V630M700 0V630M850 0V630M1000 0V630M1150 0V630"/>
+</g>
+<circle cx="440" cy="300" r="290" fill="#018786" opacity=".10"/>
+<circle cx="918" cy="280" r="260" fill="#FF9800" opacity=".065"/>
+<g filter="url(#shadow)">
+<rect x="123" y="152" width="634" height="335" rx="25" fill="#102A33" stroke="#4B888B" stroke-width="3"/>
+<rect x="143" y="174" width="594" height="284" rx="11" fill="#0B2029"/>
+<rect x="360" y="151" width="160" height="32" rx="17" fill="#05181F"/>
+<rect x="198" y="229" width="243" height="22" rx="11" fill="#25525D"/>
+<rect x="198" y="272" width="330" height="12" rx="6" fill="#386F77"/>
+<rect x="198" y="300" width="286" height="12" rx="6" fill="#386F77"/>
+<rect x="198" y="328" width="318" height="12" rx="6" fill="#386F77"/>
+<rect x="198" y="378" width="146" height="44" rx="12" fill="url(#accent)"/>
+<path d="m225 400 13 12 23-26" stroke="#F1FFFE" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<rect x="357" y="378" width="146" height="44" rx="12" fill="none" stroke="#FF9800" stroke-width="3"/>
+<path d="M382 399h95" stroke="#FF9800" stroke-width="5" stroke-linecap="round"/>
+</g>
+<g opacity=".95">
+<path d="M750 280 C799 256 811 300 842 296" fill="none" stroke="#61D7CC" stroke-width="5" stroke-dasharray="12 16" stroke-linecap="round"/>
+<path d="m826 281 17 15-21 11" fill="none" stroke="#61D7CC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<g filter="url(#shadow)">
+<rect x="843" y="135" width="239" height="390" rx="45" fill="#16313A" stroke="#6ABFB4" stroke-width="4"/>
+<rect x="858" y="151" width="209" height="356" rx="34" fill="#0B2029"/>
+<rect x="921" y="157" width="83" height="20" rx="10" fill="#05181F"/>
+<rect x="892" y="215" width="141" height="11" rx="5.5" fill="#386F77"/>
+<rect x="892" y="243" width="111" height="11" rx="5.5" fill="#386F77"/>
+<rect x="887" y="294" width="150" height="111" rx="20" fill="#153843" stroke="#367B7F"/>
+<path d="M930 347l15 15 34-36" fill="none" stroke="#FF9800" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="892" y="430" width="141" height="42" rx="14" fill="url(#accent)"/>
+</g>
+<circle cx="765" cy="158" r="12" fill="#FF9800"/>
+<circle cx="768" cy="485" r="8" fill="#54CABE"/>
+<path d="M100 561H1100" stroke="#018786" stroke-opacity=".45" stroke-width="3"/>
+</svg>
