@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Orchestrator: from parallel worktrees to reviewed pull requests</title>
+<desc id="desc">Abstract diagram of three isolated agent workstreams joining a verified Git pull request pipeline.</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0F172A"/><stop offset="1" stop-color="#14263A"/></linearGradient><linearGradient id="teal" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#018786"/><stop offset="1" stop-color="#35B6A6"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="15"/></filter></defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<g opacity=".20" stroke="#48627A" stroke-width="1"><path d="M0 100H1200M0 180H1200M0 260H1200M0 340H1200M0 420H1200M0 500H1200M0 580H1200"/><path d="M100 0V630M200 0V630M300 0V630M400 0V630M500 0V630M600 0V630M700 0V630M800 0V630M900 0V630M1000 0V630M1100 0V630"/></g>
+<rect x="115" y="70" width="970" height="490" rx="34" fill="#111F32" stroke="#345267" stroke-width="2"/>
+<circle cx="205" cy="164" r="70" fill="#018786" opacity=".17" filter="url(#glow)"/>
+<path d="M220 173H395" fill="none" stroke="#8CA9B7" stroke-width="8" stroke-linecap="round"/>
+<rect x="163" y="132" width="96" height="82" rx="18" fill="#133D4A" stroke="#018786" stroke-width="4"/>
+<circle cx="196" cy="171" r="10" fill="#FF9800"/><circle cx="226" cy="171" r="10" fill="#B1C4CE"/>
+<g fill="none" stroke-width="7" stroke-linecap="round"><path d="M395 173H460V245H610" stroke="#018786"/><path d="M395 173H610" stroke="#4CC0B1"/><path d="M395 173H460V100H610" stroke="#FF9800"/></g>
+<g><rect x="604" y="69" width="132" height="60" rx="15" fill="#1D3344" stroke="#FF9800" stroke-width="3"/><rect x="604" y="143" width="132" height="60" rx="15" fill="#1D3344" stroke="#4CC0B1" stroke-width="3"/><rect x="604" y="217" width="132" height="60" rx="15" fill="#1D3344" stroke="#018786" stroke-width="3"/><g fill="#E5EDF3"><circle cx="633" cy="99" r="8"/><circle cx="633" cy="173" r="8"/><circle cx="633" cy="247" r="8"/></g><g fill="#718D9D"><rect x="655" y="91" width="56" height="7" rx="3"/><rect x="655" y="165" width="56" height="7" rx="3"/><rect x="655" y="239" width="56" height="7" rx="3"/></g></g>
+<path d="M737 99H800V173H850M737 173H850M737 247H800V173" fill="none" stroke="#7A9DAB" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="844" y="132" width="172" height="82" rx="19" fill="#122D37" stroke="url(#teal)" stroke-width="4"/>
+<g transform="translate(867 151)"><path d="M13 0v16m0 0L2 27m11-11l11 11" stroke="#FF9800" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="13" cy="0" r="6" fill="#FF9800"/><circle cx="2" cy="27" r="6" fill="#4CC0B1"/><circle cx="24" cy="27" r="6" fill="#4CC0B1"/></g>
+<path d="M912 170h72" stroke="#80B5B9" stroke-width="9" stroke-linecap="round"/>
+<path d="M223 355H976" stroke="#345267" stroke-width="3" stroke-dasharray="7 16"/>
+<g><rect x="205" y="384" width="172" height="82" rx="16" fill="#183E47" stroke="#018786" stroke-width="3"/><rect x="415" y="384" width="172" height="82" rx="16" fill="#183E47" stroke="#018786" stroke-width="3"/><rect x="625" y="384" width="172" height="82" rx="16" fill="#183E47" stroke="#FF9800" stroke-width="3"/><rect x="835" y="384" width="172" height="82" rx="16" fill="#183E47" stroke="#018786" stroke-width="3"/></g>
+<g stroke="#E7F2F5" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M260 424l20 18 34-40"/><path d="M470 424l20 18 34-40"/><path d="M670 425l18 17 32-40"/><path d="M880 424l20 18 34-40"/></g>
+<g stroke="#FF9800" stroke-width="5" stroke-linecap="round"><path d="M385 424H405m-8-7 8 7-8 7"/><path d="M595 424H615m-8-7 8 7-8 7"/><path d="M805 424H825m-8-7 8 7-8 7"/></g>
+<g fill="#FF9800"><circle cx="1027" cy="116" r="9"/><circle cx="1062" cy="116" r="5"/></g>
+</svg>
