@@ -6,9 +6,10 @@ import Card from "./Card.astro";
 
 interface Props {
   post: CollectionEntry<"blog">;
+  list?: boolean;
 }
 
-const { post } = Astro.props;
+const { post, list = false } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -24,7 +25,7 @@ const href = lang === 'es' ? `/es/blog/${slug}/` : `/blog/${slug}/`;
 const firstTag = post.data.tags?.[0];
 ---
 
-<Card variant="article">
+<Card variant="article" class={list ? "sm:flex sm:flex-row" : ""}>
   <a
     href={href}
     data-astro-prefetch
@@ -33,11 +34,11 @@ const firstTag = post.data.tags?.[0];
 
   {
     post.data.heroImage && (
-      <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+      <div class:list={["overflow-hidden bg-gray-100 dark:bg-gray-800", list ? "aspect-video sm:aspect-auto sm:w-64 sm:shrink-0" : "aspect-video w-full"]}>
         <img
           src={post.data.heroImage}
           alt={post.data.title}
-          class="w-full h-full object-cover"
+          class="h-full w-full object-cover"
           loading="lazy"
           decoding="async"
           width="800"
@@ -47,7 +48,7 @@ const firstTag = post.data.tags?.[0];
     )
   }
 
-  <div class="p-6 flex flex-col flex-grow relative z-20 pointer-events-none">
+  <div class:list={["p-6 flex flex-col flex-grow relative z-20 pointer-events-none", list && "min-w-0"]}>
     <div class="flex items-center gap-2 mb-3">
       {
         firstTag && (

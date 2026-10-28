@@ -1,4 +1,5 @@
 ---
+import AppGallery from "../../components/AppGallery.astro";
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { optimizeGooglePlayImage } from "../../utils/image-optimization";
@@ -153,22 +154,7 @@ const { Content } = await app.render();
             <span class="material-icons text-primary" aria-hidden="true">collections</span>
             {t('apps.gallery')}
           </h2>
-          <div
-            class="grid grid-cols-2 gap-4 rounded-2xl border border-border bg-surface-raised p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/30 motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-raised sm:grid-cols-3 lg:grid-cols-4"
-            tabindex="0"
-            aria-label={t('apps.gallery_aria')}
-          >
-            {app.data.screenshots.map((screenshot, index) => (
-              <div class="aspect-[3/4] overflow-hidden rounded-xl border border-border bg-surface dark:border-dark-border dark:bg-dark-surface">
-                <img
-                  src={screenshot}
-                  alt={`${t('apps.screenshot_alt')} ${index + 1}`}
-                  class="h-full w-full object-contain"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+          <AppGallery screenshots={app.data.screenshots} lang="en" label={t('apps.gallery_aria')} />
         </div>
       )}
 

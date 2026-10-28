@@ -9,25 +9,31 @@ const readSource = (relativePath: string) =>
   fs.readFileSync(path.join(ROOT_DIR, relativePath), 'utf8');
 
 const listingFiles = [
-  'src/pages/apps/index.astro',
-  'src/pages/es/apps/index.astro',
   'src/pages/blog/[...page].astro',
   'src/pages/es/blog/[...page].astro',
 ] as const;
 
 describe('contrato de listados visuales', () => {
-  it('usa PageIntro y la retícula común en Apps y Blog EN/ES', () => {
+  it('usa PageIntro y la retícula común en Blog EN/ES', () => {
     for (const file of listingFiles) {
       const source = readSource(file);
 
       expect(source, `${file} debe importar PageIntro`).toContain('PageIntro');
       expect(source, `${file} debe renderizar PageIntro`).toMatch(/<PageIntro[\s\S]*title=/);
-      expect(source, `${file} debe conservar la retícula responsive`).toMatch(
-        /grid-cols-1[\s\S]*md:grid-cols-2[\s\S]*lg:grid-cols-3/
-      );
+      expect(source, `${file} debe conservar una lista responsive`).toContain('grid-cols-1');
+      expect(source, `${file} debe mostrar previews`).toContain('list={true}');
     }
   });
 
+  it('prioriza apps compactas y una aplicación real destacada', () => {
+    for (const file of ['src/pages/apps/index.astro', 'src/pages/es/apps/index.astro']) {
+      const s = readSource(file);
+      expect(s).toContain('PageIntro');
+      expect(s).toContain('AppCard');
+      expect(s).toContain('compact={true}');
+      expect(s).toContain("=== 'radiohub'");
+    }
+  });
   it('mantiene las fuentes de datos y el idioma de cada ruta', () => {
     expect(readSource('src/pages/apps/index.astro')).toContain('id.startsWith(\'en/\')');
     expect(readSource('src/pages/es/apps/index.astro')).toContain('id.startsWith(\'es/\')');

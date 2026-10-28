@@ -27,6 +27,27 @@ const getCoverAlt = (title: string) => t('devlog.cover_alt').replace('{title}', 
 
 // Helper for link prefix
 const linkPrefix = lang === 'es' ? '/es/devlog' : '/devlog';
+
+// Broad editorial topics are inferred from published titles/tags; no extra content metadata required.
+const getTopic = (log: typeof devlogs[number]): 'radiohub' | 'puzzles' | 'agents' | 'portfolio' | 'other' => {
+  const title = log.data.title.toLowerCase();
+  const tags = (log.data.tags || []).join(' ').toLowerCase();
+  const combined = `${title} ${tags}`;
+  if (combined.includes('radiohub')) return 'radiohub';
+  if (/puzzle|sudoku|numberlink|kakuro|hitori/.test(combined)) return 'puzzles';
+  if (/coucou|agent|codex|opencode|clawdbot|\bia\b|\bai\b|llm|mcp/.test(combined)) return 'agents';
+  if (/arceapps|portfolio|astro|mirror|github pages/.test(combined)) return 'portfolio';
+  return 'other';
+};
+const topics = [
+  { value: 'all', name: lang === 'es' ? 'Todo' : 'All' },
+  { value: 'radiohub', name: 'RadioHub' },
+  { value: 'puzzles', name: lang === 'es' ? 'Puzzles' : 'Puzzles' },
+  { value: 'agents', name: lang === 'es' ? 'IA y agentes' : 'AI & agents' },
+  { value: 'portfolio', name: 'ArceApps' },
+  { value: 'other', name: lang === 'es' ? 'Otros' : 'Other' },
+].filter(({ value }) => value === 'all' || devlogs.some(log => getTopic(log) === value));
+
 ---
 
 <Layout title={`${t('devlog.title')} - ArceApps`}>
@@ -49,12 +70,35 @@ const linkPrefix = lang === 'es' ? '/es/devlog' : '/devlog';
 
   <section class="py-14 md:py-20">
     <div class="container mx-auto px-4">
+      {devlogs.length > 0 && (
+        <div class="mb-8 flex flex-wrap items-center gap-2" role="group" aria-label={lang === 'es' ? 'Filtrar entradas por proyecto o tema' : 'Filter entries by project or topic'} data-devlog-filters>
+          {topics.map(({ value, name }) => (
+            <button type="button" data-devlog-filter={value} aria-pressed={value === 'all' ? 'true' : 'false'}
+              class:list={["min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transition-none", value === 'all' ? "border-primary bg-primary text-white" : "border-border bg-surface-raised text-on-surface-variant hover:border-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"]}>
+              {name}
+            </button>
+          ))}
+        </div>
+      )}
       {devlogs.length > 0 ? (
+        <>
+        <div data-devlog-topic={getTopic(devlogs[0])} class="mb-10 grid gap-6 overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-sm dark:border-dark-border dark:bg-dark-surface-raised lg:grid-cols-2">
+          <a href={`${linkPrefix}/${devlogs[0].slug.split('/').pop()}`} class="block aspect-video overflow-hidden focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary">
+            <img src={devlogs[0].data.heroImage || defaultImage} alt={getCoverAlt(devlogs[0].data.title)} class="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.02] motion-reduce:transition-none" loading="eager" width="900" height="506" />
+          </a>
+          <div class="flex flex-col justify-center p-6 md:p-10">
+            <span class="text-xs font-bold uppercase tracking-wider text-primary">{lang === 'es' ? 'Última entrada' : 'Latest update'}</span>
+            <h2 class="mt-4 text-3xl font-bold leading-tight text-on-surface dark:text-dark-on-surface md:text-4xl"><a href={`${linkPrefix}/${devlogs[0].slug.split('/').pop()}`} class="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{devlogs[0].data.title}</a></h2>
+            <p class="mt-4 text-on-surface-variant dark:text-dark-on-surface-variant">{devlogs[0].data.description}</p>
+            <a href={`${linkPrefix}/${devlogs[0].slug.split('/').pop()}`} class="mt-6 inline-flex items-center gap-2 font-semibold text-primary hover:underline">{t('home.read_entry')} <span class="material-icons text-base" aria-hidden="true">arrow_forward</span></a>
+          </div>
+        </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
-          {devlogs.map((log) => {
+          {devlogs.slice(1, 13).map((log) => {
             const slug = log.slug.split('/').pop();
             return (
-              <Card variant="article" class="flex flex-col">
+              <div data-devlog-topic={getTopic(log)} class="h-full">
+              <Card variant="article" class="flex h-full flex-col">
                 <div class="aspect-video w-full overflow-hidden bg-surface-variant dark:bg-dark-surface-variant">
                   <img
                     src={log.data.heroImage || defaultImage}
@@ -85,9 +129,21 @@ const linkPrefix = lang === 'es' ? '/es/devlog' : '/devlog';
                   </a>
                 </div>
               </Card>
+              </div>
             );
           })}
         </div>
+        {devlogs.length > 13 && (
+          <details data-devlog-archive class="mt-12 rounded-2xl border border-border bg-surface-raised p-6 dark:border-dark-border dark:bg-dark-surface-raised">
+            <summary class="cursor-pointer font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{lang === 'es' ? 'Archivo de entradas anteriores' : 'Older entries'} ({devlogs.length - 13})</summary>
+            <ul class="mt-5 grid gap-3 border-t border-border pt-5 dark:border-dark-border md:grid-cols-2">
+              {devlogs.slice(13).map((log) => (
+                <li data-devlog-topic={getTopic(log)}><a href={`${linkPrefix}/${log.slug.split('/').pop()}`} class="block rounded-lg p-2 font-medium text-on-surface-variant hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant">{log.data.title}</a></li>
+              ))}
+            </ul>
+          </details>
+        )}
+        </>
       ) : (
         <div class="rounded-2xl border border-border bg-surface-raised px-6 py-14 text-center dark:border-dark-border dark:bg-dark-surface-raised">
           <span class="material-icons mb-4 text-4xl text-on-surface-variant dark:text-dark-on-surface-variant" aria-hidden="true">terminal</span>
@@ -96,4 +152,39 @@ const linkPrefix = lang === 'es' ? '/es/devlog' : '/devlog';
       )}
     </div>
   </section>
+  <script>
+    const initDevlogFilters = () => {
+      const container = document.querySelector<HTMLElement>('[data-devlog-filters]');
+      if (!container || container.dataset.initialized) return;
+      container.dataset.initialized = 'true';
+      const buttons = [...container.querySelectorAll<HTMLButtonElement>('[data-devlog-filter]')];
+      const entries = [...document.querySelectorAll<HTMLElement>('[data-devlog-topic]')];
+      const archive = document.querySelector<HTMLDetailsElement>('[data-devlog-archive]');
+      const activate = (topic: string) => {
+        buttons.forEach(button => {
+          const active = button.dataset.devlogFilter === topic;
+          button.setAttribute('aria-pressed', String(active));
+          button.classList.toggle('bg-primary', active);
+          button.classList.toggle('text-white', active);
+          button.classList.toggle('border-primary', active);
+          button.classList.toggle('bg-surface-raised', !active);
+          button.classList.toggle('dark:bg-dark-surface-raised', !active);
+          button.classList.toggle('text-on-surface-variant', !active);
+          button.classList.toggle('dark:text-dark-on-surface-variant', !active);
+        });
+        entries.forEach(entry => {
+          entry.hidden = topic !== 'all' && entry.dataset.devlogTopic !== topic;
+        });
+        if (archive) {
+          const hasOlder = [...archive.querySelectorAll<HTMLElement>('[data-devlog-topic]')].some(entry => !entry.hidden);
+          archive.hidden = !hasOlder;
+          if (topic !== 'all' && hasOlder) archive.open = true;
+          else if (topic === 'all') archive.open = false;
+        }
+      };
+      buttons.forEach(button => button.addEventListener('click', () => activate(button.dataset.devlogFilter || 'all')));
+    };
+    document.addEventListener('astro:page-load', initDevlogFilters);
+    if (document.readyState !== 'loading') initDevlogFilters();
+  </script>
 </Layout>

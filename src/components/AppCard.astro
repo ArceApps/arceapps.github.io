@@ -8,6 +8,7 @@ interface Props {
   color?: string; // Optional custom color class for icon background
   ctaText?: string;
   isExternal?: boolean;
+  compact?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   color = "bg-primary",
   ctaText = "Descargar en Google Play",
   isExternal = true,
+  compact = false,
 } = Astro.props;
 
 import { optimizeGooglePlayImage } from "../utils/image-optimization";
@@ -32,10 +34,10 @@ import Card from "./Card.astro";
   variant="app"
   ariaLabel={title}
 >
-  <div class="flex h-full flex-col p-6">
+  <div class:list={["flex h-full p-6", compact ? "items-start gap-4 sm:gap-5" : "flex-col"]}>
     <!-- Icon -->
     <div
-      class={`w-14 h-14 rounded-2xl ${!realIconUrl ? color : "bg-white"} flex items-center justify-center text-white shadow-md mb-6 overflow-hidden`}
+      class={`h-14 w-14 shrink-0 rounded-2xl ${!realIconUrl ? color : "bg-white"} flex items-center justify-center text-white shadow-sm overflow-hidden ${compact ? "" : "mb-6"}`}
     >
       {
         realIconUrl ? (
@@ -55,24 +57,26 @@ import Card from "./Card.astro";
     </div>
 
     <!-- Content -->
+    <div class:list={["min-w-0", compact && "flex flex-1 flex-col self-stretch"]}>
     <h3
-      class="text-xl font-bold mb-3 text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors motion-reduce:transition-none"
+      class:list={["font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors motion-reduce:transition-none", compact ? "mb-2 text-lg" : "mb-3 text-xl"]}
     >
       {title}
     </h3>
     <p
-      class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed flex-grow line-clamp-3"
+      class:list={["text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed flex-grow", compact ? "line-clamp-2 text-sm" : "line-clamp-3"]}
     >
       {description}
     </p>
 
     <!-- Action -->
-    <div class="mt-6 flex items-center text-primary font-medium">
+    <div class:list={["flex items-center text-primary font-medium", compact ? "mt-4 text-sm" : "mt-6"]}>
       <span>{ctaText}</span>
       <span
         class="material-icons ml-1 text-sm"
         >arrow_forward</span
       >
+    </div>
     </div>
   </div>
 </Card>

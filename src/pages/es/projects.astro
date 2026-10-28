@@ -14,7 +14,7 @@ const projects = (await getCollection("projects", ({ data, id }) => !data.draft 
     <PageIntro eyebrow={t('projects.eyebrow')} title={t('projects.title')} description={t('projects.subtitle')} />
     {projects.length > 0 ? (
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project) => <ProjectCard title={project.data.title} description={project.data.description} heroImage={project.data.heroImage} tags={project.data.tags} pubDate={project.data.pubDate} datePrecision={project.data.datePrecision} slug={project.slug.split('/').pop() ?? ''} kind="project" />)}
+        {projects.map((project) => <ProjectCard title={project.data.title} description={project.data.description} heroImage={project.data.heroImage} tags={project.data.tags} pubDate={project.data.pubDate} datePrecision={project.data.datePrecision} slug={project.slug.split('/').pop() ?? ''} kind="project" status={project.data.status} />)}
       </div>
     ) : <p class="rounded-3xl border border-border bg-surface-raised p-10 text-center text-on-surface-variant dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant">{t('projects.empty')}</p>}
   </main>

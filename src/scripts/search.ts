@@ -5,7 +5,7 @@ export interface SearchItem {
   title: string;
   description: string;
   slug: string;
-  type: "Blog" | "App";
+  type: "Blog" | "App" | "Project" | "Devlog";
   tags: string[];
   lang: "es" | "en";
   body?: string;
@@ -23,6 +23,9 @@ let closeSearch: HTMLElement | null = null;
 let searchInput: HTMLInputElement | null = null;
 let searchResults: HTMLElement | null = null;
 let searchStatus: HTMLElement | null = null;
+let previousFocus: HTMLElement | null = null;
+const isSpanish = () => document.documentElement.lang.startsWith('es');
+const msg = (es: string, en: string) => isSpanish() ? es : en;
 
 // Utility: Debounce function to limit execution frequency
 export function debounce<T extends (...args: unknown[]) => void>(
@@ -59,8 +62,15 @@ export function sanitizeUrl(url: string): string {
 }
 
 function handleEscape(e: KeyboardEvent) {
-  if (e.key === "Escape") {
-    closeModal();
+  if (e.key === "Escape") closeModal();
+  if (e.key === "Tab" && searchModal && !searchModal.classList.contains("hidden")) {
+    const focusable = [...searchModal.querySelectorAll<HTMLElement>('button:not([disabled]), input:not([disabled]), a[href]')]
+      .filter(element => element.getClientRects().length > 0);
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
 }
 
@@ -79,6 +89,9 @@ export function closeModal() {
     if (searchInput) {
       searchInput.value = "";
     }
+    if (previousFocus?.isConnected) previousFocus.focus();
+    else searchButton?.focus();
+    previousFocus = null;
 
     if (searchResults) {
       searchResults.textContent = "";
@@ -86,7 +99,7 @@ export function closeModal() {
     }
 
     if (searchStatus) {
-      searchStatus.textContent = "Escribe para buscar...";
+      searchStatus.textContent = msg('Escribe para buscar...', 'Type to search...');
       searchStatus.classList.remove("hidden");
     }
   }
@@ -109,7 +122,7 @@ export async function initFuse() {
       icon.textContent = "refresh";
 
       const text = document.createElement("span");
-      text.textContent = "Cargando índice...";
+      text.textContent = msg('Cargando índice...', 'Loading search index...');
 
       wrapper.appendChild(icon);
       wrapper.appendChild(text);
@@ -144,14 +157,14 @@ export async function initFuse() {
 
       // Clear loading state if input is empty
       if (searchInput && searchInput.value === "" && searchStatus) {
-        searchStatus.textContent = "Escribe para buscar...";
+        searchStatus.textContent = msg('Escribe para buscar...', 'Type to search...');
       } else if (searchInput && searchInput.value !== "") {
         performSearch(searchInput.value);
       }
     } catch (error) {
       console.error("Error loading search index:", error);
       if (searchStatus)
-        searchStatus.textContent = "Error al cargar el buscador.";
+        searchStatus.textContent = msg('Error al cargar el buscador.', 'Could not load search index.');
       loadingPromise = undefined; // Allow retry on error
     }
   })();
@@ -161,6 +174,7 @@ export async function initFuse() {
 
 export function openModal() {
   if (searchModal) {
+    previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : searchButton;
     searchModal.classList.remove("hidden");
     document.body.style.overflow = "hidden";
 
@@ -182,13 +196,14 @@ export function performSearch(query: string) {
   if (query.length < 2) {
     if (searchResults) searchResults.classList.add("hidden");
     if (searchStatus) {
-      searchStatus.textContent = "Escribe al menos 2 caracteres...";
+      searchStatus.textContent = msg('Escribe al menos 2 caracteres...', 'Type at least 2 characters...');
       searchStatus.classList.remove("hidden");
     }
     return;
   }
 
-  const results = fuse.search(query);
+  const lang = isSpanish() ? 'es' : 'en';
+  const results = fuse.search(query, { limit: searchIndex.length }).filter(({ item }) => item.lang === lang).slice(0, 10);
 
   if (results.length === 0) {
     if (searchResults) searchResults.classList.add("hidden");
@@ -205,12 +220,12 @@ export function performSearch(query: string) {
 
       const message = document.createElement("p");
       message.className = "font-medium";
-      message.textContent = `No encontramos resultados para "${query}"`;
+      message.textContent = isSpanish() ? `No encontramos resultados para "${query}"` : `No results for "${query}"`;
 
       const subMessage = document.createElement("p");
       subMessage.className = "text-sm";
       subMessage.textContent =
-        "Intenta con otras palabras clave o revisa la ortografía.";
+        msg("Prueba otras palabras clave.", "Try different keywords.");
 
       wrapper.appendChild(icon);
       wrapper.appendChild(message);
@@ -231,7 +246,7 @@ export function performSearch(query: string) {
 
     results.slice(0, 10).forEach((result) => {
       const item = result.item;
-      const icon = item.type === "App" ? "android" : "article";
+      const icon = item.type === "App" ? "android" : item.type === "Project" ? "code" : item.type === "Devlog" ? "terminal" : "article";
       const safeUrl = sanitizeUrl(item.slug);
 
       const a = document.createElement("a");
@@ -270,7 +285,7 @@ export function performSearch(query: string) {
       const typeTag = document.createElement("span");
       typeTag.className =
         "text-xs px-2 py-0.5 rounded-full bg-surface dark:bg-dark-surface border border-gray-200 dark:border-gray-700 text-gray-500";
-      typeTag.textContent = item.type;
+      typeTag.textContent = isSpanish() ? ({ Blog: 'Blog', App: 'App', Project: 'Proyecto', Devlog: 'Bitácora' } as const)[item.type] : item.type;
 
       tagWrapper.appendChild(typeTag);
 
@@ -299,6 +314,9 @@ export function initSearchComponent() {
   searchStatus = document.getElementById("search-status");
 
   // Re-attach event listeners
+  document.querySelectorAll('[data-open-search]').forEach((trigger) => {
+    trigger.addEventListener('click', openModal);
+  });
   if (searchButton) {
       searchButton.addEventListener("click", openModal);
       searchButton.addEventListener("mouseenter", initFuse);

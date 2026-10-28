@@ -7,6 +7,7 @@ import type { Page } from "astro";
 import { slugify } from "../../../utils/slugs";
 import { useTranslations } from "../../../i18n/utils";
 import { isPublished } from "../../../utils/publishing";
+import { blogTopics, topicOf } from "../../../utils/blog-topics";
 
 const t = useTranslations('es');
 
@@ -15,17 +16,27 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
 
-  const allTags = [...new Set(allPosts.flatMap((post) => post.data.tags || []))].sort();
+  const tagCounts = new Map<string, number>();
+  for (const post of allPosts) {
+    for (const tag of post.data.tags || []) tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  }
+  const allTags = [...tagCounts.keys()].sort((a, b) => (tagCounts.get(b) || 0) - (tagCounts.get(a) || 0) || a.localeCompare(b));
 
-  return paginate(allPosts, { pageSize: 6, props: { allTags } });
+  const topicCounts = blogTopics.map(topic => ({
+    slug: topic.slug,
+    label: 'es' === 'es' ? topic.es : topic.en,
+    count: allPosts.filter(post => topicOf(post) === topic.slug).length,
+  })).filter(topic => topic.count > 0);
+  return paginate(allPosts, { pageSize: 6, props: { allTags, topicCounts } });
 }
 
 interface Props {
   page: Page<CollectionEntry<"blog">>;
   allTags: string[];
+  topicCounts: { slug: string; label: string; count: number }[];
 }
 
-const { page, allTags } = Astro.props;
+const { page, allTags, topicCounts } = Astro.props;
 ---
 
 <Layout title={`${t('blog.title')} - ArceApps`}>
@@ -46,12 +57,29 @@ const { page, allTags } = Astro.props;
     </div>
   </section>
 
-  <section class="py-14 md:py-20">
+  <section class="py-10 md:py-14">
+    <div class="container mx-auto max-w-5xl px-4">
+      <button type="button" data-open-search class="flex min-h-12 w-full items-center gap-3 rounded-xl border border-border bg-surface-raised px-5 py-4 text-left text-on-surface-variant shadow-sm transition-colors hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant">
+        <span class="material-icons text-primary" aria-hidden="true">search</span>
+        <span class="flex-1">Busca por título, herramienta o tecnología</span>
+        <span class="text-sm font-semibold text-primary">Buscar artículos</span>
+      </button>
+      <nav class="mt-6 flex flex-wrap gap-2" aria-label="Filtrar artículos por categoría">
+        <a href="/es/blog" aria-current={page.currentPage === 1 ? 'page' : undefined} class:list={["inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary", page.currentPage === 1 ? "border-primary bg-primary text-white" : "border-border bg-surface-raised text-on-surface dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface"]}>Todos</a>
+        {topicCounts.map(topic => (
+          <a href={`/es/blog/topic/${topic.slug}/`} class="inline-flex min-h-11 items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-semibold text-on-surface-variant transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant">
+            {topic.label} <span class="ml-2 rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary dark:text-teal-300">{topic.count}</span>
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+  <section class="pb-16 md:pb-20">
     <div class="container mx-auto px-4">
       {page.data.length > 0 ? (
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
+        <div class="mx-auto grid max-w-5xl grid-cols-1 gap-5">
           {page.data.map((post) => (
-            <BlogCard post={post} />
+            <BlogCard post={post} list={true} />
           ))}
         </div>
       ) : (
@@ -81,16 +109,27 @@ const { page, allTags } = Astro.props;
   <section class="border-t border-border bg-surface-variant/30 py-14 dark:border-dark-border dark:bg-dark-surface-variant/30 md:py-20">
     <div class="container mx-auto px-4 text-center">
       <h2 class="mb-6 text-2xl font-bold text-on-surface dark:text-dark-on-surface">{t('blog.filter_tags')}</h2>
-      <div class="flex flex-wrap justify-center gap-3">
-        {allTags.map((tag) => (
-          <a
-            href={`/es/blog/tag/${slugify(tag)}/`}
-            class="rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface shadow-sm transition-colors hover:border-primary hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/50 motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface"
-          >
+      <p class="mx-auto mb-6 max-w-2xl text-sm text-on-surface-variant dark:text-dark-on-surface-variant">Temas más habituales</p>
+      <nav class="flex flex-wrap justify-center gap-3" aria-label="Temas más habituales">
+        {allTags.slice(0, 12).map((tag) => (
+          <a href={`/es/blog/tag/${slugify(tag)}/`}
+            class="inline-flex min-h-11 items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface">
             #{tag}
           </a>
         ))}
-      </div>
+      </nav>
+      {allTags.length > 12 && (
+        <details class="mx-auto mt-7 max-w-5xl rounded-2xl border border-border bg-surface-raised p-4 text-left dark:border-dark-border dark:bg-dark-surface-raised">
+          <summary class="cursor-pointer text-center font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">Todas las etiquetas ({allTags.length})</summary>
+          <div class="mt-5 flex flex-wrap justify-center gap-2 border-t border-border pt-5 dark:border-dark-border">
+            {allTags.slice(12).map((tag) => (
+              <a href={`/es/blog/tag/${slugify(tag)}/`} class="rounded-lg px-3 py-2 text-sm text-on-surface-variant hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant">
+                #{tag}
+              </a>
+            ))}
+          </div>
+        </details>
+      )}
     </div>
   </section>
 </Layout>

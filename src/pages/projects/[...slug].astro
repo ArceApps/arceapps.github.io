@@ -10,9 +10,8 @@ const dateLabel = project.data.datePrecision === 'approximate' ? t('projects.app
 ---
 <Layout title={`${project.data.title} — ArceApps`} description={project.data.description}>
   <article class="mx-auto max-w-5xl px-4 py-16 md:py-20">
-    <img src={project.data.heroImage} alt={project.data.heroImageAlt} class="mb-10 aspect-[2/1] w-full rounded-[2rem] object-cover shadow-xl shadow-primary/10" />
-    <p class="text-sm font-bold uppercase tracking-[0.16em] text-primary">{dateLabel}</p>
-    <time datetime={project.data.pubDate.toISOString()} class="mt-2 block text-sm text-on-surface-variant dark:text-dark-on-surface-variant">{project.data.pubDate.toLocaleDateString('en-US')}</time>
+    <img src={project.data.heroImage} alt={project.data.heroImageAlt} width="1200" height="600" class="mb-8 aspect-[2/1] w-full rounded-3xl border border-border object-cover shadow-sm dark:border-dark-border" />
+    <div class="flex flex-wrap items-center gap-3 text-sm font-medium text-on-surface-variant dark:text-dark-on-surface-variant"><span class="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-primary">Project status: {project.data.status}</span><time datetime={project.data.pubDate.toISOString()}>{project.data.pubDate.toLocaleDateString('en-US')}</time></div>
     <h1 class="mt-4 text-4xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface md:text-6xl">{project.data.title}</h1>
     <p class="mt-5 max-w-3xl text-xl leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">{project.data.description}</p>
     <ul class="mt-6 flex flex-wrap gap-2" aria-label="Technologies">

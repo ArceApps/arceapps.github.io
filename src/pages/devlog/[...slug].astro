@@ -38,7 +38,8 @@ export async function getStaticPaths() {
 }
 
 const { post, translatedPath, hreflangPath } = Astro.props;
-const { Content } = await post.render();
+const { Content, headings } = await post.render();
+const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 
 const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
   weekday: 'long',
@@ -72,24 +73,19 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
       </header>
 
       {post.data.heroImage && (
-        <figure class="mx-auto mb-12 w-full max-w-[1080px]">
-          <div class="overflow-hidden rounded-2xl border border-border bg-surface-subtle dark:border-dark-border dark:bg-dark-surface-subtle">
-            <img
-              src={post.data.heroImage}
-              alt={`Cover illustration: ${post.data.title}`}
-              class="block h-auto w-full object-contain"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-              width="1200"
-              height="630"
-            />
-          </div>
+        <figure class="mx-auto mb-12 max-w-5xl overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-sm dark:border-dark-border dark:bg-dark-surface-raised">
+          <img src={post.data.heroImage} alt={`Cover illustration: ${post.data.title}`} width="1200" height="630" loading="eager" decoding="async" fetchpriority="high" class="h-auto w-full object-contain" />
         </figure>
       )}
-
-      <!-- Content -->
-      <div class="prose dark:prose-invert md:prose-lg max-w-none bg-surface dark:bg-dark-surface p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-800">
+      {tocHeadings.length > 0 && (
+        <details class="mb-8 rounded-2xl border border-border bg-surface-raised p-5 dark:border-dark-border dark:bg-dark-surface-raised" open>
+          <summary class="cursor-pointer font-bold text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface">In this entry</summary>
+          <nav aria-label="In this entry" class="mt-4 grid gap-2 border-t border-border pt-4 dark:border-dark-border sm:grid-cols-2">
+            {tocHeadings.map((heading) => <a href={`#${heading.slug}`} class:list={["rounded-lg px-3 py-2 text-sm text-on-surface-variant hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant", { "ml-3": heading.depth === 3 }]}>{heading.text}</a>)}
+          </nav>
+        </details>
+      )}
+      <div class="prose article-prose dark:prose-invert md:prose-lg max-w-none bg-surface dark:bg-dark-surface p-5 md:p-10 rounded-3xl shadow-sm border border-border dark:border-dark-border">
         <Content />
       </div>
 

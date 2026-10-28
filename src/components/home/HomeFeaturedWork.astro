@@ -12,6 +12,7 @@ interface Props {
     kind: 'app' | 'project';
     realIconUrl?: string;
     tags?: string[];
+    screenshots?: string[];
   };
 }
 
@@ -22,24 +23,24 @@ const t = useTranslations(lang);
 <section class="py-16 cv-auto fade-in-section md:py-24" style="contain-intrinsic-size: 600px;">
   <div class="container mx-auto max-w-7xl px-4 md:px-6">
     <HomeSectionHeader
-      number="03"
+      number="01"
       title={t('home.work.title')}
       id="section-work"
     />
 
     {featuredWork ? (
-      <article class="grid grid-cols-1 items-center gap-8 md:grid-cols-[1.2fr_1fr] md:gap-12">
+      <article class="grid grid-cols-1 items-center gap-8 overflow-hidden rounded-3xl border border-border bg-surface-raised p-6 shadow-sm dark:border-dark-border dark:bg-dark-surface-raised md:grid-cols-[1.2fr_1fr] md:gap-12 md:p-10">
         <a
           href={featuredWork.href}
-          class="group block overflow-hidden rounded-2xl border border-border bg-surface-variant/30 transition-transform duration-300 hover:scale-[1.01] motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-variant/30"
+          class="group relative block overflow-hidden rounded-2xl border border-border bg-surface-variant/30 transition-transform duration-300 hover:scale-[1.01] motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-variant/30"
         >
           <div class="relative aspect-[16/10] w-full">
             {featuredWork.heroImage ? (
               <img
                 src={featuredWork.heroImage}
                 alt={featuredWork.title}
-                loading="eager"
-                fetchpriority="high"
+                loading="lazy"
+                decoding="async"
                 class="absolute inset-0 h-full w-full object-cover object-center"
               />
             ) : (
@@ -56,6 +57,13 @@ const t = useTranslations(lang);
               />
             )}
           </div>
+          {featuredWork.screenshots && featuredWork.screenshots.length > 0 && (
+            <div class="absolute inset-x-0 bottom-0 flex h-1/2 items-end justify-center gap-2 bg-gradient-to-t from-black/45 to-transparent px-6" aria-hidden="true">
+              {featuredWork.screenshots.slice(0, 3).map((shot, index) => (
+                <img src={shot} alt="" loading="lazy" class:list={["max-h-full w-[27%] rounded-t-lg border border-white/20 object-contain shadow-xl", index === 1 && "w-[32%]"]}/>
+              ))}
+            </div>
+          )}
         </a>
 
         <div>

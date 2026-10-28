@@ -37,3 +37,19 @@ jobs:
 
       - name: Astro build
         run: pnpm build
+
+      - name: Install Chromium for visual QA
+        # Playwright 1.57 has no official Ubuntu 26.04 browser target yet.
+        env:
+          PLAYWRIGHT_HOST_PLATFORM_OVERRIDE: ubuntu24.04-x64
+        run: pnpm exec playwright install chromium
+
+      - name: Visual QA screenshots (ES/EN, mobile/desktop, light/dark)
+        env:
+          PLAYWRIGHT_HOST_PLATFORM_OVERRIDE: ubuntu24.04-x64
+        run: node scripts/portfolio-visual-qa.mjs
+
+      - name: Generate visual contact sheets for review
+        # The repository's Actions artifact storage quota is exhausted. Emit
+        # compact JPEG contact sheets into the private workflow log instead.
+        run: node scripts/portfolio-visual-review.mjs

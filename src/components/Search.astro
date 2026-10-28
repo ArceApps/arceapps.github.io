@@ -1,8 +1,13 @@
+---
+import { getLangFromUrl } from "../i18n/utils";
+const es = getLangFromUrl(Astro.url) === 'es';
+---
 <div class="relative">
   <button
     id="search-button"
+    type="button"
     class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50"
-    aria-label="Buscar"
+    aria-label={es ? "Buscar" : "Search"}
     aria-expanded="false"
     aria-controls="search-modal"
   >
@@ -15,7 +20,7 @@
     class="hidden fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm flex items-start justify-center pt-20 px-4"
     role="dialog"
     aria-modal="true"
-    aria-label="Búsqueda"
+    aria-label={es ? "Búsqueda" : "Search"}
   >
     <div
       class="bg-surface dark:bg-dark-surface w-full max-w-2xl rounded-xl shadow-2xl overflow-hidden animate-fade-in-down border border-gray-200 dark:border-gray-700"
@@ -28,7 +33,7 @@
           type="text"
           id="search-input"
           class="w-full bg-transparent border-none text-lg text-on-surface dark:text-dark-on-surface focus:outline-none focus:ring-0 placeholder-gray-400 dark:placeholder-gray-500"
-          placeholder="Buscar artículos, aplicaciones..."
+          placeholder={es ? "Buscar artículos, apps, proyectos..." : "Search articles, apps, projects..."}
           autocomplete="off"
           maxlength="100"
         />
@@ -37,14 +42,15 @@
         </div>
         <button
           id="close-search"
+          type="button"
           class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded ml-2 transition-colors"
-          aria-label="Cerrar búsqueda"
+          aria-label={es ? "Cerrar búsqueda" : "Close search"}
         >
           <span class="material-icons">close</span>
         </button>
       </div>
 
-      <div id="search-results" class="max-h-[60vh] overflow-y-auto p-2 hidden">
+      <div id="search-results" role="region" aria-live="polite" class="max-h-[60vh] overflow-y-auto p-2 hidden">
         <!-- Results will be injected here -->
       </div>
 
@@ -52,7 +58,7 @@
         id="search-status"
         class="p-4 text-center text-gray-500 dark:text-gray-400 hidden"
       >
-        Escribe para buscar...
+        {es ? "Escribe para buscar..." : "Type to search..."}
       </div>
     </div>
   </div>

@@ -40,30 +40,33 @@ const latestDevlog = rawDevlog
 
 // Get featured apps and projects
 const apps = rawApps
-  .filter(({ data, id }) => !data.draft && id.startsWith(prefix))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+  .filter(({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith(prefix))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const projects = rawProjects.filter(({ data, id }) => !data.draft && id.startsWith(prefix));
+const projects = rawProjects.filter(({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith(prefix));
 const recentWork = [
   ...apps.map((app) => ({ type: 'app' as const, entry: app, pubDate: app.data.pubDate })),
   ...projects.map((project) => ({ type: 'project' as const, entry: project, pubDate: project.data.pubDate })),
 ].sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf()).slice(0, 3);
 
-const featuredWork = recentWork[0]
+// A consciously curated flagship: portfolio quality should not depend on publish dates.
+const flagship = apps.find((app) => app.slug.split('/').pop() === 'radiohub');
+const primaryWork = flagship ? { type: 'app' as const, entry: flagship } : recentWork[0];
+const featuredWork = primaryWork
   ? {
-      title: recentWork[0].entry.data.title,
-      description: recentWork[0].entry.data.description,
-      href: `${linkPrefix}/${recentWork[0].type === 'project' ? 'projects' : 'apps'}/${recentWork[0].entry.slug.split('/').pop() || ''}`,
-      heroImage: recentWork[0].entry.data.heroImage,
-      kind: recentWork[0].type,
-      realIconUrl: recentWork[0].type === 'app' && 'realIconUrl' in recentWork[0].entry.data ? (recentWork[0].entry.data as { realIconUrl?: string }).realIconUrl : undefined,
-      tags: recentWork[0].entry.data.tags,
+      title: primaryWork.entry.data.title,
+      description: primaryWork.entry.data.description,
+      href: `${linkPrefix}/${primaryWork.type === 'project' ? 'projects' : 'apps'}/${primaryWork.entry.slug.split('/').pop() || ''}`,
+      heroImage: primaryWork.entry.data.heroImage,
+      kind: primaryWork.type,
+      realIconUrl: primaryWork.type === 'app' && 'realIconUrl' in primaryWork.entry.data ? (primaryWork.entry.data as { realIconUrl?: string }).realIconUrl : undefined,
+      tags: primaryWork.entry.data.tags,
+      screenshots: primaryWork.type === 'app' && 'screenshots' in primaryWork.entry.data ? primaryWork.entry.data.screenshots : undefined,
     }
   : undefined;
 ---
 
-<Layout title={lang === 'es' ? "ArceApps - Apps Android Premium" : "ArceApps - Premium Android Apps"}>
+<Layout title={lang === 'es' ? "ArceApps - Software independiente, Android e IA" : "ArceApps - Independent Software, Android & AI"}>
   {lang === 'en' && (
     <script is:inline>
         if (typeof localStorage !== 'undefined' && !localStorage.getItem('lang-preference')) {
@@ -76,8 +79,8 @@ const featuredWork = recentWork[0]
   )}
 
   <HomeHero lang={lang} />
-  <HomeDevlog lang={lang} latestDevlog={latestDevlog} />
-  <HomeBlog lang={lang} linkPrefix={linkPrefix} posts={allPosts} />
   <HomeFeaturedWork lang={lang} featuredWork={featuredWork} />
+  <HomeBlog lang={lang} linkPrefix={linkPrefix} posts={allPosts} />
+  <HomeDevlog lang={lang} latestDevlog={latestDevlog} />
   <HomeCta lang={lang} />
 </Layout>

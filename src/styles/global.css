@@ -5,7 +5,7 @@
 
 @theme {
   /* Brand Colors */
-  --color-primary: #018786; /* Teal */
+  --color-primary: #007F7D; /* Accessible teal: >= 4.5:1 with white */
   --color-primary-strong: #006b6a;
   --color-secondary: #FF9800; /* Orange */
 
@@ -24,16 +24,16 @@
   --color-focus-contrast: #FFFFFF;
 
   /* Semantic Dark Theme Tokens */
-  --color-dark-surface: #121212;
-  --color-dark-surface-subtle: #1C1C1E;
-  --color-dark-surface-raised: #242426;
-  --color-dark-surface-variant: #1C1C1E;
-  --color-dark-content: #F5F5F5;
-  --color-dark-content-muted: #E0E0E0;
-  --color-dark-on-surface: #F5F5F5;
-  --color-dark-on-surface-variant: #E0E0E0;
-  --color-dark-border: #3A3A3C;
-  --color-dark-border-strong: #5B5B60;
+  --color-dark-surface: #0B141B;
+  --color-dark-surface-subtle: #111F29;
+  --color-dark-surface-raised: #172733;
+  --color-dark-surface-variant: #182A35;
+  --color-dark-content: #F5F8FA;
+  --color-dark-content-muted: #C7D4DB;
+  --color-dark-on-surface: #F5F8FA;
+  --color-dark-on-surface-variant: #C7D4DB;
+  --color-dark-border: #314550;
+  --color-dark-border-strong: #4C6571;
   --color-dark-focus: #4FD1C5;
   --color-dark-focus-contrast: #082F2E;
 
@@ -52,6 +52,9 @@
 
 /* Material Design 3 Utilities */
 @layer utilities {
+  /* Legible brand colors on both backgrounds. Utilities need the same cascade layer. */
+  :root.dark .text-primary { color: #4FD1C5; }
+  :root:not(.dark) .text-secondary { color: #B95B00; }
   .elevation-1 {
     box-shadow: var(--shadow-elevation-1);
   }
@@ -113,6 +116,7 @@
   :root.dark {
     color-scheme: dark;
   }
+
 
   html {
     @apply scroll-smooth;
@@ -474,3 +478,6 @@
     max-inline-size: 760px;
   }
 }
+
+/* Native hidden must override CSS display utilities used by filtered cards. */
+[data-devlog-topic][hidden], [data-devlog-archive][hidden] { display: none !important; }

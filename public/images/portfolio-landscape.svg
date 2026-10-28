@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" role="img" aria-labelledby="title desc">
+<title id="title">Landscape at sunset</title><desc id="desc">Warm sunset over a misty mountain landscape</desc>
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0.5" y2="1"><stop stop-color="#ecf2f5"/><stop offset=".38" stop-color="#dfd3c5"/><stop offset=".76" stop-color="#f6b885"/><stop offset="1" stop-color="#657d84"/></linearGradient>
+<radialGradient id="glow" cx=".66" cy=".44" r=".56"><stop stop-color="#ffdeaa" stop-opacity=".94"/><stop offset=".45" stop-color="#ffac80" stop-opacity=".28"/><stop offset="1" stop-color="#ffdfbe" stop-opacity="0"/></radialGradient>
+<linearGradient id="mist" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#b9ced0" stop-opacity=".8"/><stop offset="1" stop-color="#4a646c" stop-opacity="0"/></linearGradient>
+<linearGradient id="ridge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#526d77"/><stop offset="1" stop-color="#233d48"/></linearGradient>
+</defs>
+<path fill="url(#sky)" d="M0 0h1200v740H0z"/><path fill="url(#glow)" d="M0 0h1200v740H0z"/>
+<circle cx="813" cy="318" r="73" fill="#fff1d6" opacity=".72"/>
+<path d="M0 407 84 366 164 397 254 339 321 385 413 309 499 381 597 298 690 361 783 270 883 358 949 326 1041 390 1114 341 1200 392v348H0z" fill="#9eacac" opacity=".52"/>
+<path d="M0 485 122 430 235 469 329 394 399 465 503 399 606 482 750 357 863 439 964 372 1099 459 1200 397v343H0z" fill="#687f86" opacity=".65"/>
+<path d="M0 557 157 479 284 520 390 456 534 532 663 440 790 514 942 435 1055 500 1200 445v295H0z" fill="url(#ridge)" opacity=".92"/>
+<path d="M0 568q170-28 286 2t259 7q169-31 322-9t333-36v208H0z" fill="url(#mist)" opacity=".75"/>
+<path d="M0 660 159 612 288 632 382 579 458 611 552 553 662 586 771 545 871 575 983 529 1080 551 1200 498v242H0z" fill="#273f48"/>
+<path d="M715 740 920 623 1031 628 1167 562 1200 549v191z" fill="#162d35" opacity=".96"/>
+<path d="M1030 623q-4-24 8-33 14-4 19 8l1 19 14 12-2 20-13-3 2 47-6 18-8-24-7-34-11 38-11 18-2-24 12-48-13 6-7-16z" fill="#142d36"/>
+<circle cx="1041" cy="579" r="14" fill="#142d36"/>
+<g opacity=".18" fill="#fff"><ellipse cx="262" cy="547" rx="287" ry="17"/><ellipse cx="723" cy="558" rx="312" ry="13"/><ellipse cx="1029" cy="610" rx="191" ry="10"/></g>
+</svg>

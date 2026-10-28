@@ -15,7 +15,7 @@ describe('contrato editorial de portada', () => {
     expect(hero).toContain('ArceApps');
     expect(hero).toContain("t('home.manifesto')");
     expect(hero).not.toContain('Bento');
-    expect(hero).not.toContain('bg-gradient');
+    expect(hero).toContain('section-work');
     expect(hero).not.toContain('animate-bounce');
     expect(hero).toContain('keyboard_arrow_down');
   });
@@ -29,13 +29,15 @@ describe('contrato editorial de portada', () => {
     const cta = home.indexOf('<HomeCta');
 
     expect(devlog).toBeGreaterThan(-1);
-    expect(blog).toBeGreaterThan(devlog);
-    expect(work).toBeGreaterThan(blog);
-    expect(cta).toBeGreaterThan(work);
+    expect(blog).toBeGreaterThan(work);
+    expect(devlog).toBeGreaterThan(blog);
+    expect(cta).toBeGreaterThan(devlog);
 
     expect(home).not.toContain('Bento');
     expect(home).not.toContain('home.tech_articles');
     expect(home).toContain('useTranslations');
+    expect(home).toContain('isPublished(data.pubDate)');
+    expect(home).toContain("=== 'radiohub'");
   });
 
   it('las secciones usan la cabecera numerada compartida', () => {

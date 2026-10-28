@@ -1,15 +1,18 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import ProjectCard from "../../../components/ProjectCard.astro";
-import PhilosophyCard from "../../../components/PhilosophyCard.astro";
+import AppCard from "../../../components/AppCard.astro";
 import PageIntro from "../../../components/PageIntro.astro";
 import { getCollection } from "astro:content";
+import { isPublished } from "../../../utils/publishing";
 import { useTranslations } from "../../../i18n/utils";
 
 const t = useTranslations('es');
-const apps = (await getCollection("apps", ({ data, id }) => !data.draft && id.startsWith('es/'))).sort(
+const apps = (await getCollection("apps", ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith('es/'))).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+const featured = apps.find((app) => app.slug.split('/').pop() === 'radiohub');
+const otherApps = apps.filter((app) => app !== featured);
+const linkPrefix = '/es';
 ---
 
 <Layout title={`${t('apps.title')} - ArceApps`}>
@@ -30,28 +33,53 @@ const apps = (await getCollection("apps", ({ data, id }) => !data.draft && id.st
     </div>
   </section>
 
-  <section class="bg-surface-variant/30 py-14 dark:bg-dark-surface-variant/30 md:py-20 cv-auto" style="contain-intrinsic-size: 800px;">
-    <div class="container mx-auto px-4">
-      <PhilosophyCard />
-      {apps.length > 0 ? (
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
-          {apps.map((app) => (
-            <ProjectCard
-              title={app.data.title}
-              description={app.data.description}
-              heroImage={app.data.heroImage}
-              realIconUrl={app.data.realIconUrl}
-              tags={app.data.tags}
-              pubDate={app.data.pubDate}
-              slug={app.slug.split('/').pop() || ''}
-            />
+  <section class="border-b border-border bg-surface-subtle/60 py-10 dark:border-dark-border dark:bg-dark-surface-subtle/50 md:py-14">
+    <div class="mx-auto max-w-7xl px-4 md:px-6">
+      {otherApps.length > 0 ? (
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+          {otherApps.map((app) => (
+            <AppCard title={app.data.title} description={app.data.description} icon={app.data.icon}
+              realIconUrl={app.data.realIconUrl} link={`${linkPrefix}/apps/${app.slug.split('/').pop()}`}
+              isExternal={false} compact={true} ctaText={t('common.read_more')} />
           ))}
         </div>
-      ) : (
-        <div class="rounded-2xl border border-border bg-surface-raised px-6 py-14 text-center dark:border-dark-border dark:bg-dark-surface-raised">
-          <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant">{t('apps.empty')}</p>
+      ) : !featured && <p class="rounded-xl border border-border p-8 text-center dark:border-dark-border">{t('apps.empty')}</p>}
+    </div>
+  </section>
+  {featured && (
+    <section class="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
+      <div class="mb-8"><p class="text-xs font-bold uppercase tracking-[0.14em] text-primary">Aplicación destacada</p><h2 class="mt-2 text-3xl font-bold text-on-surface dark:text-dark-on-surface">{featured.data.title}</h2></div>
+      <div class="grid gap-8 rounded-3xl border border-border bg-surface-raised p-6 shadow-sm dark:border-dark-border dark:bg-dark-surface-raised md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:p-10">
+        <div class="flex flex-col justify-center">
+          <h3 class="text-2xl font-bold text-on-surface dark:text-dark-on-surface">La radio, como te gusta</h3>
+          <p class="mt-4 max-w-lg text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">{featured.data.description}</p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a href={`${linkPrefix}/apps/${featured.slug.split('/').pop()}`} class="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 font-bold text-white hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">Ver aplicación <span class="material-icons text-base" aria-hidden="true">arrow_forward</span></a>
+            {featured.data.googlePlayUrl && <a href={featured.data.googlePlayUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center rounded-xl border border-border px-5 py-3 font-semibold text-on-surface hover:border-primary dark:border-dark-border dark:text-dark-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">Google Play</a>}
+          </div>
+          <div class="mt-7 flex flex-wrap gap-2">{featured.data.tags?.map((tag) => <span class="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">{tag}</span>)}</div>
         </div>
-      )}
+        <div class="relative flex min-h-64 items-end justify-center gap-2 overflow-hidden rounded-2xl bg-surface-subtle px-4 pt-7 dark:bg-dark-surface-subtle sm:min-h-80">
+          {(featured.data.screenshots || []).slice(0,3).map((shot, index) => (
+            <img src={shot} alt={`${featured.data.title} screenshot ${index + 1}`} loading="lazy" decoding="async" class:list={["w-[29%] max-w-44 rounded-t-xl border border-border object-contain shadow-xl dark:border-dark-border", index === 1 ? "relative z-10 w-[34%]" : "translate-y-5"]} />
+          ))}
+          {(!featured.data.screenshots || featured.data.screenshots.length === 0) && featured.data.heroImage && <img src={featured.data.heroImage} alt={featured.data.title} class="h-auto w-full object-contain" loading="lazy" />}
+        </div>
+      </div>
+    </section>
+  )}
+  <section class="border-t border-border bg-surface-subtle py-14 dark:border-dark-border dark:bg-dark-surface-subtle">
+    <div class="mx-auto max-w-7xl px-4 md:px-6">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { icon: 'security', title: 'Privacidad', body: 'Proyectos que respetan a sus usuarios.' },
+          { icon: 'android', title: 'Android nativo', body: 'Aplicaciones diseñadas para el día a día.' },
+          { icon: 'palette', title: 'Diseño cuidado', body: 'Interfaces útiles y legibles.' },
+          { icon: 'code', title: 'Desarrollo independiente', body: 'Productos creados con atención al detalle.' }
+        ].map((item) => (
+          <div class="text-center"><span class="material-icons text-3xl text-primary" aria-hidden="true">{item.icon}</span><h3 class="mt-2 font-bold text-on-surface dark:text-dark-on-surface">{item.title}</h3><p class="mt-2 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">{item.body}</p></div>
+        ))}
+      </div>
     </div>
   </section>
 </Layout>

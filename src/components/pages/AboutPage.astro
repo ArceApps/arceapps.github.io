@@ -1,0 +1,79 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactForm from '../ContactForm.astro';
+import { getCollection } from 'astro:content';
+import { isPublished } from '../../utils/publishing';
+
+interface Props { lang: 'es' | 'en'; }
+const { lang } = Astro.props;
+const es = lang === 'es';
+const prefix = es ? '/es' : '';
+const [apps, projects, blog] = await Promise.all([
+  getCollection('apps', ({ id, data }) => id.startsWith(`${lang}/`) && !data.draft && isPublished(data.pubDate)),
+  getCollection('projects', ({ id, data }) => id.startsWith(`${lang}/`) && !data.draft && isPublished(data.pubDate)),
+  getCollection('blog', ({ id, data }) => id.startsWith(`${lang}/`) && !data.draft && isPublished(data.pubDate))
+]);
+const areas = es ? [
+  { icon: 'android', title: 'Desarrollo Android', body: 'Aplicaciones nativas y experiencias móviles con atención a la utilidad y los detalles.', href: '/es/apps' },
+  { icon: 'psychology', title: 'Inteligencia artificial', body: 'Agentes, automatización y herramientas aplicadas al desarrollo de software.', href: '/es/devlog' },
+  { icon: 'code', title: 'Proyectos independientes', body: 'Aplicaciones y experimentos que diseño, desarrollo y mantengo.', href: '/es/projects' },
+  { icon: 'menu_book', title: 'Contenido técnico', body: 'Guías, análisis y aprendizajes que comparto mientras construyo.', href: '/es/blog' }
+] : [
+  { icon: 'android', title: 'Android development', body: 'Native mobile apps and experiences that put usefulness and detail first.', href: '/apps' },
+  { icon: 'psychology', title: 'Artificial intelligence', body: 'Agents, automation and practical tools for building software.', href: '/devlog' },
+  { icon: 'code', title: 'Independent projects', body: 'Apps and experiments I design, develop and maintain.', href: '/projects' },
+  { icon: 'menu_book', title: 'Technical writing', body: 'Guides, practical analysis and lessons from building software.', href: '/blog' }
+];
+
+---
+<Layout
+  title={es ? 'Sobre ArceApps — Aplicaciones, proyectos y contenido técnico' : 'About ArceApps — Apps, projects and technical writing'}
+  description={es ? 'Descubre ArceApps: aplicaciones Android, proyectos independientes, artículos técnicos y un diario de desarrollo.' : 'Discover ArceApps: Android apps, independent projects, technical articles and a development journal.'}
+  type="website"
+  image="/logo.png"
+>
+  <section class="border-b border-border bg-surface-subtle dark:border-dark-border dark:bg-dark-surface-subtle">
+    <div class="mx-auto max-w-7xl px-4 py-14 md:px-6 md:py-20">
+      <p class="text-xs font-bold uppercase tracking-[0.16em] text-primary dark:text-teal-300">{es ? 'Acerca del proyecto' : 'About the project'}</p>
+      <h1 class="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface md:text-6xl">{es ? 'Aplicaciones, proyectos y aprendizaje continuo.' : 'Apps, projects and continuous learning.'}</h1>
+      <p class="mt-5 max-w-3xl text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant md:text-xl">
+        {es ? 'ArceApps es mi espacio para crear y compartir aplicaciones Android, herramientas, experimentos y artículos de desarrollo. Me interesa construir cosas útiles y explicar qué funciona, qué no y qué aprendo por el camino.' : 'ArceApps is where I build and share Android apps, tools, experiments and technical writing. I enjoy creating useful software and explaining what works, what does not and what I learn along the way.'}
+      </p>
+      <div class="mt-10 overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-sm dark:border-dark-border dark:bg-dark-surface-raised">
+        <div class="relative isolate grid min-h-52 items-center overflow-hidden bg-gradient-to-br from-[#0d6f72] via-[#0a414e] to-[#132333] px-7 py-10 text-white md:grid-cols-[1fr_auto] md:px-12">
+          <img src="/images/portfolio-landscape.svg" alt="" aria-hidden="true" width="1200" height="740" class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-screen dark:opacity-20" />
+          <div class="pointer-events-none absolute -bottom-32 right-0 h-72 w-[60%] rotate-[-18deg] rounded-full border-[50px] border-white/10" aria-hidden="true"></div>
+          <div class="relative">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-teal-100">ArceApps / Indie development</p>
+            <h2 class="mt-3 max-w-2xl text-3xl font-bold leading-tight md:text-4xl">{es ? 'Software útil, ideas propias y tecnología aplicada.' : 'Useful software, independent ideas and practical technology.'}</h2>
+            <p class="mt-4 max-w-xl text-white/85">{es ? 'Desde apps Android hasta herramientas de IA: el hilo conductor es experimentar, cuidar los detalles y compartir el proceso.' : 'From Android apps to AI tools: what connects them is experimentation, attention to detail and sharing the process.'}</p>
+          </div>
+          <span class="material-icons relative mt-6 text-7xl text-teal-100/70 md:mt-0 md:text-9xl" aria-hidden="true">deployed_code</span>
+        </div>
+        <div class="grid grid-cols-3 divide-x divide-border bg-surface-raised py-6 text-center dark:divide-dark-border dark:bg-dark-surface-raised">
+          <div class="px-2"><p class="text-2xl font-extrabold tabular-nums text-primary dark:text-teal-300 md:text-3xl">{apps.length}</p><p class="mt-1 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Apps' : 'Apps'}</p></div>
+          <div class="px-2"><p class="text-2xl font-extrabold tabular-nums text-primary dark:text-teal-300 md:text-3xl">{blog.length}</p><p class="mt-1 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Artículos' : 'Articles'}</p></div>
+          <div class="px-2"><p class="text-2xl font-extrabold tabular-nums text-primary dark:text-teal-300 md:text-3xl">{projects.length}</p><p class="mt-1 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Proyectos abiertos' : 'Open projects'}</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <div><p class="text-xs font-bold uppercase tracking-wider text-primary">{es ? 'Áreas de interés' : 'Areas of interest'}</p><h2 class="mt-2 text-3xl font-bold text-on-surface dark:text-dark-on-surface">{es ? 'Qué encontrarás aquí' : 'What you will find here'}</h2></div>
+      <a href={`${prefix}/projects`} class="inline-flex items-center gap-2 font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{es ? 'Ver proyectos' : 'Explore projects'} <span class="material-icons text-base" aria-hidden="true">arrow_forward</span></a>
+    </div>
+    <div class="grid gap-4 md:grid-cols-2">
+      {areas.map((area) => (
+        <a href={area.href} class="group flex min-h-32 gap-4 rounded-2xl border border-border bg-surface-raised p-6 transition-colors hover:border-primary/40 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised">
+          <span class="material-icons flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-2xl text-primary dark:text-teal-300" aria-hidden="true">{area.icon}</span>
+          <div><h3 class="text-lg font-bold text-on-surface dark:text-dark-on-surface">{area.title}</h3><p class="mt-2 leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">{area.body}</p></div><span class="material-icons ml-auto shrink-0 self-start text-primary" aria-hidden="true">arrow_outward</span>
+        </a>
+      ))}
+    </div>
+  </section>
+  <section id="contact" class="mx-auto max-w-3xl px-4 py-16 md:px-6 md:py-20">
+    <div class="mb-8 text-center"><h2 class="text-3xl font-bold text-on-surface dark:text-dark-on-surface">{es ? '¿Tienes alguna idea o sugerencia?' : 'Have an idea or suggestion?'}</h2><p class="mt-3 text-on-surface-variant dark:text-dark-on-surface-variant">{es ? 'Si quieres comentar alguna aplicación, artículo o proyecto, puedes ponerte en contacto.' : 'Want to share feedback about an app, article or project? Get in touch.'}</p></div>
+    <ContactForm lang={lang} />
+  </section>
+</Layout>

@@ -59,8 +59,8 @@ describe('contrato editorial del detalle de app', () => {
     const spanish = readSource(detailFiles[1]);
 
     for (const source of [english, spanish]) {
-      expect(source).toContain('aria-label={t(\'apps.gallery_aria\')}');
-      expect(source).toContain('alt={`${t(\'apps.screenshot_alt\')} ${index + 1}`}');
+      expect(source).toContain('<AppGallery');
+      expect(source).toContain("label={t('apps.gallery_aria')}");
       expect(source).toContain('focus-visible:');
     }
 

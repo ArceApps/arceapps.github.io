@@ -1,0 +1,19 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import BlogTopicPage from '../../../../components/pages/BlogTopicPage.astro';
+import { blogTopics, topicOf } from '../../../../utils/blog-topics';
+import { isPublished } from '../../../../utils/publishing';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = (await getCollection('blog', ({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith('en/')))
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  const availableTopics = blogTopics.filter(item => posts.some(post => topicOf(post) === item.slug)).map(item => item.slug);
+  return blogTopics.flatMap(topic => {
+    const matches = posts.filter(post => topicOf(post) === topic.slug);
+    return matches.length ? paginate(matches, { params: { topic: topic.slug }, pageSize: 9, props: { topic: topic.slug, availableTopics } }) : [];
+  });
+}) satisfies GetStaticPaths;
+const { page, topic, availableTopics } = Astro.props;
+---
+<BlogTopicPage lang="en" topic={topic} page={page} availableTopics={availableTopics} />

@@ -13,6 +13,7 @@ interface Props {
   datePrecision?: 'exact' | 'approximate';
   slug: string;
   kind?: 'app' | 'project';
+  status?: 'active' | 'maintained' | 'archived' | 'experimental';
 }
 
 const {
@@ -25,11 +26,15 @@ const {
   datePrecision = 'exact',
   slug,
   kind = 'app',
+  status,
 } = Astro.props;
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const basePath = kind === 'project' ? 'projects' : 'apps';
+const statusText = status ? (lang === 'es'
+  ? { active: 'Activo', maintained: 'En mantenimiento', archived: 'Archivado', experimental: 'Experimental' }[status]
+  : { active: 'Active', maintained: 'Maintained', archived: 'Archived', experimental: 'Experimental' }[status]) : undefined;
 const href = lang === 'es' ? `/es/${basePath}/${slug}` : `/${basePath}/${slug}`;
 ---
 
@@ -113,9 +118,8 @@ const href = lang === 'es' ? `/es/${basePath}/${slug}` : `/${basePath}/${slug}`;
     <div
       class="flex items-center justify-between mt-auto pt-6 border-t border-gray-100 dark:border-gray-800"
     >
-      <span
-        class="text-sm font-medium text-on-surface-variant/70 dark:text-dark-on-surface-variant/70"
-      >
+      <span class="flex flex-wrap items-center gap-2 text-sm font-medium text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
+        {statusText && <span class="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-bold text-primary dark:text-teal-300">{statusText}</span>}
         <span class="flex flex-col items-end gap-0.5">
           <time datetime={pubDate.toISOString()}>
             {pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US')}

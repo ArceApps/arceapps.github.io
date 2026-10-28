@@ -1,0 +1,73 @@
+---
+interface Props {
+  screenshots: string[];
+  lang: 'es' | 'en';
+  label: string;
+}
+const { screenshots, lang, label } = Astro.props;
+const es = lang === 'es';
+---
+
+<div class="app-gallery grid grid-cols-2 gap-4 rounded-2xl border border-border bg-surface-raised p-4 dark:border-dark-border dark:bg-dark-surface-raised sm:grid-cols-3 lg:grid-cols-4" aria-label={label}>
+  {screenshots.map((screenshot, index) => (
+    <button type="button" class="app-gallery-thumb group aspect-[3/4] overflow-hidden rounded-xl border border-border bg-surface p-1 transition hover:border-primary hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface" data-gallery-index={index} aria-label={`${es ? 'Ampliar captura' : 'Enlarge screenshot'} ${index + 1}`}>
+      <img src={screenshot} alt={`${es ? 'Captura de pantalla' : 'Screenshot'} ${index + 1}`} class="h-full w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transition-none" loading="lazy" decoding="async" />
+    </button>
+  ))}
+</div>
+<dialog class="app-gallery-dialog m-auto w-[min(95vw,920px)] max-h-[94svh] rounded-2xl border border-border bg-surface p-4 text-on-surface shadow-2xl dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface md:p-6" aria-label={label}>
+  <div class="mb-4 flex items-center justify-between gap-4">
+    <span class="app-gallery-counter text-sm font-semibold text-on-surface-variant dark:text-dark-on-surface-variant" aria-live="polite"></span>
+    <button type="button" class="app-gallery-close flex h-11 w-11 items-center justify-center rounded-full border border-border hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border" aria-label={es ? 'Cerrar galería' : 'Close gallery'}><span class="material-icons" aria-hidden="true">close</span></button>
+  </div>
+  <div class="flex items-center justify-between gap-2 sm:gap-4">
+    <button type="button" class="app-gallery-prev flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border" aria-label={es ? 'Captura anterior' : 'Previous screenshot'}><span class="material-icons" aria-hidden="true">chevron_left</span></button>
+    <img class="app-gallery-image min-h-0 max-h-[70svh] min-w-0 flex-1 object-contain" alt="" />
+    <button type="button" class="app-gallery-next flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border" aria-label={es ? 'Siguiente captura' : 'Next screenshot'}><span class="material-icons" aria-hidden="true">chevron_right</span></button>
+  </div>
+</dialog>
+
+<script>
+  function initGalleries() {
+    document.querySelectorAll<HTMLElement>('.app-gallery').forEach((gallery) => {
+      if (gallery.dataset.galleryReady) return;
+      gallery.dataset.galleryReady = 'true';
+      const dialog = gallery.nextElementSibling as HTMLDialogElement | null;
+      if (!dialog || !('showModal' in dialog)) return;
+      const thumbs = [...gallery.querySelectorAll<HTMLButtonElement>('[data-gallery-index]')];
+      const preview = dialog.querySelector<HTMLImageElement>('.app-gallery-image');
+      const counter = dialog.querySelector<HTMLElement>('.app-gallery-counter');
+      if (!preview || !counter || thumbs.length === 0) return;
+      let current = 0;
+      const update = () => {
+        const img = thumbs[current].querySelector('img');
+        if (!img) return;
+        preview.src = img.src;
+        preview.alt = img.alt;
+        counter.textContent = `${current + 1} / ${thumbs.length}`;
+      };
+      const navigate = (step: number) => {
+        current = (current + step + thumbs.length) % thumbs.length;
+        update();
+      };
+      thumbs.forEach((thumb, index) => thumb.addEventListener('click', () => {
+        current = index;
+        update();
+        dialog.showModal();
+      }));
+      dialog.querySelector('.app-gallery-close')?.addEventListener('click', () => dialog.close());
+      dialog.querySelector('.app-gallery-prev')?.addEventListener('click', () => navigate(-1));
+      dialog.querySelector('.app-gallery-next')?.addEventListener('click', () => navigate(1));
+      dialog.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') { event.preventDefault(); navigate(-1); }
+        if (event.key === 'ArrowRight') { event.preventDefault(); navigate(1); }
+      });
+      dialog.addEventListener('click', (event) => { if (event.target === dialog) dialog.close(); });
+    });
+  }
+  document.addEventListener('astro:page-load', initGalleries);
+  if (document.readyState !== 'loading') initGalleries();
+</script>
+<style>
+  .app-gallery-dialog::backdrop { background: rgb(4 12 18 / 83%); backdrop-filter: blur(7px); }
+</style>

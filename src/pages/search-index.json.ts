@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import { sanitizeForSearch } from '../utils/sanitizer';
+import { isPublished } from '../utils/publishing';
 
 // Strip markdown to clean text for search indexing
 function stripMarkdown(text: string): string {
@@ -20,9 +21,11 @@ function stripMarkdown(text: string): string {
 }
 
 export async function GET() {
-  const [posts, apps] = await Promise.all([
-    getCollection('blog', ({ data }) => !data.draft),
-    getCollection('apps', ({ data }) => !data.draft),
+  const [posts, apps, projects, devlogs] = await Promise.all([
+    getCollection('blog', ({ data }) => !data.draft && isPublished(data.pubDate)),
+    getCollection('apps', ({ data }) => !data.draft && isPublished(data.pubDate)),
+    getCollection('projects', ({ data }) => !data.draft && isPublished(data.pubDate)),
+    getCollection('devlog', ({ data }) => !data.draft && isPublished(data.pubDate)),
   ]);
 
   const searchIndex = [
@@ -38,6 +41,32 @@ export async function GET() {
         tags: post.data.tags || [],
         lang: isSpanish ? 'es' : 'en',
         body: stripMarkdown(post.body || '').slice(0, 600),
+      };
+    }),
+    ...projects.map((project) => {
+      const isSpanish = project.slug.startsWith('es/');
+      const cleanSlug = project.slug.replace(/^(en|es)\//, '');
+      return {
+        title: sanitizeForSearch(project.data.title, 100),
+        description: sanitizeForSearch(project.data.description, 200),
+        slug: `${isSpanish ? '/es/projects/' : '/projects/'}${cleanSlug}`,
+        type: 'Project',
+        tags: project.data.tags || [],
+        lang: isSpanish ? 'es' : 'en',
+        body: stripMarkdown(project.body || '').slice(0, 600),
+      };
+    }),
+    ...devlogs.map((log) => {
+      const isSpanish = log.slug.startsWith('es/');
+      const cleanSlug = log.slug.replace(/^(en|es)\//, '');
+      return {
+        title: sanitizeForSearch(log.data.title, 100),
+        description: sanitizeForSearch(log.data.description, 200),
+        slug: `${isSpanish ? '/es/devlog/' : '/devlog/'}${cleanSlug}`,
+        type: 'Devlog',
+        tags: log.data.tags || [],
+        lang: isSpanish ? 'es' : 'en',
+        body: stripMarkdown(log.body || '').slice(0, 600),
       };
     }),
     ...apps.map((app) => {

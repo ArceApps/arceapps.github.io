@@ -6,6 +6,8 @@ describe('Search Script', () => {
 
   beforeEach(async () => {
     vi.resetModules();
+    // The page language is part of the bilingual search contract.
+    document.documentElement.lang = 'es';
 
     // Reset DOM
     document.body.innerHTML = `
@@ -135,10 +137,30 @@ describe('Search Script', () => {
   });
 
   describe('performSearch', () => {
+    it('should filter English results and use English status text on English pages', async () => {
+        document.documentElement.lang = 'en';
+        const esItem = { title: 'Solo español', slug: '/es/apps/solo', type: 'App', lang: 'es', description: 'ES' };
+        const enItem = { title: 'English App', slug: '/apps/english', type: 'App', lang: 'en', description: 'EN' };
+        global.fetch = vi.fn().mockResolvedValue({
+            ok: true,
+            json: () => Promise.resolve([esItem, enItem]),
+        });
+        searchMock.mockReturnValue([{ item: esItem }, { item: enItem }]);
+
+        await searchModule.initFuse();
+        searchModule.performSearch('app');
+        const results = document.getElementById('search-results');
+        expect(results?.textContent).toContain('English App');
+        expect(results?.textContent).not.toContain('Solo español');
+
+        searchModule.performSearch('a');
+        expect(document.getElementById('search-status')?.textContent).toContain('Type at least 2 characters');
+    });
+
     it('should show "at least 2 characters" message for short query', async () => {
         global.fetch = vi.fn().mockResolvedValue({
             ok: true,
-            json: () => Promise.resolve([{ title: "Test", slug: "/test", type: "App" }]),
+            json: () => Promise.resolve([{ title: "Test", slug: "/test", type: "App", lang: "es" }]),
         });
 
         await searchModule.initFuse();
@@ -151,11 +173,11 @@ describe('Search Script', () => {
     it('should display results when query matches', async () => {
         global.fetch = vi.fn().mockResolvedValue({
             ok: true,
-            json: () => Promise.resolve([{ title: "Test App", slug: "/app", type: "App" }]),
+            json: () => Promise.resolve([{ title: "Test App", slug: "/app", type: "App", lang: "es" }]),
         });
 
         searchMock.mockReturnValue([{
-            item: { title: "Test App", slug: "/app", type: "App", description: "Desc" }
+            item: { title: "Test App", slug: "/app", type: "App", lang: "es", description: "Desc" }
         }]);
 
         await searchModule.initFuse();
@@ -168,11 +190,11 @@ describe('Search Script', () => {
     it('should sanitize javascript: URIs in results', async () => {
         global.fetch = vi.fn().mockResolvedValue({
             ok: true,
-            json: () => Promise.resolve([{ title: "XSS", slug: "javascript:alert(1)", type: "App" }]),
+            json: () => Promise.resolve([{ title: "XSS", slug: "javascript:alert(1)", type: "App", lang: "es" }]),
         });
 
         searchMock.mockReturnValue([{
-            item: { title: "XSS", slug: "javascript:alert(1)", type: "App", description: "Vulnerable" }
+            item: { title: "XSS", slug: "javascript:alert(1)", type: "App", lang: "es", description: "Vulnerable" }
         }]);
 
         await searchModule.initFuse();
@@ -187,11 +209,11 @@ describe('Search Script', () => {
         const legitimateSlug = "/blog/my-awesome-post";
         global.fetch = vi.fn().mockResolvedValue({
             ok: true,
-            json: () => Promise.resolve([{ title: "Safe", slug: legitimateSlug, type: "Article" }]),
+            json: () => Promise.resolve([{ title: "Safe", slug: legitimateSlug, type: "Article", lang: "es" }]),
         });
 
         searchMock.mockReturnValue([{
-            item: { title: "Safe", slug: legitimateSlug, type: "Article", description: "Safe Link" }
+            item: { title: "Safe", slug: legitimateSlug, type: "Article", lang: "es", description: "Safe Link" }
         }]);
 
         await searchModule.initFuse();
@@ -206,11 +228,11 @@ describe('Search Script', () => {
         const xssPayload = '<img src=x onerror=alert(1)>';
         global.fetch = vi.fn().mockResolvedValue({
             ok: true,
-            json: () => Promise.resolve([{ title: xssPayload, slug: "/app", type: "App", description: "Desc" }]),
+            json: () => Promise.resolve([{ title: xssPayload, slug: "/app", type: "App", lang: "es", description: "Desc" }]),
         });
 
         searchMock.mockReturnValue([{
-            item: { title: xssPayload, slug: "/app", type: "App", description: "Desc" }
+            item: { title: xssPayload, slug: "/app", type: "App", lang: "es", description: "Desc" }
         }]);
 
         await searchModule.initFuse();

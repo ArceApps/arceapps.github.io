@@ -1,0 +1,53 @@
+---
+import type { Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../PageIntro.astro';
+import BlogCard from '../BlogCard.astro';
+import { blogTopics, type BlogTopic } from '../../utils/blog-topics';
+
+interface Props {
+  lang: 'es' | 'en';
+  topic: BlogTopic;
+  page: Page<CollectionEntry<'blog'>>;
+  availableTopics: BlogTopic[];
+}
+const { lang, topic, page, availableTopics } = Astro.props;
+const es = lang === 'es';
+const prefix = es ? '/es/blog' : '/blog';
+const topicInfo = blogTopics.find(item => item.slug === topic);
+const label = topicInfo ? (es ? topicInfo.es : topicInfo.en) : topic;
+---
+<Layout title={`${label} · ${es ? 'Blog' : 'Blog'} — ArceApps`}
+  description={es ? `Artículos de ${label} publicados en ArceApps.` : `ArceApps articles about ${label}.`}>
+  <section class="border-b border-border bg-surface-subtle px-4 py-14 dark:border-dark-border dark:bg-dark-surface-subtle md:py-20">
+    <div class="container mx-auto max-w-5xl">
+      <a href={prefix} class="mb-7 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+        <span class="material-icons text-base" aria-hidden="true">arrow_back</span>{es ? 'Volver al blog' : 'Back to blog'}
+      </a>
+      <PageIntro title={label} description={es ? 'Explora artículos y guías de esta categoría.' : 'Explore articles and guides in this category.'} />
+      <nav class="mt-7 flex flex-wrap gap-2" aria-label={es ? 'Categorías del blog' : 'Blog categories'}>
+        <a href={prefix} class="rounded-full border border-border px-4 py-2 text-sm font-semibold text-on-surface-variant hover:text-primary dark:border-dark-border dark:text-dark-on-surface-variant">{es ? 'Todo' : 'All'}</a>
+        {blogTopics.filter(item => availableTopics.includes(item.slug)).map(item => (
+          <a href={`${prefix}/topic/${item.slug}/`} aria-current={item.slug === topic ? 'page' : undefined}
+            class:list={["rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary", item.slug === topic ? "border-primary bg-primary text-white" : "border-border text-on-surface-variant hover:border-primary dark:border-dark-border dark:text-dark-on-surface-variant"]}>
+            {es ? item.es : item.en}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+  <section class="py-12 md:py-16">
+    <div class="container mx-auto max-w-5xl px-4">
+      <p class="mb-6 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">{page.total} {es ? 'artículos en esta categoría' : 'articles in this category'}</p>
+      <div class="grid grid-cols-1 gap-5">
+        {page.data.map(post => <BlogCard post={post} list={true} />)}
+      </div>
+      <nav class="mt-10 flex flex-wrap justify-center gap-3" aria-label={es ? 'Páginas' : 'Pages'}>
+        {page.url.prev && <a href={page.url.prev} class="inline-flex min-h-11 items-center rounded-xl border border-border px-5 py-2 font-semibold text-primary hover:border-primary dark:border-dark-border">{es ? 'Anterior' : 'Previous'}</a>}
+        <span class="inline-flex items-center px-3 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">{page.currentPage} / {page.lastPage}</span>
+        {page.url.next && <a href={page.url.next} class="inline-flex min-h-11 items-center rounded-xl border border-border px-5 py-2 font-semibold text-primary hover:border-primary dark:border-dark-border">{es ? 'Siguiente' : 'Next'}</a>}
+      </nav>
+    </div>
+  </section>
+</Layout>
