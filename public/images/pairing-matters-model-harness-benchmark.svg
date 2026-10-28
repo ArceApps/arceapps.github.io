@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Pairing Matters — model × harness</title>
+<desc id="desc">A minimal geometric grid of six agent harnesses and three coding models, with the central message: 1,800 runs and a 44 percentage point spread.</desc>
+<rect width="1200" height="630" fill="#0F172A"/>
+<g stroke="#018786" stroke-width="1" opacity=".18"><path d="M0 0V630"/><path d="M75 0V630"/><path d="M150 0V630"/><path d="M225 0V630"/><path d="M300 0V630"/><path d="M375 0V630"/><path d="M450 0V630"/><path d="M525 0V630"/><path d="M600 0V630"/><path d="M675 0V630"/><path d="M750 0V630"/><path d="M825 0V630"/><path d="M900 0V630"/><path d="M975 0V630"/><path d="M1050 0V630"/><path d="M1125 0V630"/><path d="M1200 0V630"/><path d="M0 0H1200"/><path d="M0 78H1200"/><path d="M0 156H1200"/><path d="M0 234H1200"/><path d="M0 312H1200"/><path d="M0 390H1200"/><path d="M0 468H1200"/><path d="M0 546H1200"/><path d="M0 624H1200"/></g>
+<circle cx="1015" cy="90" r="200" fill="#018786" opacity=".08"/><circle cx="170" cy="600" r="230" fill="#FF9800" opacity=".05"/>
+<text x="80" y="112" fill="#FF9800" font-size="24" font-family="Arial,sans-serif" font-weight="700" letter-spacing="5">RESEARCH / CODING AGENTS</text>
+<text x="80" y="203" fill="#F8FAFC" font-size="73" font-family="Arial,sans-serif" font-weight="800">PAIRING</text>
+<text x="80" y="280" fill="#F8FAFC" font-size="73" font-family="Arial,sans-serif" font-weight="800">MATTERS</text>
+<text x="80" y="345" fill="#F8FAFC" font-size="29" font-family="Arial,sans-serif">MODEL × HARNESS × TASK</text>
+<rect x="80" y="404" width="305" height="126" rx="19" fill="#018786" opacity=".93"/>
+<text x="108" y="463" fill="#F8FAFC" font-size="48" font-family="Arial,sans-serif" font-weight="700">1,800</text>
+<text x="110" y="501" fill="#F8FAFC" font-size="23" font-family="Arial,sans-serif">graded runs</text>
+<rect x="403" y="404" width="240" height="126" rx="19" fill="#FF9800"/>
+<text x="429" y="463" fill="#0F172A" font-size="48" font-family="Arial,sans-serif" font-weight="700">44 pp</text>
+<text x="430" y="501" fill="#0F172A" font-size="22" font-family="Arial,sans-serif">same model</text>
+<g transform="translate(724 139)">
+<text x="0" y="-28" fill="#F8FAFC" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="2">6 HARNESSES × 3 MODELS</text>
+<rect x="0" y="0" width="107" height="49" rx="11" fill="#FF9800" opacity="0.45"/><rect x="124" y="0" width="107" height="49" rx="11" fill="#018786" opacity="0.65"/><rect x="248" y="0" width="107" height="49" rx="11" fill="#018786" opacity="0.8500000000000001"/><rect x="0" y="65" width="107" height="49" rx="11" fill="#018786" opacity="0.65"/><rect x="124" y="65" width="107" height="49" rx="11" fill="#018786" opacity="0.8500000000000001"/><rect x="248" y="65" width="107" height="49" rx="11" fill="#FF9800" opacity="0.45"/><rect x="0" y="130" width="107" height="49" rx="11" fill="#018786" opacity="0.8500000000000001"/><rect x="124" y="130" width="107" height="49" rx="11" fill="#FF9800" opacity="0.45"/><rect x="248" y="130" width="107" height="49" rx="11" fill="#018786" opacity="0.65"/><rect x="0" y="195" width="107" height="49" rx="11" fill="#FF9800" opacity="0.45"/><rect x="124" y="195" width="107" height="49" rx="11" fill="#018786" opacity="0.65"/><rect x="248" y="195" width="107" height="49" rx="11" fill="#018786" opacity="0.8500000000000001"/><rect x="0" y="260" width="107" height="49" rx="11" fill="#018786" opacity="0.65"/><rect x="124" y="260" width="107" height="49" rx="11" fill="#018786" opacity="0.8500000000000001"/><rect x="248" y="260" width="107" height="49" rx="11" fill="#FF9800" opacity="0.45"/><rect x="0" y="325" width="107" height="49" rx="11" fill="#018786" opacity="0.8500000000000001"/><rect x="124" y="325" width="107" height="49" rx="11" fill="#FF9800" opacity="0.45"/><rect x="248" y="325" width="107" height="49" rx="11" fill="#018786" opacity="0.65"/>
+</g>
+<text x="80" y="595" fill="#F8FAFC" font-size="18" font-family="Arial,sans-serif" opacity=".78">ARCEAPPS  •  PAPER ANALYSIS  •  OCT 2026</text>
+</svg>
