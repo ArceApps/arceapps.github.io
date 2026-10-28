@@ -2,7 +2,7 @@
 title: "Coucou: supervisar agentes sin abandonar el editor"
 description: "Investigamos cómo Coucou conecta agentes, escritorio y móvil para revisar permisos, observar sesiones y reducir interrupciones sin perder control."
 pubDate: 2026-10-26
-lastmod: 2026-10-26
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["Coucou", "agentes de IA", "Claude Code", "Codex", "Android"]
 canonical: "https://arceapps.com/es/devlog/2026-w44-coucou-agent-supervision/"
@@ -19,6 +19,12 @@ Ese detalle aparentemente pequeño es el motivo para estudiar [Coucou](https://g
 El repositorio, impulsado por Louis Raillé y con la aplicación Android y parte del enlace móvil desarrollados por Rhytam Biswas, ofrece una respuesta con matices. Coucou muestra el estado de agentes como Claude Code, Codex, Gemini CLI, Cursor, OpenCode, Amp y Hermes en una pequeña isla visual del escritorio. Puede presentar solicitudes de aprobación, enseñar cambios y, según plataforma y agente, trasladar algunas decisiones al teléfono. Su personaje, Mochi, aporta personalidad; lo relevante para nosotros está detrás de esos ojos animados.
 
 La documentación examinada corresponde al estado público consultado el **26 de octubre de 2026**. La serie 0.5.3 figura en el historial del 22 de octubre para macOS y también para Windows y Linux; Android llega a 0.3.0. Son versiones recientes y con diferencias funcionales entre plataformas. Por eso evito tratar cualquier característica anunciada en una plataforma como garantía automática para las otras.
+
+## Cómo se ve Coucou realmente
+
+![Captura de pantalla auténtica de Coucou con una sesión de Claude Code](/images/devlog/coucou-official-claude-code.png)
+
+*Interfaz auténtica de Coucou, publicada por el proyecto. © Louis Raillé. [Fuente y permiso editorial](https://github.com/Louis-CFM/coucou/blob/main/LICENSE-ASSETS.md). No es una instalación ni una prueba realizada por ArceApps.*
 
 ## La interrupción como problema de diseño
 
@@ -60,6 +66,10 @@ Otro detalle merece reconocimiento: cuando Coucou no está abierto, la documenta
 
 Mostrar un botón verde de permitir es fácil. Conseguir que una pulsación corresponda a la petición correcta es el problema complicado. La documentación del enlace Android está bien enfocada precisamente porque no se conforma con hablar de autenticación en general: describe el contrato de cada aprobación.
 
+![Infografía del flujo de eventos y aprobaciones entre agentes, relay, Android y escritorio](/images/devlog/coucou-approval-flow-es.svg)
+
+*Diagrama original de la ruta Android documentada, no una captura de pantalla. Una decisión solo es válida para una solicitud vigente y coincidente.*
+
 El escritorio calcula una huella SHA-256 que incorpora identificador visual, sesión, herramienta, comando y un identificador de la solicitud. En Windows y Linux, este último cambia incluso si el agente pide ejecutar el mismo comando dos veces. El teléfono devuelve una decisión vinculada a esa huella; el escritorio solo la aplica si **esa petición concreta continúa pendiente**. Una autorización tardía, reutilizada o destinada a otro comando no debe servir.
 
 Además, la aprobación caduca. El protocolo documenta una ventana de dos minutos, con retirada en el escritorio antes de ese límite. Permitir requiere biometría o bloqueo de pantalla configurado; denegar no. Si el teléfono muestra un comando truncado, solo permite denegar y obliga a revisar el texto completo en el ordenador. No es un capricho de interfaz: impedir que alguien apruebe lo que no puede leer cierra una clase entera de errores humanos.
@@ -85,6 +95,10 @@ También existe documentación de un mecanismo de relay por Internet, distinto d
 ## iPhone no es un Android con otro icono
 
 En el lado Apple el diseño cambia de forma sustancial. Según el documento oficial, el Mac publica sesiones, turnos y estados en una zona privada de CloudKit, asociada a la cuenta iCloud del usuario. El iPhone consume ese estado y puede escribir decisiones o instrucciones que el Mac procesa solo cuando corresponden al trabajo pendiente.
+
+![Captura oficial de Coucou en iPhone con un diálogo de aprobación](/images/devlog/coucou-official-iphone-approval.jpg)
+
+*Captura oficial de la aprobación en iPhone, © Louis Raillé. El transporte de iPhone usa CloudKit; no representa el enlace local con Android. [Material original](https://github.com/Louis-CFM/coucou).* 
 
 Para las Live Activities, el repositorio describe un relay basado en Cloudflare Workers encargado de las notificaciones APNs. La documentación afirma que ese relay no necesita acceder al contenido completo de la sesión, sino a información mínima de estado. Es una arquitectura razonable sobre el papel, aunque la evaluación exhaustiva de privacidad necesitaría auditar el código, el despliegue y el modelo real de amenazas.
 

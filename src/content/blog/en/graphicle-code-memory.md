@@ -2,7 +2,7 @@
 title: "Graphicle: Code Graph and Memory for AI Coding Agents"
 description: "Explore how Graphicle combines a code graph, documentation and agent memory; examine its architecture, privacy, benchmarks and closest alternatives."
 pubDate: 2026-10-26
-lastmod: 2026-10-26
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["Graphicle", "code graph", "AI agent memory", "MCP", "Claude Code", "Codex", "Graphify"]
 canonical: "https://arceapps.com/blog/graphicle-code-memory/"
@@ -53,6 +53,10 @@ There is an important origin story. **Graphicle's code-graph engine is a Rust po
 It is not a complete autonomous developer. The program does not independently decide which issue to implement or verify the correctness of a pull request. It does not replace unit tests or a human's understanding of an architectural choice. It supplies the context with which an agent, and ultimately a developer, can make those choices.
 
 That distinction is essential because **well-cited misinformation is still misinformation**. A stale document remains stale even when retrieved with perfect source references.
+
+![Four-stage conceptual diagram about graphicle code memory](/images/blog/diagrams/graphicle-code-memory-en.svg)
+
+*Original ArceApps explanatory diagram, not a screenshot or measured result.*
 
 ## How the code graph helps with multi-hop questions
 

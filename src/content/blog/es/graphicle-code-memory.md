@@ -2,7 +2,7 @@
 title: "Graphicle: grafo de código y memoria para agentes IA"
 description: "Descubre cómo Graphicle conecta código, documentación y memoria para agentes IA; analizamos su arquitectura, privacidad, benchmarks y alternativas."
 pubDate: 2026-10-26
-lastmod: 2026-10-26
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["Graphicle", "grafo de código", "memoria IA", "MCP", "Claude Code", "Codex", "Graphify"]
 canonical: "https://arceapps.com/es/blog/graphicle-code-memory/"
@@ -46,6 +46,10 @@ En una instalación típica intervienen estas piezas:
 Hay una distinción de arquitectura importante: el **motor de grafo de Graphicle es un port en Rust de Graphify**, con atribución explícita al proyecto original. La memoria, la interfaz y la captura de sesiones son capacidades añadidas. No son productos idénticos ni competidores surgidos de diseños independientes. Esa genealogía importa al comparar resultados y licencias.
 
 Tampoco es un sistema de agentes completo. No decide por ti qué issue implementar, no sustituye las pruebas, no realiza una revisión arquitectónica de manera automática y no convierte documentación mediocre en conocimiento fiable. Si el índice contiene instrucciones antiguas, puede recuperar instrucciones antiguas con mucha precisión. Citar una fuente mejora la auditabilidad; **no garantiza que sea correcta**.
+
+![Diagrama conceptual de cuatro pasos sobre graphicle code memory](/images/blog/diagrams/graphicle-code-memory-es.svg)
+
+*Diagrama explicativo original de ArceApps; no representa una captura ni una medición.*
 
 ## Cómo construye el grafo de código
 

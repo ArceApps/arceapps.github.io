@@ -2,7 +2,7 @@
 title: "Harness²: agents that improve their own harness"
 description: "Understand Harness² from Google Research: recursive harness optimization, benchmark results, security limitations, and practical lessons for coding agents."
 pubDate: 2026-10-22
-lastmod: 2026-10-22
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["Harness²","recursive agent harnessing","Google Research","harness engineering","Codex"]
 canonical: "https://arceapps.com/blog/harness2-recursive-agent-harnessing/"
@@ -30,6 +30,10 @@ In an indie project these problems are familiar. We adjust an instruction file, 
 Automated improvement often depends on clear rewards: a passing test, a correct answer, or a game score. Agents, however, encounter tasks nobody anticipated while designing their harness. A task may require fixing UI, reviewing documentation, navigating a web app, or coordinating unfamiliar tools.
 
 Harness² addresses two problems. First, improve the harness for **the current task**, even without a ground-truth verifier. Second, extract lessons that can help on future tasks. It does this with **two connected recursions**.
+
+![Four-stage diagram about harness2 recursive agent harnessing](/images/blog/diagrams/harness2-recursive-agent-harnessing-en.svg)
+
+*Original ArceApps explanatory diagram, not a screenshot or measured result.*
 
 ## Task-level recursion: Propose–Probe–Compose
 

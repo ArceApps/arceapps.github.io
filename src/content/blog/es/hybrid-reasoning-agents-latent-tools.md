@@ -2,7 +2,7 @@
 title: "HybridAgents: razonar en latente y actuar con herramientas"
 description: "Explora Hybrid Reasoning Agents: cómo combina razonamiento latente, memoria continua y herramientas, qué demuestra el paper y qué falta por validar."
 pubDate: 2026-10-20
-lastmod: 2026-10-20
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["Hybrid Reasoning Agents","HybridLink","razonamiento latente","agentes IA","Together AI"]
 canonical: "https://arceapps.com/es/blog/hybrid-reasoning-agents-latent-tools/"
@@ -57,6 +57,10 @@ Usuario: "Investiga el fallo y propón una corrección"
 \`\`\`
 
 Este dibujo explica el patrón, **no es un esquema exacto de tensores o APIs** de la implementación. La innovación no es llamar herramientas —eso ya existía— sino permitir que las deliberaciones intermedias no tengan que convertirse necesariamente en una larga cadena de texto.
+
+![Diagrama de cuatro etapas de hybrid reasoning agents latent tools](/images/blog/diagrams/hybrid-reasoning-agents-latent-tools-es.svg)
+
+*Diagrama explicativo original de ArceApps; no representa una captura ni una medición.*
 
 ## Por qué la memoria de trabajo cambia la discusión
 

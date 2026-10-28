@@ -2,7 +2,7 @@
 title: "SlopCodeBench: los agentes siguen rompiendo código"
 description: "Revisa SlopCodeBench de octubre de 2026: resultados de Astra y Opus, costes de XHigh, regresiones y qué cambiar en tu flujo con agentes."
 pubDate: 2026-10-26
-lastmod: 2026-10-26
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["SlopCodeBench","GPT-6 Astra","Opus 5.5","coding agents","regression testing"]
 canonical: "https://arceapps.com/es/blog/slopcodebench-october-coding-agents/"
@@ -34,6 +34,10 @@ Cada paso puede pasar sus pruebas nuevas y, sin embargo, romper una propiedad an
 Un benchmark de una sola función puede aplaudir el resultado de la última petición. SlopCodeBench pregunta si **sobreviven los compromisos adquiridos en las etapas anteriores**.
 
 Esta es la medida que de verdad importa al mantener productos reales. El software no se escribe una vez; se corrige y amplía. Una solución que luce bien en la demo pero se deteriora en la tercera modificación es una mala inversión.
+
+![Diagrama conceptual de cuatro pasos sobre slopcodebench october coding agents](/images/blog/diagrams/slopcodebench-october-coding-agents-es.svg)
+
+*Diagrama explicativo original de ArceApps; no representa una captura ni una medición.*
 
 ## Core pass no significa strict pass
 

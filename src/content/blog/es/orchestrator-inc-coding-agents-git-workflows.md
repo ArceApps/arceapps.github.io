@@ -2,7 +2,7 @@
 title: "Orchestrator.inc: coordinar agentes hasta el PR"
 description: "Analizamos Orchestrator.inc desde sus worktrees y agentes paralelos hasta CI, revisiones, seguridad y móvil, y lo comparamos con Orca, OpenChamber y Paseo."
 pubDate: 2026-10-06
-lastmod: 2026-10-26
+lastmod: 2026-10-28
 author: ArceApps
 keywords: ["Orchestrator.inc", "Agent Orchestrator", "coding agents", "git worktrees", "Orca", "OpenChamber", "Paseo"]
 canonical: "https://arceapps.com/es/blog/orchestrator-inc-coding-agents-git-workflows/"
@@ -35,6 +35,10 @@ La idea de diseño es separar tres responsabilidades. El **agente de programaci�
 Esto tiene una consecuencia importante: instalar Orchestrator no equivale a contratar un modelo. Para utilizar un harness externo necesitas tenerlo disponible y autenticado. La aplicación aprovecha las credenciales o suscripciones configuradas para esas herramientas, según explica su documentación de instalación. Que el controlador local sea de código abierto no implica que Claude, Codex u otros modelos sean gratuitos.
 
 Tampoco es un editor generalista que debas adoptar en lugar de tu IDE. Puedes seguir revisando el código con las herramientas habituales. Su valor está en **mantener la procedencia**: qué tarea originó un cambio, qué sesión lo escribió, qué rama contiene el trabajo y qué ocurrió después de abrir el PR. Una cadena de custodia imperfecta, pero mucho mejor que tener veinte conversaciones sin contexto compartido.
+
+![Infografía sobre orchestrator inc coding agents git workflows y sus cuatro etapas](/images/blog/diagrams/orchestrator-inc-coding-agents-git-workflows-es.svg)
+
+*Diagrama explicativo original de ArceApps; no representa una captura ni una medición.*
 
 ## Bajo el capó: daemon Go, Electron y estado persistente
 

@@ -2,7 +2,7 @@
 title: "Harness²: agentes que mejoran su propio harness"
 description: "Analiza Harness² de Google Research: sus dos ciclos de mejora recursiva, resultados, riesgos de seguridad y aplicaciones prácticas para agentes de código."
 pubDate: 2026-10-22
-lastmod: 2026-10-22
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["Harness²","recursive agent harnessing","Google Research","harness engineering","Codex"]
 canonical: "https://arceapps.com/es/blog/harness2-recursive-agent-harnessing/"
@@ -30,6 +30,10 @@ En un proyecto independiente, estas fricciones son reconocibles. Ajustamos un ar
 Los procedimientos automáticos de mejora suelen utilizar una puntuación: test aprobado, respuesta correcta, recompensa de un juego. Pero los agentes trabajan en entornos abiertos. Una tarea puede implicar revisar una web, producir un documento o corregir un componente, y no siempre conocemos la solución antes de ejecutar al agente.
 
 Harness² trata dos dificultades. La primera es mejorar el harness de **la tarea actual** sin disponer de un verificador que conozca la respuesta correcta. La segunda es extraer experiencias transferibles para tareas futuras. La respuesta del paper son **dos recursiones conectadas**.
+
+![Diagrama de cuatro etapas de harness2 recursive agent harnessing](/images/blog/diagrams/harness2-recursive-agent-harnessing-es.svg)
+
+*Diagrama explicativo original de ArceApps; no representa una captura ni una medición.*
 
 ## Primera recursión: Propose–Probe–Compose
 

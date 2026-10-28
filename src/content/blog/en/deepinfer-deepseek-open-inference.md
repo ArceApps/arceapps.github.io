@@ -2,7 +2,7 @@
 title: "DeepInfer: what DeepSeek released and what is missing"
 description: "Explore DeepInfer from DeepSeek: optimized kernels, MoE parallelism, deterministic inference, hardware requirements, and self-hosting limitations."
 pubDate: 2026-10-24
-lastmod: 2026-10-24
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["DeepInfer","DeepSeek","LLM inference","model serving","DeepSeek-V4.1-Flash"]
 canonical: "https://arceapps.com/blog/deepinfer-deepseek-open-inference/"
@@ -50,6 +50,10 @@ No single magical kernel solves all this. A real serving system is an interplay 
 ~~~
 
 This diagram illustrates the general process; it is **not a literal description of every DeepInfer process**. The implementation covers important components but does not supply an entire turnkey serving stack.
+
+![Four-stage infographic about deepinfer deepseek open inference](/images/blog/diagrams/deepinfer-deepseek-open-inference-en.svg)
+
+*Original ArceApps explanatory diagram, not a screenshot or measured result.*
 
 ## Optimized kernels: why details matter
 

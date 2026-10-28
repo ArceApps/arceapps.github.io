@@ -2,7 +2,7 @@
 title: "HybridAgents: latent reasoning meets real tools"
 description: "Explore Hybrid Reasoning Agents: how latent reasoning, continuous working memory, and tools fit together, plus reported gains and practical limitations."
 pubDate: 2026-10-20
-lastmod: 2026-10-20
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["Hybrid Reasoning Agents","HybridLink","latent reasoning","AI agents","Together AI"]
 canonical: "https://arceapps.com/blog/hybrid-reasoning-agents-latent-tools/"
@@ -60,6 +60,10 @@ Latent reasoning
 \`\`\`
 
 This is an explanatory model, **not a tensor-level specification** of HybridAgent. The innovation is not using tools—that is well-established—but allowing the deliberations around tool use to happen partly outside ordinary written language.
+
+![Four-stage diagram about hybrid reasoning agents latent tools](/images/blog/diagrams/hybrid-reasoning-agents-latent-tools-en.svg)
+
+*Original ArceApps explanatory diagram, not a screenshot or measured result.*
 
 ## Why working memory is not a vector database
 

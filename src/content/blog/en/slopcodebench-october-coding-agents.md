@@ -2,7 +2,7 @@
 title: "SlopCodeBench: coding agents still break old code"
 description: "Examine October 2026 SlopCodeBench results: Astra and Opus scores, XHigh costs, regressions, and practical changes for agent-assisted development."
 pubDate: 2026-10-26
-lastmod: 2026-10-26
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["SlopCodeBench","GPT-6 Astra","Opus 5.5","coding agents","regression testing"]
 canonical: "https://arceapps.com/blog/slopcodebench-october-coding-agents/"
@@ -34,6 +34,10 @@ Each new feature can pass its immediate tests while breaking something older: a 
 A single-shot benchmark may celebrate the last requested change. SlopCodeBench asks whether **the promises made at earlier checkpoints still hold**.
 
 That distinction reflects real development. Software is rarely written once and forgotten. It is extended, adapted, localized, fixed, and maintained. An implementation that looks impressive on day one but collapses under the third change is not a good foundation.
+
+![Four-stage conceptual diagram about slopcodebench october coding agents](/images/blog/diagrams/slopcodebench-october-coding-agents-en.svg)
+
+*Original ArceApps explanatory diagram, not a screenshot or measured result.*
 
 ## Core success and Strict success are different
 

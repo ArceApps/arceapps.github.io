@@ -2,7 +2,7 @@
 title: "Coucou: agent approvals beyond the terminal"
 description: "A technical research diary on how Coucou connects coding agents, desktop alerts and mobile approvals, and where its safety boundaries matter."
 pubDate: 2026-10-26
-lastmod: 2026-10-26
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["Coucou", "AI coding agents", "Claude Code", "Codex", "Android"]
 canonical: "https://arceapps.com/devlog/2026-w44-coucou-agent-supervision/"
@@ -21,6 +21,12 @@ That is why I spent time examining [Coucou](https://github.com/Louis-CFM/coucou)
 Coucou, created by Louis Raillé, tries to put a small observation and interaction layer at the top of the desktop. Its companion character, Mochi, represents live sessions from Claude Code, Codex, Gemini CLI, Cursor, OpenCode, Amp, Hermes and other tools. It can show progress, present supported approval requests, expose file changes and, with the right desktop/mobile combination, let a phone handle selected interactions. Rhytam Biswas contributed the Android app and phone-link implementation.
 
 By October 22, the changelog listed 0.5.3 releases across macOS and Windows/Linux, with Android at 0.3.0. That pace is worth remembering. A capability announced in the Mac build may not exist in Linux; something available in the Android companion may be absent on iPhone, or use a very different transport. This article treats those distinctions as part of the design rather than inconvenient footnotes.
+
+## What Coucou actually looks like
+
+![Authentic Coucou screenshot displaying a Claude Code session](/images/devlog/coucou-official-claude-code.png)
+
+*Authentic Coucou screenshot from the project, © Louis Raillé. [Source and editorial permission](https://github.com/Louis-CFM/coucou/blob/main/LICENSE-ASSETS.md). Not captured in our own install or test.*
 
 ## The real issue is interruption, not a lack of dashboards
 
@@ -66,6 +72,10 @@ One small operational detail is especially reassuring: the README states that ho
 
 Putting an Allow button on a notification is easy. Ensuring it authorizes the right operation is much harder.
 
+![Diagram of hooks, relay, Android app, and desktop approval checks](/images/devlog/coucou-approval-flow-en.svg)
+
+*Original diagram of the documented Android link, not an application screenshot. A decision must match the pending, unexpired request.*
+
 The [Android Link protocol](https://github.com/Louis-CFM/coucou/blob/main/docs/ANDROID_LINK.md) contains concrete rules rather than vague promises. The desktop associates an approval with a SHA-256 fingerprint derived from the agent pill, session, tool, command and an input-specific request identifier. In the Windows/Linux implementation, even two identical commands submitted at different moments produce different request identities.
 
 The phone sends an allow-or-deny decision linked to that fingerprint. The desktop must match it against the **approval still pending at that exact moment**. A delayed response to an expired request is ignored. A decision for another command is ignored. A response cannot simply be applied to whichever approval happens to be visible now.
@@ -95,6 +105,10 @@ The project also documents an Internet-relay path separately from the basic LAN 
 ## iPhone follows a different trust and synchronization model
 
 The iPhone route is not just the Android app written in Swift. According to the project's documentation, the Mac publishes sessions, turns and service state to a private CloudKit zone under the user's iCloud account. The iPhone reads that state and writes back supported decisions or instructions. The Mac still checks whether an incoming answer matches the action it is waiting for.
+
+![Official screenshot of Coucou on an iPhone with an agent approval prompt](/images/devlog/coucou-official-iphone-approval.jpg)
+
+*Official iPhone approval screenshot, © Louis Raillé. The iPhone route uses CloudKit, not Android's local link. [Original project](https://github.com/Louis-CFM/coucou).*
 
 Live Activities introduce another component. Coucou describes a stateless Cloudflare Worker that sends APNs updates using limited agent state rather than the full content of the session. That is a sensible separation of duties, though the precise privacy guarantee would require auditing the deployed worker, the mobile client and the data that is actually transmitted.
 

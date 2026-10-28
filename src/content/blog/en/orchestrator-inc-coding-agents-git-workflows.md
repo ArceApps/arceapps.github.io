@@ -2,7 +2,7 @@
 title: "Orchestrator.inc: From Agents to Reviewed PRs"
 description: "Explore Orchestrator.inc worktrees, parallel coding agents, CI feedback, reviews, privacy and mobile access, then compare it with Orca, OpenChamber and Paseo."
 pubDate: 2026-10-06
-lastmod: 2026-10-26
+lastmod: 2026-10-28
 author: ArceApps
 keywords: ["Orchestrator.inc", "Agent Orchestrator", "coding agents", "git worktrees", "Orca", "OpenChamber", "Paseo"]
 canonical: "https://arceapps.com/blog/orchestrator-inc-coding-agents-git-workflows/"
@@ -37,6 +37,10 @@ That separation is the entire argument for the tool. A terminal multiplexer can 
 Installing it does not give you free access to premium models. External coding harnesses still need their own installation and authentication, and their usage limits or API costs still apply. The application can use the sign-ins already configured on your machine. In other words, there is no mysterious shared inference engine that removes the underlying providers' billing policies.
 
 Nor must it replace a familiar editor. It is perfectly sensible to examine a tricky implementation in your existing IDE while using the board to track its owning session. The useful abstraction is **provenance**: knowing what caused a change, which worker owns it, what evidence exists for completion and what still needs a human decision.
+
+![Four-stage infographic about orchestrator inc coding agents git workflows](/images/blog/diagrams/orchestrator-inc-coding-agents-git-workflows-en.svg)
+
+*Original ArceApps explanatory diagram, not a screenshot or measured result.*
 
 ## Anatomy of the system: Go, Electron and SQLite
 

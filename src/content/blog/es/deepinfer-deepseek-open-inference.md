@@ -2,7 +2,7 @@
 title: "DeepInfer: qué ha abierto DeepSeek y qué falta"
 description: "Descubre DeepInfer de DeepSeek: kernels optimizados, paralelismo MoE, inferencia determinista, requisitos reales y límites para alojar modelos."
 pubDate: 2026-10-24
-lastmod: 2026-10-24
+lastmod: 2026-10-28
 author: "ArceApps"
 keywords: ["DeepInfer","DeepSeek","LLM inference","model serving","DeepSeek-V4.1-Flash"]
 canonical: "https://arceapps.com/es/blog/deepinfer-deepseek-open-inference/"
@@ -50,6 +50,10 @@ No existe un único kernel mágico que resuelva todo. Un servidor de inferencia 
 ~~~
 
 El esquema es conceptual. DeepInfer implementa componentes de estas etapas, pero no debe interpretarse como un diagrama exacto de todos sus procesos internos.
+
+![Infografía sobre deepinfer deepseek open inference y sus cuatro etapas](/images/blog/diagrams/deepinfer-deepseek-open-inference-es.svg)
+
+*Diagrama explicativo original de ArceApps; no representa una captura ni una medición.*
 
 ## Kernels optimizados: donde importa cada microsegundo
 
