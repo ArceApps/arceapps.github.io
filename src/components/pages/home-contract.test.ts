@@ -20,6 +20,19 @@ describe('contrato editorial de portada', () => {
     expect(hero).toContain('keyboard_arrow_down');
   });
 
+  it('hero fotografico con CTAs de la maqueta', () => {
+    const hero = readSource('src/components/home/HomeHero.astro');
+
+    expect(hero).toContain('hero-mountain-sunset');
+    expect(hero).toContain('Explorar proyectos');
+    expect(hero).toContain('Leer artículos');
+    expect(hero).toContain('object-cover');
+    expect(hero).toContain('bg-gradient-to-r');
+    expect(hero).toContain('from-surface/95');
+    expect(hero).toContain('dark:from-dark-surface/95');
+    expect(hero).not.toContain('text-center');
+  });
+
   it('la home compone las cuatro secciones numeradas en orden editorial', () => {
     const home = readSource('src/components/pages/HomePage.astro');
 
