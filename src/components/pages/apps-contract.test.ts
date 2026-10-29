@@ -147,4 +147,64 @@ describe('apps listing', () => {
     expect(card).toContain('apps.badge_google_play');
     expect(card).toContain('apps.badge_android');
   });
+
+  it('destacada RadioHub con 4 caracteristicas', () => {
+    // El titulo y los nombres de las 4 caracteristicas son copy traducible:
+    // cada gemelo resuelve las claves segun su idioma.
+    const FEATURE_KEYS = [
+      'apps.featured_title',
+      'apps.featured_feature_stations_title',
+      'apps.featured_feature_favorites_title',
+      'apps.featured_feature_no_signup_title',
+      'apps.featured_feature_material_title',
+    ] as const;
+
+    for (const { path: pagePath, lang } of APP_PAGES) {
+      const s = readSource(pagePath);
+
+      for (const key of FEATURE_KEYS) {
+        expect(s, `${pagePath} debe usar ${key}`).toContain(`t('${key}')`);
+      }
+
+      // Cada pagina usa su propio idioma, sin literales incrustados.
+      expect(s, pagePath).toContain(`useTranslations('${lang}')`);
+    }
+
+    // Paridad ES/EN real del copy de la destacada.
+    expect(ui.en['apps.featured_title']).toBe('The radio, just how you like it');
+    expect(ui.en['apps.featured_feature_stations_title']).toBe('Thousands of stations');
+    expect(ui.en['apps.featured_feature_favorites_title']).toBe('Favorites');
+    expect(ui.en['apps.featured_feature_no_signup_title']).toBe('No sign-up');
+    expect(ui.en['apps.featured_feature_material_title']).toBe('Material 3 design');
+
+    expect(ui.es['apps.featured_title']).toBe('La radio, como te gusta');
+    expect(ui.es['apps.featured_feature_stations_title']).toBe('Miles de emisoras');
+    expect(ui.es['apps.featured_feature_favorites_title']).toBe('Favoritos');
+    expect(ui.es['apps.featured_feature_no_signup_title']).toBe('Sin registros');
+    expect(ui.es['apps.featured_feature_material_title']).toBe('Diseño Material 3');
+
+    // El gemelo EN no renderiza copy en espanol.
+    const enPage = readSource('src/pages/apps/index.astro');
+    for (const spanish of [
+      'La radio, como te gusta',
+      'Miles de emisoras',
+      'Favoritos',
+      'Sin registros',
+      'Diseño Material 3',
+    ]) {
+      expect(enPage, `EN no debe contener "${spanish}"`).not.toContain(spanish);
+    }
+
+    // El gemelo ES no renderiza copy en ingles.
+    const esPage = readSource('src/pages/es/apps/index.astro');
+    for (const english of [
+      'The radio, just how you like it',
+      'Thousands of stations',
+      'Favorites',
+      'No sign-up',
+      'Material 3 design',
+    ]) {
+      expect(esPage, `ES no debe contener "${english}"`).not.toContain(english);
+    }
+  });
 });
