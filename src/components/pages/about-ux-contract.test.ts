@@ -23,7 +23,7 @@ describe('ArceApps project-focused About page', () => {
   it('supports ES/EN and both light/dark themes', () => {
     expect(about).toContain("const es = lang === 'es'");
     expect(about).toContain('dark:bg-dark-surface');
-    expect(translations).toContain("'nav.about': 'About'");
-    expect(translations).toContain("'nav.about': 'Sobre ArceApps'");
+    expect(translations).toContain("'nav.about': 'About me'");
+    expect(translations).toContain("'nav.about': 'Sobre mí'");
   });
 });
