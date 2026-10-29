@@ -13,10 +13,13 @@ const { post, list = false } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Format date
+// Estimate reading time from post.body
+const readingTime = Math.max(1, Math.ceil((post.body || "").split(/\s+/g).length / 200));
+
+// Short date format (e.g. '12 oct 2026' in ES, 'Oct 12, 2026' in EN)
 const formattedDate = post.data.pubDate.toLocaleDateString(lang === 'es' ? "es-ES" : "en-US", {
   year: "numeric",
-  month: "long",
+  month: "short",
   day: "numeric",
 });
 
@@ -25,69 +28,113 @@ const href = lang === 'es' ? `/es/blog/${slug}/` : `/blog/${slug}/`;
 const firstTag = post.data.tags?.[0];
 ---
 
-<Card variant="article" class={list ? "sm:flex sm:flex-row" : ""}>
+<Card
+  variant="article"
+  class={list ? "sm:flex sm:flex-row sm:items-center gap-5 p-4 sm:p-5" : "flex flex-col p-4 sm:p-5"}
+>
   <a
     href={href}
     data-astro-prefetch
-    class="absolute inset-0 z-10 rounded-xl focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none transition-shadow motion-reduce:transition-none"
-    aria-label={`${t('common.read_more')} ${post.data.title}`}></a>
+    class="absolute inset-0 z-10 rounded-2xl focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none transition-shadow motion-reduce:transition-none"
+    aria-label={`${t('common.read_more')} ${post.data.title}`}
+  ></a>
 
   {
-    post.data.heroImage && (
-      <div class:list={["overflow-hidden bg-gray-100 dark:bg-gray-800", list ? "aspect-video sm:aspect-auto sm:w-64 sm:shrink-0" : "aspect-video w-full"]}>
-        <img
-          src={post.data.heroImage}
-          alt={post.data.title}
-          class="h-full w-full object-cover"
-          loading="lazy"
-          decoding="async"
-          width="800"
-          height="450"
-        />
-      </div>
+    list ? (
+      <>
+        {post.data.heroImage ? (
+          <div class="aspect-video w-full sm:w-56 md:w-64 sm:shrink-0 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <img
+              src={post.data.heroImage}
+              alt={post.data.title}
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="450"
+            />
+          </div>
+        ) : (
+          <div
+            class="aspect-video w-full sm:w-56 md:w-64 sm:shrink-0 rounded-xl overflow-hidden bg-surface-variant/40 dark:bg-dark-surface-subtle flex items-center justify-center text-on-surface-variant/40 dark:text-dark-on-surface-variant/40"
+            aria-hidden="true"
+          >
+            <span class="material-icons text-4xl">article</span>
+          </div>
+        )}
+
+        <div class="min-w-0 flex-1 flex flex-col justify-center mt-3 sm:mt-0">
+          <h3 class="text-lg md:text-xl font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors motion-reduce:transition-none line-clamp-2">
+            {post.data.title}
+          </h3>
+
+          <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2 mt-1.5 leading-relaxed">
+            {post.data.description}
+          </p>
+
+          <div class="mt-3 flex flex-wrap items-center gap-2.5 text-xs text-on-surface-variant/80 dark:text-dark-on-surface-variant/80">
+            <span>{formattedDate} · {readingTime} min</span>
+            {firstTag && (
+              <a
+                href={lang === 'es' ? `/es/blog/tag/${slugify(firstTag)}/` : `/blog/tag/${slugify(firstTag)}/`}
+                data-astro-prefetch
+                class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:text-teal-300 text-xs font-semibold hover:bg-primary/20 transition-colors motion-reduce:transition-none relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              >
+                {firstTag}
+              </a>
+            )}
+          </div>
+        </div>
+      </>
+    ) : (
+      <>
+        {post.data.heroImage ? (
+          <div class="aspect-video w-full rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
+            <img
+              src={post.data.heroImage}
+              alt={post.data.title}
+              class="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="450"
+            />
+          </div>
+        ) : (
+          <div
+            class="aspect-video w-full rounded-xl overflow-hidden bg-surface-variant/40 dark:bg-dark-surface-subtle flex items-center justify-center text-on-surface-variant/40 dark:text-dark-on-surface-variant/40"
+            aria-hidden="true"
+          >
+            <span class="material-icons text-4xl">article</span>
+          </div>
+        )}
+
+        <div class="mt-3.5 flex flex-col flex-1">
+          {firstTag && (
+            <div class="mb-2">
+              <a
+                href={lang === 'es' ? `/es/blog/tag/${slugify(firstTag)}/` : `/blog/tag/${slugify(firstTag)}/`}
+                data-astro-prefetch
+                class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:text-teal-300 text-xs font-semibold hover:bg-primary/20 transition-colors motion-reduce:transition-none relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+              >
+                {firstTag}
+              </a>
+            </div>
+          )}
+
+          <h3 class="text-base sm:text-lg font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors motion-reduce:transition-none line-clamp-2 mb-2">
+            {post.data.title}
+          </h3>
+
+          <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2 mb-4 flex-grow leading-relaxed">
+            {post.data.description}
+          </p>
+
+          <div class="text-xs text-on-surface-variant/80 dark:text-dark-on-surface-variant/80 mt-auto">
+            {formattedDate} · {readingTime} min
+          </div>
+        </div>
+      </>
     )
   }
-
-  <div class:list={["p-6 flex flex-col flex-grow relative z-20 pointer-events-none", list && "min-w-0"]}>
-    <div class="flex items-center gap-2 mb-3">
-      {
-        firstTag && (
-          <a
-            href={lang === 'es' ? `/es/blog/tag/${slugify(firstTag)}/` : `/blog/tag/${slugify(firstTag)}/`}
-            data-astro-prefetch
-            class="px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider whitespace-nowrap hover:bg-primary/20 transition-colors motion-reduce:transition-none relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
-          >
-            {firstTag}
-          </a>
-        )
-      }
-      <span
-        class="text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70 ml-auto"
-      >
-        {formattedDate}
-      </span>
-    </div>
-
-    <h3
-      class="text-xl font-bold mb-3 text-on-surface dark:text-gray-100 group-hover:text-primary transition-colors motion-reduce:transition-none line-clamp-2 pointer-events-none"
-    >
-      {post.data.title}
-    </h3>
-
-    <p
-      class="text-on-surface-variant dark:text-gray-300 text-sm line-clamp-3 mb-4 flex-grow leading-relaxed pointer-events-none"
-    >
-      {post.data.description}
-    </p>
-
-    <div
-      class="flex items-center text-primary font-medium text-sm mt-auto pointer-events-none"
-    >
-      {t('common.read_more')}
-      <span
-        class="material-icons text-base ml-1"
-        aria-hidden="true">arrow_forward</span
-      >
-    </div>
-  </div>
 </Card>

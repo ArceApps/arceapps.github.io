@@ -15,11 +15,11 @@ const { translatedPath } = Astro.props;
 
 const navItems = [
   { label: t('nav.home'), href: lang === 'es' ? '/es' : '/' },
-  { label: t('nav.apps'), href: lang === 'es' ? '/es/apps' : '/apps' },
   { label: t('nav.projects'), href: lang === 'es' ? '/es/projects' : '/projects' },
+  { label: t('nav.apps'), href: lang === 'es' ? '/es/apps' : '/apps' },
   { label: t('nav.blog'), href: lang === 'es' ? '/es/blog' : '/blog' },
   { label: t('nav.devlog'), href: lang === 'es' ? '/es/devlog' : '/devlog' },
-  { label: t('nav.about'), href: lang === 'es' ? '/es/about-me' : '/about-me' },
+  { label: lang === 'es' ? 'Sobre mí' : t('nav.about'), href: lang === 'es' ? '/es/about-me' : '/about-me' },
   { label: t('nav.contact'), href: lang === 'es' ? '/es/contact' : '/contact' },
 ];
 
@@ -63,7 +63,7 @@ const nextPath = translatedPath || getLocalizedTogglePath(Astro.url, currentLang
     </a>
 
     <!-- Desktop Nav -->
-    <nav class="hidden xl:flex items-center gap-3 2xl:gap-6">
+    <nav class="hidden xl:flex items-center gap-1 2xl:gap-2">
       {
         navItems.map((item) => {
           const active = isActive(item.href);
@@ -73,13 +73,19 @@ const nextPath = translatedPath || getLocalizedTogglePath(Astro.url, currentLang
               data-astro-prefetch
               aria-current={active ? "page" : undefined}
               class:list={[
-                "text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded px-2 py-1",
+                "relative px-3 py-1.5 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg",
                 active
                   ? "text-primary font-bold"
                   : "text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary dark:hover:text-primary",
               ]}
             >
               {item.label}
+              {active && (
+                <span
+                  class="absolute bottom-0 left-3 right-3 h-0.5 bg-primary rounded-full"
+                  aria-hidden="true"
+                />
+              )}
             </a>
           );
         })
@@ -95,11 +101,12 @@ const nextPath = translatedPath || getLocalizedTogglePath(Astro.url, currentLang
       <a
         id="language-toggle"
         href={nextPath}
-        class="w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+        class="h-9 px-3 rounded-full flex items-center gap-1.5 font-bold text-xs uppercase tracking-wider text-on-surface-variant dark:text-dark-on-surface-variant hover:bg-surface-variant dark:hover:bg-gray-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary border border-border/60 dark:border-dark-border/60"
         aria-label={t('nav.language')}
         data-lang={nextLang}
       >
-        {nextLangLabel}
+        <span class="material-icons text-base" aria-hidden="true">language</span>
+        <span>{nextLangLabel}</span>
       </a>
 
       <!-- Theme Toggle -->

@@ -108,7 +108,7 @@ export const ui = {
     'nav.apps': 'Apps',
     'nav.projects': 'Proyectos',
     'nav.blog': 'Blog',
-    'nav.devlog': 'Bitácora',
+    'nav.devlog': 'Devlog',
     'nav.about': 'Sobre ArceApps',
     'nav.contact': 'Contacto',
     'nav.language': 'Idioma',
