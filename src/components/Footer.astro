@@ -6,68 +6,105 @@ import { getLangFromUrl, useTranslations } from "../i18n/utils";
 const currentYear = new Date().getFullYear();
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const photoCredits = [
+  {
+    label: lang === 'es' ? 'Foto de portada' : 'Hero photo',
+    href: 'https://unsplash.com/photos/6D6omiCxHWM',
+  },
+  {
+    label: lang === 'es' ? 'Foto de sobre mí' : 'About photo',
+    href: 'https://unsplash.com/photos/3no88nSvK88',
+  },
+] as const;
 ---
 
-<footer class="border-t border-border bg-surface-subtle py-14 transition-colors duration-300 dark:border-dark-border dark:bg-dark-surface-subtle cv-auto" style="contain-intrinsic-size: 400px;">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<footer class="border-t border-border bg-surface-raised py-16 transition-colors duration-300 dark:border-dark-border dark:bg-dark-surface-raised cv-auto" style="contain-intrinsic-size: 400px;">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-4 md:gap-10">
       <!-- Brand -->
       <div class="col-span-1 md:col-span-2">
-        <a href={lang === 'es' ? '/es' : '/'} data-astro-prefetch class="flex items-center gap-2 group mb-4 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded-lg p-1 -ml-1">
+        <a href={lang === 'es' ? '/es' : '/'} data-astro-prefetch class="group -ml-1 mb-5 flex items-center gap-2 rounded-lg p-1 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
           <Image
             src={brandIcon}
             alt="ArceApps Logo"
             width={32}
             height={32}
-            class="w-8 h-8 rounded-lg"
+            class="h-8 w-8 rounded-lg"
           />
           <span class="text-xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface">
             Arce<span class="text-primary">Apps</span>
           </span>
         </a>
-        <p class="text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed max-w-sm">
+        <p class="max-w-sm leading-relaxed text-content-muted dark:text-dark-content-muted">
           {t('footer.brand_desc')}
         </p>
       </div>
 
       <!-- Links -->
       <div>
-        <h3 class="font-bold text-on-surface dark:text-dark-on-surface mb-4">{t('footer.navigation')}</h3>
+        <h3 class="mb-4 text-sm font-bold uppercase tracking-widest text-on-surface dark:text-dark-on-surface">{t('footer.navigation')}</h3>
         <ul class="space-y-3">
-          <li><a href={lang === 'es' ? '/es' : '/'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.home')}</a></li>
-          <li><a href={lang === 'es' ? '/es/apps' : '/apps'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.apps')}</a></li>
-          <li><a href={lang === 'es' ? '/es/projects' : '/projects'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.projects')}</a></li>
-          <li><a href={lang === 'es' ? '/es/blog' : '/blog'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.blog')}</a></li>
-          <li><a href={lang === 'es' ? '/es/devlog' : '/devlog'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.devlog')}</a></li>
-          <li><a href={lang === 'es' ? '/es/about-me' : '/about-me'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('nav.about')}</a></li>
-          <li><a href={lang === 'es' ? '/es/about-me#contact' : '/about-me#contact'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('footer.contact')}</a></li>
+          <li><a href={lang === 'es' ? '/es' : '/'} data-astro-prefetch class="rounded text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted">{t('nav.home')}</a></li>
+          <li><a href={lang === 'es' ? '/es/apps' : '/apps'} data-astro-prefetch class="rounded text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted">{t('nav.apps')}</a></li>
+          <li><a href={lang === 'es' ? '/es/projects' : '/projects'} data-astro-prefetch class="rounded text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted">{t('nav.projects')}</a></li>
+          <li><a href={lang === 'es' ? '/es/blog' : '/blog'} data-astro-prefetch class="rounded text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted">{t('nav.blog')}</a></li>
+          <li><a href={lang === 'es' ? '/es/devlog' : '/devlog'} data-astro-prefetch class="rounded text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted">{t('nav.devlog')}</a></li>
+          <li><a href={lang === 'es' ? '/es/about-me' : '/about-me'} data-astro-prefetch class="rounded text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted">{t('nav.about')}</a></li>
+          <li><a href={lang === 'es' ? '/es/about-me#contact' : '/about-me#contact'} data-astro-prefetch class="rounded text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted">{t('footer.contact')}</a></li>
         </ul>
       </div>
 
       <!-- Legal & Social -->
       <div>
-        <h3 class="font-bold text-on-surface dark:text-dark-on-surface mb-4">{t('footer.legal')}</h3>
+        <h3 class="mb-4 text-sm font-bold uppercase tracking-widest text-on-surface dark:text-dark-on-surface">{t('footer.legal')}</h3>
         <ul class="space-y-3">
-          <li><a href={lang === 'es' ? '/es/privacy-policy' : '/privacy-policy'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('footer.privacy')}</a></li>
-          <li><a href={lang === 'es' ? '/es/cookies' : '/cookies'} data-astro-prefetch class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('footer.cookies')}</a></li>
+          <li><a href={lang === 'es' ? '/es/privacy-policy' : '/privacy-policy'} data-astro-prefetch class="rounded text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted">{t('footer.privacy')}</a></li>
+          <li><a href={lang === 'es' ? '/es/cookies' : '/cookies'} data-astro-prefetch class="rounded text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted">{t('footer.cookies')}</a></li>
         </ul>
 
         <div class="mt-6 flex gap-4">
             <!-- Google Play Icon -->
-            <a href="https://play.google.com/store/apps/dev?id=8812775800441745731" target="_blank" rel="noopener noreferrer" class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded p-1" aria-label="Google Play">
+            <a href="https://play.google.com/store/apps/dev?id=8812775800441745731" target="_blank" rel="noopener noreferrer" class="rounded p-1 text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted" aria-label="Google Play">
                 <span class="material-icons" aria-hidden="true">shop</span>
             </a>
             <!-- GitHub Icon -->
-            <a href="https://github.com/arceapps" target="_blank" rel="noopener noreferrer" class="text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded p-1" aria-label="GitHub">
+            <a href="https://github.com/arceapps" target="_blank" rel="noopener noreferrer" class="rounded p-1 text-content-muted transition-colors hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:text-dark-content-muted" aria-label="GitHub">
                 <span class="material-icons" aria-hidden="true">code</span>
             </a>
         </div>
       </div>
     </div>
 
-    <div class="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-on-surface-variant/80 dark:border-dark-border dark:text-dark-on-surface-variant/80">
+    <div class="mt-12 flex flex-col gap-6 border-t border-border pt-8 text-sm text-content-muted dark:border-dark-border dark:text-dark-content-muted md:flex-row md:items-center md:justify-between">
       <p>{t('footer.copyright').replace('©', `© ${currentYear}`)}</p>
       <p>{t('footer.designed_with')} <span class="text-secondary">♥</span> {t('footer.material_design')}</p>
+    </div>
+
+    <!-- Atribución de fotografías de stock -->
+    <div class="mt-6 flex flex-col gap-2 text-xs text-content-muted dark:text-dark-content-muted md:flex-row md:items-center md:justify-between">
+      <p>
+        {lang === 'es' ? 'Fotografías de' : 'Photos by'}{' '}
+        {photoCredits.map((credit, index) => (
+          <>
+            <a
+              href={credit.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rounded font-medium text-primary underline decoration-primary/40 underline-offset-4 transition-colors hover:decoration-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+            >
+              Unsplash
+            </a>
+            <span class="sr-only"> — {credit.label}</span>
+            {index < photoCredits.length - 1 && <span aria-hidden="true"> · </span>}
+          </>
+        ))}
+      </p>
+      <p class="text-content-muted/80 dark:text-dark-content-muted/80">
+        {lang === 'es'
+          ? 'Atribución de fotos de stock'
+          : 'Stock photo attribution'}
+      </p>
     </div>
   </div>
 </footer>
