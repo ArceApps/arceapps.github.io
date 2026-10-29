@@ -5,33 +5,33 @@
 
 @theme {
   /* Brand Colors */
-  --color-primary: #007F7D; /* Accessible teal: >= 4.5:1 with white */
+  --color-primary: #038D90; /* Accessible teal: >= 4.5:1 with white */
   --color-primary-strong: #006b6a;
   --color-secondary: #FF9800; /* Orange */
 
   /* Semantic Light Theme Tokens */
   --color-surface: #FFFFFF;
-  --color-surface-subtle: #F8F9FA;
+  --color-surface-subtle: #FCFCFC;
   --color-surface-raised: #FFFFFF;
   --color-surface-variant: #F4F5F7;
-  --color-content: #111827;
+  --color-content: #0B1014;
   --color-content-muted: #4B5563;
-  --color-on-surface: #111827;
+  --color-on-surface: #0B1014;
   --color-on-surface-variant: #4B5563;
   --color-border: #E5E7EB;
   --color-border-strong: #D1D5DB;
-  --color-focus: #007F7D;
+  --color-focus: #038D90;
   --color-focus-contrast: #FFFFFF;
 
   /* Semantic Dark Theme Tokens */
   --color-dark-surface: #091117;
   --color-dark-surface-subtle: #0D171F;
-  --color-dark-surface-raised: #111E26;
+  --color-dark-surface-raised: #0E171D;
   --color-dark-surface-variant: #16242E;
   --color-dark-content: #F3F4F6;
-  --color-dark-content-muted: #9CA3AF;
+  --color-dark-content-muted: #BDC0C2;
   --color-dark-on-surface: #F3F4F6;
-  --color-dark-on-surface-variant: #9CA3AF;
+  --color-dark-on-surface-variant: #BDC0C2;
   --color-dark-border: #1F333E;
   --color-dark-border-strong: #2E4B5B;
   --color-dark-focus: #2DD4BF;
@@ -123,7 +123,7 @@
   }
 
   body {
-    @apply bg-[#F8F9FA] dark:bg-[#091117] text-[#111827] dark:text-[#F3F4F6] antialiased transition-colors duration-300;
+    @apply bg-[#FCFCFC] dark:bg-[#091117] text-[#0B1014] dark:text-[#F3F4F6] antialiased transition-colors duration-300;
   }
 
   /* Typography */

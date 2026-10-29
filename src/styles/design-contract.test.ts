@@ -64,6 +64,22 @@ describe('contrato de diseño visual', () => {
     expect(consumerSource).not.toMatch(/\belevation-4\b/);
   });
 
+  it('paleta de la maqueta declarada en @theme', () => {
+    expect(globalStyles).toContain('--color-primary: #038D90');
+    expect(globalStyles).toContain('--color-content: #0B1014');
+    expect(globalStyles).toContain('--color-dark-surface-raised: #0E171D');
+    expect(globalStyles).toContain('--color-dark-content-muted: #BDC0C2');
+    expect(globalStyles).toContain('bg-[#FCFCFC]');
+  });
+
+  it('no conserva los literales de la paleta anterior', () => {
+    const retiredLiterals = ['#007F7D', '#F8F9FA', '#111E26', '#9CA3AF', '#111827'];
+
+    for (const literal of retiredLiterals) {
+      expect(globalStyles, `Sigue presente el literal retirado ${literal}`).not.toContain(literal);
+    }
+  });
+
   it('no aplica hover tipográfico global a los headings', () => {
     expect(globalStyles).not.toMatch(/h[1-6]\s*:hover/);
     expect(globalStyles).not.toMatch(/\.prose\s+h[1-6]\s*:hover/);
