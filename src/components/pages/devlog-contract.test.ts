@@ -57,6 +57,11 @@ describe('devlog listing', () => {
     expect(s).toContain('getSeries');
   });
 
+  it('grid de tarjetas del devlog', () => {
+    const s = readFileSync('src/components/pages/DevlogIndexPage.astro', 'utf8');
+    expect(s).toContain('md:grid-cols-2');
+  });
+
   it('los literales de color legados se migran a tokens', () => {
     const s = readSource(COMPONENT);
     expect(s).not.toMatch(/\[#(?:E5E7EB|1F333E|FFFFFF|111E26)\]/i);
