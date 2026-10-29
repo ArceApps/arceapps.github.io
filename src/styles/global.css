@@ -34,7 +34,7 @@
   --color-dark-on-surface-variant: #BDC0C2;
   --color-dark-border: #1F333E;
   --color-dark-border-strong: #2E4B5B;
-  --color-dark-focus: #2DD4BF;
+  --color-dark-focus: #00ACB0;
   --color-dark-focus-contrast: #091117;
 
   /* Semantic Elevation Tokens */
@@ -53,7 +53,9 @@
 /* Material Design 3 Utilities */
 @layer utilities {
   /* Legible brand colors on both backgrounds. Utilities need the same cascade layer. */
-  :root.dark .text-primary { color: #2DD4BF; }
+  :root.dark .text-primary { color: #00ACB0; }
+  :root.dark .bg-primary { background-color: #00ACB0; }
+  :root.dark .border-primary { border-color: #00ACB0; }
   :root:not(.dark) .text-secondary { color: #B95B00; }
   .elevation-1 {
     box-shadow: var(--shadow-elevation-1);

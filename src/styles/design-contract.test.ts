@@ -73,11 +73,25 @@ describe('contrato de diseño visual', () => {
   });
 
   it('no conserva los literales de la paleta anterior', () => {
-    const retiredLiterals = ['#007F7D', '#F8F9FA', '#111E26', '#9CA3AF', '#111827'];
+    const retiredLiterals = ['#007F7D', '#F8F9FA', '#111E26', '#9CA3AF', '#111827', '#2DD4BF'];
 
     for (const literal of retiredLiterals) {
       expect(globalStyles, `Sigue presente el literal retirado ${literal}`).not.toContain(literal);
     }
+  });
+
+  it('override dark del acento a #00ACB0', () => {
+    // Cada literal debe quedar atado a su propia regla: un `toContain` suelto
+    // no detecta reubicaciones (p. ej. `background-color` contiene `color`).
+    expect(globalStyles).toMatch(
+      /:root\.dark \.text-primary\s*\{\s*color:\s*#00ACB0\s*;\s*\}/
+    );
+    expect(globalStyles).toMatch(
+      /:root\.dark \.bg-primary\s*\{\s*background-color:\s*#00ACB0\s*;\s*\}/
+    );
+    expect(globalStyles).toMatch(
+      /:root\.dark \.border-primary\s*\{\s*border-color:\s*#00ACB0\s*;\s*\}/
+    );
   });
 
   it('no aplica hover tipográfico global a los headings', () => {
