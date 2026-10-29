@@ -7,73 +7,138 @@ import { isPublished } from '../../utils/publishing';
 interface Props { lang: 'es' | 'en'; }
 const { lang } = Astro.props;
 const es = lang === 'es';
-const prefix = es ? '/es' : '';
+
 const [apps, projects, blog] = await Promise.all([
   getCollection('apps', ({ id, data }) => id.startsWith(`${lang}/`) && !data.draft && isPublished(data.pubDate)),
   getCollection('projects', ({ id, data }) => id.startsWith(`${lang}/`) && !data.draft && isPublished(data.pubDate)),
   getCollection('blog', ({ id, data }) => id.startsWith(`${lang}/`) && !data.draft && isPublished(data.pubDate))
 ]);
-const areas = es ? [
-  { icon: 'android', title: 'Desarrollo Android', body: 'Aplicaciones nativas y experiencias móviles con atención a la utilidad y los detalles.', href: '/es/apps' },
-  { icon: 'psychology', title: 'Inteligencia artificial', body: 'Agentes, automatización y herramientas aplicadas al desarrollo de software.', href: '/es/devlog' },
-  { icon: 'code', title: 'Proyectos independientes', body: 'Aplicaciones y experimentos que diseño, desarrollo y mantengo.', href: '/es/projects' },
-  { icon: 'menu_book', title: 'Contenido técnico', body: 'Guías, análisis y aprendizajes que comparto mientras construyo.', href: '/es/blog' }
-] : [
-  { icon: 'android', title: 'Android development', body: 'Native mobile apps and experiences that put usefulness and detail first.', href: '/apps' },
-  { icon: 'psychology', title: 'Artificial intelligence', body: 'Agents, automation and practical tools for building software.', href: '/devlog' },
-  { icon: 'code', title: 'Independent projects', body: 'Apps and experiments I design, develop and maintain.', href: '/projects' },
-  { icon: 'menu_book', title: 'Technical writing', body: 'Guides, practical analysis and lessons from building software.', href: '/blog' }
-];
 
+const areas = es ? [
+  { icon: 'smartphone', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Desarrollo Android', desc: 'Apps nativas con Kotlin y Jetpack Compose', href: '/es/apps' },
+  { icon: 'auto_awesome', color: 'bg-amber-500/10 text-amber-500 dark:text-amber-400', title: 'Inteligencia artificial', desc: 'Agentes, automatización y herramientas prácticas', href: '/es/devlog' },
+  { icon: 'code', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Proyectos de software', desc: 'Herramientas, librerías y experimentos', href: '/es/projects' },
+  { icon: 'article', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Contenido técnico', desc: 'Blog, devlog y guías prácticas', href: '/es/blog' }
+] : [
+  { icon: 'smartphone', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Android development', desc: 'Native apps with Kotlin and Jetpack Compose', href: '/apps' },
+  { icon: 'auto_awesome', color: 'bg-amber-500/10 text-amber-500 dark:text-amber-400', title: 'Artificial intelligence', desc: 'Agents, automation and practical tools', href: '/devlog' },
+  { icon: 'code', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Software projects', desc: 'Tools, libraries and experiments', href: '/projects' },
+  { icon: 'article', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Technical content', desc: 'Blog, devlog and practical guides', href: '/blog' }
+];
 ---
+
 <Layout
-  title={es ? 'Sobre ArceApps — Aplicaciones, proyectos y contenido técnico' : 'About ArceApps — Apps, projects and technical writing'}
-  description={es ? 'Descubre ArceApps: aplicaciones Android, proyectos independientes, artículos técnicos y un diario de desarrollo.' : 'Discover ArceApps: Android apps, independent projects, technical articles and a development journal.'}
+  title={es ? 'Sobre ArceApps — Desarrollador independiente' : 'About ArceApps — Independent developer'}
+  description={es ? 'Desarrollador independiente de aplicaciones Android, herramientas de IA y proyectos de software.' : 'Independent developer of Android apps, AI tools, and software projects.'}
   type="website"
   image="/logo.png"
 >
-  <section class="border-b border-border bg-surface-subtle dark:border-dark-border dark:bg-dark-surface-subtle">
-    <div class="mx-auto max-w-7xl px-4 py-14 md:px-6 md:py-20">
-      <p class="text-xs font-bold uppercase tracking-[0.16em] text-primary dark:text-teal-300">{es ? 'Acerca del proyecto' : 'About the project'}</p>
-      <h1 class="mt-4 max-w-4xl text-4xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface md:text-6xl">{es ? 'Aplicaciones, proyectos y aprendizaje continuo.' : 'Apps, projects and continuous learning.'}</h1>
-      <p class="mt-5 max-w-3xl text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant md:text-xl">
-        {es ? 'ArceApps es mi espacio para crear y compartir aplicaciones Android, herramientas, experimentos y artículos de desarrollo. Me interesa construir cosas útiles y explicar qué funciona, qué no y qué aprendo por el camino.' : 'ArceApps is where I build and share Android apps, tools, experiments and technical writing. I enjoy creating useful software and explaining what works, what does not and what I learn along the way.'}
+  <div class="dark:bg-dark-surface min-h-screen">
+    <main class="mx-auto max-w-4xl px-4 py-12 md:py-16">
+      <!-- Header -->
+      <header class="text-left">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface">
+          {es ? 'Hola, soy ArceApps' : 'Hi, I am ArceApps'}
+        </h1>
+        <p class="mt-3 text-lg md:text-xl text-on-surface-variant dark:text-dark-on-surface-variant">
+          {es ? 'Desarrollador independiente, apasionado por crear software útil y compartir conocimiento.' : 'Independent developer, passionate about building useful software and sharing knowledge.'}
+        </p>
+      </header>
+
+      <!-- Scenic Landscape Banner Image -->
+      <div class="mt-8 overflow-hidden rounded-3xl border border-border shadow-sm dark:border-dark-border">
+        <img
+          src="/images/portfolio-landscape.svg"
+          alt="ArceApps Landscape"
+          class="aspect-[2.4/1] w-full object-cover"
+          width="1200"
+          height="500"
+        />
+      </div>
+
+      <!-- Bio paragraph below the banner -->
+      <p class="mt-6 text-base md:text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+        {es ? 'Me dedico al desarrollo de aplicaciones Android, herramientas de IA y proyectos de software. Me gusta resolver problemas reales, aprender tecnologías nuevas y compartir todo el proceso.' : 'I dedicate myself to developing Android apps, AI tools, and software projects. I enjoy solving real problems, learning new technologies, and sharing the entire process.'}
       </p>
-      <div class="mt-10 overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-sm dark:border-dark-border dark:bg-dark-surface-raised">
-        <div class="relative isolate grid min-h-52 items-center overflow-hidden bg-gradient-to-br from-[#0d6f72] via-[#0a414e] to-[#132333] px-7 py-10 text-white md:grid-cols-[1fr_auto] md:px-12">
-          <img src="/images/portfolio-landscape.svg" alt="" aria-hidden="true" width="1200" height="740" class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-screen dark:opacity-20" />
-          <div class="pointer-events-none absolute -bottom-32 right-0 h-72 w-[60%] rotate-[-18deg] rounded-full border-[50px] border-white/10" aria-hidden="true"></div>
-          <div class="relative">
-            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-teal-100">ArceApps / Indie development</p>
-            <h2 class="mt-3 max-w-2xl text-3xl font-bold leading-tight md:text-4xl">{es ? 'Software útil, ideas propias y tecnología aplicada.' : 'Useful software, independent ideas and practical technology.'}</h2>
-            <p class="mt-4 max-w-xl text-white/85">{es ? 'Desde apps Android hasta herramientas de IA: el hilo conductor es experimentar, cuidar los detalles y compartir el proceso.' : 'From Android apps to AI tools: what connects them is experimentation, attention to detail and sharing the process.'}</p>
-          </div>
-          <span class="material-icons relative mt-6 text-7xl text-teal-100/70 md:mt-0 md:text-9xl" aria-hidden="true">deployed_code</span>
+
+      <!-- 3-Column Metrics Card -->
+      <div class="mt-8 grid grid-cols-3 divide-x divide-border rounded-2xl border border-border bg-surface-raised py-5 text-center shadow-sm dark:divide-dark-border dark:border-dark-border dark:bg-dark-surface-raised">
+        <div class="flex flex-col items-center px-2">
+          <span class="material-icons text-2xl text-primary dark:text-teal-300" aria-hidden="true">smartphone</span>
+          <span class="mt-1 text-2xl font-extrabold text-on-surface dark:text-dark-on-surface md:text-3xl">{apps.length}</span>
+          <span class="mt-0.5 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Apps publicadas' : 'Published apps'}</span>
         </div>
-        <div class="grid grid-cols-3 divide-x divide-border bg-surface-raised py-6 text-center dark:divide-dark-border dark:bg-dark-surface-raised">
-          <div class="px-2"><p class="text-2xl font-extrabold tabular-nums text-primary dark:text-teal-300 md:text-3xl">{apps.length}</p><p class="mt-1 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Apps' : 'Apps'}</p></div>
-          <div class="px-2"><p class="text-2xl font-extrabold tabular-nums text-primary dark:text-teal-300 md:text-3xl">{blog.length}</p><p class="mt-1 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Artículos' : 'Articles'}</p></div>
-          <div class="px-2"><p class="text-2xl font-extrabold tabular-nums text-primary dark:text-teal-300 md:text-3xl">{projects.length}</p><p class="mt-1 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Proyectos abiertos' : 'Open projects'}</p></div>
+        <div class="flex flex-col items-center px-2">
+          <span class="material-icons text-2xl text-amber-500 dark:text-amber-400" aria-hidden="true">auto_awesome</span>
+          <span class="mt-1 text-2xl font-extrabold text-on-surface dark:text-dark-on-surface md:text-3xl">{blog.length}+</span>
+          <span class="mt-0.5 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Artículos publicados' : 'Published articles'}</span>
+        </div>
+        <div class="flex flex-col items-center px-2">
+          <span class="material-icons text-2xl text-primary dark:text-teal-300" aria-hidden="true">code</span>
+          <span class="mt-1 text-2xl font-extrabold text-on-surface dark:text-dark-on-surface md:text-3xl">{projects.length}</span>
+          <span class="mt-0.5 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Proyectos open source' : 'Open source projects'}</span>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
-    <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
-      <div><p class="text-xs font-bold uppercase tracking-wider text-primary">{es ? 'Áreas de interés' : 'Areas of interest'}</p><h2 class="mt-2 text-3xl font-bold text-on-surface dark:text-dark-on-surface">{es ? 'Qué encontrarás aquí' : 'What you will find here'}</h2></div>
-      <a href={`${prefix}/projects`} class="inline-flex items-center gap-2 font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{es ? 'Ver proyectos' : 'Explore projects'} <span class="material-icons text-base" aria-hidden="true">arrow_forward</span></a>
-    </div>
-    <div class="grid gap-4 md:grid-cols-2">
-      {areas.map((area) => (
-        <a href={area.href} class="group flex min-h-32 gap-4 rounded-2xl border border-border bg-surface-raised p-6 transition-colors hover:border-primary/40 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised">
-          <span class="material-icons flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-2xl text-primary dark:text-teal-300" aria-hidden="true">{area.icon}</span>
-          <div><h3 class="text-lg font-bold text-on-surface dark:text-dark-on-surface">{area.title}</h3><p class="mt-2 leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">{area.body}</p></div><span class="material-icons ml-auto shrink-0 self-start text-primary" aria-hidden="true">arrow_outward</span>
+
+      <!-- 'En qué trabajo' / 'What I work on' Section -->
+      <section class="mt-12">
+        <h2 class="text-2xl font-bold mb-5 text-on-surface dark:text-dark-on-surface">
+          {es ? 'En qué trabajo' : 'What I work on'}
+        </h2>
+        <div class="flex flex-col gap-3">
+          {areas.map((area) => (
+            <a
+              href={area.href}
+              class="group flex items-center gap-4 rounded-2xl border border-border bg-surface-raised p-4 shadow-sm transition-colors hover:border-primary/40 dark:border-dark-border dark:bg-dark-surface-raised"
+            >
+              <div class:list={["flex h-12 w-12 shrink-0 items-center justify-center rounded-xl", area.color]}>
+                <span class="material-icons text-2xl" aria-hidden="true">{area.icon}</span>
+              </div>
+              <div class="min-w-0 flex-1">
+                <h3 class="text-base font-bold text-on-surface transition-colors group-hover:text-primary dark:text-dark-on-surface">
+                  {area.title}
+                </h3>
+                <p class="truncate text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
+                  {area.desc}
+                </p>
+              </div>
+              <span class="material-icons text-on-surface-variant/40 transition-transform group-hover:translate-x-0.5 group-hover:text-primary dark:text-dark-on-surface-variant/40" aria-hidden="true">arrow_forward</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Bottom '¿Hablamos?' / 'Let’s talk?' CTA Banner Card -->
+      <div class="mt-12 rounded-2xl border border-border bg-surface-subtle/70 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 dark:border-dark-border dark:bg-dark-surface-raised">
+        <div>
+          <h3 class="text-xl font-bold text-on-surface dark:text-dark-on-surface">
+            {es ? '¿Hablamos?' : 'Let’s talk?'}
+          </h3>
+          <p class="mt-1 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
+            {es ? 'Si quieres comentar un proyecto, hacer una sugerencia o simplemente saludar, estaré encantado de leerte.' : 'Whether you have a question about my apps, want to discuss an idea, or just feel like saying hello — I’d love to hear from you.'}
+          </p>
+        </div>
+        <a
+          href="#contact"
+          class="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:bg-teal-600 dark:hover:bg-teal-500"
+        >
+          {es ? 'Contactar' : 'Contact'}
+          <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
         </a>
-      ))}
-    </div>
-  </section>
-  <section id="contact" class="mx-auto max-w-3xl px-4 py-16 md:px-6 md:py-20">
-    <div class="mb-8 text-center"><h2 class="text-3xl font-bold text-on-surface dark:text-dark-on-surface">{es ? '¿Tienes alguna idea o sugerencia?' : 'Have an idea or suggestion?'}</h2><p class="mt-3 text-on-surface-variant dark:text-dark-on-surface-variant">{es ? 'Si quieres comentar alguna aplicación, artículo o proyecto, puedes ponerte en contacto.' : 'Want to share feedback about an app, article or project? Get in touch.'}</p></div>
-    <ContactForm lang={lang} />
-  </section>
+      </div>
+
+      <!-- Embedded Contact Section -->
+      <div id="contact" class="mt-12 rounded-3xl border border-border bg-surface-raised p-6 shadow-sm dark:border-dark-border dark:bg-dark-surface-raised md:p-10">
+        <div class="mb-6 text-center">
+          <h2 class="text-2xl font-bold text-on-surface dark:text-dark-on-surface">
+            {es ? 'Envíame un mensaje' : 'Send a message'}
+          </h2>
+          <p class="mt-2 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
+            {es ? 'Completa el formulario y te responderé lo antes posible.' : 'Fill out the form and I will get back to you as soon as possible.'}
+          </p>
+        </div>
+        <ContactForm lang={lang} />
+      </div>
+    </main>
+  </div>
 </Layout>

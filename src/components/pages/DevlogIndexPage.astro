@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Card from "../Card.astro";
 import PageIntro from "../PageIntro.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../i18n/utils";
@@ -39,15 +38,37 @@ const getTopic = (log: typeof devlogs[number]): 'radiohub' | 'puzzles' | 'agents
   if (/arceapps|portfolio|astro|mirror|github pages/.test(combined)) return 'portfolio';
   return 'other';
 };
+
 const topics = [
-  { value: 'all', name: lang === 'es' ? 'Todo' : 'All' },
+  { value: 'all', name: lang === 'es' ? 'Todos' : 'All' },
+  { value: 'agents', name: 'Coucou' },
   { value: 'radiohub', name: 'RadioHub' },
-  { value: 'puzzles', name: lang === 'es' ? 'Puzzles' : 'Puzzles' },
-  { value: 'agents', name: lang === 'es' ? 'IA y agentes' : 'AI & agents' },
-  { value: 'portfolio', name: 'ArceApps' },
+  { value: 'puzzles', name: 'Puzzles' },
+  { value: 'portfolio', name: lang === 'es' ? 'Herramientas' : 'Tools' },
   { value: 'other', name: lang === 'es' ? 'Otros' : 'Other' },
 ].filter(({ value }) => value === 'all' || devlogs.some(log => getTopic(log) === value));
 
+const getTopicName = (topic: string) => {
+  switch (topic) {
+    case 'agents': return 'Coucou';
+    case 'radiohub': return 'RadioHub';
+    case 'puzzles': return 'Puzzles';
+    case 'portfolio': return lang === 'es' ? 'Herramientas' : 'Tools';
+    default: return lang === 'es' ? 'Otros' : 'Other';
+  }
+};
+
+const featuredReadingTime = devlogs.length > 0
+  ? Math.max(1, Math.ceil((devlogs[0].body ? devlogs[0].body.split(/\s+/g).length : 200) / 200))
+  : 0;
+
+const featuredDate = devlogs.length > 0
+  ? devlogs[0].data.pubDate.toLocaleDateString(localeString, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : '';
 ---
 
 <Layout title={`${t('devlog.title')} - ArceApps`}>
@@ -62,77 +83,136 @@ const topics = [
       ],
     }).replace(/</g, "\\u003C")}
   />
-  <section class="border-b border-border bg-surface px-4 py-14 dark:border-dark-border dark:bg-dark-surface md:py-20">
-    <div class="container mx-auto">
-      <PageIntro title={t('devlog.title')} description={t('devlog.subtitle')} />
-    </div>
-  </section>
 
-  <section class="py-14 md:py-20">
-    <div class="container mx-auto px-4">
-      {devlogs.length > 0 && (
-        <div class="mb-8 flex flex-wrap items-center gap-2" role="group" aria-label={lang === 'es' ? 'Filtrar entradas por proyecto o tema' : 'Filter entries by project or topic'} data-devlog-filters>
-          {topics.map(({ value, name }) => (
-            <button type="button" data-devlog-filter={value} aria-pressed={value === 'all' ? 'true' : 'false'}
-              class:list={["min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transition-none", value === 'all' ? "border-primary bg-primary text-white" : "border-border bg-surface-raised text-on-surface-variant hover:border-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"]}>
-              {name}
-            </button>
-          ))}
-        </div>
-      )}
-      {devlogs.length > 0 ? (
-        <>
-        <div data-devlog-topic={getTopic(devlogs[0])} class="mb-10 grid gap-6 overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-sm dark:border-dark-border dark:bg-dark-surface-raised lg:grid-cols-2">
-          <a href={`${linkPrefix}/${devlogs[0].slug.split('/').pop()}`} class="block aspect-video overflow-hidden focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary">
-            <img src={devlogs[0].data.heroImage || defaultImage} alt={getCoverAlt(devlogs[0].data.title)} class="h-full w-full object-cover transition-transform duration-300 hover:scale-[1.02] motion-reduce:transition-none" loading="eager" width="900" height="506" />
+  <main class="mx-auto max-w-5xl px-4 py-12 md:py-16">
+    <PageIntro
+      title="Devlog"
+      description={lang === "es" ? "El detrás de cámaras. Aquí comparto la evolución de mis proyectos, decisiones técnicas, experimentos y aprendizajes." : "Behind the scenes. Here I share the evolution of my projects, technical decisions, experiments, and lessons learned."}
+    />
+
+    <!-- Filter pills row -->
+    {devlogs.length > 0 && (
+      <nav class="mb-8 flex flex-wrap items-center gap-2" role="group" aria-label={lang === 'es' ? 'Filtrar entradas por proyecto o tema' : 'Filter entries by project or topic'} data-devlog-filters>
+        {topics.map(({ value, name }) => (
+          <button
+            type="button"
+            data-devlog-filter={value}
+            aria-pressed={value === 'all' ? 'true' : 'false'}
+            class:list={[
+              "min-h-9 rounded-full px-4 py-1.5 text-xs md:text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transition-none",
+              value === 'all'
+                ? "border-primary bg-primary text-white"
+                : "border border-border bg-surface-raised text-on-surface-variant hover:border-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
+            ]}
+          >
+            {name}
+          </button>
+        ))}
+      </nav>
+    )}
+
+    {devlogs.length > 0 ? (
+      <>
+        <!-- Featured Latest Devlog Card -->
+        <article
+          data-devlog-topic={getTopic(devlogs[0])}
+          class="mb-8 overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-sm dark:border-dark-border dark:bg-dark-surface-raised"
+        >
+          <a
+            href={`${linkPrefix}/${devlogs[0].slug.split('/').pop()}`}
+            class="relative block aspect-[21/9] sm:aspect-[2.2/1] w-full overflow-hidden bg-surface-variant dark:bg-dark-surface-variant focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary"
+          >
+            <img
+              src={devlogs[0].data.heroImage || defaultImage}
+              alt={getCoverAlt(devlogs[0].data.title)}
+              class="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+              loading="eager"
+              width="1200"
+              height="550"
+            />
+            <span class="absolute left-4 top-4 rounded-full bg-primary px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-md">
+              {getTopicName(getTopic(devlogs[0]))}
+            </span>
           </a>
-          <div class="flex flex-col justify-center p-6 md:p-10">
-            <span class="text-xs font-bold uppercase tracking-wider text-primary">{lang === 'es' ? 'Última entrada' : 'Latest update'}</span>
-            <h2 class="mt-4 text-3xl font-bold leading-tight text-on-surface dark:text-dark-on-surface md:text-4xl"><a href={`${linkPrefix}/${devlogs[0].slug.split('/').pop()}`} class="hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{devlogs[0].data.title}</a></h2>
-            <p class="mt-4 text-on-surface-variant dark:text-dark-on-surface-variant">{devlogs[0].data.description}</p>
-            <a href={`${linkPrefix}/${devlogs[0].slug.split('/').pop()}`} class="mt-6 inline-flex items-center gap-2 font-semibold text-primary hover:underline">{t('home.read_entry')} <span class="material-icons text-base" aria-hidden="true">arrow_forward</span></a>
+          <div class="p-6 md:p-8">
+            <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface dark:text-dark-on-surface">
+              <a href={`${linkPrefix}/${devlogs[0].slug.split('/').pop()}`} class="transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                {devlogs[0].data.title}
+              </a>
+            </h2>
+            <p class="mt-2 text-on-surface-variant dark:text-dark-on-surface-variant">
+              {devlogs[0].data.description}
+            </p>
+            <div class="mt-5 flex items-center justify-between text-sm">
+              <span class="text-on-surface-variant dark:text-dark-on-surface-variant">
+                {featuredDate} · {featuredReadingTime} min
+              </span>
+              <a
+                href={`${linkPrefix}/${devlogs[0].slug.split('/').pop()}`}
+                class="font-bold text-primary dark:text-teal-300 inline-flex items-center gap-1 hover:underline"
+              >
+                {lang === 'es' ? 'Leer artículo' : 'Read article'}
+                <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
+              </a>
+            </div>
           </div>
-        </div>
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8">
+        </article>
+
+        <!-- 2-Column Grid of Subsequent Devlog Cards -->
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
           {devlogs.slice(1, 13).map((log) => {
             const slug = log.slug.split('/').pop();
+            const shortDate = log.data.pubDate.toLocaleDateString(localeString, {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            });
+            const readingTime = Math.max(1, Math.ceil((log.body ? log.body.split(/\s+/g).length : 200) / 200));
+            const logTopic = getTopic(log);
             return (
-              <div data-devlog-topic={getTopic(log)} class="h-full">
-              <Card variant="article" class="flex h-full flex-col">
-                <div class="aspect-video w-full overflow-hidden bg-surface-variant dark:bg-dark-surface-variant">
+              <article
+                data-devlog-topic={logTopic}
+                class="flex flex-col overflow-hidden rounded-2xl border border-border bg-surface-raised shadow-sm transition-all hover:border-primary/40 dark:border-dark-border dark:bg-dark-surface-raised"
+              >
+                <a
+                  href={`${linkPrefix}/${slug}`}
+                  class="relative block aspect-video w-full overflow-hidden bg-surface-variant dark:bg-dark-surface-variant focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary"
+                >
                   <img
                     src={log.data.heroImage || defaultImage}
                     alt={getCoverAlt(log.data.title)}
-                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transform-none"
+                    class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                     loading="lazy"
                     decoding="async"
+                    width="600"
+                    height="338"
                   />
-                </div>
-
-                <div class="flex flex-grow flex-col p-6">
-                  <time datetime={log.data.pubDate.toISOString()} class="mb-3 text-sm font-semibold text-primary">
-                    {log.data.pubDate.toLocaleDateString(localeString, { year: 'numeric', month: 'long', day: 'numeric' })}
-                  </time>
-
-                  <h2 class="mb-3 text-xl font-bold leading-tight text-on-surface dark:text-dark-on-surface">
-                    <a href={`${linkPrefix}/${slug}`} class="rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/50 hover:text-primary motion-reduce:transition-none">
+                  <span class="absolute left-3 top-3 rounded-full bg-surface-raised/90 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-primary shadow-sm backdrop-blur-sm dark:bg-dark-surface-raised/90 dark:text-teal-300">
+                    {getTopicName(logTopic)}
+                  </span>
+                </a>
+                <div class="flex flex-1 flex-col p-5">
+                  <h2 class="text-lg font-bold text-on-surface transition-colors line-clamp-2 hover:text-primary dark:text-dark-on-surface">
+                    <a href={`${linkPrefix}/${slug}`} class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
                       {log.data.title}
                     </a>
                   </h2>
-
-                  <p class="mb-5 line-clamp-3 flex-grow text-sm leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+                  <p class="mt-2 line-clamp-2 flex-1 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
                     {log.data.description}
                   </p>
-
-                  <a href={`${linkPrefix}/${slug}`} class="inline-flex items-center self-start rounded text-sm font-medium text-primary transition-colors hover:text-primary/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/50 motion-reduce:transition-none">
-                    {t('home.read_entry')} <span class="material-icons ml-1 text-sm" aria-hidden="true">arrow_forward</span>
-                  </a>
+                  <div class="mt-4 flex items-center justify-between text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
+                    <span>{shortDate} · {readingTime} min</span>
+                    <a href={`${linkPrefix}/${slug}`} class="inline-flex items-center gap-1 font-semibold text-primary hover:underline dark:text-teal-300">
+                      {lang === 'es' ? 'Leer artículo' : 'Read article'}
+                      <span class="material-icons text-sm" aria-hidden="true">arrow_forward</span>
+                    </a>
+                  </div>
                 </div>
-              </Card>
-              </div>
+              </article>
             );
           })}
         </div>
+
         {devlogs.length > 13 && (
           <details data-devlog-archive class="mt-12 rounded-2xl border border-border bg-surface-raised p-6 dark:border-dark-border dark:bg-dark-surface-raised">
             <summary class="cursor-pointer font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{lang === 'es' ? 'Archivo de entradas anteriores' : 'Older entries'} ({devlogs.length - 13})</summary>
@@ -143,15 +223,15 @@ const topics = [
             </ul>
           </details>
         )}
-        </>
-      ) : (
-        <div class="rounded-2xl border border-border bg-surface-raised px-6 py-14 text-center dark:border-dark-border dark:bg-dark-surface-raised">
-          <span class="material-icons mb-4 text-4xl text-on-surface-variant dark:text-dark-on-surface-variant" aria-hidden="true">terminal</span>
-          <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant">{t('devlog.empty')}</p>
-        </div>
-      )}
-    </div>
-  </section>
+      </>
+    ) : (
+      <div class="rounded-2xl border border-border bg-surface-raised px-6 py-14 text-center dark:border-dark-border dark:bg-dark-surface-raised">
+        <span class="material-icons mb-4 text-4xl text-on-surface-variant dark:text-dark-on-surface-variant" aria-hidden="true">terminal</span>
+        <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant">{t('devlog.empty')}</p>
+      </div>
+    )}
+  </main>
+
   <script>
     const initDevlogFilters = () => {
       const container = document.querySelector<HTMLElement>('[data-devlog-filters]');

@@ -7,50 +7,106 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = useTranslations(lang);
+
+const features = [
+  {
+    icon: 'android',
+    title: lang === 'es' ? 'Apps Android' : 'Android Apps',
+    subtitle: lang === 'es' ? 'Productos en Google Play' : 'Products on Google Play',
+  },
+  {
+    icon: 'psychology',
+    title: lang === 'es' ? 'Herramientas de IA' : 'AI Tools',
+    subtitle: lang === 'es' ? 'Agentes y automatización' : 'Agents and automation',
+  },
+  {
+    icon: 'code',
+    title: lang === 'es' ? 'Proyectos open source' : 'Open source projects',
+    subtitle: lang === 'es' ? 'Ideas que exploro' : 'Ideas I explore',
+  },
+  {
+    icon: 'menu_book',
+    title: lang === 'es' ? 'Contenido técnico' : 'Technical content',
+    subtitle: lang === 'es' ? 'Blog y devlog' : 'Blog and devlog',
+  },
+];
 ---
 
 <section
-  class="home-hero relative isolate overflow-hidden border-b border-border bg-surface-subtle px-4 py-16 dark:border-dark-border dark:bg-dark-surface-subtle md:py-24"
+  class="home-hero relative isolate px-4 pt-6 pb-12 sm:px-6 lg:px-8"
   aria-labelledby="home-hero-title"
 >
-  <div class="relative mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.35fr_0.65fr]">
-    <div>
-      <p class="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-primary dark:text-teal-300">
-        <span class="h-2 w-2 rounded-full bg-secondary" aria-hidden="true"></span>
-        {lang === 'es' ? 'Desarrollo independiente · Android · IA' : 'Independent development · Android · AI'}
-      </p>
-      <h1 id="home-hero-title" class="home-hero-title max-w-4xl text-[clamp(2.65rem,5.4vw,6rem)] font-extrabold leading-[1.08] tracking-tight text-on-surface dark:text-dark-on-surface">
-        {lang === 'es' ? 'Software independiente que resuelve problemas reales.' : 'Independent software for real-world problems.'}
+  <span class="sr-only">ArceApps</span>
+  <div class="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-border bg-surface shadow-sm dark:border-dark-border dark:bg-dark-surface-raised">
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-full sm:w-2/3 lg:w-1/2">
+      <img
+        src="/images/portfolio-landscape.svg"
+        alt=""
+        width="1200"
+        height="740"
+        class="h-full w-full object-cover object-right opacity-85 dark:opacity-60 dark:brightness-90"
+        aria-hidden="true"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-surface via-surface/95 to-surface/20 dark:from-dark-surface-raised dark:via-dark-surface-raised/95 dark:to-dark-surface-raised/20"
+        aria-hidden="true"
+      ></div>
+    </div>
+
+    <div class="relative z-10 max-w-2xl px-6 py-12 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
+      <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary dark:text-teal-400">
+        <span class="h-2 w-2 rounded-full bg-primary dark:bg-teal-400" aria-hidden="true"></span>
+        <span>{lang === 'es' ? 'DESARROLLO · ANDROID · IA · PROYECTOS' : 'DEVELOPMENT · ANDROID · AI · PROJECTS'}</span>
+      </div>
+
+      <h1
+        id="home-hero-title"
+        class="home-hero-title mt-4 text-3xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-4xl lg:text-5xl leading-[1.15]"
+      >
+        {lang === 'es' ? 'Software independiente que resuelve problemas reales' : 'Independent software that solves real problems'}
       </h1>
-      <p class="home-hero-manifesto mt-6 max-w-2xl text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant md:text-xl">{t('home.manifesto')}</p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href={lang === 'es' ? '/es/projects' : '/projects'} class="inline-flex min-h-12 items-center gap-2 rounded-xl bg-primary px-6 py-3 font-bold text-white hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 motion-reduce:transition-none">
-          {t('home.view_all_projects')} <span class="material-icons text-lg" aria-hidden="true">arrow_forward</span>
+
+      <p class="home-hero-manifesto mt-4 text-base sm:text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+        {t('home.manifesto')}
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+        <a
+          href={lang === 'es' ? '/es/projects' : '/projects'}
+          class="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
+        >
+          {lang === 'es' ? 'Explorar proyectos' : 'Explore projects'}
+          <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
         </a>
-        <a href={lang === 'es' ? '/es/blog' : '/blog'} class="inline-flex min-h-12 items-center rounded-xl border border-border bg-surface px-6 py-3 font-semibold text-on-surface hover:border-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface motion-reduce:transition-none">
-          {t('home.view_all_articles')}
+        <a
+          href={lang === 'es' ? '/es/blog' : '/blog'}
+          class="inline-flex items-center rounded-xl border border-border bg-surface px-6 py-3 text-sm font-semibold text-on-surface shadow-sm transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-400"
+        >
+          {lang === 'es' ? 'Leer artículos' : 'Read articles'}
         </a>
       </div>
     </div>
-    <div class="relative min-h-60 overflow-hidden rounded-3xl border border-border shadow-xl shadow-primary/5 dark:border-dark-border sm:min-h-80 lg:min-h-[390px]">
-      <img src="/images/portfolio-landscape.svg" alt="" width="1200" height="740" class="absolute inset-0 h-full w-full object-cover dark:brightness-75" aria-hidden="true" />
-      <div class="absolute bottom-5 left-5 rounded-xl border border-white/50 bg-white/85 px-4 py-3 text-xs font-bold uppercase tracking-wider text-[#193741] shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-[#10262b]/85 dark:text-teal-100">{lang === 'es' ? 'ArceApps / Software independiente' : 'ArceApps / Independent software'}</div>
-    </div>
   </div>
-  <div class="relative mx-auto mt-10 grid w-full max-w-7xl grid-cols-2 gap-3 lg:grid-cols-4">
-    {[
-      { icon: 'android', es: 'Apps Android', en: 'Android apps' },
-      { icon: 'psychology', es: 'Herramientas de IA', en: 'AI tools' },
-      { icon: 'code', es: 'Proyectos abiertos', en: 'Open projects' },
-      { icon: 'article', es: 'Contenido técnico', en: 'Technical writing' }
-    ].map((item) => (
-      <div class="flex items-center gap-3 rounded-2xl border border-border bg-surface-raised p-4 shadow-sm dark:border-dark-border dark:bg-dark-surface-raised">
-        <span class="material-icons rounded-lg bg-primary/10 p-2 text-primary dark:text-teal-300" aria-hidden="true">{item.icon}</span>
-        <span class="text-sm font-semibold leading-tight text-on-surface dark:text-dark-on-surface">{lang === 'es' ? item.es : item.en}</span>
+
+  <div class="mx-auto mt-6 grid max-w-7xl grid-cols-2 divide-y divide-border rounded-2xl border border-border bg-surface-raised shadow-sm sm:divide-y-0 sm:divide-x dark:divide-dark-border dark:border-dark-border dark:bg-dark-surface-raised lg:grid-cols-4">
+    {features.map((item) => (
+      <div class="flex flex-col items-center p-5 text-center">
+        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary dark:bg-teal-400/10 dark:text-teal-300">
+          <span class="material-icons text-xl" aria-hidden="true">{item.icon}</span>
+        </div>
+        <span class="text-sm font-bold text-on-surface dark:text-dark-on-surface">{item.title}</span>
+        <span class="mt-1 text-xs text-on-surface-variant dark:text-dark-on-surface-variant">{item.subtitle}</span>
       </div>
     ))}
   </div>
-  <a href="#section-work" class="home-hero-scroll mx-auto mt-10 flex h-10 w-10 items-center justify-center rounded-full border border-border text-on-surface-variant hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:text-dark-on-surface-variant" aria-label={t('home.scroll_hint')}>
-    <span class="material-icons text-2xl" aria-hidden="true">keyboard_arrow_down</span>
-  </a>
+
+  <div class="flex justify-center">
+    <a
+      href="#section-work"
+      class="home-hero-scroll mx-auto mt-8 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-on-surface-variant transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant dark:hover:border-teal-400 dark:hover:text-teal-300"
+      aria-label={t('home.scroll_hint')}
+    >
+      <span class="material-icons text-xl" aria-hidden="true">keyboard_arrow_down</span>
+    </a>
+  </div>
 </section>

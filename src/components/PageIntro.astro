@@ -3,21 +3,24 @@ interface Props {
   title: string;
   description: string;
   eyebrow?: string;
+  align?: "left" | "center";
 }
 
-const { title, description, eyebrow } = Astro.props;
+const { title, description, eyebrow, align = "left" } = Astro.props;
+const isCenter = align === "center";
 ---
 
-<header class="mx-auto mb-12 max-w-3xl text-center">
+<header class:list={["mb-12 max-w-4xl", isCenter ? "mx-auto text-center" : "text-left"]}>
   {eyebrow && (
-    <p class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary dark:text-dark-focus">
-      {eyebrow}
+    <p class:list={["mb-3 flex items-center text-sm font-bold uppercase tracking-[0.18em] text-primary dark:text-teal-400", isCenter && "justify-center"]}>
+      <span class="h-2 w-2 rounded-full bg-primary inline-block mr-2" aria-hidden="true"></span>
+      <span>{eyebrow}</span>
     </p>
   )}
-  <h1 class="text-4xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface md:text-5xl">
+  <h1 class="text-4xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface md:text-5xl">
     {title}
   </h1>
-  <p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+  <p class:list={["mt-4 max-w-2xl text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant", isCenter && "mx-auto"]}>
     {description}
   </p>
 </header>
