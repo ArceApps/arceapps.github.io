@@ -1,7 +1,5 @@
 ---
 import HomeSectionHeader from "./HomeSectionHeader.astro";
-import BlogCard from "../BlogCard.astro";
-import Card from "../Card.astro";
 import { useTranslations } from "../../i18n/utils";
 
 interface Props {
@@ -15,9 +13,23 @@ const { lang, linkPrefix, posts, devlogs = [] } = Astro.props;
 const t = useTranslations(lang);
 const blogUrl = `${linkPrefix}/blog`;
 const devlogUrl = `${linkPrefix}/devlog`;
+
+function getTagStyle(tag: string = ''): string {
+  const lower = tag.toLowerCase();
+  if (lower.includes('android') || lower.includes('kotlin')) {
+    return 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400';
+  }
+  if (lower.includes('ia') || lower.includes('ai') || lower.includes('agent')) {
+    return 'bg-cyan-500/10 text-cyan-600 dark:bg-cyan-500/20 dark:text-cyan-400';
+  }
+  if (lower.includes('arquitectura') || lower.includes('architecture')) {
+    return 'bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400';
+  }
+  return 'bg-teal-500/10 text-primary dark:bg-teal-400/20 dark:text-teal-300';
+}
 ---
 
-<section class="border-t border-border/50 bg-surface py-12 sm:py-16 cv-auto fade-in-section dark:border-dark-border/50 dark:bg-dark-surface md:py-24" style="contain-intrinsic-size: 700px;">
+<section class="border-t border-border/50 py-12 sm:py-16 md:py-20 cv-auto fade-in-section dark:border-[#1F333E]/50" style="contain-intrinsic-size: 700px;">
   <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <HomeSectionHeader
       number="02"
@@ -26,94 +38,130 @@ const devlogUrl = `${linkPrefix}/devlog`;
       href={blogUrl}
       linkText={lang === 'es' ? 'Ver todos' : 'View all'}
     >
-      <div slot="after-title" class="flex items-center rounded-full border border-border bg-surface-subtle p-1 dark:border-dark-border dark:bg-dark-surface-subtle">
+      <div slot="after-title" class="inline-flex items-center rounded-full border border-border/80 bg-surface-subtle p-1 dark:border-[#1F333E] dark:bg-[#0D171F]">
         <button
           id="home-tab-blog"
           type="button"
-          class="rounded-full px-4 py-1.5 text-xs font-bold transition sm:text-sm bg-primary text-white shadow-sm"
+          class="rounded-full px-4 py-1.5 text-xs sm:text-sm font-bold transition bg-primary text-white shadow-xs"
         >
           Blog
         </button>
         <button
           id="home-tab-devlog"
           type="button"
-          class="rounded-full px-4 py-1.5 text-xs font-bold transition sm:text-sm text-on-surface-variant hover:text-on-surface"
+          class="rounded-full px-4 py-1.5 text-xs sm:text-sm font-bold transition text-on-surface-variant hover:text-on-surface dark:text-dark-on-surface-variant dark:hover:text-dark-on-surface"
         >
           Devlog
         </button>
       </div>
     </HomeSectionHeader>
 
-    <!-- Blog Posts Grid -->
+    <!-- Blog Posts Grid (3 columnas en desktop) -->
     <div id="home-posts-blog" class="grid grid-cols-1 gap-6 md:grid-cols-3">
-      {posts.map((post) => (
-        <div class="transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none">
-          <BlogCard post={post} />
-        </div>
-      ))}
+      {posts.map((post) => {
+        const slug = post.slug.split('/').pop();
+        const href = `${linkPrefix}/blog/${slug}/`;
+        const readingTime = Math.max(1, Math.ceil((post.body || "").split(/\s+/g).length / 200));
+        const formattedDate = post.data.pubDate ? new Date(post.data.pubDate).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        }) : '';
+        const tag = post.data.tags?.[0] || (lang === 'es' ? 'Artículo' : 'Article');
+        const tagStyle = getTagStyle(tag);
+
+        return (
+          <article class="group relative flex flex-col justify-between rounded-2xl border border-border bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-md dark:border-[#1F333E] dark:bg-[#111E26] dark:hover:border-teal-400/50">
+            <a
+              href={href}
+              data-astro-prefetch
+              class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
+              aria-label={`${lang === 'es' ? 'Leer artículo' : 'Read article'}: ${post.data.title}`}
+            />
+
+            <div>
+              <!-- Badge temático superior + Metadatos -->
+              <div class="flex items-center justify-between gap-2">
+                <span class:list={["inline-flex items-center rounded-lg px-2.5 py-1 text-xs font-bold tracking-wide uppercase", tagStyle]}>
+                  {tag}
+                </span>
+                <span class="text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
+                  {formattedDate} · {readingTime} min
+                </span>
+              </div>
+
+              <!-- Titular en negrita y jerarquía clara -->
+              <h3 class="mt-4 text-lg font-bold tracking-tight text-on-surface transition-colors group-hover:text-primary dark:text-dark-on-surface dark:group-hover:text-teal-300 sm:text-xl line-clamp-2">
+                {post.data.title}
+              </h3>
+
+              <!-- Extracto de 2 líneas con texto gris suave -->
+              <p class="mt-2.5 text-sm leading-relaxed text-on-surface-variant/80 dark:text-dark-on-surface-variant/80 line-clamp-2">
+                {post.data.description}
+              </p>
+            </div>
+
+            <!-- Enlace sutil con flecha de lectura -->
+            <div class="mt-6 flex items-center gap-1.5 text-xs font-semibold text-primary transition-all group-hover:gap-2.5 dark:text-teal-400 sm:text-sm">
+              <span>{lang === 'es' ? 'Leer artículo' : 'Read article'}</span>
+              <span class="material-icons text-base transition-transform group-hover:translate-x-0.5" aria-hidden="true">arrow_forward</span>
+            </div>
+          </article>
+        );
+      })}
     </div>
 
-    <!-- Devlog Posts Grid -->
+    <!-- Devlog Posts Grid (3 columnas en desktop) -->
     <div id="home-posts-devlog" class="hidden grid grid-cols-1 gap-6 md:grid-cols-3">
       {devlogs.map((entry) => {
         const slug = entry.slug.split('/').pop();
-        const href = `${linkPrefix}/devlog/${slug}`;
+        const href = `${linkPrefix}/devlog/${slug}/`;
+        const readingTime = Math.max(1, Math.ceil((entry.body || "").split(/\s+/g).length / 200));
         const formattedDate = entry.data.pubDate ? new Date(entry.data.pubDate).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
           year: 'numeric',
-          month: 'long',
+          month: 'short',
           day: 'numeric'
         }) : '';
-        const firstTag = entry.data.tags?.[0];
+        const tag = entry.data.tags?.[0] || 'Devlog';
+        const tagStyle = getTagStyle(tag);
 
         return (
-          <div class="transition-transform duration-300 hover:-translate-y-1 motion-reduce:transition-none">
-            <Card variant="article">
-              <a
-                href={href}
-                data-astro-prefetch
-                class="absolute inset-0 z-10 rounded-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/50 transition-shadow motion-reduce:transition-none"
-                aria-label={`${t('common.read_more')} ${entry.data.title}`}
-              />
+          <article class="group relative flex flex-col justify-between rounded-2xl border border-border bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-md dark:border-[#1F333E] dark:bg-[#111E26] dark:hover:border-teal-400/50">
+            <a
+              href={href}
+              data-astro-prefetch
+              class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
+              aria-label={`${lang === 'es' ? 'Leer entrada' : 'Read entry'}: ${entry.data.title}`}
+            />
 
-              <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-                <img
-                  src={entry.data.heroImage || '/images/devlog-default.svg'}
-                  alt={entry.data.title}
-                  class="h-full w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                  width="800"
-                  height="450"
-                />
+            <div>
+              <!-- Badge temático superior + Metadatos -->
+              <div class="flex items-center justify-between gap-2">
+                <span class:list={["inline-flex items-center rounded-lg px-2.5 py-1 text-xs font-bold tracking-wide uppercase", tagStyle]}>
+                  {tag}
+                </span>
+                <span class="text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
+                  {formattedDate} · {readingTime} min
+                </span>
               </div>
 
-              <div class="pointer-events-none relative z-20 flex flex-grow flex-col p-6">
-                <div class="mb-3 flex items-center gap-2">
-                  {firstTag && (
-                    <span class="rounded-md bg-primary/10 px-2 py-1 text-xs font-bold uppercase tracking-wider text-primary whitespace-nowrap">
-                      {firstTag}
-                    </span>
-                  )}
-                  <span class="ml-auto text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
-                    {formattedDate}
-                  </span>
-                </div>
+              <!-- Titular en negrita y jerarquía clara -->
+              <h3 class="mt-4 text-lg font-bold tracking-tight text-on-surface transition-colors group-hover:text-primary dark:text-dark-on-surface dark:group-hover:text-teal-300 sm:text-xl line-clamp-2">
+                {entry.data.title}
+              </h3>
 
-                <h3 class="pointer-events-none mb-3 line-clamp-2 text-xl font-bold text-on-surface transition-colors group-hover:text-primary dark:text-gray-100 motion-reduce:transition-none">
-                  {entry.data.title}
-                </h3>
+              <!-- Extracto de 2 líneas con texto gris suave -->
+              <p class="mt-2.5 text-sm leading-relaxed text-on-surface-variant/80 dark:text-dark-on-surface-variant/80 line-clamp-2">
+                {entry.data.description}
+              </p>
+            </div>
 
-                <p class="pointer-events-none mb-4 line-clamp-3 flex-grow text-sm leading-relaxed text-on-surface-variant dark:text-gray-300">
-                  {entry.data.description}
-                </p>
-
-                <div class="pointer-events-none mt-auto flex items-center text-sm font-medium text-primary">
-                  {t('home.read_entry')}
-                  <span class="material-icons ml-1 text-base" aria-hidden="true">arrow_forward</span>
-                </div>
-              </div>
-            </Card>
-          </div>
+            <!-- Enlace sutil con flecha de lectura -->
+            <div class="mt-6 flex items-center gap-1.5 text-xs font-semibold text-primary transition-all group-hover:gap-2.5 dark:text-teal-400 sm:text-sm">
+              <span>{lang === 'es' ? 'Leer entrada' : 'Read entry'}</span>
+              <span class="material-icons text-base transition-transform group-hover:translate-x-0.5" aria-hidden="true">arrow_forward</span>
+            </div>
+          </article>
         );
       })}
     </div>
@@ -128,8 +176,8 @@ const devlogUrl = `${linkPrefix}/devlog`;
     const postsDevlog = document.getElementById('home-posts-devlog');
     const headerLink = document.querySelector('#section-blog a[href]');
 
-    const activeClasses = ['bg-primary', 'text-white', 'shadow-sm'];
-    const inactiveClasses = ['text-on-surface-variant', 'hover:text-on-surface'];
+    const activeClasses = ['bg-primary', 'text-white', 'shadow-xs'];
+    const inactiveClasses = ['text-on-surface-variant', 'hover:text-on-surface', 'dark:text-dark-on-surface-variant', 'dark:hover:text-dark-on-surface'];
 
     function selectTab(tab) {
       if (tab === 'devlog') {

@@ -12,6 +12,30 @@ const projects = (await getCollection("projects", ({ data, id }) => !data.draft 
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
+const getProjectFilterClasses = (project: any) => {
+  const classes = ['all', 'open-source'];
+  const status = project.data.status || 'active';
+  classes.push(`status-${status}`);
+
+  const title = (project.data.title || '').toLowerCase();
+  const desc = (project.data.description || '').toLowerCase();
+  const tags = (project.data.tags || []).map((tag: string) => tag.toLowerCase());
+  const techs = (project.data.technologies || []).map((tech: string) => tech.toLowerCase());
+  const combined = [...tags, ...techs, title, desc].join(' ');
+
+  if (combined.includes('ai') || combined.includes('ia') || combined.includes('agent') || combined.includes('agente') || combined.includes('skills')) {
+    classes.push('tech-ai');
+  }
+  if (combined.includes('android') || combined.includes('kotlin')) {
+    classes.push('tech-android');
+  }
+  if (combined.includes('typescript') || combined.includes('js') || combined.includes('astro')) {
+    classes.push('tech-typescript');
+  }
+
+  return classes.join(' ');
+};
+
 const highlights = [
   {
     icon: 'code',
@@ -50,15 +74,20 @@ const highlights = [
     }).replace(/</g, "\\u003C")}
   />
 
-  <!-- Header Section with PageIntro & Filter Pills -->
-  <section class="border-b border-border bg-surface px-4 py-12 dark:border-dark-border dark:bg-dark-surface md:py-16">
+  <!-- Header Section with PageIntro & Status / Tech Filter Pills -->
+  <section class="border-b border-border bg-surface px-4 py-12 dark:border-[#1F333E] dark:bg-[#091117] md:py-16">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <div class="text-left [&>header]:text-left [&>header]:mx-0 [&>header]:max-w-none [&>header>p]:mx-0">
-        <PageIntro eyebrow={t("projects.eyebrow")} title={t("projects.title")} description={t("projects.subtitle")} />
+        <PageIntro
+          icon="folder_special"
+          eyebrow={t("projects.eyebrow")}
+          title={t("projects.title")}
+          description={t("projects.subtitle")}
+        />
       </div>
 
-      <!-- Filter Pills Row -->
-      <div class="mt-8 flex flex-wrap gap-2.5" role="toolbar" aria-label="Filtrar proyectos">
+      <!-- Filter Pills: Estado y Tecnología -->
+      <div class="mt-8 flex flex-wrap items-center gap-2.5" role="toolbar" aria-label="Filtrar proyectos">
         <button
           type="button"
           data-project-filter="all"
@@ -67,29 +96,63 @@ const highlights = [
         >
           Todos
         </button>
+
+        <span class="mx-1 h-5 w-px bg-border dark:bg-[#1F333E]" aria-hidden="true"></span>
+
+        <!-- Filtros de Estado -->
         <button
           type="button"
-          data-project-filter="ai"
+          data-project-filter="status-active"
           aria-pressed="false"
-          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
+          class="project-filter-btn inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
         >
-          IA y Agentes
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
+          <span>Activos</span>
         </button>
         <button
           type="button"
-          data-project-filter="android"
+          data-project-filter="status-maintained"
           aria-pressed="false"
-          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
+          class="project-filter-btn inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
+        >
+          <span class="h-1.5 w-1.5 rounded-full bg-teal-500" aria-hidden="true"></span>
+          <span>En mantenimiento</span>
+        </button>
+
+        <span class="mx-1 h-5 w-px bg-border dark:bg-[#1F333E]" aria-hidden="true"></span>
+
+        <!-- Filtros de Tecnología -->
+        <button
+          type="button"
+          data-project-filter="tech-android"
+          aria-pressed="false"
+          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
         >
           Android
         </button>
         <button
           type="button"
+          data-project-filter="tech-ai"
+          aria-pressed="false"
+          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
+        >
+          IA y Agentes
+        </button>
+        <button
+          type="button"
+          data-project-filter="tech-typescript"
+          aria-pressed="false"
+          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
+        >
+          TypeScript
+        </button>
+        <button
+          type="button"
           data-project-filter="open-source"
           aria-pressed="false"
-          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
+          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
         >
-          Open Source
+          Código Abierto
         </button>
       </div>
     </div>
@@ -100,46 +163,44 @@ const highlights = [
     {projects.length > 0 ? (
       <div id="projects-grid" class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => {
-          const cats = ['all', 'open-source'];
-          const title = (project.data.title || '').toLowerCase();
-          const desc = (project.data.description || '').toLowerCase();
-          const tags = (project.data.tags || []).map((tag: string) => tag.toLowerCase());
-          const techs = (project.data.technologies || []).map((tech: string) => tech.toLowerCase());
-          const combined = [...tags, ...techs, title, desc].join(' ');
-
-          if (combined.includes('ai') || combined.includes('ia') || combined.includes('agent') || combined.includes('agente') || combined.includes('skills')) {
-            cats.push('ai');
-          }
-          if (combined.includes('android') || combined.includes('kotlin')) {
-            cats.push('android');
-          }
+          const filterClasses = getProjectFilterClasses(project);
 
           return (
-            <div data-project-card data-project-category={cats.join(' ')} class="h-full">
+            <div data-project-card data-project-category={filterClasses} class="h-full">
               <ProjectCard
                 title={project.data.title}
                 description={project.data.description}
                 heroImage={project.data.heroImage}
                 tags={project.data.tags}
+                technologies={project.data.technologies}
                 pubDate={project.data.pubDate}
                 datePrecision={project.data.datePrecision}
                 slug={project.slug.split('/').pop() ?? ''}
                 kind="project"
                 status={project.data.status}
+                repositoryUrl={project.data.repositoryUrl}
+                demoUrl={project.data.demoUrl}
               />
             </div>
           );
         })}
       </div>
     ) : (
-      <p class="rounded-3xl border border-border bg-surface-raised p-10 text-center text-on-surface-variant dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant">
+      <p class="rounded-3xl border border-border bg-surface-raised p-10 text-center text-on-surface-variant dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant">
         {t('projects.empty')}
       </p>
     )}
 
+    <!-- Empty state for filters -->
+    <div id="projects-empty-filter" class="hidden rounded-3xl border border-border bg-surface-raised p-12 text-center dark:border-[#1F333E] dark:bg-[#111E26]">
+      <span class="material-icons mx-auto text-4xl text-on-surface-variant/60" aria-hidden="true">search_off</span>
+      <h3 class="mt-3 text-lg font-bold text-on-surface dark:text-dark-on-surface">No se encontraron proyectos con este filtro</h3>
+      <p class="mt-1 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">Prueba seleccionando otro filtro o "Todos" para ver el catálogo completo.</p>
+    </div>
+
     <!-- GitHub Open Source Callout Card -->
-    <div class="mt-16 rounded-3xl border border-border bg-surface-raised p-8 text-center shadow-sm dark:border-dark-border dark:bg-dark-surface-raised md:p-12">
-      <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:text-teal-300">
+    <div class="mt-16 rounded-3xl border border-border bg-surface-raised p-8 text-center shadow-sm dark:border-[#1F333E] dark:bg-[#111E26] md:p-12">
+      <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-500/10 text-primary dark:bg-teal-400/10 dark:text-teal-300">
         <span class="material-icons text-3xl" aria-hidden="true">code</span>
       </div>
       <h2 class="mt-4 text-2xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface">
@@ -153,8 +214,11 @@ const highlights = [
           href="https://github.com/ArceApps"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          class="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
         >
+          <svg class="h-4 w-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
           <span>Ver ArceApps en GitHub</span>
           <span class="material-icons text-base" aria-hidden="true">open_in_new</span>
         </a>
@@ -163,15 +227,15 @@ const highlights = [
   </main>
 
   <!-- Bottom 4-column Highlights Bar -->
-  <section class="border-t border-border bg-surface-subtle py-14 dark:border-dark-border dark:bg-dark-surface-subtle">
+  <section class="border-t border-border bg-surface-subtle py-14 dark:border-[#1F333E] dark:bg-[#0D171F]">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {highlights.map((item) => (
-          <div class="flex flex-col items-center rounded-2xl border border-border bg-surface-raised p-6 text-center shadow-sm dark:border-dark-border dark:bg-dark-surface-raised transition-all">
-            <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary dark:text-teal-300">
+          <div class="flex flex-col items-center rounded-2xl border border-border bg-surface-raised p-6 text-center shadow-sm dark:border-[#1F333E] dark:bg-[#111E26] transition-all">
+            <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-teal-500/10 text-primary dark:bg-teal-400/10 dark:text-teal-300">
               <span class="material-icons text-2xl" aria-hidden="true">{item.icon}</span>
             </div>
-            <h3 class="mt-4 font-bold text-on-surface dark:text-dark-on-surface">
+            <h3 class="mt-4 font-bold text-on-surface dark:text-dark-on-surface text-base">
               {item.title}
             </h3>
             <p class="mt-2 text-sm leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
@@ -188,6 +252,7 @@ const highlights = [
     function setupProjectFilters() {
       const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-project-filter]');
       const cards = document.querySelectorAll<HTMLElement>('[data-project-card]');
+      const emptyState = document.getElementById('projects-empty-filter');
 
       if (!filterBtns.length || !cards.length) return;
 
@@ -198,25 +263,31 @@ const highlights = [
           // Update active state of buttons
           filterBtns.forEach((b) => {
             if (b === btn) {
-              b.classList.remove('border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'dark:border-dark-border', 'dark:bg-dark-surface-raised', 'dark:text-dark-on-surface-variant', 'font-medium');
+              b.classList.remove('border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'dark:border-[#1F333E]', 'dark:bg-[#111E26]', 'dark:text-dark-on-surface-variant', 'font-medium');
               b.classList.add('bg-primary', 'text-white', 'font-semibold', 'shadow-sm');
               b.setAttribute('aria-pressed', 'true');
             } else {
               b.classList.remove('bg-primary', 'text-white', 'font-semibold', 'shadow-sm');
-              b.classList.add('border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'dark:border-dark-border', 'dark:bg-dark-surface-raised', 'dark:text-dark-on-surface-variant', 'font-medium');
+              b.classList.add('border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'dark:border-[#1F333E]', 'dark:bg-[#111E26]', 'dark:text-dark-on-surface-variant', 'font-medium');
               b.setAttribute('aria-pressed', 'false');
             }
           });
 
           // Filter cards
+          let visibleCount = 0;
           cards.forEach((card) => {
             const categories = (card.getAttribute('data-project-category') || '').split(' ');
             if (filter === 'all' || categories.includes(filter)) {
               card.style.display = '';
+              visibleCount++;
             } else {
               card.style.display = 'none';
             }
           });
+
+          if (emptyState) {
+            emptyState.classList.toggle('hidden', visibleCount > 0);
+          }
         });
       });
     }

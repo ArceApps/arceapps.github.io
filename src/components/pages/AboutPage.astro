@@ -15,15 +15,71 @@ const [apps, projects, blog] = await Promise.all([
 ]);
 
 const areas = es ? [
-  { icon: 'smartphone', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Desarrollo Android', desc: 'Apps nativas con Kotlin y Jetpack Compose', href: '/es/apps' },
-  { icon: 'auto_awesome', color: 'bg-amber-500/10 text-amber-500 dark:text-amber-400', title: 'Inteligencia artificial', desc: 'Agentes, automatización y herramientas prácticas', href: '/es/devlog' },
-  { icon: 'code', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Proyectos de software', desc: 'Herramientas, librerías y experimentos', href: '/es/projects' },
-  { icon: 'article', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Contenido técnico', desc: 'Blog, devlog y guías prácticas', href: '/es/blog' }
+  {
+    icon: 'smartphone',
+    badge: 'Android & Kotlin',
+    color: 'bg-teal-500/10 text-teal-600 dark:text-teal-300',
+    title: 'Desarrollo Android',
+    desc: 'Apps nativas con Kotlin y Jetpack Compose.',
+    href: '/es/apps'
+  },
+  {
+    icon: 'auto_awesome',
+    badge: 'IA & Agentes',
+    color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-300',
+    title: 'Inteligencia artificial',
+    desc: 'Agentes y herramientas con modelos locales y APIs.',
+    href: '/es/devlog'
+  },
+  {
+    icon: 'code',
+    badge: 'Open Source',
+    color: 'bg-blue-500/10 text-blue-600 dark:text-blue-300',
+    title: 'Proyectos de software',
+    desc: 'Herramientas de código abierto y utilidades.',
+    href: '/es/projects'
+  },
+  {
+    icon: 'article',
+    badge: 'Editorial',
+    color: 'bg-amber-500/10 text-amber-600 dark:text-amber-300',
+    title: 'Contenido técnico',
+    desc: 'Artículos, guías y devlogs detallados.',
+    href: '/es/blog'
+  }
 ] : [
-  { icon: 'smartphone', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Android development', desc: 'Native apps with Kotlin and Jetpack Compose', href: '/apps' },
-  { icon: 'auto_awesome', color: 'bg-amber-500/10 text-amber-500 dark:text-amber-400', title: 'Artificial intelligence', desc: 'Agents, automation and practical tools', href: '/devlog' },
-  { icon: 'code', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Software projects', desc: 'Tools, libraries and experiments', href: '/projects' },
-  { icon: 'article', color: 'bg-primary/10 text-primary dark:text-teal-300', title: 'Technical content', desc: 'Blog, devlog and practical guides', href: '/blog' }
+  {
+    icon: 'smartphone',
+    badge: 'Android & Kotlin',
+    color: 'bg-teal-500/10 text-teal-600 dark:text-teal-300',
+    title: 'Android development',
+    desc: 'Native apps with Kotlin and Jetpack Compose.',
+    href: '/apps'
+  },
+  {
+    icon: 'auto_awesome',
+    badge: 'AI & Agents',
+    color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-300',
+    title: 'Artificial intelligence',
+    desc: 'Agents and tools with local models and APIs.',
+    href: '/devlog'
+  },
+  {
+    icon: 'code',
+    badge: 'Open Source',
+    color: 'bg-blue-500/10 text-blue-600 dark:text-blue-300',
+    title: 'Software projects',
+    desc: 'Open source tools and utilities.',
+    href: '/projects'
+  },
+  {
+    icon: 'article',
+    badge: 'Editorial',
+    color: 'bg-amber-500/10 text-amber-600 dark:text-amber-300',
+    title: 'Technical content',
+    desc: 'Articles, guides, and detailed devlogs.',
+    href: '/blog'
+  }
 ];
 ---
 
@@ -40,9 +96,64 @@ const areas = es ? [
         <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface">
           {es ? 'Hola, soy ArceApps' : 'Hi, I am ArceApps'}
         </h1>
-        <p class="mt-3 text-lg md:text-xl text-on-surface-variant dark:text-dark-on-surface-variant">
+        <p class="mt-3 text-lg md:text-xl font-medium text-primary dark:text-teal-300">
           {es ? 'Desarrollador independiente, apasionado por crear software útil y compartir conocimiento.' : 'Independent developer, passionate about building useful software and sharing knowledge.'}
         </p>
+
+        <!-- Fila de enlaces sociales / contacto: Botones circulares limpios -->
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <!-- GitHub -->
+          <a
+            href="https://github.com/arceapps"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface-raised text-on-surface shadow-sm transition-all hover:border-primary hover:text-primary hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-primary"
+            aria-label="GitHub"
+            title="GitHub"
+          >
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+            </svg>
+          </a>
+
+          <!-- Google Play -->
+          <a
+            href="https://play.google.com/store/apps/dev?id=8812775800441745731"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface-raised text-on-surface shadow-sm transition-all hover:border-primary hover:text-primary hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-primary"
+            aria-label="Google Play"
+            title="Google Play"
+          >
+            <svg class="h-5 w-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3.609 1.814L13.792 12 3.61 22.186a2.23 2.23 0 0 1-.61-.986V2.8c.144-.383.364-.72.609-.986zm11.242 11.245l2.453 2.453-11.41 6.54 8.957-8.993zm2.453-2.118l3.197 1.832a1.442 1.442 0 0 1 0 2.454l-3.197 1.832-2.3-2.3 2.3-1.818zm-2.453-.335L5.894 1.609l11.41 6.54-2.453 2.453z"></path>
+            </svg>
+          </a>
+
+          <!-- X / Twitter -->
+          <a
+            href="https://x.com/arceapps"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface-raised text-on-surface shadow-sm transition-all hover:border-primary hover:text-primary hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-primary"
+            aria-label="X (Twitter)"
+            title="X (Twitter)"
+          >
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+            </svg>
+          </a>
+
+          <!-- Email / Contact -->
+          <a
+            href="#contact"
+            class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface-raised text-on-surface shadow-sm transition-all hover:border-primary hover:text-primary hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-primary"
+            aria-label={es ? 'Contacto por email' : 'Email contact'}
+            title={es ? 'Contacto' : 'Contact'}
+          >
+            <span class="material-icons text-xl" aria-hidden="true">mail</span>
+          </a>
+        </div>
       </header>
 
       <!-- Scenic Landscape Banner Image -->
@@ -56,73 +167,84 @@ const areas = es ? [
         />
       </div>
 
-      <!-- Bio paragraph below the banner -->
+      <!-- Bio paragraph -->
       <p class="mt-6 text-base md:text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
         {es ? 'Me dedico al desarrollo de aplicaciones Android, herramientas de IA y proyectos de software. Me gusta resolver problemas reales, aprender tecnologías nuevas y compartir todo el proceso.' : 'I dedicate myself to developing Android apps, AI tools, and software projects. I enjoy solving real problems, learning new technologies, and sharing the entire process.'}
       </p>
 
-      <!-- 3-Column Metrics Card -->
-      <div class="mt-8 grid grid-cols-3 divide-x divide-border rounded-2xl border border-border bg-surface-raised py-5 text-center shadow-sm dark:divide-dark-border dark:border-dark-border dark:bg-dark-surface-raised">
+      <!-- Fila de Métricas Clave (3 cifras destacadas según maquetas) -->
+      <div class="mt-8 grid grid-cols-3 divide-x divide-border rounded-2xl border border-border bg-surface-raised py-6 text-center shadow-sm dark:divide-dark-border dark:border-dark-border dark:bg-dark-surface-raised">
         <div class="flex flex-col items-center px-2">
-          <span class="material-icons text-2xl text-primary dark:text-teal-300" aria-hidden="true">smartphone</span>
-          <span class="mt-1 text-2xl font-extrabold text-on-surface dark:text-dark-on-surface md:text-3xl">{apps.length}</span>
-          <span class="mt-0.5 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Apps publicadas' : 'Published apps'}</span>
+          <span class="text-3xl sm:text-4xl font-extrabold text-on-surface dark:text-dark-on-surface">4</span>
+          <span class="mt-1 text-xs sm:text-sm font-medium text-on-surface-variant dark:text-dark-on-surface-variant">
+            {es ? 'Apps publicadas' : 'Published apps'}
+          </span>
         </div>
         <div class="flex flex-col items-center px-2">
-          <span class="material-icons text-2xl text-amber-500 dark:text-amber-400" aria-hidden="true">auto_awesome</span>
-          <span class="mt-1 text-2xl font-extrabold text-on-surface dark:text-dark-on-surface md:text-3xl">{blog.length}+</span>
-          <span class="mt-0.5 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Artículos publicados' : 'Published articles'}</span>
+          <span class="text-3xl sm:text-4xl font-extrabold text-on-surface dark:text-dark-on-surface">50k+</span>
+          <span class="mt-1 text-xs sm:text-sm font-medium text-on-surface-variant dark:text-dark-on-surface-variant">
+            {es ? 'Descargas totales' : 'Total downloads'}
+          </span>
         </div>
         <div class="flex flex-col items-center px-2">
-          <span class="material-icons text-2xl text-primary dark:text-teal-300" aria-hidden="true">code</span>
-          <span class="mt-1 text-2xl font-extrabold text-on-surface dark:text-dark-on-surface md:text-3xl">{projects.length}</span>
-          <span class="mt-0.5 text-xs text-on-surface-variant dark:text-dark-on-surface-variant md:text-sm">{es ? 'Proyectos open source' : 'Open source projects'}</span>
+          <span class="text-3xl sm:text-4xl font-extrabold text-on-surface dark:text-dark-on-surface">3+</span>
+          <span class="mt-1 text-xs sm:text-sm font-medium text-on-surface-variant dark:text-dark-on-surface-variant">
+            {es ? 'Proyectos open source' : 'Open source projects'}
+          </span>
         </div>
       </div>
 
-      <!-- 'En qué trabajo' / 'What I work on' Section -->
+      <!-- Sección "En qué trabajo" (Cuadrícula 2x2) -->
       <section class="mt-12">
-        <h2 class="text-2xl font-bold mb-5 text-on-surface dark:text-dark-on-surface">
+        <h2 class="text-2xl font-bold mb-6 text-on-surface dark:text-dark-on-surface">
           {es ? 'En qué trabajo' : 'What I work on'}
         </h2>
-        <div class="flex flex-col gap-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {areas.map((area) => (
             <a
               href={area.href}
-              class="group flex items-center gap-4 rounded-2xl border border-border bg-surface-raised p-4 shadow-sm transition-colors hover:border-primary/40 dark:border-dark-border dark:bg-dark-surface-raised"
+              class="group flex flex-col justify-between rounded-2xl border border-border bg-surface-raised p-5 sm:p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md dark:border-dark-border dark:bg-dark-surface-raised"
             >
-              <div class:list={["flex h-12 w-12 shrink-0 items-center justify-center rounded-xl", area.color]}>
-                <span class="material-icons text-2xl" aria-hidden="true">{area.icon}</span>
-              </div>
-              <div class="min-w-0 flex-1">
-                <h3 class="text-base font-bold text-on-surface transition-colors group-hover:text-primary dark:text-dark-on-surface">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class:list={["flex h-12 w-12 items-center justify-center rounded-xl", area.color]}>
+                    <span class="material-icons text-2xl" aria-hidden="true">{area.icon}</span>
+                  </div>
+                  <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-surface-variant/80 dark:bg-dark-surface-variant text-on-surface-variant dark:text-dark-on-surface-variant border border-border/50 dark:border-dark-border/50">
+                    {area.badge}
+                  </span>
+                </div>
+                <h3 class="text-lg font-bold text-on-surface transition-colors group-hover:text-primary dark:text-dark-on-surface">
                   {area.title}
                 </h3>
-                <p class="truncate text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
+                <p class="mt-2 text-sm text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed">
                   {area.desc}
                 </p>
               </div>
-              <span class="material-icons text-on-surface-variant/40 transition-transform group-hover:translate-x-0.5 group-hover:text-primary dark:text-dark-on-surface-variant/40" aria-hidden="true">arrow_forward</span>
+              <div class="mt-5 flex items-center gap-1 text-xs font-semibold text-primary dark:text-teal-300 transition-transform group-hover:translate-x-1">
+                <span>{es ? 'Explorar' : 'Explore'}</span>
+                <span class="material-icons text-sm" aria-hidden="true">arrow_forward</span>
+              </div>
             </a>
           ))}
         </div>
       </section>
 
-      <!-- Bottom '¿Hablamos?' / 'Let’s talk?' CTA Banner Card -->
-      <div class="mt-12 rounded-2xl border border-border bg-surface-subtle/70 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 dark:border-dark-border dark:bg-dark-surface-raised">
-        <div>
-          <h3 class="text-xl font-bold text-on-surface dark:text-dark-on-surface">
+      <!-- Bloque de Cierre: "¿Hablamos?" con botón directo a contacto -->
+      <div class="mt-12 rounded-3xl border border-border bg-surface-raised p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 dark:border-dark-border dark:bg-dark-surface-raised shadow-sm">
+        <div class="max-w-xl">
+          <h3 class="text-2xl font-bold text-on-surface dark:text-dark-on-surface">
             {es ? '¿Hablamos?' : 'Let’s talk?'}
           </h3>
-          <p class="mt-1 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
+          <p class="mt-2 text-sm text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed">
             {es ? 'Si quieres comentar un proyecto, hacer una sugerencia o simplemente saludar, estaré encantado de leerte.' : 'Whether you have a question about my apps, want to discuss an idea, or just feel like saying hello — I’d love to hear from you.'}
           </p>
         </div>
         <a
           href="#contact"
-          class="inline-flex shrink-0 items-center gap-1.5 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:bg-teal-600 dark:hover:bg-teal-500"
+          class="inline-flex shrink-0 items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
-          {es ? 'Contactar' : 'Contact'}
+          <span>{es ? 'Contactar' : 'Contact'}</span>
           <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
         </a>
       </div>

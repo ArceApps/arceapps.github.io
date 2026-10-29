@@ -35,7 +35,7 @@ const label = topicInfo ? (es ? topicInfo.es : topicInfo.en) : topic;
     <PageIntro
       eyebrow="BLOG"
       title={label}
-      description={es ? 'Explora artículos y guías de esta categoría.' : 'Explore articles and guides in this category.'}
+      description={es ? `Explora artículos técnicos y guías sobre ${label.toLowerCase()}.` : `Explore technical articles and guides about ${label.toLowerCase()}.`}
     />
 
     <!-- Search bar & Category filter pills row -->

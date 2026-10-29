@@ -13,26 +13,46 @@ const apps = (await getCollection("apps", ({ data, id }) => !data.draft && isPub
 const featured = apps.find((app) => app.slug.split('/').pop() === 'radiohub');
 const linkPrefix = '/es';
 
-const highlights = [
+const getAppMetadata = (slug: string, tags: string[] = []) => {
+  if (slug === 'radiohub' || tags.some(tag => ['Radio', 'Music', 'Streaming', 'Audio'].includes(tag))) {
+    return { category: 'Audio', filterClasses: 'all audio' };
+  }
+  if (slug === '4line' || tags.some(tag => ['Strategy'].includes(tag))) {
+    return { category: 'Herramientas', filterClasses: 'all tools utilities' };
+  }
+  if (slug === 'puzzlehub') {
+    return { category: 'Herramientas', filterClasses: 'all tools utilities' };
+  }
+  return { category: 'Utilidades', filterClasses: 'all utilities' };
+};
+
+const radioHubPills = [
+  { icon: 'radio', label: 'Miles de emisoras' },
+  { icon: 'favorite', label: 'Favoritos' },
+  { icon: 'person_off', label: 'Sin registros' },
+  { icon: 'palette', label: 'Diseño Material 3' },
+];
+
+const qualityPillars = [
   {
-    icon: 'radio',
-    title: 'Miles de emisoras',
-    desc: 'Emisoras de todo el mundo siempre disponibles',
+    icon: 'verified_user',
+    title: 'Sin publicidad invasiva',
+    desc: 'Sin anuncios a pantalla completa, popups molestos ni banners que interrumpan tu experiencia.',
   },
   {
-    icon: 'favorite_border',
-    title: 'Favoritos',
-    desc: 'Guarda tus emisoras y juegos preferidos',
-  },
-  {
-    icon: 'person_off',
-    title: 'Sin registros',
-    desc: 'Abre la app y empieza a usarla al instante',
+    icon: 'lock',
+    title: 'Privacidad respetada',
+    desc: 'Tus datos son tuyos. Cero rastreadores ocultos, sin telemetría invasiva ni necesidad de cuentas obligatorias.',
   },
   {
     icon: 'palette',
-    title: 'Diseño Material 3',
-    desc: 'Interfaz cuidada en modo claro y oscuro',
+    title: 'Material Design 3',
+    desc: 'Diseño cuidado con Material You, colores dinámicos, soporte impecable para modo oscuro y fluidez.',
+  },
+  {
+    icon: 'bolt',
+    title: 'Rendimiento y fluidez',
+    desc: 'Desarrollo nativo en Kotlin y Jetpack Compose optimizado para bajo consumo de batería y máxima respuesta.',
   },
 ];
 ---
@@ -51,17 +71,18 @@ const highlights = [
     }).replace(/</g, "\\u003C")}
   />
 
-  <!-- Header Section with PageIntro & Filter Pills -->
-  <section class="border-b border-border bg-surface px-4 py-12 dark:border-dark-border dark:bg-dark-surface md:py-16">
+  <!-- Header Section with App Icon, Title, Subtitle & Category Filter Chips -->
+  <section class="border-b border-border bg-surface px-4 py-12 dark:border-[#1F333E] dark:bg-[#091117] md:py-16">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <div class="text-left [&>header]:text-left [&>header]:mx-0 [&>header]:max-w-none [&>header>p]:mx-0">
         <PageIntro
+          icon="apps"
           title="Aplicaciones Android"
-          description="Aplicaciones útiles, bien diseñadas y con un objetivo claro: hacer más fácil tu día a día."
+          description="Aplicaciones útiles, bien diseñadas y con un objetivo claro: hacer más fácil tu día a día"
         />
       </div>
 
-      <!-- Filter Pills Row -->
+      <!-- Filter Pills Row (Todas · Audio · Navegación · Herramientas · Utilidades) -->
       <div class="mt-8 flex flex-wrap gap-2.5" role="toolbar" aria-label="Filtrar aplicaciones">
         <button
           type="button"
@@ -73,161 +94,139 @@ const highlights = [
         </button>
         <button
           type="button"
-          data-app-filter="google-play"
+          data-app-filter="audio"
           aria-pressed="false"
-          class="app-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
+          class="app-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
         >
-          En Google Play
+          Audio
         </button>
         <button
           type="button"
-          data-app-filter="puzzles"
+          data-app-filter="navigation"
           aria-pressed="false"
-          class="app-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
+          class="app-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
         >
-          Puzzles y Lógica
+          Navegación
         </button>
         <button
           type="button"
-          data-app-filter="multimedia"
+          data-app-filter="tools"
           aria-pressed="false"
-          class="app-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
+          class="app-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
         >
-          Multimedia y Radio
+          Herramientas
+        </button>
+        <button
+          type="button"
+          data-app-filter="utilities"
+          aria-pressed="false"
+          class="app-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
+        >
+          Utilidades
         </button>
       </div>
     </div>
   </section>
 
-  <!-- 2x2 Compact Apps Grid Section -->
-  <section class="border-b border-border bg-surface-subtle/60 py-10 dark:border-dark-border dark:bg-dark-surface-subtle/50 md:py-14">
-    <div class="mx-auto max-w-7xl px-4 md:px-6">
-      {apps.length > 0 ? (
-        <div id="apps-grid" class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
-          {apps.map((app) => {
-            const slug = app.slug.split('/').pop() || '';
-            const isRadioHub = slug === 'radiohub';
-            const realIcon = isRadioHub
-              ? (app.data.realIconUrl || "/images/apps/radiohub/logo.png")
-              : app.data.realIconUrl;
-
-            const categories = ['all'];
-            if (app.data.googlePlayUrl) categories.push('google-play');
-            if (isRadioHub || app.data.tags?.some((t: string) => ['Radio', 'Music', 'Streaming'].includes(t))) {
-              categories.push('multimedia');
-            }
-            if (['puzzlehub', 'sudoku-plus', '2048-puzzle', '4line'].includes(slug) || app.data.tags?.some((t: string) => ['Puzzle', 'Logic', 'Strategy'].includes(t))) {
-              categories.push('puzzles');
-            }
-
-            return (
-              <div data-app-card data-app-category={categories.join(' ')} class="h-full">
-                <AppCard
-                  title={app.data.title}
-                  description={app.data.description}
-                  icon={app.data.icon}
-                  realIconUrl={realIcon}
-                  link={`${linkPrefix}/apps/${slug}`}
-                  isExternal={false}
-                  compact={true}
-                  ctaText={t('common.read_more')}
-                  badges={["Google Play", "Android"]}
-                />
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <p class="rounded-xl border border-border p-8 text-center dark:border-dark-border">{t('apps.empty')}</p>
-      )}
-    </div>
-  </section>
-
-  <!-- Featured Application Spotlight Section (RadioHub) -->
+  <!-- Spotlight Card de RadioHub: Gran tarjeta destacada superior -->
   {featured && (
-    <section class="mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-20">
-      <div class="grid gap-10 rounded-3xl border border-border bg-surface-raised p-6 shadow-sm dark:border-dark-border dark:bg-dark-surface-raised md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:p-10 lg:gap-14">
-        <!-- Left Column -->
+    <section class="mx-auto max-w-7xl px-4 pt-10 pb-6 md:px-6 md:pt-14 md:pb-8">
+      <div class="grid gap-10 rounded-3xl border border-border bg-surface-raised p-6 shadow-sm dark:border-[#1F333E] dark:bg-[#111E26] md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] md:p-10 lg:gap-14">
+        <!-- Columna Izquierda: Información de RadioHub -->
         <div class="flex flex-col justify-center">
-          <!-- Top row with RadioHub icon + title -->
-          <div class="mb-4 flex items-center gap-3.5">
+          <!-- Icono oficial en squircle + Título + Badge Destacada / Featured -->
+          <div class="mb-4 flex items-center gap-4">
             <img
               src="/images/apps/radiohub/logo.png"
-              alt="RadioHub icon"
-              width="40"
-              height="40"
-              class="h-10 w-10 rounded-xl object-cover shadow-sm"
+              alt="Icono oficial RadioHub"
+              width="60"
+              height="60"
+              class="h-14 w-14 sm:h-16 sm:w-16 rounded-2xl border border-border/80 object-cover shadow-sm dark:border-[#1F333E]"
             />
             <div>
-              <span class="text-xs font-bold uppercase tracking-[0.14em] text-primary">
-                Aplicación destacada
-              </span>
-              <h2 class="text-xl font-bold text-on-surface dark:text-dark-on-surface">
-                {featured.data.title}
-              </h2>
+              <div class="flex items-center gap-2">
+                <h2 class="text-2xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl">
+                  {featured.data.title}
+                </h2>
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary dark:bg-teal-400/10 dark:text-teal-300">
+                  <span class="h-1.5 w-1.5 rounded-full bg-primary dark:bg-teal-400" aria-hidden="true"></span>
+                  <span>Destacada</span>
+                </span>
+              </div>
+              <div class="mt-1.5 flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center gap-1 rounded-full bg-surface-subtle px-2.5 py-0.5 text-xs font-semibold text-on-surface-variant border border-border/60 dark:bg-[#16242E] dark:text-dark-on-surface-variant dark:border-[#1F333E]">
+                  <span class="material-icons text-xs text-emerald-500" aria-hidden="true">android</span>
+                  <span>Android · Jetpack Compose · Material 3</span>
+                </span>
+              </div>
             </div>
           </div>
 
-          <!-- Big subtitle H3 -->
-          <h3 class="text-2xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl">
+          <!-- Claim destacado -->
+          <h3 class="mt-3 text-xl font-bold tracking-tight text-primary dark:text-teal-400 sm:text-2xl">
             La radio, como te gusta
           </h3>
 
-          <!-- Description paragraph -->
-          <p class="mt-4 max-w-xl text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant sm:text-lg">
-            Accede a miles de emisoras de radio de todo el mundo con una interfaz simple, rápida y sin complicaciones.
+          <!-- Descripción concisa -->
+          <p class="mt-3 text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+            Accede a miles de emisoras de radio de todo el mundo con ecualizador profesional, temporizador de apagado y una interfaz simple y rápida sin anuncios invasivos ni registros.
           </p>
 
-          <!-- Two CTA buttons -->
-          <div class="mt-7 flex flex-wrap items-center gap-3">
-            <a
-              href={featured.data.googlePlayUrl || `${linkPrefix}/apps/${featured.slug.split('/').pop()}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            >
-              <span>Ver en Google Play</span>
-              <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
-            </a>
-            {featured.data.repoUrl && (
-              <a
-                href={featured.data.repoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-sm font-semibold text-on-surface transition-colors hover:border-primary hover:text-primary dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                <span class="material-icons text-base" aria-hidden="true">code</span>
-                <span>Ver código</span>
-              </a>
-            )}
-            <a
-              href={`${linkPrefix}/apps/${featured.slug.split('/').pop()}`}
-              class="inline-flex min-h-11 items-center gap-1.5 rounded-xl px-4 py-3 text-sm font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            >
-              <span>Detalles de la app</span>
-              <span class="material-icons text-sm" aria-hidden="true">chevron_right</span>
-            </a>
+          <!-- Métricas: Rating 4.8★, Descargas, Botón de descarga directa a Google Play -->
+          <div class="mt-5 flex flex-wrap items-center gap-3">
+            <div class="flex items-center gap-1.5 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-bold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
+              <span class="material-icons text-base text-amber-500" aria-hidden="true">star</span>
+              <span>4.8 ★</span>
+              <span class="font-normal text-on-surface-variant dark:text-dark-on-surface-variant">Google Play</span>
+            </div>
+            <div class="flex items-center gap-1.5 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-bold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
+              <span class="material-icons text-base text-teal-600 dark:text-teal-400" aria-hidden="true">download</span>
+              <span>+10.000 descargas</span>
+            </div>
           </div>
 
-          <!-- Category pills row below CTAs -->
-          <div class="mt-7 flex flex-wrap gap-2">
-            {["Android", "Radio", "Multimedia"].map((tag) => (
-              <span class="rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-on-surface-variant dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface-variant">
-                {tag}
-              </span>
+          <!-- Pills de características: Miles de emisoras, Favoritos, Sin registros, Diseño Material 3 -->
+          <div class="mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+            {radioHubPills.map((pill) => (
+              <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
+                <span class="material-icons text-base text-primary dark:text-teal-400" aria-hidden="true">{pill.icon}</span>
+                <span>{pill.label}</span>
+              </div>
             ))}
+          </div>
+
+          <!-- Botones de acción: Descarga directa a Google Play + Detalles -->
+          <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+            <a
+              href={featured.data.googlePlayUrl || 'https://play.google.com/store/apps/details?id=com.arceapps.radiohub'}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
+            >
+              <svg class="h-4 w-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3.609 1.814L13.792 12 3.61 22.186a2.222 2.222 0 0 1-.61-.954V2.768c.15-.36.368-.69.609-.954zm11.242 11.245l2.254 2.255-10.74 6.22 8.486-8.475zm2.885-1.127l2.84 1.645c.833.483.833 1.267 0 1.75l-2.84 1.645-2.52-2.52 2.52-2.52zm-2.885-1.127L6.365 2.33l10.74 6.22-2.254 2.255z"/>
+              </svg>
+              <span>Descargar en Google Play</span>
+            </a>
+            <a
+              href={`${linkPrefix}/apps/${featured.slug.split('/').pop()}`}
+              class="inline-flex min-h-11 items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-sm font-semibold text-on-surface transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-300"
+            >
+              <span>Ver detalles de la app</span>
+              <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
+            </a>
           </div>
         </div>
 
-        <!-- Right Column: Sleek Phone Frames -->
-        <div class="relative flex min-h-72 items-end justify-center gap-2 overflow-hidden rounded-3xl bg-surface-subtle/80 px-4 pt-8 dark:bg-dark-surface-subtle/60 sm:min-h-96">
+        <!-- Columna Derecha: Mockups estilizados de teléfonos -->
+        <div class="relative flex min-h-72 items-end justify-center gap-2 overflow-hidden rounded-3xl bg-surface-subtle/80 px-4 pt-8 dark:bg-[#0D171F] sm:min-h-96">
           {(featured.data.screenshots || []).slice(0, 3).map((shot, index) => (
             <div
               class:list={[
-                "relative overflow-hidden rounded-2xl border-[3px] border-slate-800 bg-slate-900 p-1 shadow-2xl dark:border-slate-700 transition-transform duration-300",
+                "relative overflow-hidden rounded-2xl border-[3px] border-slate-800 bg-slate-900 p-1 shadow-2xl dark:border-slate-700 transition-opacity motion-reduce:transition-none",
                 index === 1
                   ? "z-10 w-[38%] max-w-48 shadow-primary/10"
-                  : "w-[30%] max-w-40 translate-y-4 opacity-90 hover:opacity-100 hover:translate-y-2",
+                  : "w-[30%] max-w-40 translate-y-4 opacity-90",
               ]}
             >
               <div class="mx-auto mb-1 h-1 w-6 rounded-full bg-slate-700/80"></div>
@@ -248,16 +247,81 @@ const highlights = [
     </section>
   )}
 
-  <!-- Bottom 4-column Feature Highlights Bar -->
-  <section class="border-t border-border bg-surface-subtle py-14 dark:border-dark-border dark:bg-dark-surface-subtle">
+  <!-- Cuadrícula de Aplicaciones (Apps Grid): Tarjetas uniformes con diseño limpio -->
+  <section class="border-b border-border bg-surface-subtle/60 py-10 dark:border-[#1F333E] dark:bg-[#091117] md:py-14">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
+      <div class="mb-6 flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-2xl">
+            Todas las aplicaciones Android
+          </h2>
+          <p class="mt-1 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">
+            Explora nuestro catálogo completo de herramientas, puzzles y aplicaciones multimedia
+          </p>
+        </div>
+      </div>
+
+      {apps.length > 0 ? (
+        <div id="apps-grid" class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5">
+          {apps.map((app) => {
+            const slug = app.slug.split('/').pop() || '';
+            const isRadioHub = slug === 'radiohub';
+            const realIcon = isRadioHub
+              ? (app.data.realIconUrl || "/images/apps/radiohub/logo.png")
+              : app.data.realIconUrl;
+
+            const meta = getAppMetadata(slug, app.data.tags);
+
+            return (
+              <div data-app-card data-app-category={meta.filterClasses} class="h-full">
+                <AppCard
+                  title={app.data.title}
+                  description={app.data.description}
+                  icon={app.data.icon}
+                  realIconUrl={realIcon}
+                  link={`${linkPrefix}/apps/${slug}`}
+                  isExternal={false}
+                  compact={true}
+                  ctaText="Google Play Store"
+                  badges={[meta.category, "Android"]}
+                  googlePlayUrl={app.data.googlePlayUrl}
+                />
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <p class="rounded-xl border border-border p-8 text-center dark:border-[#1F333E]">{t('apps.empty')}</p>
+      )}
+
+      <!-- Empty state when category filter has no matches -->
+      <div id="apps-empty-filter" class="hidden rounded-2xl border border-border bg-surface-raised p-12 text-center dark:border-[#1F333E] dark:bg-[#111E26]">
+        <span class="material-icons mx-auto text-4xl text-on-surface-variant/60" aria-hidden="true">search_off</span>
+        <h3 class="mt-3 text-lg font-bold text-on-surface dark:text-dark-on-surface">No se encontraron aplicaciones en esta categoría</h3>
+        <p class="mt-1 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">Prueba seleccionando "Todas" para ver el catálogo completo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección inferior de 4 Pilares de Calidad -->
+  <section class="border-t border-border bg-surface-subtle py-14 dark:border-[#1F333E] dark:bg-[#0D171F]">
+    <div class="mx-auto max-w-7xl px-4 md:px-6">
+      <div class="mb-10 text-center">
+        <h2 class="text-2xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl">
+          Pilares de calidad en cada app
+        </h2>
+        <p class="mx-auto mt-2 max-w-xl text-sm leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant sm:text-base">
+          Principios fundamentales que guían el diseño y desarrollo de todas nuestras aplicaciones Android
+        </p>
+      </div>
+
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {highlights.map((item) => (
-          <div class="flex flex-col items-center rounded-2xl border border-border bg-surface-raised p-6 text-center shadow-sm dark:border-dark-border dark:bg-dark-surface-raised transition-all">
-            <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary dark:text-teal-300">
+        {qualityPillars.map((item) => (
+          <div class="flex flex-col items-center rounded-2xl border border-border bg-surface-raised p-6 text-center shadow-sm dark:border-[#1F333E] dark:bg-[#111E26] transition-all">
+            <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-500/10 text-primary dark:bg-teal-400/10 dark:text-teal-300">
               <span class="material-icons text-2xl" aria-hidden="true">{item.icon}</span>
             </div>
-            <h3 class="mt-4 font-bold text-on-surface dark:text-dark-on-surface">
+            <h3 class="mt-4 font-bold text-on-surface dark:text-dark-on-surface text-base">
               {item.title}
             </h3>
             <p class="mt-2 text-sm leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
@@ -274,6 +338,7 @@ const highlights = [
     function setupAppFilters() {
       const filterBtns = document.querySelectorAll<HTMLButtonElement>('[data-app-filter]');
       const cards = document.querySelectorAll<HTMLElement>('[data-app-card]');
+      const emptyState = document.getElementById('apps-empty-filter');
 
       if (!filterBtns.length || !cards.length) return;
 
@@ -284,25 +349,31 @@ const highlights = [
           // Update active state of buttons
           filterBtns.forEach((b) => {
             if (b === btn) {
-              b.classList.remove('border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'dark:border-dark-border', 'dark:bg-dark-surface-raised', 'dark:text-dark-on-surface-variant', 'font-medium');
+              b.classList.remove('border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'dark:border-[#1F333E]', 'dark:bg-[#111E26]', 'dark:text-dark-on-surface-variant', 'font-medium');
               b.classList.add('bg-primary', 'text-white', 'font-semibold', 'shadow-sm');
               b.setAttribute('aria-pressed', 'true');
             } else {
               b.classList.remove('bg-primary', 'text-white', 'font-semibold', 'shadow-sm');
-              b.classList.add('border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'dark:border-dark-border', 'dark:bg-dark-surface-raised', 'dark:text-dark-on-surface-variant', 'font-medium');
+              b.classList.add('border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'dark:border-[#1F333E]', 'dark:bg-[#111E26]', 'dark:text-dark-on-surface-variant', 'font-medium');
               b.setAttribute('aria-pressed', 'false');
             }
           });
 
           // Filter cards
+          let visibleCount = 0;
           cards.forEach((card) => {
             const categories = (card.getAttribute('data-app-category') || '').split(' ');
             if (filter === 'all' || categories.includes(filter)) {
               card.style.display = '';
+              visibleCount++;
             } else {
               card.style.display = 'none';
             }
           });
+
+          if (emptyState) {
+            emptyState.classList.toggle('hidden', visibleCount > 0);
+          }
         });
       });
     }
