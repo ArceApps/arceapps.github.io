@@ -16,109 +16,64 @@ const devlogs = (await getCollection("devlog", ({ data, id }) => !data.draft && 
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
-const defaultImage = "/images/devlog-default.svg";
+// R9: la destacada es la entrada más reciente real; el resto alimenta la lista.
+const featured = devlogs[0];
+const restDevlogs = devlogs.slice(1);
 
-// Helper for date formatting
+const defaultImage = "/images/devlog-default.svg";
 const localeString = lang === 'es' ? 'es-ES' : 'en-US';
 
-// Helper for alt text
 const getCoverAlt = (title: string) => t('devlog.cover_alt').replace('{title}', title);
-
-// Helper for link prefix
 const linkPrefix = lang === 'es' ? '/es/devlog' : '/devlog';
+const slugOf = (log: (typeof devlogs)[number]) => log.slug.split('/').pop() ?? '';
 
-// Broad editorial topics
-const getTopic = (log: typeof devlogs[number]): 'radiohub' | 'puzzles' | 'agents' | 'portfolio' | 'other' => {
-  const title = log.data.title.toLowerCase();
-  const tags = (log.data.tags || []).join(' ').toLowerCase();
-  const combined = `${title} ${tags}`;
-  if (combined.includes('radiohub')) return 'radiohub';
-  if (/puzzle|sudoku|numberlink|kakuro|hitori/.test(combined)) return 'puzzles';
-  if (/coucou|agent|codex|opencode|clawdbot|\bia\b|\bai\b|llm|mcp/.test(combined)) return 'agents';
-  if (/arceapps|portfolio|astro|mirror|github pages/.test(combined)) return 'portfolio';
+const getReadingTime = (log: (typeof devlogs)[number]) =>
+  Math.max(1, Math.ceil((log.body ? log.body.split(/\s+/g).length : 200) / 200));
+
+const getReadingLabel = (log: (typeof devlogs)[number]) =>
+  t('devlog.reading_time').replace('{min}', String(getReadingTime(log)));
+
+const formatDate = (date: Date, options: Intl.DateTimeFormatOptions) =>
+  date.toLocaleDateString(localeString, options);
+
+type DevlogSeries = 'coucou' | 'radiohub' | 'puzzlehub' | 'tools';
+
+// D6: las series se derivan de los títulos y tags reales de las entradas
+// publicadas; no hay categorías inventadas en el listado.
+const getSeries = (log: (typeof devlogs)[number]): DevlogSeries | 'other' => {
+  const haystack = `${log.data.title} ${(log.data.tags ?? []).join(' ')}`.toLowerCase();
+  if (haystack.includes('radiohub')) return 'radiohub';
+  if (/puzzle|sudoku|numberlink|kakuro|hitori/.test(haystack)) return 'puzzlehub';
+  if (/coucou|agent|codex|opencode|clawdbot|\bia\b|\bai\b|llm|mcp/.test(haystack)) return 'coucou';
+  if (/arceapps|portfolio|astro|mirror|github pages/.test(haystack)) return 'tools';
   return 'other';
 };
 
-const topics = [
-  { value: 'all', name: lang === 'es' ? 'Todos' : 'All' },
-  { value: 'agents', name: 'Coucou' },
-  { value: 'radiohub', name: 'RadioHub' },
-  { value: 'puzzles', name: 'PuzzleHub' },
-  { value: 'portfolio', name: lang === 'es' ? 'Herramientas' : 'Tools' },
-  { value: 'other', name: lang === 'es' ? 'Otros' : 'Other' },
-].filter(({ value }) => value === 'all' || devlogs.some(log => getTopic(log) === value));
-
-const getTopicName = (topic: string) => {
-  switch (topic) {
-    case 'agents': return 'Coucou';
-    case 'radiohub': return 'RadioHub';
-    case 'puzzles': return 'PuzzleHub';
-    case 'portfolio': return lang === 'es' ? 'Herramientas' : 'Tools';
-    default: return lang === 'es' ? 'Otros' : 'Other';
-  }
+const seriesLabels: Record<DevlogSeries, string> = {
+  coucou: t('devlog.series_coucou'),
+  radiohub: t('devlog.series_radiohub'),
+  puzzlehub: t('devlog.series_puzzlehub'),
+  tools: t('devlog.series_tools'),
 };
 
-const coucouLog = devlogs.find(log => log.slug.includes('coucou')) || devlogs[0];
-const coucouSlug = coucouLog ? coucouLog.slug.split('/').pop() : '2026-w44-coucou-agent-supervision';
+const seriesCounts = new Map<DevlogSeries, number>();
+for (const log of devlogs) {
+  const series = getSeries(log);
+  if (series === 'other') continue;
+  seriesCounts.set(series, (seriesCounts.get(series) ?? 0) + 1);
+}
 
-const featuredReadingTime = coucouLog
-  ? Math.max(1, Math.ceil((coucouLog.body ? coucouLog.body.split(/\s+/g).length : 200) / 200))
-  : 8;
+const MAX_VISIBLE_SERIES = 3;
+const seriesChips = [...seriesCounts.entries()]
+  .sort((a, b) => b[1] - a[1] || seriesLabels[a[0]].localeCompare(seriesLabels[b[0]]))
+  .map(([value]) => ({ value, label: seriesLabels[value] }));
+const visibleSeries = seriesChips.slice(0, MAX_VISIBLE_SERIES);
+const overflowSeries = seriesChips.slice(MAX_VISIBLE_SERIES);
 
-const featuredDate = coucouLog
-  ? coucouLog.data.pubDate.toLocaleDateString(localeString, {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
-  : '';
-
-// Timeline entries for Coucou
-const coucouTimeline = [
-  {
-    title: lang === 'es' ? 'Sistema de memoria a largo plazo en Coucou' : 'Long-term memory system in Coucou',
-    date: lang === 'es' ? '18 oct 2026' : 'Oct 18, 2026',
-    tag: lang === 'es' ? 'Memoria' : 'Memory',
-    tagColor: 'bg-indigo-50 text-indigo-700 border-indigo-200/80 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-800/50',
-    summary: lang === 'es' ? 'Estructuración de almacenamiento contextual persistente y recuperación semántica entre sesiones de agentes.' : 'Structuring persistent contextual storage and semantic retrieval across agent sessions.',
-    readTime: '4 min',
-    topic: 'agents',
-    href: `${linkPrefix}/${coucouSlug}`,
-  },
-  {
-    title: lang === 'es' ? 'Primer prototipo funcional de la plataforma' : 'First functional prototype of the platform',
-    date: lang === 'es' ? '10 oct 2026' : 'Oct 10, 2026',
-    tag: lang === 'es' ? 'Prototipo' : 'Prototype',
-    tagColor: 'bg-teal-50 text-teal-700 border-teal-200/80 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800/50',
-    summary: lang === 'es' ? 'Primera integración de la isla de escritorio, observabilidad en tiempo real y flujo de aprobación no bloqueante.' : 'First integration of the desktop island, real-time observability, and non-blocking approval loop.',
-    readTime: '5 min',
-    topic: 'agents',
-    href: `${linkPrefix}/${coucouSlug}`,
-  },
-  {
-    title: lang === 'es' ? 'Arquitectura del backend y límites de ejecución' : 'Backend architecture and execution boundaries',
-    date: lang === 'es' ? '2 oct 2026' : 'Oct 2, 2026',
-    tag: lang === 'es' ? 'Arquitectura' : 'Architecture',
-    tagColor: 'bg-blue-50 text-blue-700 border-blue-200/80 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/50',
-    summary: lang === 'es' ? 'Comunicación mediante sockets UNIX locales, gestión segura de credenciales y aislamiento de procesos.' : 'Communication via local UNIX sockets, secure credential management, and process isolation.',
-    readTime: '6 min',
-    topic: 'agents',
-    href: `${linkPrefix}/${coucouSlug}`,
-  },
-  {
-    title: lang === 'es' ? 'Interfaz de usuario inicial y componentes reactivos' : 'Initial user interface and reactive components',
-    date: lang === 'es' ? '24 sep 2026' : 'Sep 24, 2026',
-    tag: lang === 'es' ? 'UI / Reactivo' : 'UI / Reactive',
-    tagColor: 'bg-amber-50 text-amber-700 border-amber-200/80 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800/50',
-    summary: lang === 'es' ? 'Componentes interactivos para aprobaciones rápidas, visualización de diffs y estados visuales del agente.' : 'Interactive components for fast approvals, diff inspection, and visual agent states.',
-    readTime: '3 min',
-    topic: 'agents',
-    href: `${linkPrefix}/${coucouSlug}`,
-  },
-];
-
-// Remaining devlogs excluding coucou
-const otherDevlogs = devlogs.filter(log => !log.slug.includes('coucou'));
+const featuredSeries = featured ? getSeries(featured) : 'other';
+const featuredBadge = featuredSeries === 'other'
+  ? (featured?.data.tags?.[0] ?? t('devlog.heading'))
+  : seriesLabels[featuredSeries];
 ---
 
 <Layout title={`${t('devlog.title')} - ArceApps`}>
@@ -128,179 +83,153 @@ const otherDevlogs = devlogs.filter(log => !log.slug.includes('coucou'));
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: lang === 'es' ? 'Inicio' : 'Home', item: "https://arceapps.com" },
-        { "@type": "ListItem", position: 2, name: lang === 'es' ? 'Bitácora' : 'Devlog', item: `https://arceapps.com${lang === 'es' ? '/es/devlog' : '/devlog'}` },
+        { "@type": "ListItem", position: 1, name: t('common.home'), item: "https://arceapps.com" },
+        { "@type": "ListItem", position: 2, name: t('devlog.heading'), item: `https://arceapps.com${lang === 'es' ? '/es/devlog' : '/devlog'}` },
       ],
     }).replace(/</g, "\\u003C")}
   />
 
   <main class="mx-auto max-w-5xl px-4 py-12 md:py-16">
     <PageIntro
-      title="Devlog"
-      description={lang === "es" ? "Detrás de cámaras. Aquí comparto la evolución de mis proyectos, experimentos y decisiones técnicas." : "Behind the scenes. Here I share the evolution of my projects, experiments, and technical decisions."}
+      title={t('devlog.heading')}
+      description={t('devlog.intro')}
     />
 
-    <!-- Filter pills row -->
     {devlogs.length > 0 && (
-      <nav class="mb-8 flex flex-wrap items-center gap-2" role="group" aria-label={lang === 'es' ? 'Filtrar entradas por proyecto o tema' : 'Filter entries by project or topic'} data-devlog-filters>
-        {topics.map(({ value, name }) => (
+      <>
+        <!-- Chips de filtro por serie, derivados de las entradas reales (D6) -->
+        <nav
+          class="mb-4 flex flex-wrap items-center gap-2"
+          role="group"
+          aria-label={t('devlog.filter_aria')}
+          data-devlog-filters
+        >
           <button
             type="button"
-            data-devlog-filter={value}
-            aria-pressed={value === 'all' ? 'true' : 'false'}
-            class:list={[
-              "min-h-9 rounded-full px-4 py-1.5 text-xs md:text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transition-none",
-              value === 'all'
-                ? "border-primary bg-primary text-white"
-                : "border border-[#E5E7EB] bg-[#FFFFFF] text-on-surface-variant hover:border-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
-            ]}
+            data-filter="all"
+            aria-pressed="true"
+            class="devlog-filter-btn inline-flex min-h-9 items-center rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transition-none md:text-sm"
           >
-            {name}
+            {t('devlog.filter_all')}
           </button>
-        ))}
-      </nav>
+          {visibleSeries.map(({ value, label }) => (
+            <button
+              type="button"
+              data-filter={value}
+              aria-pressed="false"
+              class="devlog-filter-btn inline-flex min-h-9 items-center rounded-full border border-border bg-surface-raised px-4 py-1.5 text-xs font-medium text-on-surface-variant transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant md:text-sm"
+            >
+              {label}
+            </button>
+          ))}
+          {overflowSeries.length > 0 && (
+            <button
+              type="button"
+              data-more-toggle
+              aria-expanded="false"
+              aria-controls="devlog-more-filters"
+              class="inline-flex min-h-9 items-center rounded-full border border-border bg-surface-raised px-4 py-1.5 text-xs font-medium text-on-surface-variant transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant md:text-sm"
+            >
+              {t('devlog.filter_others')}
+            </button>
+          )}
+        </nav>
+
+        <!-- "Otros" solo revela el resto de series; nunca aplica un filtro. -->
+        {overflowSeries.length > 0 && (
+          <div id="devlog-more-filters" data-more-filters hidden class="mb-8 flex flex-wrap gap-2">
+            {overflowSeries.map(({ value, label }) => (
+              <button
+                type="button"
+                data-filter={value}
+                aria-pressed="false"
+                class="devlog-filter-btn inline-flex min-h-9 items-center rounded-full border border-border bg-surface-raised px-4 py-1.5 text-xs font-medium text-on-surface-variant transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant md:text-sm"
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        )}
+      </>
     )}
 
-    {devlogs.length > 0 ? (
+    {featured ? (
       <>
-        <!-- Tarjeta Destacada Superior (Featured Card de Coucou) -->
+        <!-- Tarjeta destacada: la entrada más reciente real -->
         <article
-          data-devlog-topic="agents"
-          class="mb-10 overflow-hidden rounded-3xl border border-[#E5E7EB] bg-[#FFFFFF] shadow-sm transition-all hover:border-primary/50 hover:shadow-md dark:border-[#1F333E] dark:bg-[#111E26]"
+          data-devlog-featured
+          data-devlog-topic={featuredSeries}
+          class="mb-10 overflow-hidden rounded-2xl border border-border bg-surface-raised shadow-sm transition-all hover:border-primary/50 hover:shadow-md dark:border-dark-border dark:bg-dark-surface-raised"
         >
-          {coucouLog?.data.heroImage && (
-            <a
-              href={`${linkPrefix}/${coucouSlug}`}
-              class="relative block aspect-[21/9] sm:aspect-[2.4/1] w-full overflow-hidden bg-surface-variant dark:bg-dark-surface-variant focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary"
-            >
-              <img
-                src={coucouLog.data.heroImage}
-                alt={getCoverAlt(coucouLog.data.title)}
-                class="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
-                loading="eager"
-                width="1200"
-                height="500"
-              />
-            </a>
-          )}
-          <div class="p-6 md:p-8">
-            <!-- Badges de estado y categorías -->
-            <div class="mb-4 flex flex-wrap items-center gap-2">
-              <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 dark:border-emerald-800/50 dark:bg-emerald-950/40 dark:text-emerald-300">
-                <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                {lang === 'es' ? 'En progreso' : 'In progress'}
-              </span>
-              <span class="inline-flex items-center rounded-full border border-indigo-200/80 bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700 dark:border-indigo-800/50 dark:bg-indigo-950/40 dark:text-indigo-300">
-                {lang === 'es' ? 'Agentes' : 'Agents'}
-              </span>
-              <span class="inline-flex items-center rounded-full border border-blue-200/80 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-800/50 dark:bg-blue-950/40 dark:text-blue-300">
-                {lang === 'es' ? 'Arquitectura' : 'Architecture'}
-              </span>
-            </div>
+          <a
+            href={`${linkPrefix}/${slugOf(featured)}`}
+            class="relative block aspect-[16/9] w-full overflow-hidden rounded-2xl bg-surface-variant focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary dark:bg-dark-surface-variant sm:aspect-[21/9]"
+          >
+            <img
+              src={featured.data.heroImage ?? defaultImage}
+              alt={getCoverAlt(featured.data.title)}
+              class="h-full w-full rounded-2xl object-cover transition-transform duration-500 hover:scale-[1.02]"
+              loading="eager"
+              width="1200"
+              height="500"
+            />
+            <span class="absolute left-4 top-4 rounded-full bg-surface-raised/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary shadow-sm backdrop-blur-sm dark:bg-dark-surface-raised/90">
+              {featuredBadge}
+            </span>
+          </a>
 
-            <!-- Título de la actualización principal -->
-            <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface dark:text-dark-on-surface">
-              <a href={`${linkPrefix}/${coucouSlug}`} class="transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                {lang === 'es' ? 'Supervisión de agentes en Coucou' : 'Agent supervision in Coucou'}
+          <div class="p-6 md:p-8">
+            <h2 class="text-2xl font-extrabold text-on-surface dark:text-dark-on-surface md:text-3xl">
+              <a
+                href={`${linkPrefix}/${slugOf(featured)}`}
+                class="transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                {featured.data.title}
               </a>
             </h2>
 
-            <!-- Resumen técnico -->
-            <p class="mt-3 text-base text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed">
-              {lang === 'es' ? 'Cómo estoy implementando un sistema de supervisión para agentes autónomos...' : 'How I am implementing a supervision system for autonomous agents...'}
+            <p class="mt-3 text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+              {featured.data.description}
             </p>
 
-            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-[#E5E7EB] pt-4 text-sm dark:border-[#1F333E]">
-              <span class="text-on-surface-variant dark:text-dark-on-surface-variant">
-                {featuredDate} · {featuredReadingTime} min
+            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-4 text-sm dark:border-dark-border">
+              <span class="inline-flex flex-wrap items-center gap-1.5 text-on-surface-variant dark:text-dark-on-surface-variant">
+                <time datetime={featured.data.pubDate.toISOString()}>
+                  {formatDate(featured.data.pubDate, { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+                <span aria-hidden="true">·</span>
+                <span>{getReadingLabel(featured)}</span>
               </span>
               <a
-                href={`${linkPrefix}/${coucouSlug}`}
-                class="inline-flex items-center gap-1.5 font-bold text-primary transition-transform hover:translate-x-1 dark:text-teal-300"
+                href={`${linkPrefix}/${slugOf(featured)}`}
+                class="inline-flex min-h-11 items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary motion-reduce:transition-none"
               >
-                <span>{lang === 'es' ? 'Leer artículo' : 'Read article'}</span>
+                <span>{t('devlog.read_article')}</span>
                 <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
               </a>
             </div>
           </div>
         </article>
 
-        <!-- Cuadrícula / Timeline de entradas técnicas anteriores -->
-        <section class="mb-14">
-          <div class="mb-6 flex items-center justify-between">
-            <h3 class="text-xl md:text-2xl font-bold text-on-surface dark:text-dark-on-surface">
-              {lang === 'es' ? 'Entradas técnicas anteriores' : 'Previous technical entries'}
-            </h3>
-            <span class="text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
-              Coucou Timeline
-            </span>
-          </div>
-
-          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-            {coucouTimeline.map((item) => (
-              <article
-                data-devlog-topic={item.topic}
-                class="flex flex-col justify-between rounded-2xl border border-[#E5E7EB] bg-[#FFFFFF] p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md dark:border-[#1F333E] dark:bg-[#111E26]"
-              >
-                <div>
-                  <div class="mb-2.5 flex items-center justify-between">
-                    <span class:list={["inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold", item.tagColor]}>
-                      {item.tag}
-                    </span>
-                    <span class="text-xs text-on-surface-variant/80 dark:text-dark-on-surface-variant/80">
-                      {item.date}
-                    </span>
-                  </div>
-                  <h4 class="text-base sm:text-lg font-bold text-on-surface transition-colors line-clamp-2 hover:text-primary dark:text-dark-on-surface">
-                    <a href={item.href} class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                      {item.title}
-                    </a>
-                  </h4>
-                  <p class="mt-2 line-clamp-2 text-sm text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed">
-                    {item.summary}
-                  </p>
-                </div>
-                <div class="mt-4 flex items-center justify-between pt-3 border-t border-[#E5E7EB]/60 dark:border-[#1F333E]/60 text-xs text-on-surface-variant dark:text-dark-on-surface-variant">
-                  <span>{item.readTime}</span>
-                  <a href={item.href} class="inline-flex items-center gap-1 font-semibold text-primary transition-transform hover:translate-x-1 dark:text-teal-300">
-                    <span>{lang === 'es' ? 'Ver detalles' : 'View details'}</span>
-                    <span class="material-icons text-sm" aria-hidden="true">arrow_forward</span>
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <!-- Cuadrícula de otras bitácoras y proyectos -->
-        {otherDevlogs.length > 0 && (
-          <section class="mb-12">
-            <h3 class="mb-6 text-xl md:text-2xl font-bold text-on-surface dark:text-dark-on-surface">
-              {lang === 'es' ? 'Otras bitácoras de desarrollo' : 'Other development logs'}
-            </h3>
-
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {otherDevlogs.slice(0, 10).map((log) => {
-                const slug = log.slug.split('/').pop();
-                const shortDate = log.data.pubDate.toLocaleDateString(localeString, {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                });
-                const readingTime = Math.max(1, Math.ceil((log.body ? log.body.split(/\s+/g).length : 200) / 200));
-                const logTopic = getTopic(log);
+        <!-- Resto de entradas reales, excluida la destacada -->
+        {restDevlogs.length > 0 && (
+          <section class="mt-2" aria-labelledby="devlog-more-entries">
+            <h2 id="devlog-more-entries" class="sr-only">{t('devlog.more_entries')}</h2>
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {restDevlogs.map((log) => {
+                const series = getSeries(log);
                 return (
                   <article
-                    data-devlog-topic={logTopic}
-                    class="flex flex-col overflow-hidden rounded-2xl border border-[#E5E7EB] bg-[#FFFFFF] shadow-sm transition-all hover:border-primary/40 dark:border-[#1F333E] dark:bg-[#111E26]"
+                    data-devlog-topic={series}
+                    class="material-card flex flex-col overflow-hidden transition-all hover:border-primary/40"
                   >
                     {log.data.heroImage && (
                       <a
-                        href={`${linkPrefix}/${slug}`}
-                        class="relative block aspect-video w-full overflow-hidden bg-surface-variant dark:bg-dark-surface-variant focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary"
+                        href={`${linkPrefix}/${slugOf(log)}`}
+                        class="relative block aspect-video w-full overflow-hidden rounded-t-xl bg-surface-variant focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary dark:bg-dark-surface-variant"
                       >
                         <img
-                          src={log.data.heroImage || defaultImage}
+                          src={log.data.heroImage}
                           alt={getCoverAlt(log.data.title)}
                           class="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                           loading="lazy"
@@ -308,24 +237,32 @@ const otherDevlogs = devlogs.filter(log => !log.slug.includes('coucou'));
                           width="600"
                           height="338"
                         />
-                        <span class="absolute left-3 top-3 rounded-full bg-surface-raised/90 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-primary shadow-sm backdrop-blur-sm dark:bg-dark-surface-raised/90 dark:text-teal-300">
-                          {getTopicName(logTopic)}
-                        </span>
+                        {series !== 'other' && (
+                          <span class="absolute left-3 top-3 rounded-full bg-surface-raised/90 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-primary shadow-sm backdrop-blur-sm dark:bg-dark-surface-raised/90">
+                            {seriesLabels[series]}
+                          </span>
+                        )}
                       </a>
                     )}
                     <div class="flex flex-1 flex-col p-5">
-                      <h4 class="text-base sm:text-lg font-bold text-on-surface transition-colors line-clamp-2 hover:text-primary dark:text-dark-on-surface">
-                        <a href={`${linkPrefix}/${slug}`} class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+                      <h3 class="text-base font-bold text-on-surface transition-colors line-clamp-2 hover:text-primary dark:text-dark-on-surface sm:text-lg">
+                        <a
+                          href={`${linkPrefix}/${slugOf(log)}`}
+                          class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        >
                           {log.data.title}
                         </a>
-                      </h4>
-                      <p class="mt-2 line-clamp-2 flex-1 text-sm text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed">
+                      </h3>
+                      <p class="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
                         {log.data.description}
                       </p>
-                      <div class="mt-4 flex items-center justify-between text-xs text-on-surface-variant dark:text-dark-on-surface-variant pt-3 border-t border-[#E5E7EB]/60 dark:border-[#1F333E]/60">
-                        <span>{shortDate} · {readingTime} min</span>
-                        <a href={`${linkPrefix}/${slug}`} class="inline-flex items-center gap-1 font-semibold text-primary hover:underline dark:text-teal-300">
-                          {lang === 'es' ? 'Leer artículo' : 'Read article'}
+                      <div class="mt-4 flex items-center justify-between border-t border-border pt-3 text-xs text-on-surface-variant dark:border-dark-border dark:text-dark-on-surface-variant">
+                        <span>{formatDate(log.data.pubDate, { year: 'numeric', month: 'short', day: 'numeric' })} · {getReadingLabel(log)}</span>
+                        <a
+                          href={`${linkPrefix}/${slugOf(log)}`}
+                          class="inline-flex items-center gap-1 font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                        >
+                          {t('devlog.read_article')}
                           <span class="material-icons text-sm" aria-hidden="true">arrow_forward</span>
                         </a>
                       </div>
@@ -334,17 +271,6 @@ const otherDevlogs = devlogs.filter(log => !log.slug.includes('coucou'));
                 );
               })}
             </div>
-
-            {otherDevlogs.length > 10 && (
-              <details data-devlog-archive class="mt-10 rounded-2xl border border-border bg-surface-raised p-6 dark:border-dark-border dark:bg-dark-surface-raised">
-                <summary class="cursor-pointer font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{lang === 'es' ? 'Archivo de entradas anteriores' : 'Older entries'} ({otherDevlogs.length - 10})</summary>
-                <ul class="mt-5 grid gap-3 border-t border-border pt-5 dark:border-dark-border md:grid-cols-2">
-                  {otherDevlogs.slice(10).map((log) => (
-                    <li data-devlog-topic={getTopic(log)}><a href={`${linkPrefix}/${log.slug.split('/').pop()}`} class="block rounded-lg p-2 font-medium text-on-surface-variant hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant">{log.data.title}</a></li>
-                  ))}
-                </ul>
-              </details>
-            )}
           </section>
         )}
       </>
@@ -359,35 +285,51 @@ const otherDevlogs = devlogs.filter(log => !log.slug.includes('coucou'));
   <script>
     const initDevlogFilters = () => {
       const container = document.querySelector<HTMLElement>('[data-devlog-filters]');
-      if (!container || container.dataset.initialized) return;
+      if (!container || container.dataset.initialized === 'true') return;
       container.dataset.initialized = 'true';
-      const buttons = [...container.querySelectorAll<HTMLButtonElement>('[data-devlog-filter]')];
+
+      const buttons = [
+        ...document.querySelectorAll<HTMLButtonElement>('[data-devlog-filters] [data-filter], [data-more-filters] [data-filter]'),
+      ];
+      const moreToggle = document.querySelector<HTMLButtonElement>('[data-more-toggle]');
+      const moreFilters = document.querySelector<HTMLElement>('[data-more-filters]');
       const entries = [...document.querySelectorAll<HTMLElement>('[data-devlog-topic]')];
-      const archive = document.querySelector<HTMLDetailsElement>('[data-devlog-archive]');
-      const activate = (topic: string) => {
-        buttons.forEach(button => {
-          const active = button.dataset.devlogFilter === topic;
-          button.setAttribute('aria-pressed', String(active));
-          button.classList.toggle('bg-primary', active);
-          button.classList.toggle('text-white', active);
-          button.classList.toggle('border-primary', active);
-          button.classList.toggle('bg-[#FFFFFF]', !active);
-          button.classList.toggle('dark:bg-[#111E26]', !active);
-          button.classList.toggle('text-on-surface-variant', !active);
-          button.classList.toggle('dark:text-dark-on-surface-variant', !active);
+
+      // "Otros" solo revela la fila de series ocultas: no aplica filtros.
+      if (moreToggle && moreFilters) {
+        moreToggle.addEventListener('click', () => {
+          const expanded = moreToggle.getAttribute('aria-expanded') === 'true';
+          moreToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          moreFilters.hidden = expanded;
         });
-        entries.forEach(entry => {
-          entry.hidden = topic !== 'all' && entry.dataset.devlogTopic !== topic;
+      }
+
+      const activate = (filter: string) => {
+        buttons.forEach((button) => {
+          const isActive = button.dataset.filter === filter;
+          button.setAttribute('aria-pressed', String(isActive));
+          button.classList.toggle('bg-primary', isActive);
+          button.classList.toggle('text-white', isActive);
+          button.classList.toggle('border', !isActive);
+          button.classList.toggle('border-border', !isActive);
+          button.classList.toggle('bg-surface-raised', !isActive);
+          button.classList.toggle('text-on-surface-variant', !isActive);
+          button.classList.toggle('dark:border-dark-border', !isActive);
+          button.classList.toggle('dark:bg-dark-surface-raised', !isActive);
+          button.classList.toggle('dark:text-dark-on-surface-variant', !isActive);
         });
-        if (archive) {
-          const hasOlder = [...archive.querySelectorAll<HTMLElement>('[data-devlog-topic]')].some(entry => !entry.hidden);
-          archive.hidden = !hasOlder;
-          if (topic !== 'all' && hasOlder) archive.open = true;
-          else if (topic === 'all') archive.open = false;
-        }
+        entries.forEach((entry) => {
+          entry.hidden = filter !== 'all' && entry.dataset.devlogTopic !== filter;
+        });
       };
-      buttons.forEach(button => button.addEventListener('click', () => activate(button.dataset.devlogFilter || 'all')));
+
+      buttons.forEach((button) => {
+        if (button.dataset.filterBound === 'true') return;
+        button.dataset.filterBound = 'true';
+        button.addEventListener('click', () => activate(button.dataset.filter || 'all'));
+      });
     };
+
     document.addEventListener('astro:page-load', initDevlogFilters);
     if (document.readyState !== 'loading') initDevlogFilters();
   </script>
