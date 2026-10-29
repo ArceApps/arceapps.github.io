@@ -33,6 +33,36 @@ describe('contrato editorial de portada', () => {
     expect(hero).not.toContain('text-center');
   });
 
+  it('fila de 4 pilares de la home', () => {
+    const pillars = readSource('src/components/home/HomePillars.astro');
+    const hero = readSource('src/components/home/HomeHero.astro');
+    const home = readSource('src/components/pages/HomePage.astro');
+
+    const pillarKeys = [
+      ['apps', 'Apps Android', 'Productos en Google Play'],
+      ['ai', 'Herramientas de IA', 'Agentes y automatización'],
+      ['open_source', 'Proyectos open source', 'Ideas que exploro'],
+      ['content', 'Contenido técnico', 'Blog y devlog'],
+    ] as const;
+
+    for (const [key, esTitle, esSubtitle] of pillarKeys) {
+      expect(pillars).toContain(`t('home.pillars.${key}.title')`);
+      expect(pillars).toContain(`t('home.pillars.${key}.subtitle')`);
+      expect(ui.es[`home.pillars.${key}.title`]).toBe(esTitle);
+      expect(ui.es[`home.pillars.${key}.subtitle`]).toBe(esSubtitle);
+      expect(ui.en[`home.pillars.${key}.title`]).toBeTruthy();
+      expect(ui.en[`home.pillars.${key}.subtitle`]).toBeTruthy();
+    }
+
+    for (const color of ['#059669', '#F97316', '#038C8E', '#E11D48']) {
+      expect(pillars).toContain(color);
+    }
+
+    expect(hero).not.toContain('quickAccessPills');
+    expect(home).toContain('import HomePillars');
+    expect(home).toContain('<HomePillars lang={lang} />');
+  });
+
   it('la home compone las cuatro secciones numeradas en orden editorial', () => {
     const home = readSource('src/components/pages/HomePage.astro');
 

@@ -1,0 +1,77 @@
+---
+import { useTranslations } from "../../i18n/utils";
+
+interface Props {
+  lang: 'en' | 'es';
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const pillars = [
+  {
+    icon: 'android',
+    title: t('home.pillars.apps.title'),
+    subtitle: t('home.pillars.apps.subtitle'),
+    href: lang === 'es' ? '/es/apps' : '/apps',
+    iconColor: 'text-[#059669] dark:text-[#059669]',
+    iconBg: 'bg-emerald-500/10 dark:bg-emerald-500/20',
+  },
+  {
+    icon: 'psychology',
+    title: t('home.pillars.ai.title'),
+    subtitle: t('home.pillars.ai.subtitle'),
+    href: lang === 'es' ? '/es/projects' : '/projects',
+    iconColor: 'text-[#F97316] dark:text-[#F97316]',
+    iconBg: 'bg-orange-500/10 dark:bg-orange-500/20',
+  },
+  {
+    icon: 'code',
+    title: t('home.pillars.open_source.title'),
+    subtitle: t('home.pillars.open_source.subtitle'),
+    href: lang === 'es' ? '/es/projects' : '/projects',
+    iconColor: 'text-[#038C8E] dark:text-[#038C8E]',
+    iconBg: 'bg-[#038C8E]/10 dark:bg-[#038C8E]/20',
+  },
+  {
+    icon: 'menu_book',
+    title: t('home.pillars.content.title'),
+    subtitle: t('home.pillars.content.subtitle'),
+    href: lang === 'es' ? '/es/blog' : '/blog',
+    iconColor: 'text-[#E11D48] dark:text-[#E11D48]',
+    iconBg: 'bg-[#E11D48]/10 dark:bg-[#E11D48]/20',
+  },
+];
+---
+
+<section class="border-b border-border bg-surface dark:border-dark-border dark:bg-dark-surface" aria-label={t('home.pillars.aria')}>
+  <div class="mx-auto grid max-w-6xl grid-cols-2 px-4 sm:px-6 md:grid-cols-4 md:px-8">
+    {pillars.map((pillar, index) => (
+      <a
+        href={pillar.href}
+        class:list={[
+          'group flex items-start gap-3 py-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',
+          'border-border dark:border-dark-border md:border-l',
+          index === 0
+            ? 'pl-4 md:pl-6'
+            : index % 2 === 0
+              ? 'border-l pl-4 md:pl-6'
+              : 'pr-4 md:pr-6',
+          index > 1 ? 'border-t md:border-t-0' : '',
+        ]}
+      >
+        <span class:list={['flex h-10 w-10 shrink-0 items-center justify-center rounded-xl', pillar.iconBg, pillar.iconColor]}>
+          <span class="material-icons text-xl" aria-hidden="true">{pillar.icon}</span>
+        </span>
+        <span class="min-w-0">
+          <span class="block font-semibold text-content transition group-hover:text-primary dark:text-dark-content dark:group-hover:text-primary">
+            {pillar.title}
+          </span>
+          <span class="mt-1 block text-sm text-content-muted dark:text-dark-content-muted">
+            {pillar.subtitle}
+          </span>
+        </span>
+      </a>
+    ))}
+  </div>
+</section>

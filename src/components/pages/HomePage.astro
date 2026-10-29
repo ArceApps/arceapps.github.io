@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HomeHero from "../home/HomeHero.astro";
+import HomePillars from "../home/HomePillars.astro";
 import HomeFeaturedWork from "../home/HomeFeaturedWork.astro";
 import HomeBlog from "../home/HomeBlog.astro";
 import HomeDevlog from "../home/HomeDevlog.astro";
@@ -94,6 +95,7 @@ const featuredWork = primaryApp
   )}
 
   <HomeHero lang={lang} />
+  <HomePillars lang={lang} />
   <HomeFeaturedWork lang={lang} featuredWork={featuredWork} featuredItems={featuredItems} />
   <HomeBlog lang={lang} linkPrefix={linkPrefix} posts={allPosts} devlogs={devlogs} />
   <HomeDevlog lang={lang} latestDevlog={latestDevlog} />

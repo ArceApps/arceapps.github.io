@@ -10,36 +10,6 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const quickAccessPills = [
-  {
-    icon: 'android',
-    label: lang === 'es' ? 'Apps Android' : 'Android Apps',
-    href: lang === 'es' ? '/es/apps' : '/apps',
-    iconColor: 'text-emerald-600 dark:text-emerald-400',
-    iconBg: 'bg-emerald-500/10 dark:bg-emerald-500/20',
-  },
-  {
-    icon: 'psychology',
-    label: lang === 'es' ? 'Herramientas de IA' : 'AI Tools',
-    href: lang === 'es' ? '/es/projects' : '/projects',
-    iconColor: 'text-cyan-600 dark:text-cyan-400',
-    iconBg: 'bg-cyan-500/10 dark:bg-cyan-500/20',
-  },
-  {
-    icon: 'code',
-    label: lang === 'es' ? 'Proyectos open source' : 'Open source projects',
-    href: lang === 'es' ? '/es/projects' : '/projects',
-    iconColor: 'text-amber-600 dark:text-amber-400',
-    iconBg: 'bg-amber-500/10 dark:bg-amber-500/20',
-  },
-  {
-    icon: 'menu_book',
-    label: lang === 'es' ? 'Contenido técnico' : 'Technical content',
-    href: lang === 'es' ? '/es/blog' : '/blog',
-    iconColor: 'text-blue-600 dark:text-blue-400',
-    iconBg: 'bg-blue-500/10 dark:bg-blue-500/20',
-  },
-];
 ---
 
 <section
@@ -104,23 +74,6 @@ const quickAccessPills = [
       >
         {lang === 'es' ? 'Leer artículos' : 'Read articles'}
       </a>
-    </div>
-
-    <!-- Fila de 4 Quick Access Pills / Chips horizontales -->
-    <div class="mt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-      {quickAccessPills.map((pill) => (
-        <a
-          href={pill.href}
-          class="group inline-flex items-center gap-2.5 rounded-xl border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-on-surface shadow-xs transition hover:border-primary/50 hover:shadow-sm focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-primary/50"
-        >
-          <span class:list={["flex h-7 w-7 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-110", pill.iconBg, pill.iconColor]}>
-            <span class="material-icons text-lg" aria-hidden="true">{pill.icon}</span>
-          </span>
-          <span class="transition-colors group-hover:text-primary dark:group-hover:text-primary">
-            {pill.label}
-          </span>
-        </a>
-      ))}
     </div>
 
     <!-- Scroll Down Hint -->
