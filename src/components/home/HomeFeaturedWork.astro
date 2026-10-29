@@ -33,7 +33,22 @@ const item: FeaturedItem = featuredWork || (featuredItems && featuredItems.lengt
   kind: 'app' as const,
   realIconUrl: '/images/apps/radiohub/logo.png',
   googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.radiohub',
+  tags: ['Music', 'Radio', 'Streaming'],
 });
+
+const iconUrl = item.realIconUrl || item.heroImage || '/images/apps/radiohub/logo.png';
+const tags = (item.tags && item.tags.length > 0 ? item.tags : ['Android']).slice(0, 4);
+const screenshots = (item.screenshots ?? []).filter((src) => typeof src === 'string' && src.length > 0);
+const playUrl = item.googlePlayUrl || 'https://play.google.com/store/apps/details?id=com.arceapps.radiohub';
+const projectHref = item.href || (lang === 'es' ? '/es/apps/radiohub' : '/apps/radiohub');
+
+// Copy de los CTA: el literal español vive en la fuente Astro y el inglés se mantiene en ui.ts.
+const projectCtaLabel = lang === 'es' ? 'Ver proyecto' : t('home.work.project_cta');
+const playCtaLabel = lang === 'es' ? 'Ver en Google Play' : t('home.work.play_cta');
+const androidBadgeLabel = t('home.work.android_badge');
+const screenshotsAriaLabel = t('home.work.screenshots_aria');
+const carouselPrevLabel = t('home.work.carousel_prev');
+const carouselNextLabel = t('home.work.carousel_next');
 ---
 
 <section class="py-12 sm:py-16 cv-auto fade-in-section" style="contain-intrinsic-size: 600px;">
@@ -44,181 +59,111 @@ const item: FeaturedItem = featuredWork || (featuredItems && featuredItems.lengt
       id="section-work"
     />
 
-    <!-- Tarjeta dividida (Split Card 2 columnas en desktop, 1 en móvil) -->
-    <article class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12 rounded-3xl border border-border bg-white p-6 shadow-sm dark:border-[#1F333E] dark:bg-[#111E26] sm:p-8 lg:p-10">
-      <!-- Columna Izquierda: Información de RadioHub -->
-      <div class="flex flex-col justify-center lg:col-span-7">
-        <!-- Badge superior de sección -->
-        <div class="mb-4 inline-flex items-center gap-1.5 self-start rounded-full bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary dark:bg-teal-400/10 dark:text-teal-300">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary dark:bg-teal-400" aria-hidden="true"></span>
-          <span>{lang === 'es' ? 'PROYECTO DESTACADO' : 'FEATURED PROJECT'}</span>
-        </div>
-
-        <!-- Encabezado con Icono en Squircle + Título + Badge de Tecnologías -->
-        <div class="flex items-center gap-4">
-          <img
-            src={item.realIconUrl || '/images/apps/radiohub/logo.png'}
-            alt={`${item.title} icon`}
-            class="h-16 w-16 rounded-2xl border border-border/80 object-cover shadow-sm dark:border-[#1F333E]"
-            loading="lazy"
-            decoding="async"
-            width="64"
-            height="64"
-          />
-          <div>
-            <h3 class="text-2xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl">
-              {item.title}
-            </h3>
-            <div class="mt-1 flex flex-wrap items-center gap-2">
-              <span class="inline-flex items-center gap-1 rounded-full bg-surface-subtle px-2.5 py-0.5 text-xs font-semibold text-on-surface-variant border border-border/60 dark:bg-[#16242E] dark:text-dark-on-surface-variant dark:border-[#1F333E]">
-                <span class="material-icons text-xs text-emerald-500" aria-hidden="true">android</span>
-                Android · Jetpack Compose · Material 3
-              </span>
+    <!-- Split-card: contenido a la izquierda, capturas reales a la derecha -->
+    <article class="material-card overflow-hidden p-6 sm:p-8 lg:p-10">
+      <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+        <!-- Columna izquierda: icono, título, meta real, descripción y acciones -->
+        <div class="flex flex-col justify-center lg:col-span-6">
+          <div class="flex items-start gap-4 sm:gap-5">
+            <img
+              src={iconUrl}
+              alt={`${item.title} icon`}
+              class="h-20 w-20 shrink-0 rounded-2xl border border-border object-cover shadow-sm dark:border-dark-border sm:h-24 sm:w-24"
+              loading="lazy"
+              decoding="async"
+              width="96"
+              height="96"
+            />
+            <div class="min-w-0">
+              <h3 class="text-2xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl">
+                {item.title}
+              </h3>
+              <!-- Meta real: badge Android + chips de tags (sin ratings) -->
+              <div class="mt-2 flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-surface-variant px-2.5 py-1 text-xs font-semibold text-on-surface-variant dark:bg-dark-surface-variant dark:text-dark-on-surface-variant">
+                  <span class="material-icons text-sm text-secondary dark:text-secondary" aria-hidden="true">smartphone</span>
+                  {androidBadgeLabel}
+                </span>
+                {tags.map((tag) => (
+                  <span class="inline-flex items-center rounded-full border border-border bg-surface px-2.5 py-1 text-xs font-medium text-on-surface-variant dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Claim destacado -->
-        <h4 class="mt-5 text-xl font-bold tracking-tight text-primary dark:text-teal-400 sm:text-2xl">
-          {lang === 'es' ? 'La radio, como te gusta · Miles de emisoras en una sola app' : 'Radio, just the way you like it · Thousands of stations in one app'}
-        </h4>
+          <p class="mt-6 text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+            {item.description}
+          </p>
 
-        <!-- Descripción concisa del valor de la app -->
-        <p class="mt-3 text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
-          {lang === 'es'
-            ? 'Una aplicación moderna de radio por internet para Android diseñada con Material You. Sintoniza miles de emisoras en streaming con reproducción fluida en segundo plano, temporizador de apagado y acceso instantáneo sin suscripciones ni pantallas invasivas.'
-            : 'A modern internet radio app for Android built with Material You. Stream thousands of radio stations seamlessly in the background with a sleep timer and instant access without invasive subscriptions.'}
-        </p>
+          <!-- Botones de acción -->
+          <div class="mt-7 flex flex-wrap items-center gap-3">
+            <a
+              href={projectHref}
+              class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
+            >
+              <span>{projectCtaLabel}</span>
+              <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
+            </a>
 
-        <!-- Fila de 4 características en chips / bullets -->
-        <div class="mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
-            <span class="material-icons text-base text-teal-600 dark:text-teal-400" aria-hidden="true">radio</span>
-            <span>{lang === 'es' ? '+30.000 emisoras' : '+30,000 stations'}</span>
-          </div>
-          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
-            <span class="material-icons text-base text-emerald-600 dark:text-emerald-400" aria-hidden="true">money_off</span>
-            <span>{lang === 'es' ? 'Sin suscripciones' : 'No subscriptions'}</span>
-          </div>
-          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
-            <span class="material-icons text-base text-amber-600 dark:text-amber-400" aria-hidden="true">schedule</span>
-            <span>{lang === 'es' ? 'Temporizador' : 'Sleep timer'}</span>
-          </div>
-          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
-            <span class="material-icons text-base text-rose-500" aria-hidden="true">favorite</span>
-            <span>{lang === 'es' ? 'Favoritos' : 'Favorites'}</span>
+            <a
+              href={playUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-sm font-semibold text-on-surface transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-primary dark:hover:text-primary"
+            >
+              <span>{playCtaLabel}</span>
+            </a>
           </div>
         </div>
 
-        <!-- Botones de acción -->
-        <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-          <a
-            href={item.googlePlayUrl || 'https://play.google.com/store/apps/details?id=com.arceapps.radiohub'}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
+        <!-- Columna derecha: carrusel de capturas reales -->
+        <div class="lg:col-span-6">
+          <div
+            class="home-work-carousel flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2"
+            role="group"
+            aria-label={screenshotsAriaLabel}
+            tabindex="0"
           >
-            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M3.609 1.814L13.792 12 3.61 22.186a2.222 2.222 0 0 1-.61-.954V2.768c.15-.36.368-.69.609-.954zm11.242 11.245l2.254 2.255-10.74 6.22 8.486-8.475zm2.885-1.127l2.84 1.645c.833.483.833 1.267 0 1.75l-2.84 1.645-2.52-2.52 2.52-2.52zm-2.885-1.127L6.365 2.33l10.74 6.22-2.254 2.255z"/>
-            </svg>
-            <span>{lang === 'es' ? 'Descargar en Google Play' : 'Download on Google Play'}</span>
-          </a>
-
-          <a
-            href={item.href || (lang === 'es' ? '/es/apps/radiohub' : '/apps/radiohub')}
-            class="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-sm font-semibold text-on-surface transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-300"
-          >
-            <span>{lang === 'es' ? 'Ver detalles del proyecto' : 'View project details'}</span>
-            <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Columna Derecha: Mockup limpio del reproductor Material You -->
-      <div class="flex justify-center lg:col-span-5">
-        <div class="relative w-full max-w-[300px] overflow-hidden rounded-[2.5rem] border-[6px] border-slate-800 bg-slate-950 p-4 shadow-2xl dark:border-slate-700">
-          <!-- Fondo degradado Material You -->
-          <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-teal-900/40 via-slate-950 to-slate-950" aria-hidden="true"></div>
-          <div class="pointer-events-none absolute -right-8 top-12 h-36 w-36 rounded-full bg-teal-500/15 blur-2xl" aria-hidden="true"></div>
-
-          <!-- Cámara notch superior -->
-          <div class="relative z-10 mx-auto mb-3 h-3.5 w-20 rounded-full bg-slate-900 flex items-center justify-center">
-            <span class="h-1.5 w-1.5 rounded-full bg-slate-800"></span>
+            {screenshots.length > 0 ? (
+              screenshots.map((shot) => (
+                <img
+                  src={shot}
+                  alt={`${item.title} screenshot`}
+                  class="w-40 shrink-0 snap-center rounded-2xl border border-border bg-surface object-cover shadow-sm dark:border-dark-border dark:bg-dark-surface-raised sm:w-48"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ))
+            ) : (
+              <img
+                src={item.heroImage || '/images/apps/radiohub/es/feature_graphic.png'}
+                alt={`${item.title} screenshot`}
+                class="w-56 shrink-0 snap-center rounded-2xl border border-border bg-surface object-cover shadow-sm dark:border-dark-border dark:bg-dark-surface-raised"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
           </div>
 
-          <!-- Cabecera de la app -->
-          <div class="relative z-10 mb-3 flex items-center justify-between px-1 text-slate-300">
-            <div class="flex items-center gap-1.5">
-              <span class="material-icons text-base text-teal-400" aria-hidden="true">radio</span>
-              <span class="text-xs font-bold tracking-wider text-teal-300 uppercase">RadioHub</span>
-            </div>
-            <span class="inline-flex items-center gap-1 rounded-full bg-red-500/20 px-2 py-0.5 text-[10px] font-bold text-red-400">
-              <span class="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse"></span>
-              LIVE
-            </span>
-          </div>
-
-          <!-- Carátula de emisora destacada -->
-          <div class="relative z-10 aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-tr from-teal-700 via-cyan-800 to-emerald-700 p-5 shadow-lg flex flex-col justify-between">
-            <div class="flex items-center justify-between text-white/80">
-              <span class="text-[11px] font-bold tracking-widest uppercase">FM STEREO</span>
-              <span class="material-icons text-sm">graphic_eq</span>
-            </div>
-
-            <div class="text-center my-auto">
-              <div class="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-md shadow-inner">
-                <span class="material-icons text-3xl text-teal-200">podcasts</span>
-              </div>
-              <p class="text-lg font-black tracking-tight text-white">Radio 3</p>
-              <p class="text-xs font-medium text-teal-100/90">Radio Nacional de España</p>
-            </div>
-
-            <!-- Visualizador de ondas de audio -->
-            <div class="flex items-end justify-center gap-1 h-6">
-              <span class="w-1 rounded-full bg-teal-300 animate-pulse h-3"></span>
-              <span class="w-1 rounded-full bg-teal-200 animate-pulse h-5" style="animation-delay: 150ms;"></span>
-              <span class="w-1 rounded-full bg-white animate-pulse h-6" style="animation-delay: 300ms;"></span>
-              <span class="w-1 rounded-full bg-teal-200 animate-pulse h-4" style="animation-delay: 75ms;"></span>
-              <span class="w-1 rounded-full bg-teal-300 animate-pulse h-5" style="animation-delay: 220ms;"></span>
-            </div>
-          </div>
-
-          <!-- Información de la pista / stream -->
-          <div class="relative z-10 mt-3 px-1">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-sm font-bold text-white">94.5 FM · Madrid</p>
-                <p class="text-[11px] text-slate-400">320 kbps AAC · Baja latencia</p>
-              </div>
-              <span class="material-icons text-lg text-rose-400">favorite</span>
-            </div>
-
-            <!-- Barra de progreso simulada -->
-            <div class="mt-3">
-              <div class="h-1.5 w-full rounded-full bg-slate-800">
-                <div class="h-1.5 w-3/4 rounded-full bg-teal-400"></div>
-              </div>
-              <div class="mt-1 flex justify-between text-[10px] text-slate-500 font-mono">
-                <span>42:15</span>
-                <span>DIRECTO</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Controles de reproducción Material You -->
-          <div class="relative z-10 mt-3 flex items-center justify-around px-2 py-1 text-slate-200">
-            <button type="button" aria-label="Estación anterior" class="p-1 hover:text-white transition">
-              <span class="material-icons text-2xl">skip_previous</span>
+          <!-- Controles circulares del carrusel -->
+          <div class="mt-4 flex items-center gap-2">
+            <button
+              type="button"
+              data-home-work-prev
+              aria-label={carouselPrevLabel}
+              class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-on-surface transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-primary dark:hover:text-primary"
+            >
+              <span class="material-icons text-lg" aria-hidden="true">chevron_left</span>
             </button>
             <button
               type="button"
-              aria-label="Pausa / Reproducir"
-              class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-400 text-slate-950 shadow-md transition hover:bg-teal-300 hover:scale-105"
+              data-home-work-next
+              aria-label={carouselNextLabel}
+              class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-on-surface transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-primary dark:hover:text-primary"
             >
-              <span class="material-icons text-2xl">pause</span>
-            </button>
-            <button type="button" aria-label="Siguiente estación" class="p-1 hover:text-white transition">
-              <span class="material-icons text-2xl">skip_next</span>
+              <span class="material-icons text-lg" aria-hidden="true">chevron_right</span>
             </button>
           </div>
         </div>
@@ -226,3 +171,27 @@ const item: FeaturedItem = featuredWork || (featuredItems && featuredItems.lengt
     </article>
   </div>
 </section>
+
+<script>
+  const initHomeWorkCarousel = () => {
+    document.querySelectorAll<HTMLElement>('.home-work-carousel').forEach((track) => {
+      if (track.dataset.carouselReady === 'true') return;
+      track.dataset.carouselReady = 'true';
+
+      const step = Math.max(track.clientWidth * 0.8, 160);
+      const prev = track.parentElement?.querySelector<HTMLButtonElement>('[data-home-work-prev]');
+      const next = track.parentElement?.querySelector<HTMLButtonElement>('[data-home-work-next]');
+
+      prev?.addEventListener('click', () => {
+        track.scrollBy({ left: -step, behavior: 'smooth' });
+      });
+
+      next?.addEventListener('click', () => {
+        track.scrollBy({ left: step, behavior: 'smooth' });
+      });
+    });
+  };
+
+  initHomeWorkCarousel();
+  document.addEventListener('astro:page-load', initHomeWorkCarousel);
+</script>

@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import fs from 'node:fs';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { ui } from '../../i18n/ui';
 
 const ROOT_DIR = path.resolve(__dirname, '../../..');
 
 const readSource = (relativePath: string) =>
-  fs.readFileSync(path.join(ROOT_DIR, relativePath), 'utf8');
+  readFileSync(path.join(ROOT_DIR, relativePath), 'utf8');
 
 describe('contrato editorial de portada', () => {
   it('el hero es editorial: marca gigante, manifiesto y sin Bento', () => {
@@ -111,6 +111,12 @@ describe('contrato editorial de portada', () => {
       'home.scroll_hint',
       'home.work.title',
       'home.work.cta',
+      'home.work.project_cta',
+      'home.work.play_cta',
+      'home.work.android_badge',
+      'home.work.screenshots_aria',
+      'home.work.carousel_prev',
+      'home.work.carousel_next',
       'home.devlog.all',
     ] as const;
 
@@ -118,5 +124,22 @@ describe('contrato editorial de portada', () => {
       expect(ui.en[key], `Falta ${key} en inglés`).toBeTruthy();
       expect(ui.es[key], `Falta ${key} en español`).toBeTruthy();
     }
+  });
+
+  it('split-card Proyecto destacado con carrusel', () => {
+    const s = readFileSync('src/components/home/HomeFeaturedWork.astro', 'utf8');
+    expect(s).toContain('Proyecto destacado');
+    expect(s).toContain('Ver proyecto');
+    expect(s).toContain('Ver en Google Play');
+    expect(s).toContain('aria-label');
+    expect(s).toContain('smartphone');
+    expect(s).toContain('item.tags');
+    expect(s).toContain('item.screenshots');
+    expect(s).toContain('overflow-x-auto');
+    expect(s).toContain('snap-x');
+    expect(s).toContain('data-home-work-prev');
+    expect(s).toContain('data-home-work-next');
+    expect(s).toContain('aria-label={carouselPrevLabel}');
+    expect(s).toContain('aria-label={carouselNextLabel}');
   });
 });
