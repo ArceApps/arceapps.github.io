@@ -4,9 +4,10 @@ interface Props {
   description: string;
   eyebrow?: string;
   align?: "left" | "center";
+  icon?: string;
 }
 
-const { title, description, eyebrow, align = "left" } = Astro.props;
+const { title, description, eyebrow, align = "left", icon } = Astro.props;
 const isCenter = align === "center";
 ---
 
@@ -17,9 +18,20 @@ const isCenter = align === "center";
       <span>{eyebrow}</span>
     </p>
   )}
-  <h1 class="text-4xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface md:text-5xl">
-    {title}
-  </h1>
+  {icon ? (
+    <div class:list={["flex items-center gap-3.5", isCenter && "justify-center"]}>
+      <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-teal-500/10 text-primary dark:bg-teal-400/10 dark:text-teal-300">
+        <span class="material-icons text-3xl" aria-hidden="true">{icon}</span>
+      </div>
+      <h1 class="text-4xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface md:text-5xl">
+        {title}
+      </h1>
+    </div>
+  ) : (
+    <h1 class="text-4xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface md:text-5xl">
+      {title}
+    </h1>
+  )}
   <p class:list={["mt-4 max-w-2xl text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant", isCenter && "mx-auto"]}>
     {description}
   </p>
