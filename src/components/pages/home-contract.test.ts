@@ -63,18 +63,18 @@ describe('contrato editorial de portada', () => {
     expect(home).toContain('<HomePillars lang={lang} />');
   });
 
-  it('la home compone las cuatro secciones numeradas en orden editorial', () => {
+  it('la home compone las secciones numeradas en orden editorial', () => {
     const home = readSource('src/components/pages/HomePage.astro');
 
-    const devlog = home.indexOf('<HomeDevlog');
     const blog = home.indexOf('<HomeBlog');
     const work = home.indexOf('<HomeFeaturedWork');
     const cta = home.indexOf('<HomeCta');
 
-    expect(devlog).toBeGreaterThan(-1);
     expect(blog).toBeGreaterThan(work);
-    expect(devlog).toBeGreaterThan(blog);
-    expect(cta).toBeGreaterThan(devlog);
+    expect(cta).toBeGreaterThan(blog);
+
+    // D7: la sección HomeDevlog queda absorbida por "Últimos artículos".
+    expect(home).not.toContain('<HomeDevlog');
 
     expect(home).not.toContain('Bento');
     expect(home).not.toContain('home.tech_articles');
@@ -85,7 +85,6 @@ describe('contrato editorial de portada', () => {
 
   it('las secciones usan la cabecera numerada compartida', () => {
     const sectionNames = [
-      'HomeDevlog',
       'HomeBlog',
       'HomeFeaturedWork',
       'HomeCta',
@@ -118,12 +117,70 @@ describe('contrato editorial de portada', () => {
       'home.work.carousel_prev',
       'home.work.carousel_next',
       'home.devlog.all',
+      'home.articles.title',
+      'home.articles.view_all',
+      'home.articles.filter_blog',
+      'home.articles.filter_devlog',
+      'home.articles.filter_aria',
+      'home.articles.reading_time',
     ] as const;
 
     for (const key of requiredKeys) {
       expect(ui.en[key], `Falta ${key} en inglés`).toBeTruthy();
       expect(ui.es[key], `Falta ${key} en español`).toBeTruthy();
     }
+
+    expect(ui.es['home.articles.title']).toBe('Últimos artículos');
+    expect(ui.es['home.articles.view_all']).toBe('Ver todas');
+  });
+
+  it('ultimos articulos con chips Blog y Devlog', () => {
+    const s = readFileSync('src/components/home/HomeBlog.astro', 'utf8');
+    expect(s).toContain('Últimos artículos');
+    expect(s).toContain('Ver todas');
+    expect(s).toContain('data-filter');
+  });
+
+  it('los chips Blog y Devlog conmutan las tarjetas y el enlace Ver todas', () => {
+    const s = readSource('src/components/home/HomeBlog.astro');
+
+    // Chips de filtro con estado accesible y conmutables en cliente.
+    expect(s).toContain('data-filter="blog"');
+    expect(s).toContain('data-filter="devlog"');
+    expect(s).toContain('aria-pressed="true"');
+    expect(s).toContain('aria-pressed="false"');
+    expect(s).toContain('data-active');
+    expect(s).toContain('home.articles.filter_aria');
+
+    // El enlace "Ver todas →" sigue al chip activo.
+    expect(s).toContain('data-view-all');
+    expect(s).toContain("filter === 'devlog' ? devlogUrl : blogUrl");
+
+    // Cada tarjeta se marca con su origen para poder filtrarse.
+    expect(s).toContain('data-article-card');
+    expect(s).toContain("card.getAttribute('data-filter') !== filter");
+
+    // Grid de 3 tarjetas con imagen, título y meta fecha · lectura.
+    expect(s).toContain('md:grid-cols-3');
+    expect(s).toContain('<img');
+    expect(s).toContain('estimateReadingTime');
+    expect(s).toContain('/ 200');
+    expect(s).toContain('home.articles.reading_time');
+
+    // Accesibilidad de los controles.
+    expect(s).toContain('focus-visible:ring-2');
+    expect(s).toContain('aria-label={filterAriaLabel}');
+  });
+
+  it('la seccion de articulos absorbe HomeDevlog en la home', () => {
+    const home = readSource('src/components/pages/HomePage.astro');
+    const blog = readSource('src/components/home/HomeBlog.astro');
+
+    // D7: HomeDevlog deja de renderizarse; sus entradas pasan por chips.
+    expect(home).not.toContain('<HomeDevlog');
+    expect(home).not.toContain('import HomeDevlog');
+    expect(blog).toContain('devlogs');
+    expect(blog).toContain('devlogCards');
   });
 
   it('split-card Proyecto destacado con carrusel', () => {

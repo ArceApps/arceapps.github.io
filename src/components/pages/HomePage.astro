@@ -4,7 +4,6 @@ import HomeHero from "../home/HomeHero.astro";
 import HomePillars from "../home/HomePillars.astro";
 import HomeFeaturedWork from "../home/HomeFeaturedWork.astro";
 import HomeBlog from "../home/HomeBlog.astro";
-import HomeDevlog from "../home/HomeDevlog.astro";
 import HomeCta from "../home/HomeCta.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../i18n/utils";
@@ -39,8 +38,6 @@ const devlogs = rawDevlog
   .filter(({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith(prefix))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
-
-const latestDevlog = devlogs[0];
 
 // Get featured apps and projects
 const apps = rawApps
@@ -98,6 +95,5 @@ const featuredWork = primaryApp
   <HomePillars lang={lang} />
   <HomeFeaturedWork lang={lang} featuredWork={featuredWork} featuredItems={featuredItems} />
   <HomeBlog lang={lang} linkPrefix={linkPrefix} posts={allPosts} devlogs={devlogs} />
-  <HomeDevlog lang={lang} latestDevlog={latestDevlog} />
   <HomeCta lang={lang} />
 </Layout>

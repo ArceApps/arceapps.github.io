@@ -11,203 +11,252 @@ interface Props {
 
 const { lang, linkPrefix, posts, devlogs = [] } = Astro.props;
 const t = useTranslations(lang);
+
 const blogUrl = `${linkPrefix}/blog`;
 const devlogUrl = `${linkPrefix}/devlog`;
 
-function getTagStyle(tag: string = ''): string {
-  const lower = tag.toLowerCase();
-  if (lower.includes('android') || lower.includes('kotlin')) {
-    return 'bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400';
-  }
-  if (lower.includes('ia') || lower.includes('ai') || lower.includes('agent')) {
-    return 'bg-cyan-500/10 text-cyan-600 dark:bg-cyan-500/20 dark:text-cyan-400';
-  }
-  if (lower.includes('arquitectura') || lower.includes('architecture')) {
-    return 'bg-indigo-500/10 text-indigo-600 dark:bg-indigo-500/20 dark:text-indigo-400';
-  }
-  return 'bg-teal-500/10 text-primary dark:bg-teal-400/20 dark:text-teal-300';
+// Copy de la sección: el literal español vive en la fuente Astro y el inglés se mantiene en ui.ts.
+const sectionTitle = lang === 'es' ? 'Últimos artículos' : t('home.articles.title');
+const viewAllLabel = lang === 'es' ? 'Ver todas' : t('home.articles.view_all');
+const blogFilterLabel = t('home.articles.filter_blog');
+const devlogFilterLabel = t('home.articles.filter_devlog');
+const filterAriaLabel = t('home.articles.filter_aria');
+const readingTimeLabel = t('home.articles.reading_time');
+
+interface ArticleCard {
+  filter: 'blog' | 'devlog';
+  href: string;
+  title: string;
+  description: string;
+  image?: string;
+  formattedDate: string;
+  isoDate: string;
+  readingTime: number;
 }
+
+function formatDate(value: Date | string): string {
+  if (!value) return '';
+  return new Date(value).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+
+function toIsoDate(value: Date | string): string {
+  return value ? new Date(value).toISOString().slice(0, 10) : '';
+}
+
+function estimateReadingTime(body?: string): number {
+  return Math.max(1, Math.ceil((body || '').split(/\s+/g).filter(Boolean).length / 200));
+}
+
+const blogCards: ArticleCard[] = posts.slice(0, 3).map((post) => ({
+  filter: 'blog',
+  href: `${blogUrl}/${post.slug.split('/').pop()}/`,
+  title: post.data.title,
+  description: post.data.description,
+  image: post.data.heroImage,
+  formattedDate: formatDate(post.data.pubDate),
+  isoDate: toIsoDate(post.data.pubDate),
+  readingTime: estimateReadingTime(post.body),
+}));
+
+const devlogCards: ArticleCard[] = devlogs.slice(0, 3).map((entry) => ({
+  filter: 'devlog',
+  href: `${devlogUrl}/${entry.slug.split('/').pop()}/`,
+  title: entry.data.title,
+  description: entry.data.description,
+  image: entry.data.heroImage,
+  formattedDate: formatDate(entry.data.pubDate),
+  isoDate: toIsoDate(entry.data.pubDate),
+  readingTime: estimateReadingTime(entry.body),
+}));
+
+const cards: ArticleCard[] = [...blogCards, ...devlogCards];
+
+// Filtro activo por defecto: Blog. El script en cliente lo conmuta a Devlog.
+const activeFilter: 'blog' | 'devlog' = 'blog';
 ---
 
-<section class="border-t border-border/50 py-12 sm:py-16 md:py-20 cv-auto fade-in-section dark:border-[#1F333E]/50" style="contain-intrinsic-size: 700px;">
-  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section class="border-t border-border/50 py-12 sm:py-16 md:py-20 cv-auto fade-in-section dark:border-dark-border/50" style="contain-intrinsic-size: 700px;">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" data-articles-root>
     <HomeSectionHeader
       number="02"
-      title={lang === 'es' ? 'Últimos artículos' : 'Latest articles'}
+      title={sectionTitle}
       id="section-blog"
-      href={blogUrl}
-      linkText={lang === 'es' ? 'Ver todos' : 'View all'}
     >
-      <div slot="after-title" class="inline-flex items-center rounded-full border border-border/80 bg-surface-subtle p-1 dark:border-[#1F333E] dark:bg-[#0D171F]">
+      <div
+        slot="after-title"
+        class="inline-flex items-center gap-2 rounded-full border border-border bg-surface-subtle p-1 dark:border-dark-border dark:bg-dark-surface-subtle"
+        role="group"
+        aria-label={filterAriaLabel}
+      >
         <button
-          id="home-tab-blog"
           type="button"
-          class="rounded-full px-4 py-1.5 text-xs sm:text-sm font-bold transition bg-primary text-white shadow-xs"
+          data-filter="blog"
+          data-active="true"
+          aria-pressed="true"
+          class="home-articles-chip inline-flex items-center rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-sm"
         >
-          Blog
+          {blogFilterLabel}
         </button>
         <button
-          id="home-tab-devlog"
           type="button"
-          class="rounded-full px-4 py-1.5 text-xs sm:text-sm font-bold transition text-on-surface-variant hover:text-on-surface dark:text-dark-on-surface-variant dark:hover:text-dark-on-surface"
+          data-filter="devlog"
+          data-active="false"
+          aria-pressed="false"
+          class="home-articles-chip inline-flex items-center rounded-full px-4 py-1.5 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:text-sm"
         >
-          Devlog
+          {devlogFilterLabel}
         </button>
       </div>
     </HomeSectionHeader>
 
-    <!-- Blog Posts Grid (3 columnas en desktop) -->
-    <div id="home-posts-blog" class="grid grid-cols-1 gap-6 md:grid-cols-3">
-      {posts.map((post) => {
-        const slug = post.slug.split('/').pop();
-        const href = `${linkPrefix}/blog/${slug}/`;
-        const readingTime = Math.max(1, Math.ceil((post.body || "").split(/\s+/g).length / 200));
-        const formattedDate = post.data.pubDate ? new Date(post.data.pubDate).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        }) : '';
-        const tag = post.data.tags?.[0] || (lang === 'es' ? 'Artículo' : 'Article');
-        const tagStyle = getTagStyle(tag);
-
-        return (
-          <article class="group relative flex flex-col justify-between rounded-2xl border border-border bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-md dark:border-[#1F333E] dark:bg-[#111E26] dark:hover:border-teal-400/50">
-            <a
-              href={href}
-              data-astro-prefetch
-              class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
-              aria-label={`${lang === 'es' ? 'Leer artículo' : 'Read article'}: ${post.data.title}`}
-            />
-
-            <div>
-              <!-- Badge temático superior + Metadatos -->
-              <div class="flex items-center justify-between gap-2">
-                <span class:list={["inline-flex items-center rounded-lg px-2.5 py-1 text-xs font-bold tracking-wide uppercase", tagStyle]}>
-                  {tag}
-                </span>
-                <span class="text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
-                  {formattedDate} · {readingTime} min
-                </span>
-              </div>
-
-              <!-- Titular en negrita y jerarquía clara -->
-              <h3 class="mt-4 text-lg font-bold tracking-tight text-on-surface transition-colors group-hover:text-primary dark:text-dark-on-surface dark:group-hover:text-teal-300 sm:text-xl line-clamp-2">
-                {post.data.title}
-              </h3>
-
-              <!-- Extracto de 2 líneas con texto gris suave -->
-              <p class="mt-2.5 text-sm leading-relaxed text-on-surface-variant/80 dark:text-dark-on-surface-variant/80 line-clamp-2">
-                {post.data.description}
-              </p>
-            </div>
-
-            <!-- Enlace sutil con flecha de lectura -->
-            <div class="mt-6 flex items-center gap-1.5 text-xs font-semibold text-primary transition-all group-hover:gap-2.5 dark:text-teal-400 sm:text-sm">
-              <span>{lang === 'es' ? 'Leer artículo' : 'Read article'}</span>
-              <span class="material-icons text-base transition-transform group-hover:translate-x-0.5" aria-hidden="true">arrow_forward</span>
-            </div>
-          </article>
-        );
-      })}
+    <!-- Enlace "Ver todas →": apunta al listado según el chip activo -->
+    <div class="mb-6 flex justify-end">
+      <a
+        id="home-articles-view-all"
+        data-view-all
+        href={blogUrl}
+        class="inline-flex items-center text-sm font-semibold text-primary transition-colors hover:text-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-teal-400 dark:hover:text-teal-300"
+      >
+        {viewAllLabel}
+        <span class="material-icons ml-1 text-base" aria-hidden="true">arrow_forward</span>
+      </a>
     </div>
 
-    <!-- Devlog Posts Grid (3 columnas en desktop) -->
-    <div id="home-posts-devlog" class="hidden grid grid-cols-1 gap-6 md:grid-cols-3">
-      {devlogs.map((entry) => {
-        const slug = entry.slug.split('/').pop();
-        const href = `${linkPrefix}/devlog/${slug}/`;
-        const readingTime = Math.max(1, Math.ceil((entry.body || "").split(/\s+/g).length / 200));
-        const formattedDate = entry.data.pubDate ? new Date(entry.data.pubDate).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        }) : '';
-        const tag = entry.data.tags?.[0] || 'Devlog';
-        const tagStyle = getTagStyle(tag);
+    <!-- Grid de 3 tarjetas: una por artículo, filtrable en cliente por data-filter -->
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      {cards.map((card) => (
+        <article
+          data-article-card
+          data-filter={card.filter}
+          class:list={[
+            "group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-dark-border dark:bg-dark-surface-raised dark:hover:border-teal-400/50",
+            card.filter !== activeFilter && "hidden",
+          ]}
+        >
+          <a
+            href={card.href}
+            data-astro-prefetch
+            class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
+            aria-label={`${lang === 'es' ? 'Leer artículo' : 'Read article'}: ${card.title}`}
+          />
 
-        return (
-          <article class="group relative flex flex-col justify-between rounded-2xl border border-border bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-md dark:border-[#1F333E] dark:bg-[#111E26] dark:hover:border-teal-400/50">
-            <a
-              href={href}
-              data-astro-prefetch
-              class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
-              aria-label={`${lang === 'es' ? 'Leer entrada' : 'Read entry'}: ${entry.data.title}`}
-            />
-
-            <div>
-              <!-- Badge temático superior + Metadatos -->
-              <div class="flex items-center justify-between gap-2">
-                <span class:list={["inline-flex items-center rounded-lg px-2.5 py-1 text-xs font-bold tracking-wide uppercase", tagStyle]}>
-                  {tag}
-                </span>
-                <span class="text-xs text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
-                  {formattedDate} · {readingTime} min
-                </span>
+          {card.image ? (
+            <div class="aspect-video w-full overflow-hidden bg-surface-variant dark:bg-dark-surface-variant">
+              <img
+                src={card.image}
+                alt=""
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transition-none"
+              />
+            </div>
+          ) : (
+            <div
+              class="aspect-video w-full overflow-hidden bg-surface-variant dark:bg-dark-surface-variant"
+              aria-hidden="true"
+            >
+              <div class="flex h-full w-full items-center justify-center">
+                <span class="material-icons text-4xl text-on-surface-variant/40 dark:text-dark-on-surface-variant/40">article</span>
               </div>
-
-              <!-- Titular en negrita y jerarquía clara -->
-              <h3 class="mt-4 text-lg font-bold tracking-tight text-on-surface transition-colors group-hover:text-primary dark:text-dark-on-surface dark:group-hover:text-teal-300 sm:text-xl line-clamp-2">
-                {entry.data.title}
-              </h3>
-
-              <!-- Extracto de 2 líneas con texto gris suave -->
-              <p class="mt-2.5 text-sm leading-relaxed text-on-surface-variant/80 dark:text-dark-on-surface-variant/80 line-clamp-2">
-                {entry.data.description}
-              </p>
             </div>
+          )}
 
-            <!-- Enlace sutil con flecha de lectura -->
-            <div class="mt-6 flex items-center gap-1.5 text-xs font-semibold text-primary transition-all group-hover:gap-2.5 dark:text-teal-400 sm:text-sm">
-              <span>{lang === 'es' ? 'Leer entrada' : 'Read entry'}</span>
-              <span class="material-icons text-base transition-transform group-hover:translate-x-0.5" aria-hidden="true">arrow_forward</span>
-            </div>
-          </article>
-        );
-      })}
+          <div class="flex flex-1 flex-col p-5 sm:p-6">
+            <h3 class="text-content line-clamp-2 text-lg font-semibold tracking-tight transition-colors group-hover:text-primary dark:group-hover:text-teal-300">
+              {card.title}
+            </h3>
+
+            <p class="mt-2 line-clamp-2 text-sm leading-relaxed text-content-muted dark:text-dark-content-muted">
+              {card.description}
+            </p>
+
+            <p class="mt-4 text-xs text-content-muted dark:text-dark-content-muted">
+              <time datetime={card.isoDate}>{card.formattedDate}</time>
+              <span aria-hidden="true"> · </span>
+              <span>{readingTimeLabel.replace('{min}', String(card.readingTime))}</span>
+            </p>
+          </div>
+        </article>
+      ))}
     </div>
   </div>
 </section>
 
 <script is:inline define:vars={{ blogUrl, devlogUrl }}>
   (() => {
-    const tabBlog = document.getElementById('home-tab-blog');
-    const tabDevlog = document.getElementById('home-tab-devlog');
-    const postsBlog = document.getElementById('home-posts-blog');
-    const postsDevlog = document.getElementById('home-posts-devlog');
-    const headerLink = document.querySelector('#section-blog a[href]');
+    const initHomeArticlesFilters = () => {
+      const root = document.querySelector('[data-articles-root]');
+      if (!root || root.dataset.articlesReady === 'true') return;
+      root.dataset.articlesReady = 'true';
 
-    const activeClasses = ['bg-primary', 'text-white', 'shadow-xs'];
-    const inactiveClasses = ['text-on-surface-variant', 'hover:text-on-surface', 'dark:text-dark-on-surface-variant', 'dark:hover:text-dark-on-surface'];
+      const chips = Array.from(root.querySelectorAll('button[data-filter]'));
+      const cards = Array.from(root.querySelectorAll('[data-article-card]'));
+      const viewAll = root.querySelector('[data-view-all]');
 
-    function selectTab(tab) {
-      if (tab === 'devlog') {
-        tabDevlog?.classList.remove(...inactiveClasses);
-        tabDevlog?.classList.add(...activeClasses);
-        tabBlog?.classList.remove(...activeClasses);
-        tabBlog?.classList.add(...inactiveClasses);
+      function selectFilter(filter) {
+        chips.forEach((chip) => {
+          const isActive = chip.getAttribute('data-filter') === filter;
+          chip.setAttribute('data-active', isActive ? 'true' : 'false');
+          chip.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+          // El acento del chip activo lo aporta la utilidad bg-primary del sistema,
+          // que en dark se sobreescribe a #00ACB0.
+          chip.classList.toggle('bg-primary', isActive);
+          chip.classList.toggle('text-white', isActive);
+        });
 
-        postsBlog?.classList.add('hidden');
-        postsDevlog?.classList.remove('hidden');
+        cards.forEach((card) => {
+          card.classList.toggle('hidden', card.getAttribute('data-filter') !== filter);
+        });
 
-        if (headerLink) {
-          headerLink.setAttribute('href', devlogUrl);
-        }
-      } else {
-        tabBlog?.classList.remove(...inactiveClasses);
-        tabBlog?.classList.add(...activeClasses);
-        tabDevlog?.classList.remove(...activeClasses);
-        tabDevlog?.classList.add(...inactiveClasses);
-
-        postsDevlog?.classList.add('hidden');
-        postsBlog?.classList.remove('hidden');
-
-        if (headerLink) {
-          headerLink.setAttribute('href', blogUrl);
+        if (viewAll) {
+          viewAll.setAttribute('href', filter === 'devlog' ? devlogUrl : blogUrl);
         }
       }
-    }
 
-    tabBlog?.addEventListener('click', () => selectTab('blog'));
-    tabDevlog?.addEventListener('click', () => selectTab('devlog'));
+      chips.forEach((chip) => {
+        chip.addEventListener('click', () => selectFilter(chip.getAttribute('data-filter')));
+      });
+    };
+
+    initHomeArticlesFilters();
+    document.addEventListener('astro:page-load', initHomeArticlesFilters);
   })();
 </script>
+
+<style>
+  /* El chip activo usa las utilidades del sistema (bg-primary text-white), que en
+     dark se sobreescriben a #00ACB0. Por eso el estilo base de abajo solo aplica
+     al chip inactivo: las utilidades van en la capa utilities de Tailwind y este
+     bloque scoped no la usa. */
+  .home-articles-chip:not([data-active='true']) {
+    color: var(--color-on-surface-variant);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .home-articles-chip:not([data-active='true']):hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  .home-articles-chip[data-active='true'] {
+    border-color: transparent;
+  }
+
+  :global(.dark) .home-articles-chip:not([data-active='true']) {
+    color: var(--color-dark-on-surface-variant);
+    background-color: var(--color-dark-surface-raised);
+    border-color: var(--color-dark-border);
+  }
+
+  :global(.dark) .home-articles-chip:not([data-active='true']):hover {
+    color: var(--color-teal-300);
+    border-color: var(--color-teal-400);
+  }
+</style>
