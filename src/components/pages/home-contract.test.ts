@@ -183,6 +183,30 @@ describe('contrato editorial de portada', () => {
     expect(blog).toContain('devlogCards');
   });
 
+  it('cta final Hablamos de la home', () => {
+    const s = readFileSync('src/components/home/HomeCta.astro', 'utf8');
+
+    expect(s).toContain('Hablamos');
+    expect(s).toContain('Contactar');
+
+    // El CTA usa la cabecera numerada compartida: bg-primary y enlace a contacto.
+    expect(s).toContain('bg-primary');
+    expect(s).toContain('href={contactHref}');
+    expect(s).toContain("lang === 'es' ? '/es/contact' : '/contact'");
+
+    // Sin titulo duplicado: "Hablamos" solo aparece en el literal de la cabecera.
+    const headingMatches = s.match(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/g) ?? [];
+    const headingsWithTitle = headingMatches.filter((tag) =>
+      tag.includes('ctaTitle'),
+    );
+    expect(headingsWithTitle).toHaveLength(0);
+    expect(s.match(/Hablamos/g) ?? []).toHaveLength(1);
+
+    // La seccion del CTA continua la numeracion (01 proyectos, 02 articulos, 03 CTA).
+    expect(s).toContain('number="03"');
+    expect(s).not.toContain('number="04"');
+  });
+
   it('split-card Proyecto destacado con carrusel', () => {
     const s = readFileSync('src/components/home/HomeFeaturedWork.astro', 'utf8');
     expect(s).toContain('Proyecto destacado');
