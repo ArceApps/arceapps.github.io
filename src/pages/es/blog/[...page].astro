@@ -39,7 +39,7 @@ interface Props {
 const { page, allTags, topicCounts } = Astro.props;
 ---
 
-<Layout title="Artículos técnicos y guías — ArceApps" description="Tutoriales, análisis, comparativas y reflexiones sobre desarrollo Android, inteligencia artificial y tecnología en general.">
+<Layout title="Artículos técnicos y guías — ArceApps" description="Reflexiones, tutoriales y aprendizajes sobre desarrollo Android, IA y arquitectura de software.">
   <script
     type="application/ld+json"
     set:html={JSON.stringify({
@@ -56,7 +56,7 @@ const { page, allTags, topicCounts } = Astro.props;
     <PageIntro
       eyebrow="BLOG"
       title="Artículos técnicos y guías"
-      description="Tutoriales, análisis, comparativas y reflexiones sobre desarrollo Android, inteligencia artificial y tecnología en general."
+      description="Reflexiones, tutoriales y aprendizajes sobre desarrollo Android, IA y arquitectura de software."
     />
 
     <!-- Search bar & Category filter pills row -->
@@ -84,7 +84,7 @@ const { page, allTags, topicCounts } = Astro.props;
         >
           Todos
         </a>
-        {topicCounts.slice(0, 4).map(topic => (
+        {topicCounts.map(topic => (
           <a
             href={`/es/blog/topic/${topic.slug}/`}
             class="inline-flex min-h-9 items-center rounded-full border border-border bg-surface-raised px-4 py-1.5 text-xs md:text-sm font-semibold text-on-surface-variant transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
@@ -92,30 +92,6 @@ const { page, allTags, topicCounts } = Astro.props;
             {topic.label} <span class="ml-1.5 rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary dark:text-teal-300">{topic.count}</span>
           </a>
         ))}
-        <details class="relative inline-block">
-          <summary class="inline-flex min-h-9 cursor-pointer list-none items-center rounded-full border border-border bg-surface-raised px-4 py-1.5 text-xs md:text-sm font-semibold text-on-surface-variant transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant [&::-webkit-details-marker]:hidden">
-            Más ▾
-          </summary>
-          <div class="absolute left-0 top-full z-30 mt-2 min-w-52 rounded-xl border border-border bg-surface-raised p-2 shadow-lg dark:border-dark-border dark:bg-dark-surface-raised">
-            {topicCounts.slice(4).map(topic => (
-              <a
-                href={`/es/blog/topic/${topic.slug}/`}
-                class="flex items-center justify-between rounded-lg px-3 py-2 text-xs md:text-sm text-on-surface-variant hover:bg-primary/10 hover:text-primary dark:text-dark-on-surface-variant"
-              >
-                <span>{topic.label}</span>
-                <span class="rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary dark:text-teal-300">{topic.count}</span>
-              </a>
-            ))}
-            {allTags.slice(0, 8).map(tag => (
-              <a
-                href={`/es/blog/tag/${slugify(tag)}/`}
-                class="flex items-center justify-between rounded-lg px-3 py-2 text-xs md:text-sm text-on-surface-variant hover:bg-primary/10 hover:text-primary dark:text-dark-on-surface-variant"
-              >
-                <span>#{tag}</span>
-              </a>
-            ))}
-          </div>
-        </details>
       </nav>
     </div>
 

@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import { slugify } from "../utils/slugs";
 import { getLangFromUrl, useTranslations } from "../i18n/utils";
 import Card from "./Card.astro";
+import { topicOf } from "../utils/blog-topics";
 
 interface Props {
   post: CollectionEntry<"blog">;
@@ -26,11 +27,49 @@ const formattedDate = post.data.pubDate.toLocaleDateString(lang === 'es' ? "es-E
 const slug = post.slug.split('/').pop();
 const href = lang === 'es' ? `/es/blog/${slug}/` : `/blog/${slug}/`;
 const firstTag = post.data.tags?.[0];
+
+const topic = topicOf(post);
+
+interface TopicBadgeConfig {
+  label: string;
+  classes: string;
+}
+
+const topicBadges: Record<string, TopicBadgeConfig> = {
+  android: {
+    label: 'Android',
+    classes: 'bg-teal-50 text-teal-700 border-teal-200/70 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800/50',
+  },
+  ai: {
+    label: lang === 'es' ? 'IA' : 'AI',
+    classes: 'bg-indigo-50 text-indigo-700 border-indigo-200/70 dark:bg-indigo-950/40 dark:text-indigo-300 dark:border-indigo-800/50',
+  },
+  architecture: {
+    label: lang === 'es' ? 'Arquitectura' : 'Architecture',
+    classes: 'bg-blue-50 text-blue-700 border-blue-200/70 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/50',
+  },
+  engineering: {
+    label: lang === 'es' ? 'Arquitectura' : 'Architecture',
+    classes: 'bg-blue-50 text-blue-700 border-blue-200/70 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800/50',
+  },
+  testing: {
+    label: 'Testing',
+    classes: 'bg-amber-50 text-amber-700 border-amber-200/70 dark:bg-amber-950/40 dark:text-amber-300 dark:border-amber-800/50',
+  },
+};
+
+const badge = topicBadges[topic] || {
+  label: lang === 'es' ? 'General' : 'General',
+  classes: 'bg-slate-50 text-slate-700 border-slate-200/70 dark:bg-slate-900/40 dark:text-slate-300 dark:border-slate-800/50',
+};
+const topicHref = lang === 'es' ? `/es/blog/topic/${topic}/` : `/blog/topic/${topic}/`;
 ---
 
 <Card
   variant="article"
-  class={list ? "sm:flex sm:flex-row sm:items-center gap-5 p-4 sm:p-5" : "flex flex-col p-4 sm:p-5"}
+  class={list
+    ? "bg-[#FFFFFF] dark:bg-[#111E26] border border-[#E5E7EB] dark:border-[#1F333E] rounded-2xl p-5 sm:p-6 transition-all duration-200 motion-reduce:transition-none hover:border-primary/50 hover:shadow-md"
+    : "bg-[#FFFFFF] dark:bg-[#111E26] border border-[#E5E7EB] dark:border-[#1F333E] rounded-2xl p-5 flex flex-col transition-all duration-200 motion-reduce:transition-none hover:border-primary/50 hover:shadow-md"}
 >
   <a
     href={href}
@@ -41,13 +80,13 @@ const firstTag = post.data.tags?.[0];
 
   {
     list ? (
-      <>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-5 w-full">
         {post.data.heroImage ? (
-          <div class="aspect-video w-full sm:w-56 md:w-64 sm:shrink-0 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
+          <div class="aspect-video w-full sm:w-56 md:w-60 sm:shrink-0 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800">
             <img
               src={post.data.heroImage}
               alt={post.data.title}
-              class="h-full w-full object-cover"
+              class="h-full w-full object-cover transition-opacity duration-200 motion-reduce:transition-none group-hover:opacity-90"
               loading="lazy"
               decoding="async"
               width="800"
@@ -56,36 +95,57 @@ const firstTag = post.data.tags?.[0];
           </div>
         ) : (
           <div
-            class="aspect-video w-full sm:w-56 md:w-64 sm:shrink-0 rounded-xl overflow-hidden bg-surface-variant/40 dark:bg-dark-surface-subtle flex items-center justify-center text-on-surface-variant/40 dark:text-dark-on-surface-variant/40"
+            class="aspect-video w-full sm:w-56 md:w-60 sm:shrink-0 rounded-xl overflow-hidden bg-surface-variant/40 dark:bg-dark-surface-subtle flex items-center justify-center text-on-surface-variant/40 dark:text-dark-on-surface-variant/40"
             aria-hidden="true"
           >
             <span class="material-icons text-4xl">article</span>
           </div>
         )}
 
-        <div class="min-w-0 flex-1 flex flex-col justify-center mt-3 sm:mt-0">
-          <h3 class="text-lg md:text-xl font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors motion-reduce:transition-none line-clamp-2">
+        <div class="min-w-0 flex-1 flex flex-col justify-center">
+          <div class="flex flex-wrap items-center gap-2.5 text-xs text-on-surface-variant/80 dark:text-dark-on-surface-variant/80 mb-2">
+            <a
+              href={topicHref}
+              data-astro-prefetch
+              class:list={[
+                "relative z-20 pointer-events-auto inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold border transition-colors motion-reduce:transition-none hover:opacity-85 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none",
+                badge.classes
+              ]}
+            >
+              {badge.label}
+            </a>
+            <span class="inline-block text-on-surface-variant/40 dark:text-dark-on-surface-variant/40">·</span>
+            <span>{formattedDate}</span>
+            <span class="inline-block text-on-surface-variant/40 dark:text-dark-on-surface-variant/40">·</span>
+            <span>{readingTime} min</span>
+          </div>
+
+          <h3 class="text-lg md:text-xl font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors motion-reduce:transition-none line-clamp-2 leading-snug">
             {post.data.title}
           </h3>
 
-          <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2 mt-1.5 leading-relaxed">
+          <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2 mt-2 leading-relaxed">
             {post.data.description}
           </p>
 
-          <div class="mt-3 flex flex-wrap items-center gap-2.5 text-xs text-on-surface-variant/80 dark:text-dark-on-surface-variant/80">
-            <span>{formattedDate} · {readingTime} min</span>
+          <div class="mt-3.5 flex items-center justify-between pt-1">
+            <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-primary dark:text-teal-300">
+              <span>{lang === 'es' ? 'Leer artículo' : 'Read article'}</span>
+              <span class="material-icons text-sm" aria-hidden="true">arrow_forward</span>
+            </div>
+
             {firstTag && (
               <a
                 href={lang === 'es' ? `/es/blog/tag/${slugify(firstTag)}/` : `/blog/tag/${slugify(firstTag)}/`}
                 data-astro-prefetch
-                class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:text-teal-300 text-xs font-semibold hover:bg-primary/20 transition-colors motion-reduce:transition-none relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                class="relative z-20 pointer-events-auto text-xs text-on-surface-variant/60 hover:text-primary dark:text-dark-on-surface-variant/60 dark:hover:text-teal-300 transition-colors motion-reduce:transition-none"
               >
-                {firstTag}
+                #{firstTag}
               </a>
             )}
           </div>
         </div>
-      </>
+      </div>
     ) : (
       <>
         {post.data.heroImage ? (
@@ -93,7 +153,7 @@ const firstTag = post.data.tags?.[0];
             <img
               src={post.data.heroImage}
               alt={post.data.title}
-              class="h-full w-full object-cover"
+              class="h-full w-full object-cover transition-opacity duration-200 motion-reduce:transition-none group-hover:opacity-90"
               loading="lazy"
               decoding="async"
               width="800"
@@ -110,17 +170,27 @@ const firstTag = post.data.tags?.[0];
         )}
 
         <div class="mt-3.5 flex flex-col flex-1">
-          {firstTag && (
-            <div class="mb-2">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <a
+              href={topicHref}
+              data-astro-prefetch
+              class:list={[
+                "relative z-20 pointer-events-auto inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold border transition-colors motion-reduce:transition-none hover:opacity-85 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none",
+                badge.classes
+              ]}
+            >
+              {badge.label}
+            </a>
+            {firstTag && (
               <a
                 href={lang === 'es' ? `/es/blog/tag/${slugify(firstTag)}/` : `/blog/tag/${slugify(firstTag)}/`}
                 data-astro-prefetch
-                class="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary dark:text-teal-300 text-xs font-semibold hover:bg-primary/20 transition-colors motion-reduce:transition-none relative z-30 pointer-events-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none"
+                class="relative z-20 pointer-events-auto text-xs text-on-surface-variant/60 hover:text-primary dark:text-dark-on-surface-variant/60 dark:hover:text-teal-300 transition-colors motion-reduce:transition-none"
               >
-                {firstTag}
+                #{firstTag}
               </a>
-            </div>
-          )}
+            )}
+          </div>
 
           <h3 class="text-base sm:text-lg font-bold text-on-surface dark:text-dark-on-surface group-hover:text-primary transition-colors motion-reduce:transition-none line-clamp-2 mb-2">
             {post.data.title}
@@ -130,8 +200,9 @@ const firstTag = post.data.tags?.[0];
             {post.data.description}
           </p>
 
-          <div class="text-xs text-on-surface-variant/80 dark:text-dark-on-surface-variant/80 mt-auto">
-            {formattedDate} · {readingTime} min
+          <div class="text-xs text-on-surface-variant/80 dark:text-dark-on-surface-variant/80 mt-auto flex items-center justify-between">
+            <span>{formattedDate} · {readingTime} min</span>
+            <span class="material-icons text-sm text-primary dark:text-teal-300" aria-hidden="true">arrow_forward</span>
           </div>
         </div>
       </>
