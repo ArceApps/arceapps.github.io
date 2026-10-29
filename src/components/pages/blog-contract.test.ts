@@ -84,6 +84,16 @@ describe('blog listing', () => {
     }
   });
 
+  it('filas editoriales del blog con meta', () => {
+    const s = readFileSync('src/components/BlogCard.astro', 'utf8');
+    expect(s).toContain('min');
+    expect(s).toContain('heroImage');
+    expect(s).toContain('aspect-video');
+    expect(s).toContain('sm:w-48');
+    expect(s).toContain('text-content-muted');
+    expect(s).toContain('<time');
+  });
+
   it('copy localizado de blog con paridad ES/EN', () => {
     for (const key of ['blog.title', 'blog.filter_all', 'blog.filter_more', 'blog.filter_aria', 'blog.search_placeholder'] as const) {
       expect(ui.en[key], `Falta ${key} en ingles`).toBeTruthy();
