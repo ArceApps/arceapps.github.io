@@ -11,31 +11,31 @@
 
   /* Semantic Light Theme Tokens */
   --color-surface: #FFFFFF;
-  --color-surface-subtle: #F4F5F7;
+  --color-surface-subtle: #F8F9FA;
   --color-surface-raised: #FFFFFF;
   --color-surface-variant: #F4F5F7;
-  --color-content: #1C1B1F;
-  --color-content-muted: #49454F;
-  --color-on-surface: #1C1B1F;
-  --color-on-surface-variant: #49454F;
-  --color-border: #E2E3E5;
-  --color-border-strong: #C7C9CC;
-  --color-focus: #018786;
+  --color-content: #111827;
+  --color-content-muted: #4B5563;
+  --color-on-surface: #111827;
+  --color-on-surface-variant: #4B5563;
+  --color-border: #E5E7EB;
+  --color-border-strong: #D1D5DB;
+  --color-focus: #007F7D;
   --color-focus-contrast: #FFFFFF;
 
   /* Semantic Dark Theme Tokens */
-  --color-dark-surface: #0B141B;
-  --color-dark-surface-subtle: #111F29;
-  --color-dark-surface-raised: #172733;
-  --color-dark-surface-variant: #182A35;
-  --color-dark-content: #F5F8FA;
-  --color-dark-content-muted: #C7D4DB;
-  --color-dark-on-surface: #F5F8FA;
-  --color-dark-on-surface-variant: #C7D4DB;
-  --color-dark-border: #314550;
-  --color-dark-border-strong: #4C6571;
-  --color-dark-focus: #4FD1C5;
-  --color-dark-focus-contrast: #082F2E;
+  --color-dark-surface: #091117;
+  --color-dark-surface-subtle: #0D171F;
+  --color-dark-surface-raised: #111E26;
+  --color-dark-surface-variant: #16242E;
+  --color-dark-content: #F3F4F6;
+  --color-dark-content-muted: #9CA3AF;
+  --color-dark-on-surface: #F3F4F6;
+  --color-dark-on-surface-variant: #9CA3AF;
+  --color-dark-border: #1F333E;
+  --color-dark-border-strong: #2E4B5B;
+  --color-dark-focus: #2DD4BF;
+  --color-dark-focus-contrast: #091117;
 
   /* Semantic Elevation Tokens */
   --shadow-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
@@ -53,7 +53,7 @@
 /* Material Design 3 Utilities */
 @layer utilities {
   /* Legible brand colors on both backgrounds. Utilities need the same cascade layer. */
-  :root.dark .text-primary { color: #4FD1C5; }
+  :root.dark .text-primary { color: #2DD4BF; }
   :root:not(.dark) .text-secondary { color: #B95B00; }
   .elevation-1 {
     box-shadow: var(--shadow-elevation-1);
@@ -76,7 +76,7 @@
   }
 
   .material-card {
-    @apply rounded-xl bg-surface-raised dark:bg-dark-surface-raised border border-border dark:border-dark-border transition-all duration-300;
+    @apply rounded-xl bg-surface-raised dark:bg-dark-surface-raised border border-border dark:border-dark-border shadow-sm transition-all duration-300;
   }
 
   .cv-auto {
@@ -123,7 +123,7 @@
   }
 
   body {
-    @apply bg-surface dark:bg-dark-surface text-on-surface dark:text-dark-on-surface antialiased transition-colors duration-300;
+    @apply bg-[#F8F9FA] dark:bg-[#091117] text-[#111827] dark:text-[#F3F4F6] antialiased transition-colors duration-300;
   }
 
   /* Typography */
