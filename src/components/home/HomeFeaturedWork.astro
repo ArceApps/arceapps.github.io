@@ -24,9 +24,16 @@ interface Props {
 const { lang, featuredWork, featuredItems } = Astro.props;
 const t = useTranslations(lang);
 
-const items: FeaturedItem[] = (featuredItems && featuredItems.length > 0)
-  ? featuredItems
-  : (featuredWork ? [featuredWork] : []);
+const item: FeaturedItem = featuredWork || (featuredItems && featuredItems.length > 0 ? featuredItems[0] : {
+  title: 'RadioHub',
+  description: lang === 'es'
+    ? 'Una aplicación moderna de radio por internet para Android diseñada con Material You. Sintoniza miles de emisoras con reproducción fluida en segundo plano y temporizador de apagado.'
+    : 'A modern internet radio app for Android built with Material You. Stream thousands of radio stations seamlessly with background playback and sleep timer.',
+  href: lang === 'es' ? '/es/apps/radiohub' : '/apps/radiohub',
+  kind: 'app' as const,
+  realIconUrl: '/images/apps/radiohub/logo.png',
+  googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.radiohub',
+});
 ---
 
 <section class="py-12 sm:py-16 cv-auto fade-in-section" style="contain-intrinsic-size: 600px;">
@@ -37,212 +44,185 @@ const items: FeaturedItem[] = (featuredItems && featuredItems.length > 0)
       id="section-work"
     />
 
-    {items.length > 0 ? (
-      <div class="relative">
-        {items.map((item, index) => (
-          <div
-            class:list={[
-              "featured-slide",
-              index === 0 ? "block" : "hidden"
-            ]}
-            data-index={index}
+    <!-- Tarjeta dividida (Split Card 2 columnas en desktop, 1 en móvil) -->
+    <article class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12 rounded-3xl border border-border bg-white p-6 shadow-sm dark:border-[#1F333E] dark:bg-[#111E26] sm:p-8 lg:p-10">
+      <!-- Columna Izquierda: Información de RadioHub -->
+      <div class="flex flex-col justify-center lg:col-span-7">
+        <!-- Badge superior de sección -->
+        <div class="mb-4 inline-flex items-center gap-1.5 self-start rounded-full bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary dark:bg-teal-400/10 dark:text-teal-300">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary dark:bg-teal-400" aria-hidden="true"></span>
+          <span>{lang === 'es' ? 'PROYECTO DESTACADO' : 'FEATURED PROJECT'}</span>
+        </div>
+
+        <!-- Encabezado con Icono en Squircle + Título + Badge de Tecnologías -->
+        <div class="flex items-center gap-4">
+          <img
+            src={item.realIconUrl || '/images/apps/radiohub/logo.png'}
+            alt={`${item.title} icon`}
+            class="h-16 w-16 rounded-2xl border border-border/80 object-cover shadow-sm dark:border-[#1F333E]"
+            loading="lazy"
+            decoding="async"
+            width="64"
+            height="64"
+          />
+          <div>
+            <h3 class="text-2xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl">
+              {item.title}
+            </h3>
+            <div class="mt-1 flex flex-wrap items-center gap-2">
+              <span class="inline-flex items-center gap-1 rounded-full bg-surface-subtle px-2.5 py-0.5 text-xs font-semibold text-on-surface-variant border border-border/60 dark:bg-[#16242E] dark:text-dark-on-surface-variant dark:border-[#1F333E]">
+                <span class="material-icons text-xs text-emerald-500" aria-hidden="true">android</span>
+                Android · Jetpack Compose · Material 3
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Claim destacado -->
+        <h4 class="mt-5 text-xl font-bold tracking-tight text-primary dark:text-teal-400 sm:text-2xl">
+          {lang === 'es' ? 'La radio, como te gusta · Miles de emisoras en una sola app' : 'Radio, just the way you like it · Thousands of stations in one app'}
+        </h4>
+
+        <!-- Descripción concisa del valor de la app -->
+        <p class="mt-3 text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+          {lang === 'es'
+            ? 'Una aplicación moderna de radio por internet para Android diseñada con Material You. Sintoniza miles de emisoras en streaming con reproducción fluida en segundo plano, temporizador de apagado y acceso instantáneo sin suscripciones ni pantallas invasivas.'
+            : 'A modern internet radio app for Android built with Material You. Stream thousands of radio stations seamlessly in the background with a sleep timer and instant access without invasive subscriptions.'}
+        </p>
+
+        <!-- Fila de 4 características en chips / bullets -->
+        <div class="mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
+            <span class="material-icons text-base text-teal-600 dark:text-teal-400" aria-hidden="true">radio</span>
+            <span>{lang === 'es' ? '+30.000 emisoras' : '+30,000 stations'}</span>
+          </div>
+          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
+            <span class="material-icons text-base text-emerald-600 dark:text-emerald-400" aria-hidden="true">money_off</span>
+            <span>{lang === 'es' ? 'Sin suscripciones' : 'No subscriptions'}</span>
+          </div>
+          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
+            <span class="material-icons text-base text-amber-600 dark:text-amber-400" aria-hidden="true">schedule</span>
+            <span>{lang === 'es' ? 'Temporizador' : 'Sleep timer'}</span>
+          </div>
+          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
+            <span class="material-icons text-base text-rose-500" aria-hidden="true">favorite</span>
+            <span>{lang === 'es' ? 'Favoritos' : 'Favorites'}</span>
+          </div>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
+          <a
+            href={item.googlePlayUrl || 'https://play.google.com/store/apps/details?id=com.arceapps.radiohub'}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
           >
-            <article class="grid grid-cols-1 items-center gap-8 overflow-hidden rounded-3xl border border-border bg-surface-raised p-6 shadow-sm dark:border-dark-border dark:bg-dark-surface-raised sm:p-8 lg:grid-cols-12 lg:gap-12 lg:p-10">
-              <!-- Left Column: Details -->
-              <div class="flex flex-col justify-center lg:col-span-5">
-                <div class="flex items-center gap-4">
-                  <img
-                    src={item.realIconUrl || (item.title.toLowerCase() === 'radiohub' ? '/images/apps/radiohub/logo.png' : (item.heroImage || '/images/apps/radiohub/logo.png'))}
-                    alt={`${item.title} icon`}
-                    class="h-16 w-16 rounded-2xl border border-border object-cover shadow-md dark:border-dark-border"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div>
-                    <h3 class="text-2xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl">
-                      {item.title}
-                    </h3>
-                    <div class="mt-1">
-                      <span class="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400">
-                        <span class="material-icons text-xs" aria-hidden="true">android</span>
-                        {item.kind === 'app' ? 'Android' : 'Open Source'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
+            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3.609 1.814L13.792 12 3.61 22.186a2.222 2.222 0 0 1-.61-.954V2.768c.15-.36.368-.69.609-.954zm11.242 11.245l2.254 2.255-10.74 6.22 8.486-8.475zm2.885-1.127l2.84 1.645c.833.483.833 1.267 0 1.75l-2.84 1.645-2.52-2.52 2.52-2.52zm-2.885-1.127L6.365 2.33l10.74 6.22-2.254 2.255z"/>
+            </svg>
+            <span>{lang === 'es' ? 'Descargar en Google Play' : 'Download on Google Play'}</span>
+          </a>
 
-                <p class="mt-5 text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
-                  {item.description}
-                </p>
-
-                <div class="mt-8 flex flex-wrap items-center gap-3">
-                  <a
-                    href={item.href}
-                    class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
-                  >
-                    {lang === 'es' ? 'Ver proyecto' : 'View project'}
-                    <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
-                  </a>
-
-                  {item.googlePlayUrl ? (
-                    <a
-                      href={item.googlePlayUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-on-surface transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-400"
-                    >
-                      <span class="material-icons text-base" aria-hidden="true">shop</span>
-                      {lang === 'es' ? 'Ver en Google Play' : 'View on Google Play'}
-                    </a>
-                  ) : item.repoUrl ? (
-                    <a
-                      href={item.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-2.5 text-sm font-semibold text-on-surface transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-400"
-                    >
-                      <span class="material-icons text-base" aria-hidden="true">code</span>
-                      {lang === 'es' ? 'Ver repositorio' : 'View repository'}
-                    </a>
-                  ) : null}
-                </div>
-              </div>
-
-              <!-- Right Column: Mockup with screenshots -->
-              <div class="lg:col-span-7">
-                <div class="relative flex min-h-[300px] items-center justify-center overflow-hidden rounded-2xl border border-teal-500/20 bg-teal-50/50 p-4 sm:min-h-[340px] sm:p-6 dark:border-teal-400/10 dark:bg-teal-950/20">
-                  {item.screenshots && item.screenshots.length > 0 ? (
-                    <div class="relative flex w-full items-center justify-center gap-2 sm:gap-4">
-                      {item.screenshots.slice(0, 3).map((shot, sIndex) => {
-                        const isCenter = sIndex === 1 || (item.screenshots && item.screenshots.length < 3 && sIndex === 0);
-                        return (
-                          <div
-                            class:list={[
-                              "relative overflow-hidden rounded-2xl border-4 border-gray-800 bg-gray-900 shadow-xl transition-transform duration-300",
-                              isCenter
-                                ? "z-20 w-[36%] max-w-[170px] scale-105 shadow-2xl"
-                                : "z-10 w-[30%] max-w-[140px] opacity-90 brightness-95"
-                            ]}
-                            style="aspect-ratio: 9 / 18.5;"
-                          >
-                            <div class="absolute left-1/2 top-1.5 z-10 h-1 w-8 -translate-x-1/2 rounded-full bg-gray-700/80" aria-hidden="true"></div>
-                            <img
-                              src={shot}
-                              alt=""
-                              loading="lazy"
-                              decoding="async"
-                              class="h-full w-full object-cover object-top"
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  ) : item.heroImage ? (
-                    <div class="relative w-full max-w-md overflow-hidden rounded-2xl border-4 border-gray-800 bg-gray-900 shadow-xl">
-                      <img
-                        src={item.heroImage}
-                        alt={item.title}
-                        class="h-auto w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  ) : (
-                    <div class="flex items-center justify-center py-12 text-primary opacity-60">
-                      <span class="material-icons text-7xl">phone_android</span>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </article>
-          </div>
-        ))}
-
-        {items.length > 1 && (
-          <div class="mt-4 flex items-center justify-between px-2">
-            <div class="flex items-center gap-2">
-              <button
-                type="button"
-                id="featured-prev"
-                aria-label={lang === 'es' ? 'Proyecto anterior' : 'Previous project'}
-                class="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-on-surface shadow-sm transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-400"
-              >
-                <span class="material-icons text-base" aria-hidden="true">arrow_back</span>
-              </button>
-              <button
-                type="button"
-                id="featured-next"
-                aria-label={lang === 'es' ? 'Siguiente proyecto' : 'Next project'}
-                class="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-on-surface shadow-sm transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-400"
-              >
-                <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
-              </button>
-            </div>
-
-            <div class="flex items-center gap-2" id="featured-dots">
-              {items.map((_, dotIndex) => (
-                <button
-                  type="button"
-                  data-slide-target={dotIndex}
-                  aria-label={`Slide ${dotIndex + 1}`}
-                  class:list={[
-                    "featured-dot h-2 rounded-full transition-all duration-300",
-                    dotIndex === 0
-                      ? "w-6 bg-primary dark:bg-teal-400"
-                      : "w-2 bg-border hover:bg-on-surface-variant/40 dark:bg-dark-border"
-                  ]}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+          <a
+            href={item.href || (lang === 'es' ? '/es/apps/radiohub' : '/apps/radiohub')}
+            class="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-sm font-semibold text-on-surface transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-300"
+          >
+            <span>{lang === 'es' ? 'Ver detalles del proyecto' : 'View project details'}</span>
+            <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
+          </a>
+        </div>
       </div>
-    ) : (
-      <p class="py-12 text-center text-on-surface-variant dark:text-dark-on-surface-variant">
-        {t('apps.empty')}
-      </p>
-    )}
+
+      <!-- Columna Derecha: Mockup limpio del reproductor Material You -->
+      <div class="flex justify-center lg:col-span-5">
+        <div class="relative w-full max-w-[300px] overflow-hidden rounded-[2.5rem] border-[6px] border-slate-800 bg-slate-950 p-4 shadow-2xl dark:border-slate-700">
+          <!-- Fondo degradado Material You -->
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-teal-900/40 via-slate-950 to-slate-950" aria-hidden="true"></div>
+          <div class="pointer-events-none absolute -right-8 top-12 h-36 w-36 rounded-full bg-teal-500/15 blur-2xl" aria-hidden="true"></div>
+
+          <!-- Cámara notch superior -->
+          <div class="relative z-10 mx-auto mb-3 h-3.5 w-20 rounded-full bg-slate-900 flex items-center justify-center">
+            <span class="h-1.5 w-1.5 rounded-full bg-slate-800"></span>
+          </div>
+
+          <!-- Cabecera de la app -->
+          <div class="relative z-10 mb-3 flex items-center justify-between px-1 text-slate-300">
+            <div class="flex items-center gap-1.5">
+              <span class="material-icons text-base text-teal-400" aria-hidden="true">radio</span>
+              <span class="text-xs font-bold tracking-wider text-teal-300 uppercase">RadioHub</span>
+            </div>
+            <span class="inline-flex items-center gap-1 rounded-full bg-red-500/20 px-2 py-0.5 text-[10px] font-bold text-red-400">
+              <span class="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse"></span>
+              LIVE
+            </span>
+          </div>
+
+          <!-- Carátula de emisora destacada -->
+          <div class="relative z-10 aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-tr from-teal-700 via-cyan-800 to-emerald-700 p-5 shadow-lg flex flex-col justify-between">
+            <div class="flex items-center justify-between text-white/80">
+              <span class="text-[11px] font-bold tracking-widest uppercase">FM STEREO</span>
+              <span class="material-icons text-sm">graphic_eq</span>
+            </div>
+
+            <div class="text-center my-auto">
+              <div class="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-md shadow-inner">
+                <span class="material-icons text-3xl text-teal-200">podcasts</span>
+              </div>
+              <p class="text-lg font-black tracking-tight text-white">Radio 3</p>
+              <p class="text-xs font-medium text-teal-100/90">Radio Nacional de España</p>
+            </div>
+
+            <!-- Visualizador de ondas de audio -->
+            <div class="flex items-end justify-center gap-1 h-6">
+              <span class="w-1 rounded-full bg-teal-300 animate-pulse h-3"></span>
+              <span class="w-1 rounded-full bg-teal-200 animate-pulse h-5" style="animation-delay: 150ms;"></span>
+              <span class="w-1 rounded-full bg-white animate-pulse h-6" style="animation-delay: 300ms;"></span>
+              <span class="w-1 rounded-full bg-teal-200 animate-pulse h-4" style="animation-delay: 75ms;"></span>
+              <span class="w-1 rounded-full bg-teal-300 animate-pulse h-5" style="animation-delay: 220ms;"></span>
+            </div>
+          </div>
+
+          <!-- Información de la pista / stream -->
+          <div class="relative z-10 mt-3 px-1">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm font-bold text-white">94.5 FM · Madrid</p>
+                <p class="text-[11px] text-slate-400">320 kbps AAC · Baja latencia</p>
+              </div>
+              <span class="material-icons text-lg text-rose-400">favorite</span>
+            </div>
+
+            <!-- Barra de progreso simulada -->
+            <div class="mt-3">
+              <div class="h-1.5 w-full rounded-full bg-slate-800">
+                <div class="h-1.5 w-3/4 rounded-full bg-teal-400"></div>
+              </div>
+              <div class="mt-1 flex justify-between text-[10px] text-slate-500 font-mono">
+                <span>42:15</span>
+                <span>DIRECTO</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controles de reproducción Material You -->
+          <div class="relative z-10 mt-3 flex items-center justify-around px-2 py-1 text-slate-200">
+            <button type="button" aria-label="Estación anterior" class="p-1 hover:text-white transition">
+              <span class="material-icons text-2xl">skip_previous</span>
+            </button>
+            <button
+              type="button"
+              aria-label="Pausa / Reproducir"
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-400 text-slate-950 shadow-md transition hover:bg-teal-300 hover:scale-105"
+            >
+              <span class="material-icons text-2xl">pause</span>
+            </button>
+            <button type="button" aria-label="Siguiente estación" class="p-1 hover:text-white transition">
+              <span class="material-icons text-2xl">skip_next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
-
-<script is:inline>
-  (() => {
-    const slides = document.querySelectorAll('.featured-slide');
-    const dots = document.querySelectorAll('.featured-dot');
-    const prevBtn = document.getElementById('featured-prev');
-    const nextBtn = document.getElementById('featured-next');
-    if (!slides || slides.length <= 1) return;
-
-    let currentIndex = 0;
-
-    function showSlide(index) {
-      if (index < 0) index = slides.length - 1;
-      if (index >= slides.length) index = 0;
-      currentIndex = index;
-
-      slides.forEach((slide, i) => {
-        if (i === currentIndex) {
-          slide.classList.remove('hidden');
-          slide.classList.add('block');
-        } else {
-          slide.classList.remove('block');
-          slide.classList.add('hidden');
-        }
-      });
-
-      dots.forEach((dot, i) => {
-        if (i === currentIndex) {
-          dot.className = 'featured-dot h-2 rounded-full transition-all duration-300 w-6 bg-primary dark:bg-teal-400';
-        } else {
-          dot.className = 'featured-dot h-2 rounded-full transition-all duration-300 w-2 bg-border hover:bg-on-surface-variant/40 dark:bg-dark-border';
-        }
-      });
-    }
-
-    prevBtn?.addEventListener('click', () => showSlide(currentIndex - 1));
-    nextBtn?.addEventListener('click', () => showSlide(currentIndex + 1));
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => showSlide(i));
-    });
-  })();
-</script>

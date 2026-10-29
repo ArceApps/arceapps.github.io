@@ -8,102 +8,85 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const features = [
+const quickAccessPills = [
   {
     icon: 'android',
-    title: lang === 'es' ? 'Apps Android' : 'Android Apps',
-    subtitle: lang === 'es' ? 'Productos en Google Play' : 'Products on Google Play',
+    label: lang === 'es' ? 'Apps Android' : 'Android Apps',
+    href: lang === 'es' ? '/es/apps' : '/apps',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
+    iconBg: 'bg-emerald-500/10 dark:bg-emerald-500/20',
   },
   {
     icon: 'psychology',
-    title: lang === 'es' ? 'Herramientas de IA' : 'AI Tools',
-    subtitle: lang === 'es' ? 'Agentes y automatización' : 'Agents and automation',
+    label: lang === 'es' ? 'Herramientas de IA' : 'AI Tools',
+    href: lang === 'es' ? '/es/projects' : '/projects',
+    iconColor: 'text-cyan-600 dark:text-cyan-400',
+    iconBg: 'bg-cyan-500/10 dark:bg-cyan-500/20',
   },
   {
     icon: 'code',
-    title: lang === 'es' ? 'Proyectos open source' : 'Open source projects',
-    subtitle: lang === 'es' ? 'Ideas que exploro' : 'Ideas I explore',
+    label: lang === 'es' ? 'Proyectos open source' : 'Open source projects',
+    href: lang === 'es' ? '/es/projects' : '/projects',
+    iconColor: 'text-amber-600 dark:text-amber-400',
+    iconBg: 'bg-amber-500/10 dark:bg-amber-500/20',
   },
   {
     icon: 'menu_book',
-    title: lang === 'es' ? 'Contenido técnico' : 'Technical content',
-    subtitle: lang === 'es' ? 'Blog y devlog' : 'Blog and devlog',
+    label: lang === 'es' ? 'Contenido técnico' : 'Technical content',
+    href: lang === 'es' ? '/es/blog' : '/blog',
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    iconBg: 'bg-blue-500/10 dark:bg-blue-500/20',
   },
 ];
 ---
 
 <section
-  class="home-hero relative isolate px-4 pt-6 pb-12 sm:px-6 lg:px-8"
+  class="home-hero relative isolate px-4 pt-12 pb-16 sm:px-6 sm:pt-16 sm:pb-20 lg:px-8 max-w-5xl mx-auto text-center"
   aria-labelledby="home-hero-title"
 >
   <span class="sr-only">ArceApps</span>
-  <div class="relative mx-auto max-w-7xl overflow-hidden rounded-3xl border border-border bg-surface shadow-sm dark:border-dark-border dark:bg-dark-surface-raised">
-    <div class="pointer-events-none absolute inset-y-0 right-0 w-full sm:w-2/3 lg:w-1/2">
-      <img
-        src="/images/portfolio-landscape.svg"
-        alt=""
-        width="1200"
-        height="740"
-        class="h-full w-full object-cover object-right opacity-85 dark:opacity-60 dark:brightness-90"
-        aria-hidden="true"
-      />
-      <div
-        class="absolute inset-0 bg-gradient-to-r from-surface via-surface/95 to-surface/20 dark:from-dark-surface-raised dark:via-dark-surface-raised/95 dark:to-dark-surface-raised/20"
-        aria-hidden="true"
-      ></div>
-    </div>
 
-    <div class="relative z-10 max-w-2xl px-6 py-12 sm:px-10 sm:py-16 lg:px-14 lg:py-20">
-      <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary dark:text-teal-400">
-        <span class="h-2 w-2 rounded-full bg-primary dark:bg-teal-400" aria-hidden="true"></span>
-        <span>{lang === 'es' ? 'DESARROLLO · ANDROID · IA · PROYECTOS' : 'DEVELOPMENT · ANDROID · AI · PROJECTS'}</span>
-      </div>
-
-      <h1
-        id="home-hero-title"
-        class="home-hero-title mt-4 text-3xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-4xl lg:text-5xl leading-[1.15]"
-      >
-        {lang === 'es' ? 'Software independiente que resuelve problemas reales' : 'Independent software that solves real problems'}
-      </h1>
-
-      <p class="home-hero-manifesto mt-4 text-base sm:text-lg leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
-        {t('home.manifesto')}
-      </p>
-
-      <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-        <a
-          href={lang === 'es' ? '/es/projects' : '/projects'}
-          class="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
-        >
-          {lang === 'es' ? 'Explorar proyectos' : 'Explore projects'}
-          <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
-        </a>
-        <a
-          href={lang === 'es' ? '/es/blog' : '/blog'}
-          class="inline-flex items-center rounded-xl border border-border bg-surface px-6 py-3 text-sm font-semibold text-on-surface shadow-sm transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-400"
-        >
-          {lang === 'es' ? 'Leer artículos' : 'Read articles'}
-        </a>
-      </div>
-    </div>
+  <!-- Badge superior sutil con indicador verde/teal -->
+  <div class="inline-flex items-center gap-2 rounded-full border border-border/80 bg-white px-3.5 py-1.5 text-xs font-semibold tracking-wide text-on-surface-variant shadow-xs dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant">
+    <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true"></span>
+    <span>{lang === 'es' ? 'DESARROLLO · ANDROID · IA · PROYECTOS' : 'DEVELOPMENT · ANDROID · AI · PROJECTS'}</span>
   </div>
 
-  <div class="mx-auto mt-6 grid max-w-7xl grid-cols-2 divide-y divide-border rounded-2xl border border-border bg-surface-raised shadow-sm sm:divide-y-0 sm:divide-x dark:divide-dark-border dark:border-dark-border dark:bg-dark-surface-raised lg:grid-cols-4">
-    {features.map((item) => (
-      <div class="flex flex-col items-center p-5 text-center">
-        <div class="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary dark:bg-teal-400/10 dark:text-teal-300">
-          <span class="material-icons text-xl" aria-hidden="true">{item.icon}</span>
-        </div>
-        <span class="text-sm font-bold text-on-surface dark:text-dark-on-surface">{item.title}</span>
-        <span class="mt-1 text-xs text-on-surface-variant dark:text-dark-on-surface-variant">{item.subtitle}</span>
-      </div>
+  <!-- Titular principal de gran impacto -->
+  <h1
+    id="home-hero-title"
+    class="home-hero-title mt-6 text-4xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-5xl lg:text-6xl leading-[1.12]"
+  >
+    {lang === 'es' ? 'Software independiente que resuelve problemas reales' : 'Independent software solving real problems'}
+  </h1>
+
+  <!-- Párrafo explicativo -->
+  <p class="home-hero-manifesto mx-auto mt-6 max-w-2xl text-lg sm:text-xl leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+    {t('home.manifesto')}
+  </p>
+
+  <!-- Fila de 4 Quick Access Pills / Chips horizontales -->
+  <div class="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+    {quickAccessPills.map((pill) => (
+      <a
+        href={pill.href}
+        class="group inline-flex items-center gap-2.5 rounded-xl border border-border bg-white px-4 py-2.5 text-sm font-semibold text-on-surface shadow-xs transition hover:border-primary/50 hover:shadow-sm focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface dark:hover:border-teal-400/50"
+      >
+        <span class:list={["flex h-7 w-7 items-center justify-center rounded-lg transition-transform duration-200 group-hover:scale-110", pill.iconBg, pill.iconColor]}>
+          <span class="material-icons text-lg" aria-hidden="true">{pill.icon}</span>
+        </span>
+        <span class="transition-colors group-hover:text-primary dark:group-hover:text-teal-300">
+          {pill.label}
+        </span>
+      </a>
     ))}
   </div>
 
-  <div class="flex justify-center">
+  <!-- Scroll Down Hint -->
+  <div class="mt-12 flex justify-center">
     <a
       href="#section-work"
-      class="home-hero-scroll mx-auto mt-8 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-on-surface-variant transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant dark:hover:border-teal-400 dark:hover:text-teal-300"
+      class="home-hero-scroll flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-on-surface-variant shadow-xs transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant dark:hover:border-teal-400 dark:hover:text-teal-300"
       aria-label={t('home.scroll_hint')}
     >
       <span class="material-icons text-xl" aria-hidden="true">keyboard_arrow_down</span>

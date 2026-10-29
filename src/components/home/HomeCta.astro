@@ -11,40 +11,55 @@ const t = useTranslations(lang);
 ---
 
 <section class="cv-auto fade-in-section" style="contain-intrinsic-size: 600px;">
-  <div class="container mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 md:py-24 lg:px-8">
+  <div class="container mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 md:py-20 lg:px-8">
     <HomeSectionHeader
       number="04"
-      title={t('home.explore_code')}
+      title={lang === 'es' ? 'Contacto' : 'Contact'}
       id="section-cta"
     />
 
-    <div class="rounded-3xl border border-border bg-surface-raised p-8 shadow-sm dark:border-dark-border dark:bg-dark-surface-raised sm:p-12 md:p-16">
-      <div class="mx-auto max-w-3xl text-center">
-        <h3 class="text-2xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl">
-          {t('home.explore_code')}
+    <!-- Tarjeta de llamada a la acción limpia -->
+    <div class="rounded-2xl border border-border bg-white p-8 text-center shadow-xs dark:border-[#1F333E] dark:bg-[#111E26] sm:p-12 md:p-16">
+      <div class="mx-auto max-w-2xl">
+        <h3 class="text-2xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl lg:text-4xl">
+          {lang === 'es' ? '¿Tienes una idea o proyecto?' : "Let's build together"}
         </h3>
         <p class="mt-4 text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant sm:text-lg">
-          {t('home.explore_code_desc')}
+          {lang === 'es'
+            ? '¿Quieres colaborar en una app, intercambiar ideas sobre IA o charlar sobre desarrollo? Me encantaría escucharte.'
+            : 'Want to collaborate on an app, exchange ideas about AI, or talk software engineering? I would love to hear from you.'}
         </p>
 
-        <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+          <!-- Botón de contacto directo con icono -->
           <a
-            href="https://github.com/arceapps"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 rounded-xl bg-on-surface px-6 py-3.5 text-sm font-bold text-surface shadow-sm transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:bg-dark-content dark:text-dark-surface"
+            href={lang === 'es' ? '/es/contact' : '/contact'}
+            class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
           >
-            <span class="material-icons text-base" aria-hidden="true">code</span>
-            {t('home.view_github')}
+            <span class="material-icons text-base" aria-hidden="true">mail</span>
+            <span>{lang === 'es' ? 'Contactar' : 'Get in touch'}</span>
           </a>
+
+          <!-- Botón Google Play Store -->
           <a
             href="https://play.google.com/store/apps/dev?id=8812775800441745731"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-surface px-6 py-3.5 text-sm font-bold text-on-surface shadow-sm transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-400"
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-surface px-6 py-3.5 text-sm font-semibold text-on-surface shadow-xs transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-300"
           >
             <span class="material-icons text-base" aria-hidden="true">shop</span>
-            {t('home.google_play')}
+            <span>{t('home.google_play')}</span>
+          </a>
+
+          <!-- Botón GitHub -->
+          <a
+            href="https://github.com/arceapps"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-surface px-6 py-3.5 text-sm font-semibold text-on-surface shadow-xs transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-300"
+          >
+            <span class="material-icons text-base" aria-hidden="true">code</span>
+            <span>GitHub</span>
           </a>
         </div>
       </div>
