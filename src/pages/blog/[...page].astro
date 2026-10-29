@@ -2,12 +2,13 @@
 import Layout from "../../layouts/Layout.astro";
 import BlogCard from "../../components/BlogCard.astro";
 import PageIntro from "../../components/PageIntro.astro";
+import Search from "../../components/Search.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import type { Page } from "astro";
 import { slugify } from "../../utils/slugs";
 import { useTranslations } from "../../i18n/utils";
 import { isPublished } from "../../utils/publishing";
-import { blogTopics, topicOf } from "../../utils/blog-topics";
+import { topicOf } from "../../utils/blog-topics";
 
 const t = useTranslations('en');
 
@@ -22,21 +23,20 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
   }
   const allTags = [...tagCounts.keys()].sort((a, b) => (tagCounts.get(b) || 0) - (tagCounts.get(a) || 0) || a.localeCompare(b));
 
-  const topicCounts = blogTopics.map(topic => ({
-    slug: topic.slug,
-    label: topic.en,
-    count: allPosts.filter(post => topicOf(post) === topic.slug).length,
-  })).filter(topic => topic.count > 0);
-  return paginate(allPosts, { pageSize: 6, props: { allTags, topicCounts } });
+  return paginate(allPosts, { pageSize: 6, props: { allTags } });
 }
 
 interface Props {
   page: Page<CollectionEntry<"blog">>;
   allTags: string[];
-  topicCounts: { slug: string; label: string; count: number }[];
 }
 
-const { page, allTags, topicCounts } = Astro.props;
+const { page, allTags } = Astro.props;
+
+const MAX_TAG_CHIPS = 5;
+const slugTag = (tag: string) => tag.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-');
+const visibleTags = allTags.slice(0, MAX_TAG_CHIPS);
+const overflowTags = allTags.slice(MAX_TAG_CHIPS);
 ---
 
 <Layout title="Technical articles & guides — ArceApps" description="Reflections, tutorials, and lessons learned about Android development, AI, and software architecture.">
@@ -55,51 +55,54 @@ const { page, allTags, topicCounts } = Astro.props;
   <main class="mx-auto max-w-5xl px-4 py-12 md:py-16">
     <PageIntro
       eyebrow="BLOG"
-      title="Technical articles & guides"
+      title={t('blog.title')}
       description="Reflections, tutorials, and lessons learned about Android development, AI, and software architecture."
     />
 
-    <!-- Search bar & Category filter pills row -->
+    <!-- Search bar & tag filter chips -->
     <div class="mb-8">
-      <button
-        type="button"
-        data-open-search
-        class="flex min-h-12 w-full items-center gap-3 rounded-xl border border-border bg-surface-raised px-5 py-3 text-left text-on-surface-variant shadow-sm transition-all hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
-      >
-        <span class="material-icons text-primary dark:text-teal-300" aria-hidden="true">search</span>
-        <span class="flex-1 text-sm md:text-base text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">Search articles...</span>
-        <kbd class="hidden rounded-md border border-border bg-surface px-2 py-0.5 text-xs font-semibold text-on-surface-variant dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface-variant sm:inline-block">⌘K</kbd>
-      </button>
+      <div class="flex items-center gap-3 rounded-xl border border-border bg-surface-raised px-4 py-2 shadow-sm dark:border-dark-border dark:bg-dark-surface-raised">
+        <Search />
+        <span class="flex-1 text-sm text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">{t('blog.search_placeholder')}</span>
+      </div>
 
-      <nav class="mt-4 flex flex-wrap items-center gap-2" aria-label="Filter articles by category">
-        <a
-          href="/blog"
-          aria-current={page.currentPage === 1 ? 'page' : undefined}
-          class:list={[
-            "inline-flex min-h-9 items-center rounded-full px-4 py-1.5 text-xs md:text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-            page.currentPage === 1
-              ? "bg-primary text-white"
-              : "border border-border bg-surface-raised text-on-surface hover:border-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface"
-          ]}
-        >
-          All
-        </a>
-        {topicCounts.map(topic => (
-          <a
-            href={`/blog/topic/${topic.slug}/`}
-            class="inline-flex min-h-9 items-center rounded-full border border-border bg-surface-raised px-4 py-1.5 text-xs md:text-sm font-semibold text-on-surface-variant transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
-          >
-            {topic.label} <span class="ml-1.5 rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary dark:text-teal-300">{topic.count}</span>
-          </a>
+      <nav class="mt-4 flex flex-wrap items-center gap-2" aria-label={t('blog.filter_aria')} data-blog-chips>
+        <button type="button" data-filter="all" aria-pressed="true" class="blog-filter-btn inline-flex min-h-9 items-center rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-white md:text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          {t('blog.filter_all')}
+        </button>
+        {visibleTags.map((tag) => (
+          <button type="button" data-filter={slugTag(tag)} aria-pressed="false" class="blog-filter-btn inline-flex min-h-9 items-center rounded-full border border-border bg-surface-raised px-4 py-1.5 text-xs font-medium text-on-surface-variant hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:text-sm dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant">
+            {tag}
+          </button>
         ))}
+        {overflowTags.length > 0 && (
+          <button
+            type="button"
+            data-more-toggle
+            aria-expanded="false"
+            aria-controls="blog-more-tags"
+            class="inline-flex min-h-9 items-center rounded-full border border-border bg-surface-raised px-4 py-1.5 text-xs font-medium text-on-surface-variant hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:text-sm dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
+          >
+            {t('blog.filter_more')}
+          </button>
+        )}
       </nav>
+      {overflowTags.length > 0 && (
+        <div id="blog-more-tags" data-more-tags hidden class="mt-3 flex flex-wrap gap-2">
+          {overflowTags.map((tag) => (
+            <button type="button" data-filter={slugTag(tag)} aria-pressed="false" class="blog-filter-btn inline-flex min-h-9 items-center rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-on-surface-variant hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:text-sm dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface-variant">{tag}</button>
+          ))}
+        </div>
+      )}
     </div>
 
     <!-- Article list -->
     {page.data.length > 0 ? (
-      <div class="grid grid-cols-1 gap-4">
+      <div class="grid grid-cols-1 gap-4" data-blog-list>
         {page.data.map((post) => (
-          <BlogCard post={post} list={true} />
+          <div data-blog-card data-tags={(post.data.tags || []).map(slugTag).join(' ')} data-topic={topicOf(post)}>
+            <BlogCard post={post} list={true} />
+          </div>
         ))}
       </div>
     ) : (
@@ -141,11 +144,11 @@ const { page, allTags, topicCounts } = Astro.props;
         ))}
       </nav>
       {allTags.length > 12 && (
-        <details class="mx-auto mt-6 max-w-3xl rounded-xl border border-border bg-surface p-4 text-left dark:border-dark-border dark:bg-dark-surface">
-          <summary class="cursor-pointer text-center text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+        <div class="mx-auto mt-6 max-w-3xl rounded-xl border border-border bg-surface p-4 dark:border-dark-border dark:bg-dark-surface">
+          <p class="mb-3 text-center text-xs font-semibold uppercase tracking-wide text-on-surface-variant dark:text-dark-on-surface-variant">
             All tags ({allTags.length})
-          </summary>
-          <div class="mt-4 flex flex-wrap justify-center gap-2 border-t border-border pt-4 dark:border-dark-border">
+          </p>
+          <nav class="flex max-h-40 flex-wrap justify-center gap-2 overflow-y-auto" aria-label="All tags">
             {allTags.slice(12).map((tag) => (
               <a
                 href={`/blog/tag/${slugify(tag)}/`}
@@ -154,9 +157,52 @@ const { page, allTags, topicCounts } = Astro.props;
                 #{tag}
               </a>
             ))}
-          </div>
-        </details>
+          </nav>
+        </div>
       )}
     </section>
   </main>
+
+  <script>
+    function setupBlogFilters() {
+      // Los chips de tag viven en la fila visible y en la fila que revela "Más +".
+      const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-blog-chips] [data-filter], [data-more-tags] [data-filter]'));
+      const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-blog-card]'));
+      const moreToggle = document.querySelector<HTMLButtonElement>('[data-more-toggle]');
+      const moreTags = document.querySelector<HTMLElement>('[data-more-tags]');
+      const active = ['bg-primary', 'text-white', 'font-semibold'];
+      const inactive = ['border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'font-medium', 'dark:border-dark-border', 'dark:bg-dark-surface-raised', 'dark:text-dark-on-surface-variant'];
+      const apply = (filter: string) => {
+        chips.forEach((chip) => {
+          const isActive = chip.getAttribute('data-filter') === filter;
+          chip.classList.remove(...(isActive ? inactive : active));
+          chip.classList.add(...(isActive ? active : inactive));
+          chip.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        });
+        cards.forEach((card) => {
+          const tags = (card.getAttribute('data-tags') || '').split(' ').filter(Boolean);
+          card.classList.toggle('hidden', filter !== 'all' && !tags.includes(filter));
+        });
+      };
+
+      // "Más +" solo revela la fila de tags ocultos: nunca aplica un filtro.
+      if (moreToggle && moreTags && moreToggle.dataset.moreBound !== 'true') {
+        moreToggle.dataset.moreBound = 'true';
+        moreToggle.addEventListener('click', () => {
+          const expanded = moreToggle.getAttribute('aria-expanded') === 'true';
+          moreToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          moreTags.hidden = expanded;
+        });
+      }
+
+      if (!chips.length || !cards.length) return;
+      chips.forEach((chip) => {
+        if (chip.dataset.filterBound === 'true') return;
+        chip.dataset.filterBound = 'true';
+        chip.addEventListener('click', () => apply(chip.getAttribute('data-filter') || 'all'));
+      });
+    }
+    setupBlogFilters();
+    document.addEventListener('astro:page-load', setupBlogFilters);
+  </script>
 </Layout>
