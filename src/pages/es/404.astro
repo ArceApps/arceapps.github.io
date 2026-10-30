@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { useTranslations } from "../../i18n/utils";
+
+const t = useTranslations('es');
+const title = `404 - ${t('404.title')}`;
+---
+
+<Layout title={title} description={t('404.description')}>
+  <div class="mx-auto flex min-h-[70vh] max-w-3xl flex-col items-center justify-center px-4 py-20 text-center">
+    <!-- Visual Indicator -->
+    <div class="relative mb-8 flex h-40 w-40 items-center justify-center rounded-[2rem] border border-primary/20 bg-surface-subtle shadow-xl shadow-primary/10 dark:bg-dark-surface-subtle">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="material-icons text-8xl text-primary" aria-hidden="true">explore_off</span>
+      </div>
+    </div>
+
+    <h1 class="text-6xl font-bold text-primary mb-2">404</h1>
+    <h2 class="text-3xl font-bold text-content dark:text-dark-content mb-4">{t('404.heading')}</h2>
+
+    <p class="text-xl text-content-muted dark:text-dark-content-muted max-w-lg mb-8">
+      {t('404.description')}
+    </p>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4">
+      <a href="/es" class="flex items-center gap-2 rounded-2xl bg-primary px-6 py-3 font-bold text-white shadow-lg shadow-primary/20 transition-colors hover:bg-primary-strong focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none">
+        <span class="material-icons" aria-hidden="true">home</span>
+        {t('404.back_home')}
+      </a>
+
+      <a href="/es/blog" class="flex items-center gap-2 rounded-2xl border border-border bg-surface-raised px-6 py-3 font-medium text-content transition-colors hover:border-primary hover:text-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-content focus-visible:ring-4 focus-visible:ring-primary/50 focus-visible:outline-none">
+        <span class="material-icons" aria-hidden="true">article</span>
+        {t('404.read_blog')}
+      </a>
+    </div>
+
+    <!-- Helpful Links -->
+    <div class="mt-12 pt-8 border-t border-border dark:border-dark-border w-full max-w-md">
+      <p class="text-sm text-content-muted dark:text-dark-content-muted mb-4">{t('404.helpful')}</p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="/es/about-me" class="text-primary hover:underline text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('404.about')}</a>
+        <span class="text-content-muted/60 dark:text-dark-content-muted/60">•</span>
+        <a href="/es/about-me#contact" class="text-primary hover:underline text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">{t('404.contact')}</a>
+        <span class="text-content-muted/60 dark:text-dark-content-muted/60">•</span>
+        <a href="https://play.google.com/store/apps/dev?id=8812775800441745731" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline text-sm font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">Play Store</a>
+      </div>
+    </div>
+  </div>
+</Layout>
