@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { ui } from '../../i18n/ui';
 
@@ -7,6 +7,54 @@ const ROOT_DIR = path.resolve(__dirname, '../../..');
 
 const readSource = (relativePath: string) =>
   readFileSync(path.join(ROOT_DIR, relativePath), 'utf8');
+
+const walk = (dir: string): string[] =>
+  readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    const full = path.join(dir, entry.name);
+    return entry.isDirectory() ? walk(full) : [full];
+  });
+
+const readConsumedSource = () =>
+  walk(path.join(ROOT_DIR, 'src'))
+    .filter((file) => /\.(astro|ts|tsx)$/.test(file))
+    .filter((file) => !file.endsWith('.test.ts'))
+    .filter((file) => !file.endsWith(path.join('i18n', 'ui.ts')))
+    .map((file) => readFileSync(file, 'utf8'))
+    .join('\n');
+
+const HOME_SECTIONS = [
+  'HomeFeaturedWork',
+  'HomeBlog',
+  'HomeCta',
+] as const;
+
+const HARDCODED_HOME_COPY = [
+  'Proyecto destacado',
+  'Ver proyecto',
+  'Ver en Google Play',
+  'Últimos artículos',
+  'Ver todas',
+  'Leer artículo',
+  '¿Hablamos?',
+  'Contactar',
+  'Una aplicación moderna de radio por internet',
+] as const;
+
+const DEAD_HOME_KEYS = [
+  'home.work.cta',
+  'home.work.title',
+  'home.devlog.all',
+  'home.explore_code',
+  'home.explore_code_desc',
+  'home.read_entry',
+  'home.view_all_projects',
+  'home.view_all_articles',
+  'home.view_github',
+  'home.tech_articles',
+  'home.tech_articles_desc',
+  'blog.subtitle',
+  'devlog.subtitle',
+] as const;
 
 describe('contrato editorial de portada', () => {
   it('el hero es editorial: marca gigante, manifiesto y sin Bento', () => {
@@ -108,21 +156,24 @@ describe('contrato editorial de portada', () => {
     const requiredKeys = [
       'home.manifesto',
       'home.scroll_hint',
-      'home.work.title',
-      'home.work.cta',
+      'home.work.section_title',
+      'home.work.fallback_description',
       'home.work.project_cta',
       'home.work.play_cta',
       'home.work.android_badge',
       'home.work.screenshots_aria',
       'home.work.carousel_prev',
       'home.work.carousel_next',
-      'home.devlog.all',
       'home.articles.title',
       'home.articles.view_all',
       'home.articles.filter_blog',
       'home.articles.filter_devlog',
       'home.articles.filter_aria',
       'home.articles.reading_time',
+      'home.articles.read_aria',
+      'home.cta.title',
+      'home.cta.subtitle',
+      'home.cta.button',
     ] as const;
 
     for (const key of requiredKeys) {
@@ -132,12 +183,50 @@ describe('contrato editorial de portada', () => {
 
     expect(ui.es['home.articles.title']).toBe('Últimos artículos');
     expect(ui.es['home.articles.view_all']).toBe('Ver todas');
+    expect(ui.es['home.work.section_title']).toBe('Proyecto destacado');
+    expect(ui.es['home.cta.title']).toBe('¿Hablamos?');
+  });
+
+  it('las secciones de la home consumen claves sin copy ES hardcodeada', () => {
+    for (const name of HOME_SECTIONS) {
+      const source = readSource(`src/components/home/${name}.astro`);
+
+      expect(source, `${name} debe usar useTranslations`).toContain(
+        'useTranslations',
+      );
+      expect(source, `${name} debe consumir t()`).toMatch(/t\('home\./);
+
+      for (const copy of HARDCODED_HOME_COPY) {
+        expect(source, `${name} no debe incluir "${copy}"`).not.toContain(copy);
+      }
+    }
+  });
+
+  it('no quedan claves muertas de la home en ui.ts', () => {
+    for (const key of DEAD_HOME_KEYS) {
+      expect(key in ui.en, `${key} sigue declarada en inglés`).toBe(false);
+      expect(key in ui.es, `${key} sigue declarada en español`).toBe(false);
+    }
+  });
+
+  it('toda clave de la home declarada se consume en src/', () => {
+    const consumed = readConsumedSource();
+    const homeKeys = Object.keys(ui.en).filter((key) =>
+      key.startsWith('home.'),
+    );
+
+    expect(homeKeys.length).toBeGreaterThan(0);
+
+    for (const key of homeKeys) {
+      expect(consumed, `${key} no se consume en src/`).toContain(key);
+    }
   });
 
   it('ultimos articulos con chips Blog y Devlog', () => {
-    const s = readFileSync('src/components/home/HomeBlog.astro', 'utf8');
-    expect(s).toContain('Últimos artículos');
-    expect(s).toContain('Ver todas');
+    const s = readSource('src/components/home/HomeBlog.astro');
+    expect(s).toContain("t('home.articles.title')");
+    expect(s).toContain("t('home.articles.view_all')");
+    expect(s).toContain("t('home.articles.read_aria')");
     expect(s).toContain('data-filter');
   });
 
@@ -184,23 +273,25 @@ describe('contrato editorial de portada', () => {
   });
 
   it('cta final Hablamos de la home', () => {
-    const s = readFileSync('src/components/home/HomeCta.astro', 'utf8');
+    const s = readSource('src/components/home/HomeCta.astro');
 
-    expect(s).toContain('Hablamos');
-    expect(s).toContain('Contactar');
+    expect(s).toContain("t('home.cta.title')");
+    expect(s).toContain("t('home.cta.subtitle')");
+    expect(s).toContain("t('home.cta.button')");
+    expect(s).not.toContain('¿Hablamos?');
+    expect(s).not.toContain('Contactar');
 
     // El CTA usa la cabecera numerada compartida: bg-primary y enlace a contacto.
     expect(s).toContain('bg-primary');
     expect(s).toContain('href={contactHref}');
     expect(s).toContain("lang === 'es' ? '/es/contact' : '/contact'");
 
-    // Sin titulo duplicado: "Hablamos" solo aparece en el literal de la cabecera.
+    // Sin titulo duplicado: el titulo vive solo en la cabecera numerada.
     const headingMatches = s.match(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/g) ?? [];
     const headingsWithTitle = headingMatches.filter((tag) =>
       tag.includes('ctaTitle'),
     );
     expect(headingsWithTitle).toHaveLength(0);
-    expect(s.match(/Hablamos/g) ?? []).toHaveLength(1);
 
     // La seccion del CTA continua la numeracion (01 proyectos, 02 articulos, 03 CTA).
     expect(s).toContain('number="03"');
@@ -208,10 +299,13 @@ describe('contrato editorial de portada', () => {
   });
 
   it('split-card Proyecto destacado con carrusel', () => {
-    const s = readFileSync('src/components/home/HomeFeaturedWork.astro', 'utf8');
-    expect(s).toContain('Proyecto destacado');
-    expect(s).toContain('Ver proyecto');
-    expect(s).toContain('Ver en Google Play');
+    const s = readSource('src/components/home/HomeFeaturedWork.astro');
+    expect(s).toContain("t('home.work.section_title')");
+    expect(s).toContain("t('home.work.project_cta')");
+    expect(s).toContain("t('home.work.play_cta')");
+    expect(s).not.toContain('Proyecto destacado');
+    expect(s).not.toContain('Ver proyecto');
+    expect(s).not.toContain('Ver en Google Play');
     expect(s).toContain('aria-label');
     expect(s).toContain('smartphone');
     expect(s).toContain('item.tags');

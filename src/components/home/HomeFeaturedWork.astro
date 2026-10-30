@@ -26,9 +26,7 @@ const t = useTranslations(lang);
 
 const item: FeaturedItem = featuredWork || (featuredItems && featuredItems.length > 0 ? featuredItems[0] : {
   title: 'RadioHub',
-  description: lang === 'es'
-    ? 'Una aplicación moderna de radio por internet para Android diseñada con Material You. Sintoniza miles de emisoras con reproducción fluida en segundo plano y temporizador de apagado.'
-    : 'A modern internet radio app for Android built with Material You. Stream thousands of radio stations seamlessly with background playback and sleep timer.',
+  description: t('home.work.fallback_description'),
   href: lang === 'es' ? '/es/apps/radiohub' : '/apps/radiohub',
   kind: 'app' as const,
   realIconUrl: '/images/apps/radiohub/logo.png',
@@ -42,9 +40,9 @@ const screenshots = (item.screenshots ?? []).filter((src) => typeof src === 'str
 const playUrl = item.googlePlayUrl || 'https://play.google.com/store/apps/details?id=com.arceapps.radiohub';
 const projectHref = item.href || (lang === 'es' ? '/es/apps/radiohub' : '/apps/radiohub');
 
-// Copy de los CTA: el literal español vive en la fuente Astro y el inglés se mantiene en ui.ts.
-const projectCtaLabel = lang === 'es' ? 'Ver proyecto' : t('home.work.project_cta');
-const playCtaLabel = lang === 'es' ? 'Ver en Google Play' : t('home.work.play_cta');
+const sectionTitle = t('home.work.section_title');
+const projectCtaLabel = t('home.work.project_cta');
+const playCtaLabel = t('home.work.play_cta');
 const androidBadgeLabel = t('home.work.android_badge');
 const screenshotsAriaLabel = t('home.work.screenshots_aria');
 const carouselPrevLabel = t('home.work.carousel_prev');
@@ -55,7 +53,7 @@ const carouselNextLabel = t('home.work.carousel_next');
   <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <HomeSectionHeader
       number="01"
-      title={lang === 'es' ? 'Proyecto destacado' : 'Featured project'}
+      title={sectionTitle}
       id="section-work"
     />
 

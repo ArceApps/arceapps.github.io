@@ -15,9 +15,9 @@ const t = useTranslations(lang);
 const blogUrl = `${linkPrefix}/blog`;
 const devlogUrl = `${linkPrefix}/devlog`;
 
-// Copy de la sección: el literal español vive en la fuente Astro y el inglés se mantiene en ui.ts.
-const sectionTitle = lang === 'es' ? 'Últimos artículos' : t('home.articles.title');
-const viewAllLabel = lang === 'es' ? 'Ver todas' : t('home.articles.view_all');
+const sectionTitle = t('home.articles.title');
+const viewAllLabel = t('home.articles.view_all');
+const readArticleLabel = t('home.articles.read_aria');
 const blogFilterLabel = t('home.articles.filter_blog');
 const devlogFilterLabel = t('home.articles.filter_devlog');
 const filterAriaLabel = t('home.articles.filter_aria');
@@ -113,7 +113,7 @@ const activeFilter: 'blog' | 'devlog' = 'blog';
       </div>
     </HomeSectionHeader>
 
-    <!-- Enlace "Ver todas →": apunta al listado según el chip activo -->
+    <!-- Enlace de listado completo: apunta al listado según el chip activo -->
     <div class="mb-6 flex justify-end">
       <a
         id="home-articles-view-all"
@@ -141,7 +141,7 @@ const activeFilter: 'blog' | 'devlog' = 'blog';
             href={card.href}
             data-astro-prefetch
             class="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40"
-            aria-label={`${lang === 'es' ? 'Leer artículo' : 'Read article'}: ${card.title}`}
+            aria-label={`${readArticleLabel}: ${card.title}`}
           />
 
           {card.image ? (

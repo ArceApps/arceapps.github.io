@@ -11,12 +11,9 @@ const t = useTranslations(lang);
 
 const contactHref = lang === 'es' ? '/es/contact' : '/contact';
 
-// Copy editorial: el literal ES vive en la maqueta y el EN se resuelve por i18n.
-const ctaTitle = lang === 'es' ? '¿Hablamos?' : t('home.cta.title');
-const ctaSubtitle = lang === 'es'
-  ? 'Si quieres comentar un proyecto, hacer una sugerencia o simplemente saludar, estaré encantado de leerte.'
-  : t('home.cta.subtitle');
-const ctaButton = lang === 'es' ? 'Contactar' : t('home.cta.button');
+const ctaTitle = t('home.cta.title');
+const ctaSubtitle = t('home.cta.subtitle');
+const ctaButton = t('home.cta.button');
 ---
 
 <section class="cv-auto fade-in-section" style="contain-intrinsic-size: 400px;">
