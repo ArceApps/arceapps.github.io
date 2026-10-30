@@ -94,6 +94,14 @@ describe('contrato de diseño visual', () => {
     );
   });
 
+  it('body de Layout con tokens de la maqueta', () => {
+    const layout = sourceByFile['src/layouts/Layout.astro'];
+    expect(layout).toContain('bg-[#FCFCFC]');
+    expect(layout).toContain('text-[#0B1014]');
+    expect(layout).not.toContain('#F8F9FA');
+    expect(layout).not.toContain('#111827');
+  });
+
   it('no aplica hover tipográfico global a los headings', () => {
     expect(globalStyles).not.toMatch(/h[1-6]\s*:hover/);
     expect(globalStyles).not.toMatch(/\.prose\s+h[1-6]\s*:hover/);
