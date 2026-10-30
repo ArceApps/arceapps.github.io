@@ -2,8 +2,8 @@
 
 Generado por `scripts/portfolio-visual-qa.mjs` (build de `pnpm build` servido con `astro preview`).
 
-- **Fecha:** 2026-10-30T00:42:57.061Z
-- **HEAD:** `0aaeb2ebd21d251bf4d6cf3c2715bb780b3e68f3`
+- **Fecha:** 2026-10-30T01:46:57.000Z
+- **HEAD:** `fc9d87935f76d1b824038e97b15fd7ebd4944354`
 - **Combinaciones:** ES/EN × móvil (390×844)/escritorio (1440×900) × claro/oscuro
 - **Pantallas:** Inicio, Apps, Blog, Devlog, Sobre mí
 - **Capturas:** 40 (5 pantallas × 2 idiomas × 4 combinaciones)
@@ -23,6 +23,17 @@ Para cada captura comprobar: jerarquía tipográfica y espaciado coherentes con 
 | Blog | [ ] | [ ] | [ ] | [ ] |
 | Devlog | [ ] | [ ] | [ ] | [ ] |
 | Sobre mí | [ ] | [ ] | [ ] | [ ] |
+
+## Checklist de revisión manual (Gate UA — pendiente de la persona usuaria)
+
+- [ ] Las 40 capturas están presentes y abren correctamente.
+- [ ] Sin desbordamiento horizontal: `scrollWidth` = ancho de viewport en las 40 filas.
+- [ ] Tema claro y oscuro aplicados correctamente en todas las pantallas.
+- [ ] Paridad ES/EN: mismo layout y jerarquía, solo cambia el idioma.
+- [ ] Imágenes, logos e iconos visibles, sin recortes ni huecos.
+- [ ] Contraste de texto y superficies aceptable en ambos temas.
+- [ ] Cabecera, navegación y pie consistentes entre pantallas.
+- [ ] Veredicto del Gate UA emitido (aprobado / aprobado con observaciones / rechazado).
 
 ## Comparativas
 
@@ -70,26 +81,26 @@ Para cada captura comprobar: jerarquía tipográfica y espaciado coherentes con 
 
 | Ruta | Pantalla | Tamaño | Tema | Ancho | Scroll | Fondo |
 |---|---|---|---|---|---|---|
-| `/` | home-en | mobile | light | 390px | 390px | `rgb(248, 249, 250)` |
-| `/es/` | home-es | mobile | light | 390px | 390px | `rgb(248, 249, 250)` |
-| `/apps` | apps-en | mobile | light | 390px | 390px | `rgb(248, 249, 250)` |
-| `/es/apps` | apps-es | mobile | light | 390px | 390px | `rgb(248, 249, 250)` |
-| `/blog` | blog-en | mobile | light | 390px | 390px | `rgb(248, 249, 250)` |
-| `/es/blog` | blog-es | mobile | light | 390px | 390px | `rgb(248, 249, 250)` |
-| `/devlog` | devlog-en | mobile | light | 390px | 390px | `rgb(248, 249, 250)` |
-| `/es/devlog` | devlog-es | mobile | light | 390px | 390px | `rgb(248, 249, 250)` |
-| `/about-me` | about-en | mobile | light | 390px | 390px | `rgb(248, 249, 250)` |
-| `/es/about-me` | about-es | mobile | light | 390px | 390px | `rgb(248, 249, 250)` |
-| `/` | home-en | desktop | light | 1440px | 1440px | `rgb(248, 249, 250)` |
-| `/es/` | home-es | desktop | light | 1440px | 1440px | `rgb(248, 249, 250)` |
-| `/apps` | apps-en | desktop | light | 1440px | 1440px | `rgb(248, 249, 250)` |
-| `/es/apps` | apps-es | desktop | light | 1440px | 1440px | `rgb(248, 249, 250)` |
-| `/blog` | blog-en | desktop | light | 1440px | 1440px | `rgb(248, 249, 250)` |
-| `/es/blog` | blog-es | desktop | light | 1440px | 1440px | `rgb(248, 249, 250)` |
-| `/devlog` | devlog-en | desktop | light | 1440px | 1440px | `rgb(248, 249, 250)` |
-| `/es/devlog` | devlog-es | desktop | light | 1440px | 1440px | `rgb(248, 249, 250)` |
-| `/about-me` | about-en | desktop | light | 1440px | 1440px | `rgb(248, 249, 250)` |
-| `/es/about-me` | about-es | desktop | light | 1440px | 1440px | `rgb(248, 249, 250)` |
+| `/` | home-en | mobile | light | 390px | 390px | `rgb(252, 252, 252)` |
+| `/es/` | home-es | mobile | light | 390px | 390px | `rgb(252, 252, 252)` |
+| `/apps` | apps-en | mobile | light | 390px | 390px | `rgb(252, 252, 252)` |
+| `/es/apps` | apps-es | mobile | light | 390px | 390px | `rgb(252, 252, 252)` |
+| `/blog` | blog-en | mobile | light | 390px | 390px | `rgb(252, 252, 252)` |
+| `/es/blog` | blog-es | mobile | light | 390px | 390px | `rgb(252, 252, 252)` |
+| `/devlog` | devlog-en | mobile | light | 390px | 390px | `rgb(252, 252, 252)` |
+| `/es/devlog` | devlog-es | mobile | light | 390px | 390px | `rgb(252, 252, 252)` |
+| `/about-me` | about-en | mobile | light | 390px | 390px | `rgb(252, 252, 252)` |
+| `/es/about-me` | about-es | mobile | light | 390px | 390px | `rgb(252, 252, 252)` |
+| `/` | home-en | desktop | light | 1440px | 1440px | `rgb(252, 252, 252)` |
+| `/es/` | home-es | desktop | light | 1440px | 1440px | `rgb(252, 252, 252)` |
+| `/apps` | apps-en | desktop | light | 1440px | 1440px | `rgb(252, 252, 252)` |
+| `/es/apps` | apps-es | desktop | light | 1440px | 1440px | `rgb(252, 252, 252)` |
+| `/blog` | blog-en | desktop | light | 1440px | 1440px | `rgb(252, 252, 252)` |
+| `/es/blog` | blog-es | desktop | light | 1440px | 1440px | `rgb(252, 252, 252)` |
+| `/devlog` | devlog-en | desktop | light | 1440px | 1440px | `rgb(252, 252, 252)` |
+| `/es/devlog` | devlog-es | desktop | light | 1440px | 1440px | `rgb(252, 252, 252)` |
+| `/about-me` | about-en | desktop | light | 1440px | 1440px | `rgb(252, 252, 252)` |
+| `/es/about-me` | about-es | desktop | light | 1440px | 1440px | `rgb(252, 252, 252)` |
 | `/` | home-en | mobile | dark | 390px | 390px | `rgb(9, 17, 23)` |
 | `/es/` | home-es | mobile | dark | 390px | 390px | `rgb(9, 17, 23)` |
 | `/apps` | apps-en | mobile | dark | 390px | 390px | `rgb(9, 17, 23)` |
