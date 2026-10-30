@@ -11,7 +11,7 @@ const es = lang === 'es';
 <div class="app-gallery grid grid-cols-1 gap-4 rounded-2xl border border-border bg-surface-raised p-4 dark:border-dark-border dark:bg-dark-surface-raised md:grid-cols-4" aria-label={label}>
   {screenshots.map((screenshot, index) => (
     <button type="button" class="app-gallery-thumb group aspect-[3/4] overflow-hidden rounded-xl border border-border bg-surface p-1 transition hover:border-primary hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-dark-border dark:bg-dark-surface" data-gallery-index={index} aria-label={`${es ? 'Ampliar captura' : 'Enlarge screenshot'} ${index + 1}`}>
-      <img src={screenshot} alt={`${es ? 'Captura de pantalla' : 'Screenshot'} ${index + 1}`} class="h-full w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-[1.03] motion-reduce:transition-none" loading="lazy" decoding="async" />
+      <img src={screenshot} alt={`${es ? 'Captura de pantalla' : 'Screenshot'} ${index + 1}`} class="h-full w-full rounded-lg object-contain" loading="lazy" decoding="async" />
     </button>
   ))}
 </div>

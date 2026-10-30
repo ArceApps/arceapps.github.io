@@ -29,6 +29,27 @@ describe('contrato transversal de motion y foco', () => {
     }
   });
 
+  it('sin hover scale en el arbol', () => {
+    const files = [
+      'components/pages/AboutPage.astro',
+      'components/pages/DevlogIndexPage.astro',
+      'components/home/HomeBlog.astro',
+      'components/Header.astro',
+      'components/AppGallery.astro',
+      'layouts/Layout.astro',
+    ];
+
+    for (const file of files) {
+      const source = readFile(path.join(ROOT_DIR, 'src', file));
+      expect(source, `${file} no debe escalar en hover`).not.toContain('hover:scale');
+      expect(source, `${file} no debe escalar en group-hover`).not.toContain('group-hover:scale');
+      expect(source, `${file} no debe desplazarse en hover`).not.toContain('hover:-translate');
+      expect(source, `${file} no debe animar transforms en estados hover`).not.toMatch(
+        /(?:hover|group-hover|group-focus-visible):(?:scale|translate|rotate)-/
+      );
+    }
+  });
+
   it('desactiva globalmente transiciones y animaciones no esenciales con reduced motion', () => {
     const source = readFile(GLOBAL_STYLES);
 
