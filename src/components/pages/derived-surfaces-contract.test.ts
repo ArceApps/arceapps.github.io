@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { ui } from '../../i18n/ui';
 
 const notFoundKeys = [
@@ -100,6 +100,33 @@ describe('derived surfaces', () => {
     expect(s).toContain('bg-surface-raised');
     for (const legacy of ['#111E26', '#1F333E', '#0D171F', '#16242E', 'bg-white', 'teal-']) {
       expect(s, 'literal legado ' + legacy).not.toContain(legacy);
+    }
+  });
+
+  it('apps intro con la misma variante arbitraria que el gemelo ES', () => {
+    const files = ['src/pages/apps/index.astro', 'src/pages/es/apps/index.astro'];
+    for (const f of files) {
+      const s = readFileSync(f, 'utf8');
+      expect(s, f + ' debe contener la variante bien formada').toContain('[&>header>p]:mx-0');
+      expect(s, f + ' no debe contener la variante mal formada').not.toContain('[&>header]>p]:mx-0');
+    }
+    const en = readFileSync(files[0], 'utf8');
+    const es = readFileSync(files[1], 'utf8');
+    const variant = (s: string) => s.match(/\[&>header[^\s"]*\]?:mx-0/g)?.sort();
+    expect(variant(en)).toEqual(variant(es));
+  });
+
+  it('layout, ProjectCard y home sin literales legados ni hover scale', () => {
+    const files = [
+      'src/layouts/Layout.astro',
+      'src/components/ProjectCard.astro',
+      ...readdirSync('src/components/home').filter((f) => f.endsWith('.astro')).map((f) => 'src/components/home/' + f),
+    ];
+    for (const f of files) {
+      const s = readFileSync(f, 'utf8');
+      for (const legacy of ['#007F7D', '#F8F9FA', '#111E26', '#111827', '#9CA3AF', '#2DD4BF', 'bg-white', 'text-gray-', 'hover:scale']) {
+        expect(s, `${f} no debe contener el literal legado "${legacy}"`).not.toContain(legacy);
+      }
     }
   });
 
