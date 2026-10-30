@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 describe('derived surfaces', () => {
   it('footer con atribucion de fotos stock', () => {
     const s = readFileSync('src/components/Footer.astro', 'utf8');
@@ -53,5 +53,9 @@ describe('derived surfaces', () => {
       }
       expect(s).not.toContain('hover:scale');
     }
+  });
+
+  it('pliego comparativo generado', () => {
+    expect(existsSync('artifacts/portfolio-visual-qa/portfolio-visual-report.md')).toBe(true);
   });
 });
