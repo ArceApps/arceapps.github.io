@@ -18,71 +18,36 @@ const [apps, projects, blog] = await Promise.all([
   getCollection('blog', ({ id, data }) => id.startsWith(`${lang}/`) && !data.draft && isPublished(data.pubDate))
 ]);
 
-const areas = es ? [
+const contactHref = lang === 'es' ? '/es/contact' : '/contact';
+
+const areas = [
   {
     icon: 'smartphone',
-    badge: 'Android & Kotlin',
-    color: 'bg-teal-500/10 text-teal-600 dark:text-teal-300',
-    title: 'Desarrollo Android',
-    desc: 'Apps nativas con Kotlin y Jetpack Compose.',
-    href: '/es/apps'
+    color: 'bg-[#059669]/10 text-[#059669] dark:bg-[#059669]/20',
+    title: t('about.work.android.title'),
+    desc: t('about.work.android.subtitle'),
+    href: es ? '/es/apps' : '/apps'
   },
   {
-    icon: 'auto_awesome',
-    badge: 'IA & Agentes',
-    color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-300',
-    title: 'Inteligencia artificial',
-    desc: 'Agentes y herramientas con modelos locales y APIs.',
-    href: '/es/devlog'
+    icon: 'psychology',
+    color: 'bg-[#F97316]/10 text-[#F97316] dark:bg-[#F97316]/20',
+    title: t('about.work.ai.title'),
+    desc: t('about.work.ai.subtitle'),
+    href: es ? '/es/devlog' : '/devlog'
   },
   {
     icon: 'code',
-    badge: 'Open Source',
-    color: 'bg-blue-500/10 text-blue-600 dark:text-blue-300',
-    title: 'Proyectos de software',
-    desc: 'Herramientas de código abierto y utilidades.',
-    href: '/es/projects'
+    color: 'bg-[#038C8E]/10 text-[#038C8E] dark:bg-[#038C8E]/20',
+    title: t('about.work.software.title'),
+    desc: t('about.work.software.subtitle'),
+    href: es ? '/es/projects' : '/projects'
   },
   {
-    icon: 'article',
-    badge: 'Editorial',
-    color: 'bg-amber-500/10 text-amber-600 dark:text-amber-300',
-    title: 'Contenido técnico',
-    desc: 'Artículos, guías y devlogs detallados.',
-    href: '/es/blog'
-  }
-] : [
-  {
-    icon: 'smartphone',
-    badge: 'Android & Kotlin',
-    color: 'bg-teal-500/10 text-teal-600 dark:text-teal-300',
-    title: 'Android development',
-    desc: 'Native apps with Kotlin and Jetpack Compose.',
-    href: '/apps'
-  },
-  {
-    icon: 'auto_awesome',
-    badge: 'AI & Agents',
-    color: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-300',
-    title: 'Artificial intelligence',
-    desc: 'Agents and tools with local models and APIs.',
-    href: '/devlog'
-  },
-  {
-    icon: 'code',
-    badge: 'Open Source',
-    color: 'bg-blue-500/10 text-blue-600 dark:text-blue-300',
-    title: 'Software projects',
-    desc: 'Open source tools and utilities.',
-    href: '/projects'
-  },
-  {
-    icon: 'article',
-    badge: 'Editorial',
-    color: 'bg-amber-500/10 text-amber-600 dark:text-amber-300',
-    title: 'Technical content',
-    desc: 'Articles, guides, and detailed devlogs.',
-    href: '/blog'
+    icon: 'menu_book',
+    color: 'bg-[#E11D48]/10 text-[#E11D48] dark:bg-[#E11D48]/20',
+    title: t('about.work.content.title'),
+    desc: t('about.work.content.subtitle'),
+    href: es ? '/es/blog' : '/blog'
   }
 ];
 ---
@@ -202,57 +167,48 @@ const areas = es ? [
         </div>
       </section>
 
-      <!-- Sección "En qué trabajo" (Cuadrícula 2x2) -->
-      <section class="mt-12">
-        <h2 class="text-2xl font-bold mb-6 text-on-surface dark:text-dark-on-surface">
-          {es ? 'En qué trabajo' : 'What I work on'}
+      <!-- Sección about.work (Cuadrícula 2x2) -->
+      <section id="about-work" class="mt-12" aria-labelledby="about-work-title">
+        <h2 id="about-work-title" class="text-2xl font-bold mb-6 text-on-surface dark:text-dark-on-surface">
+          {t('about.work.title')}
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           {areas.map((area) => (
             <a
               href={area.href}
-              class="group flex flex-col justify-between rounded-2xl border border-border bg-surface-raised p-5 sm:p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md dark:border-dark-border dark:bg-dark-surface-raised"
+              class="group flex items-start gap-4 rounded-2xl border border-border bg-surface-raised p-5 sm:p-6 shadow-sm transition-all hover:border-primary/50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised"
             >
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <div class:list={["flex h-12 w-12 items-center justify-center rounded-xl", area.color]}>
-                    <span class="material-icons text-2xl" aria-hidden="true">{area.icon}</span>
-                  </div>
-                  <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-surface-variant/80 dark:bg-dark-surface-variant text-on-surface-variant dark:text-dark-on-surface-variant border border-border/50 dark:border-dark-border/50">
-                    {area.badge}
-                  </span>
-                </div>
-                <h3 class="text-lg font-bold text-on-surface transition-colors group-hover:text-primary dark:text-dark-on-surface">
+              <span class:list={["flex h-12 w-12 shrink-0 items-center justify-center rounded-xl", area.color]}>
+                <span class="material-icons text-2xl" aria-hidden="true">{area.icon}</span>
+              </span>
+              <div class="min-w-0">
+                <h3 class="block text-base font-semibold text-on-surface transition-colors group-hover:text-primary dark:text-dark-on-surface">
                   {area.title}
                 </h3>
-                <p class="mt-2 text-sm text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed">
+                <span class="mt-1 block text-sm text-content-muted dark:text-dark-content-muted leading-relaxed">
                   {area.desc}
-                </p>
-              </div>
-              <div class="mt-5 flex items-center gap-1 text-xs font-semibold text-primary dark:text-teal-300 transition-transform group-hover:translate-x-1">
-                <span>{es ? 'Explorar' : 'Explore'}</span>
-                <span class="material-icons text-sm" aria-hidden="true">arrow_forward</span>
+                </span>
               </div>
             </a>
           ))}
         </div>
       </section>
 
-      <!-- Bloque de Cierre: "¿Hablamos?" con botón directo a contacto -->
-      <div class="mt-12 rounded-3xl border border-border bg-surface-raised p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 dark:border-dark-border dark:bg-dark-surface-raised shadow-sm">
+      <!-- Bloque de Cierre about.cta con botón directo a contacto -->
+      <div id="about-cta" class="mt-12 rounded-3xl border border-border bg-surface-raised p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 dark:border-dark-border dark:bg-dark-surface-raised shadow-sm">
         <div class="max-w-xl">
-          <h3 class="text-2xl font-bold text-on-surface dark:text-dark-on-surface">
-            {es ? '¿Hablamos?' : 'Let’s talk?'}
-          </h3>
+          <h2 class="text-2xl font-bold text-on-surface dark:text-dark-on-surface">
+            {t('about.cta.title')}
+          </h2>
           <p class="mt-2 text-sm text-on-surface-variant dark:text-dark-on-surface-variant leading-relaxed">
-            {es ? 'Si quieres comentar un proyecto, hacer una sugerencia o simplemente saludar, estaré encantado de leerte.' : 'Whether you have a question about my apps, want to discuss an idea, or just feel like saying hello — I’d love to hear from you.'}
+            {t('about.cta.subtitle')}
           </p>
         </div>
         <a
-          href="#contact"
+          href={contactHref}
           class="inline-flex shrink-0 items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-surface shadow-sm transition-all hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
-          <span>{es ? 'Contactar' : 'Contact'}</span>
+          <span>{t('about.cta.button')}</span>
           <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
         </a>
       </div>
