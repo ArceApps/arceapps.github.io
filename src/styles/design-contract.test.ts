@@ -25,6 +25,50 @@ const consumers = RELEVANT_FILES.filter(
 ).map((file) => sourceByFile[file]);
 const consumerSource = consumers.join('\n');
 
+const PRODUCT_SOURCE_EXTENSIONS = new Set([
+  '.astro',
+  '.ts',
+  '.tsx',
+  '.css',
+  '.js',
+  '.jsx',
+  '.mjs',
+]);
+
+async function collectProductSources(
+  dir: string
+): Promise<Array<{ file: string; source: string }>> {
+  const entries = await fs.readdir(path.join(ROOT_DIR, dir), {
+    withFileTypes: true,
+  });
+  const sources: Array<{ file: string; source: string }> = [];
+
+  for (const entry of entries) {
+    const relative = path.posix.join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      // `content` aloja artículos y muestras de código, no producto.
+      if (entry.name === 'content' || entry.name === 'node_modules') continue;
+      sources.push(...(await collectProductSources(relative)));
+      continue;
+    }
+
+    if (
+      entry.name.includes('.test.') ||
+      !PRODUCT_SOURCE_EXTENSIONS.has(path.extname(entry.name))
+    ) {
+      continue;
+    }
+
+    sources.push({
+      file: relative,
+      source: await fs.readFile(path.join(ROOT_DIR, relative), 'utf8'),
+    });
+  }
+
+  return sources;
+}
+
 describe('contrato de diseño visual', () => {
   it('declara tokens semánticos para superficie, contenido, borde, foco y elevación', () => {
     const requiredTokens = [
@@ -106,5 +150,26 @@ describe('contrato de diseño visual', () => {
     expect(globalStyles).not.toMatch(/h[1-6]\s*:hover/);
     expect(globalStyles).not.toMatch(/\.prose\s+h[1-6]\s*:hover/);
     expect(globalStyles).not.toMatch(/\.font-(semibold|bold|extrabold)\s*:hover/);
+  });
+
+  it('acento dark uniforme #00ACB0', async () => {
+    const productFiles = await collectProductSources('src');
+
+    expect(globalStyles).not.toContain('#00bfa5');
+
+    const staleTeal = productFiles.flatMap(({ file, source }) =>
+      source
+        .split('\n')
+        .map((line, index) => ({ line, number: index + 1 }))
+        .filter(
+          ({ line }) => /#00bfa5/i.test(line) || /\bteal-\d{2,3}\b/.test(line)
+        )
+        .map(({ line, number }) => `${file}:${number}: ${line.trim()}`)
+    );
+
+    expect(
+      staleTeal,
+      `Acento dark no uniforme:\n${staleTeal.join('\n')}`
+    ).toEqual([]);
   });
 });

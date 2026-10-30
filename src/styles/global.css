@@ -227,7 +227,7 @@
 
   /* Code (Inline) */
   .prose code {
-    @apply text-secondary! dark:text-teal-200! bg-surface-variant dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono text-sm;
+    @apply text-secondary! dark:text-[#00ACB0]! bg-surface-variant dark:bg-gray-800 px-1.5 py-0.5 rounded font-mono text-sm;
   }
   .prose code::before, .prose code::after {
     content: none;
@@ -296,7 +296,7 @@
     @apply bg-gray-800/60;
   }
   .dark .prose th {
-    color: #00bfa5 !important; /* Brand high-contrast Teal green */
+    color: #00ACB0 !important; /* Brand high-contrast Teal green */
     @apply border-b-2 border-primary/50;
   }
   .dark .prose td {
