@@ -33,10 +33,10 @@ export async function getStaticPaths() {
 <Layout title={title} description={series.description}>
   <div class="bg-surface-variant/30 dark:bg-dark-surface-variant/30 py-16">
     <div class="container mx-auto px-4 max-w-4xl text-center">
-      <h1 class="text-4xl md:text-5xl font-bold text-on-surface dark:text-dark-on-surface mb-4">
+      <h1 class="text-4xl md:text-5xl font-bold text-content dark:text-dark-content mb-4">
         {series.name}
       </h1>
-      <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant max-w-2xl mx-auto">
+      <p class="text-lg text-content-muted dark:text-dark-content-muted max-w-2xl mx-auto">
         {series.description}
       </p>
     </div>
@@ -52,16 +52,16 @@ export async function getStaticPaths() {
           <a
             href={`/es/blog/${cleanSlug}`}
             data-astro-prefetch
-            class="block bg-surface dark:bg-dark-surface rounded-2xl p-6 border border-gray-200 dark:border-gray-800 shadow-sm hover:shadow-md hover:border-primary/30 dark:hover:border-primary/30 transition-all group"
+            class="material-card group block rounded-2xl p-6 hover:shadow-md hover:border-primary/30 dark:hover:border-primary/30"
           >
-            <h2 class="text-xl font-bold text-on-surface dark:text-dark-on-surface mb-2 group-hover:text-primary transition-colors">
+            <h2 class="text-xl font-bold text-content dark:text-dark-content mb-2 group-hover:text-primary transition-colors">
               {post.data.title}
             </h2>
-            <p class="text-sm text-on-surface-variant dark:text-dark-on-surface-variant line-clamp-2 mb-3">
+            <p class="text-sm text-content-muted dark:text-dark-content-muted line-clamp-2 mb-3">
               {post.data.description}
             </p>
             <div class="flex items-center justify-between">
-              <time class="text-xs text-on-surface-variant/60 dark:text-dark-on-surface-variant/60" datetime={post.data.pubDate.toISOString()}>
+              <time class="text-xs text-content-muted/60 dark:text-dark-content-muted/60" datetime={post.data.pubDate.toISOString()}>
                 {post.data.pubDate.toLocaleDateString("es-ES", { year: "numeric", month: "short", day: "numeric" })}
               </time>
               <span class="text-sm font-medium text-primary">
@@ -74,7 +74,7 @@ export async function getStaticPaths() {
     </div>
 
     {seriesPosts.length === 0 && (
-      <p class="text-center text-on-surface-variant dark:text-dark-on-surface-variant py-12">
+      <p class="text-center text-content-muted dark:text-dark-content-muted py-12">
         No se encontraron posts en esta serie.
       </p>
     )}

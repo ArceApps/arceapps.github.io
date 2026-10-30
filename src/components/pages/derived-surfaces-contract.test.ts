@@ -42,4 +42,16 @@ describe('derived surfaces', () => {
       expect(s).not.toContain('hover:scale');
     }
   });
+
+  it('superficies secundarias con lenguaje visual', () => {
+    const files = ['src/pages/404.astro', 'src/pages/cookies.astro', 'src/pages/privacy-policy.astro', 'src/pages/series/[slug].astro', 'src/pages/es/cookies.astro', 'src/pages/es/privacy-policy.astro', 'src/pages/es/series/[slug].astro'];
+    for (const f of files) {
+      const s = readFileSync(f, 'utf8');
+      expect(s).toContain('text-content');
+      for (const legacy of ['#007F7D', '#F8F9FA', '#111E26', '#111827', '#9CA3AF', '#2DD4BF', 'bg-white', 'text-gray-']) {
+        expect(s, f + ' contiene literal legado ' + legacy).not.toContain(legacy);
+      }
+      expect(s).not.toContain('hover:scale');
+    }
+  });
 });
