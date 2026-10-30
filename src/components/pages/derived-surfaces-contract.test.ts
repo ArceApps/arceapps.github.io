@@ -55,6 +55,14 @@ describe('derived surfaces', () => {
     }
   });
 
+  it('ProjectCard con tokens semanticos', () => {
+    const s = readFileSync('src/components/ProjectCard.astro', 'utf8');
+    expect(s).toContain('bg-surface-raised');
+    for (const legacy of ['#111E26', '#1F333E', '#0D171F', '#16242E', 'bg-white', 'teal-']) {
+      expect(s, 'literal legado ' + legacy).not.toContain(legacy);
+    }
+  });
+
   it('pliego comparativo generado', () => {
     expect(existsSync('artifacts/portfolio-visual-qa/portfolio-visual-report.md')).toBe(true);
   });
