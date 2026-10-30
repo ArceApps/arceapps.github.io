@@ -53,7 +53,7 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
   <article class="pt-24 pb-20">
     <div class="container mx-auto px-4 max-w-4xl">
       <!-- Back Link -->
-      <a href="/devlog" class="inline-flex items-center text-on-surface-variant dark:text-dark-on-surface-variant hover:text-primary transition-colors mb-8 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
+      <a href="/devlog" class="inline-flex items-center text-content-muted dark:text-dark-content-muted hover:text-primary transition-colors mb-8 focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none rounded">
         <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
         {t('common.back')}
       </a>
@@ -63,10 +63,10 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
         <div class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold uppercase tracking-wider mb-4">
            {t('home.building_public')}
         </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-on-surface dark:text-teal-200 leading-tight">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-content dark:text-dark-content leading-tight">
           {post.data.title}
         </h1>
-        <div class="flex items-center justify-center text-on-surface-variant dark:text-gray-200 text-lg">
+        <div class="flex items-center justify-center text-content-muted dark:text-dark-content-muted text-lg">
            <span class="material-icons mr-2 text-primary" aria-hidden="true">calendar_today</span>
            <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
         </div>
@@ -79,9 +79,9 @@ const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
       )}
       {tocHeadings.length > 0 && (
         <details class="mb-8 rounded-2xl border border-border bg-surface-raised p-5 dark:border-dark-border dark:bg-dark-surface-raised" open>
-          <summary class="cursor-pointer font-bold text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface">In this entry</summary>
+          <summary class="cursor-pointer font-bold text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-content">In this entry</summary>
           <nav aria-label="In this entry" class="mt-4 grid gap-2 border-t border-border pt-4 dark:border-dark-border sm:grid-cols-2">
-            {tocHeadings.map((heading) => <a href={`#${heading.slug}`} class:list={["rounded-lg px-3 py-2 text-sm text-on-surface-variant hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant", { "ml-3": heading.depth === 3 }]}>{heading.text}</a>)}
+            {tocHeadings.map((heading) => <a href={`#${heading.slug}`} class:list={["rounded-lg px-3 py-2 text-sm text-content-muted hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-content-muted", { "ml-3": heading.depth === 3 }]}>{heading.text}</a>)}
           </nav>
         </details>
       )}

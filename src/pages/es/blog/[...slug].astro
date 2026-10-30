@@ -156,11 +156,11 @@ const breadcrumbItems = [
           ))}
         </div>
 
-        <h1 class="mb-6 text-3xl font-bold leading-tight text-on-surface dark:text-dark-on-surface md:text-5xl lg:text-6xl">
+        <h1 class="mb-6 text-3xl font-bold leading-tight text-content dark:text-dark-content md:text-5xl lg:text-6xl">
           {post.data.title}
         </h1>
 
-        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-lg text-on-surface-variant dark:text-dark-on-surface-variant">
+        <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-lg text-content-muted dark:text-dark-content-muted">
           <div class="flex items-center">
             <span class="material-icons mr-2 text-primary" aria-hidden="true">calendar_today</span>
             <time datetime={post.data.pubDate.toISOString()}>{formattedDate}</time>
@@ -194,7 +194,7 @@ const breadcrumbItems = [
         <div class="sticky top-24">
           {tocHeadings.length > 0 && (
             <nav class="rounded-xl border border-border bg-surface-raised p-4 dark:border-dark-border dark:bg-dark-surface-raised" aria-label={t('blog.table_of_contents')}>
-              <h2 class="mb-4 flex items-center text-lg font-bold text-on-surface dark:text-dark-on-surface">
+              <h2 class="mb-4 flex items-center text-lg font-bold text-content dark:text-dark-content">
                 <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
                 {t('blog.table_of_contents')}
               </h2>
@@ -204,7 +204,7 @@ const breadcrumbItems = [
                     <a
                       href={`#${heading.slug}`}
                       class:list={[
-                        "block rounded py-1 text-on-surface-variant transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant",
+                        "block rounded py-1 text-content-muted transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-content-muted",
                         { "pl-0": heading.depth === 2, "pl-3": heading.depth === 3 }
                       ]}
                     >
@@ -216,7 +216,7 @@ const breadcrumbItems = [
             </nav>
           )}
 
-          <a href="/es/blog" class="mt-8 inline-flex items-center rounded font-medium text-on-surface-variant transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant">
+          <a href="/es/blog" class="mt-8 inline-flex items-center rounded font-medium text-content-muted transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-content-muted">
             <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
             {t('blog.back_to_blog')}
           </a>
@@ -227,7 +227,7 @@ const breadcrumbItems = [
         <div class="mb-8 lg:hidden">
           {tocHeadings.length > 0 && (
             <details class="overflow-hidden rounded-xl border border-border bg-surface-raised dark:border-dark-border dark:bg-dark-surface-raised">
-              <summary class="flex cursor-pointer list-none items-center justify-between rounded-xl p-4 font-bold text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface">
+              <summary class="flex cursor-pointer list-none items-center justify-between rounded-xl p-4 font-bold text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-content">
                 <span class="flex items-center">
                   <span class="material-icons mr-2 text-primary" aria-hidden="true">list</span>
                   {t('blog.table_of_contents')}
@@ -241,7 +241,7 @@ const breadcrumbItems = [
                       <a
                         href={`#${heading.slug}`}
                         class:list={[
-                          "block rounded py-1 text-on-surface-variant transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant",
+                          "block rounded py-1 text-content-muted transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-content-muted",
                           { "pl-0": heading.depth === 2, "pl-4": heading.depth === 3 }
                         ]}
                       >
@@ -263,7 +263,7 @@ const breadcrumbItems = [
         <PostNavigation prevPost={prevPost} nextPost={nextPost} lang="es" />
 
         <div class="mt-8 border-t border-border pt-8 dark:border-dark-border lg:hidden">
-          <a href="/es/blog" class="inline-flex items-center rounded font-medium text-on-surface-variant transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant">
+          <a href="/es/blog" class="inline-flex items-center rounded font-medium text-content-muted transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-content-muted">
             <span class="material-icons mr-2" aria-hidden="true">arrow_back</span>
             {t('blog.back_to_blog')}
           </a>
@@ -274,7 +274,7 @@ const breadcrumbItems = [
     {relatedPosts.length > 0 && (
       <section class="mt-20 bg-surface-subtle py-16 dark:bg-dark-surface-subtle fade-in-section" aria-labelledby="related-articles-title">
         <div class="mx-auto max-w-6xl px-4">
-          <h2 id="related-articles-title" class="mb-10 flex items-center justify-center gap-3 text-center text-3xl font-bold text-on-surface dark:text-dark-on-surface">
+          <h2 id="related-articles-title" class="mb-10 flex items-center justify-center gap-3 text-center text-3xl font-bold text-content dark:text-dark-content">
             <span class="material-icons text-4xl text-primary" aria-hidden="true">style</span>
             {t('blog.related')}
           </h2>

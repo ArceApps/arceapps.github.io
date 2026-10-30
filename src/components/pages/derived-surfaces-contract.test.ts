@@ -30,4 +30,16 @@ describe('derived surfaces', () => {
       }
     }
   });
+
+  it('paginas de detalle con lenguaje visual', () => {
+    const files = ['src/pages/apps/[...slug].astro', 'src/pages/blog/[...slug].astro', 'src/pages/devlog/[...slug].astro', 'src/pages/projects/[...slug].astro', 'src/pages/es/apps/[...slug].astro', 'src/pages/es/blog/[...slug].astro', 'src/pages/es/devlog/[...slug].astro', 'src/pages/es/projects/[...slug].astro'];
+    for (const f of files) {
+      const s = readFileSync(f, 'utf8');
+      expect(s).toContain('text-content-muted');
+      for (const legacy of ['#007F7D', '#F8F9FA', '#111E26', '#111827', '#9CA3AF', '#2DD4BF', 'bg-white', 'text-gray-']) {
+        expect(s, f + ' contiene literal legado ' + legacy).not.toContain(legacy);
+      }
+      expect(s).not.toContain('hover:scale');
+    }
+  });
 });
