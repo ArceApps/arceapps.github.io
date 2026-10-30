@@ -75,7 +75,7 @@ const highlights = [
   />
 
   <!-- Header Section with PageIntro & Status / Tech Filter Pills -->
-  <section class="border-b border-border bg-surface px-4 py-12 dark:border-[#1F333E] dark:bg-[#091117] md:py-16">
+  <section class="border-b border-border bg-surface px-4 py-12 dark:border-dark-border dark:bg-dark-surface md:py-16">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <div class="text-left [&>header]:text-left [&>header]:mx-0 [&>header]:max-w-none [&>header>p]:mx-0">
         <PageIntro
@@ -97,14 +97,14 @@ const highlights = [
           Todos
         </button>
 
-        <span class="mx-1 h-5 w-px bg-border dark:bg-[#1F333E]" aria-hidden="true"></span>
+        <span class="mx-1 h-5 w-px bg-border dark:bg-dark-border" aria-hidden="true"></span>
 
         <!-- Filtros de Estado -->
         <button
           type="button"
           data-project-filter="status-active"
           aria-pressed="false"
-          class="project-filter-btn inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
+          class="project-filter-btn inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-content-muted transition-all hover:border-primary/50 hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-content-muted"
         >
           <span class="h-1.5 w-1.5 rounded-full bg-emerald-500" aria-hidden="true"></span>
           <span>Activos</span>
@@ -113,20 +113,20 @@ const highlights = [
           type="button"
           data-project-filter="status-maintained"
           aria-pressed="false"
-          class="project-filter-btn inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
+          class="project-filter-btn inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-content-muted transition-all hover:border-primary/50 hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-content-muted"
         >
           <span class="h-1.5 w-1.5 rounded-full bg-teal-500" aria-hidden="true"></span>
           <span>En mantenimiento</span>
         </button>
 
-        <span class="mx-1 h-5 w-px bg-border dark:bg-[#1F333E]" aria-hidden="true"></span>
+        <span class="mx-1 h-5 w-px bg-border dark:bg-dark-border" aria-hidden="true"></span>
 
         <!-- Filtros de Tecnología -->
         <button
           type="button"
           data-project-filter="tech-android"
           aria-pressed="false"
-          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
+          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-content-muted transition-all hover:border-primary/50 hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-content-muted"
         >
           Android
         </button>
@@ -134,7 +134,7 @@ const highlights = [
           type="button"
           data-project-filter="tech-ai"
           aria-pressed="false"
-          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
+          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-content-muted transition-all hover:border-primary/50 hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-content-muted"
         >
           IA y Agentes
         </button>
@@ -142,7 +142,7 @@ const highlights = [
           type="button"
           data-project-filter="tech-typescript"
           aria-pressed="false"
-          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
+          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-content-muted transition-all hover:border-primary/50 hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-content-muted"
         >
           TypeScript
         </button>
@@ -150,7 +150,7 @@ const highlights = [
           type="button"
           data-project-filter="open-source"
           aria-pressed="false"
-          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface-variant transition-all hover:border-primary/50 hover:text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant"
+          class="project-filter-btn inline-flex items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-content-muted transition-all hover:border-primary/50 hover:text-content focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-content-muted"
         >
           Código Abierto
         </button>
@@ -186,27 +186,27 @@ const highlights = [
         })}
       </div>
     ) : (
-      <p class="rounded-3xl border border-border bg-surface-raised p-10 text-center text-on-surface-variant dark:border-[#1F333E] dark:bg-[#111E26] dark:text-dark-on-surface-variant">
+      <p class="material-card p-10 text-center text-content-muted dark:text-dark-content-muted">
         {t('projects.empty')}
       </p>
     )}
 
     <!-- Empty state for filters -->
-    <div id="projects-empty-filter" class="hidden rounded-3xl border border-border bg-surface-raised p-12 text-center dark:border-[#1F333E] dark:bg-[#111E26]">
-      <span class="material-icons mx-auto text-4xl text-on-surface-variant/60" aria-hidden="true">search_off</span>
-      <h3 class="mt-3 text-lg font-bold text-on-surface dark:text-dark-on-surface">No se encontraron proyectos con este filtro</h3>
-      <p class="mt-1 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">Prueba seleccionando otro filtro o "Todos" para ver el catálogo completo.</p>
+    <div id="projects-empty-filter" class="material-card hidden p-12 text-center">
+      <span class="material-icons mx-auto text-4xl text-content-muted/60" aria-hidden="true">search_off</span>
+      <h3 class="mt-3 text-lg font-bold text-content dark:text-dark-content">No se encontraron proyectos con este filtro</h3>
+      <p class="mt-1 text-sm text-content-muted dark:text-dark-content-muted">Prueba seleccionando otro filtro o "Todos" para ver el catálogo completo.</p>
     </div>
 
     <!-- GitHub Open Source Callout Card -->
-    <div class="mt-16 rounded-3xl border border-border bg-surface-raised p-8 text-center shadow-sm dark:border-[#1F333E] dark:bg-[#111E26] md:p-12">
-      <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-500/10 text-primary dark:bg-teal-400/10 dark:text-teal-300">
+    <div class="material-card mt-16 p-8 text-center md:p-12">
+      <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-primary/15 dark:text-primary">
         <span class="material-icons text-3xl" aria-hidden="true">code</span>
       </div>
-      <h2 class="mt-4 text-2xl font-bold tracking-tight text-on-surface dark:text-dark-on-surface">
+      <h2 class="mt-4 text-2xl font-bold tracking-tight text-content dark:text-dark-content">
         Explora más código y colabora
       </h2>
-      <p class="mx-auto mt-3 max-w-xl text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+      <p class="mx-auto mt-3 max-w-xl text-base leading-relaxed text-content-muted dark:text-dark-content-muted">
         Todos nuestros proyectos y experimentos se desarrollan en abierto. Consulta los repositorios, colabora o crea un fork en GitHub.
       </p>
       <div class="mt-6 flex justify-center">
@@ -227,18 +227,18 @@ const highlights = [
   </main>
 
   <!-- Bottom 4-column Highlights Bar -->
-  <section class="border-t border-border bg-surface-subtle py-14 dark:border-[#1F333E] dark:bg-[#0D171F]">
+  <section class="border-t border-border bg-surface-subtle py-14 dark:border-dark-border dark:bg-dark-surface-subtle">
     <div class="mx-auto max-w-7xl px-4 md:px-6">
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {highlights.map((item) => (
-          <div class="flex flex-col items-center rounded-2xl border border-border bg-surface-raised p-6 text-center shadow-sm dark:border-[#1F333E] dark:bg-[#111E26] transition-all">
-            <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-teal-500/10 text-primary dark:bg-teal-400/10 dark:text-teal-300">
+          <div class="material-card flex flex-col items-center p-6 text-center transition-all">
+            <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary dark:bg-primary/15 dark:text-primary">
               <span class="material-icons text-2xl" aria-hidden="true">{item.icon}</span>
             </div>
-            <h3 class="mt-4 font-bold text-on-surface dark:text-dark-on-surface text-base">
+            <h3 class="mt-4 font-bold text-content dark:text-dark-content text-base">
               {item.title}
             </h3>
-            <p class="mt-2 text-sm leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+            <p class="mt-2 text-sm leading-relaxed text-content-muted dark:text-dark-content-muted">
               {item.desc}
             </p>
           </div>
@@ -263,12 +263,12 @@ const highlights = [
           // Update active state of buttons
           filterBtns.forEach((b) => {
             if (b === btn) {
-              b.classList.remove('border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'dark:border-[#1F333E]', 'dark:bg-[#111E26]', 'dark:text-dark-on-surface-variant', 'font-medium');
+              b.classList.remove('border', 'border-border', 'bg-surface-raised', 'text-content-muted', 'dark:border-dark-border', 'dark:bg-dark-surface-raised', 'dark:text-dark-content-muted', 'font-medium');
               b.classList.add('bg-primary', 'text-white', 'font-semibold', 'shadow-sm');
               b.setAttribute('aria-pressed', 'true');
             } else {
               b.classList.remove('bg-primary', 'text-white', 'font-semibold', 'shadow-sm');
-              b.classList.add('border', 'border-border', 'bg-surface-raised', 'text-on-surface-variant', 'dark:border-[#1F333E]', 'dark:bg-[#111E26]', 'dark:text-dark-on-surface-variant', 'font-medium');
+              b.classList.add('border', 'border-border', 'bg-surface-raised', 'text-content-muted', 'dark:border-dark-border', 'dark:bg-dark-surface-raised', 'dark:text-dark-content-muted', 'font-medium');
               b.setAttribute('aria-pressed', 'false');
             }
           });
