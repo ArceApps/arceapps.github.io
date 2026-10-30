@@ -6,7 +6,7 @@ lastmod: 2026-10-30
 author: "ArceApps"
 keywords: ["ODD", "Organic Driven Development", "SDD", "Gentle-AI", "agentes de IA", "desarrollo de software"]
 canonical: "https://arceapps.com/es/blog/odd-vs-sdd-organic-development/"
-heroImage: "/images/odd-vs-sdd-organic-development.svg"
+heroImage: "/images/odd-vs-sdd-organic-development.webp"
 tags: ["ODD", "SDD", "AI Agents", "Software Engineering", "Workflow"]
 reference_id: "c34d078a-734b-424b-ad44-c60e09675114"
 ---

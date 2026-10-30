@@ -6,12 +6,12 @@ lastmod: 2026-10-30
 author: "ArceApps"
 keywords: ["ODD", "Organic Driven Development", "Android", "Kotlin", "JUnit", "Room", "Jetpack Compose"]
 canonical: "https://arceapps.com/blog/odd-android-kotlin-lab/"
-heroImage: "/images/odd-android-kotlin-lab.svg"
+heroImage: "/images/odd-android-kotlin-lab.webp"
 tags: ["ODD", "Android", "Kotlin", "Testing", "Jetpack Compose", "Room"]
 reference_id: "d7fab46b-e6d7-437e-94ea-402aacd1dd7c"
 ---
 
-> **A teaching laboratory, not a shipped Android application.** The hypothetical app «Compass» and its project repository do not exist. The pure Kotlin component below **was compiled and executed in isolation** using Kotlin/JVM 1.9.0 and Java 21. The JUnit, Compose, Room and Android build examples describe checks to integrate into a real app; they are **not reported as executed**. Read [ODD versus SDD](/blog/odd-vs-sdd-organic-development/) first if you want the theory, or revisit [AI and TDD for Android](/blog/ia-tdd-android/) and [the SDD/TDD acceptance loop](/blog/sdd-tdd-acceptance-loop/) for context.
+> **A teaching laboratory, not a shipped Android application.** The hypothetical app «Compass» and its project repository do not exist. The cover is an AI-generated conceptual illustration, not a screenshot from an existing app. The pure Kotlin component below **was compiled and executed in isolation** using Kotlin/JVM 1.9.0 and Java 21. The JUnit, Compose, Room and Android build examples describe checks to integrate into a real app; they are **not reported as executed**. Read [ODD versus SDD](/blog/odd-vs-sdd-organic-development/) first if you want the theory, or revisit [AI and TDD for Android](/blog/ia-tdd-android/) and [the SDD/TDD acceptance loop](/blog/sdd-tdd-acceptance-loop/) for context.
 
 ## A fictional Android app as an ODD laboratory
 

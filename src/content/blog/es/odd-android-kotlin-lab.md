@@ -6,12 +6,12 @@ lastmod: 2026-10-30
 author: "ArceApps"
 keywords: ["ODD", "Organic Driven Development", "Android", "Kotlin", "JUnit", "Room", "Jetpack Compose"]
 canonical: "https://arceapps.com/es/blog/odd-android-kotlin-lab/"
-heroImage: "/images/odd-android-kotlin-lab.svg"
+heroImage: "/images/odd-android-kotlin-lab.webp"
 tags: ["ODD", "Android", "Kotlin", "Testing", "Jetpack Compose", "Room"]
 reference_id: "d7fab46b-e6d7-437e-94ea-402aacd1dd7c"
 ---
 
-> **Este es un laboratorio didáctico, no una aplicación comercial existente.** La app «Brújula» y su repositorio son ficticios. El núcleo Kotlin que aparece abajo sí se ha compilado y ejecutado de forma aislada con Kotlin/JVM 1.9.0 y Java 21; las pruebas JUnit, Compose, Room y el build Android son ejemplos preparados para un proyecto real, **no ejecuciones realizadas**. Para entender el porqué del método antes de usarlo, empieza por [ODD frente a SDD](/es/blog/odd-vs-sdd-organic-development/). También sirven de contexto [IA + TDD en Android](/es/blog/ia-tdd-android/) y [SDD + TDD como bucle de aceptación](/es/blog/sdd-tdd-acceptance-loop/).
+> **Este es un laboratorio didáctico, no una aplicación comercial existente.** La app «Brújula» y su repositorio son ficticios. La portada es una ilustración conceptual generada con IA, no una captura de una aplicación real. El núcleo Kotlin que aparece abajo sí se ha compilado y ejecutado de forma aislada con Kotlin/JVM 1.9.0 y Java 21; las pruebas JUnit, Compose, Room y el build Android son ejemplos preparados para un proyecto real, **no ejecuciones realizadas**. Para entender el porqué del método antes de usarlo, empieza por [ODD frente a SDD](/es/blog/odd-vs-sdd-organic-development/). También sirven de contexto [IA + TDD en Android](/es/blog/ia-tdd-android/) y [SDD + TDD como bucle de aceptación](/es/blog/sdd-tdd-acceptance-loop/).
 
 ## Un proyecto Android ficticio como banco de pruebas del método
 
