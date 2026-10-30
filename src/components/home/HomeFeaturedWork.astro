@@ -2,227 +2,107 @@
 import HomeSectionHeader from "./HomeSectionHeader.astro";
 import { useTranslations } from "../../i18n/utils";
 
-interface FeaturedItem {
-  title: string;
-  description: string;
-  href: string;
-  heroImage?: string;
-  kind: 'app' | 'project';
-  realIconUrl?: string;
-  googlePlayUrl?: string;
-  repoUrl?: string;
-  tags?: string[];
-  screenshots?: string[];
-}
-
 interface Props {
   lang: 'en' | 'es';
-  featuredWork?: FeaturedItem;
-  featuredItems?: FeaturedItem[];
+  featuredWork?: {
+    title: string;
+    description: string;
+    href: string;
+    heroImage?: string;
+    kind: 'app' | 'project';
+    realIconUrl?: string;
+    tags?: string[];
+    screenshots?: string[];
+  };
 }
 
-const { lang, featuredWork, featuredItems } = Astro.props;
+const { lang, featuredWork } = Astro.props;
 const t = useTranslations(lang);
-
-const item: FeaturedItem = featuredWork || (featuredItems && featuredItems.length > 0 ? featuredItems[0] : {
-  title: 'RadioHub',
-  description: lang === 'es'
-    ? 'Una aplicación moderna de radio por internet para Android diseñada con Material You. Sintoniza miles de emisoras con reproducción fluida en segundo plano y temporizador de apagado.'
-    : 'A modern internet radio app for Android built with Material You. Stream thousands of radio stations seamlessly with background playback and sleep timer.',
-  href: lang === 'es' ? '/es/apps/radiohub' : '/apps/radiohub',
-  kind: 'app' as const,
-  realIconUrl: '/images/apps/radiohub/logo.png',
-  googlePlayUrl: 'https://play.google.com/store/apps/details?id=com.arceapps.radiohub',
-});
 ---
 
-<section class="py-12 sm:py-16 cv-auto fade-in-section" style="contain-intrinsic-size: 600px;">
-  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<section class="py-16 cv-auto fade-in-section md:py-24" style="contain-intrinsic-size: 600px;">
+  <div class="container mx-auto max-w-7xl px-4 md:px-6">
     <HomeSectionHeader
       number="01"
-      title={lang === 'es' ? 'Proyecto destacado' : 'Featured project'}
+      title={t('home.work.title')}
       id="section-work"
     />
 
-    <!-- Tarjeta dividida (Split Card 2 columnas en desktop, 1 en móvil) -->
-    <article class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12 rounded-3xl border border-border bg-white p-6 shadow-sm dark:border-[#1F333E] dark:bg-[#111E26] sm:p-8 lg:p-10">
-      <!-- Columna Izquierda: Información de RadioHub -->
-      <div class="flex flex-col justify-center lg:col-span-7">
-        <!-- Badge superior de sección -->
-        <div class="mb-4 inline-flex items-center gap-1.5 self-start rounded-full bg-teal-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary dark:bg-teal-400/10 dark:text-teal-300">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary dark:bg-teal-400" aria-hidden="true"></span>
-          <span>{lang === 'es' ? 'PROYECTO DESTACADO' : 'FEATURED PROJECT'}</span>
-        </div>
+    {featuredWork ? (
+      <article class="grid grid-cols-1 items-center gap-8 overflow-hidden rounded-3xl border border-border bg-surface-raised p-6 shadow-sm dark:border-dark-border dark:bg-dark-surface-raised md:grid-cols-[1.2fr_1fr] md:gap-12 md:p-10">
+        <a
+          href={featuredWork.href}
+          class="group relative block overflow-hidden rounded-2xl border border-border bg-surface-variant/30 transition-transform duration-300 hover:scale-[1.01] motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-variant/30"
+        >
+          <div class="relative aspect-[16/10] w-full">
+            {featuredWork.heroImage ? (
+              <img
+                src={featuredWork.heroImage}
+                alt={featuredWork.title}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 h-full w-full object-cover object-center"
+              />
+            ) : (
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="material-icons text-6xl text-primary opacity-60">phone_android</span>
+              </div>
+            )}
 
-        <!-- Encabezado con Icono en Squircle + Título + Badge de Tecnologías -->
-        <div class="flex items-center gap-4">
-          <img
-            src={item.realIconUrl || '/images/apps/radiohub/logo.png'}
-            alt={`${item.title} icon`}
-            class="h-16 w-16 rounded-2xl border border-border/80 object-cover shadow-sm dark:border-[#1F333E]"
-            loading="lazy"
-            decoding="async"
-            width="64"
-            height="64"
-          />
-          <div>
-            <h3 class="text-2xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl">
-              {item.title}
-            </h3>
-            <div class="mt-1 flex flex-wrap items-center gap-2">
-              <span class="inline-flex items-center gap-1 rounded-full bg-surface-subtle px-2.5 py-0.5 text-xs font-semibold text-on-surface-variant border border-border/60 dark:bg-[#16242E] dark:text-dark-on-surface-variant dark:border-[#1F333E]">
-                <span class="material-icons text-xs text-emerald-500" aria-hidden="true">android</span>
-                Android · Jetpack Compose · Material 3
-              </span>
+            {featuredWork.realIconUrl && (
+              <img
+                src={featuredWork.realIconUrl}
+                alt={`${featuredWork.title} icon`}
+                class="absolute bottom-3 left-3 h-12 w-12 rounded-xl border-2 border-surface object-cover shadow-lg dark:border-dark-surface"
+              />
+            )}
+          </div>
+          {featuredWork.screenshots && featuredWork.screenshots.length > 0 && (
+            <div class="absolute inset-x-0 bottom-0 flex h-1/2 items-end justify-center gap-2 bg-gradient-to-t from-black/45 to-transparent px-6" aria-hidden="true">
+              {featuredWork.screenshots.slice(0, 3).map((shot, index) => (
+                <img src={shot} alt="" loading="lazy" class:list={["max-h-full w-[27%] rounded-t-lg border border-white/20 object-contain shadow-xl", index === 1 && "w-[32%]"]}/>
+              ))}
             </div>
-          </div>
-        </div>
+          )}
+        </a>
 
-        <!-- Claim destacado -->
-        <h4 class="mt-5 text-xl font-bold tracking-tight text-primary dark:text-teal-400 sm:text-2xl">
-          {lang === 'es' ? 'La radio, como te gusta · Miles de emisoras en una sola app' : 'Radio, just the way you like it · Thousands of stations in one app'}
-        </h4>
+        <div>
+          <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">
+            <span class="material-icons text-xs" aria-hidden="true">star</span>
+            {featuredWork.kind === 'app' ? t('apps.title') : t('projects.title')}
+          </span>
 
-        <!-- Descripción concisa del valor de la app -->
-        <p class="mt-3 text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
-          {lang === 'es'
-            ? 'Una aplicación moderna de radio por internet para Android diseñada con Material You. Sintoniza miles de emisoras en streaming con reproducción fluida en segundo plano, temporizador de apagado y acceso instantáneo sin suscripciones ni pantallas invasivas.'
-            : 'A modern internet radio app for Android built with Material You. Stream thousands of radio stations seamlessly in the background with a sleep timer and instant access without invasive subscriptions.'}
-        </p>
+          <h3 class="mt-3 text-2xl font-extrabold leading-tight tracking-tight text-on-surface transition-colors group-hover:text-primary dark:text-dark-on-surface dark:group-hover:text-teal-400 md:text-3xl">
+            {featuredWork.title}
+          </h3>
 
-        <!-- Fila de 4 características en chips / bullets -->
-        <div class="mt-6 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
-            <span class="material-icons text-base text-teal-600 dark:text-teal-400" aria-hidden="true">radio</span>
-            <span>{lang === 'es' ? '+30.000 emisoras' : '+30,000 stations'}</span>
-          </div>
-          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
-            <span class="material-icons text-base text-emerald-600 dark:text-emerald-400" aria-hidden="true">money_off</span>
-            <span>{lang === 'es' ? 'Sin suscripciones' : 'No subscriptions'}</span>
-          </div>
-          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
-            <span class="material-icons text-base text-amber-600 dark:text-amber-400" aria-hidden="true">schedule</span>
-            <span>{lang === 'es' ? 'Temporizador' : 'Sleep timer'}</span>
-          </div>
-          <div class="flex items-center gap-2 rounded-xl border border-border/70 bg-surface-subtle/80 px-3 py-2 text-xs font-semibold text-on-surface dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface">
-            <span class="material-icons text-base text-rose-500" aria-hidden="true">favorite</span>
-            <span>{lang === 'es' ? 'Favoritos' : 'Favorites'}</span>
-          </div>
-        </div>
+          <p class="mt-3 text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
+            {featuredWork.description}
+          </p>
 
-        <!-- Botones de acción -->
-        <div class="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-          <a
-            href={item.googlePlayUrl || 'https://play.google.com/store/apps/details?id=com.arceapps.radiohub'}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
-          >
-            <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M3.609 1.814L13.792 12 3.61 22.186a2.222 2.222 0 0 1-.61-.954V2.768c.15-.36.368-.69.609-.954zm11.242 11.245l2.254 2.255-10.74 6.22 8.486-8.475zm2.885-1.127l2.84 1.645c.833.483.833 1.267 0 1.75l-2.84 1.645-2.52-2.52 2.52-2.52zm-2.885-1.127L6.365 2.33l10.74 6.22-2.254 2.255z"/>
-            </svg>
-            <span>{lang === 'es' ? 'Descargar en Google Play' : 'Download on Google Play'}</span>
-          </a>
+          {featuredWork.tags && featuredWork.tags.length > 0 && (
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              {featuredWork.tags.slice(0, 4).map((tag) => (
+                <span class="rounded-md bg-surface-variant/60 px-2.5 py-0.5 text-xs font-medium text-on-surface-variant dark:bg-dark-surface-variant/60 dark:text-dark-on-surface-variant">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
 
           <a
-            href={item.href || (lang === 'es' ? '/es/apps/radiohub' : '/apps/radiohub')}
-            class="inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-sm font-semibold text-on-surface transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-300"
+            href={featuredWork.href}
+            class="mt-6 inline-flex items-center text-sm font-bold text-primary transition-colors hover:text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary dark:text-teal-400"
           >
-            <span>{lang === 'es' ? 'Ver detalles del proyecto' : 'View project details'}</span>
-            <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
+            {t('home.work.cta')}
+            <span class="material-icons ml-1 text-base" aria-hidden="true">arrow_forward</span>
           </a>
         </div>
-      </div>
-
-      <!-- Columna Derecha: Mockup limpio del reproductor Material You -->
-      <div class="flex justify-center lg:col-span-5">
-        <div class="relative w-full max-w-[300px] overflow-hidden rounded-[2.5rem] border-[6px] border-slate-800 bg-slate-950 p-4 shadow-2xl dark:border-slate-700">
-          <!-- Fondo degradado Material You -->
-          <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-teal-900/40 via-slate-950 to-slate-950" aria-hidden="true"></div>
-          <div class="pointer-events-none absolute -right-8 top-12 h-36 w-36 rounded-full bg-teal-500/15 blur-2xl" aria-hidden="true"></div>
-
-          <!-- Cámara notch superior -->
-          <div class="relative z-10 mx-auto mb-3 h-3.5 w-20 rounded-full bg-slate-900 flex items-center justify-center">
-            <span class="h-1.5 w-1.5 rounded-full bg-slate-800"></span>
-          </div>
-
-          <!-- Cabecera de la app -->
-          <div class="relative z-10 mb-3 flex items-center justify-between px-1 text-slate-300">
-            <div class="flex items-center gap-1.5">
-              <span class="material-icons text-base text-teal-400" aria-hidden="true">radio</span>
-              <span class="text-xs font-bold tracking-wider text-teal-300 uppercase">RadioHub</span>
-            </div>
-            <span class="inline-flex items-center gap-1 rounded-full bg-red-500/20 px-2 py-0.5 text-[10px] font-bold text-red-400">
-              <span class="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse"></span>
-              LIVE
-            </span>
-          </div>
-
-          <!-- Carátula de emisora destacada -->
-          <div class="relative z-10 aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-tr from-teal-700 via-cyan-800 to-emerald-700 p-5 shadow-lg flex flex-col justify-between">
-            <div class="flex items-center justify-between text-white/80">
-              <span class="text-[11px] font-bold tracking-widest uppercase">FM STEREO</span>
-              <span class="material-icons text-sm">graphic_eq</span>
-            </div>
-
-            <div class="text-center my-auto">
-              <div class="mx-auto mb-2 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-md shadow-inner">
-                <span class="material-icons text-3xl text-teal-200">podcasts</span>
-              </div>
-              <p class="text-lg font-black tracking-tight text-white">Radio 3</p>
-              <p class="text-xs font-medium text-teal-100/90">Radio Nacional de España</p>
-            </div>
-
-            <!-- Visualizador de ondas de audio -->
-            <div class="flex items-end justify-center gap-1 h-6">
-              <span class="w-1 rounded-full bg-teal-300 animate-pulse h-3"></span>
-              <span class="w-1 rounded-full bg-teal-200 animate-pulse h-5" style="animation-delay: 150ms;"></span>
-              <span class="w-1 rounded-full bg-white animate-pulse h-6" style="animation-delay: 300ms;"></span>
-              <span class="w-1 rounded-full bg-teal-200 animate-pulse h-4" style="animation-delay: 75ms;"></span>
-              <span class="w-1 rounded-full bg-teal-300 animate-pulse h-5" style="animation-delay: 220ms;"></span>
-            </div>
-          </div>
-
-          <!-- Información de la pista / stream -->
-          <div class="relative z-10 mt-3 px-1">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-sm font-bold text-white">94.5 FM · Madrid</p>
-                <p class="text-[11px] text-slate-400">320 kbps AAC · Baja latencia</p>
-              </div>
-              <span class="material-icons text-lg text-rose-400">favorite</span>
-            </div>
-
-            <!-- Barra de progreso simulada -->
-            <div class="mt-3">
-              <div class="h-1.5 w-full rounded-full bg-slate-800">
-                <div class="h-1.5 w-3/4 rounded-full bg-teal-400"></div>
-              </div>
-              <div class="mt-1 flex justify-between text-[10px] text-slate-500 font-mono">
-                <span>42:15</span>
-                <span>DIRECTO</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Controles de reproducción Material You -->
-          <div class="relative z-10 mt-3 flex items-center justify-around px-2 py-1 text-slate-200">
-            <button type="button" aria-label="Estación anterior" class="p-1 hover:text-white transition">
-              <span class="material-icons text-2xl">skip_previous</span>
-            </button>
-            <button
-              type="button"
-              aria-label="Pausa / Reproducir"
-              class="flex h-12 w-12 items-center justify-center rounded-full bg-teal-400 text-slate-950 shadow-md transition hover:bg-teal-300 hover:scale-105"
-            >
-              <span class="material-icons text-2xl">pause</span>
-            </button>
-            <button type="button" aria-label="Siguiente estación" class="p-1 hover:text-white transition">
-              <span class="material-icons text-2xl">skip_next</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </article>
+      </article>
+    ) : (
+      <p class="py-12 text-center text-on-surface-variant dark:text-dark-on-surface-variant">
+        {t('apps.empty')}
+      </p>
+    )}
   </div>
 </section>

@@ -24,7 +24,7 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
 
   const topicCounts = blogTopics.map(topic => ({
     slug: topic.slug,
-    label: topic.en,
+    label: 'en' === 'es' ? topic.es : topic.en,
     count: allPosts.filter(post => topicOf(post) === topic.slug).length,
   })).filter(topic => topic.count > 0);
   return paginate(allPosts, { pageSize: 6, props: { allTags, topicCounts } });
@@ -39,7 +39,7 @@ interface Props {
 const { page, allTags, topicCounts } = Astro.props;
 ---
 
-<Layout title="Technical articles & guides — ArceApps" description="Reflections, tutorials, and lessons learned about Android development, AI, and software architecture.">
+<Layout title={`${t('blog.title')} - ArceApps`}>
   <script
     type="application/ld+json"
     set:html={JSON.stringify({
@@ -51,66 +51,45 @@ const { page, allTags, topicCounts } = Astro.props;
       ],
     }).replace(/</g, "\\u003C")}
   />
+  <section class="border-b border-border bg-surface px-4 py-14 dark:border-dark-border dark:bg-dark-surface md:py-20">
+    <div class="container mx-auto">
+      <PageIntro title={t('blog.title')} description={t('blog.subtitle')} />
+    </div>
+  </section>
 
-  <main class="mx-auto max-w-5xl px-4 py-12 md:py-16">
-    <PageIntro
-      eyebrow="BLOG"
-      title="Technical articles & guides"
-      description="Reflections, tutorials, and lessons learned about Android development, AI, and software architecture."
-    />
-
-    <!-- Search bar & Category filter pills row -->
-    <div class="mb-8">
-      <button
-        type="button"
-        data-open-search
-        class="flex min-h-12 w-full items-center gap-3 rounded-xl border border-border bg-surface-raised px-5 py-3 text-left text-on-surface-variant shadow-sm transition-all hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
-      >
-        <span class="material-icons text-primary dark:text-teal-300" aria-hidden="true">search</span>
-        <span class="flex-1 text-sm md:text-base text-on-surface-variant/70 dark:text-dark-on-surface-variant/70">Search articles...</span>
-        <kbd class="hidden rounded-md border border-border bg-surface px-2 py-0.5 text-xs font-semibold text-on-surface-variant dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface-variant sm:inline-block">⌘K</kbd>
+  <section class="py-10 md:py-14">
+    <div class="container mx-auto max-w-5xl px-4">
+      <button type="button" data-open-search class="flex min-h-12 w-full items-center gap-3 rounded-xl border border-border bg-surface-raised px-5 py-4 text-left text-on-surface-variant shadow-sm transition-colors hover:border-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant">
+        <span class="material-icons text-primary" aria-hidden="true">search</span>
+        <span class="flex-1">Search by title, tool or technology</span>
+        <span class="text-sm font-semibold text-primary">Search articles</span>
       </button>
-
-      <nav class="mt-4 flex flex-wrap items-center gap-2" aria-label="Filter articles by category">
-        <a
-          href="/blog"
-          aria-current={page.currentPage === 1 ? 'page' : undefined}
-          class:list={[
-            "inline-flex min-h-9 items-center rounded-full px-4 py-1.5 text-xs md:text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-            page.currentPage === 1
-              ? "bg-primary text-white"
-              : "border border-border bg-surface-raised text-on-surface hover:border-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface"
-          ]}
-        >
-          All
-        </a>
+      <nav class="mt-6 flex flex-wrap gap-2" aria-label="Filter articles by category">
+        <a href="/blog" aria-current={page.currentPage === 1 ? 'page' : undefined} class:list={["inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary", page.currentPage === 1 ? "border-primary bg-primary text-white" : "border-border bg-surface-raised text-on-surface dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface"]}>All</a>
         {topicCounts.map(topic => (
-          <a
-            href={`/blog/topic/${topic.slug}/`}
-            class="inline-flex min-h-9 items-center rounded-full border border-border bg-surface-raised px-4 py-1.5 text-xs md:text-sm font-semibold text-on-surface-variant transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant"
-          >
-            {topic.label} <span class="ml-1.5 rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary dark:text-teal-300">{topic.count}</span>
+          <a href={`/blog/topic/${topic.slug}/`} class="inline-flex min-h-11 items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-semibold text-on-surface-variant transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface-variant">
+            {topic.label} <span class="ml-2 rounded-full bg-primary/10 px-2 py-0.5 text-xs text-primary dark:text-teal-300">{topic.count}</span>
           </a>
         ))}
       </nav>
     </div>
+  </section>
+  <section class="pb-16 md:pb-20">
+    <div class="container mx-auto px-4">
+      {page.data.length > 0 ? (
+        <div class="mx-auto grid max-w-5xl grid-cols-1 gap-5">
+          {page.data.map((post) => (
+            <BlogCard post={post} list={true} />
+          ))}
+        </div>
+      ) : (
+        <div class="rounded-2xl border border-border bg-surface-raised px-6 py-14 text-center dark:border-dark-border dark:bg-dark-surface-raised">
+          <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant">{t('blog.empty')}</p>
+        </div>
+      )}
 
-    <!-- Article list -->
-    {page.data.length > 0 ? (
-      <div class="grid grid-cols-1 gap-4">
-        {page.data.map((post) => (
-          <BlogCard post={post} list={true} />
-        ))}
-      </div>
-    ) : (
-      <div class="rounded-2xl border border-border bg-surface-raised px-6 py-14 text-center dark:border-dark-border dark:bg-dark-surface-raised">
-        <p class="text-lg text-on-surface-variant dark:text-dark-on-surface-variant">{t('blog.empty')}</p>
-      </div>
-    )}
-
-    <!-- Pagination Controls -->
-    {(page.url.prev || page.url.next) && (
-      <nav class="mt-10 flex justify-center gap-4" aria-label={t('blog.pagination')} data-pagination>
+      <!-- Pagination Controls -->
+      <nav class="mt-12 flex justify-center gap-4" aria-label={t('blog.pagination')} data-pagination>
         {page.url.prev && (
           <a href={page.url.prev} class="inline-flex items-center rounded-xl border border-border bg-surface-raised px-5 py-2.5 font-medium text-primary transition-colors hover:border-primary hover:bg-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/50 motion-reduce:transition-none dark:border-dark-border dark:bg-dark-surface-raised">
             <span class="material-icons mr-2 text-base" aria-hidden="true">arrow_back</span>
@@ -124,39 +103,33 @@ const { page, allTags, topicCounts } = Astro.props;
           </a>
         )}
       </nav>
-    )}
+    </div>
+  </section>
 
-    <!-- Bottom tags section -->
-    <section class="mt-16 rounded-2xl border border-border bg-surface-raised p-8 text-center dark:border-dark-border dark:bg-dark-surface-raised">
-      <h2 class="mb-4 text-xl font-bold text-on-surface dark:text-dark-on-surface">{t('blog.filter_tags')}</h2>
-      <p class="mx-auto mb-6 max-w-xl text-sm text-on-surface-variant dark:text-dark-on-surface-variant">Popular topics & technologies</p>
-      <nav class="flex flex-wrap justify-center gap-2" aria-label="Popular topics">
+  <section class="border-t border-border bg-surface-variant/30 py-14 dark:border-dark-border dark:bg-dark-surface-variant/30 md:py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="mb-6 text-2xl font-bold text-on-surface dark:text-dark-on-surface">{t('blog.filter_tags')}</h2>
+      <p class="mx-auto mb-6 max-w-2xl text-sm text-on-surface-variant dark:text-dark-on-surface-variant">Popular topics</p>
+      <nav class="flex flex-wrap justify-center gap-3" aria-label="Popular topics">
         {allTags.slice(0, 12).map((tag) => (
-          <a
-            href={`/blog/tag/${slugify(tag)}/`}
-            class="inline-flex items-center rounded-full border border-border bg-surface px-3 py-1.5 text-xs md:text-sm font-medium text-on-surface transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface dark:text-dark-on-surface"
-          >
+          <a href={`/blog/tag/${slugify(tag)}/`}
+            class="inline-flex min-h-11 items-center rounded-full border border-border bg-surface-raised px-4 py-2 text-sm font-medium text-on-surface transition-colors hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-dark-border dark:bg-dark-surface-raised dark:text-dark-on-surface">
             #{tag}
           </a>
         ))}
       </nav>
       {allTags.length > 12 && (
-        <details class="mx-auto mt-6 max-w-3xl rounded-xl border border-border bg-surface p-4 text-left dark:border-dark-border dark:bg-dark-surface">
-          <summary class="cursor-pointer text-center text-sm font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
-            All tags ({allTags.length})
-          </summary>
-          <div class="mt-4 flex flex-wrap justify-center gap-2 border-t border-border pt-4 dark:border-dark-border">
+        <details class="mx-auto mt-7 max-w-5xl rounded-2xl border border-border bg-surface-raised p-4 text-left dark:border-dark-border dark:bg-dark-surface-raised">
+          <summary class="cursor-pointer text-center font-semibold text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">All tags ({allTags.length})</summary>
+          <div class="mt-5 flex flex-wrap justify-center gap-2 border-t border-border pt-5 dark:border-dark-border">
             {allTags.slice(12).map((tag) => (
-              <a
-                href={`/blog/tag/${slugify(tag)}/`}
-                class="rounded-lg px-2.5 py-1 text-xs md:text-sm text-on-surface-variant hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant"
-              >
+              <a href={`/blog/tag/${slugify(tag)}/`} class="rounded-lg px-3 py-2 text-sm text-on-surface-variant hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-dark-on-surface-variant">
                 #{tag}
               </a>
             ))}
           </div>
         </details>
       )}
-    </section>
-  </main>
+    </div>
+  </section>
 </Layout>

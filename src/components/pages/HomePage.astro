@@ -1,9 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HomeHero from "../home/HomeHero.astro";
-import HomeFeaturedWork from "../home/HomeFeaturedWork.astro";
-import HomeBlog from "../home/HomeBlog.astro";
 import HomeDevlog from "../home/HomeDevlog.astro";
+import HomeBlog from "../home/HomeBlog.astro";
+import HomeFeaturedWork from "../home/HomeFeaturedWork.astro";
 import HomeCta from "../home/HomeCta.astro";
 import { getCollection } from "astro:content";
 import { useTranslations } from "../../i18n/utils";
@@ -33,13 +33,10 @@ const allPosts = rawBlog
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-// Get latest devlogs
-const devlogs = rawDevlog
+// Get latest devlog entry
+const latestDevlog = rawDevlog
   .filter(({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith(prefix))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
-
-const latestDevlog = devlogs[0];
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())[0];
 
 // Get featured apps and projects
 const apps = rawApps
@@ -47,36 +44,24 @@ const apps = rawApps
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const projects = rawProjects.filter(({ data, id }) => !data.draft && isPublished(data.pubDate) && id.startsWith(prefix));
-
-// Map all apps into featuredItems
-const featuredItems = apps.map((app) => ({
-  title: app.data.title,
-  description: app.data.description,
-  href: `${linkPrefix}/apps/${app.slug.split('/').pop() || ''}`,
-  heroImage: app.data.heroImage,
-  kind: 'app' as const,
-  realIconUrl: ('realIconUrl' in app.data && (app.data as { realIconUrl?: string }).realIconUrl) || (app.slug.split('/').pop() === 'radiohub' ? '/images/apps/radiohub/logo.png' : undefined),
-  googlePlayUrl: 'googlePlayUrl' in app.data ? (app.data as { googlePlayUrl?: string }).googlePlayUrl : undefined,
-  repoUrl: 'repoUrl' in app.data ? (app.data as { repoUrl?: string }).repoUrl : undefined,
-  tags: app.data.tags,
-  screenshots: 'screenshots' in app.data ? (app.data as { screenshots?: string[] }).screenshots : undefined,
-}));
+const recentWork = [
+  ...apps.map((app) => ({ type: 'app' as const, entry: app, pubDate: app.data.pubDate })),
+  ...projects.map((project) => ({ type: 'project' as const, entry: project, pubDate: project.data.pubDate })),
+].sort((a, b) => b.pubDate.valueOf() - a.pubDate.valueOf()).slice(0, 3);
 
 // A consciously curated flagship: portfolio quality should not depend on publish dates.
 const flagship = apps.find((app) => app.slug.split('/').pop() === 'radiohub');
-const primaryApp = flagship || apps[0];
-const featuredWork = primaryApp
+const primaryWork = flagship ? { type: 'app' as const, entry: flagship } : recentWork[0];
+const featuredWork = primaryWork
   ? {
-      title: primaryApp.data.title,
-      description: primaryApp.data.description,
-      href: `${linkPrefix}/apps/${primaryApp.slug.split('/').pop() || ''}`,
-      heroImage: primaryApp.data.heroImage,
-      kind: 'app' as const,
-      realIconUrl: (flagship && 'realIconUrl' in flagship.data && (flagship.data as { realIconUrl?: string }).realIconUrl) || '/images/apps/radiohub/logo.png',
-      googlePlayUrl: 'googlePlayUrl' in primaryApp.data ? (primaryApp.data as { googlePlayUrl?: string }).googlePlayUrl : undefined,
-      repoUrl: 'repoUrl' in primaryApp.data ? (primaryApp.data as { repoUrl?: string }).repoUrl : undefined,
-      tags: primaryApp.data.tags,
-      screenshots: 'screenshots' in primaryApp.data ? (primaryApp.data as { screenshots?: string[] }).screenshots : undefined,
+      title: primaryWork.entry.data.title,
+      description: primaryWork.entry.data.description,
+      href: `${linkPrefix}/${primaryWork.type === 'project' ? 'projects' : 'apps'}/${primaryWork.entry.slug.split('/').pop() || ''}`,
+      heroImage: primaryWork.entry.data.heroImage,
+      kind: primaryWork.type,
+      realIconUrl: primaryWork.type === 'app' && 'realIconUrl' in primaryWork.entry.data ? (primaryWork.entry.data as { realIconUrl?: string }).realIconUrl : undefined,
+      tags: primaryWork.entry.data.tags,
+      screenshots: primaryWork.type === 'app' && 'screenshots' in primaryWork.entry.data ? primaryWork.entry.data.screenshots : undefined,
     }
   : undefined;
 ---
@@ -94,8 +79,8 @@ const featuredWork = primaryApp
   )}
 
   <HomeHero lang={lang} />
-  <HomeFeaturedWork lang={lang} featuredWork={featuredWork} featuredItems={featuredItems} />
-  <HomeBlog lang={lang} linkPrefix={linkPrefix} posts={allPosts} devlogs={devlogs} />
+  <HomeFeaturedWork lang={lang} featuredWork={featuredWork} />
+  <HomeBlog lang={lang} linkPrefix={linkPrefix} posts={allPosts} />
   <HomeDevlog lang={lang} latestDevlog={latestDevlog} />
   <HomeCta lang={lang} />
 </Layout>

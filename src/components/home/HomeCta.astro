@@ -11,55 +11,37 @@ const t = useTranslations(lang);
 ---
 
 <section class="cv-auto fade-in-section" style="contain-intrinsic-size: 600px;">
-  <div class="container mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 md:py-20 lg:px-8">
+  <div class="container mx-auto max-w-7xl px-4 py-16 md:px-6 md:py-24">
     <HomeSectionHeader
       number="04"
-      title={lang === 'es' ? 'Contacto' : 'Contact'}
+      title={t('home.explore_code')}
       id="section-cta"
     />
 
-    <!-- Tarjeta de llamada a la acción limpia -->
-    <div class="rounded-2xl border border-border bg-white p-8 text-center shadow-xs dark:border-[#1F333E] dark:bg-[#111E26] sm:p-12 md:p-16">
-      <div class="mx-auto max-w-2xl">
-        <h3 class="text-2xl font-extrabold tracking-tight text-on-surface dark:text-dark-on-surface sm:text-3xl lg:text-4xl">
-          {lang === 'es' ? '¿Tienes una idea o proyecto?' : "Let's build together"}
-        </h3>
-        <p class="mt-4 text-base leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant sm:text-lg">
-          {lang === 'es'
-            ? '¿Quieres colaborar en una app, intercambiar ideas sobre IA o charlar sobre desarrollo? Me encantaría escucharte.'
-            : 'Want to collaborate on an app, exchange ideas about AI, or talk software engineering? I would love to hear from you.'}
+    <div class="rounded-3xl border-y-2 border-secondary/80 bg-primary py-16 text-white shadow-xl md:py-20">
+      <div class="mx-auto max-w-4xl px-4 text-center md:px-6">
+        <p class="mt-2 text-base leading-relaxed opacity-90 md:text-lg">
+          {t('home.explore_code_desc')}
         </p>
 
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-          <!-- Botón de contacto directo con icono -->
-          <a
-            href={lang === 'es' ? '/es/contact' : '/contact'}
-            class="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-white shadow-sm transition hover:bg-primary-strong focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30"
-          >
-            <span class="material-icons text-base" aria-hidden="true">mail</span>
-            <span>{lang === 'es' ? 'Contactar' : 'Get in touch'}</span>
-          </a>
-
-          <!-- Botón Google Play Store -->
-          <a
-            href="https://play.google.com/store/apps/dev?id=8812775800441745731"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-surface px-6 py-3.5 text-sm font-semibold text-on-surface shadow-xs transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-300"
-          >
-            <span class="material-icons text-base" aria-hidden="true">shop</span>
-            <span>{t('home.google_play')}</span>
-          </a>
-
-          <!-- Botón GitHub -->
+        <div class="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
           <a
             href="https://github.com/arceapps"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-surface px-6 py-3.5 text-sm font-semibold text-on-surface shadow-xs transition hover:border-primary hover:text-primary focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/30 dark:border-[#1F333E] dark:bg-[#16242E] dark:text-dark-on-surface dark:hover:border-teal-400 dark:hover:text-teal-300"
+            class="inline-flex items-center justify-center rounded-2xl bg-white px-8 py-4 text-base font-bold text-primary shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 motion-reduce:transition-none"
           >
-            <span class="material-icons text-base" aria-hidden="true">code</span>
-            <span>GitHub</span>
+            <span class="material-icons mr-2 text-lg" aria-hidden="true">code</span>
+            {t('home.view_github')}
+          </a>
+          <a
+            href="https://play.google.com/store/apps/dev?id=8812775800441745731"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-2xl border-2 border-secondary bg-primary-strong px-8 py-4 text-base font-bold text-white shadow-lg transition-transform duration-200 hover:scale-105 hover:bg-primary-strong/90 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/60 motion-reduce:transition-none"
+          >
+            <span class="material-icons mr-2 text-lg" aria-hidden="true">shop</span>
+            {t('home.google_play')}
           </a>
         </div>
       </div>

@@ -23,52 +23,29 @@ const devlogSlug = latestDevlog?.slug.split('/').pop() || '';
 const href = `${linkPrefix}/devlog/${devlogSlug}`;
 ---
 
-<section class="border-t border-border/60 bg-surface-subtle py-12 sm:py-16 cv-auto fade-in-section dark:border-dark-border/60 dark:bg-dark-surface-subtle md:py-24" style="contain-intrinsic-size: 620px;">
-  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <HomeSectionHeader
-      number="03"
-      title={t('home.building_public')}
-      id="section-devlog"
-      href={`${linkPrefix}/devlog`}
-      linkText={t('home.devlog.all')}
-    />
+<section class="border-t border-border/60 bg-surface-subtle py-16 cv-auto fade-in-section dark:border-dark-border/60 dark:bg-dark-surface-subtle md:py-24" style="contain-intrinsic-size: 620px;">
+  <div class="container mx-auto max-w-7xl px-4 md:px-6">
+    <HomeSectionHeader number="03" title={t('home.building_public')} id="section-devlog"
+      href={`${linkPrefix}/devlog`} linkText={t('home.devlog.all')} />
 
     {latestDevlog ? (
       <article class="grid items-stretch gap-0 overflow-hidden rounded-3xl border border-border bg-surface-raised shadow-sm dark:border-dark-border dark:bg-dark-surface-raised md:grid-cols-2">
-        <a
-          href={href}
-          class="group relative block min-h-60 overflow-hidden bg-surface-variant focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40 dark:bg-dark-surface-variant sm:min-h-72"
-          aria-label={latestDevlog.data.title}
-        >
-          <img
-            src={latestDevlog.data.heroImage || '/images/devlog-default.svg'}
-            alt={latestDevlog.data.title}
-            width="800"
-            height="450"
-            loading="lazy"
-            decoding="async"
-            class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none"
-          />
+        <a href={href} class="group relative block min-h-60 overflow-hidden bg-surface-variant focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/40 dark:bg-dark-surface-variant sm:min-h-72" aria-label={latestDevlog.data.title}>
+          <img src={latestDevlog.data.heroImage || '/images/devlog-default.svg'} alt={latestDevlog.data.title}
+            width="800" height="450" loading="lazy" decoding="async"
+            class="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02] motion-reduce:transition-none" />
         </a>
-        <div class="flex flex-col justify-center p-6 sm:p-8 md:p-10">
+        <div class="flex flex-col justify-center p-7 md:p-10">
           <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-primary dark:text-teal-300">
-            <span class="h-2 w-2 rounded-full bg-primary dark:bg-teal-400" aria-hidden="true"></span>
-            {latestDevlog.data.pubDate ? new Date(latestDevlog.data.pubDate).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
+            <span class="h-2 w-2 rounded-full bg-secondary" aria-hidden="true"></span>
+            {latestDevlog.data.pubDate.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </span>
-          <h3 class="mt-4 text-2xl font-extrabold leading-tight text-on-surface dark:text-dark-on-surface sm:text-3xl">
-            <a href={href} class="rounded hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:hover:text-teal-300">
-              {latestDevlog.data.title}
-            </a>
+          <h3 class="mt-5 text-2xl font-extrabold leading-tight text-on-surface dark:text-dark-on-surface md:text-3xl">
+            <a href={href} class="rounded hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">{latestDevlog.data.title}</a>
           </h3>
-          <p class="mt-3 leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">
-            {latestDevlog.data.description}
-          </p>
-          <a
-            href={href}
-            class="mt-6 inline-flex min-h-11 items-center gap-2 self-start font-bold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-teal-300"
-          >
-            {t('home.read_entry')}
-            <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
+          <p class="mt-4 leading-relaxed text-on-surface-variant dark:text-dark-on-surface-variant">{latestDevlog.data.description}</p>
+          <a href={href} class="mt-7 inline-flex min-h-11 items-center gap-2 self-start font-bold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-teal-300">
+            {t('home.read_entry')} <span class="material-icons text-base" aria-hidden="true">arrow_forward</span>
           </a>
         </div>
       </article>
@@ -76,9 +53,7 @@ const href = `${linkPrefix}/devlog/${devlogSlug}`;
       <div class="max-w-3xl rounded-2xl border border-border bg-surface-raised p-8 dark:border-dark-border dark:bg-dark-surface-raised">
         <p class="text-lg font-bold text-on-surface dark:text-dark-on-surface">{t('home.explore_code')}</p>
         <p class="mt-3 text-on-surface-variant dark:text-dark-on-surface-variant">{t('home.explore_code_desc')}</p>
-        <a href={`${linkPrefix}/projects`} class="mt-5 inline-flex min-h-11 items-center font-semibold text-primary hover:underline">
-          {t('home.view_all_projects')}
-        </a>
+        <a href={`${linkPrefix}/projects`} class="mt-5 inline-flex min-h-11 items-center font-semibold text-primary hover:underline">{t('home.view_all_projects')}</a>
       </div>
     )}
   </div>
