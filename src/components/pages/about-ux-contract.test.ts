@@ -26,4 +26,11 @@ describe('ArceApps project-focused About page', () => {
     expect(translations).toContain("'nav.about': 'About me'");
     expect(translations).toContain("'nav.about': 'Sobre mí'");
   });
+
+  it('sobre mi con foto y stats dinamicos', () => {
+    const s = readFileSync('src/components/pages/AboutPage.astro', 'utf8');
+    expect(s).toContain('Hola, soy ArceApps');
+    expect(s).toContain('about-mountains');
+    expect(s).toContain('Apps publicadas');
+  });
 });
