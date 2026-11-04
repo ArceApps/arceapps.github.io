@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "name": "Rediseño visual 1:1 del portfolio",
+    "date": "2026-10-29",
+    "feature_id": "20261029-rediseno-web-visual-1-1",
+    "status": "done",
+    "branch": "feature/arceapps.github.io_rediseno-web-visual-1-1",
+    "priority": "high",
+    "feature_dir": "docs/specai/feature/20261029-rediseno-web-visual-1-1",
+    "plan_dir": "docs/specai/feature/20261029-rediseno-web-visual-1-1/20261029-rediseno-web-visual-1-1-plan.md"
+  }
+]
