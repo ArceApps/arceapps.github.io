@@ -1,0 +1,30 @@
+---
+import { agentSeries } from '../utils/agent-series';
+import { getCollection } from 'astro:content';
+import { isPublished } from '../utils/publishing';
+interface Props { slug: string; lang: 'es' | 'en'; }
+const { slug, lang } = Astro.props;
+const available = await getCollection('blog', ({data,id}) =>
+  !data.draft && isPublished(data.pubDate) && id.startsWith(lang + '/')
+);
+const released = new Set(available.map(item => item.slug.split('/').pop()));
+const prefix = lang === 'es' ? '/es/blog' : '/blog';
+const labels = lang === 'es'
+  ? {heading:'Serie: orquestación de agentes de IA',intro:'Cinco entregas. Los enlaces se habilitan al publicarse cada artículo.',upcoming:'Próximamente',aria:'Artículos de la serie'}
+  : {heading:'Series: AI agent orchestration',intro:'Five parts. Links become available as each article is published.',upcoming:'Coming soon',aria:'Series articles'};
+---
+<nav aria-label={labels.aria} class="mx-auto my-10 w-full max-w-[760px] rounded-2xl border border-border bg-surface-raised p-5 dark:border-dark-border dark:bg-dark-surface-raised">
+  <h2 class="mb-2 text-xl font-bold text-on-surface dark:text-dark-on-surface">{labels.heading}</h2>
+  <p class="mb-4 text-sm text-on-surface-variant dark:text-dark-on-surface-variant">{labels.intro}</p>
+  <ol class="space-y-2">
+    {agentSeries.map((item, index) => (
+      <li class="flex items-baseline gap-2 text-sm">
+        <span class="shrink-0 font-bold text-primary">{index+1}.</span>
+        {released.has(item.slug)
+          ? <a href={`${prefix}/${item.slug}/`} aria-current={item.slug === slug ? 'page' : undefined}
+              class:list={['underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary',item.slug === slug ? 'font-bold text-primary' : 'text-on-surface dark:text-dark-on-surface']}>{item[lang]}</a>
+          : <span class="text-on-surface-variant dark:text-dark-on-surface-variant">{item[lang]} · {item.date} ({labels.upcoming})</span>}
+      </li>
+    ))}
+  </ol>
+</nav>

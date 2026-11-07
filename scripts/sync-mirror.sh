@@ -31,6 +31,10 @@ rsync -av --delete \
   --exclude='dist' \
   --exclude='node_modules' \
   --exclude='public-repo' \
+  --exclude='scripts/filter-future-blog.py' \
+  --exclude='scripts/tests' \
   "$SOURCE_DIR/" "$DEST_DIR/"
+
+python3 "$SOURCE_DIR/scripts/filter-future-blog.py" "$DEST_DIR"
 
 echo "Mirror prepared successfully at $DEST_DIR."

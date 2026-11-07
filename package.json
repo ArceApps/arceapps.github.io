@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "prebuild": "tsx scripts/generate-og-images.ts",
+    "prebuild": "tsx scripts/generate-series-covers.ts && tsx scripts/generate-og-images.ts",
     "preview": "astro preview",
     "astro": "astro",
     "news:fetch": "node scripts/fetch-rss.js",

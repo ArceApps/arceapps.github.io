@@ -7,6 +7,8 @@ import SocialShare from '../../components/SocialShare.astro';
 import PostNavigation from '../../components/PostNavigation.astro';
 import { slugify } from '../../utils/slugs';
 import { useTranslations } from '../../i18n/utils';
+import AgentSeriesNav from '../../components/AgentSeriesNav.astro';
+import { agentSeriesSlugs } from '../../utils/agent-series';
 import { isPublished } from '../../utils/publishing';
 
 const t = useTranslations('en');
@@ -185,12 +187,14 @@ const breadcrumbItems = [
             class="block h-auto w-full object-contain"
             loading="eager"
             fetchpriority="high"
-            width="1280"
-            height="720"
+            width={agentSeriesSlugs.includes(post.slug.split('/').pop() || '') ? 1200 : 1280}
+            height={agentSeriesSlugs.includes(post.slug.split('/').pop() || '') ? 630 : 720}
           />
         </div>
       </figure>
     )}
+
+    {agentSeriesSlugs.includes(post.slug.split("/").pop() || "") && <AgentSeriesNav slug={post.slug.split("/").pop() || ""} lang="en" />}
 
     <div class="article-reading-layout mx-auto grid w-full max-w-[1200px] grid-cols-1 gap-8 px-4 lg:grid-cols-[minmax(0,264px)_minmax(0,760px)] lg:items-start lg:gap-12">
       <aside class="hidden lg:block">

@@ -35,6 +35,9 @@ jobs:
           TMPDIR: ${{ runner.temp }}
         run: pnpm test
 
+      - name: Scheduled blog release tests
+        run: python3 -m unittest discover -s scripts/tests -p 'test_*_blog.py'
+
       - name: Astro build
         run: pnpm build
 
