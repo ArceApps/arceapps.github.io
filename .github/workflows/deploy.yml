@@ -53,3 +53,16 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Checkout released public source
+        uses: actions/checkout@v4
+
+      - name: Configure Node for HTTP smoke test
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify published and future agent-series routes (ES/EN)
+        env:
+          SITE_URL: https://arceapps.com
+        run: node scripts/verify-agent-series-release.mjs

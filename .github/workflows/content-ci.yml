@@ -38,6 +38,9 @@ jobs:
       - name: Scheduled blog release tests
         run: python3 -m unittest discover -s scripts/tests -p 'test_*_blog.py'
 
+      - name: Check live release smoke test syntax
+        run: node --check scripts/verify-agent-series-release.mjs
+
       - name: Astro build
         run: pnpm build
 
