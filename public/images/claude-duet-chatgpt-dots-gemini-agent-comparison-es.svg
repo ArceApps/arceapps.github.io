@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Claude Duet vs ChatGPT Dots vs Gemini Agent</title>
+<desc id="desc">Comparativa de tres agentes siempre activos: Claude Duet, ChatGPT Dots y Gemini agent, con la huella energetica por prompt de Google frente a la opacidad de Anthropic y OpenAI.</desc>
+<rect width="1200" height="630" fill="#0F172A"/>
+<rect x="70" y="70" width="1060" height="490" rx="36" fill="#111C31" stroke="#1E293B" stroke-width="2"/>
+<text x="110" y="128" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#FF9800" letter-spacing="2">ARCEAPPS · IA · AGENTES</text>
+<text x="110" y="196" font-family="system-ui,sans-serif" font-size="50" font-weight="800" fill="#F8FAFC">DUET · DOTS · GEMINI AGENT</text>
+<text x="110" y="238" font-family="system-ui,sans-serif" font-size="24" fill="#94A3B8">Tres agentes siempre activos · Una sola publica su huella</text>
+
+<!-- Tres columnas de producto -->
+<rect x="110" y="286" width="300" height="150" rx="24" fill="#018786" opacity="0.18" stroke="#018786" stroke-width="3"/>
+<text x="260" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="27" font-weight="800" fill="#018786">CLAUDE DUET</text>
+<text x="260" y="366" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#94A3B8">Anthropic · 21-oct</text>
+<text x="260" y="398" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#F8FAFC">Opus 5.5 · VM propia</text>
+<text x="260" y="422" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#F8FAFC">Sin cifras de huella</text>
+
+<rect x="450" y="286" width="300" height="150" rx="24" fill="#FF9800" opacity="0.16" stroke="#FF9800" stroke-width="3"/>
+<text x="600" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="27" font-weight="800" fill="#FF9800">CHATGPT DOTS</text>
+<text x="600" y="366" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#94A3B8">OpenAI · 29-sep</text>
+<text x="600" y="398" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#F8FAFC">GPT-6 Astra · Nube propia</text>
+<text x="600" y="422" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#F8FAFC">Sin cifras de huella</text>
+
+<rect x="790" y="286" width="300" height="150" rx="24" fill="#018786" opacity="0.30" stroke="#018786" stroke-width="4"/>
+<text x="940" y="330" text-anchor="middle" font-family="system-ui,sans-serif" font-size="27" font-weight="800" fill="#018786">GEMINI AGENT</text>
+<text x="940" y="366" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="#94A3B8">Google · 8-oct</text>
+<text x="940" y="398" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#F8FAFC">0,24 Wh · 0,03 gCO2e</text>
+<text x="940" y="422" text-anchor="middle" font-family="ui-monospace,monospace" font-size="15" fill="#F8FAFC">0,26 mL · PUE 1,09</text>
+
+<!-- Pie: la advertencia -->
+<line x1="110" y1="474" x2="1090" y2="474" stroke="#1E293B" stroke-width="2"/>
+<circle cx="132" cy="512" r="17" fill="#FF9800"/>
+<text x="132" y="519" text-anchor="middle" font-family="system-ui,sans-serif" font-size="20" font-weight="800" fill="#0F172A">!</text>
+<text x="168" y="520" font-family="system-ui,sans-serif" font-size="21" fill="#F8FAFC">Esos 0,24 Wh son de un prompt de TEXTO. Un agente con navegador cuesta 15x a 176x mas.</text>
+<text x="110" y="546" font-family="ui-monospace,monospace" font-size="15" fill="#64748B">arceapps.com/blog/claude-duet-chatgpt-dots-gemini-agent-comparison</text>
+</svg>

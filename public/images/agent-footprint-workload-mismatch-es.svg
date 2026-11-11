@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Huella energetica: prompt de texto frente a agente web</title>
+<desc id="desc">Comparacion a escala de la huella energetica por peticion: 0,24 Wh de un prompt de texto de Gemini frente a 3,58 Wh por tarea de MindAct y 42,19 Wh por tarea de LASER.</desc>
+<rect width="1200" height="630" fill="#0F172A"/>
+<rect x="70" y="70" width="1060" height="490" rx="36" fill="#111C31" stroke="#1E293B" stroke-width="2"/>
+<text x="110" y="128" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="#FF9800" letter-spacing="2">ARCEAPPS · HUELLA ENERGETICA</text>
+<text x="110" y="196" font-family="system-ui,sans-serif" font-size="46" font-weight="800" fill="#F8FAFC">EL MISMO AGENTE NO ES EL MISMO TRABAJO</text>
+<text x="110" y="238" font-family="system-ui,sans-serif" font-size="22" fill="#94A3B8">Wh por peticion · Google 2025 (texto) vs AAAI-26 (agente web)</text>
+
+<!-- Escala logaritmica visual con barras proporcionales a log -->
+<!-- Referencia: prompt de texto = 0,24 Wh -->
+<text x="110" y="300" font-family="ui-monospace,monospace" font-size="18" fill="#F8FAFC">PROMPT TEXTO GEMINI</text>
+<text x="440" y="300" font-family="ui-monospace,monospace" font-size="18" fill="#018786">0,24 Wh · 1x</text>
+<rect x="110" y="312" width="60" height="30" rx="6" fill="#018786"/>
+
+<text x="110" y="378" font-family="ui-monospace,monospace" font-size="18" fill="#F8FAFC">MINDACT · 1 TAREA</text>
+<text x="440" y="378" font-family="ui-monospace,monospace" font-size="18" fill="#FF9800">3,58 Wh · ~15x</text>
+<rect x="110" y="390" width="220" height="30" rx="6" fill="#FF9800"/>
+
+<text x="110" y="456" font-family="ui-monospace,monospace" font-size="18" fill="#F8FAFC">LASER GPT-4 · 1 TAREA</text>
+<text x="440" y="456" font-family="ui-monospace,monospace" font-size="18" fill="#EF4444">42,19 Wh · ~176x</text>
+<rect x="110" y="468" width="800" height="30" rx="6" fill="#EF4444"/>
+
+<!-- Cajas laterales de contexto -->
+<rect x="700" y="286" width="390" height="92" rx="16" fill="#018786" opacity="0.16" stroke="#018786" stroke-width="2"/>
+<text x="724" y="320" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#018786">LO QUE SÍ PUBLICA GOOGLE</text>
+<text x="724" y="348" font-family="ui-monospace,monospace" font-size="16" fill="#CBD5E1">0,24 Wh · 0,03 gCO2e · 0,26 mL</text>
+<text x="724" y="370" font-family="ui-monospace,monospace" font-size="16" fill="#CBD5E1">con metodologia y advertencias</text>
+
+<rect x="700" y="392" width="390" height="106" rx="16" fill="#EF4444" opacity="0.14" stroke="#EF4444" stroke-width="2"/>
+<text x="724" y="426" font-family="system-ui,sans-serif" font-size="19" font-weight="700" fill="#EF4444">LO QUE NO PUBLICA</text>
+<text x="724" y="454" font-family="ui-monospace,monospace" font-size="16" fill="#CBD5E1">Cero menciones a "agent" o</text>
+<text x="724" y="476" font-family="ui-monospace,monospace" font-size="16" fill="#CBD5E1">"browser" en el paper tecnico</text>
+<text x="724" y="492" font-family="ui-monospace,monospace" font-size="15" fill="#94A3B8">run completo: 0,33 - 3,31 kWh</text>
+
+<line x1="110" y1="516" x2="1090" y2="516" stroke="#1E293B" stroke-width="2"/>
+<text x="110" y="544" font-family="ui-monospace,monospace" font-size="15" fill="#64748B">arXiv 2508.15734 · AAAI-26 Vol. 40 No. 45, pp. 38772-38780</text>
+</svg>
