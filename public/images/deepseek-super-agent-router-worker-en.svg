@@ -1,0 +1,87 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">DeepSeek Super Agent: a persistent Router and isolated Workers</title>
+  <desc id="desc">Diagram of DeepSeek's two-layer Super-agent design: a Router that handles human interaction and assigns work, connected to three isolated Worker sessions, with a fast-path event line that bypasses the Router.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1c1c"/>
+      <stop offset="0.55" stop-color="#0e2424"/>
+      <stop offset="1" stop-color="#123030"/>
+    </linearGradient>
+    <linearGradient id="tealGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#018786"/>
+      <stop offset="1" stop-color="#28c2b9"/>
+    </linearGradient>
+    <linearGradient id="orangeGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FF9800"/>
+      <stop offset="1" stop-color="#ffc266"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#1c4444" stroke-width="1" opacity="0.45"/>
+    </pattern>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="150" cy="470" r="190" fill="#018786" opacity="0.12"/>
+  <circle cx="1050" cy="120" r="160" fill="#FF9800" opacity="0.08"/>
+
+  <!-- Router -->
+  <g>
+    <rect x="80" y="150" width="300" height="230" rx="22" fill="#0d2b2b" stroke="#28c2b9" stroke-width="2"/>
+    <text x="108" y="192" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="15" letter-spacing="3" fill="#7fe3da">LAYER 1</text>
+    <text x="108" y="238" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#ffffff">ROUTER</text>
+    <text x="108" y="272" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="18" fill="#bfe9e5">one persistent session</text>
+    <text x="108" y="300" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="18" fill="#bfe9e5">global context, no shell</text>
+    <g transform="translate(108,332)">
+      <circle cx="10" cy="10" r="6" fill="#28c2b9"/>
+      <text x="26" y="16" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#8fd8d2">routes · assigns · replies</text>
+    </g>
+  </g>
+
+  <!-- Workers -->
+  <g>
+    <rect x="740" y="96" width="372" height="96" rx="16" fill="#122f2f" stroke="#2c6f6f" stroke-width="1.5"/>
+    <text x="766" y="132" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" letter-spacing="2.5" fill="#7fe3da">WORKER 1</text>
+    <text x="766" y="162" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="20" fill="#ffffff">isolated context, full tools</text>
+
+    <rect x="740" y="216" width="372" height="96" rx="16" fill="#122f2f" stroke="#FF9800" stroke-width="2"/>
+    <text x="766" y="252" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" letter-spacing="2.5" fill="#ffc266">WORKER 2</text>
+    <text x="766" y="282" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="20" fill="#ffffff">subscribed to one thread</text>
+
+    <rect x="740" y="336" width="372" height="96" rx="16" fill="#122f2f" stroke="#2c6f6f" stroke-width="1.5"/>
+    <text x="766" y="372" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" letter-spacing="2.5" fill="#7fe3da">WORKER 3</text>
+    <text x="766" y="402" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="20" fill="#ffffff">reports, never talks to people</text>
+  </g>
+
+  <!-- connectors from router -->
+  <g fill="none" stroke="#28c2b9" stroke-width="2.5" opacity="0.85">
+    <path d="M380 220 C 540 220, 580 144, 740 144"/>
+    <path d="M380 265 C 560 265, 600 264, 740 264"/>
+    <path d="M380 310 C 540 310, 580 384, 740 384"/>
+  </g>
+  <circle cx="380" cy="220" r="5" fill="#28c2b9"/>
+  <circle cx="380" cy="265" r="5" fill="#28c2b9"/>
+  <circle cx="380" cy="310" r="5" fill="#28c2b9"/>
+
+  <!-- fast path event stream -->
+  <g>
+    <path d="M470 546 C 640 546, 660 264, 738 264" fill="none" stroke="url(#orangeGlow)" stroke-width="3" stroke-dasharray="10 8"/>
+    <circle cx="470" cy="546" r="8" fill="#FF9800"/>
+    <text x="470" y="592" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#ffc266">new trigger</text>
+    <text x="590" y="508" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#ffc266">fast path: subscription delivery, no router call</text>
+  </g>
+
+  <!-- footer -->
+  <g>
+    <text x="80" y="486" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="54" font-weight="700" fill="#ffffff">DeepSeek Super Agent</text>
+    <text x="80" y="528" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="25" fill="#9fd8d3">Router · Workers · Attention</text>
+    <text x="80" y="566" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" letter-spacing="2" fill="#6f9d9a">ARCEAPPS.COM · 2026</text>
+  </g>
+</svg>
