@@ -1,0 +1,80 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">OpenBot vs Hermes Agent vs Paperclip: tres modelos de disparo para agentes proactivos</title>
+  <desc id="desc">Tres paneles que comparan cómo despierta cada plataforma a un agente de noche: rutinas de OpenBot con horario o webhook, cron y cola durable de Hermes Agent, heartbeats y asignaciones de Paperclip dentro de un organigrama. Abajo, una línea de tiempo marca las 02:00 rutina, 03:40 pull request y 04:12 incidente.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1c1c"/>
+      <stop offset="0.55" stop-color="#0e2424"/>
+      <stop offset="1" stop-color="#123030"/>
+    </linearGradient>
+    <linearGradient id="tealGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#018786"/>
+      <stop offset="1" stop-color="#28c2b9"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#1c4444" stroke-width="1" opacity="0.45"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="140" cy="500" r="180" fill="#018786" opacity="0.12"/>
+  <circle cx="1080" cy="120" r="150" fill="#FF9800" opacity="0.08"/>
+
+  <text x="70" y="74" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="15" letter-spacing="4" fill="#7fe3da">PLATAFORMAS DE AGENTES · NOVIEMBRE 2026</text>
+  <text x="70" y="146" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="50" font-weight="700" fill="#ffffff">¿QUIÉN DESPIERTA</text>
+  <text x="70" y="202" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="50" font-weight="700" fill="#ffffff">AL AGENTE?</text>
+  <text x="70" y="240" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="18" fill="#bfe9e5">Tres plataformas, tres formas de arrancar trabajo a las 03:00 sin que escriba nadie.</text>
+
+  <!-- OpenBot -->
+  <g>
+    <rect x="70" y="272" width="336" height="238" rx="20" fill="#0d2b2b" stroke="#28c2b9" stroke-width="2"/>
+    <circle cx="360" cy="316" r="26" fill="none" stroke="#28c2b9" stroke-width="2"/>
+    <path d="M360 302V316L370 323" fill="none" stroke="#7fe3da" stroke-width="2" stroke-linecap="round"/>
+    <text x="96" y="310" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" letter-spacing="3" fill="#7fe3da">ESCRITORIO LOCAL</text>
+    <text x="96" y="352" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#ffffff">OPENBOT</text>
+    <text x="96" y="392" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#cfe9e6">Rutina = instrucción + horas</text>
+    <text x="96" y="418" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#cfe9e6">Horario, webhook, cola FIFO</text>
+    <text x="96" y="444" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#cfe9e6">Canales: un dueño de tarea</text>
+    <text x="96" y="480" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="15" fill="#FF9800">Despierta si el host está despierto</text>
+  </g>
+
+  <!-- Hermes -->
+  <g>
+    <rect x="432" y="272" width="336" height="238" rx="20" fill="#0d2b2b" stroke="#7fe3da" stroke-width="2"/>
+    <rect x="700" y="294" width="46" height="46" rx="8" fill="none" stroke="#7fe3da" stroke-width="2"/>
+    <path d="M710 306H736M710 316H736M710 326H726" stroke="#7fe3da" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="458" y="310" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" letter-spacing="3" fill="#7fe3da">PLANIFICADOR + COLA</text>
+    <text x="458" y="352" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#ffffff">HERMES</text>
+    <text x="458" y="392" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#cfe9e6">Cron con rutas de webhook</text>
+    <text x="458" y="418" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#cfe9e6">Cola Kanban durable</text>
+    <text x="458" y="444" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#cfe9e6">Objetivos, heartbeats, bucles</text>
+    <text x="458" y="480" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="15" fill="#FF9800">Despierta en servidor o en la nube</text>
+  </g>
+
+  <!-- Paperclip -->
+  <g>
+    <rect x="794" y="272" width="336" height="238" rx="20" fill="#0d2b2b" stroke="#FF9800" stroke-width="2"/>
+    <circle cx="1080" cy="316" r="10" fill="none" stroke="#FF9800" stroke-width="2"/>
+    <circle cx="1062" cy="342" r="8" fill="none" stroke="#ffc266" stroke-width="2"/>
+    <circle cx="1098" cy="342" r="8" fill="none" stroke="#ffc266" stroke-width="2"/>
+    <path d="M1080 326V334M1080 334H1062V342M1080 334H1098V342" stroke="#ffc266" stroke-width="2" fill="none"/>
+    <text x="820" y="310" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" letter-spacing="3" fill="#ffc266">ORGANIGRAMA + PRESUPUESTOS</text>
+    <text x="820" y="352" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="30" font-weight="700" fill="#ffffff">PAPERCLIP</text>
+    <text x="820" y="392" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#ffe2b8">Rutinas: cron o webhook</text>
+    <text x="820" y="418" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#ffe2b8">La asignación despierta al agente</text>
+    <text x="820" y="444" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="16" fill="#ffe2b8">Parada dura al 100% de presupuesto</text>
+    <text x="820" y="480" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="15" fill="#FF9800">Despierta porque llegó trabajo</text>
+  </g>
+
+  <!-- timeline -->
+  <line x1="70" y1="552" x2="1130" y2="552" stroke="#28c2b9" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="180" cy="552" r="6" fill="#28c2b9"/>
+  <text x="180" y="580" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="14" fill="#9fd8d3" text-anchor="middle">02:00 rutina</text>
+  <circle cx="600" cy="552" r="6" fill="#7fe3da"/>
+  <text x="600" y="580" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="14" fill="#9fd8d3" text-anchor="middle">03:40 pull request</text>
+  <circle cx="1020" cy="552" r="6" fill="#FF9800"/>
+  <text x="1020" y="580" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="14" fill="#ffc266" text-anchor="middle">04:12 incidente</text>
+
+  <text x="70" y="612" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#6fb3ae">arceapps.com · verificado con fuentes primarias, 14 nov 2026</text>
+</svg>

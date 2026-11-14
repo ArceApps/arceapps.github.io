@@ -1,0 +1,107 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">A puzzle platform run by agents: the nightly pipeline of PuzzleSuite and BrainSuite</title>
+  <desc id="desc">A five-step nightly pipeline — generate, validate, open a pull request, review, release — with a rejection badge showing 17 of 20 puzzle candidates discarded by the solver, and a note that auto-merge only applies to content-only diffs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1c1c"/>
+      <stop offset="0.55" stop-color="#0e2424"/>
+      <stop offset="1" stop-color="#143232"/>
+    </linearGradient>
+    <linearGradient id="tealGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#018786"/>
+      <stop offset="1" stop-color="#28c2b9"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#1c4444" stroke-width="1" opacity="0.45"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="1060" cy="510" r="170" fill="#018786" opacity="0.12"/>
+  <circle cx="180" cy="130" r="140" fill="#FF9800" opacity="0.07"/>
+
+  <text x="70" y="72" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="15" letter-spacing="4" fill="#7fe3da">CASE STUDY · PUZZLES + BRAIN TRAINING</text>
+  <text x="70" y="140" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#ffffff">A PUZZLE PLATFORM</text>
+  <text x="70" y="192" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="48" font-weight="700" fill="#ffffff">RUN BY AGENTS</text>
+  <text x="70" y="228" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="17" fill="#bfe9e5">PuzzleSuite · BrainSuite · 14 games, six flows, nobody awake.</text>
+
+  <!-- decorative puzzle grid -->
+  <g opacity="0.9">
+    <rect x="70" y="270" width="140" height="140" rx="10" fill="#0d2b2b" stroke="#28c2b9" stroke-width="1.5"/>
+    <g fill="#28c2b9">
+      <rect x="82" y="282" width="24" height="24" rx="3"/>
+      <rect x="110" y="282" width="24" height="24" rx="3" opacity="0.35"/>
+      <rect x="166" y="282" width="32" height="24" rx="3" opacity="0.35"/>
+      <rect x="82" y="310" width="24" height="24" rx="3" opacity="0.35"/>
+      <rect x="138" y="310" width="24" height="24" rx="3"/>
+      <rect x="110" y="338" width="24" height="24" rx="3" opacity="0.35"/>
+      <rect x="166" y="338" width="32" height="24" rx="3"/>
+      <rect x="82" y="366" width="24" height="24" rx="3"/>
+      <rect x="138" y="366" width="24" height="24" rx="3" opacity="0.35"/>
+      <rect x="166" y="366" width="32" height="24" rx="3" opacity="0.35"/>
+    </g>
+    <rect x="70" y="270" width="140" height="140" rx="10" fill="none" stroke="#7fe3da" stroke-width="1"/>
+  </g>
+  <text x="70" y="436" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#6fb3ae">Shikaku 12x12 · unique solution required</text>
+
+  <!-- pipeline -->
+  <line x1="230" y1="352" x2="1128" y2="352" stroke="#1c4444" stroke-width="2"/>
+
+  <g>
+    <circle cx="262" cy="352" r="7" fill="#28c2b9"/>
+    <text x="262" y="300" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#7fe3da" text-anchor="middle">01:00</text>
+    <rect x="230" y="366" width="156" height="92" rx="12" fill="#0d2b2b" stroke="#28c2b9" stroke-width="1.5"/>
+    <text x="246" y="398" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#ffffff">puzzle-smith</text>
+    <text x="246" y="422" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#cfe9e6">20 candidates</text>
+    <text x="246" y="440" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#cfe9e6">per game type</text>
+  </g>
+
+  <g>
+    <circle cx="410" cy="352" r="7" fill="#7fe3da"/>
+    <text x="410" y="300" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#7fe3da" text-anchor="middle">01:40</text>
+    <rect x="390" y="366" width="156" height="92" rx="12" fill="#0d2b2b" stroke="#7fe3da" stroke-width="1.5"/>
+    <text x="406" y="398" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#ffffff">puzzle-verifier</text>
+    <text x="406" y="422" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#cfe9e6">unique solution</text>
+    <text x="406" y="440" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#cfe9e6">no guessing</text>
+  </g>
+
+  <g>
+    <circle cx="558" cy="352" r="7" fill="#28c2b9"/>
+    <text x="558" y="300" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#7fe3da" text-anchor="middle">02:10</text>
+    <rect x="550" y="366" width="156" height="92" rx="12" fill="#0d2b2b" stroke="#28c2b9" stroke-width="1.5"/>
+    <text x="566" y="398" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#ffffff">pull request</text>
+    <text x="566" y="422" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#cfe9e6">content-only diff</text>
+    <text x="566" y="440" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#cfe9e6">CI required</text>
+  </g>
+
+  <g>
+    <circle cx="706" cy="352" r="7" fill="#7fe3da"/>
+    <text x="706" y="300" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#7fe3da" text-anchor="middle">02:30</text>
+    <rect x="710" y="366" width="156" height="92" rx="12" fill="#0d2b2b" stroke="#7fe3da" stroke-width="1.5"/>
+    <text x="726" y="398" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#ffffff">review</text>
+    <text x="726" y="422" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#cfe9e6">different profile</text>
+    <text x="726" y="440" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#cfe9e6">cannot self-approve</text>
+  </g>
+
+  <g>
+    <circle cx="854" cy="352" r="7" fill="#FF9800"/>
+    <text x="854" y="300" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#ffc266" text-anchor="middle">MON 04:00</text>
+    <rect x="870" y="366" width="156" height="92" rx="12" fill="#0d2b2b" stroke="#FF9800" stroke-width="1.5"/>
+    <text x="886" y="398" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#ffffff">release</text>
+    <text x="886" y="422" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#ffe2b8">internal track</text>
+    <text x="886" y="440" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#ffe2b8">promotion manual</text>
+  </g>
+
+  <!-- result badges -->
+  <g>
+    <rect x="230" y="492" width="300" height="46" rx="23" fill="#FF9800" opacity="0.14" stroke="#FF9800" stroke-width="1.5"/>
+    <text x="252" y="521" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="15" fill="#ffc266">17 of 20 candidates rejected</text>
+
+    <rect x="556" y="492" width="330" height="46" rx="23" fill="#018786" opacity="0.18" stroke="#28c2b9" stroke-width="1.5"/>
+    <text x="578" y="521" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="15" fill="#9fd8d3">auto-merge: content-only diffs</text>
+  </g>
+
+  <text x="230" y="576" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="15" fill="#cfe9e6">The validator says no at 01:40. That is the product.</text>
+  <text x="70" y="612" font-family="Roboto, Arial, Helvetica, sans-serif" font-size="13" fill="#6fb3ae">arceapps.com · PuzzleSuite / BrainSuite case study, November 2026</text>
+</svg>
